@@ -16,7 +16,7 @@ Extension de la classe Object
   
 
 
-######Exemple
+Exemple  
 ```ruby  
 
 #Classe qui sera un attribut
@@ -71,7 +71,7 @@ b.succ # 100
   
 
 
-######Exemple
+Exemple  
 ```ruby  
 
 TEST = lambda{|people| p 'Hello' + people.to_s}

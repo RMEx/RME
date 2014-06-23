@@ -144,7 +144,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_class_snippet(mdl, meth, classname)
       if RME::Doc.schema[classname][:methods][meth][:snippet]
-        t = mdl.title 6, "Exemple"
+        t = "Exemple" + mdl.nl
         t += mdl.code("ruby", RME::Doc.schema[classname][:methods][meth][:snippet]) + mdl.np
         return t
       end
