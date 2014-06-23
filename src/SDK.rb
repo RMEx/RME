@@ -229,7 +229,7 @@ class Object
                             "Renvoi un buffer (pour les Win32API's)",
                             {:size => ["Taille du buffer", :Fixnum]}, true
 
-  link_snippet(:delegate, "
+  link_snippet(:"Object.delegate", "
       #Classe qui sera un attribut
       class A
         attr_accessor :test

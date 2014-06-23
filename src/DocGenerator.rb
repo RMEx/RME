@@ -132,6 +132,7 @@ module DocGenerator
           inline_args = inline_args[0...-2]
           t += mdl.strong("#{name}(#{inline_args})")
           snippet = mdl.np + make_class_snippet(mdl, name, classname) + mdl.np
+          p snippet
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
         end
         return t
@@ -143,8 +144,9 @@ module DocGenerator
     # * Create Snippter
     #--------------------------------------------------------------------------
     def make_class_snippet(mdl, meth, classname)
+      p RME::Doc.schema[classname][:methods][meth]
       if RME::Doc.schema[classname][:methods][meth][:snippet]
-        t = mdl.title 2, "Exemple"
+        t = mdl.title 6, "Exemple"
         t += mdl.code("ruby", RME::Doc.schema[classname][:methods][meth][:snippet]) + mdl.np
         return t
       end
