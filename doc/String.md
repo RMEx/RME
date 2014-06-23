@@ -11,6 +11,8 @@ Extension des chaines de caractère
 >   
 
 
+
+
 **self.damerau_levenshtein(`oth`)**
 
 > Renvoi la distance de Damerau Levenshtein avec 
@@ -22,6 +24,8 @@ Extension des chaines de caractère
   
 
 
+
+
 **self.cut(`lin_len`)**
 
 > Injecte des retours à la ligne dans la chaine  
@@ -30,5 +34,7 @@ Extension des chaines de caractère
 --- | --- | ---  
 `lin_len`|`Fixnum`|Taille des lignes  
   
+
+
 
 

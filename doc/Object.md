@@ -16,6 +16,8 @@ Extension de la classe Object
   
 
 
+
+
 **Object.delegate_accessor(`obj`, `field`)**
 
 > Délègue à une méthode les accesseurs, mutateurs d'un attribut  
@@ -25,6 +27,8 @@ Extension de la classe Object
 `obj`|`Symbol`|Attribut ou méthode à pointer  
 `field`|`Symbol`|Attribut de l'obj à déléguer  
   
+
+
 
 
 **Object.externalize(`obj`, `m_alias`)**
@@ -38,11 +42,15 @@ Extension de la classe Object
   
 
 
+
+
 **self.identity()**
 
 > Renvoi l'instance pointée  
   
 >   
+
+
 
 
 **self.attr_values()**
@@ -53,6 +61,8 @@ Extension de la classe Object
 >   
 
 
+
+
 **self.buffer(`size`)**
 
 > Renvoi un buffer (pour les Win32API's)  
@@ -61,5 +71,7 @@ Extension de la classe Object
 --- | --- | ---  
 `size`|`Fixnum`|Taille du buffer  
   
+
+
 
 

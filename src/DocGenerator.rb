@@ -131,7 +131,7 @@ module DocGenerator
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
           t += mdl.strong("#{name}(#{inline_args})")
-          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + mdl.np
+          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + mdl.np + mdl.np
         end
         return t
       end

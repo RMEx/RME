@@ -15,6 +15,8 @@ Représente un point dans un plan cartésien
   
 
 
+
+
 **self.set(`x`, `y`)**
 
 > Change les coordonnées du point   
@@ -24,6 +26,8 @@ Représente un point dans un plan cartésien
 `x`|`Fixnum`|Coordonnées X du point  
 `y`|`Fixnum`|Coordonnées Y du point  
   
+
+
 
 
 **self.in?(`rect`)**
@@ -36,10 +40,14 @@ Représente un point dans un plan cartésien
   
 
 
+
+
 **self.null!()**
 
 > Replace le X et le Y du point à zéro  
   
 >   
+
+
 
 
