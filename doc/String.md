@@ -8,8 +8,6 @@ Extension des chaines de caractère
 
 > Renvoi tous les entier d'une chaine de caractère  
   
-Nom|Type|Description  
---- | --- | ---  
   
 - - -
 

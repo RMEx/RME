@@ -122,7 +122,8 @@ module DocGenerator
           atr = data[:attributes]
           ret = data[:returned]
           inline_args = ""
-          atr_list = mdl.table("Nom", "Type", "Description")
+          atr_list = ""
+          atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
           atr.each do |name, dt|
             inline_args += name.to_s + ", "
             atr_list += mdl.tr(name.to_s, mdl.inline_code(dt[1]), dt[0])

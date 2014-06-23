@@ -42,8 +42,6 @@ m_alias|`Symbol`|Nom de la méthode
 
 > Renvoi l'instance pointée  
   
-Nom|Type|Description  
---- | --- | ---  
   
 - - -
 
@@ -52,8 +50,6 @@ Nom|Type|Description
 > Renvoi un hash des attributs où la clé est le nom de l'attribut
                             et la valeur est la valeur de l'attribut  
   
-Nom|Type|Description  
---- | --- | ---  
   
 - - -
 
