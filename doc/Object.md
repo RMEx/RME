@@ -10,9 +10,9 @@ Extension de la classe Object
   
 > Nom|Type|Description  
 --- | --- | ---  
-obj|`Symbol`|Attribut ou méthode à pointer  
-method|`Symbol`|Méthode à appeler  
-m_alias|`Symbol`|Alias de la méthode, peut être ommis  
+`obj`|`Symbol`|Attribut ou méthode à pointer  
+`method`|`Symbol`|Méthode à appeler  
+`m_alias`|`Symbol`|Alias de la méthode, peut être ommis  
   
 
 
@@ -22,8 +22,8 @@ m_alias|`Symbol`|Alias de la méthode, peut être ommis
   
 > Nom|Type|Description  
 --- | --- | ---  
-obj|`Symbol`|Attribut ou méthode à pointer  
-field|`Symbol`|Attribut de l'obj à déléguer  
+`obj`|`Symbol`|Attribut ou méthode à pointer  
+`field`|`Symbol`|Attribut de l'obj à déléguer  
   
 
 
@@ -33,8 +33,8 @@ field|`Symbol`|Attribut de l'obj à déléguer
   
 > Nom|Type|Description  
 --- | --- | ---  
-obj|`Proc`|Objet callable  
-m_alias|`Symbol`|Nom de la méthode  
+`obj`|`Proc`|Objet callable  
+`m_alias`|`Symbol`|Nom de la méthode  
   
 
 
@@ -59,7 +59,7 @@ m_alias|`Symbol`|Nom de la méthode
   
 > Nom|Type|Description  
 --- | --- | ---  
-size|`Fixnum`|Taille du buffer  
+`size`|`Fixnum`|Taille du buffer  
   
 
 

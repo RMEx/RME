@@ -18,7 +18,7 @@ Extension des chaines de caractère
   
 > Nom|Type|Description  
 --- | --- | ---  
-oth|`String`|Autre chaine à comparer  
+`oth`|`String`|Autre chaine à comparer  
   
 
 
@@ -28,7 +28,7 @@ oth|`String`|Autre chaine à comparer
   
 > Nom|Type|Description  
 --- | --- | ---  
-lin_len|`Fixnum`|Taille des lignes  
+`lin_len`|`Fixnum`|Taille des lignes  
   
 
 

@@ -126,7 +126,7 @@ module DocGenerator
           atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
           atr.each do |name, dt|
             inline_args += mdl.inline_code(name.to_s) + ", "
-            atr_list += mdl.tr(name.to_s, mdl.inline_code(dt[1]), dt[0])
+            atr_list += mdl.tr(mdl.inline_code(name.to_s), mdl.inline_code(dt[1]), dt[0])
           end
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]

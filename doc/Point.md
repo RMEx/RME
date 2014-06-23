@@ -10,8 +10,8 @@ Représente un point dans un plan cartésien
   
 > Nom|Type|Description  
 --- | --- | ---  
-x|`Fixnum`|Coordonnées X du point  
-y|`Fixnum`|Coordonnées Y du point  
+`x`|`Fixnum`|Coordonnées X du point  
+`y`|`Fixnum`|Coordonnées Y du point  
   
 
 
@@ -21,8 +21,8 @@ y|`Fixnum`|Coordonnées Y du point
   
 > Nom|Type|Description  
 --- | --- | ---  
-x|`Fixnum`|Coordonnées X du point  
-y|`Fixnum`|Coordonnées Y du point  
+`x`|`Fixnum`|Coordonnées X du point  
+`y`|`Fixnum`|Coordonnées Y du point  
   
 
 
@@ -32,7 +32,7 @@ y|`Fixnum`|Coordonnées Y du point
   
 > Nom|Type|Description  
 --- | --- | ---  
-rect|`Rect`|Rectangle  
+`rect`|`Rect`|Rectangle  
   
 
 
