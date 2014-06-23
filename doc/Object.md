@@ -75,32 +75,3 @@ Extension de la classe Object
 
 
 
-##Exemple
-```ruby  
-
-      #Classe qui sera un attribut
-      class A
-        attr_accessor :test
-        def initialize
-          @test = 99
-        end
-        def succ 
-          return @test + 1
-        end
-      end
-
-      #Classe qui Délègue
-      class B 
-        attr_accessor :a
-        delegate :a, :succ  #On crée la méthode Succ 
-        def initialize
-          @a = A.new
-        end
-      end
-
-      #Exemple d'usage 
-      b = B.new 
-      b.succ # 100
-      
-```
-

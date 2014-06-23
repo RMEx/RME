@@ -131,7 +131,8 @@ module DocGenerator
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
           t += mdl.strong("#{name}(#{inline_args})")
-          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + mdl.np + mdl.np
+          snippet = mdl.np + make_class_snippet(mdl, name, classname) + mdl.np
+          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
         end
         return t
       end
@@ -141,10 +142,10 @@ module DocGenerator
     #--------------------------------------------------------------------------
     # * Create Snippter
     #--------------------------------------------------------------------------
-    def make_class_snippet(mdl, classname)
-      if RME::Doc.schema[classname][:snippet]
+    def make_class_snippet(mdl, meth, classname)
+      if RME::Doc.schema[classname][:methods][meth][:snippet]
         t = mdl.title 2, "Exemple"
-        t += mdl.code("ruby", RME::Doc.schema[classname][:snippet]) + mdl.np
+        t += mdl.code("ruby", RME::Doc.schema[classname][:methods][meth][:snippet]) + mdl.np
         return t
       end
       ""
@@ -162,7 +163,6 @@ module DocGenerator
         page = make_class_header(mdl, klass)
         page += make_class_attributes(mdl, klass)
         page += make_class_methods(mdl, klass)
-        page += make_class_snippet(mdl, klass)
         File.open("#{output}/#{name}", 'w') do |f|
           f.write(page)
         end

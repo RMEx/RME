@@ -83,9 +83,9 @@ module RME
     #--------------------------------------------------------------------------
     # * Snippet documentation
     #--------------------------------------------------------------------------
-    def link_snippet(value)
+    def link_snippet(meth, value)
       init_doc_statement
-      Doc.schema[classname][:snippet] = value
+      Doc.schema[classname][:methods][meth.to_sym][:snippet] = value
     end
 
     #--------------------------------------------------------------------------
@@ -229,7 +229,7 @@ class Object
                             "Renvoi un buffer (pour les Win32API's)",
                             {:size => ["Taille du buffer", :Fixnum]}, true
 
-  link_snippet("
+  link_snippet(:delegate, "
       #Classe qui sera un attribut
       class A
         attr_accessor :test
