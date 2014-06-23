@@ -4,7 +4,7 @@
 Représente un point dans un plan cartésien
 
 ##Méthodes
-`Point.new(x, y)`
+**Point.new(`x`, `y`)**
 
 > Constructeur de point  
   
@@ -15,7 +15,7 @@ y|`Fixnum`|Coordonnées Y du point
   
 
 
-`self.set(x, y)`
+**self.set(`x`, `y`)**
 
 > Change les coordonnées du point   
   
@@ -26,7 +26,7 @@ y|`Fixnum`|Coordonnées Y du point
   
 
 
-`self.in?(rect)`
+**self.in?(`rect`)**
 
 > Vérifie si un point est inscrit dans un rectangle  
   
@@ -36,7 +36,7 @@ rect|`Rect`|Rectangle
   
 
 
-`self.null!()`
+**self.null!()**
 
 > Replace le X et le Y du point à zéro  
   

@@ -125,12 +125,12 @@ module DocGenerator
           atr_list = ""
           atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
           atr.each do |name, dt|
-            inline_args += name.to_s + ", "
+            inline_args += mdl.inline_code(name.to_s) + ", "
             atr_list += mdl.tr(name.to_s, mdl.inline_code(dt[1]), dt[0])
           end
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
-          t += mdl.inline_code("#{name}(#{inline_args})")
+          t += mdl.strong("#{name}(#{inline_args})")
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + mdl.np
         end
         return t
@@ -153,7 +153,6 @@ module DocGenerator
         File.open("#{output}/#{name}", 'w') do |f|
           f.write(page)
         end
-        p "#{name} : Writted !"
       end
       indexl += mdl.end_ul
       File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}
