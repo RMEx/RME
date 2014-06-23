@@ -121,8 +121,10 @@ module DocGenerator
           end
           atr_list += mdl.end_ul
           inline_args = inline_args[0...-2]
-          return t + mdl.strong("#{name}(#{inline_args})") + atr_list + mdl.np
+          t += mdl.strong("#{name}(#{inline_args})")
+          t += mdl.np + desc + mdl.nl + atr_list + mdl.np
         end
+        return t
       end
       return ""
     end

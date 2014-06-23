@@ -4,6 +4,9 @@
 Extension de la classe Object
 
 ##Méthodes
-**self.buffer(size)***    **size(Fixnum)** : Taille du buffer
+**self.buffer(size)**
+
+Renvoi un buffer (pour les Win32API's)  
+*    **size(Fixnum)** : Taille du buffer
 
 

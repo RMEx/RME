@@ -4,6 +4,9 @@
 Représente un point dans un plan cartésien
 
 ##Méthodes
-**self.in?(rect)***    **rect(Rect)** : Rectangle
+**self.in?(rect)**
+
+Vérifie si un point est inscrit dans un rectangle  
+*    **rect(Rect)** : Rectangle
 
 
