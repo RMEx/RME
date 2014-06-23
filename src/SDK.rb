@@ -37,6 +37,7 @@ module RME
     #--------------------------------------------------------------------------
     class << self
       attr_accessor :schema
+      attr_accessor :header
       Doc.schema ||= Hash.new
       Doc.header ||= Hash.new
     end
@@ -51,8 +52,8 @@ module RME
     #--------------------------------------------------------------------------
     def init_doc_statement
       Doc.schema[classname] ||= Hash.new
-      Doc.schema[classname][:attributes] = Hash.new
-      Doc.schema[classname][:methods] = Hash.new
+      Doc.schema[classname][:attributes] ||= Hash.new
+      Doc.schema[classname][:methods] ||= Hash.new
     end
     #--------------------------------------------------------------------------
     # * Class documentation
@@ -372,7 +373,6 @@ class String
     n_s.compact.collect(&:strip)
   end
 end
-
 
 
 #==============================================================================
