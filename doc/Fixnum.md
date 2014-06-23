@@ -8,6 +8,6 @@ Extension des entiers
 
 > Renvoi la représentation textuelle d'un chiffre  
   
-  
-- - -
+>   
+
 

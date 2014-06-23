@@ -103,7 +103,7 @@ module DocGenerator
         t = mdl.title 2, "Attributs"
         t += mdl.table("Nom", "Description")
         k.each do |atr, desc|
-          t += mdl.tr(atr, desc)
+          t += mdl.tr(mdl.inline_code(atr), desc)
         end
         return t + mdl.end_table
       end
@@ -131,7 +131,7 @@ module DocGenerator
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
           t += mdl.inline_code("#{name}(#{inline_args})")
-          t += mdl.np + mdl.blockquote(desc) + mdl.nl + atr_list + mdl.nl + mdl.line + mdl.np
+          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + mdl.np
         end
         return t
       end
