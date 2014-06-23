@@ -24,6 +24,68 @@ module RME
     end
   end
 
+
+  #==============================================================================
+  # ** Doc
+  #------------------------------------------------------------------------------
+  #  Documentation representation
+  #==============================================================================
+
+  module Doc
+    #--------------------------------------------------------------------------
+    # * Singleton
+    #--------------------------------------------------------------------------
+    class << self
+      attr_accessor :schema
+      Doc.schema ||= Hash.new
+      Doc.header ||= Hash.new
+    end
+    #--------------------------------------------------------------------------
+    # * classname
+    #--------------------------------------------------------------------------
+    def classname
+      self.to_s.to_sym
+    end
+    #--------------------------------------------------------------------------
+    # * Init doc
+    #--------------------------------------------------------------------------
+    def init_doc_statement
+      Doc.schema[classname] ||= Hash.new
+      Doc.schema[classname][:attributes] = Hash.new
+      Doc.schema[classname][:methods] = Hash.new
+    end
+    #--------------------------------------------------------------------------
+    # * Class documentation
+    #--------------------------------------------------------------------------
+    def link_class_documentation(descr)
+      init_doc_statement
+      Doc.schema[classname][:description] = descr
+    end
+    #--------------------------------------------------------------------------
+    # * Attributes documentation
+    #--------------------------------------------------------------------------
+    def link_attr_documentation(name, descr)
+      init_doc_statement
+      Doc.schema[classname][:attributes][name.to_sym] = descr
+    end
+    #--------------------------------------------------------------------------
+    # * Method documentation
+    #--------------------------------------------------------------------------
+    def link_method_documentation(name, descr, attributes, returned = false)
+      init_doc_statement
+      Doc.schema[classname][:methods][name.to_sym] = Hash.new
+      Doc.schema[classname][:methods][name.to_sym][:description] = descr
+      Doc.schema[classname][:methods][name.to_sym][:attributes] = attributes
+      Doc.schema[classname][:methods][name.to_sym][:returnable] = returned
+    end
+
+    #--------------------------------------------------------------------------
+    # * Header
+    #--------------------------------------------------------------------------
+    Doc.header[:title]  = "RME : RPG Maker Extender"
+    Doc.header[:desc]   = "Outil d'extension de RPG Maker" 
+  end
+
   #==============================================================================
   # ** Version_Label
   #------------------------------------------------------------------------------
@@ -65,100 +127,6 @@ module RME
 
 end
 
-#==============================================================================
-# ** Generative
-#------------------------------------------------------------------------------
-#  Mixins collection
-#==============================================================================
-
-module Generative
-
-  #==============================================================================
-  # ** BitmapRect
-  #------------------------------------------------------------------------------
-  #  Rect API
-  #==============================================================================
-
-  module BitmapRect
-    #--------------------------------------------------------------------------
-    # * Documentation
-    #--------------------------------------------------------------------------
-    link_class_documentation "Module pour généraliser le rectangle d'un bitmap"
-    link_method_documentation :"self.rect", 
-                              "Renvoi le rectangle relatif d'un bitmap",
-                              {}, true
-
-    #--------------------------------------------------------------------------
-    # * Rect accessor 
-    #--------------------------------------------------------------------------
-    def rect 
-      return Rect.new(0,0,0,0) unless self.bitmap 
-      tx, ty = self.x, self.y
-      if viewport
-        tx = viewport.x - viewport.ox
-        ty = viewport.y - viewport.oy
-      end
-      Rect.new(tx, ty, bitmap.width, bitmap.height)
-    end
-  end
-
-  #==============================================================================
-  # ** Doc
-  #------------------------------------------------------------------------------
-  #  Documentation representation
-  #==============================================================================
-
-  module Doc
-    #--------------------------------------------------------------------------
-    # * Singleton
-    #--------------------------------------------------------------------------
-    class << self
-      attr_accessor :schema
-      Doc.schema ||= Hash.new
-    end
-    #--------------------------------------------------------------------------
-    # * classname
-    #--------------------------------------------------------------------------
-    def classname
-      self.to_s.to_sym
-    end
-    #--------------------------------------------------------------------------
-    # * Init doc
-    #--------------------------------------------------------------------------
-    def init_doc_statement
-      Doc.schema[classname] ||= Hash.new
-      Doc.schema[classname][:attributes] = Hash.new
-      Doc.schema[classname][:methods] = Hash.new
-    end
-    #--------------------------------------------------------------------------
-    # * Class documentation
-    #--------------------------------------------------------------------------
-    def link_class_documentation(descr)
-      init_doc_statement
-      Doc.schema[classname][:description] = descr
-    end
-    #--------------------------------------------------------------------------
-    # * Attributes documentation
-    #--------------------------------------------------------------------------
-    def link_attr_documentation(name, descr)
-      init_doc_statement
-      Doc.schema[classname][:attributes][name.to_sym] = descr
-    end
-    #--------------------------------------------------------------------------
-    # * Method documentation
-    #--------------------------------------------------------------------------
-    def link_method_documentation(name, descr, attributes, returned = false)
-      init_doc_statement
-      Doc.schema[classname][:methods][name.to_sym] = Hash.new
-      Doc.schema[classname][:methods][name.to_sym][:description] = descr
-      Doc.schema[classname][:methods][name.to_sym][:attributes] = attributes
-      Doc.schema[classname][:methods][name.to_sym][:returnable] = returned
-    end
-  end
-
-
-end
-
 #--------------------------------------------------------------------------
 # * Ruby Extension
 #--------------------------------------------------------------------------
@@ -178,7 +146,7 @@ class Object
     #--------------------------------------------------------------------------
     # * Documentation linking
     #--------------------------------------------------------------------------
-    include Generative::Doc
+    include RME::Doc
 
     #--------------------------------------------------------------------------
     # * Dynamic definition
@@ -1033,6 +1001,37 @@ module Input
       sdk_update
     end
   end
+end
+
+#==============================================================================
+# ** Generative
+#------------------------------------------------------------------------------
+#  Mixins collection
+#==============================================================================
+
+module Generative
+
+  #==============================================================================
+  # ** BitmapRect
+  #------------------------------------------------------------------------------
+  #  Rect API
+  #==============================================================================
+
+  module BitmapRect
+    #--------------------------------------------------------------------------
+    # * Rect accessor 
+    #--------------------------------------------------------------------------
+    def rect 
+      return Rect.new(0,0,0,0) unless self.bitmap 
+      tx, ty = self.x, self.y
+      if viewport
+        tx = viewport.x - viewport.ox
+        ty = viewport.y - viewport.oy
+      end
+      Rect.new(tx, ty, bitmap.width, bitmap.height)
+    end
+  end
+
 end
 
 #==============================================================================
