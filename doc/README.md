@@ -7,3 +7,4 @@ Outil d'extension de RPG Maker
 *    [Fixnum](Fixnum.md)
 *    [String](String.md)
 *    [Point](Point.md)
+*    [Devices::Keys](Devices__Keys.md)

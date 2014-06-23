@@ -36,3 +36,10 @@ rect|`Rect`|Rectangle
   
 - - -
 
+`self.null!()`
+
+> Replace le X et le Y du point à zéro  
+  
+  
+- - -
+

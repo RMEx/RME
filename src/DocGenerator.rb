@@ -176,4 +176,4 @@ module DocGenerator
   end
 
 end
-DocGenerator.markdown("../doc")
+DocGenerator.markdown("../doc") if $TEST

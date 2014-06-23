@@ -401,6 +401,9 @@ class Point < Struct.new(:x, :y)
   link_method_documentation :"self.in?", 
                             "Vérifie si un point est inscrit dans un rectangle", 
                             {:rect => ["Rectangle", :Rect]}, true
+  link_method_documentation :"self.null!", 
+                            "Replace le X et le Y du point à zéro", 
+                            {}
 
   #--------------------------------------------------------------------------
   # * Set coords
@@ -468,6 +471,19 @@ module Devices
 #==============================================================================
 
   class Keys
+    #--------------------------------------------------------------------------
+    # * Documentation
+    #--------------------------------------------------------------------------
+    link_class_documentation "Représentation des touches clavier/souris"
+    link_attr_documentation :"Keys::Mouse_left", "Pointe le bouton gauche de la souris"
+    link_attr_documentation :"Keys::Mouse_right", "Pointe le bouton droit de la souris"
+    link_attr_documentation :"Keys::Mouse_center", "Pointe le bouton central de la souris"
+    link_attr_documentation :"Keys::Cancel", "Pointe la touche cancel"
+    link_attr_documentation :"Keys::Mouse_x1", "Pointe le bouton X1 de la souris"
+    link_attr_documentation :"Keys::Mouse_x2", "Pointe le bouton X2 de la souris"
+    link_attr_documentation :"Keys::Backspace", "Pointe la touche Backspace du clavier"
+    link_attr_documentation :"Keys::Tab", "Pointe la touche Tab du clavier"
+
     #--------------------------------------------------------------------------
     # * Keys list
     #--------------------------------------------------------------------------
