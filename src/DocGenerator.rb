@@ -33,11 +33,11 @@ module DocGenerator
     def code(lang, snippet); "```#{lang}"+nl+snippet+nl+"```"; end
     def inline_code(c); "`#{c}`"; end
     def table(*titles)
-      titles.join("|") + nl + (["---"] * titles.length).join(" | ")
+      titles.join("|") + nl + (["---"] * titles.length).join(" | ") + nl
     end
     def tr(*values); values.join("|") + nl; end
     def end_table; ""; end
-    def blockquote(s); "> #{s}"; end
+    def blockquote(s); "> #{s}"+nl; end
     def link(text, url); "[#{text}](#{url})"; end
     def line; "- - -"; end
 
