@@ -19,30 +19,30 @@ Extension de la classe Object
 ######Exemple
 ```ruby  
 
-      #Classe qui sera un attribut
-      class A
-        attr_accessor :test
-        def initialize
-          @test = 99
-        end
-        def succ 
-          return @test + 1
-        end
-      end
+#Classe qui sera un attribut
+class A
+  attr_accessor :test
+  def initialize
+    @test = 99
+  end
+  def succ 
+    return @test + 1
+  end
+end
 
-      #Classe qui Délègue
-      class B 
-        attr_accessor :a
-        delegate :a, :succ  #On crée la méthode Succ 
-        def initialize
-          @a = A.new
-        end
-      end
+#Classe qui Délègue
+class B 
+  attr_accessor :a
+  delegate :a, :succ  #On crée la méthode Succ 
+  def initialize
+    @a = A.new
+  end
+end
 
-      #Exemple d'usage 
-      b = B.new 
-      b.succ # 100
-      
+#Exemple d'usage 
+b = B.new 
+b.succ # 100
+  
 ```
 
 
@@ -70,6 +70,19 @@ Extension de la classe Object
 `m_alias`|`Symbol`|Nom de la méthode  
   
 
+
+######Exemple
+```ruby  
+
+TEST = lambda{|people| p 'Hello' + people.to_s}
+class Say
+  externalize TEST, :hello
+end
+
+t = Say.new
+t.hello('Nuki') # p 'Hello Nuki'
+  
+```
 
 
 
