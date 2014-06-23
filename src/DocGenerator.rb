@@ -74,7 +74,7 @@ module DocGenerator
       t = mdl.title(1, RME::Doc.header[:title])
       d = RME::Doc.header[:desc] + mdl.np
       l = mdl.strong "Classes et modules"
-      t + d + l
+      t + d + l + mdl.np
     end
 
     #--------------------------------------------------------------------------
@@ -123,7 +123,7 @@ module DocGenerator
           atr_list += mdl.end_ul
           inline_args = inline_args[0...-2]
           t += mdl.strong("#{name}(#{inline_args})")
-          t += mdl.np + desc + mdl.nl + atr_list + mdl.line + mdl.np
+          t += mdl.np + desc + mdl.nl + atr_list + mdl.nl + mdl.line + mdl.np
         end
         return t
       end
