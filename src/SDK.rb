@@ -81,6 +81,14 @@ module RME
     end
 
     #--------------------------------------------------------------------------
+    # * Snippet documentation
+    #--------------------------------------------------------------------------
+    def link_snippet(value)
+      init_doc_statement
+      Doc.schema[classname][:snippet] = value
+    end
+
+    #--------------------------------------------------------------------------
     # * Header
     #--------------------------------------------------------------------------
     Doc.header[:title]  = "RME : RPG Maker Extender"
@@ -262,6 +270,8 @@ class Fixnum
   link_method_documentation :"self.to_digit",  
                             "Renvoi la représentation textuelle d'un chiffre",
                             {}, true
+
+  link_snippet "9.to_digit # :nine"
 
   #--------------------------------------------------------------------------
   # * Number const

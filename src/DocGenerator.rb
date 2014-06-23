@@ -139,6 +139,18 @@ module DocGenerator
     end
 
     #--------------------------------------------------------------------------
+    # * Create Snippter
+    #--------------------------------------------------------------------------
+    def make_class_snippet(mdl, classname)
+      if RME::Doc.schema[classname][:snippet]
+        t = mdl.title 2, "Exemple"
+        t += mdl.code("ruby", RME::Doc.schema[classname][:snippet]) + mdl.np
+        return t
+      end
+      ""
+    end
+
+    #--------------------------------------------------------------------------
     # * Create documentation
     #--------------------------------------------------------------------------
     def make(mdl, output)
@@ -150,6 +162,7 @@ module DocGenerator
         page = make_class_header(mdl, klass)
         page += make_class_attributes(mdl, klass)
         page += make_class_methods(mdl, klass)
+        page += make_class_snippet(mdl, klass)
         File.open("#{output}/#{name}", 'w') do |f|
           f.write(page)
         end

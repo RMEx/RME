@@ -13,3 +13,8 @@ Extension des entiers
 
 
 
+##Exemple
+```ruby  
+9.to_digit # :nine  
+```
+
