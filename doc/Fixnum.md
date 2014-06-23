@@ -4,9 +4,10 @@
 Extension des entiers
 
 ##Méthodes
-**self.to_digit()**
+`self.to_digit()`
 
-Renvoi la représentation textuelle d'un chiffre  
-  
+> Renvoi la représentation textuelle d'un chiffre  
+Nom|Type|Description  
+--- | --- | ---  
 - - -
 

@@ -4,24 +4,27 @@
 Extension des chaines de caractère
 
 ##Méthodes
-**self.extract_numbers()**
+`self.extract_numbers()`
 
-Renvoi tous les entier d'une chaine de caractère  
-  
+> Renvoi tous les entier d'une chaine de caractère  
+Nom|Type|Description  
+--- | --- | ---  
 - - -
 
-**self.damerau_levenshtein(oth)**
+`self.damerau_levenshtein(oth)`
 
-Renvoi la distance de Damerau Levenshtein avec 
+> Renvoi la distance de Damerau Levenshtein avec 
                             une autre chaine  
-*    **oth(String)** : Autre chaine à comparer
+Nom|Type|Description  
+--- | --- | ---oth|`String`|Autre chaine à comparer  
   
 - - -
 
-**self.cut(lin_len)**
+`self.cut(lin_len)`
 
-Injecte des retours à la ligne dans la chaine  
-*    **lin_len(Fixnum)** : Taille des lignes
+> Injecte des retours à la ligne dans la chaine  
+Nom|Type|Description  
+--- | --- | ---lin_len|`Fixnum`|Taille des lignes  
   
 - - -
 

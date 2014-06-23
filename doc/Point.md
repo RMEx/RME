@@ -4,26 +4,29 @@
 Représente un point dans un plan cartésien
 
 ##Méthodes
-**Point.new(x, y)**
+`Point.new(x, y)`
 
-Constructeur de point  
-*    **x(Fixnum)** : Coordonnées X du point
-*    **y(Fixnum)** : Coordonnées Y du point
+> Constructeur de point  
+Nom|Type|Description  
+--- | --- | ---x|`Fixnum`|Coordonnées X du point  
+y|`Fixnum`|Coordonnées Y du point  
   
 - - -
 
-**self.set(x, y)**
+`self.set(x, y)`
 
-Change les coordonnées du point   
-*    **x(Fixnum)** : Coordonnées X du point
-*    **y(Fixnum)** : Coordonnées Y du point
+> Change les coordonnées du point   
+Nom|Type|Description  
+--- | --- | ---x|`Fixnum`|Coordonnées X du point  
+y|`Fixnum`|Coordonnées Y du point  
   
 - - -
 
-**self.in?(rect)**
+`self.in?(rect)`
 
-Vérifie si un point est inscrit dans un rectangle  
-*    **rect(Rect)** : Rectangle
+> Vérifie si un point est inscrit dans un rectangle  
+Nom|Type|Description  
+--- | --- | ---rect|`Rect`|Rectangle  
   
 - - -
 

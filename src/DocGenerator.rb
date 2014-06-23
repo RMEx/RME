@@ -31,6 +31,13 @@ module DocGenerator
     def li(item); "*    #{item}"+"\n"; end
     def enum(t, v); li("**#{t}** : #{v}"); end
     def code(lang, snippet); "```#{lang}"+nl+snippet+nl+"```"; end
+    def inline_code(c); "`#{c}`"; end
+    def table(*titles)
+      titles.join("|") + nl + (["---"] * titles.length).join(" | ")
+    end
+    def tr(*values); values.join("|") + nl; end
+    def end_table; ""; end
+    def blockquote(s); "> #{s}"; end
     def link(text, url); "[#{text}](#{url})"; end
     def line; "- - -"; end
 
@@ -94,11 +101,11 @@ module DocGenerator
       k = RME::Doc.schema[classname][:attributes]
       if k.length > 0 
         t = mdl.title 2, "Attributs"
-        t += mdl.ul
+        t += mdl.table("Nom", "Description")
         k.each do |atr, desc|
-          t += mdl.enum(atr, desc)
+          t += mdl.tr(atr, desc)
         end
-        return t + mdl.end_ul
+        return t + mdl.end_table
       end
       ""
     end
@@ -115,15 +122,15 @@ module DocGenerator
           atr = data[:attributes]
           ret = data[:returned]
           inline_args = ""
-          atr_list = mdl.ul
+          atr_list = mdl.table("Nom", "Type", "Description")
           atr.each do |name, dt|
             inline_args += name.to_s + ", "
-            atr_list += mdl.enum(name.to_s + "(#{dt[1]})", dt[0])
+            atr_list += mdl.tr(name.to_s, mdl.inline_code(dt[1]), dt[0])
           end
-          atr_list += mdl.end_ul
+          atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
-          t += mdl.strong("#{name}(#{inline_args})")
-          t += mdl.np + desc + mdl.nl + atr_list + mdl.nl + mdl.line + mdl.np
+          t += mdl.inline_code("#{name}(#{inline_args})")
+          t += mdl.np + mdl.blockquote(desc) + mdl.nl + atr_list + mdl.nl + mdl.line + mdl.np
         end
         return t
       end
@@ -168,3 +175,4 @@ module DocGenerator
   end
 
 end
+DocGenerator.markdown("../doc")
