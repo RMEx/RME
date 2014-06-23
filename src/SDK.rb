@@ -309,7 +309,7 @@ class String
                             une autre chaine",
                             {:oth => ["Autre chaine à comparer", :String]}, true
 
-  link_method_documentation :"self.cut", 
+  link_method_documentation :"self.stretch", 
                             "Injecte des retours à la ligne dans la chaine", 
                             {:lin_len => ["Taille des lignes", :Fixnum]}, true
 
@@ -351,7 +351,7 @@ class String
   #--------------------------------------------------------------------------
   # * Format a string
   #--------------------------------------------------------------------------
-  def cut(len_line)
+  def stretch(len_line)
     n_s = [""]
     i = 0
     self.split(' ').each do |l|

@@ -26,7 +26,7 @@ Extension des chaines de caractère
 
 
 
-**self.cut(`lin_len`)**
+**self.stretch(`lin_len`)**
 
 > Injecte des retours à la ligne dans la chaine  
   
