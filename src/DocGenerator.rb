@@ -145,7 +145,7 @@ module DocGenerator
         p "#{name} : Writted !"
       end
       indexl += mdl.end_ul
-      File.open(index(mdl), 'w'){|f| f.write(indexl)}
+      File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}
     end
 
   end
