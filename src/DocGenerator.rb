@@ -32,6 +32,7 @@ module DocGenerator
     def enum(t, v); li("**#{t}** : #{v}"); end
     def code(lang, snippet); "```#{lang}"+nl+snippet+nl+"```"; end
     def link(text, url); "[#{text}](#{url})"; end
+    def line; "- - -"; end
 
     #--------------------------------------------------------------------------
     # * Data Navigation
@@ -122,7 +123,7 @@ module DocGenerator
           atr_list += mdl.end_ul
           inline_args = inline_args[0...-2]
           t += mdl.strong("#{name}(#{inline_args})")
-          t += mdl.np + desc + mdl.nl + atr_list + mdl.np
+          t += mdl.np + desc + mdl.nl + atr_list + mdl.line + mdl.np
         end
         return t
       end

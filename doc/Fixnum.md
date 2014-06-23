@@ -7,5 +7,5 @@ Extension des entiers
 **self.to_digit()**
 
 Renvoi la représentation textuelle d'un chiffre  
-
+- - -
 
