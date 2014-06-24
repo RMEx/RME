@@ -1,4 +1,0 @@
-C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\Library2\bin\Debug\Library2.dll
-C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\Library2\bin\Debug\Library2.pdb
-C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\Library2\obj\Debug\Library2.dll
-C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\Library2\obj\Debug\Library2.pdb
