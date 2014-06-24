@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RMEPlayer", "RMEPlayer\RMEPlayer.fsproj", "{C1229B94-235B-472F-BDDA-107511818F27}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RMECore", "Library2\RMECore.fsproj", "{99C9DACD-D445-4A27-8E16-C23C8E8D5D6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1229B94-235B-472F-BDDA-107511818F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1229B94-235B-472F-BDDA-107511818F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1229B94-235B-472F-BDDA-107511818F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1229B94-235B-472F-BDDA-107511818F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C9DACD-D445-4A27-8E16-C23C8E8D5D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C9DACD-D445-4A27-8E16-C23C8E8D5D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C9DACD-D445-4A27-8E16-C23C8E8D5D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C9DACD-D445-4A27-8E16-C23C8E8D5D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

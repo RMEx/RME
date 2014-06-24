@@ -1,0 +1,2155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.Core</name></assembly>
+<members>
+<member name="P:IntelliFactory.Core.ProcessAgent`1.ExitCode">
+<summary>
+ The exit code of the process.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent`1.SendInput(`0)">
+<summary>
+ Sends a message via standard input.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent`1.Kill">
+<summary>
+ Sends a kill message that destroys the system process.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessAgent`1">
+<summary>
+ Represents a system process managed by an F# agent.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService`1.StopAsync">
+<summary>
+ Stops the process and awaits until it is killed.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService`1.Stop">
+<summary>
+ Stops the proces with `Kill`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService`1.Start">
+<summary>
+ Starts the process, if in idle state. Does nothing if the process is already started.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService`1.SendInput(`0)">
+<summary>
+ Sends text on the standard input. Starts the process if not started.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService`1.Restart">
+<summary>
+ Stops and re-starts the process.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService`1.Finalize">
+<summary>
+ Stops the internal process and finalizes everything.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessService`1">
+<summary>
+ An agent that manages an operating system process, including automatically
+ starting it on first input and automaticlaly restarting it on failure.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.Wrap``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ Wraps an action in `Install/Remove` on the `AppDomain`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.WithBaseDirectory(System.String)">
+<summary>
+ Sets the base directory. Assemblies from this directory
+ are loaded by name rather than via a byte array.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.SearchPaths(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Adds search paths.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.SearchDirectories(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Adds search directories.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.ResolvePath(System.Reflection.AssemblyName)">
+<summary>
+ Resolves a full path to the assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.Resolve(System.Reflection.AssemblyName)">
+<summary>
+ Resolves an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.Remove">
+<summary>
+ Uninstalls the resolver from the `AppDomain`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.Install">
+<summary>
+ Installs the resolver into the `AppDomain`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AssemblyResolution.AssemblyResolver.Create(Microsoft.FSharp.Core.FSharpOption{System.AppDomain})">
+<summary>
+ Creates a new resovler for a given domain or the current domain.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AssemblyResolution.AssemblyResolver">
+<summary>
+ An utility for resolving assemblies from non-standard contexts.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AssemblyResolution">
+
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.AsyncResult.Unwrap``1(Microsoft.FSharp.Control.FSharpAsync{IntelliFactory.Core.AsyncExtensions.AsyncResult{``0}},Microsoft.FSharp.Core.FSharpOption{System.Threading.CancellationToken})">
+<summary>
+ Unwraps a wrapped result to normal `Async` convention.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.AsyncResult.DefineAsync``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.Core.AsyncExtensions.AsyncResult{``0},Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.Unit})">
+<summary>
+ Defines an `Async` workflow from a result continuation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.AsyncResult.Capture``1(Microsoft.FSharp.Control.FSharpAsync{``0},Microsoft.FSharp.Core.FSharpOption{System.Threading.CancellationToken})">
+<summary>
+ Capturs an explicit result of an `Async` workflow.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AsyncExtensions.AsyncResult">
+<summary>
+ Utilities involving explicit representation of `Async` workflow results.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.AsyncResult`1.Return">
+<summary>
+ Returns using the normal `Async` convention.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AsyncExtensions.AsyncResult`1">
+<summary>
+ Represents results of executing an `Async` workflow.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.Async.WithTimeout.Static``1(System.TimeSpan,Microsoft.FSharp.Control.FSharpAsync{``0})">
+<summary>
+ Adds a timeout to the execution of an asynchronous workflow.
+ Warning: the timed out workflow must support cancellation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.Async.Spawn.Static``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},``0)">
+<summary>
+ Spawns a method with an argument on the thread pool.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AsyncExtensions.Async.Spawn.Static(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Spawns a method with on the thread pool.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AsyncExtensions">
+<summary>
+ Extension methods for asynchronous workflows.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AtomicReferences.AtomicReference.Create``1(``0,Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.AtomicReferences.IBackoffStrategy})">
+<summary>
+ Creates a new reference with an initial value.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AtomicReferences.AtomicReference">
+<summary>
+ Static methods for atomcic references.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.AtomicReferences.AtomicReference`1.Value">
+<summary>
+ Fetches the current value.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AtomicReferences.AtomicReference`1.Update(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.Core.AtomicReferences.Context{`0},IntelliFactory.Core.AtomicReferences.Update{`0}})">
+<summary>
+ Updates the value atomically.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AtomicReferences.AtomicReference`1">
+<summary>
+ A concurrent references with optimistic compare-exchange update strategy.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.AtomicReferences.Context`1.State">
+<summary>
+ Peeks at the current state.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AtomicReferences.Context`1.Set(`0,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Sets the state to a new value and executes the continuation when the transaction completes.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AtomicReferences.Context`1.Set(`0)">
+<summary>
+ Sets the state to a new value.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AtomicReferences.Context`1.LeaveIntact">
+<summary>
+ Leaves the current state intact.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AtomicReferences.Context`1">
+<summary>
+ Helper type for updating atomic references.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AtomicReferences.Update`1">
+<summary>
+ Helper type for updating atomic references.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.AtomicReferences.IBackoffStrategy.Schedule(System.Int32,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Executs retry action on a given attempt.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AtomicReferences.IBackoffStrategy">
+<summary>
+ Represents the strategy to resolve contention.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.AtomicReferences.SpinWaitBackoffStrategy">
+<summary>
+ Default strategy is to spin-wait on the current thread with exponentially increasing timeouts.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.AtomicReferences">
+<summary>
+ Implements concurrent references with optimistic compare-exchange update strategy.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.AutoExports">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.BatchedQueues.BatchedQueue`1">
+<summary>
+ Represents a queue.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.BatchedQueues.|Empty|With|``1(IntelliFactory.Core.BatchedQueues.BatchedQueue{``0})">
+<summary>
+ Pattern-matches `BatchedQueue`.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.BatchedQueues">
+<summary>
+ Implements purely functional queues.
+ Implementation follows BatchedQueue from p. 43,
+ Purely Functional Data Structures by Chris Okasaki.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.InvokeN(System.Object[])">
+<summary>
+ Invokes with an arbitrary number of arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke7(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 7 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke6(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 6 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke5(System.Object,System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 5 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke4(System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 4 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke3(System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 3 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke2(System.Object,System.Object)">
+<summary>
+ Invokes with 2 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke1(System.Object)">
+<summary>
+ Invokes with 1 argument.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.FastMethod.Invoke0">
+<summary>
+ Invokes with 0 arguments.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.FastInvoke.FastMethod">
+<summary>
+ Represents a method that can be quickly invoked dynamically.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FastInvoke.Compile(System.Reflection.MethodInfo)">
+<summary>
+ Compiles a method to a fast invoke function.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.FastInvoke">
+<summary>
+ Splits invocation of methods represented as `System.Reflection.MethodInfo`
+ into the static and dynamic phase, doing the binding work at the static phase.
+ A pre-bound method can be 100-1000x faster to invoke compared to using `.Invoke`
+ every time, which has to repeatedly do method binding.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Content.WriteFile(System.String)">
+<summary>
+ Writes to a given file.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Content.Text(System.String)">
+<summary>
+ Constructs a text content.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Content.ReadTextFile(System.String)">
+<summary>
+ Reads a text file.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Content.ReadBinaryFile(System.String)">
+<summary>
+ Reads a binary file.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Content.EnsureFile(System.String)">
+<summary>
+ Writes to a given file if its contents are different,
+ returns whether an actual write was performed.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Content.Binary(IntelliFactory.Core.FileSystem.Binary)">
+<summary>
+ Constructs a binary content.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.FileSystem.Content">
+<summary>
+ Defines text and binary content.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.WriteFile(System.String)">
+<summary>
+ Writes to a given file.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.Write(System.IO.Stream)">
+<summary>
+ Writes to a given stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.ReadStream(System.IO.Stream)">
+<summary>
+ Reads a stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.ReadFile(System.String)">
+<summary>
+ Reads a binary file.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.Read">
+<summary>
+ Opens a stream for reading.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.GetBytes">
+<summary>
+ Reads content as a byte array.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.FromBytes(System.Byte[])">
+<summary>
+ Constructs content from a byte array.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.FileSystem.Binary.EnsureFile(System.String)">
+<summary>
+ Writes to a given file if its contents are different,
+ returns whether an actual write was performed.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.FileSystem.Binary">
+<summary>
+ Represents binary content.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.FileSystem.DefaultEncoding">
+<summary>
+ The default encoding is UTF-8 without BOM.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.FileSystem">
+<summary>
+ Provides utilities for accessing the file system and representing files.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Futures.Future.Create``1">
+<summary>
+ Creates a new incomplete computation.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Futures.Future">
+<summary>
+ Static methods for working with `Future` values.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.Futures.Future`1.IsCompleted">
+<summary>
+ Checks if the future is completed.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Futures.Future`1.On(Microsoft.FSharp.Core.FSharpFunc{`0,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Exceutes the callback when the future completes.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Futures.Future`1.Complete(`0)">
+<summary>
+ Imperatively completes the computation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Futures.Future`1.Await">
+<summary>
+ Awaits completion asynchronously.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Futures.Future`1">
+<summary>
+ Represents a synchronizable computation that completes exactly one without exceptions.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Futures">
+<summary>
+ Implements a thread-safe future value abstraction for inverting control flow.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.IOExtensions.TextWriter.NonBlocking.Static(Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig})">
+<summary>
+ Constructs a writer that sends characters to a given function.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.IOExtensions">
+<summary>
+ Extensions to `System.IO` types.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.Logging">
+<summary>
+ Simple tracing support.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Warn(System.String,System.Object[])">
+<summary>
+ Sends a Warn-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Warn(System.String,System.Object)">
+<summary>
+ Sends a Warn-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Warn(System.String)">
+<summary>
+ Sends a Warn-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Verbose(System.String,System.Object[])">
+<summary>
+ Sends a Verbose-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Verbose(System.String,System.Object)">
+<summary>
+ Sends a Verbose-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Verbose(System.String)">
+<summary>
+ Sends a Verbose-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Nested(System.String)">
+<summary>
+ Creates a nested `Log`. If the current log is named &quot;A.B&quot;, 
+ `log.Nested(&quot;C&quot;)` will be named &quot;A.B.C&quot;.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Message(IntelliFactory.Core.Logs.Level,System.String,System.Object[])">
+<summary>
+ Sends a Warn-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Message(IntelliFactory.Core.Logs.Level,System.String,System.Object)">
+<summary>
+ Sends a message at the specific level.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Message(IntelliFactory.Core.Logs.Level,System.String)">
+<summary>
+ Sends a message at the specific level.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Info(System.String,System.Object[])">
+<summary>
+ Sends an Info-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Info(System.String,System.Object)">
+<summary>
+ Sends an Info-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Info(System.String)">
+<summary>
+ Sends an Info-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Error(System.String,System.Object[])">
+<summary>
+ Sends an Error-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Error(System.String,System.Object)">
+<summary>
+ Sends an Error-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Error(System.String)">
+<summary>
+ Sends an Error-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Critical(System.String,System.Object[])">
+<summary>
+ Sends a Critical-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Critical(System.String,System.Object)">
+<summary>
+ Sends a Critical-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Critical(System.String)">
+<summary>
+ Sends a Critical-level message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Create(System.String,IntelliFactory.Core.Parametrization.IParametric)">
+<summary>
+ Creates a new log with a dotted hierarhical name, as in:
+ `Log.Create(&quot;IntelliFactory.My.Module&quot;)`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.Log.Create``1(IntelliFactory.Core.Parametrization.IParametric)">
+<summary>
+ Creates a log, inferring the name from the given type.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Logs.Log">
+<summary>
+ Implements support for hierarhical logging, similar to TraceSource.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.Logs.DefaultConfig">
+<summary>
+ Default logging configuration.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.IConfig.GetTrace(System.String)">
+<summary>
+ Get a logger for a given name.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Logs.IConfig">
+<summary>
+ Abstract logging configuration.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.ITrace.Trace(IntelliFactory.Core.Logs.Level,System.String)">
+<summary>
+ Trace a message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Logs.ITrace.ShouldTrace(IntelliFactory.Core.Logs.Level)">
+<summary>
+ Decide if tracing at this level is supported.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Logs.ITrace">
+<summary>
+ Represents a subscriber to the logging framework.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.Core.Logs.Level.Name">
+<summary>
+ The printable name.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Logs.Level">
+<summary>
+ Represents the level at which a message is being logged.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.Logs.Default">
+<summary>
+ The default configuration.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.Logs.Config">
+<summary>
+ The parameter for passing logging configuration.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Logs">
+<summary>
+ Log-related functionality.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.Net40Utility">
+
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Version">
+<summary>
+ Package version.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Title">
+<summary>
+ Package title.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Tags">
+<summary>
+ Package tags.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Summary">
+<summary>
+ Package summary.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.RequireLicenseAcceptance">
+<summary>
+ A flag indicating whether UI tools should require the
+ package users to explicitly accept the license.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.ReleaseNotes">
+<summary>
+ Release notes.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.References">
+<summary>
+ Assemblies to reference.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.ProjectUrl">
+<summary>
+ Package homepage.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Owners">
+<summary>
+ Package owners.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.MinClientVersion">
+<summary>
+ Min version of NuGet this package is usable with.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.LicenseUrl">
+<summary>
+ The URL to the package license.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Language">
+<summary>
+ Language localte, for example `en-US`.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Id">
+<summary>
+ Package identifier.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.IconUrl">
+<summary>
+ Address of the package icon.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.FrameworkAssemblies">
+<summary>
+ Framework assemblies to reference.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Description">
+<summary>
+ Package description.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Dependencies">
+<summary>
+ Package dependencies.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Copyright">
+<summary>
+ Package copyright information.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageSpec.Authors">
+<summary>
+ Package authors.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.PackageSpec.WriteXml(System.IO.TextWriter)">
+<summary>
+ Writes the XML representation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.PackageSpec.Update(Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.SemanticVersions.SemanticVersion},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.Version})">
+<summary>
+ Updates metadata for the package spec.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.PackageSpec.ToXml">
+<summary>
+ Gets the XML representation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.PackageSpec.Create(IntelliFactory.Core.NuGetTools.PackageSpecMinimal)">
+<summary>
+ Creates a new `PackageSpec`.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools.PackageSpec">
+<summary>
+ Represents a [package specification][nuspec].
+
+ [nuspec]: http://docs.nuget.org/docs/reference/nuspec-reference
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.FileRule.TargetPath">
+<summary>
+ Target path for the rule.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.FileRule.SourcePattern">
+<summary>
+ Source pattern to evaluate.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.FileRule.Exclude">
+<summary>
+ Files or patterns to exclude.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.FileRule.Create(System.String,System.String,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools.FileRule">
+<summary>
+ Represents a file rewrite specification in a `PackageSpec`.
+ Corresponds to a `&lt;file&gt;` element.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.FrameworkAssemblySpec.TargetFramework">
+<summary>
+ Optional `targetFramework` attribute.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.FrameworkAssemblySpec.AssemblyName">
+<summary>
+ The name of the assembly, as in `System.ServiceModel`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.FrameworkAssemblySpec.Create(System.String,Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion})">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools.FrameworkAssemblySpec">
+<summary>
+ Represents a reference to a framework assembly in a `PackageSpec`.
+ Corresponds to a `&lt;frameworkAssembly&gt;` element.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.AssemblyReferenceSpec.FrameworkVersion">
+<summary>
+ The framework version to specialize to, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.AssemblyReferenceSpec.AssemblyFileName">
+<summary>
+ The file name of the assembly without the path, like `xunit.dll`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.AssemblyReferenceSpec.Create(System.String,Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion})">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools.AssemblyReferenceSpec">
+<summary>
+ Represents a reference to an assembly shipped with the current package
+ in a `PackageSpec`. Corresponds to a `&lt;reference/&gt;` element.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageDependencySpec.Range">
+<summary>
+ The range of the package dependency.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageDependencySpec.Id">
+<summary>
+ The package identifier.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.NuGetTools.PackageDependencySpec.FrameworkVersion">
+<summary>
+ The framework version to specialize to, if any.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.NuGetTools.PackageDependencySpec.Create(System.String,Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.SemanticVersions.Range},Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion})">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools.PackageDependencySpec">
+<summary>
+ Represents a package dependency in a `PackageSpec`.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.NuGetTools.PackageSpecMinimal.Version">
+<summary>
+ The version of the package.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.NuGetTools.PackageSpecMinimal.Id">
+<summary>
+ The unique identifier for the package.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.NuGetTools.PackageSpecMinimal.Description">
+<summary>
+ A long description of the package.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.NuGetTools.PackageSpecMinimal.Authors">
+<summary>
+ A list of authors of the package code.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools.PackageSpecMinimal">
+<summary>
+ Helper record for `PackageSpec`.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.NuGetTools">
+<summary>
+ Facilities related to [NuGet][ng].
+ [ng]: http://nuget.org
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter.Define``1(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.Core.Parametrization.Parameters,``0})">
+<summary>
+ Creates a parameter given a default recipe.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter.Create``1(``0)">
+<summary>
+ Creates a parameter given a default value.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter.Convert``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{``1,``0},IntelliFactory.Core.Parametrization.Parameter{``0})">
+<summary>
+ Given a bijection, constructs a differently typed view on the same logical parameter.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Parametrization.Parameter">
+<summary>
+ Static methods for manipulating parameter objects.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.IParametric`1.WithParameters(IntelliFactory.Core.Parametrization.Parameters)">
+<summary>
+ Functionally updates the current object with alternative `Parameters`.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Parametrization.IParametric`1">
+<summary>
+ An interface for objects that contain an instance of `Parameters` and
+ support functionaly updating it.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.Parametrization.IParametric.Parameters">
+<summary>
+ The `Parameters` instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Parametrization.IParametric">
+<summary>
+ An interface for objects that contain an instance of `Parameters`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.WithExtendedCallContext``1(Microsoft.FSharp.Control.FSharpAsync{``0})">
+<summary>
+ `Async`-friendly version of `WithExtendedCallContext`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.WithExtendedCallContext``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ For the dynamic extent of the `worker` expression, extends the
+ current `CallContext` with the overrides given in this `Parameters` object.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.Set``1(IntelliFactory.Core.Parametrization.Parameters,IntelliFactory.Core.Parametrization.IParametric{``0})">
+<summary>
+ A utility method to update `Parameters` in a conforming object.
+
+    Parameters.Set p x = (x :&gt; IParametric&lt;&apos;R&gt;).WithParameters p
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.Get(IntelliFactory.Core.Parametrization.IParametric)">
+<summary>
+ A utility method to extract `Parameters` from a conforming object.
+
+    Parameters.Get p = (p :&gt; IParametric).Parameters
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.FromCallContext">
+<summary>
+ Extracts the parameters passed via the
+ `System.Runtime.Remoting.Messaging.CallContext`. If none are passed,
+ returns `Parameters.Default`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.Extend(IntelliFactory.Core.Parametrization.Parameters)">
+<summary>
+ Extends the map with the given overrides.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameters.Default">
+<summary>
+ Constructs the default parameters, the empty map.
+ Looking up parameter values from `Parameters.Default` will
+ invoke parameter default value construction recipes.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Parametrization.Parameters">
+<summary>
+ Represents a collection of parameter values. Logically is a
+ partial map from parameter objects to values of the corresponding type.
+ Parameters may be passed explicitly or implicitly through the
+ `System.Runtime.Remoting.Messaging.CallContext`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter`1.Update``1(Microsoft.FSharp.Core.FSharpFunc{`0,`0},IntelliFactory.Core.Parametrization.IParametric{``0})">
+<summary>
+ Functionally updates the current value of the parameter
+ in an object that supports parameterization.
+
+     p.Update f ps = p.Custom (f (p.Find ps)) ps
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter`1.FromCallContext">
+<summary>
+ Looks up the current value from
+ `System.Runtime.Remoting.Messaging.CallContext`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter`1.Find(IntelliFactory.Core.Parametrization.IParametric)">
+<summary>
+ Finds the current value of the parameter in an object
+ that supports parameterization.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.Parametrization.Parameter`1.Custom``1(`0,IntelliFactory.Core.Parametrization.IParametric{``0})">
+<summary>
+ Functionally updates the current value of the parameter
+ to the given value in an object that supports parameterization.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Parametrization.Parameter`1">
+<summary>
+ Represents a first-class configurable parameter, a typed generalization
+ of environment variables.  Parameter sets are passed through opaque
+ dictionaries of `Parameters` type.  Represented as an auto-generated
+ unique key combined with a recipe to construct a default value.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.Parametrization">
+<summary>
+ Implements lightweight support for dynamic variable binding.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.WorkingDirectory">
+<summary>
+ Working directory.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.Report">
+<summary>
+ Called with exceptions.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.OnOutput">
+<summary>
+ Observes standard output.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.OnExit">
+<summary>
+ Observes process exit event with a given code.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.OnError">
+<summary>
+ Observes standard error.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.MonoPath">
+<summary>
+ Path to Mono, if execution needs to be wrapped in
+ a Mono invocation.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.MessageType">
+<summary>
+ The message type (binary or text) to use.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.FileName">
+<summary>
+ Path to the executable.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.EnvironmentVariables">
+<summary>
+ Environment variables to add or to set.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.EnvironmentReset">
+<summary>
+ If true, environment variables are reset.
+ Otherwise they are added.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.CompressionInterval">
+<summary>
+ If enabled, buffers output and error streams with
+ latency bounded by the interval.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.ProcessAgent.Config`1.Arguments">
+<summary>
+ Arguments passed to the process.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessAgent.Config`1">
+<summary>
+ Configures a process agent.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessAgent.MessageType`1">
+<summary>
+ Represents a text or a binary message.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent.Start``1(IntelliFactory.Core.ProcessAgent.Config{``0})">
+<summary>
+ Starts a process agent.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent.Configure``1(IntelliFactory.Core.ProcessAgent.MessageType{``0},System.String)">
+<summary>
+ Creates a configuration object.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent.Validate``1(IntelliFactory.Core.ProcessAgent.Config{``0})">
+<summary>
+ Validates configuration.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent.CurrentDirectory">
+<summary>
+ Current working directory for the process.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent.CurrentEnvironmentVariables">
+<summary>
+ Gets the current environment variables for the process.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.ProcessAgent.MessageType.UTF8">
+<summary>
+ Text messages in UTF8.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessAgent.MessageType.Text(System.Text.Encoding)">
+<summary>
+ Text messages in a given encoding.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.ProcessAgent.MessageType.Binary">
+<summary>
+ Binary messages.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.ProcessAgent.MessageType.ASCII">
+<summary>
+ Text messages in ASCII.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessAgent.MessageType">
+<summary>
+ Constructors for message types.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessAgent">
+<summary>
+ Operations with process agents.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.Core.ProcessService.Config`1.Create">
+<summary>
+ Creates a `ProcessService` in stopped state.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService.Config`1.Configure(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.Core.ProcessService.Config{`0},IntelliFactory.Core.ProcessService.Config{`0}})">
+<summary>
+ Functionally updates the `ProcessHandleConfig` field.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessService.Config`1">
+<summary>
+ Options for `ProcessService`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.ProcessService.Configure``1(IntelliFactory.Core.ProcessAgent.MessageType{``0},System.String)">
+<summary>
+ Creates a new ProcessService. It will be started on first input or explicitly.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.ProcessService">
+
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Pattern.Compile">
+<summary>
+ Compiles a pattern.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.RegexBuilder.Pattern">
+<summary>
+ Represents a pattern descriptor.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Text(System.String)">
+<summary>
+ Escaped text.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.SeveralSeparatedBy(IntelliFactory.Core.RegexBuilder.Pattern,IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Derived pattern: `p (sep p)*`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Several(IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ One-or-more modifier `a+`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Sequence(IntelliFactory.Core.RegexBuilder.Pattern,IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Sequencing `ab`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Range(System.Char,System.Char)">
+<summary>
+ Character range `[a-z]`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Optional(IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Optional modifier `x?`.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RegexBuilder.NonZeroDigit">
+<summary>
+ Digits `[1-9]`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Many(IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Kleene star `x*`.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RegexBuilder.LetterOrNumber">
+<summary>
+ Grouping `[a-zA-Z0-9]`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Group(IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Grouping `(x)`.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RegexBuilder.Digit">
+<summary>
+ Digits `[0-9]`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Compile(IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Compiles a pattern.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RegexBuilder.Choice(IntelliFactory.Core.RegexBuilder.Pattern,IntelliFactory.Core.RegexBuilder.Pattern)">
+<summary>
+ Choice `a|b`.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.RegexBuilder">
+<summary>
+ Implements a facade for `System.Text.RegularExpressions`.
+ Allows to define patterns incrementally using F# values.
+ This module API is experimental.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.WindowsPhone80">
+<summary>
+ Windows Phone 8.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Version">
+<summary>
+ Version.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Silverlight50">
+<summary>
+ Silverlight 5.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Silverlight40WindowsPhone71">
+<summary>
+ Silverlight 4.0 / Windows Phone 7.1.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Silverlight40">
+<summary>
+ Silverlight 4.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Silverlight30WindowsPhone70">
+<summary>
+ Silverlight 3.0 / Windows Phone 7.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Profile">
+<summary>
+ Optional profile.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.NetCore45">
+<summary>
+ .NET Core 4.5 (apps for Windows Store).
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net45">
+<summary>
+ .NET 4.0 Client Profile.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net40Client">
+<summary>
+ .NET 4.0 Client Profile.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net40">
+<summary>
+ .NET 4.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net35Client">
+<summary>
+ .NET 3.5 Client Profile.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net35">
+<summary>
+ .NET 3.5.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net30">
+<summary>
+ .NET 3.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Net20">
+<summary>
+ .NET 2.0.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Id">
+<summary>
+ Framework identifier.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.FrameworkName">
+<summary>
+ Framework name.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion.Create(IntelliFactory.Core.RuntimeFrameworks.FrameworkId,System.Version,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Creates a custom version.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.RuntimeFrameworks.FrameworkVersion">
+<summary>
+ Represents framework versions, combining an identifier,
+ a version and a profile.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.WindowsPhone">
+<summary>
+ Windows Phone.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.Silverlight">
+<summary>
+ Silverlight.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.Portable">
+<summary>
+ .NET Portable Framework.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.NetMicro">
+<summary>
+ .NET Micro Framework.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.NetCore">
+<summary>
+ .NET Core Framework / Windows Store.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.Net">
+<summary>
+ .NET Framework.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.RuntimeFrameworks.FrameworkId.Id">
+<summary>
+ Default identifier, such as `.NETFramework`.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.RuntimeFrameworks.FrameworkId">
+<summary>
+ Represents various farmework identifiers.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.RuntimeFrameworks">
+<summary>
+ Formalizes various .NET runtime framework choices.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.SemanticVersions.Range.Shape">
+<summary>
+ Decomposes the range.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.SemanticVersions.Range.Empty">
+<summary>
+ An empty range.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.SemanticVersions.Range.AnyVersion">
+<summary>
+ An all-inclusive range.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.Range.TryParse(System.String)">
+<summary>
+ Tries to parse a text representation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.Range.Parse(System.String)">
+<summary>
+ Parses a text representation.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.Range.IntersectMany(System.Collections.Generic.IEnumerable{IntelliFactory.Core.SemanticVersions.Range})">
+<summary>
+ Computes an intersection of multiple ranges.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.Range.Intersect(IntelliFactory.Core.SemanticVersions.Range,IntelliFactory.Core.SemanticVersions.Range)">
+<summary>
+ Computes an intersection of two ranges.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.Range.Includes(IntelliFactory.Core.SemanticVersions.SemanticVersion)">
+<summary>
+ Tests for inclusion.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.Range.Create(IntelliFactory.Core.SemanticVersions.RangeShape)">
+<summary>
+ Creates a `Range` object.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions.Range">
+<summary>
+ Represents a version range.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions.RangeShape">
+<summary>
+ Represents a decomposed version range (see below).
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.SemanticVersions.RangePoint.Version">
+<summary>
+ The maximum or mimimum version.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.SemanticVersions.RangePoint.IsInclusive">
+<summary>
+ True if the version is included.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions.RangePoint">
+<summary>
+ Represents an endpoint of a range.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.SemanticVersion.TryParse(System.String)">
+<summary>
+ Tries to parse a text version.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SemanticVersions.SemanticVersion.Parse(System.String)">
+<summary>
+ Parses a text representation.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions.SemanticVersion">
+<summary>
+ Represents a semantic version.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions.InvalidVersion">
+<summary>
+ Thrown when parsing a Version fails.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions.InvalidRange">
+<summary>
+ Thrown when parsing a Range fails.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SemanticVersions">
+<summary>
+ Implements semantic version types.
+ See `http://semver.org/` for the spec.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.ShellUtility">
+
+</member>
+<member name="M:IntelliFactory.Core.SubCollections.SubCollection.Create``2(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{``0},``1})">
+<summary>
+ Creates a new sub-collection based on a list of elements and an update func.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SubCollections.SubCollection">
+<summary>
+ Combinators for defining sub-collections.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SubCollections.SubCollection`2.Replace(System.Collections.Generic.IEnumerable{`1})">
+<summary>
+ Replaces the collection entirely.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SubCollections.SubCollection`2.Clear">
+<summary>
+ Clears the collection.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SubCollections.SubCollection`2.AddMany(System.Collections.Generic.IEnumerable{`1})">
+<summary>
+ Adds multiple elements to the end of the collection.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.SubCollections.SubCollection`2.Add(`1)">
+<summary>
+ Adds an element to the end of the collection.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SubCollections.SubCollection`2">
+<summary>
+ A lens-like abstraction for defining a member list
+ with functional update.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.SubCollections">
+<summary>
+ Simplifies defining functional update interfaces for collection fields.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TaskExtensions.Task`1.Map``2(System.Threading.Tasks.Task{``0},Microsoft.FSharp.Core.FSharpFunc{``0,``1})">
+<summary>
+ Maps over the task.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TaskExtensions.Task`1.Await``1(System.Threading.Tasks.Task{``0})">
+<summary>
+ Awaits the task in an Async workflow.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TaskExtensions.Task.Await(System.Threading.Tasks.Task)">
+<summary>
+ Awaits the task in an Async workflow.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.TaskExtensions">
+<summary>
+ Extension methods for `System.Task` functionality.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TextExtensions.StringBuilder.Reset(System.Text.StringBuilder)">
+<summary>
+ Clears the buffer and returns the contents.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TextExtensions.StringBuilder.Dequeue(System.Text.StringBuilder,System.ArraySegment{System.Char})">
+<summary>
+ Takes characters off the beginning of the builder and into the buffer.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.TextExtensions">
+<summary>
+ Extension methods for classes in `System.Text`.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.TextPipes.TextPipe.Writer">
+<summary>
+ The writer end.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.TextPipes.TextPipe.Reader">
+<summary>
+ The reader end.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TextPipes.TextPipe.Create(Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig})">
+<summary>
+ Creates a new text pipe. Parameters configure the `NonBlockingTextWriter`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TextPipes.TextPipe.Close">
+<summary>
+ Closes the pipe. All queued readers receive empty results.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.TextPipes.TextPipe">
+<summary>
+ Thread-safe text pipe with two ends - a reader and a writer.
+ Writes are non-blocking, the pipe accumulates without bounds.
+ Reads &quot;block&quot; by queuing continuations in the pipe.
+ Asynchronous reads are preferred, as they involve
+ more efficient continuation representations:
+ waiting async readers use less memory than blocking readers.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.TextPipes.NonBlockingTextWriter.Create(Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpOption{IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig})">
+<summary>
+ Constructs a new writer that does not block when written to.
+ Continuation is invoked in a single-threaded manner.
+ It should not block or raise exceptions.
+ All strings passed to the continuation are non-null and non-empty.
+ An empty string signals that the writer is closed.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.TextPipes.NonBlockingTextWriter">
+<summary>
+ Implements writing as message-passing.
+ Writers created with this class are thread-safe.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig.NewLine">
+<summary>
+ The newline string to use. Defaults to &quot;\n&quot; for symmetry with `ReadLine` implementation on `TextReader`.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig.FlushInterval">
+<summary>
+ The interval at which the internal timer fires to flush the buffer. Defaults to 1 second.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig.Encoding">
+<summary>
+ Encoding used in `TextWriter.Encoding` - informational use only.
+</summary>
+</member>
+<member name="F:IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig.BufferSize">
+<summary>
+ Default: 1024.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig.Default">
+<summary>
+ The default configuration.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.TextPipes.NonBlockingTextWriterConfig">
+<summary>
+ Configures `NonBlockingTextWriter` (see below).
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.TextPipes">
+<summary>
+ Implements text reading/writing utilities.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.VisualStudioTools.Extensions">
+<summary>
+ Provides a facility to generate VisualStudio extension `.vsix` files
+ using the 2010 VSIX format compatible with VisualStudio 2010 and VisualStudio 2012,
+ see &lt;http://msdn.microsoft.com/en-us/library/vstudio/dd393754(v=vs.100).aspx&gt;
+ Quickstart: use the static methods on `VsixFile` to construct
+ an in-memory `.vsix` representation you can then manipulate.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.VisualStudioTools.NuGet">
+<summary>
+ NuGet-related functionality.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.VisualStudioTools.Templates">
+<summary>
+ Provides a facility to generate VisualStudio template archive files.
+ These typically have a `.zip` extension and contain `.vstemplate` XML manifests.
+ Quickstart: use the static methods on `Archive` to construct
+ an in-memory `.zip` representation you can then manipulate.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.VisualStudioTools.Utils">
+<summary>
+ Utility module used by VisualStudioTools.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlGenerator.op_Dynamic(IntelliFactory.Core.XmlTools.XmlGenerator,System.String)">
+<summary>
+ Constructs a new element.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlGenerator.Text(System.String)">
+<summary>
+ Creates a new text node.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlGenerator.Element(System.String)">
+<summary>
+ Creates a new element.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlGenerator.Create(Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Creates a new XmlGenerator.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.XmlTools.XmlGenerator">
+<summary>
+ Generates Xml documents.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.IXmlNode.Node">
+<summary>
+ The equivalent node.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.XmlTools.IXmlNode">
+<summary>
+ An interface for node-equivalent types.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.Core.XmlTools.XmlNode">
+<summary>
+ Represents simple XML nodes.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.op_Subtraction(IntelliFactory.Core.XmlTools.XmlElement,System.Collections.Generic.IEnumerable{IntelliFactory.Core.XmlTools.IXmlNode})">
+<summary>
+ Appends children.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.op_MinusMinus(IntelliFactory.Core.XmlTools.XmlElement,System.String)">
+<summary>
+ Appends a single text node.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.op_MinusLess(IntelliFactory.Core.XmlTools.XmlElement,System.Collections.Generic.IEnumerable{IntelliFactory.Core.XmlTools.XmlElement})">
+<summary>
+ Appends child elements.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.op_Addition(IntelliFactory.Core.XmlTools.XmlElement,System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String}})">
+<summary>
+ Appends attributes.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlElement.Uri">
+<summary>
+ The URI part of the name, if qualified.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlElement.Name">
+<summary>
+ The qualified name.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlElement.LocalName">
+<summary>
+ The local name.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlElement.Children">
+<summary>
+ The children collection.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlElement.Attributes">
+<summary>
+ The attribute collection.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.WriteFile(System.String)">
+<summary>
+ Writes an `Element` to a file.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Write">
+<summary>
+ Writes an `Element` to a string.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.WithChildren(System.Collections.Generic.IEnumerable{IntelliFactory.Core.XmlTools.IXmlNode})">
+<summary>
+ Appends children.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.WithAttributes(System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String}})">
+<summary>
+ Appends/overwrites the attributes.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.WithAttributes(Microsoft.FSharp.Collections.FSharpMap{IntelliFactory.Core.XmlTools.XmlName,System.String})">
+<summary>
+ Appends/overwrites the attributes.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.ToXElement">
+<summary>
+ Converts the `Element` to an `XElement`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Text(System.String)">
+<summary>
+ Appends a text node.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.ReadFile(System.String)">
+<summary>
+ Reads an XML file to an `Element`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Read(System.String)">
+<summary>
+ Reads an XML string to an `Element`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.FromXElement(System.Xml.Linq.XElement)">
+<summary>
+ Constructs an `Element` from an `XElement`.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Create(System.String,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Constructs an new empty Element.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Create(IntelliFactory.Core.XmlTools.XmlName)">
+<summary>
+ Constructs an new empty Element.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Attribute(System.String,System.String)">
+<summary>
+ Addds an attribute.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlElement.Attribute(IntelliFactory.Core.XmlTools.XmlName,System.String)">
+<summary>
+ Addds an attribute.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.XmlTools.XmlElement">
+<summary>
+ Represents simple XML elements.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlName.Uri">
+<summary>
+ The URI part of the name, or an empty string.
+</summary>
+</member>
+<member name="P:IntelliFactory.Core.XmlTools.XmlName.Local">
+<summary>
+ The local part of the name.
+</summary>
+</member>
+<member name="M:IntelliFactory.Core.XmlTools.XmlName.Create(System.String,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Creates a new Name with a given URI part.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.XmlTools.XmlName">
+<summary>
+ Represents qualified names.
+</summary>
+</member>
+<member name="T:IntelliFactory.Core.XmlTools">
+<summary>
+ Provides a facility to generate simple XML documents.
+</summary>
+</member>
+</members>
+</doc>

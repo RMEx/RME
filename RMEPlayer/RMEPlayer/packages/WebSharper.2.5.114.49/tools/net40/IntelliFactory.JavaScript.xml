@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.JavaScript</name></assembly>
+<members>
+<member name="T:IntelliFactory.JavaScript.Preferences.Readable">
+<summary>
+ Generate readable JavaScript code.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Preferences.Compact">
+<summary>
+ Generate compact, machine-optimized JavaScript code.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Preferences">
+<summary>
+ Defines code generation preferences.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Core.Expression">
+<summary>
+ Represents expressions of the language.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Literal.op_BangTwiddle(IntelliFactory.JavaScript.Core.Literal)">
+<summary>
+ Lifts to an expression.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Core.Literal">
+<summary>
+ Satisfies the comparison constraint.
+ Represents self-evaluating literals.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Core.Id.Name(Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Returns the readable name hint of the identifier, if provided.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Core.Id.Name">
+<summary>
+ Returns the readable name hint of the identifier, if provided.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Core.Id.IsMutable">
+<summary>
+ Mutability flag.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Id.#ctor(IntelliFactory.JavaScript.Core.Id)">
+<summary>
+ Clones an identifier.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Id.#ctor(System.String,System.Boolean)">
+<summary>
+ Constructs a new identifier with a given readable name hint, can be set to mutable.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Id.#ctor(Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Constructs a new identifier with an optional given readable name hint.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Id.#ctor(System.String)">
+<summary>
+ Constructs a new identifier with a given readable name hint.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Id.#ctor">
+<summary>
+ Constructs a new identifier.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Core.Id">
+<summary>
+ Represents identifiers.  Reference equality is used in
+ representing bindings.  Names can be optionally provided, their
+ role is advisory.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Core.BinaryOperator">
+<summary>
+ Represents binary operators. These are JavaScript binary operators
+ excluding assignment, sequence and member operators.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Core.UnaryOperator">
+<summary>
+ Represents unary operators. These are JavaScript unary operators
+ excluding increment, decrement and delete.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Recognize(IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Recognizes expressions from a subset of syntactic forms.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.ToProgram(IntelliFactory.JavaScript.Preferences,IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Elaborates an expression to a JavaScript program.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Optimize(IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Performs an optimization pass. Current optimizations include
+ local tail-call elimination that transforms LetRecursive nodes
+ to loops.  The complexity is bounded by O(n) in
+ the number of sub-expressions.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Substitute(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Core.Id,Microsoft.FSharp.Core.FSharpOption{IntelliFactory.JavaScript.Core.Expression}},IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Replaces free variables in an expression.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.IsGround(IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Tests if an expression is ground (contains no free
+ identifiers).
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.GetMutableIds(IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Finds all mutable variables in an expression.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.GetFreeIds(IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Finds all free variables in an expression.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.AlphaNormalize(IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Refreshes bound identifiers, so that no identifier is bound twice.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.IsAlphaNormalized(IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Checks that no identifier is bound twice in an expression.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Fold``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Core.Expression,``0}},``0,IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Folds over the immediate sub-expressions. Expression forms
+ that bind variables are transformed by inserting Lambda,
+ so that Lambda is the only variable-binding form.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Core.Transform(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Core.Expression,IntelliFactory.JavaScript.Core.Expression},IntelliFactory.JavaScript.Core.Expression)">
+<summary>
+ Maps over the immediate sub-expressions. Expression forms
+ that bind variables are transformed by inserting Lambda,
+ so that Lambda is the only variable-binding form.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Core">
+<summary>
+ Defines a reduced language that is suitable
+ for simple optimization, and efficient compilation to JavaScript.
+
+ The goal of Core is to define a JavaScript-like
+ language satisfying the following criteria:
+
+ (1) Has tractable semantics to simplify optimization.
+
+ (2) Is rich enough to express JavaScript efficiently.
+
+ (3) Can be read from a JavaScript subset and elaborated to
+     JavaScript with minimal loss of structure.
+
+ Expanding all JavaScript programs into Core
+ has not been a design goal, therefore certain constructs, such as
+ mutable variables and break statements have been removed for
+ simplicity.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Extensions">
+
+</member>
+<member name="M:IntelliFactory.JavaScript.Identifier.MakeFormatter">
+<summary>
+ Constructs a compact numeric identifier formatter.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Identifier.MakeValid(System.String)">
+<summary>
+ Replaces bad characters by underscore to make an identifier valid.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Identifier.IsValid(System.String)">
+<summary>
+ Checks if a string is a valid JavaScript identifier name.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Identifier.IsReserved(System.String)">
+<summary>
+ Checks if a string is a reserved word in JavaScript.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Identifier">
+<summary>
+ Provides utilities for working with JavaScript identifier names.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.State">
+<summary>
+ Represents an opaque analyzer state.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Lexer.IToken.Line">
+<summary>
+ The line part of the token position.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Lexer.IToken.Lexeme">
+<summary>
+ The recognized lexeme.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Lexer.IToken.FollowsLineTerminator">
+<summary>
+ True if the token was preceded by a significant line terminator.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Lexer.IToken.Column">
+<summary>
+ The column part of the token position.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.IToken">
+<summary>
+ Represents recognized tokens.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.Line">
+<summary>
+ Represents the line number, starting from 1.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.Column">
+<summary>
+ Represents the column number, starting from 1.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.Lexeme">
+<summary>
+ Represents lexemes: identifiers, literals, keywords and so on.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.Symbol">
+<summary>
+ Represents symbolic keywords.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.Keyword">
+<summary>
+ Represents keywords.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Lexer.InputElementRegExp(IntelliFactory.JavaScript.Lexer.State)">
+<summary>
+ Retrieves the next token using the RegExp lexical grammar.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Lexer.InputElementDiv(IntelliFactory.JavaScript.Lexer.State)">
+<summary>
+ Retrieves the next token using the Div lexical grammar.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Lexer.FromTextReader(System.IO.TextReader)">
+<summary>
+ Opens a TextReader for analysis.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Lexer.FromString(System.String)">
+<summary>
+ Opens a string for analysis.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer.LexerError">
+<summary>
+ Represents lexical analysis errors.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Lexer">
+<summary>
+ Implements lexical analysis for JavaScript.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Packager.Member">
+<summary>
+ Represents members. Fields are thunks that are lazily instantiated.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Packager.Expression">
+<summary>
+ Unifies core and syntactic expressions.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.JavaScript.Packager.Address.Parent">
+<summary>
+ The parent address, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.JavaScript.Packager.Address.LocalName">
+<summary>
+ The local part of the address.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Packager.Address">
+<summary>
+ Represents qualified JavaScript names.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Packager.Simplify(Microsoft.FSharp.Collections.FSharpMap{System.String,IntelliFactory.JavaScript.Packager.Binding})">
+<summary>
+ Removes unnecessary empty module bindings.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Packager.Package(Microsoft.FSharp.Collections.FSharpMap{System.String,IntelliFactory.JavaScript.Packager.Binding},IntelliFactory.JavaScript.Preferences)">
+<summary>
+ Converts a module to a program that defines it.
+ The produced programs depend on Runtime.js or Runtime.min.js embedded
+ as a resource within this assembly.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Packager">
+<summary>
+ Converts mixed Core/Syntax packages to JavaScript.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Parser.Source.FromTextReader(System.IO.TextReader)">
+<summary>
+ Uses TextReader as a parser source.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Parser.Source.FromString(System.String)">
+<summary>
+ Uses string as a parser source.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Parser.Source">
+<summary>
+ Represents parser sources.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Parser.Column">
+<summary>
+ Column number, starting from 1.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Parser.Line">
+<summary>
+ Line number, starting from 1.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Parser.ParseProgram(IntelliFactory.JavaScript.Parser.Source)">
+<summary>
+ Parses a complete program.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Parser.ParseExpression(IntelliFactory.JavaScript.Parser.Source)">
+<summary>
+ Parses an expression.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Parser.ParserError">
+<summary>
+ Thrown on parse failures.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Parser">
+<summary>
+ Implements a recursive-descent parser for JavaScript, as
+ defined in ECMA-262 3rd edition.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Program">
+<summary>
+ Represents complete programs.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.ProgramElement">
+<summary>
+ Represents program elements.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.SwitchElement">
+<summary>
+ Represents switch elements.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Statement">
+<summary>
+ JavaScript statements.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Expression">
+<summary>
+ Represents JavaScript expressions.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.Literal.op_BangTwiddle(IntelliFactory.JavaScript.Syntax.Literal)">
+<summary>
+ Lifts to an expression.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Literal">
+<summary>
+ Represents literals.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.BinaryOperator">
+<summary>
+ Represents JavaScript binary operators.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.PostfixOperator">
+<summary>
+ Represents JavaScript postfix operators.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.UnaryOperator">
+<summary>
+ Represents JavaScript prefix operators.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Regex">
+<summary>
+ Represents JavaScript regular expression literals verbatim.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Label">
+<summary>
+ Represents JavaScript labels.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax.Id">
+<summary>
+ Represents JavaScript identifiers.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.Optimize(IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Performs simple optimizations.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.Close(System.String,IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Performs a variable renaming pass that closes the expression.
+ All global references are rewired to explicit field lookups on the
+ global object, represented by the given identifier.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.FoldStatement``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Expression,``0}},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Statement,``0}},``0,IntelliFactory.JavaScript.Syntax.Statement)">
+<summary>
+ Performs a fold over the immediate sub-nodes of a statement.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.FoldExpression``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Expression,``0}},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Statement,``0}},``0,IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Performs a fold over the immediate sub-nodes of an expression.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.TransformStatement(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Expression,IntelliFactory.JavaScript.Syntax.Expression},Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Statement,IntelliFactory.JavaScript.Syntax.Statement},IntelliFactory.JavaScript.Syntax.Statement)">
+<summary>
+ Maps over the immediate sub-nodes of a statement.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Syntax.TransformExpression(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Expression,IntelliFactory.JavaScript.Syntax.Expression},Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.JavaScript.Syntax.Statement,IntelliFactory.JavaScript.Syntax.Statement},IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Maps over the immediate sub-nodes of an expression.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Syntax">
+<summary>
+ Defines the JavaScript abstract syntax tree.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.JavaScript.Writer.ProgramToString(IntelliFactory.JavaScript.Preferences,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.JavaScript.Syntax.ProgramElement})">
+<summary>
+ Writes a JavaScript program to a string.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Writer.ExpressionToString(IntelliFactory.JavaScript.Preferences,IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Writes a JavaScript expression to a string.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Writer.WriteProgram(IntelliFactory.JavaScript.Preferences,System.IO.TextWriter,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.JavaScript.Syntax.ProgramElement})">
+<summary>
+ Writes a JavaScript program to a writer.
+</summary>
+</member>
+<member name="M:IntelliFactory.JavaScript.Writer.WriteExpression(IntelliFactory.JavaScript.Preferences,System.IO.TextWriter,IntelliFactory.JavaScript.Syntax.Expression)">
+<summary>
+ Writes a JavaScript expression to a writer.
+</summary>
+</member>
+<member name="T:IntelliFactory.JavaScript.Writer">
+<summary>
+ Provides a writer for JavaScript syntax.
+</summary>
+</member>
+</members>
+</doc>

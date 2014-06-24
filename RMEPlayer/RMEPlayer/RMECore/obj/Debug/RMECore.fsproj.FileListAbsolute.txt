@@ -1,0 +1,4 @@
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMECore\bin\Debug\RMECore.dll
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMECore\bin\Debug\RMECore.pdb
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMECore\obj\Debug\RMECore.dll
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMECore\obj\Debug\RMECore.pdb

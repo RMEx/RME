@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FsNuGet</name></assembly>
+<members>
+<member name="P:FsNuGet.Package.Version">
+<summary>
+ Package version, such as &quot;2.8.0&quot;.
+</summary>
+</member>
+<member name="P:FsNuGet.Package.Text">
+<summary>
+ Text representation, such as &quot;NuGet.Core.2.8.0&quot;.
+</summary>
+</member>
+<member name="P:FsNuGet.Package.Id">
+<summary>
+ Package identity, such as &quot;NuGet.Core&quot;.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.TryGetLatest(System.String)">
+<summary>
+ Attempts to find the latest version of a package by id.
+ Searches the official NuGet repository only.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.SaveToFile(System.String)">
+<summary>
+ Writes this package in nupkg format at a given path.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.SaveToDirectory(System.String)">
+<summary>
+ Writes this package as a nupkg file in a given directory.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.Install(System.String)">
+<summary>
+ Downloads the package contents and unpacks to a folder on disk.
+ For example, `p.Install(&quot;packages/&quot; + p.Text)`, will create
+ `packages/MyPkg.1.2.3` folder with the contents of the package.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.GetLatest(System.String)">
+<summary>
+ Like `Package.TryGetLatest`, but throws an exception on failure.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.FromStream(System.IO.Stream)">
+<summary>
+ Reads nupkg format from a stream.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.FromFile(System.String)">
+<summary>
+ Reads a given nupkg file.
+</summary>
+</member>
+<member name="M:FsNuGet.Package.FromBytes(System.Byte[])">
+<summary>
+ Reads raw bytes in nupkg format.
+</summary>
+</member>
+<member name="T:FsNuGet.Package">
+<summary>
+ Represents a NuGet package at a specific verison.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FsNuGet.Utility">
+
+</member>
+</members>
+</doc>

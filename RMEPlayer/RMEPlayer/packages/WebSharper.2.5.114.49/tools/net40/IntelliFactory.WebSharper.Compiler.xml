@@ -1,0 +1,3556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.WebSharper.Compiler</name></assembly>
+<members>
+<member name="P:IntelliFactory.WebSharper.Compiler.Assembly.TypeScriptDeclarations">
+<summary>
+ The TypeScript `.d.ts` declarations for the JavaScript.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Assembly.Symbols">
+<summary>
+ Returns the associated symbols, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Assembly.ReadableJavaScript">
+<summary>
+ Reads the embedded JavaScript.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Assembly.FullName">
+<summary>
+ The full name of the assembly.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Assembly.CompressedJavaScript">
+<summary>
+ Reads the embedded JavaScript.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Assembly.Write(Microsoft.FSharp.Core.FSharpOption{System.Reflection.StrongNameKeyPair},System.String)">
+<summary>
+ Writes the assembly to the given path.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Assembly.RawBytes(Microsoft.FSharp.Core.FSharpOption{System.Reflection.StrongNameKeyPair})">
+<summary>
+ Returns the raw assembly data.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Assembly.GetScripts">
+<summary>
+ Loads embedded script resources.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Assembly.GetContents">
+<summary>
+ Loads embedded non-script resources.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Assembly">
+<summary>
+ Represents assemblies.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Bundle">
+<summary>
+ Experimental API for bundling WebSharper file sets into application packages.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.CompiledAssembly.TypeScriptDeclarations">
+<summary>
+ The TypeScript `.d.ts` declarations for the JavaScript.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.CompiledAssembly.ReadableJavaScript">
+<summary>
+ The readable JS source for the assembly.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.CompiledAssembly.Info">
+<summary>
+ The metadata info record for the assembly set.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.CompiledAssembly.CompressedJavaScript">
+<summary>
+ The compressed JS source for the assembly.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.CompiledAssembly.AssemblyInfo">
+<summary>
+ The metadata info record for the individual assembly.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.CompiledAssembly.RenderDependencies(IntelliFactory.WebSharper.Compiler.ResourceContext,System.Web.UI.HtmlTextWriter)">
+<summary>
+ Renders the dependencies of the assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.CompiledAssembly.RenderDependencies(IntelliFactory.WebSharper.Core.Resources.Context,System.Web.UI.HtmlTextWriter)">
+<summary>
+ Renders the dependencies of the assembly.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.CompiledAssembly">
+<summary>
+ Represents a compiled assembly.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Content">
+<summary>
+ See `Bundle`.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.EmbeddedFile.IsScript">
+<summary>
+ True for Script resources.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.EmbeddedFile.FileName">
+<summary>
+ The file name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.EmbeddedFile.ContentType">
+<summary>
+ The mime content type.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.EmbeddedFile.Content">
+<summary>
+ Reads the content.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.EmbeddedFile.GetContentData">
+<summary>
+ Reads the content.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.EmbeddedFile">
+<summary>
+ Represents embedded resource files.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Loader.LoadRaw(System.Byte[],Microsoft.FSharp.Core.FSharpOption{IntelliFactory.WebSharper.Compiler.Symbols})">
+<summary>
+ Loads an assembly from raw data.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Loader.LoadFile(System.String)">
+<summary>
+ Loads an assembly from a given path.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Loader.Create(IntelliFactory.Core.AssemblyResolution.AssemblyResolver,Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Creates a new loader. Accepts an assembly resolver.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Loader">
+<summary>
+ Loads assemblies.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Location">
+<summary>
+ Represents locations with optional source locations.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Logger.Log(IntelliFactory.WebSharper.Compiler.Message)">
+<summary>
+ Sends a message to the logger.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Logger.Create(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.WebSharper.Compiler.Message,Microsoft.FSharp.Core.Unit},System.Int32)">
+<summary>
+ Creates a new logger.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Logger">
+<summary>
+ Represents a capability to log messages.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.MemberScope">
+<summary>
+ Represents the kind of an inline definition. Instance definitions
+ accept a placeholder for the target object.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Message">
+<summary>
+ Represents error and warning messages.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Priority">
+<summary>
+ Represents the priority of the error messages.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ResourceContent">
+<summary>
+ Represents a resource content file.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.IntelliFactory.WebSharper.Compiler.ResourceContext.RenderResource">
+<summary>
+ Decides how to render a resource.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.IntelliFactory.WebSharper.Compiler.ResourceContext.GetSetting">
+<summary>
+ Reads environment settings.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.IntelliFactory.WebSharper.Compiler.ResourceContext.DefaultToHttp">
+<summary>
+ Wheter to switch `//` links to `http://` links.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.IntelliFactory.WebSharper.Compiler.ResourceContext.DebuggingEnabled">
+<summary>
+ Whether to emit readable JavaScript.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ResourceContext">
+<summary>
+ A reduced resource context for simplified dependency rendering.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.SourceLocation">
+<summary>
+ Represents locations in source code.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Symbols">
+<summary>
+ Represents raw symbols data as found in .mdb and .pdb files.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ErrorLimitExceeded">
+<summary>
+ Thrown when the error limit is exceeded.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Abbreviations">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Adapter.AdaptUnionCase(IntelliFactory.WebSharper.Compiler.ReflectionLayer.TypeReference,System.String)">
+<summary>
+ Adapts a union case.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Adapter.AdaptProperty(IntelliFactory.WebSharper.Compiler.ReflectionLayer.PropertyReference)">
+<summary>
+ Adapts a property.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Adapter.AdaptMethod(IntelliFactory.WebSharper.Compiler.ReflectionLayer.MethodReference)">
+<summary>
+ Adapts a method.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Adapter.AdaptConstructor(IntelliFactory.WebSharper.Compiler.ReflectionLayer.MethodReference)">
+<summary>
+ Adapts a constructor.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Adapter.AdaptType(IntelliFactory.WebSharper.Compiler.ReflectionLayer.TypeReference)">
+<summary>
+ Adapts a type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Adapter.AdaptTypeDefinition(IntelliFactory.WebSharper.Compiler.ReflectionLayer.TypeReference)">
+<summary>
+ Adapts a type definition (a class or a module).
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Adapter">
+<summary>
+ Adapts Mono.Cecil representations to QuotationReader representations.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Algorithms.TopSort.Do``1(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,System.Collections.Generic.IEnumerable{``0}})">
+<summary>
+ A variant of the algorithm using built-in equality.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Algorithms.TopSort.Do``1(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,System.Collections.Generic.IEnumerable{``0}},System.Collections.Generic.IEqualityComparer{``0})">
+<summary>
+ Given a directed graph defined by a set of root nodes,
+ a predecessor function and a notion of node identity,
+ computes a topological sort of the nodes reachable from
+ this set.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Algorithms.TopSort">
+<summary>
+ Topological sort.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Algorithms">
+<summary>
+ Some algorithms used in WebSharper, expressed in a general form.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Analyzer.Analyze(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo},IntelliFactory.WebSharper.Compiler.Validator.Assembly)">
+<summary>
+ Performs the analysis.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Analyzer">
+<summary>
+ Analyzes assemblies to construct runtime metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Assembler.Assemble(IntelliFactory.WebSharper.Compiler.Logger,IntelliFactory.WebSharper.Compiler.Inlining.Pool,IntelliFactory.WebSharper.Compiler.Reflector.Pool,IntelliFactory.WebSharper.Compiler.Metadata.T,IntelliFactory.WebSharper.Compiler.Validator.Assembly)">
+<summary>
+ Assembles the reflected code.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Assembler">
+<summary>
+ Assembles reflected code into JavaScript packages.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.BundleCommand.Config.OutputDirectory">
+<summary>
+ Output directory where generated files are placed.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.BundleCommand.Config.FileName">
+<summary>
+ File name used for generated files.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.BundleCommand.Config.AssemblyPaths">
+<summary>
+ Paths to WebSharper assemblies to consider.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.BundleCommand.Config">
+<summary>
+ Configuration for the bundle command.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.BundleCommand.Instance">
+<summary>
+ The command instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.BundleCommand">
+<summary>
+ Performs bundling of JavaScript and CSS resources,
+ producing linked artifacts for a set of WebSharper assemblies.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Commands.ICommand`1.Parse(Microsoft.FSharp.Collections.FSharpList{System.String})">
+<summary>
+ Parses command-line arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Commands.ICommand`1.Execute(IntelliFactory.WebSharper.Compiler.Commands.Environment,`0)">
+<summary>
+ Executes a command.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Commands.ICommand`1">
+<summary>
+ Common interface implemented by all commands.
+ Parameterized by the config object.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Commands.ICommand.Usage">
+<summary>
+ Detailed description of what the command does.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Commands.ICommand.Id">
+<summary>
+ Short identifier, such as &quot;bundle&quot;.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Commands.ICommand.Description">
+<summary>
+ One-liner description of what the command does.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Commands.ICommand.Parse(Microsoft.FSharp.Collections.FSharpList{System.String})">
+<summary>
+ Parses command-line arguments.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Commands.ICommand">
+<summary>
+ Common interface implemented by all commands.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Commands.ParseResult`1">
+<summary>
+ Results of parsing the command.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Commands.Result">
+<summary>
+ Results of executing the command
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Commands.Environment">
+<summary>
+ Environment for command execution.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Commands.DefineCommand``1(System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},IntelliFactory.WebSharper.Compiler.Commands.ParseResult{``0}},Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.WebSharper.Compiler.Commands.Environment,Microsoft.FSharp.Core.FSharpFunc{``0,IntelliFactory.WebSharper.Compiler.Commands.Result}})">
+<summary>
+ Used internally to define commands.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Commands">
+<summary>
+ Support for defining compiler operations as first-class Command values.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Constants">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Corrector">
+<summary>
+ Implements ad-hoc corrections for nonsensical quotations
+ produced by the F# compiler, in particular implementing uncurrying and
+ constructor normalization.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.FrontEnd.Compiler.CompileAndModify(IntelliFactory.WebSharper.Compiler.Assembly)">
+<summary>
+ Compiles an assembly and rewrites it on disk.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.FrontEnd.Compiler.Compile(Microsoft.FSharp.Quotations.FSharpExpr,System.Reflection.Assembly,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Attempts to compile an expression potentially coming from a dynamic assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.FrontEnd.Compiler.Compile(Microsoft.FSharp.Quotations.FSharpExpr,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Attempts to compile an expression potentially coming from a dynamic assembly.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.FrontEnd.Compiler">
+<summary>
+ Represents the compiler front-end object.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.FrontEnd.Options.Default">
+<summary>
+ The defaults.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.FrontEnd.Options">
+<summary>
+ Represents compilation options.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.FrontEnd.Prepare(IntelliFactory.WebSharper.Compiler.FrontEnd.Options,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.WebSharper.Compiler.Message,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Prepares a compiler.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.FrontEnd.Compile(IntelliFactory.WebSharper.Compiler.FrontEnd.Options,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.WebSharper.Compiler.Message,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Compiles an assembly and rewrites it on disk. Deprecated. Note
+ that `Compile opts log a = (Prepare opts log).CompileAndModify(a)`.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.FrontEnd">
+<summary>
+ Exposes the compiler front-end for programmatic use.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.Nodes">
+<summary>
+ Traverses all nodes.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.NodeCount">
+<summary>
+ Returns the number of nodes.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.Walk(`0)">
+<summary>
+ Traverses all nodes reachable from a given starting point.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.Links(`0)">
+<summary>
+ Looks up all outbound links from a given node.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.Contains(`0)">
+<summary>
+ Tests if a given node is contained in the graph.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.Connect(`0,`0)">
+<summary>
+ Adds a link from source to destination node.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1.Add(`0)">
+<summary>
+ Adds a node to the graph.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Graphs.Graph`1">
+<summary>
+ Represents a directed graph with labeled nodes.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.TopologicalSort``1(IntelliFactory.WebSharper.Compiler.Graphs.Graph{``0})">
+<summary>
+ Returns all nodes in traversal order.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Empty``1">
+<summary>
+ The empty graph.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.New``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.Tuple{``0,``0}})">
+<summary>
+ Constructs a graph from an explicit listing of nodes and links.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Graphs.Union``1(System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.Compiler.Graphs.Graph{``0}})">
+<summary>
+ Takes a union of several graphs.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Graphs">
+<summary>
+ Provides simple graph algorithms for compiler use.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.HtmlCommand.IHtmlCommand.Execute(IntelliFactory.WebSharper.Compiler.Commands.Environment,IntelliFactory.WebSharper.Compiler.HtmlCommand.Config)">
+<summary>
+ Executes the command.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.HtmlCommand.IHtmlCommand">
+<summary>
+ The implementation of the command is deferred until
+ the Sitelts assembly, this interface works as plumbing for
+ the forward-declaration.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config.ReferenceAssemblyPaths">
+<summary>
+ Paths to reference assemblies.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config.ProjectDirectory">
+<summary>
+ Project directory where root files are located.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config.OutputDirectory">
+<summary>
+ Output directory to place files under.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config.Mode">
+<summary>
+ Debug or Release mode.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config.MainAssemblyPath">
+<summary>
+ Path to the main assembly defining the sitelet.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config.Create(System.String)">
+<summary>
+ Configures with default options.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.HtmlCommand.Config">
+<summary>
+ Options for the command.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.HtmlCommand.Mode">
+<summary>
+ In debug mode, generated scripts are not compressed.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.HtmlCommand.Instance">
+<summary>
+ The command instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.HtmlCommand">
+<summary>
+ Performs generation of static HTML from a set of WebSharper assemblies
+ that contain offline sitelet declarations.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Inlining.Pool.Parse(IntelliFactory.WebSharper.Compiler.Inlining.Inline)">
+<summary>
+ Parses an inline. The results are cached.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Inlining.Pool.CreateInline(IntelliFactory.WebSharper.Compiler.MemberScope,IntelliFactory.WebSharper.Compiler.Location,Microsoft.FSharp.Collections.FSharpList{System.String},IntelliFactory.WebSharper.Compiler.Inlining.Pattern)">
+<summary>
+ Creates a new Inline object.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Inlining.Pool.Create(IntelliFactory.WebSharper.Compiler.Logger)">
+<summary>
+ Creates a new Pool object.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Inlining.Pool">
+<summary>
+ Manages Inline objects, in particular parser inline definitions.
+ Caches the parse results.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Inlining.Inliner">
+<summary>
+ Represents a parsed inline.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Inlining.Inline.Quotation">
+<summary>
+ The quotation, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Inlining.Inline.MemberScope">
+<summary>
+ The member scope.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Inlining.Inline.IsTransformer">
+<summary>
+ Tests if the Inline compiles to a Core expression transformer
+ (otherwise it compiles to a syntactic JavaScript function).
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Inlining.Inline">
+<summary>
+ Represents an inline specification. Can be serialized.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Inlining.ParameterName">
+<summary>
+ Represents method parameter names.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Inlining.Pattern">
+<summary>
+ Represents JavaScript code patterns.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Inlining">
+<summary>
+ Inline definitions are JavaScript expressions with placeholders.
+ This module parses and analyses such definitions, either compiling
+ them to JavaScript functions or intermediate language transformers.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Locator">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Compiler.Metadata.T.Empty">
+<summary>
+ The empty metadata record.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.T.UnionCase(IntelliFactory.WebSharper.Core.Reflection.UnionCase)">
+<summary>
+ Maps a union case to its metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.T.Property(IntelliFactory.WebSharper.Core.Reflection.Property)">
+<summary>
+ Maps a property to its metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.T.Method(IntelliFactory.WebSharper.Core.Reflection.Method)">
+<summary>
+ Maps a method to its metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.T.DataType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Maps a class or module definition to its metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.T.Constructor(IntelliFactory.WebSharper.Core.Reflection.Constructor)">
+<summary>
+ Maps a constructor to its metadata.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.T">
+<summary>
+ Represents a metadata record associated with an assembly.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.UnionCaseKind">
+<summary>
+ Represents union metadata.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.PropertyKind">
+<summary>
+ Represents property metadata.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.MethodKind">
+<summary>
+ Represents method metadata.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.DataTypeKind">
+<summary>
+ Represents data type metadata.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.ConstructorKind">
+<summary>
+ Represents constructor metadata.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.Field">
+<summary>
+ Represents JavaScript record field names.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata.Position">
+<summary>
+ Represents positions in a list.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.ReadFromCecilAssembly(Mono.Cecil.AssemblyDefinition)">
+<summary>
+ Reads from a Mono.Cecil assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.Deserialize(System.IO.Stream)">
+<summary>
+ Reads metadata from a binary representation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.Serialize(System.IO.Stream,IntelliFactory.WebSharper.Compiler.Metadata.T)">
+<summary>
+ Writes metadata in binary representation to a stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.Union(IntelliFactory.WebSharper.Compiler.Logger,System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.Compiler.Metadata.T})">
+<summary>
+ Takes a union of several metadata records.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Metadata.Parse(IntelliFactory.WebSharper.Compiler.Logger,IntelliFactory.WebSharper.Compiler.Validator.Assembly)">
+<summary>
+ Parses metadata from an reflected assembly.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Metadata">
+<summary>
+ Defines and manipulates compiler metadata associated with assemblies.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ReflectionLayer.Dynamic.Sample">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ReflectionLayer.Dynamic">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ReflectionLayer.Reflection">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ReflectionLayer.QuotationUtils">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ReflectionLayer.Cecil">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.ReflectionLayer">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Reflector.Pool.Load(IntelliFactory.WebSharper.Core.Reflection.Type)">
+<summary>
+ Loads a macro definition from a given type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Reflector.Pool.Create(IntelliFactory.WebSharper.Compiler.Logger)">
+<summary>
+ Constructs a macro pool.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Pool">
+<summary>
+ A utility class for pooling loaded macro definitions.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Assembly">
+<summary>
+ Represents a reflected assembly.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Type">
+<summary>
+ Represents a reflected type.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Property">
+<summary>
+ Represents properties.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.UnionCase">
+<summary>
+ Represents union cases.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Member`1">
+<summary>
+ Represents members.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Kind">
+<summary>
+ Represents special kinds of F# types, such as modules or records.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Annotation">
+<summary>
+ Represents a custom attribute annotation.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector.Name">
+<summary>
+ Represents name annotations.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Reflector.Reflect(IntelliFactory.WebSharper.Compiler.Logger,IntelliFactory.WebSharper.Compiler.ReflectionLayer.AssemblyDefinition)">
+<summary>
+ Reflects an assembly.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Reflector">
+<summary>
+ Reflects assemblies to detect all annotated
+ WebSharper members and load quotations.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Resolver.Resolve(IntelliFactory.WebSharper.Compiler.Logger,IntelliFactory.WebSharper.Compiler.Reflector.Assembly)">
+<summary>
+ Resolves the names and reports conflicts.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Resolver">
+<summary>
+ Resolves hierarchical names.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Translator.Translate(IntelliFactory.WebSharper.Compiler.Logger,IntelliFactory.WebSharper.Compiler.Inlining.Pool,IntelliFactory.WebSharper.Compiler.Reflector.Pool,IntelliFactory.WebSharper.Compiler.Metadata.T,IntelliFactory.WebSharper.Compiler.Location,IntelliFactory.WebSharper.Core.Quotations.Expression)">
+<summary>
+ Translates a quotation to JavaScript.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Translator.InvalidQuotation">
+<summary>
+ Thrown when quotation invariants are broken.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Translator">
+<summary>
+ Defines the translation of F# quotations to JavaScript core expressions.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.UnpackCommand">
+<summary>
+ Unpacks resources from WebSharper assemblies.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Utility.ReadAssemblyInfo(Mono.Cecil.AssemblyDefinition)">
+<summary>
+ Reads Core.Metadata.AssemblyInfo from a Mono.Cecil assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Utility.WriteStartCode(System.Boolean,System.IO.TextWriter)">
+<summary>
+ Writes WebSharper startup code to a text writer.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Utility.ReadWebResource(System.Type,System.String)">
+<summary>
+ Like `ReadResourceFromAssembly`, but checks if it is marked as WebResource.
+ First consults if the resource has been marked with WebResourceAttribute, and if yes,
+ uses the annotation to determine content type.
+ Otherwise, tries to guess content-type from filename.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Utility.ReadResourceFromAssembly(System.Type,System.String)">
+<summary>
+ Reads a manifest resource from an assembly that defines the given type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Utility">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Validator">
+<summary>
+ Validates reflected assemblies to verify that custom attributes
+ are used correctly. Performs analysis useful for other compiler
+ stages.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Verifier.State.VerifyWebControl(IntelliFactory.WebSharper.Compiler.ReflectionLayer.TypeDefinition)">
+<summary>
+ Checks a Web.Control declaration.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Verifier.State.VerifyRemoteMethod(IntelliFactory.WebSharper.Compiler.ReflectionLayer.MethodDefinition)">
+<summary>
+ Checks a Remote method declaration.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Verifier.State">
+<summary>
+ Provides verification methods.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Verifier.Status">
+<summary>
+ Describes a verification result.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Compiler.Verifier.Create(IntelliFactory.WebSharper.Compiler.Logger)">
+<summary>
+ Creates a new object for verification.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Compiler.Verifier">
+<summary>
+ Verifies correct usage conventions.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.MutableCollections.MultiDictionary`2.Find(`0)">
+<summary>
+ Looks up the sequence corresponding to a key.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.MutableCollections.MultiDictionary`2.Add(`0,`1)">
+<summary>
+ Adds a key-value pair.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.MutableCollections.MultiDictionary`2.#ctor">
+<summary>
+ Constructs a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.MutableCollections.MultiDictionary`2">
+<summary>
+ A dictionary with multiple values corresponding to each key.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.MutableCollections.DictionarySet`2.Find(`0)">
+<summary>
+ Looks up the set corresponding to a key.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.MutableCollections.DictionarySet`2.Add(`0,`1)">
+<summary>
+ Adds a key-value pair.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.MutableCollections.DictionarySet`2.#ctor">
+<summary>
+ Constructs a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.MutableCollections.DictionarySet`2">
+<summary>
+ A mutable dictionary with a set of values corresponding to each key.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.MutableCollections">
+<summary>
+ Implements collections used internally by the compiler.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.NameMap`1">
+<summary>
+ A finite map from qualified names to values of a given type.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.NameMap">
+<summary>
+ Combinators for manipulating named maps.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Name.Text">
+<summary>
+ Text form of the name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Name.Item(IntelliFactory.WebSharper.QualifiedNames.Id)">
+<summary>
+ Constructs a nested name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Name.Id">
+<summary>
+ The local name without the namespace.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Name.Builder">
+<summary>
+ The associated builder.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.Name">
+<summary>
+ Represents a qualified name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.IdVector.Item(System.Int32)">
+<summary>
+ Returns the n-th item in the vector.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.IdVector.IndexOf(IntelliFactory.WebSharper.QualifiedNames.Id)">
+<summary>
+ Returns the index of the first occurence of identifier, or -1.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.IdVector.Create(System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.QualifiedNames.Id})">
+<summary>
+ Creates a vector.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.IdVector">
+<summary>
+ A vector of identifiers.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Id.Text">
+<summary>
+ Text form of the identifer.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Id.Builder">
+<summary>
+ The associated builder.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.Id">
+<summary>
+ Represents a simple non-qualified identifier.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.QualifiedNames.Config.IsValidId">
+<summary>
+ Checks that an identifier is valid.
+ Default: checks that the identifier is alphanumeric.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.QualifiedNames.Config.InvalidId">
+<summary>
+ Builds an exception to throw for invalid identifiers.
+ Default: throws `InvalidIdentifier`.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.QualifiedNames.Config.ConcatIdentifiers">
+<summary>
+ Concatenates a non-empty list of valid identifiers into
+ a textual qualified name representation.
+ Default: `String.concat &quot;.&quot;`.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Config.Default">
+<summary>
+ The default configuration.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.Config">
+<summary>
+ Configures the qualified name builder.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.QualifiedNames.Builder.Config">
+<summary>
+ Current configuration.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.Builder.Root(IntelliFactory.WebSharper.QualifiedNames.Id)">
+<summary>
+ Constructs a global non-nested address from a text form of an.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.Builder.Nested(IntelliFactory.WebSharper.QualifiedNames.Name,IntelliFactory.WebSharper.QualifiedNames.Id)">
+<summary>
+ Constructs a nested address.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.Builder.Id(System.String)">
+<summary>
+ Constructs an identifier.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.Builder.Create(Microsoft.FSharp.Core.FSharpOption{IntelliFactory.WebSharper.QualifiedNames.Config})">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.Builder">
+<summary>
+ Factory object for `Name` and `Id` objects.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.QualifiedNames.|Nested|Root|(IntelliFactory.WebSharper.QualifiedNames.Name)">
+<summary>
+ Decomposes a qualified name.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.NameClash">
+<summary>
+ Thrown when names collide.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames.InvalidIdentifier">
+<summary>
+ Thrown when an identifier (qualified name part) is invalid.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.QualifiedNames">
+<summary>
+ Facilities for dealing with qualified names required by the compiler.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptExporter.ExportDeclarations(IntelliFactory.WebSharper.Compiler.Metadata.T,IntelliFactory.WebSharper.Compiler.Validator.Assembly)">
+<summary>
+ Computes the declarations in TypeScript `.d.ts` format.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptExporter">
+<summary>
+ Exports the typed interface of a WebSharper assembly into
+ TypeScript 0.9.1 declarations (`.d.ts` format).
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.TypeScriptGenerator.WriteOptions.ExportDeclarations">
+<summary>
+ Prefix top-level declaration with `export` keyword.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.WriteOptions">
+<summary>
+ Options for writing definitions.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Signature.Item(System.Int32)">
+<summary>
+ Accesses the generic argument by position.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Signature.WithReturn(IntelliFactory.WebSharper.TypeScriptGenerator.Contract)">
+<summary>
+ Sets the return type by functional update.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Signature.WithArgument(System.String,IntelliFactory.WebSharper.TypeScriptGenerator.Contract)">
+<summary>
+ Adds an argument by functional update.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Signature.Create(Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ Defines a new signature.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Signature">
+<summary>
+ Call, constructor or method signature.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.Property(System.String,IntelliFactory.WebSharper.TypeScriptGenerator.Contract)">
+<summary>
+ Defins a named propery.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.NumericProperty(System.Int32,IntelliFactory.WebSharper.TypeScriptGenerator.Contract)">
+<summary>
+ Defins a numerically named property.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.NumericMethod(System.Int32,IntelliFactory.WebSharper.TypeScriptGenerator.Signature)">
+<summary>
+ Defines a numerically named method.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.Method(System.String,IntelliFactory.WebSharper.TypeScriptGenerator.Signature)">
+<summary>
+ Defines a named method.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.Construct(IntelliFactory.WebSharper.TypeScriptGenerator.Signature)">
+<summary>
+ Defines a constructor.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.Call(IntelliFactory.WebSharper.TypeScriptGenerator.Signature)">
+<summary>
+ Defines a call member.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.ByString(IntelliFactory.WebSharper.TypeScriptGenerator.Contract,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Defines a by-string indexer.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Member.ByNumber(IntelliFactory.WebSharper.TypeScriptGenerator.Contract,Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ Defines a by-number indexer.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Member">
+<summary>
+ Interface members.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Interface.Create(System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.TypeScriptGenerator.Member})">
+<summary>
+ Defines an interface.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Interface">
+<summary>
+ Object contract consisting of method and property signatures.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Void">
+<summary>
+ Built-in &apos;void&apos; contract.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.String">
+<summary>
+ Built-in &apos;string&apos; contract.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Number">
+<summary>
+ Built-in &apos;number&apos; contract.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Boolean">
+<summary>
+ Built-in &apos;boolean&apos; contract.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Any">
+<summary>
+ Built-in &apos;any&apos; contract.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Named(IntelliFactory.WebSharper.TypeScriptGenerator.Declaration,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.TypeScriptGenerator.Contract}})">
+<summary>
+ Named pre-declared contract, possibly with generic arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Generic(IntelliFactory.WebSharper.TypeScriptGenerator.Signature,System.Int32)">
+<summary>
+ A generic variable defined at the signature level.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Generic(IntelliFactory.WebSharper.TypeScriptGenerator.Declaration,System.Int32)">
+<summary>
+ A generic variable defined at the contract level.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Array(IntelliFactory.WebSharper.TypeScriptGenerator.Contract)">
+<summary>
+ Array contract.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Contract.Anonymous(IntelliFactory.WebSharper.TypeScriptGenerator.Interface)">
+<summary>
+ Defines an anonymous contract.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Contract">
+<summary>
+ A contract (type) to describe values.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Definitions.Write(System.IO.TextWriter,Microsoft.FSharp.Core.FSharpOption{IntelliFactory.WebSharper.TypeScriptGenerator.WriteOptions})">
+<summary>
+ Writes the definitions in TypeScript format to the writer.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Definitions.Verify">
+<summary>
+ Checks definitions invariants, throwing exceptions on inconsistencies.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Definitions.Var(IntelliFactory.WebSharper.TypeScriptGenerator.Address,IntelliFactory.WebSharper.TypeScriptGenerator.Contract)">
+<summary>
+ Defines a value binding.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Definitions.Merge(System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.TypeScriptGenerator.Definitions})">
+<summary>
+ Merges definitions.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Definitions.Define(IntelliFactory.WebSharper.TypeScriptGenerator.Declaration,IntelliFactory.WebSharper.TypeScriptGenerator.Interface)">
+<summary>
+ Provides a body (object type) to a named type declaration.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Definitions">
+<summary>
+ Definition set.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Declaration.Item(System.Int32)">
+<summary>
+ Accesses the generic argument by position.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.Declaration.Create(IntelliFactory.WebSharper.TypeScriptGenerator.Address,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ Declares a new named contract.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Declaration">
+<summary>
+ Forward-declared named contract.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.AddressBuilder.Root(System.String)">
+<summary>
+ Creates root address.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.AddressBuilder.Nested(IntelliFactory.WebSharper.TypeScriptGenerator.Address,System.String)">
+<summary>
+ Creates nested address.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.TypeScriptGenerator.AddressBuilder.Create">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.AddressBuilder">
+<summary>
+ Factory object for `Address` values.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Address.Item(System.String)">
+<summary>
+ Constructs a nested address.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.TypeScriptGenerator.Address.Builder">
+<summary>
+ The related builder.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator.Address">
+<summary>
+ Qualified name of a value binding or contract.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.TypeScriptGenerator">
+<summary>
+ Implements a [TypeScript][1] definitions writer.
+ Currently targets version 0.9.1 of the language.
+
+ [1]: http://www.typescriptlang.org/
+</summary>
+</member>
+</members>
+</doc>

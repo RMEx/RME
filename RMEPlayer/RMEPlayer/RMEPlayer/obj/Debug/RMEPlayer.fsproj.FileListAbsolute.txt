@@ -1,0 +1,7 @@
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\bin\RMEPlayer.dll
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\bin\RMEPlayer.pdb
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\obj\Debug\RMEPlayer.dll
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\obj\Debug\RMEPlayer.pdb
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\bin\Library2.dll
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\bin\Library2.pdb
+C:\Users\Xavier\Programmation\Ruby\RME\RMEPlayer\RMEPlayer\RMEPlayer\obj\Debug\RMEPlayer.fsprojResolveAssemblyReference.cache

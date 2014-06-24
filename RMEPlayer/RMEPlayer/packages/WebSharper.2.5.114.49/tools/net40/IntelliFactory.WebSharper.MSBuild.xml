@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.WebSharper.MSBuild</name></assembly>
+<members>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperProject(System.String)">
+<summary>
+ Specifies which project type is being built.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperHtmlDirectory(System.String)">
+<summary>
+ Used as root for HTML project output.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperExplicitRefs(System.String)">
+<summary>
+ Flag used to skip auto-referencing assemblies.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperBundleOutputDir(System.String)">
+<summary>
+ Output directory for the Bundle task.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebProjectOutputDir(System.String)">
+<summary>
+ Path to the directory containing Web.config, used by the &quot;Unpack&quot; command,
+ and also to detect Web projects.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.ReferenceCopyLocalPaths(Microsoft.Build.Framework.ITaskItem[])">
+<summary>
+ Copy-local file list.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.Name(System.String)">
+<summary>
+ The project $(Name) property, typically set in F# projects.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.MSBuildProjectDirectory(System.String)">
+<summary>
+ MSBuild $(MSBuildProjectDirectory) property.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.KeyOriginatorFile(System.String)">
+<summary>
+ Path to an `.snk` strong name key file, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.ItemOutput(Microsoft.Build.Framework.ITaskItem[])">
+<summary>
+ Item output for item commands.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.ItemInput(Microsoft.Build.Framework.ITaskItem[])">
+<summary>
+ Item input for item commands.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.EmbeddedResources(Microsoft.Build.Framework.ITaskItem[])">
+<summary>
+ Propagating EmbeddedResource group from MSBuild.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.Configuration(System.String)">
+<summary>
+ MSBuild $(Configuration) property.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.Command(System.String)">
+<summary>
+ Used to specify which &quot;method&quot; to call.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperProject">
+<summary>
+ Specifies which project type is being built.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperHtmlDirectory">
+<summary>
+ Used as root for HTML project output.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperExplicitRefs">
+<summary>
+ Flag used to skip auto-referencing assemblies.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebSharperBundleOutputDir">
+<summary>
+ Output directory for the Bundle task.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.WebProjectOutputDir">
+<summary>
+ Path to the directory containing Web.config, used by the &quot;Unpack&quot; command,
+ and also to detect Web projects.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.ReferenceCopyLocalPaths">
+<summary>
+ Copy-local file list.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.Name">
+<summary>
+ The project $(Name) property, typically set in F# projects.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.MSBuildProjectDirectory">
+<summary>
+ MSBuild $(MSBuildProjectDirectory) property.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.KeyOriginatorFile">
+<summary>
+ Path to an `.snk` strong name key file, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.ItemOutput">
+<summary>
+ Item output for item commands.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.ItemInput">
+<summary>
+ Item input for item commands.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.EmbeddedResources">
+<summary>
+ Propagating EmbeddedResource group from MSBuild.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.Configuration">
+<summary>
+ MSBuild $(Configuration) property.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.MSBuild.WebSharperTask.Command">
+<summary>
+ Used to specify which &quot;method&quot; to call.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.MSBuild.WebSharperTask">
+<summary>
+ Implements MSBuild logic used in `WebSharper.targets`.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.MSBuild.CompilerUtility">
+
+</member>
+</members>
+</doc>

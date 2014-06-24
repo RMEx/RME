@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.WebSharper.InterfaceGenerator</name></assembly>
+<members>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Class.op_BarPlusGreater(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Class,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.IClassMember})">
+<summary>
+ Applies updates.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Class.op_BarEqualsGreater(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Class,IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.IClassProperty)">
+<summary>
+ Sets a property.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Interface.op_BarPlusGreater(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Interface,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.IInterfaceMember})">
+<summary>
+ Applies updates.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Interface.op_BarEqualsGreater(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Interface,IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.IInterfaceProperty)">
+<summary>
+ Applies an update.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration.op_Multiply(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration,IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter)">
+<summary>
+ Adds the class to parameters.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration.op_Multiply(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a tuple type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration.op_Dynamic(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration,System.String)">
+<summary>
+ Supports the `op_Dynamic` operator.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration.op_BarEqualsGreater``1(``0,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Assigns the associated type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration.op_Addition(IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.TypeDeclaration,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a union type.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Entity.Update``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},``0)">
+<summary>
+ Clones the specified entity object, invokes the
+ function to perform changes on it as side-effects and then
+ returns the updated entity object.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.AccessModifier">
+<summary>
+ Represents the access restriction modifier.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.CodeModel">
+<summary>
+ Defines meta-objects and for describing the interfaces of complete
+ JavaScript libraries or frameworks.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Pattern.ConfigProperties">
+<summary>
+ Represents the properties of a configuration object type
+ to be used by the Config function.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pattern.ConfigObs(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Pattern.ConfigObsProperties)">
+<summary>
+ Generates a configuration object type with Obsolete support.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pattern.Config(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Pattern.ConfigProperties)">
+<summary>
+ Generates a configuration object type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pattern.EnumStrings(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Constructs a new class with no constructors and a given
+ list of static inline members. The values of the members
+ are strings with their names.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pattern.EnumInlines(System.String,System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String}})">
+<summary>
+ Constructs a new class with no constructors and a given
+ list of static inline members.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Pattern">
+<summary>
+ Implements common code generation patterns in binding code.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.GenericHelper">
+<summary>
+ Generics helper.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.RequiresExternal``1(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.Type.Type},``0)">
+<summary>
+ Adds an externally defined resource dependency.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Requires``1(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Resource},``0)">
+<summary>
+ Adds a resource dependency.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_BangPlus(IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs variable-argument `Parameters`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_BangQmark(IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameter)">
+<summary>
+ Constructs an optional parameter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_MultiplyPlus(IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameters,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Defines the type of the variable-argument parameter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_MinusMultiply(IntelliFactory.WebSharper.InterfaceGenerator.Type.IType,IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameters)">
+<summary>
+ Defines the type of the `this` parameter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_HatMinusGreater(IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameters,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new `FunctionType`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.T``1">
+<summary>
+ Constructs a new `Type`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.WithSetterInline(System.String,IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Property)">
+<summary>
+ Adds an inline.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.WithGetterInline(System.String,IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Property)">
+<summary>
+ Adds an inline.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.WithInline``1(System.String,``0)">
+<summary>
+ Adds an inline.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.WithSourceName``1(System.String,``0)">
+<summary>
+ Adds a source name.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.WithComment``1(System.String,``0)">
+<summary>
+ Adds a comment.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Protocol(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Member})">
+<summary>
+ Constructs a class protocol (instance members).
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Obsolete``1(``0)">
+<summary>
+ Marks an entity with the Obsolete attribute.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Internal``1(``0)">
+<summary>
+ Marks an entity as internal.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Protected``1(``0)">
+<summary>
+ Marks an entity as protected.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Private``1(``0)">
+<summary>
+ Marks an entity as private.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Public``1(``0)">
+<summary>
+ Marks an entity as public.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_EqualsPercent(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property with a getter and a setter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_EqualsBang(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property setter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_EqualsQmark(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property getter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_EqualsAt(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property with a getter and a setter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.op_EqualsGreater(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new method.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Extends(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.Type.IType})">
+<summary>
+ Appends the base interfaces.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Implements(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.Type.IType})">
+<summary>
+ Adds an `implements` clause to a class.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Nested``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Adds nested classes and interfaces.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Inherits(IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Sets the base class.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Instance``1(``0)">
+<summary>
+ Makes a member instance.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Static``1(``0)">
+<summary>
+ Makes a member static.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Resources(System.String,System.String,Microsoft.FSharp.Collections.FSharpList{System.String})">
+<summary>
+ Constructs a new resource from a base path and a list of subpaths.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Resource(System.String,System.String)">
+<summary>
+ Constructs a new resource from a source path.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Property(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property with a getter and a setter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Setter(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property setter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Getter(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new property getter.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Constructor(IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameters)">
+<summary>
+ Constructs a new constructor.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Method(System.String,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a new method.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Interface(System.String)">
+<summary>
+ Constructs a new interface.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Class(System.String)">
+<summary>
+ Constructs a new class.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Namespace(System.String,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.NamespaceEntity})">
+<summary>
+ Constructs a new namespace.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives.Assembly(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.CodeModel.Namespace})">
+<summary>
+ Constructs a new assembly.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Pervasives">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameters.Parameters">
+<summary>
+ Converts this object to `Parameters`.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameters">
+<summary>
+ A helper interface implemented by objects that are
+ equivalent to `Parameters`.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameters.op_Multiply(IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameters,IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameter)">
+<summary>
+ Appends types or parameters.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameters.Empty">
+<summary>
+ Constructs an empty `Parameters` object.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameters">
+<summary>
+ Represents parameter specifications.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameter.Parameter">
+<summary>
+ Converts this object to a `Parameter`.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameter">
+<summary>
+ A helper interface implemented by objects that are
+ equivalent to `Parameter`.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter.op_Multiply(IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter,IntelliFactory.WebSharper.InterfaceGenerator.Type.IParameter)">
+<summary>
+ Joins parameters.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter.op_BarEqualsGreater(IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter,System.String)">
+<summary>
+ Sets the name.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter">
+<summary>
+ Represents function parameters.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.InterfaceGenerator.Type.IType.Type">
+<summary>
+ Converts this object to a `Type`.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.IType">
+<summary>
+ A helper interface implemented by objects that
+ are equivalent to `Type`.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.Function">
+<summary>
+ Represents a JavaScript function type.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Type.op_Multiply(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type,IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameter)">
+<summary>
+ Lifts the type to a parameter and joins it.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Type.op_Multiply(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs tuple types.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Type.op_Dynamic(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type,System.String)">
+<summary>
+ `T?x` constructs a `Parameter` named &quot;x&quot; of type `T`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Type.op_Addition(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs type unions.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.InterfaceGenerator.Type.Type.Parameter">
+<summary>
+ Converts the type to a parameter.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.Type">
+<summary>
+ Represents types used in bindings.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type.Id">
+<summary>
+ Represents type identifiers that are used to match types to classes.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.DistinctOverloads(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.InterfaceGenerator.Type.Type})">
+<summary>
+ Computes the distinct overloads for a type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Normalize(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type)">
+<summary>
+ Computes the normal forms for a type by eliminating the Union case.
+ The returned list is always non-empty.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.|Unit|NonUnit|(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type)">
+<summary>
+ Detects the `unit` type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.ArrayXD(System.Int32,IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs a multi-dimensional array of.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.ArrayOf(IntelliFactory.WebSharper.InterfaceGenerator.Type.IType)">
+<summary>
+ Constructs an array type from the element type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.IsFunction(IntelliFactory.WebSharper.InterfaceGenerator.Type.Type)">
+<summary>
+ Tests if a type is a function type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Lambda(IntelliFactory.WebSharper.InterfaceGenerator.Type.Parameters,IntelliFactory.WebSharper.InterfaceGenerator.Type.Type)">
+<summary>
+ Constructs a `FunctionType`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.Tuple``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Constructs a new `TupleType`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Type.New">
+<summary>
+ Constructs a new `ClassType`.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Type">
+<summary>
+ Defines meta-objects for describing JavaScript types,
+ in particular object contracts and member signatures.
+ The meta-objects are defined with overloaded operators and
+ helper types to support an F#-embedded DSL.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.InterfaceGenerator.Util.Quote(System.String)">
+<summary>
+ Quotes a string, returning a string literal.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.InterfaceGenerator.Util">
+
+</member>
+</members>
+</doc>

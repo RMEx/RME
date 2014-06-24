@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.WebSharper.Templates</name></assembly>
+<members>
+<member name="P:IntelliFactory.WebSharper.Templates.FileSet.Item(System.String)">
+<summary>
+ &quot;cd&quot; operation on a FileSet.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.FileSet.Populate(System.String)">
+<summary>
+ Writes to a given directory.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.FileSet.FromZipFile(System.String)">
+<summary>
+ Reads all files in a given zip file.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.FileSet.FromZip(System.IO.Stream)">
+<summary>
+ Reads all files in a given zip stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.FileSet.FromDirectory(System.String)">
+<summary>
+ Reads all files in a given directory.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.FileSet">
+<summary>
+ Represents a set of (template) files.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.InitOptions.Source">
+<summary>
+ Defines how to obtain WebSharper.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.InitOptions.ProjectName">
+<summary>
+ The name of the project to create.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.InitOptions.Directory">
+<summary>
+ Directory that gets created and/or populated.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.InitOptions.Create">
+<summary>
+ Creates default options.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.InitOptions">
+<summary>
+ Options for initializing templates.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.LocalSource.TargetsFile">
+<summary>
+ Path to WebSharper.targets
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.LocalSource.FileSet">
+<summary>
+ FileSet with all template files.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.LocalSource.Create(System.String)">
+<summary>
+ Creates default source using standard layout under root.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.LocalSource">
+<summary>
+ Configures local WebSharper installation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.NuGetPackage.LatestPublic">
+<summary>
+ Obtains the latest package from public NuGet repository over the network.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.NuGetPackage.FromStream(System.IO.Stream)">
+<summary>
+ Reads raw nupkg bytes from a given stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.NuGetPackage.FromFile(System.String)">
+<summary>
+ Reads the nupkg from disk.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.NuGetPackage.FromBytes(System.Byte[])">
+<summary>
+ Reads the nupkg from raw bytes.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.NuGetPackage">
+<summary>
+ Represents how to get the WebSharper NuGet package (nupkg) to use.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.NuGetSource.PackagesDirectory">
+<summary>
+ Path to a directory where packages should be installed.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Templates.IntelliFactory.WebSharper.Templates.NuGetSource.NuGetPackage">
+<summary>
+ How to get the WebSharper NuGet package.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.NuGetSource.Create">
+<summary>
+ Creates the default.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.NuGetSource">
+<summary>
+ A Source that uses NuGet-packaged WebSharper.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.Source.NuGet(IntelliFactory.WebSharper.Templates.NuGetSource)">
+<summary>
+ Query NuGet repository to obtain the latest WebSharper.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.Source.Local(IntelliFactory.WebSharper.Templates.LocalSource)">
+<summary>
+ Specify a local installation.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.Source">
+<summary>
+ Defines where to obtain WebSharper for the templates.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.SiteletsWebsite">
+<summary>
+ The sitelets-website template.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.SiteletsHtml">
+<summary>
+ The sitelets-html template.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.SiteletsHost">
+<summary>
+ The sitelets-host template.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.Library">
+<summary>
+ The library template.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.Extension">
+<summary>
+ The extension template.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.BundleWebsite">
+<summary>
+ The bundle-website template.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Templates.Template.All">
+<summary>
+ All templates.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Templates.Template.Init(IntelliFactory.WebSharper.Templates.InitOptions)">
+<summary>
+ Initializes a new instance of the template.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.Template">
+<summary>
+ Represents a WebSharper MSBuild/XBuild template.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.All">
+<summary>
+ Re-export all types so that F# users can say:
+ module T = IntelliFactory.WebSharper.Templates.All
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Templates.Utility">
+
+</member>
+</members>
+</doc>

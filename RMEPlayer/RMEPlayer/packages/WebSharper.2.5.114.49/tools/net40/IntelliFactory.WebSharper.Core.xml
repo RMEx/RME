@@ -1,0 +1,1723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.WebSharper.Core</name></assembly>
+<members>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.StubAttribute">
+<summary>
+ Marks members that should be compiled by-name.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.RequireAttribute">
+<summary>
+ Annotates members with dependencies. The type passed to the constructor
+ must implement Resources.IResourceDefinition and a default constructor.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.RemoteAttribute">
+<summary>
+ Marks methods for remote invocation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.ProxyAttribute.#ctor(System.Type)">
+<summary>
+ Constructs a new proxy link using a type directly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.ProxyAttribute.#ctor(System.String)">
+<summary>
+ Constructs a new proxy link using an assembly-qualified name.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.ProxyAttribute">
+<summary>
+ Declares a type to be a proxy for another type, identified directly or
+ by using an assembly-qualified name.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.NameAttribute.#ctor(System.String[])">
+<summary>
+ Constructs a qualified name from an explicit array of parts.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.NameAttribute.#ctor(System.String)">
+<summary>
+ Constructs a qualified name from a dot-separated string.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.NameAttribute">
+<summary>
+ Provides a runtime name for members when it differs from the F# name.
+ The constructor accepts either an explicit array of parts,
+ or a single string, in which case it is assumed to be dot-separated.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.MacroAttribute">
+<summary>
+ Annotates methods with custom compilation rules. The supplied type
+ should implement Macros.IMacroDefinition and a default constructor.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.JavaScriptAttribute">
+<summary>
+ Marks methods, properties and constructors for compilation to JavaScript.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.DirectAttribute">
+<summary>
+ Similar to InlineAttribute, but does not inline the method invocation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.InlineAttribute.#ctor(System.String)">
+<summary>
+ Constructs a new inlining annotation from a code template.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.InlineAttribute">
+<summary>
+ Marks methods and constructors for inline compilation to JavaScript.
+ Inline members work by expanding JavaScript code templates
+ with placeholders of the form such as $0, $x, $this or $value.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.ConstantAttribute.#ctor(System.String)">
+<summary>
+ Constructs a string or a null constant annotation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.ConstantAttribute.#ctor(System.Double)">
+<summary>
+ Constructs a floating constant annotation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.ConstantAttribute.#ctor(System.Int32)">
+<summary>
+ Constructs an integer constant annotation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Attributes.ConstantAttribute.#ctor(System.Boolean)">
+<summary>
+ Constructs a boolean constant annotation.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes.ConstantAttribute">
+<summary>
+ Marks union cases or properties that should be compiled to constants.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Attributes">
+<summary>
+ Defines custom attributes used by WebSharper projects.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Binary.EncodingProvider.DeriveEncoding(System.Type)">
+<summary>
+ Derives an encoding for a given type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Binary.EncodingProvider.Create">
+<summary>
+ Constructs a new EncodingProvider.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Binary.EncodingProvider">
+<summary>
+ Constructs Encoding objects.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Binary.Encoding.Type">
+<summary>
+ The type for which operations are supported.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Binary.Encoding.Encode(System.IO.Stream,System.Object)">
+<summary>
+ Encodes an object to a stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Binary.Encoding.Decode(System.IO.Stream)">
+<summary>
+ Decodes an object from a stream.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Binary.Encoding">
+<summary>
+ Represents an encoding for a given type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Binary.EncodingException">
+<summary>
+ Thrown when the decoder fails to reconstruct a value.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Binary.NoEncodingException">
+<summary>
+ Thrown when no decoder can be derived for a given type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Binary">
+<summary>
+ Implements binary serialization for server-side use.
+ The encoding supports all records, unions, numeric types,
+ strings, rank-1 arrays, maps, sets, lists and dictionaries.
+ Strings are interned for efficiency. The encoding also uses
+ binary compression.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.ContentTypes.Text">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.ContentTypes.Application">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.ContentTypes">
+<summary>
+ Provides a small vocabulary for dealing with Internet media types,
+ as far as WebSharper is concerned.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.InvokeN(System.Object[])">
+<summary>
+ Invokes with an arbitrary number of arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke7(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 7 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke6(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 6 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke5(System.Object,System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 5 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke4(System.Object,System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 4 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke3(System.Object,System.Object,System.Object)">
+<summary>
+ Invokes with 3 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke2(System.Object,System.Object)">
+<summary>
+ Invokes with 2 arguments.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke1(System.Object)">
+<summary>
+ Invokes with 1 argument.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod.Invoke0">
+<summary>
+ Invokes with 0 arguments.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.FastInvoke.FastMethod">
+<summary>
+ Represents a method that can be quickly invoked dynamically.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.FastInvoke.Compile(System.Reflection.MethodInfo)">
+<summary>
+ Compiles a method to a fast invoke function.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.FastInvoke">
+<summary>
+ Splits invocation of methods represented as `System.Reflection.MethodInfo`
+ into the static and dynamic phase, doing the binding work at the static phase.
+ A pre-bound method can be 100-1000x faster to invoke compared to using `.Invoke`
+ every time, which has to repeatedly do method binding.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`9">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`8">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`7">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`6">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`5">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`4">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`3">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions.Func`2">
+<summary>
+ A helper delegate class.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Functions">
+<summary>
+ Helper delegate classes.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.Pack(IntelliFactory.WebSharper.Core.Json.Encoded)">
+<summary>
+ Packs an encoded value to JSON.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.GetEncoder``1">
+<summary>
+ Derives an encoder for a given type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.GetEncoder(System.Type)">
+<summary>
+ Derives an encoder for a given type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.GetDecoder``1">
+<summary>
+ Derives a decoder for a given type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.GetDecoder(System.Type)">
+<summary>
+ Derives a decoder for a given type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.CreateTyped(IntelliFactory.WebSharper.Core.Metadata.Info)">
+<summary>
+ Constructs a typed JSON encoding provider.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Provider.Create">
+<summary>
+ Constructs a basic JSON encoding provider.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Provider">
+<summary>
+ Provides JSON encodings for arbitrary types.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Encoder`1">
+<summary>
+ Represents a typed encoder.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Encoder">
+<summary>
+ Represents an encoder.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Decoder`1">
+<summary>
+ Represents a typed decoder.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Decoder">
+<summary>
+ Represents a decoder.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Encoded.Object(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,IntelliFactory.WebSharper.Core.Json.Encoded}})">
+<summary>
+ Constructs an object.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Encoded.Lift(IntelliFactory.WebSharper.Core.Json.Value)">
+<summary>
+ Lifts a value.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Encoded.Array(Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Json.Encoded})">
+<summary>
+ Constructs an array.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Encoded">
+<summary>
+ Represents an object encoded to JSON.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.Value">
+<summary>
+ Represents JSON values.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Stringify(IntelliFactory.WebSharper.Core.Json.Value)">
+<summary>
+ Converts JSON to a string. Throws WriteError.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Write(System.IO.TextWriter,IntelliFactory.WebSharper.Core.Json.Value)">
+<summary>
+ Writes raw JSON. Throws WriteError.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Parse(System.String)">
+<summary>
+ Parses a JSON string. Throws ReadError.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Json.Read(System.IO.TextReader)">
+<summary>
+ Reads raw JSON. Throws ReadError.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.NoEncoderException">
+<summary>
+ Thrown when no encoder can be derived for a given type.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.NoDecoderException">
+<summary>
+ Thrown when no decoder can be derived for a given type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.EncoderException">
+<summary>
+ Thrown when the encoder is given a value it cannot encode.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.DecoderException">
+<summary>
+ Thrown when the decoder fails to reconstruct a value from JSON.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.WriteException">
+<summary>
+ Thrown when the value being written is not valid JSON.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json.ReadException">
+<summary>
+ Thrown when text being read from the text reader is not valid JSON.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Json">
+<summary>
+ Implements JSON encoding and decoding for client-server interaction.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Macros.IMacroDefinition.Macro">
+<summary>
+ Loads a definition for a given method.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Macros.IMacroDefinition">
+<summary>
+ An interface for macro definitions used with MacroAttribute.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Macros.Macro">
+<summary>
+ Represents a custom compilation rule for a method. Expand
+ accepts Call or CallModule nodes associated with the given method.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Macros.Body">
+<summary>
+ Represents method bodies, at either JavaScript core or syntax level.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Macros.Translator">
+<summary>
+ Represents a translator function.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Macros">
+<summary>
+ Provides supporting types for implementing custom compilation
+ rules using MacroAttribute.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.Info.GetRemoteMethod(IntelliFactory.WebSharper.Core.Metadata.MethodHandle)">
+<summary>
+ Tries to load a method by its handle.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.Info.GetFieldName(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String)">
+<summary>
+ Computes the JavaScript name for a record field.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.Info.GetDependencies(System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.Core.Metadata.Node})">
+<summary>
+ Resolves resource and assembly requirements for a given set of types.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.Info.GetAddress(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Computes the JavaScript name for a type, respecting the proxy graph.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.Info.Create(System.Collections.Generic.IEnumerable{IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo})">
+<summary>
+ Constructs a new assembly set.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata.Info">
+<summary>
+ Represents metadata for a set of assemblies.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.Requirements">
+<summary>
+ Enumerates the requirements.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.EmbeddedResourceName">
+<summary>
+ The name of the embedded resource storing the metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.ToStream(System.IO.Stream)">
+<summary>
+ Writes the metadata to a compressed stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.LoadReflected(System.Reflection.Assembly)">
+<summary>
+ Tries to load assembly metadata from a reflected assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.Load(System.String)">
+<summary>
+ Tries to load assembly metadata from a given path.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.FromStream(System.IO.Stream)">
+<summary>
+ Reads the metadata from a compressed stream.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.Create(IntelliFactory.WebSharper.Core.Reflection.AssemblyName)">
+<summary>
+ Creates a new AssemblyInfo.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.AddRequirement(IntelliFactory.WebSharper.Core.Metadata.Node,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Metadata.Resource})">
+<summary>
+ Adds a requirement.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.AddRemoteMethod(IntelliFactory.WebSharper.Core.Reflection.Method)">
+<summary>
+ Adds a method marked as remote.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.AddRecord(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}})">
+<summary>
+ Adds a record definition.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo.AddCompiledType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,IntelliFactory.JavaScript.Packager.Address)">
+<summary>
+ Adds a compiled JavaScript type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata.AssemblyInfo">
+<summary>
+ Represents assembly metadata.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.MethodHandle.Unpack(System.String)">
+<summary>
+ Reads the serialized representation.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Metadata.MethodHandle.Pack">
+<summary>
+ Constructs a serialized representation.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata.MethodHandle">
+<summary>
+ A serializable method representation.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata.Resource">
+<summary>
+ Represents resources.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata.Node">
+<summary>
+ Represents nodes in the resource graph.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata.AssemblyMode">
+<summary>
+ Represents the compilation mode of an assembly.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Metadata">
+<summary>
+ Provides types for the assembly and project runtime metadata.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Definitions">
+<summary>
+ Represents a set of reflected definitions.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Expression">
+<summary>
+ Represents quotations.  For certain cases, such as method calls
+ and property accesses, static and instance variants are not
+ distinguished as that information is not present in quotation
+ metadata and can only be reconstructed by analyzing the referenced
+ members.  Property argument order, in particular, is not
+ sufficiently defined by this type.  For instance properties, the
+ argument order is target-value?-argument*.  For static properties
+ it is value?-argument*.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Literal">
+<summary>
+ Represents various literal values.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Concrete`1">
+<summary>
+ Satisfies the comparison constraint.
+ Represents generic instantiations.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Quotations.Id.Type">
+<summary>
+ The type of the variable.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Quotations.Id.Name">
+<summary>
+ An informative name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Quotations.Id.Mutable">
+<summary>
+ A flag distinguishing mutable variables.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.Id.CreateMutable(System.String,IntelliFactory.WebSharper.Core.Reflection.Type)">
+<summary>
+ Creates a mutable Id.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.Id.Create(System.String,IntelliFactory.WebSharper.Core.Reflection.Type)">
+<summary>
+ Creates a simple Id.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Id">
+<summary>
+ Represents variables in quotations.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Definition">
+<summary>
+ Represents definitions.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Path">
+<summary>
+ Represents file-system paths.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.Name">
+<summary>
+ Represents names.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.Alpha(IntelliFactory.WebSharper.Core.Quotations.Expression)">
+<summary>
+ Performs alpha-renaming of all variables.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.Fold``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.WebSharper.Core.Quotations.Expression,``0}},``0,IntelliFactory.WebSharper.Core.Quotations.Expression)">
+<summary>
+ Folds over the immediate sub-expressions. Expression forms
+ that bind variables are transformed by inserting Lambda,
+ so that Lambda and LetRecursive are the only variable-binding form.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.Transform(Microsoft.FSharp.Core.FSharpFunc{IntelliFactory.WebSharper.Core.Quotations.Expression,IntelliFactory.WebSharper.Core.Quotations.Expression},IntelliFactory.WebSharper.Core.Quotations.Expression)">
+<summary>
+ Maps over the immediate sub-expressions. Expression forms
+ that bind variables are transformed by inserting Lambda,
+ so that Lambda and LetRecursive are the only variable-binding forms.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.ReadAssemblyFile(System.String)">
+<summary>
+ Loads an F# assembly from a given path with
+ ReflectionOnlyLoadFrom and reads its reflected definitions.
+ Fails when the assembly was not produced with F#.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.ReadAssembly(System.Reflection.Assembly)">
+<summary>
+ Parses reflected definitions associated with an assembly by
+ reading the dedicated embedded resource.  Fails when the assembly
+ was not produced with F#.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Quotations.ReadStream(System.Reflection.AssemblyName,System.IO.Stream)">
+<summary>
+ Parses reflected definitions from their binary representation.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations.InvalidFormatException">
+<summary>
+ Thrown when the parser fails to recognize serialized metadata.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Quotations">
+<summary>
+ Parses F# quotations metadata associated with F#
+ assemblies, provides an alternative quotations representation.
+
+ F# reflected definitions are implemented by storing method
+ bodies as serialized quotations.  In F# this information can be
+ accessed by applying patterns from the
+ Quotations.DerivedPatterns module, such as the
+ MethodWithReflectedDefinition pattern.  The problem is that
+ these patterns are implemented in terms of
+ System.Reflection types and that practically assumes that
+ the runtime has loaded the assembly being analyzed.
+
+ This module allows to read the reflected definitions without
+ binding to the assembly that defines them.  It can improve
+ performance and stability of applications that need to analyze
+ reflected definitions.
+
+ This module works by reading the embedded resource F# dedicates
+ to store the quotation information.  The parser has been developed
+ by analyzing the F# compiler sources.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.UnionCase.Name">
+<summary>
+ The name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.UnionCase.DeclaringType">
+<summary>
+ The declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.UnionCase.WithDeclaringType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Updates the declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.UnionCase.Create(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String)">
+<summary>
+ Constructs a new UnionCase.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.UnionCase">
+<summary>
+ Represents field definitions.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Field.Name">
+<summary>
+ The name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Field.DeclaringType">
+<summary>
+ The declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Field.WithDeclaringType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Updates the declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Field.Create(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String)">
+<summary>
+ Constructs a new field.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Field">
+<summary>
+ Represents field definitions.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Property.Name">
+<summary>
+ The name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Property.DeclaringType">
+<summary>
+ The declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Property.WithDeclaringType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Updates the declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Property.CreateReference(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String)">
+<summary>
+ Constructs a new property ignoring the type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Property.Create(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String,IntelliFactory.WebSharper.Core.Reflection.Type,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Reflection.Type})">
+<summary>
+ Constructs a new property with an explicit type and signature.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Property">
+<summary>
+ Represents property definitions.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Constructor.DeclaringType">
+<summary>
+ The declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Constructor.WithDeclaringType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Updates the declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Constructor.Create(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Reflection.Type})">
+<summary>
+ Constructs a new Constructor with an explicit signature.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Constructor">
+<summary>
+ Represents instance constructors.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Method.Name">
+<summary>
+ The name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Method.DeclaringType">
+<summary>
+ The declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Method.WithDeclaringType(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition)">
+<summary>
+ Updates the declaring type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Method.Parse(System.Reflection.MethodInfo)">
+<summary>
+ Parses the method.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Method.Load(Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Reflection.Type}})">
+<summary>
+ Tries to load the method definition. Throws exceptions on failure.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Method.CreateReference(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String)">
+<summary>
+ Constructs a new method ignoring the signature.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Method.Create(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String,System.Int32,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Reflection.Type},IntelliFactory.WebSharper.Core.Reflection.Type)">
+<summary>
+ Constructs a new method with an explicit signature.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Method">
+<summary>
+ Represents method definitions.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Signature">
+<summary>
+ Represents method signatures as parameter types.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Generics">
+<summary>
+ Represents generic arguments.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Type.Name">
+<summary>
+ The name, such as Queue`1.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Type.FullName">
+<summary>
+ The full name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Type.DeclaringType">
+<summary>
+ The definition.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.Type.AssemblyQualifiedName">
+<summary>
+ The loader-friendly name.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Type.Load">
+<summary>
+ Tries to load the class. Throws exceptions on failure.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.Type.FromType(System.Type)">
+<summary>
+ Parses types. Throws exceptions on failure.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Type">
+<summary>
+ Represents method parameter types.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.Namespace">
+<summary>
+ The namespace, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.Name">
+<summary>
+ The name, such as Queue`1.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.GenericsCount">
+<summary>
+ The count of generic arguments.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.FullName">
+<summary>
+ The full name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.DeclaringType">
+<summary>
+ The declaring type, if any.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.AssemblyQualifiedName">
+<summary>
+ The loader-friendly name.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.AssemblyName">
+<summary>
+ The name of the declaring assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.Parse(System.String)">
+<summary>
+ Parses a name.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.Load">
+<summary>
+ Tries to load the type. Throws exceptions on failure.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.FromType(System.Type)">
+<summary>
+ Parses type definitions. Throws exceptions on failure.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.CreateNested(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,System.String)">
+<summary>
+ Creates a nested type definition.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition.Create(IntelliFactory.WebSharper.Core.Reflection.AssemblyName,System.String,System.String)">
+<summary>
+ Creates a top-level type definition.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.TypeDefinition">
+<summary>
+ Represents system and user-defined type definitions.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Rank">
+<summary>
+ Represents array ranks.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Position">
+<summary>
+ Represents positions within a sequence.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Name">
+<summary>
+ Represents simple names.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.AssemblyQualifiedName">
+<summary>
+ Represents loader-friendly names, for example
+ Microsoft.FSharp.Core.FSharpFunc`2, FSharp.Core.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Namespace">
+<summary>
+ Represents namespaces, for example Microsoft.FSharp.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.FullName">
+<summary>
+ Represents type names, for example Microsoft.FSharp.Core.FSharpFunc`2.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.AssemblyName.Name">
+<summary>
+ Simple name, for example FSharp.Core.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Core.Reflection.AssemblyName.FullName">
+<summary>
+ Full name including the version and public key token.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.AssemblyName.Parse(System.String)">
+<summary>
+ Parses a new assembly name.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.AssemblyName.FromAssembly(System.Reflection.Assembly)">
+<summary>
+ Retrieves the name of the given assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.AssemblyName.Convert(System.Reflection.AssemblyName)">
+<summary>
+ Converts a System.Reflection representation to an AssemblyName.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.AssemblyName">
+<summary>
+ Represents assembly names, for example FSharp.Core.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.Count">
+<summary>
+ Represents the generics count.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.InvalidTypeException">
+<summary>
+ Thrown when the reflected type is not valid for a given operation,
+ for example when it is a generic parameter and this is disallowed.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeModule.|Array|Concrete|Generic|(IntelliFactory.WebSharper.Core.Reflection.Type)">
+<summary>
+ Matches type kinds.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeModule.Generic(System.Int32)">
+<summary>
+ Constructs a generic parameter type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeModule.Concrete(IntelliFactory.WebSharper.Core.Reflection.TypeDefinition,Microsoft.FSharp.Collections.FSharpList{IntelliFactory.WebSharper.Core.Reflection.Type})">
+<summary>
+ Constructs a type by specializing a type definition.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Reflection.TypeModule.Array(IntelliFactory.WebSharper.Core.Reflection.Type,System.Int32)">
+<summary>
+ Constructs an array type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection.TypeModule">
+<summary>
+ Provides utilities for working with Type values.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Reflection">
+<summary>
+ Provides an alternative for System.Reflection to deal with
+ assembly metadata. In particular, the representations
+ are lightweight and can be serialized.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Remoting.Server.HandleRequest(IntelliFactory.WebSharper.Core.Remoting.Request)">
+<summary>
+ Handles a request.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Remoting.Server.Create(Microsoft.FSharp.Core.FSharpOption{IntelliFactory.WebSharper.Core.Remoting.IHandlerFactory},IntelliFactory.WebSharper.Core.Metadata.Info)">
+<summary>
+ Creates a new instance.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Remoting.Server">
+<summary>
+ Handles remote procedure call requests.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Remoting.IHandlerFactory.Create(System.Type)">
+<summary>
+ Creates a new handler based on its type.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Remoting.IHandlerFactory">
+<summary>
+ Constructs RPC handlers.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Remoting.Request">
+<summary>
+ Represents an incoming request.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Remoting.Headers">
+<summary>
+ Represents read-only access to HTTP headers.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Remoting.Response">
+<summary>
+ Represents the response.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Remoting.SetHandlerFactory(IntelliFactory.WebSharper.Core.Remoting.IHandlerFactory)">
+<summary>
+ Sets the default RPC handler factory.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Remoting.IsRemotingRequest(Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.FSharpOption{System.String}})">
+<summary>
+ Tests if the given request is marked as a
+ WebSharper remote procedure call request.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Remoting">
+<summary>
+ Implements server-side remote procedure call support.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Resources.Runtime">
+<summary>
+ Represents the runtime library resource required by all WebSharper code.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Resources.BaseResource.#ctor(System.String,System.String,System.String[])">
+<summary>
+ References several external resources by specifying the
+ absolute base URL and one or more relative URLs.
+ The base URL is made configurable by consulting the application
+ setting matching the full name of the declaring type.
+ CSS resources are distinguished from JavaScript resources
+ by checking for the .css syntax.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Resources.BaseResource.#ctor(System.String)">
+<summary>
+ References an embedded resource from he current assembly.
+ The string represents either a reference to an embedded
+ resource from the current assembly, or a (possibly relative)
+ URL. CSS resources are distinguished from JavaScript resources by
+ checking for the .css suffix.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Resources.BaseResource">
+<summary>
+ A helper base class for resource-defining types.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.Core.Resources.IResource.Render(IntelliFactory.WebSharper.Core.Resources.Context,System.Web.UI.HtmlTextWriter)">
+<summary>
+ Renders the resource to a given TextWriter.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Resources.IResource">
+<summary>
+ An interface for resource-defining types.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Core.Resources.Context.GetWebResourceRendering">
+<summary>
+ Constructs URLs to point to embedded resources.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Core.Resources.Context.GetSetting">
+<summary>
+ Provides a configuration settings collection.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Core.Resources.Context.GetAssemblyRendering">
+<summary>
+ Constructs URLs to JavaScript-compiled assemblies.
+ Assembly names are short, such as FSharp.Core.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Core.Resources.Context.DefaultToHttp">
+<summary>
+ Transform foreign links to starting with `//` to `http://`.
+</summary>
+</member>
+<member name="F:IntelliFactory.WebSharper.Core.Resources.Context.DebuggingEnabled">
+<summary>
+ A flag indicating if debugging is enabled or not.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Resources.Context">
+<summary>
+ Defines the context in which resources can be rendered.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Resources.Rendering">
+<summary>
+ Defines how to render a resource.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Core.Resources">
+<summary>
+ Manages resources, such as dependent JavaScript and CSS files.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.VirtualPaths(System.String)">
+<summary>
+ Constructs a utiltiy object for computing URLs based on a given
+ virtual path root (such as &apos;/&apos;).
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.TypeScriptDefinitionsPath(IntelliFactory.WebSharper.PathConventions.AssemblyId)">
+<summary>
+ Path or URL to the `.d.ts` TypeScript file corresponding to an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.TypeScriptDefinitionsFileName(IntelliFactory.WebSharper.PathConventions.AssemblyId)">
+<summary>
+ Filename for the `.d.ts` TypeScript file corresponding to an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.MinifiedJavaScriptPath(IntelliFactory.WebSharper.PathConventions.AssemblyId)">
+<summary>
+ Path or URL to the `.min.js` JavaScript file corresponding to an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.MinifiedJavaScriptFileName(IntelliFactory.WebSharper.PathConventions.AssemblyId)">
+<summary>
+ Filename for the `.min.js` JavaScript file corresponding to an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.JavaScriptPath(IntelliFactory.WebSharper.PathConventions.AssemblyId)">
+<summary>
+ Path or URL to the `.js` JavaScript file corresponding to an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.JavaScriptFileName(IntelliFactory.WebSharper.PathConventions.AssemblyId)">
+<summary>
+ Filename for the `.js` JavaScript file corresponding to an assembly.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.FileSystem(System.String)">
+<summary>
+ Constructs a utiltiy object based on the physical path to the
+ web root folder, which can be obtained by `Server.MapPath(&quot;~&quot;)`.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.PathUtility.EmbeddedPath(IntelliFactory.WebSharper.PathConventions.EmbeddedResource)">
+<summary>
+ Path or URL for the embedded resource.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.PathConventions.PathUtility">
+<summary>
+ Utility object for computing paths on the filesystem or relative URLs.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.EmbeddedResource.Create(IntelliFactory.WebSharper.PathConventions.ResourceKind,IntelliFactory.WebSharper.PathConventions.AssemblyId,System.String)">
+<summary>
+ Constructs a new embedded resource identifier.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.PathConventions.EmbeddedResource">
+<summary>
+ Represents embedded resources.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.PathConventions.ResourceKind.Script">
+<summary>
+ Script resources (primarily JavaScript).
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.PathConventions.ResourceKind.Content">
+<summary>
+ Content resources (such as CSS stylesheet).
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.PathConventions.ResourceKind">
+<summary>
+ Represents kinds of resources.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.AssemblyId.Create(System.Type)">
+<summary>
+ Creates an assembly identifier from a marker type.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.AssemblyId.Create(System.Reflection.AssemblyName)">
+<summary>
+ Creates an assembly identifier from a `System.Reflection` name.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.AssemblyId.Create(System.Reflection.Assembly)">
+<summary>
+ Creates an assembly identifier for the given assembly object.
+</summary>
+</member>
+<member name="M:IntelliFactory.WebSharper.PathConventions.AssemblyId.Create(System.String)">
+<summary>
+ Creates an assembly identifier from a string representation.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.PathConventions.AssemblyId">
+<summary>
+ Identifies assemblies by name.
+</summary>
+</member>
+<member name="T:IntelliFactory.WebSharper.PathConventions">
+<summary>
+ Makes resource path and naming conventions explicit to avoid code duplication.
+</summary>
+</member>
+</members>
+</doc>

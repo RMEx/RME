@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>IntelliFactory.WebSharper.Ecma</name></assembly>
+<members>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaRegExp">
+<summary>
+ A resgular expression is an object that describes a pattern of characters.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaDate">
+<summary>
+ The Date object is used to work with dates and times.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaMath">
+<summary>
+ The Math object allows you to perform mathematical tasks.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaNumber">
+<summary>
+ The Number object is an object wrapper for primitive numeric values.
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaBoolean">
+<summary>
+ The Boolean object is used to convert a non-Boolean value to a Boolean value (true or false).
+</summary>
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaString">
+<summary>
+ The String object is used to manipulate a stored piece of text.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaArray">
+<summary>
+ The Array object is used to store multiple values in a single variable.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:IntelliFactory.WebSharper.Ecma.Definition.EcmaGlobal">
+<summary>
+ The JavaScript global properties and functions can be used with all the built-in JavaScript objects.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:IntelliFactory.WebSharper.Ecma.Definition">
+<summary>
+ Defines the bindings to ECMA-262 5th edition JavaScript functions
+ and objects.
+</summary>
+</member>
+</members>
+</doc>
