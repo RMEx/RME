@@ -166,6 +166,7 @@ module DocGenerator
         File.open("#{output}/#{name}", 'w') do |f|
           f.write(page)
         end
+        p "#{name} created!"
       end
       indexl += mdl.end_ul
       File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}

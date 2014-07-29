@@ -177,3 +177,40 @@ Nom|Description
 `Keys::Pa1`|Pointe la touche pa1  
 `Keys::Oem_clear`|Pointe la touche oem_clear  
 `Keys::Ctrl`|Pointe la touche CTRL  
+##Méthodes
+**self.trigger?()**
+
+> Renvoi true si la touche vient d'être pressée, false sinon  
+  
+>   
+
+
+
+
+**self.press?()**
+
+> Renvoi true si la touche est pressée, false sinon  
+  
+>   
+
+
+
+
+**self.release?()**
+
+> Renvoi true si la touche vient d'être relâchée, false sinon  
+  
+>   
+
+
+
+
+**self.repeat?()**
+
+> Renvoi true si la touche est pressée successivement, false sinon  
+  
+>   
+
+
+
+

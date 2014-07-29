@@ -129,4 +129,17 @@ class Point
       link_attr_documentation kcons.to_sym, "Pointe la touche #{kname}"
     end
 
+    link_method_documentation "self.trigger?", 
+                            "Renvoi true si la touche vient d'être pressée, false sinon",
+                            {}, true
+    link_method_documentation "self.press?", 
+                            "Renvoi true si la touche est pressée, false sinon",
+                            {}, true
+    link_method_documentation "self.release?", 
+                            "Renvoi true si la touche vient d'être relâchée, false sinon",
+                            {}, true
+    link_method_documentation "self.repeat?", 
+                            "Renvoi true si la touche est pressée successivement, false sinon",
+                            {}, true
+
   end
