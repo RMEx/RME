@@ -56,7 +56,7 @@ class Fixnum
                             "Renvoi la représentation textuelle d'un chiffre",
                             {}, true
 
-  link_snippet "9.to_digit # :nine"
+  link_snippet "self.to_digit", "9.to_digit # :nine"
 end
 
 #==============================================================================
