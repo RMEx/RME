@@ -287,6 +287,47 @@ class Devices::Mouse
 
 end
 
+#==============================================================================
+# ** Kernel
+#------------------------------------------------------------------------------
+#  Object class methods are defined in this module. 
+#  This ensures compatibility with top-level method redefinition.
+#==============================================================================
+
+module Kernel
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Module référençant les outils génériques"
+  link_attr_documentation :HWND, "Renvoie la fenêtre courante de jeu (pour les WIN32API's)"
+end
+
+#==============================================================================
+# ** Generative
+#------------------------------------------------------------------------------
+#  Mixins collection
+#==============================================================================
+
+module Generative
+
+  link_class_documentation "Collection de modules MIXINS pour généraliser des comportements"
+
+  #==============================================================================
+  # ** BitmapRect
+  #------------------------------------------------------------------------------
+  #  Rect API
+  #==============================================================================
+
+  module BitmapRect
+    link_class_documentation "Module pour les classes dérivant un attribut Bitmap. Il ajoute une méthode rect à la classe
+    où il est inclu, permettant d'accéder directement au rectangle du bitmap, tenant compte du viewport (si viewport il y a)"
+    link_method_documentation "self.rect", 
+                          "Renvoie le rectangle référant à l'instance",
+                          {}, true
+  end
+
+end
+
 ## Documentation generator
 DocGenerator.markdown("../doc") if $TEST
 exit
