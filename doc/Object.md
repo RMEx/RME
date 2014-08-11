@@ -46,7 +46,7 @@ Extension de la classe Object
 
 **self.identity()**
 
-> Renvoi l'instance pointée  
+> Renvoie l'instance pointée  
   
 >   
 
@@ -55,7 +55,7 @@ Extension de la classe Object
 
 **self.attr_values()**
 
-> Renvoi un hash des attributs où la clé est le nom de l'attribut
+> Renvoie un hash des attributs où la clé est le nom de l'attribut
                             et la valeur est la valeur de l'attribut  
   
 >   
@@ -65,7 +65,7 @@ Extension de la classe Object
 
 **self.buffer(`size`)**
 
-> Renvoi un buffer (pour les Win32API's)  
+> Renvoie un buffer (pour les Win32API's)  
   
 > Nom|Type|Description  
 --- | --- | ---  

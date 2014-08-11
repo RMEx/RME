@@ -29,14 +29,14 @@ class Object
                               :m_alias  => ["Nom de la méthode", :Symbol]
                             }
   link_method_documentation :"self.identity", 
-                            "Renvoi l'instance pointée",
+                            "Renvoie l'instance pointée",
                             {}, true
   link_method_documentation :"self.attr_values", 
-                            "Renvoi un hash des attributs où la clé est le nom de l'attribut
+                            "Renvoie un hash des attributs où la clé est le nom de l'attribut
                             et la valeur est la valeur de l'attribut",
                             {}, true
   link_method_documentation :"self.buffer", 
-                            "Renvoi un buffer (pour les Win32API's)",
+                            "Renvoie un buffer (pour les Win32API's)",
                             {:size => ["Taille du buffer", :Fixnum]}, true
 
 end
@@ -53,7 +53,7 @@ class Fixnum
   #--------------------------------------------------------------------------
   link_class_documentation "Extension des entiers"
   link_method_documentation :"self.to_digit",  
-                            "Renvoi la représentation textuelle d'un chiffre",
+                            "Renvoie la représentation textuelle d'un chiffre",
                             {}, true
 
   link_snippet "self.to_digit", "9.to_digit # :nine"
@@ -72,10 +72,10 @@ class String
   #--------------------------------------------------------------------------
   link_class_documentation "Extension des chaines de caractère"
   link_method_documentation :"self.extract_numbers",  
-                            "Renvoi tous les entier d'une chaine de caractère",
+                            "Renvoie tous les entier d'une chaine de caractère",
                             {}, true
   link_method_documentation :"self.damerau_levenshtein",  
-                            "Renvoi la distance de Damerau Levenshtein avec 
+                            "Renvoie la distance de Damerau Levenshtein avec 
                             une autre chaine",
                             {:oth => ["Autre chaine à comparer", :String]}, true
 
@@ -127,7 +127,7 @@ class Devices::Keys
   #--------------------------------------------------------------------------
   # * Documentation
   #--------------------------------------------------------------------------
-  link_class_documentation "Représentation des touches clavier/souris"
+  link_class_documentation "Représentation des touches clavier/souris, est accessible via Keys, Key, ou Devices::Keys"
 
   All.select{|x| x!= :none}.each do |key|
     kname = key.to_s
@@ -136,16 +136,16 @@ class Devices::Keys
   end
 
   link_method_documentation "self.trigger?", 
-                          "Renvoi true si la touche vient d'être pressée, false sinon",
+                          "Renvoie true si la touche vient d'être pressée, false sinon",
                           {}, true
   link_method_documentation "self.press?", 
-                          "Renvoi true si la touche est pressée, false sinon",
+                          "Renvoie true si la touche est pressée, false sinon",
                           {}, true
   link_method_documentation "self.release?", 
-                          "Renvoi true si la touche vient d'être relâchée, false sinon",
+                          "Renvoie true si la touche vient d'être relâchée, false sinon",
                           {}, true
   link_method_documentation "self.repeat?", 
-                          "Renvoi true si la touche est pressée successivement, false sinon",
+                          "Renvoie true si la touche est pressée successivement, false sinon",
                           {}, true
 
   link_snippet("self.trigger?",
@@ -165,7 +165,7 @@ class Devices::Keyboard
   #--------------------------------------------------------------------------
   # * Documentation
   #--------------------------------------------------------------------------
-  link_class_documentation "Représentation du clavier"
+  link_class_documentation "Représentation du clavier, est accessible via Keyboard"
   Devices::Keys::All.select{|x| x!= :none}.each do |key|
     kname = key.to_s
     sname = ":"+kname
@@ -173,19 +173,49 @@ class Devices::Keyboard
     link_attr_documentation sname.to_sym, "Pointe la touche #{kcons} (comme argument à passer)"
   end
   link_method_documentation "Keyboard.trigger?", 
-                          "Renvoi true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Keyboard.press?", 
-                          "Renvoi true si la touche passée en argument (cf:attributs) est pressée, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Keyboard.repeat?", 
-                          "Renvoi true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Keyboard.release?", 
-                          "Renvoi true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
+  link_method_documentation "Keyboard.current_char", 
+                          "Renvoie le caractère actuel pressé par le clavier",
+                          {}, true
+  link_method_documentation "Keyboard.current_digit", 
+                          "Renvoie le chiffre actuel pressé par le clavier",
+                          {}, true
+  link_method_documentation "Keyboard.maj?", 
+                          "Renvoie true si le clavier est au moment de l'appel en majuscule, false sinon",
+                          {}, true
+  link_method_documentation "Keyboard.caps_lock?", 
+                          "Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon",
+                          {}, true
+  link_method_documentation "Keyboard.num_lock?", 
+                          "Renvoie true si le clavier est au moment de l'appel en mode NUM_LOCK, false sinon",
+                          {}, true
+  link_method_documentation "Keyboard.scroll_lock?", 
+                          "Renvoie true si le clavier est au moment de l'appel en mode SCROLL_LOCK, false sinon",
+                          {}, true
+  link_method_documentation "Keyboard.alt_gr?", 
+                          "Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon",
+                          {}, true
+  link_method_documentation "Keyboard.ctrl?", 
+                          "Renvoie true si une combinaison CTRL+key est exécutée, false sinon",
+                          {:key => ["Symbole référençant la touche (cf:attributs) mise en combinaison", :Symbol]}, 
+                          true
+
 end
+
+## Documentation generator
+DocGenerator.markdown("../doc") if $TEST
+exit

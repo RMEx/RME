@@ -6,7 +6,7 @@ Extension des chaines de caractère
 ##Méthodes
 **self.extract_numbers()**
 
-> Renvoi tous les entier d'une chaine de caractère  
+> Renvoie tous les entier d'une chaine de caractère  
   
 >   
 
@@ -15,7 +15,7 @@ Extension des chaines de caractère
 
 **self.damerau_levenshtein(`oth`)**
 
-> Renvoi la distance de Damerau Levenshtein avec 
+> Renvoie la distance de Damerau Levenshtein avec 
                             une autre chaine  
   
 > Nom|Type|Description  

@@ -189,4 +189,3 @@ module DocGenerator
   end
 
 end
-DocGenerator.markdown("../doc") if $TEST

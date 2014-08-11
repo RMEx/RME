@@ -1,7 +1,7 @@
 #Devices::Keyboard
 [Retourner à l'index](README.md)
 
-Représentation du clavier
+Représentation du clavier, est accessible via Keyboard
 
 ##Attributs
 Nom|Description  
@@ -199,7 +199,7 @@ Nom|Description
 ##Méthodes
 **Keyboard.trigger?(`key`)**
 
-> Renvoi true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon  
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -211,7 +211,7 @@ Nom|Description
 
 **Keyboard.press?(`key`)**
 
-> Renvoi true si la touche passée en argument (cf:attributs) est pressée, false sinon  
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -223,7 +223,7 @@ Nom|Description
 
 **Keyboard.repeat?(`key`)**
 
-> Renvoi true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon  
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -235,11 +235,86 @@ Nom|Description
 
 **Keyboard.release?(`key`)**
 
-> Renvoi true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon  
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+  
+
+
+
+
+**Keyboard.current_char()**
+
+> Renvoie le caractère actuel pressé par le clavier  
+  
+>   
+
+
+
+
+**Keyboard.current_digit()**
+
+> Renvoie le chiffre actuel pressé par le clavier  
+  
+>   
+
+
+
+
+**Keyboard.maj?()**
+
+> Renvoie true si le clavier est au moment de l'appel en majuscule, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.caps_lock?()**
+
+> Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.num_lock?()**
+
+> Renvoie true si le clavier est au moment de l'appel en mode NUM_LOCK, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.scroll_lock?()**
+
+> Renvoie true si le clavier est au moment de l'appel en mode SCROLL_LOCK, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.alt_gr?()**
+
+> Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.ctrl?(`key`)**
+
+> Renvoie true si une combinaison CTRL+key est exécutée, false sinon  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
   
 
 

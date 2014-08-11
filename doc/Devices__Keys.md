@@ -1,7 +1,7 @@
 #Devices::Keys
 [Retourner à l'index](README.md)
 
-Représentation des touches clavier/souris
+Représentation des touches clavier/souris, est accessible via Keys, Key, ou Devices::Keys
 
 ##Attributs
 Nom|Description  
@@ -180,7 +180,7 @@ Nom|Description
 ##Méthodes
 **self.trigger?()**
 
-> Renvoi true si la touche vient d'être pressée, false sinon  
+> Renvoie true si la touche vient d'être pressée, false sinon  
   
 >   
 
@@ -196,7 +196,7 @@ if Keys::Mouse_left.trigger?
 
 **self.press?()**
 
-> Renvoi true si la touche est pressée, false sinon  
+> Renvoie true si la touche est pressée, false sinon  
   
 >   
 
@@ -205,7 +205,7 @@ if Keys::Mouse_left.trigger?
 
 **self.release?()**
 
-> Renvoi true si la touche vient d'être relâchée, false sinon  
+> Renvoie true si la touche vient d'être relâchée, false sinon  
   
 >   
 
@@ -214,7 +214,7 @@ if Keys::Mouse_left.trigger?
 
 **self.repeat?()**
 
-> Renvoi true si la touche est pressée successivement, false sinon  
+> Renvoie true si la touche est pressée successivement, false sinon  
   
 >   
 
