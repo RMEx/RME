@@ -8,3 +8,4 @@ Outil d'extension de RPG Maker
 *    [String](String.md)
 *    [Point](Point.md)
 *    [Devices::Keys](Devices__Keys.md)
+*    [Devices::Keyboard](Devices__Keyboard.md)

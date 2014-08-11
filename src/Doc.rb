@@ -117,29 +117,75 @@ class Point
 
   end
 
-  class Devices::Keys
-    #--------------------------------------------------------------------------
-    # * Documentation
-    #--------------------------------------------------------------------------
-    link_class_documentation "Représentation des touches clavier/souris"
+#==============================================================================
+# ** Keys
+#------------------------------------------------------------------------------
+#  Keys representation
+#==============================================================================
 
-    All.select{|x| x!= :none}.each do |key|
-      kname = key.to_s
-      kcons = "Keys::#{kname.capitalize}"
-      link_attr_documentation kcons.to_sym, "Pointe la touche #{kname}"
-    end
+class Devices::Keys
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Représentation des touches clavier/souris"
 
-    link_method_documentation "self.trigger?", 
-                            "Renvoi true si la touche vient d'être pressée, false sinon",
-                            {}, true
-    link_method_documentation "self.press?", 
-                            "Renvoi true si la touche est pressée, false sinon",
-                            {}, true
-    link_method_documentation "self.release?", 
-                            "Renvoi true si la touche vient d'être relâchée, false sinon",
-                            {}, true
-    link_method_documentation "self.repeat?", 
-                            "Renvoi true si la touche est pressée successivement, false sinon",
-                            {}, true
-
+  All.select{|x| x!= :none}.each do |key|
+    kname = key.to_s
+    kcons = "Keys::#{kname.capitalize}"
+    link_attr_documentation kcons.to_sym, "Pointe la touche #{kname}"
   end
+
+  link_method_documentation "self.trigger?", 
+                          "Renvoi true si la touche vient d'être pressée, false sinon",
+                          {}, true
+  link_method_documentation "self.press?", 
+                          "Renvoi true si la touche est pressée, false sinon",
+                          {}, true
+  link_method_documentation "self.release?", 
+                          "Renvoi true si la touche vient d'être relâchée, false sinon",
+                          {}, true
+  link_method_documentation "self.repeat?", 
+                          "Renvoi true si la touche est pressée successivement, false sinon",
+                          {}, true
+
+  link_snippet("self.trigger?",
+  "if Keys::Mouse_left.trigger?
+    p :mouse_pressed
+  end")
+
+end
+
+#==============================================================================
+# ** Keyboard
+#------------------------------------------------------------------------------
+#  Keyboard representation
+#==============================================================================
+
+class Devices::Keyboard
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Représentation du clavier"
+  Devices::Keys::All.select{|x| x!= :none}.each do |key|
+    kname = key.to_s
+    sname = ":"+kname
+    kcons = "Keys::#{kname.capitalize}"
+    link_attr_documentation sname.to_sym, "Pointe la touche #{kcons} (comme argument à passer)"
+  end
+  link_method_documentation "Keyboard.trigger?", 
+                          "Renvoi true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Keyboard.press?", 
+                          "Renvoi true si la touche passée en argument (cf:attributs) est pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Keyboard.repeat?", 
+                          "Renvoi true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Keyboard.release?", 
+                          "Renvoi true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+end

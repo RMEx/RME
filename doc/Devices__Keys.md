@@ -188,8 +188,8 @@ Nom|Description
 Exemple  
 ```ruby  
 if Keys::Mouse_left.trigger?
-      p :mouse_pressed
-    end  
+    p :mouse_pressed
+  end  
 ```
 
 
