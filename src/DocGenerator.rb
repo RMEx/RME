@@ -157,7 +157,7 @@ module DocGenerator
     def make(mdl, output)
       #File.open(local_filename, 'w') {|f| f.write(doc) }
       indexl = make_header(mdl) + mdl.ul
-      RME::Doc.schema.each do |klass, i|
+      Hash[RME::Doc.schema.sort].each do |klass, i|
         name = filename(mdl, klass)
         indexl += mdl.li(mdl.link(klass, name))
         page = make_class_header(mdl, klass)

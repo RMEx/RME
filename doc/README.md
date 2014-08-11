@@ -3,13 +3,13 @@ Outil d'extension de RPG Maker
 
 **Classes et modules**
 
-*    [Object](Object.md)
-*    [Fixnum](Fixnum.md)
-*    [String](String.md)
-*    [Point](Point.md)
-*    [Devices::Keys](Devices__Keys.md)
 *    [Devices::Keyboard](Devices__Keyboard.md)
+*    [Devices::Keys](Devices__Keys.md)
 *    [Devices::Mouse](Devices__Mouse.md)
-*    [Kernel](Kernel.md)
+*    [Fixnum](Fixnum.md)
 *    [Generative](Generative.md)
 *    [Generative::BitmapRect](Generative__BitmapRect.md)
+*    [Kernel](Kernel.md)
+*    [Object](Object.md)
+*    [Point](Point.md)
+*    [String](String.md)
