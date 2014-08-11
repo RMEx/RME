@@ -216,6 +216,77 @@ class Devices::Keyboard
 
 end
 
+#==============================================================================
+# ** Mouse
+#------------------------------------------------------------------------------
+#  Keyboard representation
+#==============================================================================
+
+class Devices::Mouse
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Représentation de la souris, est accessible via Mouse"
+  [:mouse_left, :mouse_right, :mouse_center, :mouse_x1, :mouse_x2].select{|x| x!= :none}.each do |key|
+    kname = key.to_s
+    sname = ":"+kname
+    kcons = "Keys::#{kname.capitalize}"
+    link_attr_documentation sname.to_sym, "Pointe la touche #{kcons} (comme argument à passer)"
+  end
+
+  link_method_documentation "Mouse.trigger?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Mouse.press?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Mouse.click?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Mouse.repeat?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Mouse.release?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  link_method_documentation "Mouse.point", 
+                          "Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en pixel par rapport à l'écran",
+                          {}, true
+  link_method_documentation "Mouse.point", 
+                          "Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en carré (case) par rapport à l'écran",
+                          {}, true
+  link_method_documentation "Mouse.x", 
+                          "Renvoie la position (en pixel) X de la souris",
+                          {}, true
+  link_method_documentation "Mouse.y", 
+                          "Renvoie la position (en pixel) Y de la souris",
+                          {}, true
+  link_method_documentation "Mouse.square_x", 
+                          "Renvoie la position (en case) X de la souris",
+                          {}, true
+  link_method_documentation "Mouse.square_y", 
+                          "Renvoie la position (en case) Y de la souris",
+                          {}, true
+  link_method_documentation "Mouse.rect", 
+                          "Renvoie le rectangle de sélection de la souris (tracé en cours)",
+                          {}, true
+  link_method_documentation "Mouse.last_rect", 
+                          "Renvoie le dernier rectangle de sélection de la souris",
+                          {}, true
+  link_method_documentation "Mouse.dragging?", 
+                          "Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran",
+                          {}, true
+  link_method_documentation "Mouse.in?", 
+                          "Renvoie true la souris se trouve dans le rectangle passé en argument",
+                          {:rectangle => ["Rectangle à vérifier", :Rect]}, true
+
+end
+
 ## Documentation generator
 DocGenerator.markdown("../doc") if $TEST
 exit
