@@ -130,7 +130,8 @@ module DocGenerator
           end
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
-          t += mdl.strong("#{name}#{inline_args == "" ? "" : "("+inline_args+")"}")
+          inline_args = (atr.length == 0 ? "" : "(#{inline_args})")
+          t += mdl.strong("#{name}#{inline_args}")
           snippet = mdl.np + make_class_snippet(mdl, name, classname) + mdl.np
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
         end
