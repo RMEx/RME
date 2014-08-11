@@ -4,7 +4,7 @@
 Extension des chaines de caractère
 
 ##Méthodes
-**self.extract_numbers()**
+**self.extract_numbers**
 
 > Renvoie tous les entier d'une chaine de caractère  
   

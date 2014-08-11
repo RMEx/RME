@@ -4,7 +4,7 @@
 Extension des entiers
 
 ##Méthodes
-**self.to_digit()**
+**self.to_digit**
 
 > Renvoie la représentation textuelle d'un chiffre  
   

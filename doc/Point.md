@@ -42,7 +42,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.null!()**
+**self.null!**
 
 > Replace le X et le Y du point à zéro  
   

@@ -245,7 +245,7 @@ Nom|Description
 
 
 
-**Keyboard.current_char()**
+**Keyboard.current_char**
 
 > Renvoie le caractère actuel pressé par le clavier  
   
@@ -254,7 +254,7 @@ Nom|Description
 
 
 
-**Keyboard.current_digit()**
+**Keyboard.current_digit**
 
 > Renvoie le chiffre actuel pressé par le clavier  
   
@@ -263,7 +263,7 @@ Nom|Description
 
 
 
-**Keyboard.maj?()**
+**Keyboard.maj?**
 
 > Renvoie true si le clavier est au moment de l'appel en majuscule, false sinon  
   
@@ -272,7 +272,7 @@ Nom|Description
 
 
 
-**Keyboard.caps_lock?()**
+**Keyboard.caps_lock?**
 
 > Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon  
   
@@ -281,7 +281,7 @@ Nom|Description
 
 
 
-**Keyboard.num_lock?()**
+**Keyboard.num_lock?**
 
 > Renvoie true si le clavier est au moment de l'appel en mode NUM_LOCK, false sinon  
   
@@ -290,7 +290,7 @@ Nom|Description
 
 
 
-**Keyboard.scroll_lock?()**
+**Keyboard.scroll_lock?**
 
 > Renvoie true si le clavier est au moment de l'appel en mode SCROLL_LOCK, false sinon  
   
@@ -299,7 +299,7 @@ Nom|Description
 
 
 
-**Keyboard.alt_gr?()**
+**Keyboard.alt_gr?**
 
 > Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon  
   

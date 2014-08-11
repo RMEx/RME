@@ -178,7 +178,7 @@ Nom|Description
 `Keys::Oem_clear`|Pointe la touche oem_clear  
 `Keys::Ctrl`|Pointe la touche CTRL  
 ##Méthodes
-**self.trigger?()**
+**self.trigger?**
 
 > Renvoie true si la touche vient d'être pressée, false sinon  
   
@@ -194,7 +194,7 @@ if Keys::Mouse_left.trigger?
 
 
 
-**self.press?()**
+**self.press?**
 
 > Renvoie true si la touche est pressée, false sinon  
   
@@ -203,7 +203,7 @@ if Keys::Mouse_left.trigger?
 
 
 
-**self.release?()**
+**self.release?**
 
 > Renvoie true si la touche vient d'être relâchée, false sinon  
   
@@ -212,7 +212,7 @@ if Keys::Mouse_left.trigger?
 
 
 
-**self.repeat?()**
+**self.repeat?**
 
 > Renvoie true si la touche est pressée successivement, false sinon  
   

@@ -44,7 +44,7 @@ Extension de la classe Object
 
 
 
-**self.identity()**
+**self.identity**
 
 > Renvoie l'instance pointée  
   
@@ -53,7 +53,7 @@ Extension de la classe Object
 
 
 
-**self.attr_values()**
+**self.attr_values**
 
 > Renvoie un hash des attributs où la clé est le nom de l'attribut
                             et la valeur est la valeur de l'attribut  

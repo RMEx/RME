@@ -72,7 +72,7 @@ Nom|Description
 
 
 
-**Mouse.point()**
+**Mouse.point**
 
 > Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en carré (case) par rapport à l'écran  
   
@@ -81,7 +81,7 @@ Nom|Description
 
 
 
-**Mouse.x()**
+**Mouse.x**
 
 > Renvoie la position (en pixel) X de la souris  
   
@@ -90,7 +90,7 @@ Nom|Description
 
 
 
-**Mouse.y()**
+**Mouse.y**
 
 > Renvoie la position (en pixel) Y de la souris  
   
@@ -99,7 +99,7 @@ Nom|Description
 
 
 
-**Mouse.square_x()**
+**Mouse.square_x**
 
 > Renvoie la position (en case) X de la souris  
   
@@ -108,7 +108,7 @@ Nom|Description
 
 
 
-**Mouse.square_y()**
+**Mouse.square_y**
 
 > Renvoie la position (en case) Y de la souris  
   
@@ -117,7 +117,7 @@ Nom|Description
 
 
 
-**Mouse.rect()**
+**Mouse.rect**
 
 > Renvoie le rectangle de sélection de la souris (tracé en cours)  
   
@@ -126,7 +126,7 @@ Nom|Description
 
 
 
-**Mouse.last_rect()**
+**Mouse.last_rect**
 
 > Renvoie le dernier rectangle de sélection de la souris  
   
@@ -135,7 +135,7 @@ Nom|Description
 
 
 
-**Mouse.dragging?()**
+**Mouse.dragging?**
 
 > Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran  
   
