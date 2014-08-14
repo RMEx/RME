@@ -199,7 +199,7 @@ Nom|Description
 ##Méthodes
 **Keyboard.alt_gr?**
 
-> Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon  
+> Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon  
   
 >   
 
@@ -208,7 +208,7 @@ Nom|Description
 
 **Keyboard.caps_lock?**
 
-> Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon  
+> Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon  
   
 >   
 
@@ -217,7 +217,7 @@ Nom|Description
 
 **Keyboard.ctrl?(`key`)**
 
-> Renvoie true si une combinaison CTRL+key est exécutée, false sinon  
+> Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -247,7 +247,7 @@ Nom|Description
 
 **Keyboard.maj?**
 
-> Renvoie true si le clavier est au moment de l'appel en majuscule, false sinon  
+> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon  
   
 >   
 
@@ -256,7 +256,7 @@ Nom|Description
 
 **Keyboard.num_lock?**
 
-> Renvoie true si le clavier est au moment de l'appel en mode NUM_LOCK, false sinon  
+> Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon  
   
 >   
 
@@ -301,7 +301,7 @@ Nom|Description
 
 **Keyboard.scroll_lock?**
 
-> Renvoie true si le clavier est au moment de l'appel en mode SCROLL_LOCK, false sinon  
+> Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon  
   
 >   
 

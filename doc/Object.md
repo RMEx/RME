@@ -6,13 +6,13 @@ Extension de la classe Object
 ##Méthodes
 **Object.delegate(`obj`, `method`, `m_alias`)**
 
-> Délègue à une méthode ou un attribut une méthode  
+> Délègue une méthode à une autre méthode ou à un attribut  
   
 > Nom|Type|Description  
 --- | --- | ---  
 `obj`|`Symbol`|Attribut ou méthode à pointer  
 `method`|`Symbol`|Méthode à appeler  
-`m_alias`|`Symbol`|Alias de la méthode, peut être ommis  
+`m_alias`|`Symbol`|Alias de la méthode, peut être omis  
   
 
 
@@ -20,7 +20,7 @@ Extension de la classe Object
 
 **Object.delegate_accessor(`obj`, `field`)**
 
-> Délègue à une méthode les accesseurs, mutateurs d'un attribut  
+> Délègue les accesseurs, mutateurs d'un attribut à une méthode  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -47,7 +47,7 @@ Extension de la classe Object
 **self.attr_values**
 
 > Renvoie un hash des attributs où la clé est le nom de l'attribut
-                            et la valeur est la valeur de l'attribut  
+                            et la valeur est celle de l'attribut  
   
 >   
 

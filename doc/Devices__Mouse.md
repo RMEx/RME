@@ -35,7 +35,7 @@ Nom|Description
 
 **Mouse.in?(`rectangle`)**
 
-> Renvoie true la souris se trouve dans le rectangle passé en argument  
+> Renvoie true si la souris se trouve dans le rectangle passé en argument  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -47,7 +47,7 @@ Nom|Description
 
 **Mouse.last_rect**
 
-> Renvoie le dernier rectangle de sélection de la souris  
+> Renvoie le dernier rectangle de sélection de la souris effectué  
   
 >   
 
@@ -56,7 +56,7 @@ Nom|Description
 
 **Mouse.point**
 
-> Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en carré (case) par rapport à l'écran  
+> Renvoie un point (possédant les attributs x, y) référençant la position de la souris en carrés (cases) par rapport à l'écran  
   
 >   
 
@@ -110,7 +110,7 @@ Nom|Description
 
 **Mouse.square_x**
 
-> Renvoie la position (en case) X de la souris  
+> Renvoie la position (en cases) X de la souris  
   
 >   
 
@@ -119,7 +119,7 @@ Nom|Description
 
 **Mouse.square_y**
 
-> Renvoie la position (en case) Y de la souris  
+> Renvoie la position (en cases) Y de la souris  
   
 >   
 
@@ -140,7 +140,7 @@ Nom|Description
 
 **Mouse.x**
 
-> Renvoie la position (en pixel) X de la souris  
+> Renvoie la position (en pixels) X de la souris  
   
 >   
 
@@ -149,7 +149,7 @@ Nom|Description
 
 **Mouse.y**
 
-> Renvoie la position (en pixel) Y de la souris  
+> Renvoie la position (en pixels) Y de la souris  
   
 >   
 

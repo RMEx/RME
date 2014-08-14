@@ -1,7 +1,7 @@
 #Generative::CommandAPI
 [Retourner à l'index](README.md)
 
-Rend accessible les commandes EventExtender
+Rend accessibles les commandes EventExtender
 
 ##Méthodes
 **self.command(`name`, `args`)**

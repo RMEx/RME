@@ -40,7 +40,7 @@ Représente un point dans un plan cartésien
 
 **self.set(`x`, `y`)**
 
-> Change les coordonnées du point   
+> Change les coordonnées du point  
   
 > Nom|Type|Description  
 --- | --- | ---  

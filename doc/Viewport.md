@@ -7,10 +7,10 @@ Représente une portion de l'écran
 Nom|Description  
 --- | ---  
 `elts`|Renvoie la liste des éléments inclus dans le Viewport  
-`x`|(Lecture/ecriture) Coordonnées X du coin superieur gauche  
-`y`|(Lecture/ecriture) Coordonnées Y du coin superieur gauche  
-`width`|(Lecture/ecriture) Largeur du rectangle  
-`height`|(Lecture/ecriture) Hauteur du rectangle  
+`x`|(Lecture/écriture) Coordonnées X du coin supérieur gauche  
+`y`|(Lecture/écriture) Coordonnées Y du coin supérieur gauche  
+`width`|(Lecture/écriture) Largeur du rectangle  
+`height`|(Lecture/écriture) Hauteur du rectangle  
 ##Méthodes
 **self.append(`obj`)**
 
@@ -26,7 +26,7 @@ Nom|Description
 
 **self.calc_height**
 
-> Renvoie la hauteur requise minimum pour afficher tous les éléments du viewport  
+> Renvoie la hauteur minimum requise pour afficher tous les éléments du viewport  
   
 >   
 
@@ -35,7 +35,7 @@ Nom|Description
 
 **self.calc_width**
 
-> Renvoie la largeur requise minimum pour afficher tous les éléments du viewport  
+> Renvoie la largeur minimum requise pour afficher tous les éléments du viewport  
   
 >   
 
