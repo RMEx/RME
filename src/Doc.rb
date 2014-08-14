@@ -335,6 +335,17 @@ module Generative
                           {}, true
   end
 
+  module CommandAPI
+    link_class_documentation "Rend accessible les commandes EventExtender"
+    link_method_documentation "self.command", 
+                          "Appel d'une commande, alias : c, cmd",
+                          {
+                            :name => ["Nom de la commande à appeler", :Symbol],
+                            :args => ["Suite d'argument", :Argslist]
+                          }, true
+    link_snippet("self.command", "command(:test, 1, 2, 3) #Appel Command.test(1,2,3) (ou : c(:test, 1,2,3) ou cmd(:test, 1,2,3)")
+  end
+
 end
 
 #==============================================================================

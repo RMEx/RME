@@ -10,6 +10,7 @@ Outil d'extension de RPG Maker
 *    [Fixnum](Fixnum.md)
 *    [Generative](Generative.md)
 *    [Generative::BitmapRect](Generative__BitmapRect.md)
+*    [Generative::CommandAPI](Generative__CommandAPI.md)
 *    [Kernel](Kernel.md)
 *    [Object](Object.md)
 *    [Point](Point.md)
