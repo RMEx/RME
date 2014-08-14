@@ -1,5 +1,28 @@
 
 #==============================================================================
+# ** RME V1.0.0
+#------------------------------------------------------------------------------
+#  With : 
+# Grim (original project)
+# Nuki (a lot of things)
+# Raho (general reformulation)
+# Zeus81 (a lot of help)
+# Hiino (some help and GUI Components)
+# Joke (some help)
+# Zangther (some help)
+# XHTMLBoy (koffie)
+# Fabien (Buzzer)
+# Kaelar (Improvement)
+# 
+#==============================================================================
+
+=begin
+  
+Licence coming soon 
+
+=end
+
+#==============================================================================
 # ** RME
 #------------------------------------------------------------------------------
 #  Provide information about RME
