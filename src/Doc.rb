@@ -328,6 +328,32 @@ module Generative
 
 end
 
+#==============================================================================
+# ** Viewport
+#------------------------------------------------------------------------------
+#  Used when displaying sprites on one portion of the screen
+#==============================================================================
+
+class Viewport
+  link_class_documentation "Représente une portion de l'écran"
+  link_attr_documentation :elts, "Renvoie la liste des éléments inclus dans le Viewport"
+  link_attr_documentation :x, "(Lecture/ecriture) Coordonnées X du coin superieur gauche"
+  link_attr_documentation :y, "(Lecture/ecriture) Coordonnées Y du coin superieur gauche"
+  link_attr_documentation :width, "(Lecture/ecriture) Largeur du rectangle"
+  link_attr_documentation :height, "(Lecture/ecriture) Hauteur du rectangle"
+  link_method_documentation "self.append", 
+                          "Méthode (idéalement) privée d'ajout d'un élément dans le viewport (et à @elts)",
+                          {:obj => ["Objet répondant aux méthodes x, y, width, height", :Object]}, false
+  link_method_documentation "self.calc_width", 
+                          "Renvoie la largeur requise minimum pour afficher tous les éléments du viewport",
+                          {}, true
+  link_method_documentation "self.calc_height", 
+                          "Renvoie la hauteur requise minimum pour afficher tous les éléments du viewport",
+                          {}, true
+
+end
+
 ## Documentation generator
 DocGenerator.markdown("../doc") if $TEST
 exit
+

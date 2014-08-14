@@ -93,7 +93,8 @@ module RME
     # * Header
     #--------------------------------------------------------------------------
     Doc.header[:title]  = "RME : RPG Maker Extender"
-    Doc.header[:desc]   = "Outil d'extension de RPG Maker" 
+    Doc.header[:desc]   = "Outil d'extension de RPG Maker 
+    (les objets étendus ne sont documentés que pour les ajouts.)" 
   end
 
   #==============================================================================
