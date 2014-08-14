@@ -17,19 +17,6 @@ Représente un point dans un plan cartésien
 
 
 
-**self.set(`x`, `y`)**
-
-> Change les coordonnées du point   
-  
-> Nom|Type|Description  
---- | --- | ---  
-`x`|`Fixnum`|Coordonnées X du point  
-`y`|`Fixnum`|Coordonnées Y du point  
-  
-
-
-
-
 **self.in?(`rect`)**
 
 > Vérifie si un point est inscrit dans un rectangle  
@@ -47,6 +34,19 @@ Représente un point dans un plan cartésien
 > Replace le X et le Y du point à zéro  
   
 >   
+
+
+
+
+**self.set(`x`, `y`)**
+
+> Change les coordonnées du point   
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X du point  
+`y`|`Fixnum`|Coordonnées Y du point  
+  
 
 
 

@@ -178,22 +178,6 @@ Nom|Description
 `Keys::Oem_clear`|Pointe la touche oem_clear  
 `Keys::Ctrl`|Pointe la touche CTRL  
 ##Méthodes
-**self.trigger?**
-
-> Renvoie true si la touche vient d'être pressée, false sinon  
-  
->   
-
-
-Exemple  
-```ruby  
-if Keys::Mouse_left.trigger?
-    p :mouse_pressed
-  end  
-```
-
-
-
 **self.press?**
 
 > Renvoie true si la touche est pressée, false sinon  
@@ -218,6 +202,22 @@ if Keys::Mouse_left.trigger?
   
 >   
 
+
+
+
+**self.trigger?**
+
+> Renvoie true si la touche vient d'être pressée, false sinon  
+  
+>   
+
+
+Exemple  
+```ruby  
+if Keys::Mouse_left.trigger?
+    p :mouse_pressed
+  end  
+```
 
 
 

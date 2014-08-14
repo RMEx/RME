@@ -197,49 +197,31 @@ Nom|Description
 `:F8`|Pointe la touche Keys::F8 (comme argument à passer)  
 `:F9`|Pointe la touche Keys::F9 (comme argument à passer)  
 ##Méthodes
-**Keyboard.trigger?(`key`)**
+**Keyboard.alt_gr?**
 
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon  
+> Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.caps_lock?**
+
+> Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon  
+  
+>   
+
+
+
+
+**Keyboard.ctrl?(`key`)**
+
+> Renvoie true si une combinaison CTRL+key est exécutée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-  
-
-
-
-
-**Keyboard.press?(`key`)**
-
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon  
-  
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-  
-
-
-
-
-**Keyboard.repeat?(`key`)**
-
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon  
-  
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-  
-
-
-
-
-**Keyboard.release?(`key`)**
-
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon  
-  
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+`key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
   
 
 
@@ -272,20 +254,47 @@ Nom|Description
 
 
 
-**Keyboard.caps_lock?**
-
-> Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon  
-  
->   
-
-
-
-
 **Keyboard.num_lock?**
 
 > Renvoie true si le clavier est au moment de l'appel en mode NUM_LOCK, false sinon  
   
 >   
+
+
+
+
+**Keyboard.press?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+  
+
+
+
+
+**Keyboard.release?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+  
+
+
+
+
+**Keyboard.repeat?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+  
 
 
 
@@ -299,22 +308,13 @@ Nom|Description
 
 
 
-**Keyboard.alt_gr?**
+**Keyboard.trigger?(`key`)**
 
-> Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon  
-  
->   
-
-
-
-
-**Keyboard.ctrl?(`key`)**
-
-> Renvoie true si une combinaison CTRL+key est exécutée, false sinon  
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
   
 
 

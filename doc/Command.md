@@ -4,14 +4,32 @@
 Collection des commandes EventExtender
 
 ##Méthodes
-**Command.random(`min`, `max`)**
+**Command.apply_percent(`percent`, `max`)**
 
-> Renvoie un nombre aléatoire compris entre MIN et MAX  
+> Applique percent à max  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`min`|`Fixnum`|Borne minimale  
-`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)  
+`percent`|`Fixnum`|Valeur à appliquer  
+`max`|`Fixnum`|Valeur maximum  
+  
+
+
+Exemple  
+```ruby  
+Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)  
+```
+
+
+
+**Command.id_at(`x`, `y`)**
+
+> Renvoie l'ID de l'évènement pointé par les coordonnées X,Y, 0 si c'est le héros, -1 s'il n y en a pas  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X de la case  
+`y`|`Fixnum`|Coordonnées Y de la case  
   
 
 
@@ -35,40 +53,32 @@ Collection des commandes EventExtender
 
 
 
-**Command.id_at(`x`, `y`)**
+**Command.percent(`value`, `max`)**
 
-> Renvoie l'ID de l'évènement pointé par les coordonnées X,Y, 0 si c'est le héros, -1 s'il n y en a pas  
+> Renvoie le pourcentage de value par max  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`value`|`Fixnum`|Valeur à transformer  
+`max`|`Fixnum`|Valeur maximum  
   
 
 
-
-
-**Command.terrain_tag(`x`, `y`)**
-
-> Renvoie le tag du terrain de la case pointée par les coordonnées X,Y  
-  
-> Nom|Type|Description  
---- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
-  
+Exemple  
+```ruby  
+Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)  
+```
 
 
 
+**Command.random(`min`, `max`)**
 
-**Command.tile_id(`x`, `y`)**
-
-> Renvoie l'ID du tile pointé par les coordonnées X,Y  
+> Renvoie un nombre aléatoire compris entre MIN et MAX  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`min`|`Fixnum`|Borne minimale  
+`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)  
   
 
 
@@ -101,39 +111,29 @@ Collection des commandes EventExtender
 
 
 
-**Command.percent(`value`, `max`)**
+**Command.terrain_tag(`x`, `y`)**
 
-> Renvoie le pourcentage de value par max  
+> Renvoie le tag du terrain de la case pointée par les coordonnées X,Y  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`value`|`Fixnum`|Valeur à transformer  
-`max`|`Fixnum`|Valeur maximum  
+`x`|`Fixnum`|Coordonnées X de la case  
+`y`|`Fixnum`|Coordonnées Y de la case  
   
 
 
-Exemple  
-```ruby  
-Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)  
-```
 
 
+**Command.tile_id(`x`, `y`)**
 
-**Command.apply_percent(`percent`, `max`)**
-
-> Applique percent à max  
+> Renvoie l'ID du tile pointé par les coordonnées X,Y  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`percent`|`Fixnum`|Valeur à appliquer  
-`max`|`Fixnum`|Valeur maximum  
+`x`|`Fixnum`|Coordonnées X de la case  
+`y`|`Fixnum`|Coordonnées Y de la case  
   
 
-
-Exemple  
-```ruby  
-Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)  
-```
 
 
 

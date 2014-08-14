@@ -44,15 +44,6 @@ Extension de la classe Object
 
 
 
-**self.identity**
-
-> Renvoie l'instance pointée  
-  
->   
-
-
-
-
 **self.attr_values**
 
 > Renvoie un hash des attributs où la clé est le nom de l'attribut
@@ -71,6 +62,15 @@ Extension de la classe Object
 --- | --- | ---  
 `size`|`Fixnum`|Taille du buffer  
   
+
+
+
+
+**self.identity**
+
+> Renvoie l'instance pointée  
+  
+>   
 
 
 

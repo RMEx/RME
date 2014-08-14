@@ -4,15 +4,6 @@
 Extension des chaines de caractère
 
 ##Méthodes
-**self.extract_numbers**
-
-> Renvoie tous les entier d'une chaine de caractère  
-  
->   
-
-
-
-
 **self.damerau_levenshtein(`oth`)**
 
 > Renvoie la distance de Damerau Levenshtein avec 
@@ -22,6 +13,15 @@ Extension des chaines de caractère
 --- | --- | ---  
 `oth`|`String`|Autre chaine à comparer  
   
+
+
+
+
+**self.extract_numbers**
+
+> Renvoie tous les entier d'une chaine de caractère  
+  
+>   
 
 
 

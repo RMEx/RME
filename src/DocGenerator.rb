@@ -122,7 +122,7 @@ module DocGenerator
     # * Create Method list
     #--------------------------------------------------------------------------
     def make_class_methods(mdl, classname)
-      k = RME::Doc.schema[classname][:methods]
+      k = Hash[RME::Doc.schema[classname][:methods].sort]
       if k.length > 0 
         t = mdl.title 2, "Méthodes"
         k.each do |name, data|

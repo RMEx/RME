@@ -12,14 +12,53 @@ Nom|Description
 `:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)  
 `:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)  
 ##Méthodes
-**Mouse.trigger?(`key`)**
+**Mouse.click?(`key`)**
 
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon  
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)  
   
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
   
+
+
+
+
+**Mouse.dragging?**
+
+> Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran  
+  
+>   
+
+
+
+
+**Mouse.in?(`rectangle`)**
+
+> Renvoie true la souris se trouve dans le rectangle passé en argument  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`rectangle`|`Rect`|Rectangle à vérifier  
+  
+
+
+
+
+**Mouse.last_rect**
+
+> Renvoie le dernier rectangle de sélection de la souris  
+  
+>   
+
+
+
+
+**Mouse.point**
+
+> Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en carré (case) par rapport à l'écran  
+  
+>   
 
 
 
@@ -36,9 +75,18 @@ Nom|Description
 
 
 
-**Mouse.click?(`key`)**
+**Mouse.rect**
 
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)  
+> Renvoie le rectangle de sélection de la souris (tracé en cours)  
+  
+>   
+
+
+
+
+**Mouse.release?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
@@ -56,45 +104,6 @@ Nom|Description
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
   
-
-
-
-
-**Mouse.release?(`key`)**
-
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon  
-  
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-  
-
-
-
-
-**Mouse.point**
-
-> Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en carré (case) par rapport à l'écran  
-  
->   
-
-
-
-
-**Mouse.x**
-
-> Renvoie la position (en pixel) X de la souris  
-  
->   
-
-
-
-
-**Mouse.y**
-
-> Renvoie la position (en pixel) Y de la souris  
-  
->   
 
 
 
@@ -117,41 +126,32 @@ Nom|Description
 
 
 
-**Mouse.rect**
+**Mouse.trigger?(`key`)**
 
-> Renvoie le rectangle de sélection de la souris (tracé en cours)  
-  
->   
-
-
-
-
-**Mouse.last_rect**
-
-> Renvoie le dernier rectangle de sélection de la souris  
-  
->   
-
-
-
-
-**Mouse.dragging?**
-
-> Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran  
-  
->   
-
-
-
-
-**Mouse.in?(`rectangle`)**
-
-> Renvoie true la souris se trouve dans le rectangle passé en argument  
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon  
   
 > Nom|Type|Description  
 --- | --- | ---  
-`rectangle`|`Rect`|Rectangle à vérifier  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
   
+
+
+
+
+**Mouse.x**
+
+> Renvoie la position (en pixel) X de la souris  
+  
+>   
+
+
+
+
+**Mouse.y**
+
+> Renvoie la position (en pixel) Y de la souris  
+  
+>   
 
 
 

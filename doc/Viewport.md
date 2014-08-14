@@ -24,18 +24,18 @@ Nom|Description
 
 
 
-**self.calc_width**
+**self.calc_height**
 
-> Renvoie la largeur requise minimum pour afficher tous les éléments du viewport  
+> Renvoie la hauteur requise minimum pour afficher tous les éléments du viewport  
   
 >   
 
 
 
 
-**self.calc_height**
+**self.calc_width**
 
-> Renvoie la hauteur requise minimum pour afficher tous les éléments du viewport  
+> Renvoie la largeur requise minimum pour afficher tous les éléments du viewport  
   
 >   
 
