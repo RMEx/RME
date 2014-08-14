@@ -20,14 +20,14 @@ class Object
   #--------------------------------------------------------------------------
   link_class_documentation "Extension de la classe Object"
   link_method_documentation :"Object.delegate", 
-                            "Délègue à une méthode ou un attribut une méthode",
+                            "Délègue une méthode à une autre méthode ou à un attribut",
                             {
                               :obj      => ["Attribut ou méthode à pointer", :Symbol], 
                               :method   => ["Méthode à appeler", :Symbol],
-                              :m_alias  => ["Alias de la méthode, peut être ommis", :Symbol]
+                              :m_alias  => ["Alias de la méthode, peut être omis", :Symbol]
                             }
   link_method_documentation :"Object.delegate_accessor", 
-                            "Délègue à une méthode les accesseurs, mutateurs d'un attribut",
+                            "Délègue les accesseurs, mutateurs d'un attribut à une méthode",
                             {
                               :obj      => ["Attribut ou méthode à pointer", :Symbol], 
                               :field    => ["Attribut de l'obj à déléguer", :Symbol]
@@ -43,7 +43,7 @@ class Object
                             {}, true
   link_method_documentation :"self.attr_values", 
                             "Renvoie un hash des attributs où la clé est le nom de l'attribut
-                            et la valeur est la valeur de l'attribut",
+                            et la valeur est celle de l'attribut",
                             {}, true
   link_method_documentation :"self.buffer", 
                             "Renvoie un buffer (pour les Win32API's)",
@@ -82,15 +82,15 @@ class String
   #--------------------------------------------------------------------------
   link_class_documentation "Extension des chaines de caractère"
   link_method_documentation :"self.extract_numbers",  
-                            "Renvoie tous les entier d'une chaine de caractère",
+                            "Renvoie tous les entiers d'une chaîne de caractères",
                             {}, true
   link_method_documentation :"self.damerau_levenshtein",  
-                            "Renvoie la distance de Damerau Levenshtein avec 
-                            une autre chaine",
-                            {:oth => ["Autre chaine à comparer", :String]}, true
+                            "Renvoie la distance de Damerau–Levenshtein avec 
+                            une autre chaîne",
+                            {:oth => ["Autre chaîne à comparer", :String]}, true
 
   link_method_documentation :"self.stretch", 
-                            "Injecte des retours à la ligne dans la chaine", 
+                            "Injecte des retours à la ligne dans la chaîne", 
                             {:lin_len => ["Taille des lignes", :Fixnum]}, true
 
 end
@@ -113,7 +113,7 @@ class Point
                               :y => ["Coordonnées Y du point", :Fixnum]
                             }, true
   link_method_documentation :"self.set", 
-                            "Change les coordonnées du point ", 
+                            "Change les coordonnées du point", 
                             {
                               :x => ["Coordonnées X du point", :Fixnum],
                               :y => ["Coordonnées Y du point", :Fixnum]
@@ -205,22 +205,22 @@ class Devices::Keyboard
                           "Renvoie le chiffre actuel pressé par le clavier",
                           {}, true
   link_method_documentation "Keyboard.maj?", 
-                          "Renvoie true si le clavier est au moment de l'appel en majuscule, false sinon",
+                          "Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon",
                           {}, true
   link_method_documentation "Keyboard.caps_lock?", 
-                          "Renvoie true si le clavier est au moment de l'appel en mode CAPS_LOCK, false sinon",
+                          "Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon",
                           {}, true
   link_method_documentation "Keyboard.num_lock?", 
-                          "Renvoie true si le clavier est au moment de l'appel en mode NUM_LOCK, false sinon",
+                          "Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon",
                           {}, true
   link_method_documentation "Keyboard.scroll_lock?", 
-                          "Renvoie true si le clavier est au moment de l'appel en mode SCROLL_LOCK, false sinon",
+                          "Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon",
                           {}, true
   link_method_documentation "Keyboard.alt_gr?", 
-                          "Renvoie true si la combinaison ALT_GR est en cours au moment de l'appel, false sinon",
+                          "Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon",
                           {}, true
   link_method_documentation "Keyboard.ctrl?", 
-                          "Renvoie true si une combinaison CTRL+key est exécutée, false sinon",
+                          "Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon",
                           {:key => ["Symbole référençant la touche (cf:attributs) mise en combinaison", :Symbol]}, 
                           true
 
@@ -265,34 +265,34 @@ class Devices::Mouse
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Mouse.point", 
-                          "Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en pixel par rapport à l'écran",
+                          "Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran",
                           {}, true
   link_method_documentation "Mouse.point", 
-                          "Renvoie un point (possèdant les attributs x, y) référençant la position de la souris en carré (case) par rapport à l'écran",
+                          "Renvoie un point (possédant les attributs x, y) référençant la position de la souris en carrés (cases) par rapport à l'écran",
                           {}, true
   link_method_documentation "Mouse.x", 
-                          "Renvoie la position (en pixel) X de la souris",
+                          "Renvoie la position (en pixels) X de la souris",
                           {}, true
   link_method_documentation "Mouse.y", 
-                          "Renvoie la position (en pixel) Y de la souris",
+                          "Renvoie la position (en pixels) Y de la souris",
                           {}, true
   link_method_documentation "Mouse.square_x", 
-                          "Renvoie la position (en case) X de la souris",
+                          "Renvoie la position (en cases) X de la souris",
                           {}, true
   link_method_documentation "Mouse.square_y", 
-                          "Renvoie la position (en case) Y de la souris",
+                          "Renvoie la position (en cases) Y de la souris",
                           {}, true
   link_method_documentation "Mouse.rect", 
                           "Renvoie le rectangle de sélection de la souris (tracé en cours)",
                           {}, true
   link_method_documentation "Mouse.last_rect", 
-                          "Renvoie le dernier rectangle de sélection de la souris",
+                          "Renvoie le dernier rectangle de sélection de la souris effectué",
                           {}, true
   link_method_documentation "Mouse.dragging?", 
                           "Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran",
                           {}, true
   link_method_documentation "Mouse.in?", 
-                          "Renvoie true la souris se trouve dans le rectangle passé en argument",
+                          "Renvoie true si la souris se trouve dans le rectangle passé en argument",
                           {:rectangle => ["Rectangle à vérifier", :Rect]}, true
 
 end
@@ -330,14 +330,14 @@ module Generative
 
   module BitmapRect
     link_class_documentation "Module pour les classes dérivant un attribut Bitmap. Il ajoute une méthode rect à la classe
-    où il est inclu, permettant d'accéder directement au rectangle du bitmap, tenant compte du viewport (si viewport il y a)"
+    où il est inclus, permettant d'accéder directement au rectangle du bitmap, tenant compte du viewport (si viewport il y a)"
     link_method_documentation "self.rect", 
                           "Renvoie le rectangle référant à l'instance",
                           {}, true
   end
 
   module CommandAPI
-    link_class_documentation "Rend accessible les commandes EventExtender"
+    link_class_documentation "Rend accessibles les commandes EventExtender"
     link_method_documentation "self.command", 
                           "Appel d'une commande, alias : c, cmd",
                           {
@@ -358,18 +358,18 @@ end
 class Viewport
   link_class_documentation "Représente une portion de l'écran"
   link_attr_documentation :elts, "Renvoie la liste des éléments inclus dans le Viewport"
-  link_attr_documentation :x, "(Lecture/ecriture) Coordonnées X du coin superieur gauche"
-  link_attr_documentation :y, "(Lecture/ecriture) Coordonnées Y du coin superieur gauche"
-  link_attr_documentation :width, "(Lecture/ecriture) Largeur du rectangle"
-  link_attr_documentation :height, "(Lecture/ecriture) Hauteur du rectangle"
+  link_attr_documentation :x, "(Lecture/écriture) Coordonnées X du coin supérieur gauche"
+  link_attr_documentation :y, "(Lecture/écriture) Coordonnées Y du coin supérieur gauche"
+  link_attr_documentation :width, "(Lecture/écriture) Largeur du rectangle"
+  link_attr_documentation :height, "(Lecture/écriture) Hauteur du rectangle"
   link_method_documentation "self.append", 
                           "Méthode (idéalement) privée d'ajout d'un élément dans le viewport (et à @elts)",
                           {:obj => ["Objet répondant aux méthodes x, y, width, height", :Object]}, false
   link_method_documentation "self.calc_width", 
-                          "Renvoie la largeur requise minimum pour afficher tous les éléments du viewport",
+                          "Renvoie la largeur minimum requise pour afficher tous les éléments du viewport",
                           {}, true
   link_method_documentation "self.calc_height", 
-                          "Renvoie la hauteur requise minimum pour afficher tous les éléments du viewport",
+                          "Renvoie la hauteur minimum requise pour afficher tous les éléments du viewport",
                           {}, true
 
 end
@@ -396,7 +396,7 @@ module Command
                           "Renvoie le nom de la map en cours",
                           {}, true
     link_method_documentation "Command.id_at", 
-                          "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y, 0 si c'est le héros, -1 s'il n y en a pas",
+                          "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
@@ -408,26 +408,26 @@ module Command
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
     link_method_documentation "Command.tile_id", 
-                          "Renvoie l'ID du tile pointé par les coordonnées X,Y",
+                          "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
     link_method_documentation "Command.region_id", 
-                          "Renvoie l'ID de la région pointé par les coordonnées X,Y",
+                          "Renvoie l'ID de la région pointée par les coordonnées X,Y",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
     link_method_documentation "Command.square_passable?", 
-                          "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction. False sinon",
+                          "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum],
                             :direction => ["Direction (2,4,6,8)", :Fixnum]
                           }, true
     link_method_documentation "Command.percent", 
-                          "Renvoie le pourcentage de value par max",
+                          "Renvoie le pourcentage de value par rapport à max",
                           {
                             :value => ["Valeur à transformer", :Fixnum],
                             :max => ["Valeur maximum", :Fixnum]
