@@ -11,8 +11,7 @@ Collection des commandes EventExtender
 > Nom|Type|Description  
 --- | --- | ---  
 `min`|`Fixnum`|Borne minimale  
-`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié
-                              le résultat sera compris entre 0 et min)  
+`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)  
   
 
 

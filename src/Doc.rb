@@ -386,8 +386,7 @@ module Command
                           "Renvoie un nombre aléatoire compris entre MIN et MAX",
                           {
                             :min => ["Borne minimale", :Fixnum],
-                            :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié
-                              le résultat sera compris entre 0 et min)", :Fixnum]
+                            :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)", :Fixnum]
                           }, true
     link_method_documentation "Command.map_id", 
                           "Renvoie l'ID de la map en cours",
