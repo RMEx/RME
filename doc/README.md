@@ -4,6 +4,7 @@ Outil d'extension de RPG Maker
 
 **Classes et modules**
 
+*    [Command](Command.md)
 *    [Devices::Keyboard](Devices__Keyboard.md)
 *    [Devices::Keys](Devices__Keys.md)
 *    [Devices::Mouse](Devices__Mouse.md)

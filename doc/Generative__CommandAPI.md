@@ -11,7 +11,7 @@ Rend accessible les commandes EventExtender
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`Symbol`|Nom de la commande à appeler  
-`args`|`Argslist`|Suite d'argument  
+`args`|`Argslist`|Suite d'arguments  
   
 
 

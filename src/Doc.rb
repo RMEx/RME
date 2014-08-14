@@ -341,7 +341,7 @@ module Generative
                           "Appel d'une commande, alias : c, cmd",
                           {
                             :name => ["Nom de la commande à appeler", :Symbol],
-                            :args => ["Suite d'argument", :Argslist]
+                            :args => ["Suite d'arguments", :Argslist]
                           }, true
     link_snippet("self.command", "command(:test, 1, 2, 3) #Appel Command.test(1,2,3) (ou : c(:test, 1,2,3) ou cmd(:test, 1,2,3)")
   end
@@ -373,7 +373,77 @@ class Viewport
 
 end
 
+
+#==============================================================================
+# ** Command
+#------------------------------------------------------------------------------
+#  EvEx Command description
+#==============================================================================
+
+module Command
+  link_class_documentation "Collection des commandes EventExtender"
+    link_method_documentation "Command.random", 
+                          "Renvoie un nombre aléatoire compris entre MIN et MAX",
+                          {
+                            :min => ["Borne minimale", :Fixnum],
+                            :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié
+                              le résultat sera compris entre 0 et min)", :Fixnum]
+                          }, true
+    link_method_documentation "Command.map_id", 
+                          "Renvoie l'ID de la map en cours",
+                          {}, true
+    link_method_documentation "Command.map_name", 
+                          "Renvoie le nom de la map en cours",
+                          {}, true
+    link_method_documentation "Command.id_at", 
+                          "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y, 0 si c'est le héros, -1 s'il n y en a pas",
+                          {
+                            :x => ["Coordonnées X de la case", :Fixnum],
+                            :y => ["Coordonnées Y de la case", :Fixnum]
+                          }, true
+    link_method_documentation "Command.terrain_tag", 
+                          "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
+                          {
+                            :x => ["Coordonnées X de la case", :Fixnum],
+                            :y => ["Coordonnées Y de la case", :Fixnum]
+                          }, true
+    link_method_documentation "Command.tile_id", 
+                          "Renvoie l'ID du tile pointé par les coordonnées X,Y",
+                          {
+                            :x => ["Coordonnées X de la case", :Fixnum],
+                            :y => ["Coordonnées Y de la case", :Fixnum]
+                          }, true
+    link_method_documentation "Command.region_id", 
+                          "Renvoie l'ID de la région pointé par les coordonnées X,Y",
+                          {
+                            :x => ["Coordonnées X de la case", :Fixnum],
+                            :y => ["Coordonnées Y de la case", :Fixnum]
+                          }, true
+    link_method_documentation "Command.square_passable?", 
+                          "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction. False sinon",
+                          {
+                            :x => ["Coordonnées X de la case", :Fixnum],
+                            :y => ["Coordonnées Y de la case", :Fixnum],
+                            :direction => ["Direction (2,4,6,8)", :Fixnum]
+                          }, true
+    link_method_documentation "Command.percent", 
+                          "Renvoie le pourcentage de value par max",
+                          {
+                            :value => ["Valeur à transformer", :Fixnum],
+                            :max => ["Valeur maximum", :Fixnum]
+                          }, true
+    link_snippet("Command.percent", "Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)")
+    link_method_documentation "Command.apply_percent", 
+                          "Applique percent à max",
+                          {
+                            :percent => ["Valeur à appliquer", :Fixnum],
+                            :max => ["Valeur maximum", :Fixnum]
+                          }, true
+    link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
+
+
+end
+
 ## Documentation generator
 DocGenerator.markdown("../doc") if $TEST
-exit
 
