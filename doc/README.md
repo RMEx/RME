@@ -17,3 +17,6 @@ Outil d'extension de RPG Maker
 *    [Point](Point.md)
 *    [String](String.md)
 *    [Viewport](Viewport.md)
+
+
+**Index des commandes**

@@ -383,43 +383,62 @@ end
 #==============================================================================
 
 module Command
-  link_class_documentation "Collection des commandes EventExtender"
+
+    register_command_category :mapinfo, "Informations cartes", "Commandes relatives aux informations des cartes"
+    register_command_category :standard, "Standards", "Commandes standards"
+
+    link_class_documentation "Collection des commandes EventExtender"
+
     link_method_documentation "Command.random", 
                           "Renvoie un nombre aléatoire compris entre MIN et MAX",
                           {
                             :min => ["Borne minimale", :Fixnum],
                             :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)", :Fixnum]
                           }, true
+    register_command :standard, "Command.random"
+
     link_method_documentation "Command.map_id", 
                           "Renvoie l'ID de la map en cours",
                           {}, true
+    register_command :mapinfo, "Command.map_id"
+
     link_method_documentation "Command.map_name", 
                           "Renvoie le nom de la map en cours",
                           {}, true
+    register_command :mapinfo, "Command.map_name"
+
     link_method_documentation "Command.id_at", 
                           "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
+    register_command :mapinfo, "Command.id_at"
+
     link_method_documentation "Command.terrain_tag", 
                           "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
+    register_command :mapinfo, "Command.terrain_tag"
+
     link_method_documentation "Command.tile_id", 
                           "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
+    register_command :mapinfo, "Command.tile_id"
+
     link_method_documentation "Command.region_id", 
                           "Renvoie l'ID de la région pointée par les coordonnées X,Y",
                           {
                             :x => ["Coordonnées X de la case", :Fixnum],
                             :y => ["Coordonnées Y de la case", :Fixnum]
                           }, true
+    register_command :mapinfo, "Command.region_id"
+
     link_method_documentation "Command.square_passable?", 
                           "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
                           {
@@ -427,12 +446,17 @@ module Command
                             :y => ["Coordonnées Y de la case", :Fixnum],
                             :direction => ["Direction (2,4,6,8)", :Fixnum]
                           }, true
+
+    register_command :mapinfo, "Command.square_passable?"
+
     link_method_documentation "Command.percent", 
                           "Renvoie le pourcentage de value par rapport à max",
                           {
                             :value => ["Valeur à transformer", :Fixnum],
                             :max => ["Valeur maximum", :Fixnum]
                           }, true
+    register_command :standard, "Command.percent"
+
     link_snippet("Command.percent", "Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)")
     link_method_documentation "Command.apply_percent", 
                           "Applique percent à max",
@@ -441,6 +465,7 @@ module Command
                             :max => ["Valeur maximum", :Fixnum]
                           }, true
     link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
+    register_command :standard, "Command.apply_percent"
 
 
 end

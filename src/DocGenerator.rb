@@ -93,12 +93,29 @@ module DocGenerator
     end
 
     #--------------------------------------------------------------------------
+    # * Create Front page (CMD)
+    #--------------------------------------------------------------------------
+    def make_cmd_title(mdl)
+      mdl.strong "Index des commandes"
+    end
+
+    #--------------------------------------------------------------------------
     # * Create classe page (header)
     #--------------------------------------------------------------------------
     def make_class_header(mdl, classname)
       t = mdl.title(1, classname)
       a = mdl.link("Retourner à l'index", index(mdl)) + mdl.np
       d = RME::Doc.schema[classname][:description] + mdl.np
+      t + a + d
+    end
+
+    #--------------------------------------------------------------------------
+    # * Create Command page (header)
+    #--------------------------------------------------------------------------
+    def make_cmd_header(mdl, classname)
+      t = mdl.title(1, RME::Doc.commands[classname][:name])
+      a = mdl.link("Retourner à l'index", index(mdl)) + mdl.np
+      d = RME::Doc.commands[classname][:desc] + mdl.np
       t + a + d
     end
 
@@ -177,7 +194,7 @@ module DocGenerator
         end
         p "#{name} created!"
       end
-      indexl += mdl.end_ul
+      indexl = indexl + mdl.end_ul + mdl.np + make_cmd_title(mdl)
       File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}
     end
 

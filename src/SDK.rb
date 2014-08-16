@@ -61,8 +61,10 @@ module RME
     class << self
       attr_accessor :schema
       attr_accessor :header
+      attr_accessor :commands
       Doc.schema ||= Hash.new
       Doc.header ||= Hash.new
+      Doc.commands ||= Hash.new
     end
     #--------------------------------------------------------------------------
     # * classname
@@ -77,6 +79,20 @@ module RME
       Doc.schema[classname] ||= Hash.new
       Doc.schema[classname][:attributes] ||= Hash.new
       Doc.schema[classname][:methods] ||= Hash.new
+    end
+    #--------------------------------------------------------------------------
+    # * Register Command Category
+    #--------------------------------------------------------------------------
+    def register_command_category(key, name, desc)
+      Doc.commands[key.to_sym] ||= {:desc => desc, :name => name, :commands => {}}
+    end
+    #--------------------------------------------------------------------------
+    # * Register Command
+    #--------------------------------------------------------------------------
+    def register_command(cat, name)
+      d = Doc.schema[classname][:methods][name.to_sym]
+      register_command_category(cat, "undefinded", "undefinded")
+      Doc.commands[cat][:commands][name.to_sym] = d if d
     end
     #--------------------------------------------------------------------------
     # * Class documentation
