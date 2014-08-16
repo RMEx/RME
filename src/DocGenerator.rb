@@ -168,8 +168,10 @@ module DocGenerator
     def make_cmd_methods(mdl, classname)
       k = Hash[RME::Doc.commands[classname][:commands].sort]
       if k.length > 0 
-        t = mdl.title 2, "Méthodes"
+        t = mdl.title 2, "Liste des commandes"
         k.each do |name, data|
+          kname = (name =~ /.+\.(.+)/) && $1
+          name = kname || name
           desc = data[:description]
           atr = data[:attributes]
           ret = data[:returned]
