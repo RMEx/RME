@@ -165,6 +165,32 @@ module DocGenerator
       return ""
     end
 
+    def make_cmd_methods(mdl, classname)
+      k = Hash[RME::Doc.commands[classname][:commands].sort]
+      if k.length > 0 
+        t = mdl.title 2, "Méthodes"
+        k.each do |name, data|
+          desc = data[:description]
+          atr = data[:attributes]
+          ret = data[:returned]
+          inline_args = ""
+          atr_list = ""
+          atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
+          atr.each do |name, dt|
+            inline_args += mdl.inline_code(name.to_s) + ", "
+            atr_list += mdl.tr(mdl.inline_code(name.to_s), mdl.inline_code(dt[1]), dt[0])
+          end
+          atr_list += mdl.end_table
+          inline_args = inline_args[0...-2]
+          inline_args = (atr.length == 0 ? "" : "(#{inline_args})")
+          t += mdl.strong("#{name}#{inline_args}")
+          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list)
+        end
+        return t
+      end
+      return ""
+    end
+
     #--------------------------------------------------------------------------
     # * Create Snippter
     #--------------------------------------------------------------------------
@@ -199,6 +225,7 @@ module DocGenerator
         fname = filename(mdl, "command_#{c}")
         indexl += mdl.li(mdl.link(command[:name], fname))
         page = make_cmd_header(mdl, c)
+        page += make_cmd_methods(mdl, c)
         File.open("#{output}/#{fname}", 'w') do |f|
           f.write(page)
         end
