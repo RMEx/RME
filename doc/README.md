@@ -19,4 +19,5 @@ Outil d'extension de RPG Maker
 *    [Viewport](Viewport.md)
 
 
-**Index des commandes**
+**Index des commandes***    Informations cartes
+*    Standards
