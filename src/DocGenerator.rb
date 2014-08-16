@@ -194,7 +194,7 @@ module DocGenerator
         end
         p "#{name} created!"
       end
-      indexl = indexl + mdl.end_ul + mdl.np + make_cmd_title(mdl) + mdl.ul
+      indexl = indexl + mdl.end_ul + mdl.np + make_cmd_title(mdl) + mdl.np + mdl.ul
       Hash[RME::Doc.commands.sort].each do |c, command|
         indexl += mdl.li(command[:name])
       end
