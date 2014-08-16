@@ -13,16 +13,6 @@ Commandes standards
 `percent`|`Fixnum`|Valeur à appliquer  
 `max`|`Fixnum`|Valeur maximum  
   
-**include_page(`map_id`, `event_id`, `page_id`)**
-
-> Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement  
-  
-> Nom|Type|Description  
---- | --- | ---  
-`map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
-`event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
-`page_id`|`Fixnum`|ID de la page à inclure  
-  
 **percent(`value`, `max`)**
 
 > Renvoie le pourcentage de value par rapport à max  

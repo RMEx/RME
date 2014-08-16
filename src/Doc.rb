@@ -386,6 +386,7 @@ module Command
 
     register_command_category :mapinfo, "Informations cartes", "Commandes relatives aux informations des cartes"
     register_command_category :standard, "Standards", "Commandes standards"
+    register_command_category :event, "Evènements", "Commandes relatives aux évènements"
 
     link_class_documentation "Collection des commandes EventExtender"
 
@@ -473,8 +474,29 @@ module Command
                             :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
                             :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
                             :page_id => ["ID de la page à inclure", :Fixnum]
-                          }, true
-    register_command :standard, "Command.include_page"
+                          }
+    register_command :event, "Command.include_page"
+
+    link_method_documentation "Command.invoke_event", 
+                          "Invoque un évènement d'une autre map (ou de la même) sur la carte",
+                          {
+                            :map_id => ["ID de la map où chercher l'évènement à invoquer", :Fixnum],
+                            :event_id => ["ID de l'évènement à invoquer", :Fixnum],
+                            :new_id => ["Nouvel ID de l'évènement fraîchement invoqué", :Fixnum],
+                            :x => ["Position X où placer l'évènement invoqué", :Fixnum],
+                            :y => ["Position Y où placer l'évènement invoqué", :Fixnum]
+                          }
+    register_command :event, "Command.invoke_event"
+
+    link_method_documentation "Command.max_event_id", 
+                          "Renvoie le plus grand ID d'évènement occupé sur la carte",
+                          {}, true
+    register_command :event, "Command.max_event_id"
+
+    link_method_documentation "Command.fresh_event_id", 
+                          "Renvoie un ID libre (utile en cas d'invocation d'évènement)",
+                          {}, true
+    register_command :event, "Command.fresh_event_id"
 
 end
 

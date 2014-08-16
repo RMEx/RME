@@ -177,6 +177,37 @@ class Module
 end
 
 #==============================================================================
+# ** Game_Map
+#------------------------------------------------------------------------------
+# This class handles maps. It includes scrolling and passage determination
+# functions. The instance of this class is referenced by $game_map.
+#==============================================================================
+class Game_Map
+  #--------------------------------------------------------------------------
+  # * Return Max Event Id
+  #--------------------------------------------------------------------------
+  def max_id
+    @events.keys.max
+  end
+  #--------------------------------------------------------------------------
+  # * Add event to map
+  #--------------------------------------------------------------------------
+  def add_event(map_id, event_id, new_id,x=nil,y=nil)
+    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+    return unless map
+    event = map.events[event_id]
+    return unless event
+    event.id = new_id
+    @events.store(new_id, Game_Event.new(@map_id, event))
+    x ||= event.x
+    y ||= event.y
+    @events[new_id].moveto(x, y)
+    @need_refresh = true
+    SceneManager.scene.refresh_spriteset
+  end
+end
+
+#==============================================================================
 # ** Game_Interpreter
 #------------------------------------------------------------------------------
 #  An interpreter for executing event commands. This class is used within the
@@ -330,6 +361,17 @@ module Command
     return unless self.class == Game_Interpreter
     self.append_interpreter(map_id, id, page_id)
   end
+  #--------------------------------------------------------------------------
+  # * Invoke Event
+  #--------------------------------------------------------------------------
+  def invoke_event(map_id, event_id, new_id, x=nil, y=nil)
+    $game_map.add_event(map_id, event_id, new_id, x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Get the max Event ID
+  #--------------------------------------------------------------------------
+  def max_event_id; $game_map.max_id; end
+  def fresh_event_id; max_event_id + 1; end
   #--------------------------------------------------------------------------
   # * Method suggestions
   #--------------------------------------------------------------------------

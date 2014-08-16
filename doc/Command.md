@@ -22,6 +22,15 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.fresh_event_id**
+
+> Renvoie un ID libre (utile en cas d'invocation d'évènement)  
+  
+>   
+
+
+
+
 **Command.id_at(`x`, `y`)**
 
 > Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)  
@@ -49,6 +58,22 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.invoke_event(`map_id`, `event_id`, `new_id`, `x`, `y`)**
+
+> Invoque un évènement d'une autre map (ou de la même) sur la carte  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer  
+`event_id`|`Fixnum`|ID de l'évènement à invoquer  
+`new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué  
+`x`|`Fixnum`|Position X où placer l'évènement invoqué  
+`y`|`Fixnum`|Position Y où placer l'évènement invoqué  
+  
+
+
+
+
 **Command.map_id**
 
 > Renvoie l'ID de la map en cours  
@@ -61,6 +86,15 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 **Command.map_name**
 
 > Renvoie le nom de la map en cours  
+  
+>   
+
+
+
+
+**Command.max_event_id**
+
+> Renvoie le plus grand ID d'évènement occupé sur la carte  
   
 >   
 
