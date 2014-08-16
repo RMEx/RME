@@ -1,5 +1,5 @@
 #Standards
-[Retourner à l'index](README.md)
+[Retourner à l'index](__command_list.md)
 
 Commandes standards
 

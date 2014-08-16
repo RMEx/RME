@@ -53,6 +53,7 @@ module DocGenerator
     # * Data Navigation
     #--------------------------------------------------------------------------
     def index; "README"; end
+    def cmdindex; "__command_list"; end
     def extension; "md"; end
   end
 
@@ -73,6 +74,13 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def index(mdl) 
       mdl.index + "." + mdl.extension
+    end
+
+    #--------------------------------------------------------------------------
+    # * Commands Index
+    #--------------------------------------------------------------------------
+    def cmdindex(mdl) 
+      mdl.cmdindex + "." + mdl.extension
     end
 
     #--------------------------------------------------------------------------
@@ -114,7 +122,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_cmd_header(mdl, classname)
       t = mdl.title(1, RME::Doc.commands[classname][:name])
-      a = mdl.link("Retourner à l'index", index(mdl)) + mdl.np
+      a = mdl.link("Retourner à l'index", cmdindex(mdl)) + mdl.np
       d = RME::Doc.commands[classname][:desc] + mdl.np
       t + a + d
     end
@@ -222,10 +230,11 @@ module DocGenerator
         end
         p "#{name} created!"
       end
-      indexl = indexl + mdl.end_ul + mdl.np + make_cmd_title(mdl) + mdl.np + mdl.ul
+      indexl = indexl + mdl.end_ul + mdl.np
+      indexc = make_cmd_title(mdl) + mdl.np + mdl.ul
       Hash[RME::Doc.commands.sort].each do |c, command|
         fname = filename(mdl, "command_#{c}")
-        indexl += mdl.li(mdl.link(command[:name], fname))
+        indexc += mdl.li(mdl.link(command[:name], fname))
         page = make_cmd_header(mdl, c)
         page += make_cmd_methods(mdl, c)
         File.open("#{output}/#{fname}", 'w') do |f|
@@ -233,6 +242,8 @@ module DocGenerator
         end
         p "#{fname} created!"
       end
+      indexl += indexc
+      File.open(output + "/" + cmdindex(mdl), 'w'){|f| f.write(indexc)}
       File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}
     end
 

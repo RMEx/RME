@@ -1,5 +1,5 @@
 #Informations cartes
-[Retourner à l'index](README.md)
+[Retourner à l'index](__command_list.md)
 
 Commandes relatives aux informations des cartes
 
