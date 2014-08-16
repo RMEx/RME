@@ -15,11 +15,249 @@
 #  Command Extension
 #==============================================================================
 
-module Command
+
+
+#==============================================================================
+# ** V (special thanks to Nuki)
+#------------------------------------------------------------------------------
+#  Variable handling API
+#==============================================================================
+
+module V
   #--------------------------------------------------------------------------
-  # * Exposition
+  # * Singleton
   #--------------------------------------------------------------------------
   extend self
+  #--------------------------------------------------------------------------
+  # * Returns a Game Variable
+  #--------------------------------------------------------------------------
+  def [](key)
+    $game_variables[key] || 0
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Modifies a variable
+  #--------------------------------------------------------------------------
+  def []=(key, value)
+    if key.is_a?(Range)
+      key.each do |k|
+        $game_variables[k] = value
+      end
+    else
+      $game_variables[key] = value
+    end
+  end
+end
+
+#==============================================================================
+# ** S (special thanks to Nuki)
+#------------------------------------------------------------------------------
+# Switch handling API
+#==============================================================================
+
+module S
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Returns a Game Switch
+  #--------------------------------------------------------------------------
+  def [](key)
+    $game_switches[key] || false
+  end
+  #--------------------------------------------------------------------------
+  # * Modifies a Game Switch
+  #--------------------------------------------------------------------------
+  def []=(key, value)
+    if key.is_a?(Range)
+      key.each do |k|
+        $game_switches[k] = value.to_bool
+      end
+    else
+      $game_switches[key] = value.to_bool
+    end
+  end
+end
+
+#==============================================================================
+# ** SV (special thanks to Zeus81)
+#------------------------------------------------------------------------------
+#  self Variable handling API
+#==============================================================================
+
+module SV
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Returns a self Variable
+  #--------------------------------------------------------------------------
+  def [](*args, id)
+    id = args[-1] || Game_Interpreter.current_id
+    map_id = args[-2] || Game_Interpreter.current_map_id
+    $game_self_vars.fetch([map_id, id, id], 0)
+  end
+  #--------------------------------------------------------------------------
+  # * Modifies a self variable
+  #--------------------------------------------------------------------------
+  def []=(*args, id, value)
+    id = args[-1] || Game_Interpreter.current_id
+    map_id = args[-2] || Game_Interpreter.current_map_id
+    $game_self_vars[[map_id, id, id]] = value
+    $game_map.need_refresh = true
+  end
+end
+
+#==============================================================================
+# ** SS (special thanks to Zeus81)
+#------------------------------------------------------------------------------
+#  Self Switches handling API
+#==============================================================================
+
+module SS
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * map key
+  #--------------------------------------------------------------------------
+  def map_id_s(id)
+    auth = ["A","B","C","D"]
+    return id if auth.include?(id)
+    return auth[id-1] if id.to_i.between?(1, 4)
+    return "A"
+  end
+  private :map_id_s
+  #--------------------------------------------------------------------------
+  # * Returns a self switch
+  #--------------------------------------------------------------------------
+  def [](*args, id)
+    id = args[-1] || Game_Interpreter.current_id
+    map_id = args[-2] || Game_Interpreter.current_map_id
+    key = [map_id, id, map_id_s(id)]
+    $game_self_switches[key]
+  end
+  #--------------------------------------------------------------------------
+  # * Modifies a self switch
+  #--------------------------------------------------------------------------
+  def []=(*args, id, value)
+    id = args[-1] || Game_Interpreter.current_id
+    map_id = args[-2] || Game_Interpreter.current_map_id
+    key = [map_id, id, map_id_s(id)]
+    $game_self_switches[key] = value.to_bool
+    $game_map.need_refresh = true
+  end
+end
+
+#==============================================================================
+# ** Module
+#------------------------------------------------------------------------------
+#  A Module is a collection of methods and constants. 
+#  The methods in a module may be instance methods or module methods.
+#==============================================================================
+
+class Module
+  #--------------------------------------------------------------------------
+  # * Add Commands to Command Collection
+  #--------------------------------------------------------------------------
+  def append_commands
+    Command.send(:extend, self)
+    Game_Interpreter.send(:include, self)
+  end
+  #--------------------------------------------------------------------------
+  # * Public Command Interface
+  #--------------------------------------------------------------------------
+  def include_commands
+    include Generative::CommandAPI
+    include Command
+  end
+end
+
+#==============================================================================
+# ** Game_Interpreter
+#------------------------------------------------------------------------------
+#  An interpreter for executing event commands. This class is used within the
+# Game_Map, Game_Troop, and Game_Event classes.
+#==============================================================================
+
+class Game_Interpreter
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias extender_command_101 command_101
+  alias extender_command_111 command_111
+  alias extender_command_105 command_105
+  alias extender_command_355 command_355 
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :current_id
+    attr_accessor :current_map_id
+  end
+  #--------------------------------------------------------------------------
+  # * Show Text
+  #--------------------------------------------------------------------------
+  def command_101
+    $game_message.call_event = @id
+    extender_command_101
+  end
+  #--------------------------------------------------------------------------
+  # * Show Scrolling Text
+  #--------------------------------------------------------------------------
+  def command_105
+    $game_message.call_event = @id
+    extender_command_105
+  end
+  #--------------------------------------------------------------------------
+  # * Append Interpreter
+  #--------------------------------------------------------------------------
+  def append_interpreter(map_id, id, page_id)
+    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+    return unless map
+    event = map.events[id]
+    return unless event
+    page = event.pages[page_id-1]
+    return unless page
+    list = page.list
+    child = Game_Interpreter.new(@depth + 1)
+    child.setup(list, same_map? ? @id : 0)
+    child.run
+  end
+  #--------------------------------------------------------------------------
+  # * Conditional Branch
+  #--------------------------------------------------------------------------
+  def command_111
+    Game_Interpreter.current_id = @id
+    Game_Interpreter.current_map_id = @map_id
+    extender_command_111
+  end
+  #--------------------------------------------------------------------------
+  # * Script
+  #--------------------------------------------------------------------------
+  def command_355
+    Game_Interpreter.current_id = @id
+    Game_Interpreter.current_map_id = @map_id
+    extender_command_355
+  end
+  #--------------------------------------------------------------------------
+  # * Add command API
+  #--------------------------------------------------------------------------
+  include_commands
+  #--------------------------------------------------------------------------
+  # * Get Binding
+  #--------------------------------------------------------------------------
+  def get_binding; binding; end
+end
+
+
+module Command
   #--------------------------------------------------------------------------
   # * Random between range
   #--------------------------------------------------------------------------
@@ -84,5 +322,18 @@ module Command
   #--------------------------------------------------------------------------
   def apply_percent(percent, max)
     (percent*max)/100
+  end
+  #--------------------------------------------------------------------------
+  # * Method suggestions
+  #--------------------------------------------------------------------------
+  def method_missing(*args)
+    keywords = Command.singleton_methods
+    keywords.uniq!
+    keywords.delete(:method_missing)
+    keywords.collect!{|i|i.to_s}
+    keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
+    snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+    msg = "[#{args[0]}] doesn't exists. Did you mean maybe [#{keywords[0]}]"+snd+"?"
+    raise(NoMethodError, msg)
   end
 end
