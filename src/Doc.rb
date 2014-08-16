@@ -467,6 +467,14 @@ module Command
     link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
     register_command :standard, "Command.apply_percent"
 
+    link_method_documentation "Command.include_page", 
+                          "Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement",
+                          {
+                            :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
+                            :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
+                            :page_id => ["ID de la page à inclure", :Fixnum]
+                          }, true
+    register_command :standard, "Command.include_page"
 
 end
 

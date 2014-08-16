@@ -324,6 +324,13 @@ module Command
     (percent*max)/100
   end
   #--------------------------------------------------------------------------
+  # * Include event page
+  #--------------------------------------------------------------------------
+  def include_page(map_id, id, page_id)
+    return unless self.class == Game_Interpreter
+    self.append_interpreter(map_id, id, page_id)
+  end
+  #--------------------------------------------------------------------------
   # * Method suggestions
   #--------------------------------------------------------------------------
   def method_missing(*args)

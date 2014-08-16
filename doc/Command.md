@@ -35,6 +35,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.include_page(`map_id`, `event_id`, `page_id`)**
+
+> Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement  
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
+`event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
+`page_id`|`Fixnum`|ID de la page à inclure  
+  
+
+
+
+
 **Command.map_id**
 
 > Renvoie l'ID de la map en cours  
