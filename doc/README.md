@@ -21,5 +21,5 @@ Outil d'extension de RPG Maker
 
 **Index des commandes**
 
-*    Informations cartes
-*    Standards
+*    [Informations cartes](command_mapinfo.md)
+*    [Standards](command_standard.md)
