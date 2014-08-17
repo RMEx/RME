@@ -6,9 +6,11 @@ Extension des entiers
 ##Liste des méthodes
 **self.to_digit**
 
-> Renvoie la représentation textuelle d'un chiffre  
+> Renvoie la représentation textuelle d'un chiffre
+
   
->   
+> 
+
 
 
 Exemple  

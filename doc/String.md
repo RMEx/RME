@@ -7,35 +7,39 @@ Extension des chaines de caractère
 **self.damerau_levenshtein(`oth`)**
 
 > Renvoie la distance de Damerau–Levenshtein avec 
-                            une autre chaîne  
+                            une autre chaîne
+
   
 > Nom|Type|Description  
 --- | --- | ---  
-`oth`|`String`|Autre chaîne à comparer
+`oth`|`String`|Autre chaîne à comparer  
 
-  
+
 
 
 
 
 **self.extract_numbers**
 
-> Renvoie tous les entiers d'une chaîne de caractères  
+> Renvoie tous les entiers d'une chaîne de caractères
+
   
->   
+> 
+
 
 
 
 
 **self.stretch(`lin_len`)**
 
-> Injecte des retours à la ligne dans la chaîne  
+> Injecte des retours à la ligne dans la chaîne
+
   
 > Nom|Type|Description  
 --- | --- | ---  
-`lin_len`|`Fixnum`|Taille des lignes
+`lin_len`|`Fixnum`|Taille des lignes  
 
-  
+
 
 
 

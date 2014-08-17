@@ -6,5 +6,4 @@ Module référençant les outils génériques
 ##Attributs
 Nom|Description  
 --- | ---  
-`HWND`|Renvoie la fenêtre courante de jeu (pour les WIN32API's)
-
+`HWND`|Renvoie la fenêtre courante de jeu (pour les WIN32API's)  

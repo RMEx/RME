@@ -6,15 +6,15 @@ Rend accessibles les commandes EventExtender
 ##Liste des méthodes
 **self.command(`name`, `args`)**
 
-> Appel d'une commande, alias : c, cmd  
+> Appel d'une commande, alias : c, cmd
+
   
 > Nom|Type|Description  
 --- | --- | ---  
-`name`|`Symbol`|Nom de la commande à appeler
+`name`|`Symbol`|Nom de la commande à appeler  
+`args`|`Argslist`|Suite d'arguments  
 
-`args`|`Argslist`|Suite d'arguments
 
-  
 
 
 Exemple  
