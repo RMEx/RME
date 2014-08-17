@@ -88,7 +88,7 @@ module DocGenerator
     def end_ul; "</ul>"; end
     def li(item); "<li>#{item}</li>"+"\n"; end
     def enum(t, v); li("<strong>#{t}</strong> : #{v}"); end
-    def code(lang, snippet); "<pre><code>#{lang}"+nl+snippet+nl+"</code></pre>"; end
+    def code(lang, snippet); "<pre><code class='#{lang}'>"+nl+snippet+nl+"</code></pre>"; end
     def inline_code(c); "<code>#{c}</code>"; end
     def table(*titles)
       "<table border='1'><tr><th>" + titles.join("</th><th>") + "</th></tr>"
@@ -144,10 +144,11 @@ module DocGenerator
     # * Create Front page (header)
     #--------------------------------------------------------------------------
     def make_header(mdl)
+      h = mdl.header("")
       t = mdl.title(1, RME::Doc.header[:title])
       d = RME::Doc.header[:desc] + mdl.np
       l = mdl.strong "Classes et modules"
-      t + d + l + mdl.np
+      h + t + d + l + mdl.np
     end
 
     #--------------------------------------------------------------------------
@@ -165,7 +166,7 @@ module DocGenerator
       t = mdl.title(1, classname)
       a = mdl.link("Retourner à l'index", index(mdl)) + mdl.np
       d = RME::Doc.schema[classname][:description] + mdl.np
-      t + a + d
+      h + t + a + d
     end
 
     #--------------------------------------------------------------------------
@@ -176,7 +177,7 @@ module DocGenerator
       t = mdl.title(1, RME::Doc.commands[classname][:name])
       a = mdl.link("Retourner à l'index", cmdindex(mdl)) + mdl.np
       d = RME::Doc.commands[classname][:desc] + mdl.np
-      t + a + d
+      h + t + a + d
     end
 
     #--------------------------------------------------------------------------
@@ -231,7 +232,7 @@ module DocGenerator
     # * Create Commands list
     #--------------------------------------------------------------------------
     def make_cmd_methods(mdl, classname)
-      kname = lambda{|x| (name =~ /.+\.(.+)/) && $1}
+      kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
       make_class_methods(mdl, classname, "Liste des commandes", kname, false)
     end
 
@@ -295,6 +296,7 @@ module DocGenerator
       end
       indexc += mdl.footer
       indexl += indexc
+      indexc = mdl.header("") + indexc + mdl.footer
       File.open(output + "/" + cmdindex(mdl), 'w'){|f| f.write(indexc)}
       File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}
     end
