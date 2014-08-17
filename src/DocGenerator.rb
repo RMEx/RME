@@ -291,7 +291,7 @@ module DocGenerator
       indexl = indexl + mdl.end_ul + mdl.np
       indexc = make_cmd_title(mdl) + mdl.np + mdl.ul
       Hash[RME::Doc.commands.sort].each do |c, command|
-        indexc = make_command_page(mdl, c, command, indexl, output)
+        indexc = make_command_page(mdl, c, command, indexc, output)
       end
       indexc += mdl.footer
       indexl += indexc
