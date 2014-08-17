@@ -3,7 +3,7 @@
 
 Extension des entiers
 
-##Méthodes
+##Liste des méthodes
 **self.to_digit**
 
 > Renvoie la représentation textuelle d'un chiffre  

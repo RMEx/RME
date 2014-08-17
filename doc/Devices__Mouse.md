@@ -11,7 +11,7 @@ Nom|Description
 `:mouse_center`|Pointe la touche Keys::Mouse_center (comme argument à passer)  
 `:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)  
 `:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)  
-##Méthodes
+##Liste des méthodes
 **Mouse.click?(`key`)**
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)  

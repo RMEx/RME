@@ -3,7 +3,7 @@
 
 Collection des commandes EventExtender
 
-##Méthodes
+##Liste des méthodes
 **Command.apply_percent(`percent`, `max`)**
 
 > Applique percent à max  

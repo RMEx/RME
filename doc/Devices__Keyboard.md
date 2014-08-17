@@ -196,7 +196,7 @@ Nom|Description
 `:F7`|Pointe la touche Keys::F7 (comme argument à passer)  
 `:F8`|Pointe la touche Keys::F8 (comme argument à passer)  
 `:F9`|Pointe la touche Keys::F9 (comme argument à passer)  
-##Méthodes
+##Liste des méthodes
 **Keyboard.alt_gr?**
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon  

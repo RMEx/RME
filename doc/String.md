@@ -3,7 +3,7 @@
 
 Extension des chaines de caractère
 
-##Méthodes
+##Liste des méthodes
 **self.damerau_levenshtein(`oth`)**
 
 > Renvoie la distance de Damerau–Levenshtein avec 

@@ -11,7 +11,7 @@ Nom|Description
 `y`|(Lecture/écriture) Coordonnées Y du coin supérieur gauche  
 `width`|(Lecture/écriture) Largeur du rectangle  
 `height`|(Lecture/écriture) Hauteur du rectangle  
-##Méthodes
+##Liste des méthodes
 **self.append(`obj`)**
 
 > Méthode (idéalement) privée d'ajout d'un élément dans le viewport (et à @elts)  

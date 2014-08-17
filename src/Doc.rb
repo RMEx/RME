@@ -501,5 +501,7 @@ module Command
 end
 
 ## Documentation generator
-DocGenerator.markdown("../doc") if $TEST
-
+if $TEST
+  DocGenerator.markdown("../doc") 
+  DocGenerator.html("../doc/HTML") 
+end

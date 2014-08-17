@@ -3,7 +3,7 @@
 
 Rend accessibles les commandes EventExtender
 
-##Méthodes
+##Liste des méthodes
 **self.command(`name`, `args`)**
 
 > Appel d'une commande, alias : c, cmd  

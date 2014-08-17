@@ -3,7 +3,7 @@
 
 Extension de la classe Object
 
-##Méthodes
+##Liste des méthodes
 **Object.delegate(`obj`, `method`, `m_alias`)**
 
 > Délègue une méthode à une autre méthode ou à un attribut  

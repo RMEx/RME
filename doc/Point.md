@@ -3,7 +3,7 @@
 
 Représente un point dans un plan cartésien
 
-##Méthodes
+##Liste des méthodes
 **Point.new(`x`, `y`)**
 
 > Constructeur de point  

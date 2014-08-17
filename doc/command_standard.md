@@ -4,7 +4,7 @@
 Commandes standards
 
 ##Liste des commandes
-**apply_percent(`percent`, `max`)**
+**Command.apply_percent(`percent`, `max`)**
 
 > Applique percent à max  
   
@@ -13,7 +13,7 @@ Commandes standards
 `percent`|`Fixnum`|Valeur à appliquer  
 `max`|`Fixnum`|Valeur maximum  
   
-**percent(`value`, `max`)**
+**Command.percent(`value`, `max`)**
 
 > Renvoie le pourcentage de value par rapport à max  
   
@@ -22,7 +22,7 @@ Commandes standards
 `value`|`Fixnum`|Valeur à transformer  
 `max`|`Fixnum`|Valeur maximum  
   
-**random(`min`, `max`)**
+**Command.random(`min`, `max`)**
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX  
   
