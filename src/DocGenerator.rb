@@ -46,7 +46,7 @@ module DocGenerator
     def table(*titles)
       titles.join("|") + nl + (["---"] * titles.length).join(" | ") + nl
     end
-    def tr(*values); values.join("|") + nl; end
+    def tr(*values); values.join("|") + np; end
     def end_table; ""; end
     def blockquote(s); "> #{s}"+nl; end
     def link(text, url); "[#{text}](#{url})"; end

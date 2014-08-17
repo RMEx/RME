@@ -15,9 +15,12 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
-`event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
-`page_id`|`Fixnum`|ID de la page à inclure  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure
+
+`event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure
+
+`page_id`|`Fixnum`|ID de la page à inclure
+
   
 **invoke_event(`map_id`, `event_id`, `new_id`, `x`, `y`)**
 
@@ -25,11 +28,16 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer  
-`event_id`|`Fixnum`|ID de l'évènement à invoquer  
-`new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué  
-`x`|`Fixnum`|Position X où placer l'évènement invoqué  
-`y`|`Fixnum`|Position Y où placer l'évènement invoqué  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer
+
+`event_id`|`Fixnum`|ID de l'évènement à invoquer
+
+`new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué
+
+`x`|`Fixnum`|Position X où placer l'évènement invoqué
+
+`y`|`Fixnum`|Position Y où placer l'évènement invoqué
+
   
 **max_event_id**
 

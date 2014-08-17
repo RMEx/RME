@@ -6,11 +6,16 @@ Représentation de la souris, est accessible via Mouse
 ##Attributs
 Nom|Description  
 --- | ---  
-`:mouse_left`|Pointe la touche Keys::Mouse_left (comme argument à passer)  
-`:mouse_right`|Pointe la touche Keys::Mouse_right (comme argument à passer)  
-`:mouse_center`|Pointe la touche Keys::Mouse_center (comme argument à passer)  
-`:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)  
-`:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)  
+`:mouse_left`|Pointe la touche Keys::Mouse_left (comme argument à passer)
+
+`:mouse_right`|Pointe la touche Keys::Mouse_right (comme argument à passer)
+
+`:mouse_center`|Pointe la touche Keys::Mouse_center (comme argument à passer)
+
+`:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)
+
+`:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)
+
 ##Liste des méthodes
 **Mouse.click?(`key`)**
 
@@ -18,7 +23,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)
+
   
 
 
@@ -39,7 +45,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`rectangle`|`Rect`|Rectangle à vérifier  
+`rectangle`|`Rect`|Rectangle à vérifier
+
   
 
 
@@ -69,7 +76,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)
+
   
 
 
@@ -90,7 +98,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)
+
   
 
 
@@ -102,7 +111,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)
+
   
 
 
@@ -132,7 +142,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)
+
   
 
 

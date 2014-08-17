@@ -10,8 +10,10 @@ Commandes standards
   
 > Nom|Type|Description  
 --- | --- | ---  
-`percent`|`Fixnum`|Valeur à appliquer  
-`max`|`Fixnum`|Valeur maximum  
+`percent`|`Fixnum`|Valeur à appliquer
+
+`max`|`Fixnum`|Valeur maximum
+
   
 **percent(`value`, `max`)**
 
@@ -19,8 +21,10 @@ Commandes standards
   
 > Nom|Type|Description  
 --- | --- | ---  
-`value`|`Fixnum`|Valeur à transformer  
-`max`|`Fixnum`|Valeur maximum  
+`value`|`Fixnum`|Valeur à transformer
+
+`max`|`Fixnum`|Valeur maximum
+
   
 **random(`min`, `max`)**
 
@@ -28,6 +32,8 @@ Commandes standards
   
 > Nom|Type|Description  
 --- | --- | ---  
-`min`|`Fixnum`|Borne minimale  
-`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)  
+`min`|`Fixnum`|Borne minimale
+
+`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)
+
   

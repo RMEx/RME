@@ -10,8 +10,10 @@ Commandes relatives aux informations des cartes
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 **map_id**
 
@@ -29,8 +31,10 @@ Commandes relatives aux informations des cartes
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 **square_passable?(`x`, `y`, `direction`)**
 
@@ -38,9 +42,12 @@ Commandes relatives aux informations des cartes
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
-`direction`|`Fixnum`|Direction (2,4,6,8)  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
+`direction`|`Fixnum`|Direction (2,4,6,8)
+
   
 **terrain_tag(`x`, `y`)**
 
@@ -48,8 +55,10 @@ Commandes relatives aux informations des cartes
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 **tile_id(`x`, `y`)**
 
@@ -57,6 +66,8 @@ Commandes relatives aux informations des cartes
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   

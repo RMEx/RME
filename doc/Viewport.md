@@ -6,11 +6,16 @@ Représente une portion de l'écran
 ##Attributs
 Nom|Description  
 --- | ---  
-`elts`|Renvoie la liste des éléments inclus dans le Viewport  
-`x`|(Lecture/écriture) Coordonnées X du coin supérieur gauche  
-`y`|(Lecture/écriture) Coordonnées Y du coin supérieur gauche  
-`width`|(Lecture/écriture) Largeur du rectangle  
-`height`|(Lecture/écriture) Hauteur du rectangle  
+`elts`|Renvoie la liste des éléments inclus dans le Viewport
+
+`x`|(Lecture/écriture) Coordonnées X du coin supérieur gauche
+
+`y`|(Lecture/écriture) Coordonnées Y du coin supérieur gauche
+
+`width`|(Lecture/écriture) Largeur du rectangle
+
+`height`|(Lecture/écriture) Hauteur du rectangle
+
 ##Liste des méthodes
 **self.append(`obj`)**
 
@@ -18,7 +23,8 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`obj`|`Object`|Objet répondant aux méthodes x, y, width, height  
+`obj`|`Object`|Objet répondant aux méthodes x, y, width, height
+
   
 
 

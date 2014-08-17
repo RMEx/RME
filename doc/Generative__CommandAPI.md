@@ -10,8 +10,10 @@ Rend accessibles les commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`name`|`Symbol`|Nom de la commande à appeler  
-`args`|`Argslist`|Suite d'arguments  
+`name`|`Symbol`|Nom de la commande à appeler
+
+`args`|`Argslist`|Suite d'arguments
+
   
 
 

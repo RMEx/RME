@@ -10,8 +10,10 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`percent`|`Fixnum`|Valeur à appliquer  
-`max`|`Fixnum`|Valeur maximum  
+`percent`|`Fixnum`|Valeur à appliquer
+
+`max`|`Fixnum`|Valeur maximum
+
   
 
 
@@ -37,8 +39,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 
 
@@ -50,9 +54,12 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
-`event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
-`page_id`|`Fixnum`|ID de la page à inclure  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure
+
+`event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure
+
+`page_id`|`Fixnum`|ID de la page à inclure
+
   
 
 
@@ -64,11 +71,16 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer  
-`event_id`|`Fixnum`|ID de l'évènement à invoquer  
-`new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué  
-`x`|`Fixnum`|Position X où placer l'évènement invoqué  
-`y`|`Fixnum`|Position Y où placer l'évènement invoqué  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer
+
+`event_id`|`Fixnum`|ID de l'évènement à invoquer
+
+`new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué
+
+`x`|`Fixnum`|Position X où placer l'évènement invoqué
+
+`y`|`Fixnum`|Position Y où placer l'évènement invoqué
+
   
 
 
@@ -107,8 +119,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`value`|`Fixnum`|Valeur à transformer  
-`max`|`Fixnum`|Valeur maximum  
+`value`|`Fixnum`|Valeur à transformer
+
+`max`|`Fixnum`|Valeur maximum
+
   
 
 
@@ -125,8 +139,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`min`|`Fixnum`|Borne minimale  
-`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)  
+`min`|`Fixnum`|Borne minimale
+
+`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)
+
   
 
 
@@ -138,8 +154,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 
 
@@ -151,9 +169,12 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
-`direction`|`Fixnum`|Direction (2,4,6,8)  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
+`direction`|`Fixnum`|Direction (2,4,6,8)
+
   
 
 
@@ -165,8 +186,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 
 
@@ -178,8 +201,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`x`|`Fixnum`|Coordonnées X de la case  
-`y`|`Fixnum`|Coordonnées Y de la case  
+`x`|`Fixnum`|Coordonnées X de la case
+
+`y`|`Fixnum`|Coordonnées Y de la case
+
   
 
 
