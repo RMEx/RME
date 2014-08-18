@@ -754,7 +754,7 @@ module Devices
   #==============================================================================
   # ** Keyboard
   #------------------------------------------------------------------------------
-  #  Concret Keyboard representation
+  #  Concrete Keyboard representation
   #==============================================================================
 
   class Keyboard < Abstract
@@ -803,7 +803,7 @@ module Devices
     def update_keystate
       @ctrl   = Key::Lcontrol.press? || Key::Rcontrol.press?
       @maj    = (@caps_lock) ? !Key::Shift.press? : Key::Shift.press?
-      @alt_gr = Key::Control.press? || (@ctrl && Key::Alt.press?)
+      @alt_gr = @ctrl && Key::Alt.press?
     end
 
     #--------------------------------------------------------------------------
