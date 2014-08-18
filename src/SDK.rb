@@ -752,7 +752,7 @@ module Devices
     # * Current key
     #--------------------------------------------------------------------------
     def current_key(method = :press?)
-      @keys.each do |k|
+      @keys[0..255].each do |k|
         next unless k
         return k if self.send(method, k)
       end
