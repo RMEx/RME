@@ -348,7 +348,7 @@ module Command
   # * Get Event Id form coords
   #--------------------------------------------------------------------------
   def id_at(x, y)
-    result = $game_map.id_xy(x, y)
+    result = $game_map.event_id_xy(x, y)
     return result if result > 0
     return 0 if $game_player.x == x && $game_player.y == y
     return -1
