@@ -180,6 +180,33 @@ class Module
 end
 
 #==============================================================================
+# ** Scene_Map
+#------------------------------------------------------------------------------
+#  This class performs the map screen processing.
+#==============================================================================
+
+class Scene_Map
+  #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_reader :spriteset
+  #--------------------------------------------------------------------------
+  # * refresh spriteset
+  #--------------------------------------------------------------------------
+  def refresh_spriteset
+    dispose_spriteset
+    create_spriteset
+  end
+  #--------------------------------------------------------------------------
+  # * Refresh Windows
+  #--------------------------------------------------------------------------
+  def refresh_message
+    @message_window.dispose
+    @message_window = Window_Message.new
+  end
+end
+
+#==============================================================================
 # ** Game_Map
 #------------------------------------------------------------------------------
 # This class handles maps. It includes scrolling and passage determination
@@ -442,5 +469,5 @@ module Command
   def mouse_last_rect;    Mouse.last_rect;                end
   def click_time(k);      Mouse.time(k);                  end
   def mouse_in?(rect);    Mouse.in?(rect);                end
-  def mouse_current_key(*m)   Mouse.current_key(*m);          end
+  def mouse_current_key(*m)   Mouse.current_key(*m);      end
 end
