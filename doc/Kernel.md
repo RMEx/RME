@@ -7,3 +7,4 @@ Module référençant les outils génériques
 Nom|Description  
 --- | ---  
 `HWND`|Renvoie la fenêtre courante de jeu (pour les WIN32API's)  
+`IDENTITY`|Renvoie la lambda identité  

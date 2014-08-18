@@ -197,12 +197,47 @@ Nom|Description
 `:F8`|Pointe la touche Keys::F8 (comme argument à passer)  
 `:F9`|Pointe la touche Keys::F9 (comme argument à passer)  
 ##Liste des méthodes
+**Keyboard.all?(`method`, `keys`)**
+
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+
+
+
+
+Exemple  
+```ruby  
+p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)  
+```
+
+
+
 **Keyboard.alt_gr?**
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
   
 > 
+
+
+
+
+
+**Keyboard.any?(`method`, `keys`)**
+
+> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
+
 
 
 

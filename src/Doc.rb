@@ -199,6 +199,20 @@ class Devices::Keyboard
                           "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
+  link_method_documentation "Keyboard.all?", 
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
+                          }, true
+  link_snippet "Keyboard.all?", "p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)"
+  link_method_documentation "Keyboard.any?", 
+                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                          }, true
+  link_snippet "Keyboard.all?", "p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)"
   link_method_documentation "Keyboard.current_char", 
                           "Renvoie le caractère actuel pressé par le clavier",
                           {}, true
@@ -311,6 +325,7 @@ module Kernel
   #--------------------------------------------------------------------------
   link_class_documentation "Module référençant les outils génériques"
   link_attr_documentation :HWND, "Renvoie la fenêtre courante de jeu (pour les WIN32API's)"
+  link_attr_documentation :IDENTITY, "Renvoie la lambda identité"
 end
 
 #==============================================================================
@@ -385,8 +400,10 @@ end
 module Command
 
     register_command_category :mapinfo, "Informations cartes", "Commandes relatives aux informations des cartes"
-    register_command_category :standard, "Standards", "Commandes standards"
-    register_command_category :event, "Evènements", "Commandes relatives aux évènements"
+    register_command_category :standard, "Commandes standards", "Commandes standards"
+    register_command_category :event, "Commandes évènements", "Commandes relatives aux évènements"
+    register_command_category :keyboard, "Commandes du clavier", "Commandes relatives au clavier"
+    register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
 
     link_class_documentation "Collection des commandes EventExtender"
 

@@ -1,4 +1,4 @@
-#Evènements
+#Commandes évènements
 [Retourner à l'index](__command_list.md)
 
 Commandes relatives aux évènements

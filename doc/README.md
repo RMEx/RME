@@ -21,6 +21,8 @@ Outil d'extension de RPG Maker
 
 **Index des commandes**
 
-*    [Evènements](command_event.md)
+*    [Commandes évènements](command_event.md)
+*    [Commandes du clavier](command_keyboard.md)
 *    [Informations cartes](command_mapinfo.md)
-*    [Standards](command_standard.md)
+*    [Commandes de la souris](command_mouse.md)
+*    [Commandes standards](command_standard.md)
