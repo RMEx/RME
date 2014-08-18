@@ -290,6 +290,20 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
+**Keyboard.current_key(`method`)**
+
+> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
+
+
+
+
+
+
 **Keyboard.maj?**
 
 > Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
@@ -348,6 +362,20 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Keyboard.rgss_current_key(`method`)**
+
+> Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
 
 
 

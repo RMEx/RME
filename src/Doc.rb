@@ -238,6 +238,12 @@ class Devices::Keyboard
                           "Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon",
                           {:key => ["Symbole référençant la touche (cf:attributs) mise en combinaison", :Symbol]}, 
                           true
+  link_method_documentation "Keyboard.current_key", 
+                          "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
+                          {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
+  link_method_documentation "Keyboard.rgss_current_key", 
+                          "Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
+                          {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
 
 end
 
@@ -309,6 +315,22 @@ class Devices::Mouse
   link_method_documentation "Mouse.in?", 
                           "Renvoie true si la souris se trouve dans le rectangle passé en argument",
                           {:rectangle => ["Rectangle à vérifier", :Rect]}, true
+  link_method_documentation "Mouse.all?", 
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
+                          }, true
+  link_snippet "Mouse.all?", "p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_left, :mouse_right)"
+  link_method_documentation "Mouse.any?", 
+                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                          }, true
+  link_method_documentation "Mouse.current_key", 
+                          "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
+                          {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
 
 end
 

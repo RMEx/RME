@@ -12,6 +12,41 @@ Nom|Description
 `:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)  
 `:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)  
 ##Liste des méthodes
+**Mouse.all?(`method`, `keys`)**
+
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+
+
+
+
+Exemple  
+```ruby  
+p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_left, :mouse_right)  
+```
+
+
+
+**Mouse.any?(`method`, `keys`)**
+
+> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
+
+
+
+
+
+
 **Mouse.click?(`key`)**
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
@@ -20,6 +55,20 @@ Nom|Description
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Mouse.current_key(`method`)**
+
+> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
 
 
 
