@@ -244,6 +244,9 @@ class Devices::Keyboard
   link_method_documentation "Keyboard.rgss_current_key", 
                           "Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
+  link_method_documentation "Keyboard.time", 
+                          "Renvoie le nombre de frame pressée d'une touche en cours", 
+                          {:key => ["Touche à vérifier",:Symbol]}, true
 
 end
 
@@ -331,6 +334,9 @@ class Devices::Mouse
   link_method_documentation "Mouse.current_key", 
                           "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
+  link_method_documentation "Mouse.time", 
+                          "Renvoie le nombre de frame pressée d'une touche en cours", 
+                          {:key => ["Touche à vérifier",:Symbol]}, true
 
 end
 
@@ -421,121 +427,217 @@ end
 
 module Command
 
-    register_command_category :mapinfo, "Informations cartes", "Commandes relatives aux informations des cartes"
-    register_command_category :standard, "Commandes standards", "Commandes standards"
-    register_command_category :event, "Commandes évènements", "Commandes relatives aux évènements"
-    register_command_category :keyboard, "Commandes du clavier", "Commandes relatives au clavier"
-    register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
+  register_command_category :mapinfo, "Informations cartes", "Commandes relatives aux informations des cartes"
+  register_command_category :standard, "Commandes standards", "Commandes standards"
+  register_command_category :event, "Commandes évènements", "Commandes relatives aux évènements"
+  register_command_category :keyboard, "Commandes du clavier", "Commandes relatives au clavier"
+  register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
 
-    link_class_documentation "Collection des commandes EventExtender"
+  link_class_documentation "Collection des commandes EventExtender"
 
-    link_method_documentation "Command.random", 
-                          "Renvoie un nombre aléatoire compris entre MIN et MAX",
+  link_method_documentation "Command.random", 
+                        "Renvoie un nombre aléatoire compris entre MIN et MAX",
+                        {
+                          :min => ["Borne minimale", :Fixnum],
+                          :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)", :Fixnum]
+                        }, true
+  register_command :standard, "Command.random"
+
+  link_method_documentation "Command.map_id", 
+                        "Renvoie l'ID de la map en cours",
+                        {}, true
+  register_command :mapinfo, "Command.map_id"
+
+  link_method_documentation "Command.map_name", 
+                        "Renvoie le nom de la map en cours",
+                        {}, true
+  register_command :mapinfo, "Command.map_name"
+
+  link_method_documentation "Command.id_at", 
+                        "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
+                        {
+                          :x => ["Coordonnées X de la case", :Fixnum],
+                          :y => ["Coordonnées Y de la case", :Fixnum]
+                        }, true
+  register_command :mapinfo, "Command.id_at"
+
+  link_method_documentation "Command.terrain_tag", 
+                        "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
+                        {
+                          :x => ["Coordonnées X de la case", :Fixnum],
+                          :y => ["Coordonnées Y de la case", :Fixnum]
+                        }, true
+  register_command :mapinfo, "Command.terrain_tag"
+
+  link_method_documentation "Command.tile_id", 
+                        "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
+                        {
+                          :x => ["Coordonnées X de la case", :Fixnum],
+                          :y => ["Coordonnées Y de la case", :Fixnum]
+                        }, true
+  register_command :mapinfo, "Command.tile_id"
+
+  link_method_documentation "Command.region_id", 
+                        "Renvoie l'ID de la région pointée par les coordonnées X,Y",
+                        {
+                          :x => ["Coordonnées X de la case", :Fixnum],
+                          :y => ["Coordonnées Y de la case", :Fixnum]
+                        }, true
+  register_command :mapinfo, "Command.region_id"
+
+  link_method_documentation "Command.square_passable?", 
+                        "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
+                        {
+                          :x => ["Coordonnées X de la case", :Fixnum],
+                          :y => ["Coordonnées Y de la case", :Fixnum],
+                          :direction => ["Direction (2,4,6,8)", :Fixnum]
+                        }, true
+
+  register_command :mapinfo, "Command.square_passable?"
+
+  link_method_documentation "Command.percent", 
+                        "Renvoie le pourcentage de value par rapport à max",
+                        {
+                          :value => ["Valeur à transformer", :Fixnum],
+                          :max => ["Valeur maximum", :Fixnum]
+                        }, true
+  register_command :standard, "Command.percent"
+
+  link_snippet("Command.percent", "Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)")
+  link_method_documentation "Command.apply_percent", 
+                        "Applique percent à max",
+                        {
+                          :percent => ["Valeur à appliquer", :Fixnum],
+                          :max => ["Valeur maximum", :Fixnum]
+                        }, true
+  link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
+  register_command :standard, "Command.apply_percent"
+
+  link_method_documentation "Command.include_page", 
+                        "Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement",
+                        {
+                          :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
+                          :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
+                          :page_id => ["ID de la page à inclure", :Fixnum]
+                        }
+  register_command :event, "Command.include_page"
+
+  link_method_documentation "Command.invoke_event", 
+                        "Invoque un évènement d'une autre map (ou de la même) sur la carte",
+                        {
+                          :map_id => ["ID de la map où chercher l'évènement à invoquer", :Fixnum],
+                          :event_id => ["ID de l'évènement à invoquer", :Fixnum],
+                          :new_id => ["Nouvel ID de l'évènement fraîchement invoqué", :Fixnum],
+                          :x => ["Position X où placer l'évènement invoqué", :Fixnum],
+                          :y => ["Position Y où placer l'évènement invoqué", :Fixnum]
+                        }
+  register_command :event, "Command.invoke_event"
+
+  link_method_documentation "Command.max_event_id", 
+                        "Renvoie le plus grand ID d'évènement occupé sur la carte",
+                        {}, true
+  register_command :event, "Command.max_event_id"
+
+  link_method_documentation "Command.fresh_event_id", 
+                        "Renvoie un ID libre (utile en cas d'invocation d'évènement)",
+                        {}, true
+  register_command :event, "Command.fresh_event_id"
+
+  link_method_documentation "Command.key_trigger?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :keyboard, "Command.key_trigger?"
+
+  link_method_documentation "Command.key_press?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :keyboard, "Command.key_press?"
+
+  link_method_documentation "Command.key_repeat?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :keyboard, "Command.key_repeat?"
+
+  link_method_documentation "Command.key_release?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :keyboard, "Command.key_release?"
+
+  link_method_documentation "Command.keyboard_all?", 
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method", 
                           {
-                            :min => ["Borne minimale", :Fixnum],
-                            :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)", :Fixnum]
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
                           }, true
-    register_command :standard, "Command.random"
+  register_command :keyboard, "Command.keyboard_all"
 
-    link_method_documentation "Command.map_id", 
-                          "Renvoie l'ID de la map en cours",
+  link_method_documentation "Command.keyboard_any?", 
+                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                          }, true
+  register_command :keyboard, "Command.keyboard_any"
+
+  link_method_documentation "Command.keyboard_current_char", 
+                          "Renvoie le caractère actuel pressé par le clavier",
                           {}, true
-    register_command :mapinfo, "Command.map_id"
+  register_command :keyboard, "Command.keyboard_current_char"
 
-    link_method_documentation "Command.map_name", 
-                          "Renvoie le nom de la map en cours",
+  link_method_documentation "Command.keyboard_current_digit", 
+                          "Renvoie le chiffre actuel pressé par le clavier",
                           {}, true
-    register_command :mapinfo, "Command.map_name"
+  register_command :keyboard, "Command.keyboard_current_digit"
 
-    link_method_documentation "Command.id_at", 
-                          "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
-                          {
-                            :x => ["Coordonnées X de la case", :Fixnum],
-                            :y => ["Coordonnées Y de la case", :Fixnum]
-                          }, true
-    register_command :mapinfo, "Command.id_at"
-
-    link_method_documentation "Command.terrain_tag", 
-                          "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
-                          {
-                            :x => ["Coordonnées X de la case", :Fixnum],
-                            :y => ["Coordonnées Y de la case", :Fixnum]
-                          }, true
-    register_command :mapinfo, "Command.terrain_tag"
-
-    link_method_documentation "Command.tile_id", 
-                          "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
-                          {
-                            :x => ["Coordonnées X de la case", :Fixnum],
-                            :y => ["Coordonnées Y de la case", :Fixnum]
-                          }, true
-    register_command :mapinfo, "Command.tile_id"
-
-    link_method_documentation "Command.region_id", 
-                          "Renvoie l'ID de la région pointée par les coordonnées X,Y",
-                          {
-                            :x => ["Coordonnées X de la case", :Fixnum],
-                            :y => ["Coordonnées Y de la case", :Fixnum]
-                          }, true
-    register_command :mapinfo, "Command.region_id"
-
-    link_method_documentation "Command.square_passable?", 
-                          "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
-                          {
-                            :x => ["Coordonnées X de la case", :Fixnum],
-                            :y => ["Coordonnées Y de la case", :Fixnum],
-                            :direction => ["Direction (2,4,6,8)", :Fixnum]
-                          }, true
-
-    register_command :mapinfo, "Command.square_passable?"
-
-    link_method_documentation "Command.percent", 
-                          "Renvoie le pourcentage de value par rapport à max",
-                          {
-                            :value => ["Valeur à transformer", :Fixnum],
-                            :max => ["Valeur maximum", :Fixnum]
-                          }, true
-    register_command :standard, "Command.percent"
-
-    link_snippet("Command.percent", "Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)")
-    link_method_documentation "Command.apply_percent", 
-                          "Applique percent à max",
-                          {
-                            :percent => ["Valeur à appliquer", :Fixnum],
-                            :max => ["Valeur maximum", :Fixnum]
-                          }, true
-    link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
-    register_command :standard, "Command.apply_percent"
-
-    link_method_documentation "Command.include_page", 
-                          "Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement",
-                          {
-                            :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
-                            :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
-                            :page_id => ["ID de la page à inclure", :Fixnum]
-                          }
-    register_command :event, "Command.include_page"
-
-    link_method_documentation "Command.invoke_event", 
-                          "Invoque un évènement d'une autre map (ou de la même) sur la carte",
-                          {
-                            :map_id => ["ID de la map où chercher l'évènement à invoquer", :Fixnum],
-                            :event_id => ["ID de l'évènement à invoquer", :Fixnum],
-                            :new_id => ["Nouvel ID de l'évènement fraîchement invoqué", :Fixnum],
-                            :x => ["Position X où placer l'évènement invoqué", :Fixnum],
-                            :y => ["Position Y où placer l'évènement invoqué", :Fixnum]
-                          }
-    register_command :event, "Command.invoke_event"
-
-    link_method_documentation "Command.max_event_id", 
-                          "Renvoie le plus grand ID d'évènement occupé sur la carte",
+  link_method_documentation "Command.maj?", 
+                          "Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon",
                           {}, true
-    register_command :event, "Command.max_event_id"
+  register_command :keyboard, "Command.maj?"
 
-    link_method_documentation "Command.fresh_event_id", 
-                          "Renvoie un ID libre (utile en cas d'invocation d'évènement)",
+  link_method_documentation "Command.caps_lock?", 
+                          "Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon",
                           {}, true
-    register_command :event, "Command.fresh_event_id"
+  register_command :keyboard, "Command.caps_lock?"
+
+  link_method_documentation "Command.num_lock?", 
+                          "Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon",
+                          {}, true
+  register_command :keyboard, "Command.num_lock?"
+
+  link_method_documentation "Command.scroll_lock?", 
+                          "Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon",
+                          {}, true
+  register_command :keyboard, "Command.scroll_lock?"
+
+  link_method_documentation "Command.alt_gr?", 
+                          "Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon",
+                          {}, true
+  register_command :keyboard, "Command.alt_gr?"
+
+  link_method_documentation "Command.ctrl?", 
+                          "Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon",
+                          {:key => ["Symbole référençant la touche (cf:attributs) mise en combinaison", :Symbol]}, 
+                          true
+  register_command :keyboard, "Command.ctrl?"
+
+  link_method_documentation "Command.key_current", 
+                          "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
+                          {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
+  register_command :keyboard, "Command.key_current"
+
+  link_method_documentation "Command.key_current_rgss", 
+                          "Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
+                          {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
+  register_command :keyboard, "Command.key_current_rgss"
+
+  link_method_documentation "Command.key_time", 
+                          "Renvoie le nombre de frame pressée d'une touche en cours", 
+                          {:key => ["Touche à vérifier",:Symbol]}, true
+  register_command :keyboard, "Command.key_time"
 
 end
 

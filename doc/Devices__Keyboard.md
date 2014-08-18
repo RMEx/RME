@@ -393,6 +393,20 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
+**Keyboard.time(`key`)**
+
+> Renvoie le nombre de frame pressée d'une touche en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à vérifier  
+
+
+
+
+
+
 **Keyboard.trigger?(`key`)**
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon

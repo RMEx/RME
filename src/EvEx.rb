@@ -290,6 +290,11 @@ class Game_Interpreter
   def get_binding; binding; end
 end
 
+#==============================================================================
+# ** Commands Base
+#------------------------------------------------------------------------------
+#  Basics Commands
+#==============================================================================
 
 module Command
   #--------------------------------------------------------------------------
@@ -388,4 +393,54 @@ module Command
     msg = "[#{args[0]}] doesn't exists. Did you mean maybe [#{keywords[0]}]"+snd+"?"
     raise(NoMethodError, msg)
   end
+end
+
+#==============================================================================
+# ** Commands Device
+#------------------------------------------------------------------------------
+#  Device commands
+#==============================================================================
+
+module Command
+  #--------------------------------------------------------------------------
+  # * Keyboard support
+  #--------------------------------------------------------------------------
+  def key_press?(k);        Keyboard.press?(k);             end
+  def key_trigger?(k);      Keyboard.trigger?(k);           end
+  def key_release?(k);      Keyboard.release?(k);           end
+  def key_repeat?(k);       Keyboard.repeat?(k);            end
+  def ctrl?(k=nil);         Keyboard.ctrl?(k);              end
+  def keyboard_all?(m, *k); Keyboard.all?(m, *k);           end
+  def keyboard_any?(m, *k); Keyboard.any?(m, *k);           end
+  def caps_lock?;           Keyboard.caps_lock?;            end
+  def num_lock?;            Keyboard.num_lock?;             end
+  def scroll_lock?;         Keyboard.scroll_lock?;          end
+  def maj?;                 Keyboard.maj?;                  end
+  def alt_gr?;              Keyboard.alt_gr?;               end
+  def key_time(k);          Keyboard.time(k);               end
+  def key_current(*m);      Keyboard.current_key(*m);       end
+  def key_current_rgss(*m); Keyboard.rgss_current_key(*m);  end
+  def keyboard_current_digit; Keyboard.current_digit;         end
+  def keyboard_current_char;  Keyboard.current_char;          end
+  #--------------------------------------------------------------------------
+  # * Mouse Support
+  #--------------------------------------------------------------------------
+  def mouse_press?(k);    Mouse.press?(k);                end
+  def mouse_click?(k);    Mouse.click?(k);                end
+  def mouse_trigger?(k);  Mouse.trigger?(k);              end
+  def mouse_release?(k);  Mouse.release?(k);              end
+  def mouse_dragging?;    Mouse.dragging?;                end
+  def mouse_repeat?(k);   Mouse.repeat?(k);               end
+  def mouse_all?(m, *k);  Mouse.all?(m, *k);              end
+  def mouse_any?(m, *k);  Mouse.any?(m, *k);              end
+  def mouse_x;            Mouse.x;                        end
+  def mouse_y;            Mouse.y;                        end
+  def mouse_point;        Mouse.point;                    end 
+  def mouse_square_x;     Mouse.square_x;                 end
+  def mouse_square_y;     Mouse.square_y;                 end
+  def mouse_rect;         Mouse.rect;                     end
+  def mouse_last_rect;    Mouse.last_rect;                end
+  def click_time(k);      Mouse.time(k);                  end
+  def mouse_current(*m)   Mouse.current_key(*m);          end
+  def mouse_in?(rect);    Mouse.in?(rect);                end
 end

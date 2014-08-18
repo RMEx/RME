@@ -4,6 +4,17 @@
 Collection des commandes EventExtender
 
 ##Liste des méthodes
+**Command.alt_gr?**
+
+> Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
 **Command.apply_percent(`percent`, `max`)**
 
 > Applique percent à max
@@ -21,6 +32,31 @@ Exemple
 ```ruby  
 Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)  
 ```
+
+
+
+**Command.caps_lock?**
+
+> Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
+**Command.ctrl?(`key`)**
+
+> Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
+
+
+
 
 
 
@@ -84,6 +120,167 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.key_current(`method`)**
+
+> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
+
+
+
+
+
+
+**Command.key_current_rgss(`method`)**
+
+> Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
+
+
+
+
+
+
+**Command.key_press?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Command.key_release?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Command.key_repeat?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Command.key_time(`key`)**
+
+> Renvoie le nombre de frame pressée d'une touche en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à vérifier  
+
+
+
+
+
+
+**Command.key_trigger?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Command.keyboard_all?(`method`, `keys`)**
+
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+
+
+
+
+
+
+**Command.keyboard_any?(`method`, `keys`)**
+
+> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
+
+
+
+
+
+
+**Command.keyboard_current_char**
+
+> Renvoie le caractère actuel pressé par le clavier
+
+  
+> 
+
+
+
+
+
+**Command.keyboard_current_digit**
+
+> Renvoie le chiffre actuel pressé par le clavier
+
+  
+> 
+
+
+
+
+
+**Command.maj?**
+
+> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
 **Command.map_id**
 
 > Renvoie l'ID de la map en cours
@@ -109,6 +306,17 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 **Command.max_event_id**
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
+
+  
+> 
+
+
+
+
+
+**Command.num_lock?**
+
+> Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
   
 > 
@@ -162,6 +370,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 
+
+
+
+
+
+**Command.scroll_lock?**
+
+> Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+
+  
+> 
 
 
 
