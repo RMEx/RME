@@ -238,6 +238,20 @@ class Game_Map
 end
 
 #==============================================================================
+# ** Game_Message
+#------------------------------------------------------------------------------
+#  This class handles the state of the message window that displays text or
+# selections, etc. The instance of this class is referenced by $game_message.
+#==============================================================================
+
+class Game_Message
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :call_event
+end
+
+#==============================================================================
 # ** Game_Interpreter
 #------------------------------------------------------------------------------
 #  An interpreter for executing event commands. This class is used within the
@@ -245,6 +259,55 @@ end
 #==============================================================================
 
 class Game_Interpreter
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+
+    #--------------------------------------------------------------------------
+    # * Get page
+    #--------------------------------------------------------------------------
+    def get_page(map_id, event_id, page_id)
+      map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+      return unless map
+      event = map.events[event_id]
+      return unless event
+      page = event.pages[page_id-1]
+      return unless page
+      return page
+    end
+
+    #--------------------------------------------------------------------------
+    # * Determine if Event Page Conditions Are Met
+    #--------------------------------------------------------------------------
+    def conditions_met?(map_id, event_id, page)
+      page = get_page(map_id, event_id, page) if page.is_a?(Fixnum)
+      c = page.condition
+      if c.switch1_valid
+        return false unless $game_switches[c.switch1_id]
+      end
+      if c.switch2_valid
+        return false unless $game_switches[c.switch2_id]
+      end
+      if c.variable_valid
+        return false if $game_variables[c.variable_id] < c.variable_value
+      end
+      if c.self_switch_valid
+        key = [map_id, event_id, c.self_switch_ch]
+        return false if $game_self_switches[key] != true
+      end
+      if c.item_valid
+        item = $data_items[c.item_id]
+        return false unless $game_party.has_item?(item)
+      end
+      if c.actor_valid
+        actor = $game_actors[c.actor_id]
+        return false unless $game_party.members.include?(actor)
+      end
+      return true
+    end
+
+  end
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -279,13 +342,10 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Append Interpreter
   #--------------------------------------------------------------------------
-  def append_interpreter(map_id, id, page_id)
-    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
-    return unless map
-    event = map.events[id]
-    return unless event
-    page = event.pages[page_id-1]
+  def append_interpreter(map_id, id, page_id, flag = false)
+    page = Game_Interpreter.get_page(map_id, id, page_id)
     return unless page
+    return if !Game_Interpreter.conditions_met?(map_id, id, page) && flag
     list = page.list
     child = Game_Interpreter.new(@depth + 1)
     child.setup(list, same_map? ? @id : 0)
@@ -392,9 +452,9 @@ module Command
   #--------------------------------------------------------------------------
   # * Include event page
   #--------------------------------------------------------------------------
-  def include_page(map_id, id, page_id)
+  def include_page(map_id, id, page_id, f = false)
     return unless self.class == Game_Interpreter
-    self.append_interpreter(map_id, id, page_id)
+    self.append_interpreter(map_id, id, page_id, f)
   end
   #--------------------------------------------------------------------------
   # * Invoke Event
@@ -407,6 +467,12 @@ module Command
   #--------------------------------------------------------------------------
   def max_event_id; $game_map.max_id; end
   def fresh_event_id; max_event_id + 1; end
+  #--------------------------------------------------------------------------
+  # * Check if a page 's runnable
+  #--------------------------------------------------------------------------
+  def page_runnable?(map_id, ev_id, p_id)
+    Game_Interpreter.conditions_met?(map_id, ev_id, p_id)
+  end
   #--------------------------------------------------------------------------
   # * Method suggestions
   #--------------------------------------------------------------------------

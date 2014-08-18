@@ -100,7 +100,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-**Command.include_page(`map_id`, `event_id`, `page_id`)**
+**Command.include_page(`map_id`, `event_id`, `page_id`, `runnable`)**
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
 
@@ -110,6 +110,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
 `page_id`|`Fixnum`|ID de la page à inclure  
+`runnable`|`Boolean`|Par défaut, cette variable faut false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.  
 
 
 
@@ -539,6 +540,22 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+**Command.page_runnable?(`map_id`, `event_id`, `page_id`)**
+
+> Vérifie si la page est exécutable
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la map où chercher l'évènement à tester  
+`event_id`|`Fixnum`|ID de l'évènement où chercher la page à tester  
+`page_id`|`Fixnum`|ID de la page à testere  
+
 
 
 

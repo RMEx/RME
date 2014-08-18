@@ -515,9 +515,19 @@ module Command
                         {
                           :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
                           :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
-                          :page_id => ["ID de la page à inclure", :Fixnum]
+                          :page_id => ["ID de la page à inclure", :Fixnum],
+                          :runnable => ["Par défaut, cette variable faut false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.", :Boolean]
                         }
   register_command :event, "Command.include_page"
+
+  link_method_documentation "Command.page_runnable?", 
+                        "Vérifie si la page est exécutable",
+                        {
+                          :map_id => ["ID de la map où chercher l'évènement à tester", :Fixnum],
+                          :event_id => ["ID de l'évènement où chercher la page à tester", :Fixnum],
+                          :page_id => ["ID de la page à testere", :Fixnum]
+                          }, true
+  register_command :event, "Command.page_runnable?"
 
   link_method_documentation "Command.invoke_event", 
                         "Invoque un évènement d'une autre map (ou de la même) sur la carte",
