@@ -46,6 +46,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.click_time(`key`)**
+
+> Renvoie le nombre de frame pressée d'une touche en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à vérifier  
+
+
+
+
+
+
 **Command.ctrl?(`key`)**
 
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
@@ -314,6 +328,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.mouse_current_key(`method`)**
+
+> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
+
+
+
+
+
+
+**Command.mouse_trigger?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
 **Command.num_lock?**
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
@@ -427,6 +469,194 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 
+
+
+
+
+
+**Commande.mouse_all?(`method`, `keys`)**
+
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+
+
+
+
+
+
+**Commande.mouse_any?(`method`, `keys`)**
+
+> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
+
+
+
+
+
+
+**Commande.mouse_click?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Commande.mouse_dragging?**
+
+> Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_in?(`rectangle`)**
+
+> Renvoie true si la souris se trouve dans le rectangle passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`rectangle`|`Rect`|Rectangle à vérifier  
+
+
+
+
+
+
+**Commande.mouse_last_rect**
+
+> Renvoie le dernier rectangle de sélection de la souris effectué
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_point**
+
+> Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_press?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Commande.mouse_rect**
+
+> Renvoie le rectangle de sélection de la souris (tracé en cours)
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_release?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Commande.mouse_repeat?(`key`)**
+
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+**Commande.mouse_square_x**
+
+> Renvoie la position (en cases) X de la souris
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_square_y**
+
+> Renvoie la position (en cases) Y de la souris
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_x**
+
+> Renvoie la position (en pixels) X de la souris
+
+  
+> 
+
+
+
+
+
+**Commande.mouse_y**
+
+> Renvoie la position (en pixels) Y de la souris
+
+  
+> 
 
 
 

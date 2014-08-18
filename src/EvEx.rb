@@ -441,6 +441,6 @@ module Command
   def mouse_rect;         Mouse.rect;                     end
   def mouse_last_rect;    Mouse.last_rect;                end
   def click_time(k);      Mouse.time(k);                  end
-  def mouse_current(*m)   Mouse.current_key(*m);          end
   def mouse_in?(rect);    Mouse.in?(rect);                end
+  def mouse_current_key(*m)   Mouse.current_key(*m);          end
 end

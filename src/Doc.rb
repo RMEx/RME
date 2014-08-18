@@ -291,9 +291,6 @@ class Devices::Mouse
   link_method_documentation "Mouse.point", 
                           "Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran",
                           {}, true
-  link_method_documentation "Mouse.point", 
-                          "Renvoie un point (possédant les attributs x, y) référençant la position de la souris en carrés (cases) par rapport à l'écran",
-                          {}, true
   link_method_documentation "Mouse.x", 
                           "Renvoie la position (en pixels) X de la souris",
                           {}, true
@@ -638,6 +635,108 @@ module Command
                           "Renvoie le nombre de frame pressée d'une touche en cours", 
                           {:key => ["Touche à vérifier",:Symbol]}, true
   register_command :keyboard, "Command.key_time"
+
+  link_method_documentation "Command.mouse_trigger?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :mouse, "Command.mouse_trigger?"
+
+  link_method_documentation "Commande.mouse_press?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :mouse, "Command.mouse_press?"
+
+  link_method_documentation "Commande.mouse_click?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :mouse, "Command.mouse_click?"
+
+  link_method_documentation "Commande.mouse_repeat?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :mouse, "Command.mouse_repeat?"
+
+  link_method_documentation "Commande.mouse_release?", 
+                          "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
+                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          true
+  register_command :mouse, "Command.mouse_release?"
+
+  link_method_documentation "Commande.mouse_point", 
+                          "Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran",
+                          {}, true
+  register_command :mouse, "Command.mouse_point"
+
+  link_method_documentation "Commande.mouse_x", 
+                          "Renvoie la position (en pixels) X de la souris",
+                          {}, true
+  register_command :mouse, "Command.mouse_x"
+
+  link_method_documentation "Commande.mouse_y", 
+                          "Renvoie la position (en pixels) Y de la souris",
+                          {}, true
+  register_command :mouse, "Command.mouse_y"
+
+  link_method_documentation "Commande.mouse_square_x", 
+                          "Renvoie la position (en cases) X de la souris",
+                          {}, true
+  register_command :mouse, "Command.mouse_square_x"
+
+  link_method_documentation "Commande.mouse_square_y", 
+                          "Renvoie la position (en cases) Y de la souris",
+                          {}, true
+  register_command :mouse, "Command.mouse_square_y"
+
+  link_method_documentation "Commande.mouse_rect", 
+                          "Renvoie le rectangle de sélection de la souris (tracé en cours)",
+                          {}, true
+  register_command :mouse, "Command.mouse_rect"
+
+  link_method_documentation "Commande.mouse_last_rect", 
+                          "Renvoie le dernier rectangle de sélection de la souris effectué",
+                          {}, true
+  register_command :mouse, "Command.mouse_last_rect"
+
+  link_method_documentation "Commande.mouse_dragging?", 
+                          "Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran",
+                          {}, true
+  register_command :mouse, "Command.mouse_dragging?"
+
+  link_method_documentation "Commande.mouse_in?", 
+                          "Renvoie true si la souris se trouve dans le rectangle passé en argument",
+                          {:rectangle => ["Rectangle à vérifier", :Rect]}, true
+  register_command :mouse, "Command.mouse_in?"
+
+  link_method_documentation "Commande.mouse_all?", 
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
+                          }, true
+  register_command :mouse, "Command.mouse_all?"
+
+  link_method_documentation "Commande.mouse_any?", 
+                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method", 
+                          {
+                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                          }, true
+  register_command :mouse, "Command.mouse_any?"
+
+  link_method_documentation "Command.mouse_current_key", 
+                          "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
+                          {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
+  register_command :mouse, "Command.mouse_current_key?"
+
+  link_method_documentation "Command.click_time", 
+                          "Renvoie le nombre de frame pressée d'une touche en cours", 
+                          {:key => ["Touche à vérifier",:Symbol]}, true
+  register_command :mouse, "Command.click_time"
+
 
 end
 

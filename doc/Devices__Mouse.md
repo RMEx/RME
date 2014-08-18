@@ -113,7 +113,7 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 
 **Mouse.point**
 
-> Renvoie un point (possédant les attributs x, y) référençant la position de la souris en carrés (cases) par rapport à l'écran
+> Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
 
   
 > 
