@@ -284,17 +284,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-**Command.maj?**
-
-> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
-
-  
-> 
-
-
-
-
-
 **Command.map_id**
 
 > Renvoie l'ID de la map en cours
@@ -608,6 +597,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 **Command.scroll_lock?**
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
+**Command.shift?**
+
+> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
   
 > 

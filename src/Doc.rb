@@ -219,7 +219,7 @@ class Devices::Keyboard
   link_method_documentation "Keyboard.current_digit", 
                           "Renvoie le chiffre actuel pressé par le clavier",
                           {}, true
-  link_method_documentation "Keyboard.maj?", 
+  link_method_documentation "Keyboard.shift?", 
                           "Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon",
                           {}, true
   link_method_documentation "Keyboard.caps_lock?", 
@@ -590,10 +590,10 @@ module Command
                           {}, true
   register_command :keyboard, "Command.keyboard_current_digit"
 
-  link_method_documentation "Command.maj?", 
+  link_method_documentation "Command.shift?", 
                           "Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon",
                           {}, true
-  register_command :keyboard, "Command.maj?"
+  register_command :keyboard, "Command.shift?"
 
   link_method_documentation "Command.caps_lock?", 
                           "Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon",

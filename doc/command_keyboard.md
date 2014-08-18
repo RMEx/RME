@@ -112,13 +112,6 @@ Commandes relatives au clavier
   
 > 
 
-**maj?**
-
-> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
-
-  
-> 
-
 **num_lock?**
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
@@ -129,6 +122,13 @@ Commandes relatives au clavier
 **scroll_lock?**
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+
+  
+> 
+
+**shift?**
+
+> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
   
 > 

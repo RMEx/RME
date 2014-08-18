@@ -304,17 +304,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.maj?**
-
-> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
-
-  
-> 
-
-
-
-
-
 **Keyboard.num_lock?**
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
@@ -385,6 +374,17 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 **Keyboard.scroll_lock?**
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
+**Keyboard.shift?**
+
+> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
   
 > 

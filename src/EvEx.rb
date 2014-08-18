@@ -415,7 +415,7 @@ module Command
   def caps_lock?;           Keyboard.caps_lock?;            end
   def num_lock?;            Keyboard.num_lock?;             end
   def scroll_lock?;         Keyboard.scroll_lock?;          end
-  def maj?;                 Keyboard.maj?;                  end
+  def shift?;               Keyboard.shift?;                end
   def alt_gr?;              Keyboard.alt_gr?;               end
   def key_time(k);          Keyboard.time(k);               end
   def key_current(*m);      Keyboard.current_key(*m);       end

@@ -779,7 +779,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Public instance variables
     #--------------------------------------------------------------------------
-    attr_reader :maj
+    attr_reader :shift
     attr_reader :caps_lock
     attr_reader :num_lock
     attr_reader :scroll_lock
@@ -791,7 +791,7 @@ module Devices
     def initialize
       super
       @wait_char    = ""
-      @maj          = false
+      @shift          = false
       @caps_lock    = false
       @num_lock     = false
       @scroll_lock  = false
@@ -819,7 +819,7 @@ module Devices
     #--------------------------------------------------------------------------
     def update_keystate
       @ctrl   = Key::Lcontrol.press? || Key::Rcontrol.press?
-      @maj    = (@caps_lock) ? !Key::Shift.press? : Key::Shift.press?
+      @shift    = (@caps_lock) ? !Key::Shift.press? : Key::Shift.press?
       @alt_gr = @ctrl && Key::Alt.press?
     end
 
@@ -897,7 +897,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Extending Interface
     #--------------------------------------------------------------------------
-    alias :maj?           :maj
+    alias :shift?           :shift
     alias :caps_lock?     :caps_lock
     alias :num_lock?      :num_lock
     alias :scroll_lock?   :scroll_lock
