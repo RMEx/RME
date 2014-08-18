@@ -656,7 +656,7 @@ module Devices
     #--------------------------------------------------------------------------
     def initialize
       @buffer   = buffer(256)
-      @count    = Array.new(256, 0)
+      @count    = Array.new(Keys::All.length, 0)
       @release  = Array.new
       @keys     = Keys::All
     end
