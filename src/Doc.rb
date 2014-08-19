@@ -771,6 +771,23 @@ module Command
                           }
   register_command :picture, "Command.picture_origin"
 
+  link_method_documentation "Command.picture_x", 
+                          "Change l'axe X d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :x => ["Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_x"
+
+  link_method_documentation "Command.picture_y", 
+                          "Change l'axe Y d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :x => ["Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_y"
+
+
 
 end
 

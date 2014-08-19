@@ -445,6 +445,27 @@ module Command
     origin = origin[0] if origin.length == 1
     pictures[id].origin = origin
   end
+  #--------------------------------------------------------------------------
+  # * Modify x position
+  #--------------------------------------------------------------------------
+  def picture_x(id, x=false)
+    return pictures[id].x unless x
+    pictures[id].x = x
+  end
+  #--------------------------------------------------------------------------
+  # * Modify y position
+  #--------------------------------------------------------------------------
+  def picture_y(id, y=false)
+    return pictures[id].y unless y
+    pictures[id].y = y
+  end
+  #--------------------------------------------------------------------------
+  # * Modify position
+  #--------------------------------------------------------------------------
+  def picture_position(id, x, y)
+    picture_x(id, x)
+    picture_y(id, y)
+  end
 end
 
 #==============================================================================
