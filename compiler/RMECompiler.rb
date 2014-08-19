@@ -28,7 +28,12 @@ LIB.each do |name, filename|
   deflator = Zlib::Deflate.new(Zlib::BEST_COMPRESSION)
   data_script = deflator.deflate(content_script, Zlib::FINISH)
   deflator.close
-  content << [max_id, name, data_script]
+  precc_i = after.index{|s| s[1] == name}
+  if precc_i
+    after[precc_i][2] = data_script
+  else
+    content << [max_id, name, data_script]
+  end
 end
 # Compile tree
 new_tree = before + content + after
