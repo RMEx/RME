@@ -45,6 +45,6 @@ p "Backup savec in #{oback}"
 save_data(new_tree, ofile)
 p "Rvata save in #{ofile}"
 gitted = "#{PATHS[:versionning]}VERSION-#{Time.now.to_i}_#{PATHS[:output_file]}"
-save_data(new_tree, gitted)
+#save_data(new_tree, gitted)
 p "RME Compiled !"
 msgbox("Comilation successed!")
