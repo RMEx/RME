@@ -437,6 +437,14 @@ module Command
   def picture_show(id, n, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
     pictures[id].show(n, ori, x, y, z_x, z_y, op, bl)
   end
+  #--------------------------------------------------------------------------
+  # * Modify Origin
+  # Origin : 0 | 1 (0 = Corner High Left, 1 = Center)
+  #--------------------------------------------------------------------------
+  def picture_origin(id, *origin)
+    origin = origin[0] if origin.length == 1
+    pictures[id].origin = origin
+  end
 end
 
 #==============================================================================

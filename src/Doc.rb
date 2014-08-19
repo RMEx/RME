@@ -763,6 +763,14 @@ module Command
                           }
   register_command :picture, "Command.picture_show"
 
+  link_method_documentation "Command.picture_origin", 
+                          "Change l'origine d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :origin => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_origin"
+
 
 end
 
