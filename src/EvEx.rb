@@ -12,13 +12,6 @@
 # An RPGMaker's Event extention
 #==============================================================================
 
-#==============================================================================
-# ** Command
-#------------------------------------------------------------------------------
-#  Command Extension
-#==============================================================================
-
-
 
 #==============================================================================
 # ** V (special thanks to Nuki)
@@ -250,6 +243,286 @@ class Game_Message
   #--------------------------------------------------------------------------
   attr_accessor :call_event
 end
+
+#==============================================================================
+# ** Game_Screen
+#------------------------------------------------------------------------------
+#  This class handles screen maintenance data, such as changes in color tone,
+# flashes, etc. It's used within the Game_Map and Game_Troop classes.
+#==============================================================================
+
+class Game_Screen
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+
+    #--------------------------------------------------------------------------
+    # * Return current Game Screen
+    #--------------------------------------------------------------------------
+    def get
+      $game_party.in_battle ? $game_troop.screen : $game_map.screen
+    end
+  end
+end
+
+#==============================================================================
+# ** Game_Picture
+#------------------------------------------------------------------------------
+#  Pictures ingame
+#==============================================================================
+
+class Game_Picture
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias :rm_extender_initialize  :initialize
+  alias :rm_extender_show        :show
+  alias :rm_extender_update      :update
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor  :number                   # picture index
+  attr_accessor  :name                     # filename
+  attr_accessor  :origin                   # starting point
+  attr_accessor  :x                        # x-coordinate
+  attr_accessor  :y                        # y-coordinate
+  attr_accessor  :zoom_x                   # x directional zoom rate
+  attr_accessor  :zoom_y                   # y directional zoom rate
+  attr_accessor  :opacity                  # opacity level
+  attr_accessor  :blend_type               # blend method
+  attr_accessor  :tone                     # color tone
+  attr_accessor  :angle                    # rotation angle
+  attr_accessor  :pin
+  attr_accessor  :shake
+  attr_accessor  :mirror
+  attr_accessor  :wave_amp
+  attr_accessor  :wave_speed
+  attr_accessor  :target_x, :target_y, :target_zoom_x, :target_zoom_y
+  attr_accessor  :target_opacity
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(number)
+    rm_extender_initialize(number)
+    clear_effects
+  end
+  #--------------------------------------------------------------------------
+  # * Clear effects
+  #--------------------------------------------------------------------------
+  def clear_effects
+    @mirror = false
+    @wave_amp = @wave_speed = 0
+    @pin = false
+    clear_shake
+  end
+  #--------------------------------------------------------------------------
+  # * Show Picture
+  #--------------------------------------------------------------------------
+  def show(name, x = 0, y = 0, origin = 0, zoom_x = 100, zoom_y = 100, opacity = 255, blend_type = 0)
+    rm_extender_show(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+    clear_effects
+  end
+  #--------------------------------------------------------------------------
+  # * Clear Shake
+  #--------------------------------------------------------------------------
+  def clear_shake
+    @shake_power = 0
+    @shake_speed = 0
+    @shake_duration = 0
+    @shake_direction = 1
+    @shake = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Start Shaking
+  #     power: intensity
+  #     speed: speed
+  #--------------------------------------------------------------------------
+  def start_shake(power, speed, duration)
+    @shake_power = power
+    @shake_speed = speed
+    @shake_duration = duration
+  end
+  #--------------------------------------------------------------------------
+  # * Update Shake
+  #--------------------------------------------------------------------------
+  def update_shake
+    if @shake_duration > 0 || @shake != 0
+      delta = (@shake_power * @shake_speed * @shake_direction) / 10.0
+      if @shake_duration <= 1 && @shake * (@shake + delta) < 0
+        @shake = 0
+      else
+        @shake += delta
+      end
+      @shake_direction = -1 if @shake > @shake_power * 2
+      @shake_direction = 1 if @shake < - @shake_power * 2
+      @shake_duration -= 1
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    rm_extender_update
+    update_shake
+  end
+
+  #--------------------------------------------------------------------------
+  # * Wave
+  #--------------------------------------------------------------------------
+  def wave(amp, speed)
+    @wave_amp = amp
+    @wave_speed = speed
+  end
+
+  #--------------------------------------------------------------------------
+  # * Flip picture
+  #--------------------------------------------------------------------------
+  def flip
+    self.mirror = !self.mirror
+  end
+
+  #--------------------------------------------------------------------------
+  # * Change Tone
+  #--------------------------------------------------------------------------
+  def tone_change(*args)
+    case args.length
+    when 1; 
+      tone = args[0]
+      duration = 0
+    else
+      r, g, b = args[0], args[1], args[2]
+      gray = args[3] || 0
+      tone = Tone.new(r, g, b, gray)
+      duration = args[4] || 0
+    end
+    self.start_tone_change(tone, duration)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Blend mode
+  #--------------------------------------------------------------------------
+  def blend=(mode)
+    blend_type = 0
+    blend_type = blend if [0,1,2].include?(blend)
+    @blend_type = blend_type
+  end
+
+  #--------------------------------------------------------------------------
+  # * Pin picture
+  #--------------------------------------------------------------------------
+  def pin
+    @pin = true
+  end
+
+  #--------------------------------------------------------------------------
+  # * Unpin picture
+  #--------------------------------------------------------------------------
+  def unpin
+    @pin = false
+  end
+
+end
+
+#==============================================================================
+# ** Commands Picture
+#------------------------------------------------------------------------------
+#  Pictures manipulation
+#==============================================================================
+
+module Command
+  #--------------------------------------------------------------------------
+  # * Picture show
+  #--------------------------------------------------------------------------
+  def picture_show(id, n, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+    pictures[id].show(n, ori, x, y, z_x, z_y, op, bl)
+  end
+end
+
+#==============================================================================
+# ** Sprite_Picture
+#------------------------------------------------------------------------------
+#  Sprite picture InGame
+#==============================================================================
+
+class Sprite_Picture
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias rm_extender_update update
+  alias rm_extender_update_origin update_origin
+  #--------------------------------------------------------------------------
+  # * Get cache
+  #--------------------------------------------------------------------------
+  def swap_cache(name)
+    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+      return Cache.picture($2)
+    end
+    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+      return Cache.battler($2, 0)
+    end
+    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+      return Cache.battleback1($2)
+    end
+    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+      return Cache.battleback2($2)
+    end
+    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+      return Cache.parallax($2)
+    end
+    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+      return Cache.title1($2)
+    end
+    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+      return Cache.title2($2)
+    end
+    return Cache.picture(name)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Transfer Origin Bitmap
+  #--------------------------------------------------------------------------
+  def update_bitmap
+    if @picture.name.empty?
+      self.bitmap = nil
+    else
+      self.bitmap = swap_cache(@picture.name)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    rm_extender_update
+    self.mirror = !self.mirror if @picture.mirror != self.mirror
+    self.wave_amp = @picture.wave_amp if @picture.wave_amp != self.wave_amp
+    self.wave_speed = @picture.wave_speed if @picture.wave_speed != self.wave_speed
+  end
+  #--------------------------------------------------------------------------
+  # * Update Position
+  #--------------------------------------------------------------------------
+  def update_position
+    if @picture.pin
+      self.x = @picture.x - ($game_map.display_x * 32) + @picture.shake
+      self.y = @picture.y - ($game_map.display_y * 32)
+    else
+      self.x = @picture.x + @picture.shake
+      self.y = @picture.y
+    end
+    self.z = @picture.number
+  end
+  #--------------------------------------------------------------------------
+  # * Update Origin
+  #--------------------------------------------------------------------------
+  def update_origin
+    if @picture.origin.is_a?(Array)
+      x, y = @picture.origin
+      self.ox, self.oy = x, y
+    else
+      rm_extender_update_origin
+    end
+  end
+end 
+
 
 #==============================================================================
 # ** Game_Interpreter
@@ -536,6 +809,16 @@ module Command
   def click_time(k);      Mouse.time(k);                  end
   def mouse_in?(rect);    Mouse.in?(rect);                end
   def mouse_current_key(*m)   Mouse.current_key(*m);      end
+end
+
+#==============================================================================
+# ** Commands Picture
+#------------------------------------------------------------------------------
+#  Pictures manipulation
+#==============================================================================
+
+module Command
+
 end
 
 #==============================================================================

@@ -429,6 +429,7 @@ module Command
   register_command_category :event, "Commandes évènements", "Commandes relatives aux évènements"
   register_command_category :keyboard, "Commandes du clavier", "Commandes relatives au clavier"
   register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
+  register_command_category :picture, "Commande de manipulation des images", "Commandes relatives à la manipulation des images"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -746,6 +747,21 @@ module Command
                           "Renvoie le nombre de frame pressée d'une touche en cours", 
                           {:key => ["Touche à vérifier",:Symbol]}, true
   register_command :mouse, "Command.click_time"
+
+  link_method_documentation "Command.picture_show", 
+                          "Affiche une image à l'écran", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :name => ["Nom de l'image (sans l'extension)", :String],
+                            :"*x" => ["Position en X de l'image (par défaut 0)", :Fixnum],
+                            :"*y" => ["Position en X de l'image (par défaut 0)", :Fixnum],
+                            :"*origin" => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                            :"*zoom_x" => ["Zoom sur la largeur de l'image par défaut 100 (pour 100%)", :Fixnum],
+                            :"*zoom_y" => ["Zoom sur la hauteur de l'image par défaut 100 (pour 100%)", :Fixnum],
+                            :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_show"
 
 
 end

@@ -1267,4 +1267,10 @@ end
 
 module Command
   extend self
+  #--------------------------------------------------------------------------
+  # * Screen data
+  #--------------------------------------------------------------------------
+  def screen; Game_Screen.get; end
+  def pictures; screen.pictures; end
+  def scene; SceneManager.scene; end
 end
