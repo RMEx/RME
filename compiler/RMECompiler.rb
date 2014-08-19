@@ -54,7 +54,9 @@ module RMECompiler
   #--------------------------------------------------------------------------
   def purge_sourcetree
     self.sourceTree.reject! do |script|
-      LIB.keys.include?(script[1].dup.force_encoding('utf-8'))
+      LIB.keys.collect do |k|
+        k.dup.force_encoding('utf-8')
+      end.include?(script[1].dup.force_encoding('utf-8'))
     end
   end
 
@@ -80,13 +82,17 @@ module RMECompiler
   # * Compile LIB
   #--------------------------------------------------------------------------
   def compile_lib
-    self.compiledLib = [[self.maxId, "", EMPTY]]
+    self.compiledLib = []
+    if self.after[0][2] != EMPTY && self.after[1][2] != EMPTY
+      self.compiledLib << [self.maxId, "", EMPTY] 
+    end
     LIB.each do |name, filename|
       self.maxId += 1 
       raw   = File.open(src(filename), 'rb') { |f| f.read }
       data  = deflate(raw)
       self.compiledLib << [maxId, name.dup.force_encoding('utf-8'), data]
     end
+    self.compiledFile = self.before + self.compiledLib + self.after
   end
 
   #--------------------------------------------------------------------------
@@ -94,7 +100,6 @@ module RMECompiler
   #--------------------------------------------------------------------------
   def move_compiled_file 
     save_data(load_data(self.out), self.outb)
-    self.compiledFile = self.before + self.compiledLib + self.after
     save_data(self.compiledFile, self.out)
   end
 
@@ -102,7 +107,7 @@ module RMECompiler
   # * Final Alert
   #--------------------------------------------------------------------------
   def prompt
-    msgbox("Compilation successed !")
+    msgbox("Compilation succeeded!")
   end
 
   #--------------------------------------------------------------------------
