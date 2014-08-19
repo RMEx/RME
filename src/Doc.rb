@@ -516,7 +516,7 @@ module Command
                           :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
                           :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
                           :page_id => ["ID de la page à inclure", :Fixnum],
-                          :runnable => ["Par défaut, cette variable faut false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.", :Boolean]
+                          "*runnable".to_sym => ["Par défaut, cette variable a pour valeur false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.", :Boolean]
                         }
   register_command :event, "Command.include_page"
 
@@ -535,8 +535,8 @@ module Command
                           :map_id => ["ID de la map où chercher l'évènement à invoquer", :Fixnum],
                           :event_id => ["ID de l'évènement à invoquer", :Fixnum],
                           :new_id => ["Nouvel ID de l'évènement fraîchement invoqué", :Fixnum],
-                          :x => ["Position X où placer l'évènement invoqué", :Fixnum],
-                          :y => ["Position Y où placer l'évènement invoqué", :Fixnum]
+                          "*x".to_sym => ["Position X où placer l'évènement invoqué, par défaut, conserve la valeur de l'évènement invoqué", :Fixnum],
+                          "*y".to_sym => ["Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué", :Fixnum]
                         }
   register_command :event, "Command.invoke_event"
 

@@ -100,7 +100,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-**Command.include_page(`map_id`, `event_id`, `page_id`, `runnable`)**
+**Command.include_page(`map_id`, `event_id`, `page_id`, `*runnable`)**
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
 
@@ -110,14 +110,14 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
 `page_id`|`Fixnum`|ID de la page à inclure  
-`runnable`|`Boolean`|Par défaut, cette variable faut false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.  
+`*runnable`|`Boolean`|Par défaut, cette variable a pour valeur false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.  
 
 
 
 
 
 
-**Command.invoke_event(`map_id`, `event_id`, `new_id`, `x`, `y`)**
+**Command.invoke_event(`map_id`, `event_id`, `new_id`, `*x`, `*y`)**
 
 > Invoque un évènement d'une autre map (ou de la même) sur la carte
 
@@ -127,8 +127,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer  
 `event_id`|`Fixnum`|ID de l'évènement à invoquer  
 `new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué  
-`x`|`Fixnum`|Position X où placer l'évènement invoqué  
-`y`|`Fixnum`|Position Y où placer l'évènement invoqué  
+`*x`|`Fixnum`|Position X où placer l'évènement invoqué, par défaut, conserve la valeur de l'évènement invoqué  
+`*y`|`Fixnum`|Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué  
 
 
 
