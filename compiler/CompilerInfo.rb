@@ -22,4 +22,5 @@ LIB = {
 	"RME.EvEx"			=> "EvEx.rb",
 	"RME.DocGenerator"	=> "DocGenerator.rb",
 	"RME.Documentation"	=> "Doc.rb"
+  
 }
