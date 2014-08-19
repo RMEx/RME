@@ -83,9 +83,6 @@ module RMECompiler
   #--------------------------------------------------------------------------
   def compile_lib
     self.compiledLib = []
-    if self.after[0][2] != EMPTY && self.after[1][2] != EMPTY
-      self.compiledLib << [self.maxId, "", EMPTY] 
-    end
     LIB.each do |name, filename|
       self.maxId += 1 
       raw   = File.open(src(filename), 'rb') { |f| f.read }
