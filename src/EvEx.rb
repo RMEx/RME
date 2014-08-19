@@ -552,21 +552,21 @@ module DataManager
     #--------------------------------------------------------------------------
     # * Alias
     #--------------------------------------------------------------------------
-    alias extender_create_game_objects create_game_objects
-    alias extender_make_save_contents make_save_contents
-    alias extender_extract_save_contents extract_save_contents
+    alias rm_extender_create_game_objects create_game_objects
+    alias rm_extender_make_save_contents make_save_contents
+    alias rm_extender_extract_save_contents extract_save_contents
     #--------------------------------------------------------------------------
     # * Creates the objects of the game
     #--------------------------------------------------------------------------
     def create_game_objects
-      extender_create_game_objects
+      rm_extender_create_game_objects
       $game_self_vars = Hash.new
     end
     #--------------------------------------------------------------------------
     # * Saves the contents of the game
     #--------------------------------------------------------------------------
     def make_save_contents
-      contents = extender_make_save_contents
+      contents = rm_extender_make_save_contents
       contents[:self_vars] = $game_self_vars
       contents
     end
@@ -574,7 +574,7 @@ module DataManager
     # * Load a save
     #--------------------------------------------------------------------------
     def extract_save_contents(contents)
-      extender_extract_save_contents(contents)
+      rm_extender_extract_save_contents(contents)
       $game_self_vars = contents[:self_vars]
     end
   end
