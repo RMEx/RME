@@ -10,10 +10,9 @@
 PATHS = {
 	:src           => "../../src/",
 	:output_dir    => "../../project/Data/",
+  :raw_compiled  => "../../project/Data/Scripts.rvdata2",
 	:output_file   => "Scripts.rvdata2",
 	:output_backup => "Scripts-Backup.rvdata2",
-	:versionning   => "../rvdatas/",
-	:raw_compiled  => "../Raw/Raw.rvdata2",
 	:after         => "Scene_Gameover"
 }
 LIB = {

@@ -3,48 +3,123 @@
 #------------------------------------------------------------------------------
 #  With : 
 # Nuki
+# Grim
 #------------------------------------------------------------------------------
 # An RPGMaker's Compiler
 #==============================================================================
 
-# PREMICE
+module RMECompiler
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Constants
+  #--------------------------------------------------------------------------
+  COMPILERINFO = '../CompilerInfo.rb'
+  EMPTY = "x\x9C\u{3 0 0 0 0 1}"
 
-COMPILERINFO = '../CompilerInfo.rb'
-EMPTY = "x\x9C\u{3 0 0 0 0 1}"
-mlib = File.open(COMPILERINFO, 'rb') { |f| f.read }
-eval(mlib)
+  #--------------------------------------------------------------------------
+  # * Attributes
+  #--------------------------------------------------------------------------
+  attr_accessor :compilerInfo
+  attr_accessor :sourceTree 
+  attr_accessor :maxId
+  attr_accessor :junction
+  attr_accessor :after
+  attr_accessor :before
+  attr_accessor :compiledLib
+  attr_accessor :compiledFile
 
-# Build Script tree
-script_tree = load_data(PATHS[:raw_compiled])
-max_id = script_tree.max_by{|s| s[0]}[0]
-over_id = script_tree.index{|s| s[1] == PATHS[:after]}
-before = script_tree[0 .. over_id]
-after = script_tree[over_id.succ .. -1]
-content = [[max_id, "", EMPTY]]
-LIB.each do |name, filename|
-  max_id += 1 
-  fname = PATHS[:src] + filename
-  content_script = File.open(fname, 'rb') { |f| f.read }
-  deflator = Zlib::Deflate.new(Zlib::BEST_COMPRESSION)
-  data_script = deflator.deflate(content_script, Zlib::FINISH)
-  deflator.close
-  precc_i = after.index{|s| s[1] == name}
-  if precc_i
-    after[precc_i][2] = data_script
-  else
-    content << [max_id, name, data_script]
+  #--------------------------------------------------------------------------
+  # * Build complete name
+  #--------------------------------------------------------------------------
+  def src(file);  PATHS[:src] + file;                         end
+  def out;        PATHS[:output_dir] + PATHS[:output_file];   end 
+  def outb;       PATHS[:output_dir] + PATHS[:output_backup]; end
+  
+  #--------------------------------------------------------------------------
+  # * Init file to compile
+  #--------------------------------------------------------------------------
+  def init_file
+    self.compilerInfo = File.open(COMPILERINFO, 'rb') { |f| f.read }
+    Kernel.eval(self.compilerInfo)
+    self.sourceTree   = load_data(PATHS[:raw_compiled])
+    self.maxId        = self.sourceTree.max_by { |s| s[0] }[0]
+    self.junction     = self.sourceTree.index {|s| s[1] == PATHS[:after]}
   end
+
+  #--------------------------------------------------------------------------
+  # * Purge SourceTree
+  #--------------------------------------------------------------------------
+  def purge_sourcetree
+    self.sourceTree.reject! do |script|
+      LIB.keys.include?(script[1].dup.force_encoding('utf-8'))
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Make Junction
+  #--------------------------------------------------------------------------
+  def make_junction
+    self.before = self.sourceTree[0 .. self.junction]
+    self.after  = self.sourceTree[self.junction.succ .. -1]
+  end
+
+  #--------------------------------------------------------------------------
+  # * Deflate (ZLib)
+  #--------------------------------------------------------------------------
+  def deflate(content)
+    docker  = Zlib::Deflate.new(Zlib::BEST_COMPRESSION)
+    data    = docker.deflate(content, Zlib::FINISH)
+    docker.close
+    data
+  end
+
+  #--------------------------------------------------------------------------
+  # * Compile LIB
+  #--------------------------------------------------------------------------
+  def compile_lib
+    self.compiledLib = [[self.maxId, "", EMPTY]]
+    LIB.each do |name, filename|
+      self.maxId += 1 
+      raw   = File.open(src(filename), 'rb') { |f| f.read }
+      data  = deflate(raw)
+      self.compiledLib << [maxId, name.dup.force_encoding('utf-8'), data]
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Move compiled file
+  #--------------------------------------------------------------------------
+  def move_compiled_file 
+    save_data(load_data(self.out), self.outb)
+    self.compiledFile = self.before + self.compiledLib + self.after
+    save_data(self.compiledFile, self.out)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Final Alert
+  #--------------------------------------------------------------------------
+  def prompt
+    msgbox("Compilation successed !")
+  end
+
+  #--------------------------------------------------------------------------
+  # * Run
+  #--------------------------------------------------------------------------
+  def run 
+    self.init_file
+    self.purge_sourcetree
+    self.make_junction
+    self.compile_lib
+    self.move_compiled_file
+    self.prompt
+  end
+
 end
-# Compile tree
-new_tree = before + content + after
-odir = PATHS[:output_dir]
-ofile = odir + PATHS[:output_file]
-oback = odir + PATHS[:output_backup]
-save_data(load_data(ofile), oback)
-p "Backup savec in #{oback}"
-save_data(new_tree, ofile)
-p "Rvata save in #{ofile}"
-gitted = "#{PATHS[:versionning]}VERSION-#{Time.now.to_i}_#{PATHS[:output_file]}"
-#save_data(new_tree, gitted)
-p "RME Compiled !"
-msgbox("Comilation successed!")
+
+#--------------------------------------------------------------------------
+# * Run compilation
+#--------------------------------------------------------------------------
+RMECompiler.run
