@@ -17,9 +17,9 @@ PATHS = {
 	:after         => "Scene_Gameover"
 }
 LIB = {
-	"▼ RME" 			      => "front.txt",
-	"RME.SDK" 			    => "SDK.rb",
-	"RME.EvEx"			    => "EvEx.rb",
-	"RME.DocGenerator"	=> "DocGenerator.rb",
-	"RME.Documentation"	=> "Doc.rb"
+	"▼ RME"              => "front.txt",
+	"RME.SDK"            => "SDK.rb",
+	"RME.EvEx"           => "EvEx.rb",
+	"RME.DocGenerator"   => "DocGenerator.rb",
+	"RME.Documentation"  => "Doc.rb"
 }
