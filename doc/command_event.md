@@ -11,7 +11,7 @@ Commandes relatives aux évènements
   
 > 
 
-**include_page(`map_id`, `event_id`, `page_id`, `*runnable`)**
+**include_page(`map_id`, `event_id`, `page_id`, `*runnable`, `*context`)**
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
 
@@ -21,7 +21,8 @@ Commandes relatives aux évènements
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
 `page_id`|`Fixnum`|ID de la page à inclure  
-`*runnable`|`Boolean`|Par défaut, cette variable a pour valeur false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.  
+`*runnable`|`Boolean`|Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la page ne sera incluse que si la condition de lancement de la page est respectée. Par défaut, elle utilise le contexte (les interrupteurs locaux) de l'évènement appelant.  
+`*context`|`Boolean`|Par défaut, cette variable a pour valeur `false`. Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.  
 
 
 **invoke_event(`map_id`, `event_id`, `new_id`, `*x`, `*y`)**
@@ -45,15 +46,16 @@ Commandes relatives aux évènements
   
 > 
 
-**page_runnable?(`map_id`, `event_id`, `page_id`)**
+**page_runnable?(`map_id`, `event_id`, `page_id`, `*context`)**
 
-> Vérifie si la page est exécutable
+> Vérifie si la page est exécutable dans le contexte de l'évènement appelant.
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à tester  
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à tester  
-`page_id`|`Fixnum`|ID de la page à testere  
+`page_id`|`Fixnum`|ID de la page à tester  
+`*context`|`Boolean`|Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.  
 
 
