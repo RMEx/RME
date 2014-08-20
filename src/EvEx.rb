@@ -581,10 +581,9 @@ class Game_Interpreter
     end
 
     #--------------------------------------------------------------------------
-    # * Determine if Event Page Conditions Are Met
+    # * Determine if Event Page Conditions Are Met For a Particular Event
     #--------------------------------------------------------------------------
     def conditions_met?(map_id, event_id, page)
-      page = get_page(map_id, event_id, page) if page.is_a?(Fixnum)
       c = page.condition
       if c.switch1_valid
         return false unless $game_switches[c.switch1_id]
@@ -645,10 +644,7 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Append Interpreter
   #--------------------------------------------------------------------------
-  def append_interpreter(map_id, id, page_id, flag = false)
-    page = Game_Interpreter.get_page(map_id, id, page_id)
-    return unless page
-    return if !Game_Interpreter.conditions_met?(map_id, id, page) && flag
+  def append_interpreter(page)
     list = page.list
     child = Game_Interpreter.new(@depth + 1)
     child.setup(list, same_map? ? @id : 0)
@@ -755,15 +751,19 @@ module Command
   #--------------------------------------------------------------------------
   # * Include event page
   #--------------------------------------------------------------------------
-  def include_page(map_id, id, page_id, f = false)
+  def include_page(map_id, ev_id, p_id, if_runnable = false, context=false)
     return unless self.class == Game_Interpreter
-    self.append_interpreter(map_id, id, page_id, f)
+    page = Game_Interpreter.get_page(map_id, ev_id, p_id)
+    return unless page
+    if !if_runnable || page_runnable?(map_id, ev_id, page, context)
+      self.append_interpreter(page)
+    end
   end
   #--------------------------------------------------------------------------
   # * Invoke Event
   #--------------------------------------------------------------------------
-  def invoke_event(map_id, event_id, new_id, x=nil, y=nil)
-    $game_map.add_event(map_id, event_id, new_id, x, y)
+  def invoke_event(map_id, ev_id, new_id, x=nil, y=nil)
+    $game_map.add_event(map_id, ev_id, new_id, x, y)
   end
   #--------------------------------------------------------------------------
   # * Get the max Event ID
@@ -771,10 +771,16 @@ module Command
   def max_event_id; $game_map.max_id; end
   def fresh_event_id; max_event_id + 1; end
   #--------------------------------------------------------------------------
-  # * Check if a page 's runnable
+  # * Check if a page is runnable
   #--------------------------------------------------------------------------
-  def page_runnable?(map_id, ev_id, p_id)
-    Game_Interpreter.conditions_met?(map_id, ev_id, p_id)
+  def page_runnable?(map_id, ev_id, page, context=false)
+    return unless self.class == Game_Interpreter
+    page = Game_Interpreter.get_page(map_id, ev_id, p_id) if page.is_a?(Fixnum)
+    return unless page
+    return Game_Interpreter.conditions_met?(map_id, ev_id, page) if context
+    c_map_id = Game_Interpreter.current_map_id
+    c_ev_id = self.event_id
+    Game_Interpreter.conditions_met?(c_map_id, c_ev_id, page)
   end
   #--------------------------------------------------------------------------
   # * Method suggestions
@@ -786,7 +792,7 @@ module Command
     keywords.collect!{|i|i.to_s}
     keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
     snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
-    msg = "[#{args[0]}] doesn't exists. Did you mean maybe [#{keywords[0]}]"+snd+"?"
+    msg = "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
     raise(NoMethodError, msg)
   end
 end
