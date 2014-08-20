@@ -43,7 +43,7 @@ module RMECompiler
     def src_directory(f);     self.paths[:src]    = f; end
     def project_directory(f); self.paths[:dir]    = f; end
     def insert_after(s);      self.paths[:after]  = s; end
-    def bakcup_name(n);       self.paths[:backup] = n; end
+    def backup_name(n);       self.paths[:backup] = n; end
     def define_lib(n, f)    
       self.libs[n.dup.force_encoding('utf-8')] = f       
     end
@@ -54,8 +54,8 @@ module RMECompiler
     def src(file);  self.paths[:src] + file; end
     def out;        self.paths[:dir] + "Data/Scripts.rvdata2"; end 
     def outb
-      bakcup_name = self.paths[:backup] || "ScriptsBackup.rvdata2"
-      self.paths[:dir] + "Data/" + bakcup_name
+      backup_name = self.paths[:backup] || "ScriptsBackup.rvdata2"
+      self.paths[:dir] + "Data/" + backup_name
     end
     
     #--------------------------------------------------------------------------
@@ -77,11 +77,20 @@ module RMECompiler
     end
 
     #--------------------------------------------------------------------------
+    # * Empty line
+    #--------------------------------------------------------------------------
+    def empty_line?(o)
+      o[1] == "" && o[2] == EMPTY
+    end
+
+    #--------------------------------------------------------------------------
     # * Make Junction
     #--------------------------------------------------------------------------
     def make_junction
       self.before = self.sourceTree[0 .. self.junction]
-      self.after  = self.sourceTree[self.junction.succ .. -1]
+      k = self.sourceTree[self.junction.succ .. -1]
+      i = k.index{|o| !empty_line?(o)} + self.junction
+      self.after  = self.sourceTree[i .. -1]
     end
 
     #--------------------------------------------------------------------------
@@ -95,16 +104,25 @@ module RMECompiler
     end
 
     #--------------------------------------------------------------------------
+    # * Empty script line
+    #--------------------------------------------------------------------------
+    def empty_script_line
+      self.maxId += 1
+      [self.maxId, "", EMPTY]
+    end
+
+    #--------------------------------------------------------------------------
     # * Compile LIB
     #--------------------------------------------------------------------------
     def compile_lib
-      self.compiledLib = []
+      self.compiledLib = [self.empty_script_line]
       self.libs.each do |name, filename|
         self.maxId += 1 
         raw   = File.open(src(filename), 'rb') { |f| f.read }
         data  = deflate(raw)
-        self.compiledLib << [maxId, name.dup.force_encoding('utf-8'), data]
+        self.compiledLib << [self.maxId, name.dup.force_encoding('utf-8'), data]
       end
+      self.compiledLib << empty_script_line
       self.compiledFile = self.before + self.compiledLib + self.after
     end
 
@@ -151,15 +169,23 @@ module Kernel
   # * Description API
   #--------------------------------------------------------------------------
   def src_directory(f);     RMECompiler.src_directory(f);     end
+  def backup_name(f);       RMECompiler.backup_name(f);       end
   def project_directory(f); RMECompiler.project_directory(f); end
   def insert_after(s);      RMECompiler.insert_after(s);      end
   def define_lib(n, f);     RMECompiler.define_lib(n, f);     end
+
+  #--------------------------------------------------------------------------
+  # * Run compilation
+  #--------------------------------------------------------------------------
+  def compile
+    compilerInfo = File.open(RMECompiler::COMPILERINFO, 'rb') { |f| f.read }
+    eval(compilerInfo)
+    RMECompiler.run
+  end
 
 end
 
 #--------------------------------------------------------------------------
 # * Run compilation
 #--------------------------------------------------------------------------
-compilerInfo = File.open(RMECompiler::COMPILERINFO, 'rb') { |f| f.read }
-Kernel.eval(compilerInfo)
-RMECompiler.run
+compile
