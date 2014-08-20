@@ -518,16 +518,18 @@ module Command
                           :map_id => ["ID de la map où chercher l'évènement à inclure", :Fixnum],
                           :event_id => ["ID de l'évènement où chercher la page à inclure", :Fixnum],
                           :page_id => ["ID de la page à inclure", :Fixnum],
-                          "*runnable".to_sym => ["Par défaut, cette variable a pour valeur false. Si elle vaut true, la page ne sera inclue que si la condition de lancement de la page est respectée.", :Boolean]
+                          "*runnable".to_sym => ["Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la page ne sera incluse que si la condition de lancement de la page est respectée. Par défaut, elle utilise le contexte (les interrupteurs locaux) de l'évènement appelant.", :Boolean]
+                          "*context".to_sym => ["Par défaut, cette variable a pour valeur `false`. Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.", :Boolean]
                         }
   register_command :event, "Command.include_page"
 
   link_method_documentation "Command.page_runnable?", 
-                        "Vérifie si la page est exécutable",
+                        "Vérifie si la page est exécutable dans le contexte de l'évènement appelant.",
                         {
                           :map_id => ["ID de la map où chercher l'évènement à tester", :Fixnum],
                           :event_id => ["ID de l'évènement où chercher la page à tester", :Fixnum],
-                          :page_id => ["ID de la page à testere", :Fixnum]
+                          :page_id => ["ID de la page à tester", :Fixnum]
+                          "*context".to_sym => ["Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.", :Boolean]
                           }, true
   register_command :event, "Command.page_runnable?"
 
