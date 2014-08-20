@@ -7,18 +7,14 @@
 # Package description
 #==============================================================================
 
-PATHS = {
-	:src           => "../../src/",
-	:output_dir    => "../../project/Data/",
-  :raw_compiled  => "../../project/Data/Scripts.rvdata2",
-	:output_file   => "Scripts.rvdata2",
-	:output_backup => "Scripts-Backup.rvdata2",
-	:after         => "Scene_Gameover"
-}
-LIB = {
-	"▼ RME"              => "front.txt",
-	"RME.SDK"            => "SDK.rb",
-	"RME.EvEx"           => "EvEx.rb",
-	"RME.DocGenerator"   => "DocGenerator.rb",
-	"RME.Documentation"  => "Doc.rb"
-}
+#Configuration
+src_directory     "../../src/"
+project_directory "../../project/"
+insert_after      "Scene_Gameover"
+
+#Included lib
+define_lib "▼ RME",             "front.txt"
+define_lib "RME.SDK",           "SDK.rb"
+define_lib "RME.EvEx",          "EvEx.rb"
+define_lib "RME.DocGenerator",  "DocGenerator.rb"
+define_lib "RME.Documentation", "Doc.rb"
