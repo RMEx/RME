@@ -168,7 +168,7 @@ module RMECompiler
     # * Final Alert
     #--------------------------------------------------------------------------
     def prompt
-      msgbox("Compilation succeeded!")
+      msgbox("Compilation successful!")
     end
 
     #--------------------------------------------------------------------------
