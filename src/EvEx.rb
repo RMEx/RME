@@ -701,7 +701,7 @@ module Command
   # * Return map's name
   #--------------------------------------------------------------------------
   def map_name
-    $game_map.map_name
+    $game_map.display_name
   end
   #--------------------------------------------------------------------------
   # * Get Event Id form coords
