@@ -277,9 +277,9 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias :rm_extender_initialize  :initialize
-  alias :rm_extender_show        :show
-  alias :rm_extender_update      :update
+  alias_method :rm_extender_initialize, :initialize
+  alias_method :rm_extender_show,       :show
+  alias_method :rm_extender_update,     :update
   #--------------------------------------------------------------------------
   # * Public Instance Variables
   #--------------------------------------------------------------------------
@@ -479,8 +479,8 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias rm_extender_update update
-  alias rm_extender_update_origin update_origin
+  alias_method :rm_extender_update, :update
+  alias_method :rm_extender_update_origin, :update_origin
   #--------------------------------------------------------------------------
   # * Get cache
   #--------------------------------------------------------------------------
@@ -613,10 +613,10 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias extender_command_101 command_101
-  alias extender_command_111 command_111
-  alias extender_command_105 command_105
-  alias extender_command_355 command_355 
+  alias_method :extender_command_101, :command_101
+  alias_method :extender_command_111, :command_111
+  alias_method :extender_command_105, :command_105
+  alias_method :extender_command_355, :command_355 
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -871,9 +871,9 @@ module DataManager
     #--------------------------------------------------------------------------
     # * Alias
     #--------------------------------------------------------------------------
-    alias rm_extender_create_game_objects create_game_objects
-    alias rm_extender_make_save_contents make_save_contents
-    alias rm_extender_extract_save_contents extract_save_contents
+    alias_method :rm_extender_create_game_objects, :create_game_objects
+    alias_method :rm_extender_make_save_contents, :make_save_contents
+    alias_method :rm_extender_extract_save_contents, :extract_save_contents
     #--------------------------------------------------------------------------
     # * Creates the objects of the game
     #--------------------------------------------------------------------------
