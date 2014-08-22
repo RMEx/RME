@@ -148,7 +148,7 @@ module Kernel
 
   def addslash(s)
     c = s[-1] == '/' ? '' : '/'
-    s + c
+    '../' + s + c
   end
   
   def library(name, dir, &block)
@@ -156,11 +156,15 @@ module Kernel
   end
 
   def project_directory(dir)
-    Library.project_dir = addslash(dir)
+    Library.project_dir ||= addslash(dir)
   end
 
   def insert_after(n)
     Library.insert_after = n
+  end
+
+  def load_schema(src)
+    Kernel.send(:require, '../'+src)
   end
 
 end
