@@ -28,12 +28,22 @@ Commandes standards
 
 **random(`min`, `max`)**
 
-> Renvoie un nombre aléatoire compris entre MIN et MAX
+> Renvoie un nombre aléatoire compris entre MIN et MAX inclus
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `min`|`Fixnum`|Borne minimale  
-`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)  
+`max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)  
+
+
+**random_figures(`x`)**
+
+> Renvoie un nombre à virgule aléatoire compris entre x et x+1
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
 

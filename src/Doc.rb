@@ -435,12 +435,19 @@ module Command
   link_class_documentation "Collection des commandes EventExtender"
 
   link_method_documentation "Command.random", 
-                        "Renvoie un nombre aléatoire compris entre MIN et MAX",
+                        "Renvoie un nombre aléatoire compris entre MIN et MAX inclus",
                         {
                           :min => ["Borne minimale", :Fixnum],
-                          :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min)", :Fixnum]
+                          :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)", :Fixnum]
                         }, true
   register_command :standard, "Command.random"
+
+  link_method_documentation "Command.random_figures", 
+                        "Renvoie un nombre à virgule aléatoire compris entre x et x+1",
+                        {
+                          :x => ["Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)", :Fixnum]
+                        }, true
+  register_command :standard, "Command.random_figures"
 
   link_method_documentation "Command.map_id", 
                         "Renvoie l'ID de la map en cours",
