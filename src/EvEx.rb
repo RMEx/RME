@@ -686,16 +686,14 @@ module Command
   #--------------------------------------------------------------------------
   # * Random number from a range
   #--------------------------------------------------------------------------
-  def random(*min, max)
-    min[0] ||= 0
-    min, max = [min[0], max.to_i].sort
+  def random(min=0, max)
+    min, max = [min.to_i, max.to_i].sort
     min + Kernel.rand(max-min+1)
   end
   #--------------------------------------------------------------------------
   # * Random floating point value between x and its successor
   #--------------------------------------------------------------------------
-  def random_figures(*x)
-    x[0] ||= 0
+  def random_figures(x=0)
     x + Kernel.rand
   end
   #--------------------------------------------------------------------------
