@@ -684,12 +684,17 @@ end
 
 module Command
   #--------------------------------------------------------------------------
-  # * Random between range
+  # * Random number from a range
   #--------------------------------------------------------------------------
-  def random(*min, max)
-    min[0] ||= 0
-    min, max = [min[0], max.to_i].sort
-    min + Kernel.rand(max-min)
+  def random(min=0, max)
+    min, max = [min.to_i, max.to_i].sort
+    min + Kernel.rand(max-min+1)
+  end
+  #--------------------------------------------------------------------------
+  # * Random floating point value between x and its successor
+  #--------------------------------------------------------------------------
+  def random_figures(x=0)
+    x + Kernel.rand
   end
   #--------------------------------------------------------------------------
   # * Return ID of current map
