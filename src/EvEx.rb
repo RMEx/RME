@@ -436,7 +436,7 @@ module Command
   # * Picture show
   #--------------------------------------------------------------------------
   def picture_show(id, n, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
-    pictures[id].show(n, ori, x, y, z_x, z_y, op, bl)
+    pictures[id].show(n, x, y, ori, z_x, z_y, op, bl)
   end
   #--------------------------------------------------------------------------
   # * Modify Origin
