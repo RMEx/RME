@@ -960,9 +960,15 @@ module Devices
     #--------------------------------------------------------------------------
     externalize Externlib::GetCursorPos,   :cursor_position
     externalize Externlib::ScreenToClient, :screen_to_client
-    [:trigger?, :press?, :release?, :repeat?, :time].each do |m|
-      externalize ::Keyboard.method(m), m
-    end
+    [
+      :trigger?, 
+      :press?, 
+      :release?, 
+      :repeat?, 
+      :time,
+      :all?, 
+      :any?
+    ].each { |m| externalize ::Keyboard.method(m), m }
 
     #--------------------------------------------------------------------------
     # * Alias
