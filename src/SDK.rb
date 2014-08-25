@@ -1005,6 +1005,17 @@ module Devices
     end
 
     #--------------------------------------------------------------------------
+    # * Get current key
+    #--------------------------------------------------------------------------
+    def current_key(method = :press?)
+      [:mouse_left, :mouse_right, :mouse_center, :mouse_x1, :mouse_x2,].each do |k|
+        next unless k
+        return k if self.send(method, k)
+      end
+      return nil
+    end
+
+    #--------------------------------------------------------------------------
     # * Frame update
     #--------------------------------------------------------------------------
     def update
