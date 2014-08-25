@@ -278,7 +278,6 @@ class Game_Picture
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rm_extender_initialize, :initialize
-  alias_method :rm_extender_show,       :show
   alias_method :rm_extender_update,     :update
   #--------------------------------------------------------------------------
   # * Public Instance Variables
@@ -316,13 +315,6 @@ class Game_Picture
     @wave_amp = @wave_speed = 0
     @pin = false
     clear_shake
-  end
-  #--------------------------------------------------------------------------
-  # * Show Picture
-  #--------------------------------------------------------------------------
-  def show(name, x = 0, y = 0, origin = 0, zoom_x = 100, zoom_y = 100, opacity = 255, blend_type = 0)
-    rm_extender_show(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
-    clear_effects
   end
   #--------------------------------------------------------------------------
   # * Clear Shake
@@ -436,7 +428,7 @@ module Command
   # * Picture show
   #--------------------------------------------------------------------------
   def picture_show(id, n, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
-    pictures[id].show(n, x, y, ori, z_x, z_y, op, bl)
+    pictures[id].show(n, ori, x, y, z_x, z_y, op, bl)
   end
   #--------------------------------------------------------------------------
   # * Modify Origin
@@ -545,8 +537,8 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   def update_origin
     if @picture.origin.is_a?(Array)
-      x, y = @picture.origin
-      self.ox, self.oy = x, y
+      k_x, k_y = @picture.origin
+      self.ox, self.oy = k_x, k_y
     else
       rm_extender_update_origin
     end
