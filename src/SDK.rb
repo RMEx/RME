@@ -473,9 +473,11 @@ class Point < Struct.new(:x, :y)
   # * In area
   #--------------------------------------------------------------------------
   def in?(rect)
-    check_x = self.x.between?(rect.x, rect.x+rect.width)
-    check_y = self.y.between?(rect.y, rect.y+rect.height)
-    check_x && check_y
+    return rect && (
+      check_x = self.x.between?(rect.x, rect.x+rect.width)
+      check_y = self.y.between?(rect.y, rect.y+rect.height)
+      check_x && check_y
+    )
   end
 
   #--------------------------------------------------------------------------
