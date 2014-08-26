@@ -18,7 +18,7 @@
 
 =begin
   
-Licence coming soon 
+License coming soon 
 
 =end
 
@@ -92,7 +92,7 @@ module RME
     #--------------------------------------------------------------------------
     def register_command(cat, name)
       d = Doc.schema[classname][:methods][name.to_sym]
-      register_command_category(cat, "undefinded", "undefinded")
+      register_command_category(cat, "undefined", "undefined")
       Doc.commands[cat][:commands][name.to_sym] = d if d
     end
     #--------------------------------------------------------------------------
@@ -369,7 +369,7 @@ class Fixnum
     :four, 
     :five, 
     :six,
-    :seve, 
+    :seven, 
     :eight,
     :nine
   ]
@@ -473,9 +473,11 @@ class Point < Struct.new(:x, :y)
   # * In area
   #--------------------------------------------------------------------------
   def in?(rect)
-    check_x = self.x.between?(rect.x, rect.x+rect.width)
-    check_y = self.y.between?(rect.y, rect.y+rect.height)
-    check_x && check_y
+    return rect && (
+      check_x = self.x.between?(rect.x, rect.x+rect.width)
+      check_y = self.y.between?(rect.y, rect.y+rect.height)
+      check_x && check_y
+    )
   end
 
   #--------------------------------------------------------------------------
@@ -922,12 +924,19 @@ module Devices
     # * Public instance variables
     #--------------------------------------------------------------------------
     attr_accessor :start
+    attr_accessor :initiated
+
+    #--------------------------------------------------------------------------
+    # * Alias
+    #--------------------------------------------------------------------------
+    alias_method :initiated?, :initiated
 
     #--------------------------------------------------------------------------
     # * Initialize
     #--------------------------------------------------------------------------
     def initialize
       @start = Point.new(0,0)
+      @initiated = false
       super(0,0,0,0)
     end
 
@@ -971,17 +980,16 @@ module Devices
     ].each { |m| externalize ::Keyboard.method(m), m }
 
     #--------------------------------------------------------------------------
-    # * Alias
-    #--------------------------------------------------------------------------
-    alias_method :click?, :press?
-
-    #--------------------------------------------------------------------------
     # * Public Instance Variables
     #--------------------------------------------------------------------------
     attr_reader :point
     attr_reader :square
     attr_reader :last_rect
     attr_reader :dragging
+
+    #--------------------------------------------------------------------------
+    # * Alias
+    #--------------------------------------------------------------------------
     alias_method :dragging?, :dragging
 
     #--------------------------------------------------------------------------
@@ -999,7 +1007,7 @@ module Devices
     def initialize
       @point        = Point.new(0, 0)
       @square       = Point.new(0, 0)
-      @last_rect    = Rect.new(0,0,0,0)
+      @last_rect    = false
       @dragging     = false
       @drag         = Drag.new
     end
@@ -1048,31 +1056,37 @@ module Devices
     #--------------------------------------------------------------------------
     def update_drag
       if Key::Mouse_left.trigger?
-        @dragging     = true
+        @drag.initiated = true
         @drag.start.x = @point.x
         @drag.start.y = @point.y
-      elsif dragging? && Key::Mouse_left.press?
-        min_x, max_x  = *[@drag.start.x, @point.x].sort
-        min_y, max_y  = *[@drag.start.y, @point.y].sort
-        @drag.set(min_x, min_y, max_x-min_x, max_y-min_y)
-      elsif dragging?
-        @last_rect    = @drag.subtype 
+      elsif @drag.initiated? && Key::Mouse_left.press?
+        if dragging? || !(self.x == @drag.start.x && self.y == @drag.start.y)
+          @dragging = true
+          min_x, max_x  = *[@drag.start.x, @point.x].sort
+          min_y, max_y  = *[@drag.start.y, @point.y].sort
+          @drag.set(min_x, min_y, max_x-min_x, max_y-min_y)
+        end
+      elsif @drag.initiated?
+        @last_rect    = rect
+        @drag.initiated = false
         @dragging     = false
         @drag.empty
       end
     end
 
     #--------------------------------------------------------------------------
+    # * Know if the user clicked
+    #--------------------------------------------------------------------------
+    def click?
+      Key::Mouse_left.release? && !self.last_rect
+    end
+
+    #--------------------------------------------------------------------------
     # * Get Drag rect
     #--------------------------------------------------------------------------
     def rect
-      return @drag.subtype
+      dragging? && @drag.subtype
     end 
-
-    #--------------------------------------------------------------------------
-    # * Alias
-    #--------------------------------------------------------------------------
-    alias_method :click?, :press?
 
     #--------------------------------------------------------------------------
     # * Singleton Mouse instance

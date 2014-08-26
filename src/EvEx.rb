@@ -10,7 +10,7 @@
 # Fabien
 # Zeus81
 #------------------------------------------------------------------------------
-# An RPGMaker's Event extention
+# An RPGMaker's Event extension
 #==============================================================================
 
 
@@ -825,7 +825,7 @@ module Command
   # * Mouse Support
   #--------------------------------------------------------------------------
   def mouse_press?(k);    Mouse.press?(k);                end
-  def mouse_click?(k);    Mouse.click?(k);                end
+  def mouse_click?;       Mouse.click?;                   end
   def mouse_trigger?(k);  Mouse.trigger?(k);              end
   def mouse_release?(k);  Mouse.release?(k);              end
   def mouse_dragging?;    Mouse.dragging?;                end
