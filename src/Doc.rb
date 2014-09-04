@@ -796,6 +796,29 @@ module Command
                             :x => ["Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image", :Fixnum],
                           }, true
   register_command :picture, "Command.picture_y"
+  link_method_documentation "Command.picture_position", 
+                          "Change la position de l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :x => ["Position en x de l'image", :Fixnum],
+                            :y => ["Position en y de l'image", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_move"
+  link_method_documentation "Command.picture_move", 
+                          "Déplace une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :x => ["Position en x de l'image où l'image doit se rendre", :Fixnum],
+                            :y => ["Position en y de l'image où l'image doit se rendre", :Fixnum],
+                            :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
+                            :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
+                            :duration => ["Durée du déplacement en frames", :Fixnum],
+                            :"*opacity" => ["Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
+                            :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
+
+                          }, true
+  register_command :picture, "Command.picture_x"
 
 
 

@@ -583,6 +583,28 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+**Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
+
+> Déplace une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Position en x de l'image où l'image doit se rendre  
+`y`|`Fixnum`|Position en y de l'image où l'image doit se rendre  
+`zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
+`zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
+`duration`|`Fixnum`|Durée du déplacement en frames  
+`*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
+`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
+`*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+
+
+
+
+
+
 **Command.picture_origin(`id`, `origin`)**
 
 > Change l'origine d'une image
@@ -592,6 +614,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
+
+
+
+
+
+
+**Command.picture_position(`id`, `x`, `y`)**
+
+> Change la position de l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Position en x de l'image  
+`y`|`Fixnum`|Position en y de l'image  
 
 
 

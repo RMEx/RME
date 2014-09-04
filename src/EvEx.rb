@@ -459,6 +459,16 @@ module Command
     picture_x(id, x)
     picture_y(id, y)
   end
+  #--------------------------------------------------------------------------
+  # * Move picture
+  #--------------------------------------------------------------------------
+  def picture_move(id, x, y, zoom_x, zoom_y, dur, opacity = -1, bt = -1, o = -1)
+    p = pictures[id]
+    opacity = (opacity == -1) ? p.opacity : opacity
+    blend = (bt == -1) ? p.blend_type : bt
+    origin = (o == -1) ? p.origin : o
+    p.move(o, x, y, zoom_x, zoom_y, opacity, blend, dur)
+  end
 end
 
 #==============================================================================
@@ -844,15 +854,6 @@ module Command
   def mouse_current_key(*m)   Mouse.current_key(*m);      end
 end
 
-#==============================================================================
-# ** Commands Picture
-#------------------------------------------------------------------------------
-#  Pictures manipulation
-#==============================================================================
-
-module Command
-
-end
 
 #==============================================================================
 # ** DataManager
