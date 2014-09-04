@@ -4,6 +4,24 @@
 Commandes relatives à la manipulation des images
 
 ##Liste des commandes
+**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
+
+> Déplace une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Position en x de l'image où l'image doit se rendre  
+`y`|`Fixnum`|Position en y de l'image où l'image doit se rendre  
+`zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
+`zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
+`duration`|`Fixnum`|Durée du déplacement en frames  
+`*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
+`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
+`*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+
+
 **picture_origin(`id`, `origin`)**
 
 > Change l'origine d'une image

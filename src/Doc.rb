@@ -818,7 +818,7 @@ module Command
                             :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
 
                           }, true
-  register_command :picture, "Command.picture_x"
+  register_command :picture, "Command.picture_move"
 
 
 
