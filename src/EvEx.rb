@@ -13,6 +13,32 @@
 # An RPGMaker's Event extension
 #==============================================================================
 
+#==============================================================================
+# ** L
+#------------------------------------------------------------------------------
+#  Label handling API
+#==============================================================================
+
+module L
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Returns a Game Label
+  #--------------------------------------------------------------------------
+  def [](key)
+    $game_labels[key] || 0
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Modifies a Game Label
+  #--------------------------------------------------------------------------
+  def []=(key, value)
+    $game_labels[key] = value
+  end
+end
+
 
 #==============================================================================
 # ** V (special thanks to Nuki)
@@ -103,6 +129,36 @@ module SV
     id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
     $game_self_vars[[map_id, id, id]] = value
+    $game_map.need_refresh = true
+  end
+end
+
+#==============================================================================
+# ** SL 
+#------------------------------------------------------------------------------
+#  self Labels handling API
+#==============================================================================
+
+module SL
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Returns a self Variable
+  #--------------------------------------------------------------------------
+  def [](*args, id)
+    id = args[-1] || Game_Interpreter.current_id
+    map_id = args[-2] || Game_Interpreter.current_map_id
+    $game_self_labels.fetch([map_id, id, id], 0)
+  end
+  #--------------------------------------------------------------------------
+  # * Modifies a self variable
+  #--------------------------------------------------------------------------
+  def []=(*args, id, value)
+    id = args[-1] || Game_Interpreter.current_id
+    map_id = args[-2] || Game_Interpreter.current_map_id
+    $game_self_labels[[map_id, id, id]] = value
     $game_map.need_refresh = true
   end
 end
@@ -969,6 +1025,8 @@ module DataManager
     def create_game_objects
       rm_extender_create_game_objects
       $game_self_vars = Hash.new
+      $game_labels = Hash.new
+      $game_self_labels = Hash.new
     end
     #--------------------------------------------------------------------------
     # * Saves the contents of the game
@@ -976,6 +1034,8 @@ module DataManager
     def make_save_contents
       contents = rm_extender_make_save_contents
       contents[:self_vars] = $game_self_vars
+      contents[:labels] = $game_labels
+      contents[:self_labels] = $game_self_labels
       contents
     end
     #--------------------------------------------------------------------------
@@ -984,6 +1044,8 @@ module DataManager
     def extract_save_contents(contents)
       rm_extender_extract_save_contents(contents)
       $game_self_vars = contents[:self_vars]
+      $game_labels = contents[:labels]
+      $game_self_labels = contents[:self_labels]
     end
   end
 end
