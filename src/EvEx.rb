@@ -469,6 +469,97 @@ module Command
     origin = (o == -1) ? p.origin : o
     p.move(o, x, y, zoom_x, zoom_y, opacity, blend, dur)
   end
+  #--------------------------------------------------------------------------
+  # * Modify wave
+  #--------------------------------------------------------------------------
+  def picture_wave(id, amp, speed)
+    pictures[id].wave_amp = amp
+    pictures[id].wave_speed = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Apply Mirror
+  #--------------------------------------------------------------------------
+  def picture_flip(id)
+    pictures[id].mirror = !pictures[id].mirror
+  end
+  #--------------------------------------------------------------------------
+  # * Modify Angle
+  #--------------------------------------------------------------------------
+  def picture_angle(id, angle=false)
+    return pictures[id].angle unless angle
+    pictures[id].angle = angle%360
+  end
+  #--------------------------------------------------------------------------
+  # * Rotate
+  #--------------------------------------------------------------------------
+  def picture_rotate(id, speed)
+    pictures[id].rotate(speed)
+  end
+  #--------------------------------------------------------------------------
+  # * change Zoom X
+  #--------------------------------------------------------------------------
+  def picture_zoom_x(id, zoom_x=false)
+    return pictures[id].zoom_x unless zoom_x
+    pictures[id].zoom_x = zoom_x
+  end
+  #--------------------------------------------------------------------------
+  # * change Zoom Y
+  #--------------------------------------------------------------------------
+  def picture_zoom_y(id, zoom_y=false)
+    return pictures[id].zoom_y unless zoom_y
+    pictures[id].zoom_y = zoom_y
+  end
+  #--------------------------------------------------------------------------
+  # * change Zoom
+  #--------------------------------------------------------------------------
+  def picture_zoom(id, zoom_x, zoom_y = -1)
+    zoom_y = zoom_x if zoom_y == -1
+    picture_zoom_x(id, zoom_x)
+    picture_zoom_y(id, zoom_y)
+  end
+  #--------------------------------------------------------------------------
+  # * change Tone
+  #--------------------------------------------------------------------------
+  def picture_tone(id, *args)
+    case args.length
+    when 1; tone = args[0]
+    else
+      r, g, b = args[0], args[1], args[2]
+      gray = args[3] || 0
+      tone = Tone.new(r, g, b, gray)
+    end
+    pictures[id].tone = tone
+  end
+  #--------------------------------------------------------------------------
+  # * Change blend type
+  #--------------------------------------------------------------------------
+  def picture_blend(id, blend)
+    pictures[id].blend = blend
+  end
+  #--------------------------------------------------------------------------
+  # * Pin picture on the map
+  #--------------------------------------------------------------------------
+  def picture_pin(id)
+    pictures[id].pin
+  end
+  #--------------------------------------------------------------------------
+  # * Pin picture on the map
+  #--------------------------------------------------------------------------
+  def picture_unpin(id)
+    pictures[id].upin
+  end
+  #--------------------------------------------------------------------------
+  # * Change Picture Opacity
+  #--------------------------------------------------------------------------
+  def picture_opacity(id, value)
+    pictures[id].opacity = value
+  end
+  #--------------------------------------------------------------------------
+  # * Shake the picture
+  #--------------------------------------------------------------------------
+  def picture_shake(id, power, speed, duration)
+    pictures[id].start_shake(power, speed, duration)
+  end
 end
 
 #==============================================================================

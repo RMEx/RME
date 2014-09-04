@@ -4,6 +4,17 @@
 Commandes relatives à la manipulation des images
 
 ##Liste des commandes
+**picture_angle(`id`, `angle`)**
+
+> Change l'angle de l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+
+
 **picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
 
 > Déplace une image
@@ -33,6 +44,17 @@ Commandes relatives à la manipulation des images
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
 
 
+**picture_rotate(`id`, `speed`)**
+
+> Fait tourner l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`speed`|`Fixnum`|Vitesse de rotation de l'image  
+
+
 **picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**
 
 > Affiche une image à l'écran
@@ -49,6 +71,18 @@ Commandes relatives à la manipulation des images
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition  
+
+
+**picture_wave(`id`, `amplitude`, `vitesse`)**
+
+> Fait onduler l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
+`vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
 
 **picture_x(`id`, `x`)**
@@ -71,5 +105,39 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
+
+
+**picture_zoom(`id`, `zoom_x`, `zoom_y`)**
+
+> Change la taille d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
+`zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+
+
+**picture_zoom_x(`id`, `zoom`)**
+
+> Change la largeur d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.  
+
+
+**picture_zoom_y(`id`, `zoom`)**
+
+> Change la hauteur d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
 
 

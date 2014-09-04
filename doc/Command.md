@@ -4,6 +4,20 @@
 Collection des commandes EventExtender
 
 ##Liste des méthodes
+**Applique un effet miroir sur l'image(`id`)**
+
+> Change la position de l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+
+
+
+
+
+
 **Command.alt_gr?**
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
@@ -583,6 +597,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+**Command.picture_angle(`id`, `angle`)**
+
+> Change l'angle de l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+
+
+
+
+
+
 **Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
 
 > Déplace une image
@@ -636,6 +665,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+**Command.picture_rotate(`id`, `speed`)**
+
+> Fait tourner l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`speed`|`Fixnum`|Vitesse de rotation de l'image  
+
+
+
+
+
+
 **Command.picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**
 
 > Affiche une image à l'écran
@@ -652,6 +696,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition  
+
+
+
+
+
+
+**Command.picture_wave(`id`, `amplitude`, `vitesse`)**
+
+> Fait onduler l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
+`vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
 
 
@@ -682,6 +742,52 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
+
+
+
+
+
+
+**Command.picture_zoom(`id`, `zoom_x`, `zoom_y`)**
+
+> Change la taille d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
+`zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+
+
+
+
+
+
+**Command.picture_zoom_x(`id`, `zoom`)**
+
+> Change la largeur d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.  
+
+
+
+
+
+
+**Command.picture_zoom_y(`id`, `zoom`)**
+
+> Change la hauteur d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
 
 
 

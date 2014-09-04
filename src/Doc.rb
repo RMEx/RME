@@ -817,10 +817,58 @@ module Command
                             :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
                             :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
 
-                          }, true
+                          }
   register_command :picture, "Command.picture_move"
-
-
+  link_method_documentation "Command.picture_wave", 
+                          "Fait onduler l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :amplitude => ["Amplitude (taille de l'ondulation)", :Fixnum],
+                            :vitesse => ["Vitesse de l'ondulation", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_wave"
+  link_method_documentation "Applique un effet miroir sur l'image", 
+                          "Change la position de l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_flip"
+  link_method_documentation "Command.picture_angle", 
+                          "Change l'angle de l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :angle => ["Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_angle"
+  link_method_documentation "Command.picture_rotate", 
+                          "Fait tourner l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :speed => ["Vitesse de rotation de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_rotate"
+  link_method_documentation "Command.picture_zoom_x", 
+                          "Change la largeur d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_zoom_x"
+  link_method_documentation "Command.picture_zoom_y", 
+                          "Change la hauteur d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_zoom_y"
+  link_method_documentation "Command.picture_zoom", 
+                          "Change la taille d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :zoom_x => ["Pourcentage d'agrandissement de la largeur de l'image", :Fixnum],
+                            :zoom_y => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.", :Fixnum],
+                          }, true
+  register_command :picture, "Command.picture_zoom"
 
 end
 
