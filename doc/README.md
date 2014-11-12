@@ -4,6 +4,7 @@ Outil d'extension de RPG Maker
 
 **Classes et modules**
 
+*    [Bitmap](Bitmap.md)
 *    [Command](Command.md)
 *    [Devices::Keyboard](Devices__Keyboard.md)
 *    [Devices::Keys](Devices__Keys.md)
@@ -15,6 +16,7 @@ Outil d'extension de RPG Maker
 *    [Kernel](Kernel.md)
 *    [Object](Object.md)
 *    [Point](Point.md)
+*    [Rect](Rect.md)
 *    [String](String.md)
 *    [Viewport](Viewport.md)
 

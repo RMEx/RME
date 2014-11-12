@@ -54,6 +54,81 @@ class Object
 end
 
 #==============================================================================
+# ** Rect
+#------------------------------------------------------------------------------
+#  The rectangle class
+#==============================================================================
+
+class Rect
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Extension des rectangles"
+  link_method_documentation :"self.in?", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle", 
+                            {
+                              :x=> ["Coordonnées X du point", :Fixnum], 
+                              :y=> ["Coordonnées Y du point", :Fixnum]
+                            }, true
+  link_method_documentation :"self.hover?", 
+                            "Vérifie si la souris passe au dessus du rectangle", 
+                            {}, true
+  link_method_documentation :"self.click?", 
+                            "Vérifie si le rectangle est clické par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.press?", 
+                            "Vérifie si le rectangle est enfoncé par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.trigger?", 
+                            "Vérifie si le rectangle est clické une fois par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.repeat?", 
+                            "Vérifie si le rectangle est clické de manière répétée par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.release?", 
+                            "Vérifie si le rectangle est relaché par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+
+end
+
+#==============================================================================
+# ** Bitmap
+#------------------------------------------------------------------------------
+#  Image representation
+#==============================================================================
+
+class Bitmap
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Extension des Bitmaps"
+  link_method_documentation :"self.in?", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle de l'image", 
+                            {
+                              :x=> ["Coordonnées X du point", :Fixnum], 
+                              :y=> ["Coordonnées Y du point", :Fixnum]
+                            }, true
+  link_method_documentation :"self.hover?", 
+                            "Vérifie si la souris passe au dessus du rectangle de l'image", 
+                            {}, true
+  link_method_documentation :"self.click?", 
+                            "Vérifie si le rectangle de l'image est clické par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.press?", 
+                            "Vérifie si le rectanglen de l'image est enfoncé par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.trigger?", 
+                            "Vérifie si le rectangle de l'image est clické une fois par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.repeat?", 
+                            "Vérifie si le rectangle de l'image est clické de manière répétée par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.release?", 
+                            "Vérifie si le rectangle de l'image est relaché par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+end
+
+#==============================================================================
 # ** Fixnum
 #------------------------------------------------------------------------------
 #  Integer representation

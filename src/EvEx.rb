@@ -349,7 +349,7 @@ class Game_Picture
   attr_accessor  :blend_type               # blend method
   attr_accessor  :tone                     # color tone
   attr_accessor  :angle                    # rotation angle
-  attr_accessor  :pin
+  attr_accessor  :pinned
   attr_accessor  :shake
   attr_accessor  :mirror
   attr_accessor  :wave_amp
@@ -461,14 +461,14 @@ class Game_Picture
   # * Pin picture
   #--------------------------------------------------------------------------
   def pin
-    @pin = true
+    @pinned = true
   end
 
   #--------------------------------------------------------------------------
   # * Unpin picture
   #--------------------------------------------------------------------------
   def unpin
-    @pin = false
+    @pinned = false
   end
 
 end
@@ -602,7 +602,7 @@ module Command
   # * Pin picture on the map
   #--------------------------------------------------------------------------
   def picture_unpin(id)
-    pictures[id].upin
+    pictures[id].unpin
   end
   #--------------------------------------------------------------------------
   # * Change Picture Opacity
@@ -680,7 +680,7 @@ class Sprite_Picture
   # * Update Position
   #--------------------------------------------------------------------------
   def update_position
-    if @picture.pin
+    if @picture.pinned
       self.x = @picture.x - ($game_map.display_x * 32) + @picture.shake
       self.y = @picture.y - ($game_map.display_y * 32)
     else
