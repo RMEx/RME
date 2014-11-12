@@ -612,6 +612,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+**Command.picture_blend(`id`, `mode`)**
+
+> Change le mode de fusion d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
+
+
+
+
+
+
 **Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
 
 > Déplace une image
@@ -634,6 +649,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+**Command.picture_opacity(`id`, `opacity`)**
+
+> Change l'opacité d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
+
+
+
+
+
+
 **Command.picture_origin(`id`, `origin`)**
 
 > Change l'origine d'une image
@@ -643,6 +673,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
+
+
+
+
+
+
+**Command.picture_pin(`id`)**
+
+> Fait défiler une image avec la carte (la fixe à une position)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 
@@ -680,6 +724,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+**Command.picture_shake(`id`, `power`, `speed`, `duration`)**
+
+> Fait trembler l'image pendant un temps donné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`power`|`Fixnum`|La puissance du tremblement  
+`speed`|`Fixnum`|La vitesse du tremblement  
+`duration`|`Fixnum`|La durée en frame du tremblement  
+
+
+
+
+
+
 **Command.picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**
 
 > Affiche une image à l'écran
@@ -696,6 +757,38 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition  
+
+
+
+
+
+
+**Command.picture_tone(`id`, `R`, `V`, `B`, `*G`)**
+
+> Change la teinte d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`R`|`Fixnum`|Valeur de rouge (de -255 a +255)  
+`V`|`Fixnum`|Valeur de verte (de -255 a +255)  
+`B`|`Fixnum`|Valeur de bleu (de -255 a +255)  
+`*G`|`Fixnum`|Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0  
+
+
+
+
+
+
+**Command.picture_unpin(`id`)**
+
+> Arrête de faire défiler une image avec la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 

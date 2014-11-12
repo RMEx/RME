@@ -1,4 +1,4 @@
-#Commande de manipulation des images
+#Commandes de manipulation des images
 [Retourner à l'index](__command_list.md)
 
 Commandes relatives à la manipulation des images
@@ -13,6 +13,17 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+
+
+**picture_blend(`id`, `mode`)**
+
+> Change le mode de fusion d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
 **picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
@@ -33,6 +44,17 @@ Commandes relatives à la manipulation des images
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
 
 
+**picture_opacity(`id`, `opacity`)**
+
+> Change l'opacité d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
+
+
 **picture_origin(`id`, `origin`)**
 
 > Change l'origine d'une image
@@ -42,6 +64,16 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
+
+
+**picture_pin(`id`)**
+
+> Fait défiler une image avec la carte (la fixe à une position)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 **picture_rotate(`id`, `speed`)**
@@ -71,6 +103,30 @@ Commandes relatives à la manipulation des images
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition  
+
+
+**picture_tone(`id`, `R`, `V`, `B`, `*G`)**
+
+> Change la teinte d'une image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`R`|`Fixnum`|Valeur de rouge (de -255 a +255)  
+`V`|`Fixnum`|Valeur de verte (de -255 a +255)  
+`B`|`Fixnum`|Valeur de bleu (de -255 a +255)  
+`*G`|`Fixnum`|Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0  
+
+
+**picture_unpin(`id`)**
+
+> Arrête de faire défiler une image avec la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 **picture_wave(`id`, `amplitude`, `vitesse`)**

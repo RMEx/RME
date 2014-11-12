@@ -430,7 +430,7 @@ module Command
   register_command_category :event, "Commandes évènements", "Commandes relatives aux évènements"
   register_command_category :keyboard, "Commandes du clavier", "Commandes relatives au clavier"
   register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
-  register_command_category :picture, "Commande de manipulation des images", "Commandes relatives à la manipulation des images"
+  register_command_category :picture, "Commandes de manipulation des images", "Commandes relatives à la manipulation des images"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -869,6 +869,51 @@ module Command
                             :zoom_y => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.", :Fixnum],
                           }, true
   register_command :picture, "Command.picture_zoom"
+  link_method_documentation "Command.picture_tone", 
+                          "Change la teinte d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :R => ["Valeur de rouge (de -255 a +255)", :Fixnum],
+                            :V => ["Valeur de verte (de -255 a +255)", :Fixnum],
+                            :B => ["Valeur de bleu (de -255 a +255)", :Fixnum],
+                            :"*G" => ["Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_tone"
+  link_method_documentation "Command.picture_blend", 
+                          "Change le mode de fusion d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :mode => ["Mode choisi (0, 1 ou 2)", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_blend"
+  link_method_documentation "Command.picture_pin", 
+                          "Fait défiler une image avec la carte (la fixe à une position)", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_pin"
+  link_method_documentation "Command.picture_unpin", 
+                          "Arrête de faire défiler une image avec la carte", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_unpin"
+  link_method_documentation "Command.picture_opacity", 
+                          "Change l'opacité d'une image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :opacity => ["valeur de l'opacité (de 0 à 255)", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_opacity"
+  link_method_documentation "Command.picture_shake", 
+                          "Fait trembler l'image pendant un temps donné", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :power => ["La puissance du tremblement", :Fixnum],
+                            :speed => ["La vitesse du tremblement", :Fixnum],
+                            :duration => ["La durée en frame du tremblement", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_opacity"
 
 end
 
