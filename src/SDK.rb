@@ -48,7 +48,6 @@ module RME
     end
   end
 
-
   #==============================================================================
   # ** Doc
   #------------------------------------------------------------------------------
@@ -178,6 +177,31 @@ module RME
 end
 
 #--------------------------------------------------------------------------
+# * Win32API Extension
+#--------------------------------------------------------------------------
+
+#==============================================================================
+# ** Externlib
+#------------------------------------------------------------------------------
+#  win32/registry is registry accessor library for Win32 platform. 
+#  It uses dl/import to call Win32 Registry APIs.
+#==============================================================================
+
+module Externlib 
+  #--------------------------------------------------------------------------
+  # * Library as constants
+  #--------------------------------------------------------------------------
+  FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
+  GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
+  GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  RtlMoveMemory       = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
+  ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
+  ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
+  ToUnicode           = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
+  WideCharToMultiByte = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
+end
+
+#--------------------------------------------------------------------------
 # * Ruby Extension
 #--------------------------------------------------------------------------
 
@@ -269,7 +293,6 @@ class Object
   def to_bool
     true
   end
-
 end # End of Object
 
 #==============================================================================
@@ -487,32 +510,6 @@ class Point < Struct.new(:x, :y)
     self.x = self.y = 0
   end
 
-end
-
-
-#--------------------------------------------------------------------------
-# * Win32API Extension
-#--------------------------------------------------------------------------
-
-#==============================================================================
-# ** Externlib
-#------------------------------------------------------------------------------
-#  win32/registry is registry accessor library for Win32 platform. 
-#  It uses dl/import to call Win32 Registry APIs.
-#==============================================================================
-
-module Externlib 
-  #--------------------------------------------------------------------------
-  # * Library as constants
-  #--------------------------------------------------------------------------
-  FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
-  GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
-  GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
-  RtlMoveMemory       = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
-  ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
-  ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
-  ToUnicode           = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
-  WideCharToMultiByte = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
 end
 
 #==============================================================================
@@ -1330,8 +1327,8 @@ class Sprite
         real_x = min.rect.x + x - max.rect.x
         real_y = min.rect.y + y - max.rect.y
         if max.rect.in?(min.rect.x + x, min.rect.y + y)
-          fa = min.bitmap.fast_get_pixel(x, y).alpha > 0
-          fb = max.bitmap.fast_get_pixel(real_x, real_y).alpha > 0 
+          fa = !min.bitmap.is_transparent?(x, y)
+          fb = !max.bitmap.is_transparent?(real_x, real_y)
           return true if fa && fb 
         end
       end
@@ -1389,18 +1386,14 @@ end
 
 class Bitmap
   #--------------------------------------------------------------------------
-  # * Import
-  #--------------------------------------------------------------------------
-  externalize Externlib::RtlMoveMemory, :move_memory
-  # This part is made by Zeus81 ! Thanks a Lot ! 
-  #--------------------------------------------------------------------------
   # * Optimize get_data
   #--------------------------------------------------------------------------
   def address
+    return 0 if disposed?
     @address ||= (
-      move_memory(a=[].pack('x')*4, __id__*2+16, 4)
-      move_memory(a, a.unpack('L')[0]+8 , 4)
-      move_memory(a, a.unpack('L')[0]+16, 4)
+      Externlib::RtlMoveMemory.call(a=[0].pack('L'), __id__*2+16, 4)
+      Externlib::RtlMoveMemory.call(a, a.unpack('L')[0]+8 , 4)
+      Externlib::RtlMoveMemory.call(a, a.unpack('L')[0]+16, 4)
       a.unpack('L')[0]
     )
   end
@@ -1408,14 +1401,14 @@ class Bitmap
   # * Returns byte size
   #--------------------------------------------------------------------------
   def bytesize
-    self.width * self.height * 4
+    width * height * 4
   end
   #--------------------------------------------------------------------------
   # * Get Data
   #--------------------------------------------------------------------------
   def get_data
-    data = [].pack('x') * self.bytesize
-    move_memory(data, self.address, data.bytesize)
+    data = [].pack('x') * bytesize
+    Externlib::RtlMoveMemory.call(data, address, data.bytesize)
     data
   end
   #--------------------------------------------------------------------------
@@ -1423,30 +1416,41 @@ class Bitmap
   #--------------------------------------------------------------------------
   def get_data_ptr
     data = String.new
-    move_memory(data.__id__*2, [0x6005].pack('L'), 4)
-    move_memory(data.__id__*2+8, [bytesize,address].pack('L2'), 8)
-    def data.free() move_memory(__id__*2, String.new, 16) end
-    return data unless block_given?
-    yield data ensure data.free
+    Externlib::RtlMoveMemory.call(data.__id__*2, [0x6005].pack('L'), 4)
+    Externlib::RtlMoveMemory.call(data.__id__*2+8, [bytesize,address].pack('L2'), 8)
+    def data.free() Externlib::RtlMoveMemory.call(__id__*2, String.new, 16) end
+    return data 
   end
   #--------------------------------------------------------------------------
   # * Set data
   #--------------------------------------------------------------------------
   def set_data(data)
-    move_memory(self.address, data, data.bytesize)
+    Externlib::RtlMoveMemory.call(self.address, data, data.bytesize)
   end
   #--------------------------------------------------------------------------
   # * Fast get pixel
   #--------------------------------------------------------------------------
   def fast_get_pixel(x_in, y_in)
     return Color.new(0,0,0,0) if x_in >= self.width || y_in >= self.height
-    data = self.get_data
+    data = self.get_data_ptr
     i = (x_in + (self.height - 1 - y_in) * self.width) * 4
     blue = data.getbyte(i)
     green = data.getbyte(i+1)
     red = data.getbyte(i+2)
     alpha = data.getbyte(i+3)
+    data.free
     Color.new(red, green, blue, alpha)
+  end
+  #--------------------------------------------------------------------------
+  # * Transparency
+  #--------------------------------------------------------------------------
+  def is_transparent?(x_in, y_in)
+    return true if x_in >= self.width || y_in >= self.height
+    data = self.get_data_ptr
+    i = (x_in + (self.height - 1 - y_in) * self.width) * 4
+    alpha = data.getbyte(i+3)
+    data.free
+    (alpha == 0)
   end
 end
 
