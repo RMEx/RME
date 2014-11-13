@@ -675,6 +675,7 @@ class Sprite_Picture
     self.mirror = !self.mirror if @picture.mirror != self.mirror
     self.wave_amp = @picture.wave_amp if @picture.wave_amp != self.wave_amp
     self.wave_speed = @picture.wave_speed if @picture.wave_speed != self.wave_speed
+    p [self.bitmap.fast_get_pixel(mouse_x, mouse_y), [mouse_x, Mouse.x], [mouse_y, Mouse.y]] if self.trigger?(:mouse_left)
   end
   #--------------------------------------------------------------------------
   # * Update Position

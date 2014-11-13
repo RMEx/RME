@@ -4,15 +4,12 @@
 Extension des rectangles
 
 ##Liste des méthodes
-**self.click?(`key`)**
+**self.click?**
 
-> Vérifie si le rectangle est clické par la touche passée en argument
+> Vérifie si le rectangle est cliqué
 
   
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Touche d'activation  
-
+> 
 
 
 
@@ -39,6 +36,28 @@ Extension des rectangles
 `x`|`Fixnum`|Coordonnées X du point  
 `y`|`Fixnum`|Coordonnées Y du point  
 
+
+
+
+
+
+**self.mouse_x**
+
+> Retourne la position x de la souris relative au rectangle
+
+  
+> 
+
+
+
+
+
+**self.mouse_y**
+
+> Retourne la position y de la souris relative au rectangle
+
+  
+> 
 
 
 

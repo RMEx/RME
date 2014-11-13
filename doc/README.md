@@ -17,6 +17,7 @@ Outil d'extension de RPG Maker
 *    [Object](Object.md)
 *    [Point](Point.md)
 *    [Rect](Rect.md)
+*    [Sprite](Sprite.md)
 *    [String](String.md)
 *    [Viewport](Viewport.md)
 

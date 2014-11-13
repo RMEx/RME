@@ -54,6 +54,53 @@ class Object
 end
 
 #==============================================================================
+# ** Sprite
+#------------------------------------------------------------------------------
+#  The Sprite class
+#==============================================================================
+
+class Sprite
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Extension des sprites"
+  link_method_documentation :"self.rect", 
+                            "Retourne le rectangle relatif d'un sprite", 
+                            {}, true
+  link_method_documentation :"self.in?", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle du sprite", 
+                            {
+                              :x=> ["Coordonnées X du point", :Fixnum], 
+                              :y=> ["Coordonnées Y du point", :Fixnum]
+                            }, true
+  link_method_documentation :"self.hover?", 
+                            "Vérifie si la souris passe au dessus du rectangle du sprite", 
+                            {}, true
+  link_method_documentation :"self.click?", 
+                            "Vérifie si le rectangle du sprite est cliqué", 
+                            {}, true
+  link_method_documentation :"self.press?", 
+                            "Vérifie si le rectangle du sprite est enfoncé par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.trigger?", 
+                            "Vérifie si le rectangle du sprite est clické une fois par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.repeat?", 
+                            "Vérifie si le rectangle du sprite est clické de manière répétée par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.release?", 
+                            "Vérifie si le rectangle du sprite est relaché par la touche passée en argument", 
+                            {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.mouse_x", 
+                            "Retourne la position x de la souris relative au rectangle du sprite", 
+                            {}, true
+  link_method_documentation :"self.mouse_y", 
+                            "Retourne la position y de la souris relative au rectangle du sprite", 
+                            {}, true
+
+end
+
+#==============================================================================
 # ** Rect
 #------------------------------------------------------------------------------
 #  The rectangle class
@@ -74,8 +121,8 @@ class Rect
                             "Vérifie si la souris passe au dessus du rectangle", 
                             {}, true
   link_method_documentation :"self.click?", 
-                            "Vérifie si le rectangle est clické par la touche passée en argument", 
-                            {:key => ["Touche d'activation", :Symbol]}, true
+                            "Vérifie si le rectangle est cliqué", 
+                            {}, true
   link_method_documentation :"self.press?", 
                             "Vérifie si le rectangle est enfoncé par la touche passée en argument", 
                             {:key => ["Touche d'activation", :Symbol]}, true
@@ -88,6 +135,12 @@ class Rect
   link_method_documentation :"self.release?", 
                             "Vérifie si le rectangle est relaché par la touche passée en argument", 
                             {:key => ["Touche d'activation", :Symbol]}, true
+  link_method_documentation :"self.mouse_x", 
+                            "Retourne la position x de la souris relative au rectangle", 
+                            {}, true
+  link_method_documentation :"self.mouse_y", 
+                            "Retourne la position y de la souris relative au rectangle", 
+                            {}, true
 
 end
 
@@ -102,30 +155,13 @@ class Bitmap
   # * Documentation
   #--------------------------------------------------------------------------
   link_class_documentation "Extension des Bitmaps"
-  link_method_documentation :"self.in?", 
-                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle de l'image", 
+  link_method_documentation :"self.fast_get_pixel", 
+                            "Retourne l'objet Color correspondant aux coordonnées données de manière très rapide", 
                             {
-                              :x=> ["Coordonnées X du point", :Fixnum], 
-                              :y=> ["Coordonnées Y du point", :Fixnum]
+
+                              :x => ["Coordonnées X", :Fixnum],
+                              :y => ["Coordonnées Y", :Fixnum]
                             }, true
-  link_method_documentation :"self.hover?", 
-                            "Vérifie si la souris passe au dessus du rectangle de l'image", 
-                            {}, true
-  link_method_documentation :"self.click?", 
-                            "Vérifie si le rectangle de l'image est clické par la touche passée en argument", 
-                            {:key => ["Touche d'activation", :Symbol]}, true
-  link_method_documentation :"self.press?", 
-                            "Vérifie si le rectanglen de l'image est enfoncé par la touche passée en argument", 
-                            {:key => ["Touche d'activation", :Symbol]}, true
-  link_method_documentation :"self.trigger?", 
-                            "Vérifie si le rectangle de l'image est clické une fois par la touche passée en argument", 
-                            {:key => ["Touche d'activation", :Symbol]}, true
-  link_method_documentation :"self.repeat?", 
-                            "Vérifie si le rectangle de l'image est clické de manière répétée par la touche passée en argument", 
-                            {:key => ["Touche d'activation", :Symbol]}, true
-  link_method_documentation :"self.release?", 
-                            "Vérifie si le rectangle de l'image est relaché par la touche passée en argument", 
-                            {:key => ["Touche d'activation", :Symbol]}, true
 end
 
 #==============================================================================

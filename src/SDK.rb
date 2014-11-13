@@ -508,6 +508,7 @@ module Externlib
   FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
   GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
   GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  RtlMoveMemory       = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
   ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
   ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
   ToUnicode           = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
@@ -610,11 +611,6 @@ module Devices
         ::Keyboard.send("k#{m}", instance_variable_get(:@id))
       end
     end
-
-    #--------------------------------------------------------------------------
-    # * Click API
-    #--------------------------------------------------------------------------
-    alias_method :click?, :press?
 
     #--------------------------------------------------------------------------
     # * Append to Input Const
@@ -1149,8 +1145,8 @@ module Generative
       return Rect.new(0,0,0,0) unless self.bitmap 
       tx, ty = self.x, self.y
       if viewport
-        tx = viewport.x - viewport.ox
-        ty = viewport.y - viewport.oy
+        tx = viewport.x - viewport.ox + self.x
+        ty = viewport.y - viewport.oy + self.y
       end
       Rect.new(tx, ty, bitmap.width, bitmap.height)
     end
@@ -1216,6 +1212,17 @@ class Viewport
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :elts
+  [
+    :in?,
+    :hover?,
+    :click?, 
+    :press?, 
+    :trigger?, 
+    :repeat?, 
+    :release?, 
+    :mouse_x,
+    :mouse_y
+  ].each{|m| delegate :rect, m}
   delegate_accessor :rect, :x 
   delegate_accessor :rect, :y
   delegate_accessor :rect, :width
@@ -1256,6 +1263,34 @@ class Viewport
 end 
 
 #==============================================================================
+# ** Sprite
+#------------------------------------------------------------------------------
+#  The sprite class. Sprites are the basic concept used to display characters 
+#  and other objects on the game screen.
+#==============================================================================
+
+class Sprite
+  #--------------------------------------------------------------------------
+  # * Extend sprite behaviour
+  #--------------------------------------------------------------------------
+  include Generative::BitmapRect
+  #--------------------------------------------------------------------------
+  # * Delegate Process
+  #--------------------------------------------------------------------------
+  [
+    :in?,
+    :hover?,
+    :click?, 
+    :press?, 
+    :trigger?, 
+    :repeat?, 
+    :release?, 
+    :mouse_x,
+    :mouse_y
+  ].each{|m| delegate :rect, m}
+end
+
+#==============================================================================
 # ** Rect
 #------------------------------------------------------------------------------
 #  The rectangle class.
@@ -1283,11 +1318,16 @@ class Rect
   #--------------------------------------------------------------------------
   # * check Mouse Interaction
   #--------------------------------------------------------------------------
-  def click?(key);    hover? && Mouse.click?(key);    end
+  def click?;         hover? && Mouse.click?;         end
   def press?(key);    hover? && Mouse.press?(key);    end
   def trigger?(key);  hover? && Mouse.trigger?(key);  end
   def repeat?(key);   hover? && Mouse.repeat?(key);   end
   def release?(key);  hover? && Mouse.release?(key);  end
+  #--------------------------------------------------------------------------
+  # * Mouse accessor
+  #--------------------------------------------------------------------------
+  def mouse_x; Mouse.x - self.x;  end 
+  def mouse_y; Mouse.y - self.y; end
 end
 
 #==============================================================================
@@ -1299,17 +1339,64 @@ end
 
 class Bitmap
   #--------------------------------------------------------------------------
-  # * Delegate Process
+  # * Import
   #--------------------------------------------------------------------------
-  [
-    :in?,
-    :hover?,
-    :click?, 
-    :press?, 
-    :trigger?, 
-    :repeat?, 
-    :release?
-    ].each{|m| delegate :rect, m}
+  externalize Externlib::RtlMoveMemory, :move_memory
+  # This part is made by Zeus81 ! Thanks a Lot ! 
+  #--------------------------------------------------------------------------
+  # * Optimize get_data
+  #--------------------------------------------------------------------------
+  def address
+    @address ||= (
+      move_memory(a=[].pack('x')*4, __id__*2+16, 4)
+      move_memory(a, a.unpack('L')[0]+8 , 4)
+      move_memory(a, a.unpack('L')[0]+16, 4)
+      a.unpack('L')[0]
+    )
+  end
+  #--------------------------------------------------------------------------
+  # * Returns byte size
+  #--------------------------------------------------------------------------
+  def bytesize
+    self.width * self.height * 4
+  end
+  #--------------------------------------------------------------------------
+  # * Get Data
+  #--------------------------------------------------------------------------
+  def get_data
+    data = [].pack('x') * self.bytesize
+    move_memory(data, self.address, data.bytesize)
+    data
+  end
+  #--------------------------------------------------------------------------
+  # * Get Data pointer
+  #--------------------------------------------------------------------------
+  def get_data_ptr
+    data = String.new
+    move_memory(data.__id__*2, [0x6005].pack('L'), 4)
+    move_memory(data.__id__*2+8, [bytesize,address].pack('L2'), 8)
+    def data.free() move_memory(__id__*2, String.new, 16) end
+    return data unless block_given?
+    yield data ensure data.free
+  end
+  #--------------------------------------------------------------------------
+  # * Set data
+  #--------------------------------------------------------------------------
+  def set_data(data)
+    move_memory(self.address, data, data.bytesize)
+  end
+  #--------------------------------------------------------------------------
+  # * Fast get pixel
+  #--------------------------------------------------------------------------
+  def fast_get_pixel(x_in, y_in)
+    data = self.get_data
+    i = (x_in + (self.height - 1 - y_in) * self.width) * 4
+    blue = data.getbyte(i)
+    green = data.getbyte(i+1)
+    red = data.getbyte(i+2)
+    alpha = data.getbyte(i+3)
+    Color.new(red, green, blue, alpha)
+  end
 end
 
 
