@@ -481,6 +481,18 @@ end
 
 module Command
   #--------------------------------------------------------------------------
+  # * Spriteset
+  #--------------------------------------------------------------------------
+  def spriteset
+    scene.spriteset
+  end
+  #--------------------------------------------------------------------------
+  # * Sprite picture
+  #--------------------------------------------------------------------------
+  def sprite_picture(id)
+    spriteset.picture_sprites[id]
+  end
+  #--------------------------------------------------------------------------
   # * Picture show
   #--------------------------------------------------------------------------
   def picture_show(id, n, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
@@ -523,7 +535,7 @@ module Command
     opacity = (opacity == -1) ? p.opacity : opacity
     blend = (bt == -1) ? p.blend_type : bt
     origin = (o == -1) ? p.origin : o
-    p.move(o, x, y, zoom_x, zoom_y, opacity, blend, dur)
+    p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur)
   end
   #--------------------------------------------------------------------------
   # * Modify wave
@@ -616,6 +628,67 @@ module Command
   def picture_shake(id, power, speed, duration)
     pictures[id].start_shake(power, speed, duration)
   end
+  #--------------------------------------------------------------------------
+  # * Point in picture
+  #--------------------------------------------------------------------------
+  def in_picture?(id, x, y)
+    spr = sprite_picture(id)
+    return false unless spr
+    spr.in?(x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Precise in picture
+  #--------------------------------------------------------------------------
+  def precise_in_picture?(id, x, y)
+    spr = sprite_picture(id)
+    return false unless spr
+    spr.precise_in?(x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Picture collisions
+  #--------------------------------------------------------------------------
+  def pictures_collide?(a, b)
+    spr_a = sprite_picture(a)
+    spr_b = sprite_picture(b)
+    return if (!spr_a) || (!spr_b)
+    spr_a.collide_with?(spr_b)
+  end
+  #--------------------------------------------------------------------------
+  # * Picture collisions (perfect pixel)
+  #--------------------------------------------------------------------------
+  def pictures_perfect_collide?(a, b)
+    spr_a = sprite_picture(a)
+    spr_b = sprite_picture(b)
+    return if (!spr_a) || (!spr_b)
+    spr_a.pixel_collide_with(spr_b)
+  end
+end
+
+#==============================================================================
+# ** Scene_Map
+#------------------------------------------------------------------------------
+#  This class performs the map screen processing.
+#==============================================================================
+
+class Scene_Map
+  #--------------------------------------------------------------------------
+  # * Public instances variables
+  #--------------------------------------------------------------------------
+  attr_accessor :spriteset
+end
+
+#==============================================================================
+# ** Spriteset_Map
+#------------------------------------------------------------------------------
+#  This class brings together map screen sprites, tilemaps, etc. It's used
+# within the Scene_Map class.
+#==============================================================================
+
+class Spriteset_Map
+  #--------------------------------------------------------------------------
+  # * Public instances variables
+  #--------------------------------------------------------------------------
+  attr_accessor :picture_sprites
 end
 
 #==============================================================================
@@ -675,7 +748,6 @@ class Sprite_Picture
     self.mirror = !self.mirror if @picture.mirror != self.mirror
     self.wave_amp = @picture.wave_amp if @picture.wave_amp != self.wave_amp
     self.wave_speed = @picture.wave_speed if @picture.wave_speed != self.wave_speed
-    p [self.bitmap.fast_get_pixel(mouse_x, mouse_y), [mouse_x, Mouse.x], [mouse_y, Mouse.y]] if self.trigger?(:mouse_left)
   end
   #--------------------------------------------------------------------------
   # * Update Position

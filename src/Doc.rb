@@ -1025,6 +1025,36 @@ module Command
                             :duration => ["La durée en frame du tremblement", :Fixnum],
                           }
   register_command :picture, "Command.picture_opacity"
+  link_method_documentation "Command.in_picture?", 
+                          "Vérifie que le x, y sont inscrit dans l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :x => ["Coordonnées X", :Fixnum],
+                            :y => ["Coordonnées Y", :Fixnum],
+                          }, true
+  register_command :picture, "Command.in_picture?"
+  link_method_documentation "Command.precise_in_picture?", 
+                          "Vérifie que le x, y sont inscrit dans l'image (en tenant compte de la transparence)", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :x => ["Coordonnées X", :Fixnum],
+                            :y => ["Coordonnées Y", :Fixnum],
+                          }, true
+  register_command :picture, "Command.precise_in_picture?"
+  link_method_documentation "Command.pictures_collide?", 
+                          "Vérifie que deux images sont en collisions", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :id2 => ["ID de l'autre image", :Fixnum],
+                          }, true
+  register_command :picture, "Command.pictures_collide?"
+  link_method_documentation "Command.pictures_perfect_collide?", 
+                          "Vérifie que deux images sont en collisions en tenant compte de la transparence (Attention, actuellement cette commande lag beaucoup)", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :id2 => ["ID de l'autre image", :Fixnum],
+                          }, true
+  register_command :picture, "Command.pictures_perfect_collide?"
 
 end
 

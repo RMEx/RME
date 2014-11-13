@@ -1145,10 +1145,10 @@ module Generative
       return Rect.new(0,0,0,0) unless self.bitmap 
       tx, ty = self.x, self.y
       if viewport
-        tx = viewport.x - viewport.ox + self.x
-        ty = viewport.y - viewport.oy + self.y
+        tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))
+        ty = (viewport.y - viewport.oy + self.y - (self.oy * zoom_y))
       end
-      Rect.new(tx, ty, bitmap.width, bitmap.height)
+      Rect.new(tx, ty, bitmap.width*zoom_x, bitmap.height*zoom_y)
     end
   end
 
@@ -1288,6 +1288,56 @@ class Sprite
     :mouse_x,
     :mouse_y
   ].each{|m| delegate :rect, m}
+
+  #--------------------------------------------------------------------------
+  # * Precise inclusion
+  #--------------------------------------------------------------------------
+  def precise_in?(x, y)
+    return false unless self.bitmap
+    in?(x, y) && bitmap.fast_get_pixel(x-self.x, y-self.y).alpha > 0
+  end
+  #--------------------------------------------------------------------------
+  # * Collision
+  #--------------------------------------------------------------------------
+  def collide_with?(with_rect)
+    raise RuntimeError.new("Not a rect !") unless with_rect.respond_to?(:rect)
+    a = self.rect
+    b = with_rect.rect
+    if ((b.x >= a.x + a.width) || 
+        (b.x + b.width < a.x)  || 
+        (b.y >= a.y + a.height)|| 
+        (b.y + b.height < a.y)
+      ) 
+    return false
+    else
+      return true
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Super precise Collision
+  #--------------------------------------------------------------------------
+  def pixel_collide_with(with_rect)
+    fa = collide_with?(with_rect)
+    return false unless fa 
+    min, max = self, with_rect
+    max, min = min, max if (min.rect.width * min.rect.height) > (max.rect.width * max.rect.height)
+    lines = (0 .. (min.rect.height - 1)).to_a
+    rows = (0 .. (min.rect.width - 1)).to_a
+    lines = lines.reverse if min.rect.y < max.y
+    rows = rows.reverse if min.rect.x < max.rect.x
+    lines.each do |y|
+      rows.each do |x|
+        real_x = min.rect.x + x - max.rect.x
+        real_y = min.rect.y + y - max.rect.y
+        if max.rect.in?(min.rect.x + x, min.rect.y + y)
+          fa = min.bitmap.fast_get_pixel(x, y).alpha > 0
+          fb = max.bitmap.fast_get_pixel(real_x, real_y).alpha > 0 
+          return true if fa && fb 
+        end
+      end
+    end
+    return false
+  end
 end
 
 #==============================================================================
@@ -1389,6 +1439,7 @@ class Bitmap
   # * Fast get pixel
   #--------------------------------------------------------------------------
   def fast_get_pixel(x_in, y_in)
+    return Color.new(0,0,0,0) if x_in >= self.width || y_in >= self.height
     data = self.get_data
     i = (x_in + (self.height - 1 - y_in) * self.width) * 4
     blue = data.getbyte(i)

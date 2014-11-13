@@ -114,6 +114,22 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.in_picture?(`id`, `x`, `y`)**
+
+> Vérifie que le x, y sont inscrit dans l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+
+
 **Command.include_page(`map_id`, `event_id`, `page_id`, `*runnable`, `*context`)**
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
@@ -881,6 +897,52 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
+
+
+
+
+
+
+**Command.pictures_collide?(`id`, `id2`)**
+
+> Vérifie que deux images sont en collisions
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`id2`|`Fixnum`|ID de l'autre image  
+
+
+
+
+
+
+**Command.pictures_perfect_collide?(`id`, `id2`)**
+
+> Vérifie que deux images sont en collisions en tenant compte de la transparence (Attention, actuellement cette commande lag beaucoup)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`id2`|`Fixnum`|ID de l'autre image  
+
+
+
+
+
+
+**Command.precise_in_picture?(`id`, `x`, `y`)**
+
+> Vérifie que le x, y sont inscrit dans l'image (en tenant compte de la transparence)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 

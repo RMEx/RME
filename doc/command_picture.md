@@ -4,6 +4,18 @@
 Commandes relatives à la manipulation des images
 
 ##Liste des commandes
+**in_picture?(`id`, `x`, `y`)**
+
+> Vérifie que le x, y sont inscrit dans l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
 **picture_angle(`id`, `angle`)**
 
 > Change l'angle de l'image
@@ -195,5 +207,39 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
+
+
+**pictures_collide?(`id`, `id2`)**
+
+> Vérifie que deux images sont en collisions
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`id2`|`Fixnum`|ID de l'autre image  
+
+
+**pictures_perfect_collide?(`id`, `id2`)**
+
+> Vérifie que deux images sont en collisions en tenant compte de la transparence (Attention, actuellement cette commande lag beaucoup)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`id2`|`Fixnum`|ID de l'autre image  
+
+
+**precise_in_picture?(`id`, `x`, `y`)**
+
+> Vérifie que le x, y sont inscrit dans l'image (en tenant compte de la transparence)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
