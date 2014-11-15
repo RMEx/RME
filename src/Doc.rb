@@ -552,6 +552,12 @@ module Command
                           :max => ["Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)", :Fixnum]
                         }, true
   register_command :standard, "Command.random"
+  link_method_documentation "Command.wait", 
+                        "Attend un nombre de frames donné",
+                        {
+                          :duration => ["Nombre de frames a attendre", :Fixnum],
+                        }
+  register_command :standard, "Command.wait"
 
   link_method_documentation "Command.random_figures", 
                         "Renvoie un nombre à virgule aléatoire compris entre x et x+1",
@@ -924,6 +930,7 @@ module Command
                             :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
                             :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
                             :duration => ["Durée du déplacement en frames", :Fixnum],
+                            :wait_flag => ["Attendre la fin du déplacement", :Boolean],
                             :"*opacity" => ["Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
                             :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
                             :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
@@ -1047,14 +1054,16 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :id2 => ["ID de l'autre image", :Fixnum],
                           }, true
-  register_command :picture, "Command.pictures_collide?"
-  link_method_documentation "Command.pictures_perfect_collide?", 
-                          "Vérifie que deux images sont en collisions en tenant compte de la transparence (Attention, actuellement cette commande lag beaucoup)", 
-                          {
-                            :id => ["ID de l'image", :Fixnum],
-                            :id2 => ["ID de l'autre image", :Fixnum],
-                          }, true
-  register_command :picture, "Command.pictures_perfect_collide?"
+
+  # # Retirée car trop peu performante en ce moment :)
+  # register_command :picture, "Command.pictures_collide?"
+  # link_method_documentation "Command.pictures_perfect_collide?", 
+  #                         "Vérifie que deux images sont en collisions en tenant compte de la transparence (Attention, actuellement cette commande lag beaucoup)", 
+  #                         {
+  #                           :id => ["ID de l'image", :Fixnum],
+  #                           :id2 => ["ID de l'autre image", :Fixnum],
+  #                         }, true
+  # register_command :picture, "Command.pictures_perfect_collide?"
 
 end
 

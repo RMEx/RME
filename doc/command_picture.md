@@ -38,7 +38,7 @@ Commandes relatives à la manipulation des images
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
-**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*opacity`, `*blend_type`, `*origin`)**
+**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `wait_flag`, `*opacity`, `*blend_type`, `*origin`)**
 
 > Déplace une image
 
@@ -51,6 +51,7 @@ Commandes relatives à la manipulation des images
 `zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
 `duration`|`Fixnum`|Durée du déplacement en frames  
+`wait_flag`|`Boolean`|Attendre la fin du déplacement  
 `*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
@@ -207,28 +208,6 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
-
-
-**pictures_collide?(`id`, `id2`)**
-
-> Vérifie que deux images sont en collisions
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
-`id2`|`Fixnum`|ID de l'autre image  
-
-
-**pictures_perfect_collide?(`id`, `id2`)**
-
-> Vérifie que deux images sont en collisions en tenant compte de la transparence (Attention, actuellement cette commande lag beaucoup)
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
-`id2`|`Fixnum`|ID de l'autre image  
 
 
 **precise_in_picture?(`id`, `x`, `y`)**

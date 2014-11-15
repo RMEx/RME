@@ -1327,10 +1327,10 @@ class Sprite
         real_x = min.rect.x + x - max.rect.x
         real_y = min.rect.y + y - max.rect.y
         if max.rect.in?(min.rect.x + x, min.rect.y + y)
-          fa = !min.bitmap.is_transparent?(x, y)
-          fb = !max.bitmap.is_transparent?(real_x, real_y)
+          fa = min.bitmap.pixel_visible?(x, y)
+          fb = max.bitmap.pixel_visible?(real_x, real_y)
           return true if fa && fb 
-        end
+        end 
       end
     end
     return false
@@ -1452,6 +1452,12 @@ class Bitmap
     data.free
     (alpha == 0)
   end
+  def pixel_visible?(x, y)
+    @pixel_visible ||= Array.new(width) do |ix| 
+      Array.new(height) {|iy| !is_transparent?(ix, iy)}
+    end
+    @pixel_visible[x][y]
+  end
 end
 
 
@@ -1469,4 +1475,5 @@ module Command
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end
+  def wait(d); d.times {Fiber.yield}; end
 end

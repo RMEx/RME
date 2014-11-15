@@ -47,3 +47,13 @@ Commandes standards
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
 
+**wait(`duration`)**
+
+> Attend un nombre de frames donné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`duration`|`Fixnum`|Nombre de frames a attendre  
+
+

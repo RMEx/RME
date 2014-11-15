@@ -530,12 +530,13 @@ module Command
   #--------------------------------------------------------------------------
   # * Move picture
   #--------------------------------------------------------------------------
-  def picture_move(id, x, y, zoom_x, zoom_y, dur, opacity = -1, bt = -1, o = -1)
+  def picture_move(id, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1)
     p = pictures[id]
     opacity = (opacity == -1) ? p.opacity : opacity
     blend = (bt == -1) ? p.blend_type : bt
     origin = (o == -1) ? p.origin : o
     p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur)
+    wait(dur) if wf
   end
   #--------------------------------------------------------------------------
   # * Modify wave
