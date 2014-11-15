@@ -593,6 +593,30 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`)**
+
+> Affiche un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`name`|`String`|Nom du panorama  
+`*z`|`Fixnum`|Axe Z (par défaut - 100)  
+`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*auto_x`|`Fixnum`|Défilement automatique horizontal (par défaut 0, ne défile pas)  
+`*auto_y`|`Fixnum`|Défilement automatique vertical (par défaut 0, ne défile pas)  
+`*scroll_x`|`Fixnum`|Défilement horizontal (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)  
+`*scroll_y`|`Fixnum`|Défilement vertical (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)  
+`*blend_type`|`Fixnum`|Mode de fusion (par défaut 0), mode normal  
+`*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
+`*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
+
+
+
+
+
+
 **Command.percent(`value`, `max`)**
 
 > Renvoie le pourcentage de value par rapport à max
@@ -643,7 +667,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-**Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `wait_flag`, `*opacity`, `*blend_type`, `*origin`)**
+**Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*wait_flag`, `*opacity`, `*blend_type`, `*origin`)**
 
 > Déplace une image
 
@@ -656,7 +680,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
 `duration`|`Fixnum`|Durée du déplacement en frames  
-`wait_flag`|`Boolean`|Attendre la fin du déplacement  
+`*wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
 `*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
@@ -735,6 +759,51 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `speed`|`Fixnum`|Vitesse de rotation de l'image  
+
+
+
+
+
+
+**Command.picture_scroll(`id`, `vitesse`)**
+
+> Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+**Command.picture_scroll_x(`id`, `vitesse`)**
+
+> Change la vitesse de défilement horizontal d'une image fixée sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+**Command.picture_scroll_y(`id`, `vitesse`)**
+
+> Change la vitesse de défilement vertical d'une image fixée sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`vitesse`|`Fixnum`|Vitesse de défilement  
 
 
 

@@ -38,7 +38,7 @@ Commandes relatives à la manipulation des images
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
-**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `wait_flag`, `*opacity`, `*blend_type`, `*origin`)**
+**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*wait_flag`, `*opacity`, `*blend_type`, `*origin`)**
 
 > Déplace une image
 
@@ -51,7 +51,7 @@ Commandes relatives à la manipulation des images
 `zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
 `duration`|`Fixnum`|Durée du déplacement en frames  
-`wait_flag`|`Boolean`|Attendre la fin du déplacement  
+`*wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
 `*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
@@ -98,6 +98,39 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `speed`|`Fixnum`|Vitesse de rotation de l'image  
+
+
+**picture_scroll(`id`, `vitesse`)**
+
+> Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+**picture_scroll_x(`id`, `vitesse`)**
+
+> Change la vitesse de défilement horizontal d'une image fixée sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+**picture_scroll_y(`id`, `vitesse`)**
+
+> Change la vitesse de défilement vertical d'une image fixée sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`vitesse`|`Fixnum`|Vitesse de défilement  
 
 
 **picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**

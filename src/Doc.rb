@@ -542,6 +542,7 @@ module Command
   register_command_category :keyboard, "Commandes du clavier", "Commandes relatives au clavier"
   register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
   register_command_category :picture, "Commandes de manipulation des images", "Commandes relatives à la manipulation des images"
+  register_command_category :parallax, "Commandes de manipulation des panoramas", "Commandes relatives à la manipulation des panoramas"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -930,7 +931,7 @@ module Command
                             :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
                             :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
                             :duration => ["Durée du déplacement en frames", :Fixnum],
-                            :wait_flag => ["Attendre la fin du déplacement", :Boolean],
+                            :"*wait_flag" => ["Attendre la fin du déplacement, par défaut, true", :Boolean],
                             :"*opacity" => ["Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
                             :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
                             :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
@@ -1054,6 +1055,43 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :id2 => ["ID de l'autre image", :Fixnum],
                           }, true
+  link_method_documentation "Command.picture_scroll_x", 
+                          "Change la vitesse de défilement horizontal d'une image fixée sur la carte", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :vitesse => ["Vitesse de défilement", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_scroll_x"
+  link_method_documentation "Command.picture_scroll_y", 
+                          "Change la vitesse de défilement vertical d'une image fixée sur la carte", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :vitesse => ["Vitesse de défilement", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_scroll_y"
+  link_method_documentation "Command.picture_scroll", 
+                          "Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                            :vitesse => ["Vitesse de défilement", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_scroll"
+  link_method_documentation "Command.parallax_show", 
+                          "Affiche un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum],
+                            :name => ["Nom du panorama", :String],
+                            :"*z" => ["Axe Z (par défaut - 100)", :Fixnum],
+                            :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
+                            :"*auto_x" => ["Défilement automatique horizontal (par défaut 0, ne défile pas)", :Fixnum],
+                            :"*auto_y" => ["Défilement automatique vertical (par défaut 0, ne défile pas)", :Fixnum],
+                            :"*scroll_x" => ["Défilement horizontal (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)", :Fixnum],
+                            :"*scroll_y" => ["Défilement vertical (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion (par défaut 0), mode normal", :Fixnum],
+                            :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
+                            :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_show"
 
   # # Retirée car trop peu performante en ce moment :)
   # register_command :picture, "Command.pictures_collide?"

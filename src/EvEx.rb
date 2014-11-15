@@ -324,6 +324,168 @@ class Game_Screen
 end
 
 #==============================================================================
+# ** Game_Parallax
+#------------------------------------------------------------------------------
+#  This class handles Parallaxes. 
+#==============================================================================
+
+class Game_Parallax
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :id, :name, :z, :opacity, :zoom_x, :zoom_y, :blend_type
+  attr_accessor :autospeed_x, :autospeed_y, :move_x, :move_y, :tone
+  #--------------------------------------------------------------------------
+  # * Initialize
+  #--------------------------------------------------------------------------
+  def initialize(id)
+    @id = id
+    init_basic
+    init_targets
+  end
+  #--------------------------------------------------------------------------
+  # * Initialize basic arguments
+  #--------------------------------------------------------------------------
+  def init_basic
+    @name, @z, @opacity = "", -100, 255.0
+    @zoom_x, @zoom_y = 100.0, 100.0
+    @blend_type = 0
+    @autospeed_x = @autospeed_y = 0
+    @move_x = @move_y = 0
+    @tone = Tone.new(0,0,0)
+    @duration = 0
+    @tone_duration = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Initialize Targets
+  #--------------------------------------------------------------------------
+  def init_targets
+    @target_tone = Tone.new
+    @target_zoom_x = @zoom_x
+    @target_zoom_y = @zoom_y
+    @target_opacity = @opacity
+  end
+  #--------------------------------------------------------------------------
+  # * Start Changing Color Tone
+  #--------------------------------------------------------------------------
+  def start_tone_change(tone, duration)
+    @tone_target = tone.clone
+    @tone_duration = duration
+    @tone = @tone_target.clone if @tone_duration == 0
+  end
+  #--------------------------------------------------------------------------
+  # * Update Parallax Move
+  #--------------------------------------------------------------------------
+  def update_move
+    return if @duration == 0
+    d = @duration
+    @zoom_x  = (@zoom_x  * (d - 1) + @target_zoom_x)  / d
+    @zoom_y  = (@zoom_y  * (d - 1) + @target_zoom_y)  / d
+    @opacity = (@opacity * (d - 1) + @target_opacity) / d
+    @duration -= 1
+  end
+  #--------------------------------------------------------------------------
+  # * Update Color Tone Change
+  #--------------------------------------------------------------------------
+  def update_tone_change
+    return if @tone_duration == 0
+    d = @tone_duration
+    @tone.red   = (@tone.red   * (d - 1) + @tone_target.red)   / d
+    @tone.green = (@tone.green * (d - 1) + @tone_target.green) / d
+    @tone.blue  = (@tone.blue  * (d - 1) + @tone_target.blue)  / d
+    @tone.gray  = (@tone.gray  * (d - 1) + @tone_target.gray)  / d
+    @tone_duration -= 1
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    update_move
+    update_tone_change
+  end
+  #--------------------------------------------------------------------------
+  # * hide parallax
+  #--------------------------------------------------------------------------
+  def hide; @name = ""; end
+  #--------------------------------------------------------------------------
+  # * show
+  #--------------------------------------------------------------------------
+  def show(n, z, op, a_x, a_y, m_x, m_y, b = 0, z_x = 100.0, z_y = 100.0)
+    @name, @z, @opacity = n, z, op.to_f
+    @zoom_x, @zoom_y = z_x.to_f, z_y.to_f
+    @autospeed_x, @autospeed_y = a_x, a_y
+    @move_x, @move_y = m_x, m_y
+    @blend_type = b
+  end
+  #--------------------------------------------------------------------------
+  # * move
+  #--------------------------------------------------------------------------
+  def move(duration, zoom_x, zoom_y, opacity, tone = nil)
+    @target_zoom_x = zoom_x.to_f
+    @target_zoom_y = zoom_y.to_f
+    @target_opacity = opacity.to_f
+    @duration = duration
+    start_tone_change(tone, duration) if tone.is_a?(Tone)
+  end
+end
+
+#==============================================================================
+# ** Commands Base
+#------------------------------------------------------------------------------
+#  Parallaxes Commands
+#==============================================================================
+
+module Command
+  #--------------------------------------------------------------------------
+  # * Show parallax
+  #--------------------------------------------------------------------------
+  def parallax_show(
+      id, 
+      name, 
+      z  = -100, 
+      op = 255, 
+      ax = 0, 
+      ay = 0, 
+      mx = 2, 
+      my = 2, 
+      b  = 0, 
+      zx = 100, 
+      zy = 100
+    )
+    $game_map.parallaxes[id].show(name, z, op, ax, ay, mx, my, b, zx, zy)
+  end
+end
+
+#==============================================================================
+# ** Game_Parallaxes
+#------------------------------------------------------------------------------
+#  This is a wrapper for a parallaxes array. This class is used within the
+# Game_Screen class. Map screen parallaxes and battle screen parallaxes are
+# handled separately.
+#==============================================================================
+
+class Game_Parallaxes
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize
+    @data = []
+  end
+  #--------------------------------------------------------------------------
+  # * Get Picture
+  #--------------------------------------------------------------------------
+  def [](number)
+    @data[number] ||= Game_Parallax.new(number)
+  end
+  #--------------------------------------------------------------------------
+  # * Iterator
+  #--------------------------------------------------------------------------
+  def each
+    @data.compact.each {|parallax| yield parallax } if block_given?
+  end
+end
+
+#==============================================================================
 # ** Game_Picture
 #------------------------------------------------------------------------------
 #  Pictures ingame
@@ -356,6 +518,7 @@ class Game_Picture
   attr_accessor  :wave_speed
   attr_accessor  :target_x, :target_y, :target_zoom_x, :target_zoom_y
   attr_accessor  :target_opacity
+  attr_accessor  :scroll_speed_x, :scroll_speed_y
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -370,6 +533,7 @@ class Game_Picture
     @mirror = false
     @wave_amp = @wave_speed = 0
     @pin = false
+    @scroll_speed_y = @scroll_speed_x = 2
     clear_shake
   end
   #--------------------------------------------------------------------------
@@ -663,6 +827,91 @@ module Command
     return if (!spr_a) || (!spr_b)
     spr_a.pixel_collide_with(spr_b)
   end
+  #--------------------------------------------------------------------------
+  # * Change scroll speed (in X)
+  #--------------------------------------------------------------------------
+  def picture_scroll_x(id, speed)
+    pictures[id].scroll_speed_x = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Change scroll speed (in Y)
+  #--------------------------------------------------------------------------
+  def picture_scroll_y(id, speed)
+    pictures[id].scroll_speed_y = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Change scroll speed
+  #--------------------------------------------------------------------------
+  def picture_scroll(id, speed)
+    picture_scroll_x(id, speed)
+    picture_scroll_y(id, speed)
+  end
+end
+
+#==============================================================================
+# ** Plane_Parallax
+#------------------------------------------------------------------------------
+#  This plane is used to display parallaxes.
+#==============================================================================
+
+class Plane_Parallax < Plane 
+  #--------------------------------------------------------------------------
+  # * Object initialization
+  #--------------------------------------------------------------------------
+  def initialize(parallax)
+    super()
+    @parallax = parallax
+    @scroll_x = @scroll_y = 0
+    update
+  end
+  #--------------------------------------------------------------------------
+  # * update bitmap
+  #--------------------------------------------------------------------------
+  def update
+    if @parallax.name.empty?
+      self.bitmap = nil
+    else 
+      self.bitmap = Cache.parallax(@parallax.name)
+      update_scroll_dimension
+      update_position
+      update_zoom
+      update_other
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * update scroll dimension
+  #--------------------------------------------------------------------------
+  def update_scroll_dimension 
+    @scroll_width = self.bitmap.width
+    @scroll_height = self.bitmap.height
+  end
+  #--------------------------------------------------------------------------
+  # * update position
+  #--------------------------------------------------------------------------
+  def update_position
+    x_s = 16 * @parallax.move_x
+    y_s = 16 * @parallax.move_y
+    self.z = @parallax.z 
+    @scroll_x = (@scroll_x + @parallax.autospeed_x) % @scroll_width
+    @scroll_y = (@scroll_y + @parallax.autospeed_y) % @scroll_height
+    self.ox = @scroll_x + ($game_map.display_x * x_s)
+    self.oy = @scroll_y + ($game_map.display_y * y_s)
+  end
+  #--------------------------------------------------------------------------
+  # * update zoom
+  #--------------------------------------------------------------------------
+  def update_zoom
+    self.zoom_x = @parallax.zoom_x / 100.0
+    self.zoom_y = @parallax.zoom_y / 100.0
+  end
+  #--------------------------------------------------------------------------
+  # * update others
+  #--------------------------------------------------------------------------
+  def update_other
+    self.opacity = @parallax.opacity
+    self.blend_type = @parallax.blend_type
+    self.tone.set(@parallax.tone)
+  end
 end
 
 #==============================================================================
@@ -679,6 +928,67 @@ class Scene_Map
 end
 
 #==============================================================================
+# ** Game_Map
+#------------------------------------------------------------------------------
+# This class handles maps. It includes scrolling and passage determination
+# functions. The instance of this class is referenced by $game_map.
+#==============================================================================
+class Game_Map
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :rm_extender_initialize, :initialize
+  alias_method :rm_extender_update, :update
+  #--------------------------------------------------------------------------
+  # * Public instance variables
+  #--------------------------------------------------------------------------
+  attr_accessor :parallaxes
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize
+    @parallaxes = Game_Parallaxes.new
+    rm_extender_initialize
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #     main:  Interpreter update flag
+  #--------------------------------------------------------------------------
+  def update(main = false)
+    @parallaxes.each {|parallax| parallax.update}
+    rm_extender_update(main)
+  end
+  #--------------------------------------------------------------------------
+  # * Clear parallaxes
+  #--------------------------------------------------------------------------
+  def clear_parallaxes
+    @parallaxes.each {|parallax| parallax.hide}
+  end
+  #--------------------------------------------------------------------------
+  # * Return Max Event Id
+  #--------------------------------------------------------------------------
+  def max_id
+    @events.keys.max
+  end
+  #--------------------------------------------------------------------------
+  # * Add event to map
+  #--------------------------------------------------------------------------
+  def add_event(map_id, event_id, new_id,x=nil,y=nil)
+    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+    return unless map
+    event = map.events[event_id]
+    return unless event
+    event.id = new_id
+    @events.store(new_id, Game_Event.new(@map_id, event))
+    x ||= event.x
+    y ||= event.y
+    @events[new_id].moveto(x, y)
+    @need_refresh = true
+    SceneManager.scene.refresh_spriteset
+  end
+end
+
+#==============================================================================
 # ** Spriteset_Map
 #------------------------------------------------------------------------------
 #  This class brings together map screen sprites, tilemaps, etc. It's used
@@ -687,9 +997,39 @@ end
 
 class Spriteset_Map
   #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :rm_extender_create_parallax, :create_parallax
+  alias_method :rm_extender_dispose_parallax, :dispose_parallax
+  alias_method :rm_extender_update_parallax, :update_parallax
+  #--------------------------------------------------------------------------
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :picture_sprites
+  #--------------------------------------------------------------------------
+  # * Create Parallax
+  #--------------------------------------------------------------------------
+  def create_parallax
+    @parallaxes_plane = []
+    rm_extender_create_parallax
+  end
+  #--------------------------------------------------------------------------
+  # * Free Parallax
+  #--------------------------------------------------------------------------
+  def dispose_parallax
+    @parallaxes_plane.compact.each {|parallax| parallax.dispose}
+    rm_extender_dispose_parallax
+  end
+  #--------------------------------------------------------------------------
+  # * Update Parallax
+  #--------------------------------------------------------------------------
+  def update_parallax
+    $game_map.parallaxes.each do |parallax|
+      @parallaxes_plane[parallax.id] ||= Plane_Parallax.new(parallax)
+      @parallaxes_plane[parallax.id].update
+    end
+    rm_extender_update_parallax
+  end
 end
 
 #==============================================================================
@@ -755,8 +1095,10 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   def update_position
     if @picture.pinned
-      self.x = @picture.x - ($game_map.display_x * 32) + @picture.shake
-      self.y = @picture.y - ($game_map.display_y * 32)
+      x_s = 16 * @picture.scroll_speed_x
+      y_s = 16 * @picture.scroll_speed_y
+      self.x = @picture.x - ($game_map.display_x * x_s) + @picture.shake
+      self.y = @picture.y - ($game_map.display_y * y_s)
     else
       self.x = @picture.x + @picture.shake
       self.y = @picture.y
