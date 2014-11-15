@@ -1113,7 +1113,7 @@ module Command
                             :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
                             :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Fixnum]
                           }
-  register_command :parallax, "Command.parallax_show"
+  register_command :parallax, "Command.parallax_move"
 
   # # Retirée car trop peu performante en ce moment :)
   # register_command :picture, "Command.pictures_collide?"

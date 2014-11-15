@@ -4,6 +4,22 @@
 Commandes relatives à la manipulation des panoramas
 
 ##Liste des commandes
+**parallax_move(`id`, `duration`, `*wait_flag`, `*zoom_x`, `*zoom_y`, `*opacity`, `*tone`)**
+
+> Déplace un panorama durant une durée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`duration`|`Fixnum`|Durée en frame du déplacement  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
+`*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
+`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+
+
 **parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`, `*tone`)**
 
 > Affiche un panorama
