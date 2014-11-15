@@ -546,6 +546,15 @@ module Command
 
   link_class_documentation "Collection des commandes EventExtender"
 
+  link_method_documentation "Command.tone", 
+                        "Renvoie une teinte",
+                        {
+                          :red => ["Valeur de rouge", :Fixnum],
+                          :green => ["Valeur de vert", :Fixnum], 
+                          :blue => ["Valeur de bleu", :Fixnum],
+                          :"*gray" => ["Valeur de gris, par défaut 0!", :Fixnum]
+                        }, true
+
   link_method_documentation "Command.random", 
                         "Renvoie un nombre aléatoire compris entre MIN et MAX inclus",
                         {
@@ -1089,7 +1098,20 @@ module Command
                             :"*scroll_y" => ["Défilement vertical (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)", :Fixnum],
                             :"*blend_type" => ["Mode de fusion (par défaut 0), mode normal", :Fixnum],
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
-                            :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum]
+                            :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
+                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_show"
+  link_method_documentation "Command.parallax_move", 
+                          "Déplace un panorama durant une durée", 
+                          {
+                            :id => ["ID du panorama", :Fixnum],
+                            :duration => ["Durée en frame du déplacement", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
+                            :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
+                            :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
+                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Fixnum]
                           }
   register_command :parallax, "Command.parallax_show"
 

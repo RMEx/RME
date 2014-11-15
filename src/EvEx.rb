@@ -410,12 +410,13 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * show
   #--------------------------------------------------------------------------
-  def show(n, z, op, a_x, a_y, m_x, m_y, b = 0, z_x = 100.0, z_y = 100.0)
+  def show(n, z, op, a_x, a_y, m_x, m_y, b = 0, z_x = 100.0, z_y = 100.0, t = Tone.new)
     @name, @z, @opacity = n, z, op.to_f
     @zoom_x, @zoom_y = z_x.to_f, z_y.to_f
     @autospeed_x, @autospeed_y = a_x, a_y
     @move_x, @move_y = m_x, m_y
     @blend_type = b
+    @tone = t
   end
   #--------------------------------------------------------------------------
   # * move
@@ -453,6 +454,21 @@ module Command
       zy = 100
     )
     $game_map.parallaxes[id].show(name, z, op, ax, ay, mx, my, b, zx, zy)
+  end
+  #--------------------------------------------------------------------------
+  # * Move parallax
+  #--------------------------------------------------------------------------
+  def parallax_move(
+      id, 
+      duration, 
+      wf = true, 
+      zoom_x = 100, 
+      zoom_y = 100, 
+      opacity = 255, 
+      tone = nil
+    )
+    $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone)
+    wait(duration) if wf
   end
 end
 
@@ -1364,6 +1380,12 @@ module Command
     snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
     msg = "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
     raise(NoMethodError, msg)
+  end
+  #--------------------------------------------------------------------------
+  # * Create a tone
+  #--------------------------------------------------------------------------
+  def tone(r, v, b, gray = 0)
+    Tone.new(r, v, b, gray)
   end
 end
 

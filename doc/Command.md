@@ -593,7 +593,27 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-**Command.parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`)**
+**Command.parallax_move(`id`, `duration`, `*wait_flag`, `*zoom_x`, `*zoom_y`, `*opacity`, `*tone`)**
+
+> Déplace un panorama durant une durée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`duration`|`Fixnum`|Durée en frame du déplacement  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
+`*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
+`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+
+
+
+
+
+
+**Command.parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`, `*tone`)**
 
 > Affiche un panorama
 
@@ -611,6 +631,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `*blend_type`|`Fixnum`|Mode de fusion (par défaut 0), mode normal  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
+`*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
 
 
 
@@ -1110,6 +1131,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
+**Command.tone(`red`, `green`, `blue`, `*gray`)**
+
+> Renvoie une teinte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`red`|`Fixnum`|Valeur de rouge  
+`green`|`Fixnum`|Valeur de vert  
+`blue`|`Fixnum`|Valeur de bleu  
+`*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
 
 
 

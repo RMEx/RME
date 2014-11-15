@@ -4,7 +4,7 @@
 Commandes relatives à la manipulation des panoramas
 
 ##Liste des commandes
-**parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`)**
+**parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`, `*tone`)**
 
 > Affiche un panorama
 
@@ -22,5 +22,6 @@ Commandes relatives à la manipulation des panoramas
 `*blend_type`|`Fixnum`|Mode de fusion (par défaut 0), mode normal  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
+`*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
 
 
