@@ -1114,6 +1114,16 @@ module Command
                             :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Fixnum]
                           }
   register_command :parallax, "Command.parallax_move"
+  link_method_documentation "Command.parallax_hide", 
+                          "Supprime un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_hide"
+  link_method_documentation "Command.parallaxes_clear", 
+                          "Supprime tous les panoramas", 
+                          {}
+  register_command :parallax, "Command.parallax_hide"
 
   # # Retirée car trop peu performante en ce moment :)
   # register_command :picture, "Command.pictures_collide?"

@@ -593,6 +593,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.parallax_hide(`id`)**
+
+> Supprime un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+
+
+
+
+
+
 **Command.parallax_move(`id`, `duration`, `*wait_flag`, `*zoom_x`, `*zoom_y`, `*opacity`, `*tone`)**
 
 > Déplace un panorama durant une durée
@@ -633,6 +647,17 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
 
+
+
+
+
+
+**Command.parallaxes_clear**
+
+> Supprime tous les panoramas
+
+  
+> 
 
 
 

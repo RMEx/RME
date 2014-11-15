@@ -4,6 +4,16 @@
 Commandes relatives à la manipulation des panoramas
 
 ##Liste des commandes
+**parallax_hide(`id`)**
+
+> Supprime un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+
+
 **parallax_move(`id`, `duration`, `*wait_flag`, `*zoom_x`, `*zoom_y`, `*opacity`, `*tone`)**
 
 > Déplace un panorama durant une durée

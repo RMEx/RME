@@ -470,6 +470,18 @@ module Command
     $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone)
     wait(duration) if wf
   end
+  #--------------------------------------------------------------------------
+  # * Hide parallax
+  #--------------------------------------------------------------------------
+  def parallax_hide(id)
+    $game_map.parallaxes[id].hide
+  end
+  #--------------------------------------------------------------------------
+  # * Hide all parallax
+  #--------------------------------------------------------------------------
+  def parallaxes_clear
+    $game_map.clear_parallaxes
+  end
 end
 
 #==============================================================================
