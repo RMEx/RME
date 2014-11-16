@@ -4,13 +4,13 @@
 Extension des chaines de caractère
 
 ##Liste des méthodes
-*    [self.damerau_levenshtein(`oth`)](#self.damerau_levenshtein)
+*    [self.damerau_levenshtein(oth)](#self.damerau_levenshtein(oth))
 *    [self.extract_numbers](#self.extract_numbers)
-*    [self.stretch(`lin_len`)](#self.stretch)
+*    [self.stretch(lin_len)](#self.stretch(lin_len))
 
 
 ##Description des méthodes
-**self.damerau_levenshtein(`oth`)[self.damerau_levenshtein]**
+##### self.damerau_levenshtein(oth)
 
 > Renvoie la distance de Damerau–Levenshtein avec 
                             une autre chaîne
@@ -25,7 +25,7 @@ Extension des chaines de caractère
 
 
 
-**self.extract_numbers[self.extract_numbers]**
+##### self.extract_numbers
 
 > Renvoie tous les entiers d'une chaîne de caractères
 
@@ -36,7 +36,7 @@ Extension des chaines de caractère
 
 
 
-**self.stretch(`lin_len`)[self.stretch]**
+##### self.stretch(lin_len)
 
 > Injecte des retours à la ligne dans la chaîne
 

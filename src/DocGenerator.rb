@@ -36,7 +36,8 @@ module DocGenerator
     def nl; "  \n"; end
     def np; "\n"*2; end
     def title(size, value); ("#"*size) + value.to_s + "\n"; end
-    def strong(value, n=""); "**#{value}[#{n}]**"; end
+    def strong(value); "**#{value}**"; end
+    def strong_t(value, n=""); '##### '+value.to_s; end
     def italic(value); "*#{value}*"; end 
     def ul; ""; end
     def end_ul; np; end
@@ -83,7 +84,8 @@ module DocGenerator
     def nl; "  \n"; end
     def np; "<br />"; end
     def title(size, value); ("<h#{size}>") + value.to_s + "</h#{size}>\n"; end
-    def strong(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
+    def strong(value); "<strong>#{value}</strong>"; end
+    def strong_t(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
     def italic(value); "<i>#{value}</i>"; end 
     def ul; "<ul>"; end
     def end_ul; "</ul>"; end
@@ -210,9 +212,11 @@ module DocGenerator
           atr = data[:attributes]
           ret = data[:returned]
           inline_args = ""
+          inline_args2 = ""
           atr_list = ""
           atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
           atr.each do |name, dt|
+            inline_args2 += name.to_s + ", "
             inline_args += mdl.inline_code(name.to_s) + ", "
             atr_list += mdl.tr(mdl.inline_code(name.to_s), mdl.inline_code(dt[1]), dt[0])
           end
@@ -220,11 +224,13 @@ module DocGenerator
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
           inline_args = (atr.length == 0 ? "" : "(#{inline_args})")
-          t += mdl.strong("#{name}#{inline_args}", name.to_s)
+          inline_args2 = inline_args2[0...-2]
+          inline_args2 = (atr.length == 0 ? "" : "(#{inline_args2})")
+          t += mdl.strong_t("#{name}#{inline_args2}", "#{name}#{inline_args2}")
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
-          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+name.to_s}"))
+          ls += mdl.li(mdl.link("#{name}#{inline_args2}", "#{'#'+"#{name}#{inline_args2}"}"))
         end
         return ls + mdl.end_ul + t
       end

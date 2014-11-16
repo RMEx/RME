@@ -8,7 +8,7 @@ Extension des entiers
 
 
 ##Description des méthodes
-**self.to_digit[self.to_digit]**
+##### self.to_digit
 
 > Renvoie la représentation textuelle d'un chiffre
 

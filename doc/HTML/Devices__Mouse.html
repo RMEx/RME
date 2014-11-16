@@ -1,44 +1,44 @@
 <!DOCTYPE html><html><head><meta charset='utf-8' /><title>Devices::Mouse</title></head><h1>Devices::Mouse</h1>
 <a href='index.html'>Retourner à l'index</a><br />Représentation de la souris, est accessible via Mouse<br /><h2>Attributs</h2>
 <table border='1'><tr><th>Nom</th><th>Description</th></tr><tr><td><code>:mouse_left</code></td><td>Pointe la touche Keys::Mouse_left (comme argument à passer)</td></tr><tr><td><code>:mouse_right</code></td><td>Pointe la touche Keys::Mouse_right (comme argument à passer)</td></tr><tr><td><code>:mouse_center</code></td><td>Pointe la touche Keys::Mouse_center (comme argument à passer)</td></tr><tr><td><code>:mouse_x1</code></td><td>Pointe la touche Keys::Mouse_x1 (comme argument à passer)</td></tr><tr><td><code>:mouse_x2</code></td><td>Pointe la touche Keys::Mouse_x2 (comme argument à passer)</td></tr></table><h2>Liste des méthodes<ul></h2>
-<li><a href='#Mouse.all?'>Mouse.all?(<code>method</code>, <code>keys</code>)</a></li>
-<li><a href='#Mouse.any?'>Mouse.any?(<code>method</code>, <code>keys</code>)</a></li>
-<li><a href='#Mouse.click?'>Mouse.click?(<code>key</code>)</a></li>
-<li><a href='#Mouse.current_key'>Mouse.current_key(<code>method</code>)</a></li>
+<li><a href='#Mouse.all?(method, keys)'>Mouse.all?(method, keys)</a></li>
+<li><a href='#Mouse.any?(method, keys)'>Mouse.any?(method, keys)</a></li>
+<li><a href='#Mouse.click?(key)'>Mouse.click?(key)</a></li>
+<li><a href='#Mouse.current_key(method)'>Mouse.current_key(method)</a></li>
 <li><a href='#Mouse.dragging?'>Mouse.dragging?</a></li>
-<li><a href='#Mouse.in?'>Mouse.in?(<code>rectangle</code>)</a></li>
+<li><a href='#Mouse.in?(rectangle)'>Mouse.in?(rectangle)</a></li>
 <li><a href='#Mouse.last_rect'>Mouse.last_rect</a></li>
 <li><a href='#Mouse.point'>Mouse.point</a></li>
-<li><a href='#Mouse.press?'>Mouse.press?(<code>key</code>)</a></li>
+<li><a href='#Mouse.press?(key)'>Mouse.press?(key)</a></li>
 <li><a href='#Mouse.rect'>Mouse.rect</a></li>
-<li><a href='#Mouse.release?'>Mouse.release?(<code>key</code>)</a></li>
-<li><a href='#Mouse.repeat?'>Mouse.repeat?(<code>key</code>)</a></li>
+<li><a href='#Mouse.release?(key)'>Mouse.release?(key)</a></li>
+<li><a href='#Mouse.repeat?(key)'>Mouse.repeat?(key)</a></li>
 <li><a href='#Mouse.square_x'>Mouse.square_x</a></li>
 <li><a href='#Mouse.square_y'>Mouse.square_y</a></li>
-<li><a href='#Mouse.time'>Mouse.time(<code>key</code>)</a></li>
-<li><a href='#Mouse.trigger?'>Mouse.trigger?(<code>key</code>)</a></li>
+<li><a href='#Mouse.time(key)'>Mouse.time(key)</a></li>
+<li><a href='#Mouse.trigger?(key)'>Mouse.trigger?(key)</a></li>
 <li><a href='#Mouse.x'>Mouse.x</a></li>
 <li><a href='#Mouse.y'>Mouse.y</a></li>
 </ul><h2>Description des méthodes</h2>
-<strong name='Mouse.all?' id='Mouse.all?'>Mouse.all?(<code>method</code>, <code>keys</code>)</strong><br /><blockquote>Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method</blockquote>  
+<strong name='Mouse.all?(method, keys)' id='Mouse.all?(method, keys)'>Mouse.all?(method, keys)</strong><br /><blockquote>Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>method</code></td><td><code>Symbol</code></td><td>Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.</td></tr><tr><td><code>keys</code></td><td><code>Argslist</code></td><td>Liste des touches qui doivent être activée selon la méthode</td></tr></table></blockquote><br />Exemple  
 <pre><code class='ruby'>  
 p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_left, :mouse_right)  
-</code></pre><br /><br /><strong name='Mouse.any?' id='Mouse.any?'>Mouse.any?(<code>method</code>, <code>keys</code>)</strong><br /><blockquote>Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method</blockquote>  
-<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>method</code></td><td><code>Symbol</code></td><td>Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.</td></tr><tr><td><code>keys</code></td><td><code>Argslist</code></td><td>Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte</td></tr></table></blockquote><br /><br /><strong name='Mouse.click?' id='Mouse.click?'>Mouse.click?(<code>key</code>)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)</blockquote>  
-<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.current_key' id='Mouse.current_key'>Mouse.current_key(<code>method</code>)</strong><br /><blockquote>Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée</blockquote>  
+</code></pre><br /><br /><strong name='Mouse.any?(method, keys)' id='Mouse.any?(method, keys)'>Mouse.any?(method, keys)</strong><br /><blockquote>Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>method</code></td><td><code>Symbol</code></td><td>Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.</td></tr><tr><td><code>keys</code></td><td><code>Argslist</code></td><td>Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte</td></tr></table></blockquote><br /><br /><strong name='Mouse.click?(key)' id='Mouse.click?(key)'>Mouse.click?(key)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.current_key(method)' id='Mouse.current_key(method)'>Mouse.current_key(method)</strong><br /><blockquote>Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>method</code></td><td><code>Symbol</code></td><td>Méthode d'activation (:press?, :release?, :trigger? etc.)</td></tr></table></blockquote><br /><br /><strong name='Mouse.dragging?' id='Mouse.dragging?'>Mouse.dragging?</strong><br /><blockquote>Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='Mouse.in?' id='Mouse.in?'>Mouse.in?(<code>rectangle</code>)</strong><br /><blockquote>Renvoie true si la souris se trouve dans le rectangle passé en argument</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='Mouse.in?(rectangle)' id='Mouse.in?(rectangle)'>Mouse.in?(rectangle)</strong><br /><blockquote>Renvoie true si la souris se trouve dans le rectangle passé en argument</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>rectangle</code></td><td><code>Rect</code></td><td>Rectangle à vérifier</td></tr></table></blockquote><br /><br /><strong name='Mouse.last_rect' id='Mouse.last_rect'>Mouse.last_rect</strong><br /><blockquote>Renvoie le dernier rectangle de sélection de la souris effectué</blockquote>  
 <blockquote></table></blockquote><br /><br /><strong name='Mouse.point' id='Mouse.point'>Mouse.point</strong><br /><blockquote>Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='Mouse.press?' id='Mouse.press?'>Mouse.press?(<code>key</code>)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='Mouse.press?(key)' id='Mouse.press?(key)'>Mouse.press?(key)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.rect' id='Mouse.rect'>Mouse.rect</strong><br /><blockquote>Renvoie le rectangle de sélection de la souris (tracé en cours)</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='Mouse.release?' id='Mouse.release?'>Mouse.release?(<code>key</code>)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon</blockquote>  
-<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.repeat?' id='Mouse.repeat?'>Mouse.repeat?(<code>key</code>)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='Mouse.release?(key)' id='Mouse.release?(key)'>Mouse.release?(key)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.repeat?(key)' id='Mouse.repeat?(key)'>Mouse.repeat?(key)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.square_x' id='Mouse.square_x'>Mouse.square_x</strong><br /><blockquote>Renvoie la position (en cases) X de la souris</blockquote>  
 <blockquote></table></blockquote><br /><br /><strong name='Mouse.square_y' id='Mouse.square_y'>Mouse.square_y</strong><br /><blockquote>Renvoie la position (en cases) Y de la souris</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='Mouse.time' id='Mouse.time'>Mouse.time(<code>key</code>)</strong><br /><blockquote>Renvoie le nombre de frame pressée d'une touche en cours</blockquote>  
-<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Touche à vérifier</td></tr></table></blockquote><br /><br /><strong name='Mouse.trigger?' id='Mouse.trigger?'>Mouse.trigger?(<code>key</code>)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='Mouse.time(key)' id='Mouse.time(key)'>Mouse.time(key)</strong><br /><blockquote>Renvoie le nombre de frame pressée d'une touche en cours</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Touche à vérifier</td></tr></table></blockquote><br /><br /><strong name='Mouse.trigger?(key)' id='Mouse.trigger?(key)'>Mouse.trigger?(key)</strong><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table></blockquote><br /><br /><strong name='Mouse.x' id='Mouse.x'>Mouse.x</strong><br /><blockquote>Renvoie la position (en pixels) X de la souris</blockquote>  
 <blockquote></table></blockquote><br /><br /><strong name='Mouse.y' id='Mouse.y'>Mouse.y</strong><br /><blockquote>Renvoie la position (en pixels) Y de la souris</blockquote>  
 <blockquote></table></blockquote><br /><br /></body></html>

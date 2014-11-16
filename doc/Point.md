@@ -4,14 +4,14 @@
 Représente un point dans un plan cartésien
 
 ##Liste des méthodes
-*    [Point.new(`x`, `y`)](#Point.new)
-*    [self.in?(`rect`)](#self.in?)
+*    [Point.new(x, y)](#Point.new(x, y))
+*    [self.in?(rect)](#self.in?(rect))
 *    [self.null!](#self.null!)
-*    [self.set(`x`, `y`)](#self.set)
+*    [self.set(x, y)](#self.set(x, y))
 
 
 ##Description des méthodes
-**Point.new(`x`, `y`)[Point.new]**
+##### Point.new(x, y)
 
 > Constructeur de point
 
@@ -26,7 +26,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.in?(`rect`)[self.in?]**
+##### self.in?(rect)
 
 > Vérifie si un point est inscrit dans un rectangle
 
@@ -40,7 +40,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.null![self.null!]**
+##### self.null!
 
 > Replace le X et le Y du point à zéro
 
@@ -51,7 +51,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.set(`x`, `y`)[self.set]**
+##### self.set(x, y)
 
 > Change les coordonnées du point
 
