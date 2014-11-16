@@ -12,7 +12,7 @@ Commandes standards
 
 
 ##Description des commandes
-**apply_percent(`percent`, `max`)** [n]
+**apply_percent(`percent`, `max`)[apply_percent]**
 
 > Applique percent à max
 
@@ -23,7 +23,7 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
-**percent(`value`, `max`)** [n]
+**percent(`value`, `max`)[percent]**
 
 > Renvoie le pourcentage de value par rapport à max
 
@@ -34,7 +34,7 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
-**random(`min`, `max`)** [n]
+**random(`min`, `max`)[random]**
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX inclus
 
@@ -45,7 +45,7 @@ Commandes standards
 `max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)  
 
 
-**random_figures(`x`)** [n]
+**random_figures(`x`)[random_figures]**
 
 > Renvoie un nombre à virgule aléatoire compris entre x et x+1
 
@@ -55,7 +55,7 @@ Commandes standards
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
 
-**wait(`duration`)** [n]
+**wait(`duration`)[wait]**
 
 > Attend un nombre de frames donné
 

@@ -185,7 +185,7 @@ Nom|Description
 
 
 ##Description des méthodes
-**self.press?** [n]
+**self.press?[self.press?]**
 
 > Renvoie true si la touche est pressée, false sinon
 
@@ -196,7 +196,7 @@ Nom|Description
 
 
 
-**self.release?** [n]
+**self.release?[self.release?]**
 
 > Renvoie true si la touche vient d'être relâchée, false sinon
 
@@ -207,7 +207,7 @@ Nom|Description
 
 
 
-**self.repeat?** [n]
+**self.repeat?[self.repeat?]**
 
 > Renvoie true si la touche est pressée successivement, false sinon
 
@@ -218,7 +218,7 @@ Nom|Description
 
 
 
-**self.trigger?** [n]
+**self.trigger?[self.trigger?]**
 
 > Renvoie true si la touche vient d'être pressée, false sinon
 
