@@ -50,14 +50,15 @@ Collection des commandes EventExtender
 *    [Command.parallax_auto_y(id, speed)](#Command.parallax_auto_yid-speed)
 *    [Command.parallax_blend(id, blend_type)](#Command.parallax_blendid-blend_type)
 *    [Command.parallax_erase(id)](#Command.parallax_eraseid)
+*    [Command.parallax_opacity(id, opacity, *duration, *wait_flag)](#Command.parallax_opacityid-opacity-duration-wait_flag)
 *    [Command.parallax_scroll_x(id, speed)](#Command.parallax_scroll_xid-speed)
 *    [Command.parallax_scroll_y(id, speed)](#Command.parallax_scroll_yid-speed)
 *    [Command.parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#Command.parallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
-*    [Command.parallax_tone(id, tone)](#Command.parallax_toneid-tone)
+*    [Command.parallax_tone(id, tone, *duration, *wait_flag)](#Command.parallax_toneid-tone-duration-wait_flag)
 *    [Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#Command.parallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
-*    [Command.parallax_zoom(id, zoom)](#Command.parallax_zoomid-zoom)
+*    [Command.parallax_zoom(id, zoom, *duration, *wait_flag)](#Command.parallax_zoomid-zoom-duration-wait_flag)
 *    [Command.parallax_zoom_x(id, zoom)](#Command.parallax_zoom_xid-zoom)
-*    [Command.parallax_zoom_y(id, zoom)](#Command.parallax_zoom_yid-zoom)
+*    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)](#Command.parallax_zoom_yid-zoom-duration-wait_flag)
 *    [Command.parallaxes_clear](#Command.parallaxes_clear)
 *    [Command.percent(value, max)](#Command.percentvalue-max)
 *    [Command.picture_angle(id, angle)](#Command.picture_angleid-angle)
@@ -717,6 +718,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.parallax_opacity(id, opacity, *duration, *wait_flag)
+
+> Change l'opacité d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
 ##### Command.parallax_scroll_x(id, speed)
 
 > Défilement horizontal d'un panorama par rapport au défilement de la carte
@@ -772,7 +790,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.parallax_tone(id, tone)
+##### Command.parallax_tone(id, tone, *duration, *wait_flag)
 
 > Change la teinte d'un panorama
 
@@ -781,6 +799,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standars)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -796,7 +816,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `duration`|`Fixnum`|Durée en frame du déplacement  
-`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité (par défaut 255)  
@@ -807,7 +827,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.parallax_zoom(id, zoom)
+##### Command.parallax_zoom(id, zoom, *duration, *wait_flag)
 
 > Zoom sur les deux axes d'un panorama
 
@@ -816,6 +836,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -837,7 +859,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.parallax_zoom_y(id, zoom)
+##### Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)
 
 > Zoom vertical d'un panorama
 
@@ -846,6 +868,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 

@@ -608,27 +608,63 @@ module Command
   #--------------------------------------------------------------------------
   # * Change zoom_x
   #--------------------------------------------------------------------------
-  def parallax_zoom_x(id, v)
-    $game_map.parallaxes[id].zoom_x = v
+  def parallax_zoom_x(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.move(duration, v, pr.zoom_y, pr.opacity)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].zoom_x = v
+    end
   end
   #--------------------------------------------------------------------------
   # * Change zoom_y
   #--------------------------------------------------------------------------
-  def parallax_zoom_y(id, v)
-    $game_map.parallaxes[id].zoom_y = v
+  def parallax_zoom_y(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.move(duration, pr.zoom_x, v, pr.opacity)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].zoom_y = v
+    end
   end
   #--------------------------------------------------------------------------
   # * Change zoom
   #--------------------------------------------------------------------------
-  def parallax_zoom(id, v)
-    $game_map.parallaxes[id].zoom_y = v
-    $game_map.parallaxes[id].zoom_x = v
+  def parallax_zoom(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.move(duration, v, v, pr.opacity)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].zoom_y = v
+      $game_map.parallaxes[id].zoom_x = v
+    end
   end
   #--------------------------------------------------------------------------
   # * Change tone
   #--------------------------------------------------------------------------
-  def parallax_tone(id, v)
-    $game_map.parallaxes[id].tone = v
+  def parallax_tone(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.move(duration, pr.zoom_x, pr.zoom_y, pr.opacity, v)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].tone = v
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Change opacity
+  #--------------------------------------------------------------------------
+  def parallax_opacity(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.move(duration, pr.zoom_x, pr.zoom_y, v)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].opacity = v
+    end
   end
 end
 

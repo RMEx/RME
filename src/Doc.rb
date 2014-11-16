@@ -1112,7 +1112,7 @@ module Command
                           {
                             :id => ["ID du panorama", :Fixnum],
                             :duration => ["Durée en frame du déplacement", :Fixnum],
-                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
                             :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
                             :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
@@ -1175,23 +1175,38 @@ module Command
                           "Zoom vertical d'un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
-                            :zoom => ["taille en pourcentage", :Fixnum]
+                            :zoom => ["taille en pourcentage", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
   register_command :parallax, "Command.parallax_zoom_y"
   link_method_documentation "Command.parallax_zoom", 
                           "Zoom sur les deux axes d'un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
-                            :zoom => ["taille en pourcentage", :Fixnum]
+                            :zoom => ["taille en pourcentage", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
   register_command :parallax, "Command.parallax_zoom"
   link_method_documentation "Command.parallax_tone", 
                           "Change la teinte d'un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
-                            :tone => ["teinte du panorama (utilisez la commande tone des commandes standars)", :Tone]
+                            :tone => ["teinte du panorama (utilisez la commande tone des commandes standars)", :Tone],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
-  register_command :parallax, "Command.parallax_zoom"
+  register_command :parallax, "Command.parallax_tone"
+  link_method_documentation "Command.parallax_opacity", 
+                        "Change l'opacité d'un panorama", 
+                        {
+                          :id => ["ID du panorama", :Fixnum], 
+                          :opacity => ["valeur de l'opacité (0 à 255)", :Fixnum],
+                          :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                          :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                        }
+  register_command :parallax, "Command.parallax_opacity"
 
 
   # # Retirée car trop peu performante en ce moment :)
