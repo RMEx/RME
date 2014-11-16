@@ -15,7 +15,7 @@ Commandes relatives à la manipulation des panoramas
 *    [parallax_tone(id, tone, *duration, *wait_flag)](#parallax_toneid-tone-duration-wait_flag)
 *    [parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#parallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
 *    [parallax_zoom(id, zoom, *duration, *wait_flag)](#parallax_zoomid-zoom-duration-wait_flag)
-*    [parallax_zoom_x(id, zoom)](#parallax_zoom_xid-zoom)
+*    [parallax_zoom_x(id, zoom, *duration, *wait_flag)](#parallax_zoom_xid-zoom-duration-wait_flag)
 *    [parallax_zoom_y(id, zoom, *duration, *wait_flag)](#parallax_zoom_yid-zoom-duration-wait_flag)
 *    [parallaxes_clear](#parallaxes_clear)
 
@@ -162,7 +162,7 @@ Commandes relatives à la manipulation des panoramas
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### parallax_zoom_x(id, zoom)
+##### parallax_zoom_x(id, zoom, *duration, *wait_flag)
 
 > Zoom horizontal d'un panorama
 
@@ -171,6 +171,8 @@ Commandes relatives à la manipulation des panoramas
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### parallax_zoom_y(id, zoom, *duration, *wait_flag)

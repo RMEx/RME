@@ -57,7 +57,7 @@ Collection des commandes EventExtender
 *    [Command.parallax_tone(id, tone, *duration, *wait_flag)](#Command.parallax_toneid-tone-duration-wait_flag)
 *    [Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#Command.parallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
 *    [Command.parallax_zoom(id, zoom, *duration, *wait_flag)](#Command.parallax_zoomid-zoom-duration-wait_flag)
-*    [Command.parallax_zoom_x(id, zoom)](#Command.parallax_zoom_xid-zoom)
+*    [Command.parallax_zoom_x(id, zoom, *duration, *wait_flag)](#Command.parallax_zoom_xid-zoom-duration-wait_flag)
 *    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)](#Command.parallax_zoom_yid-zoom-duration-wait_flag)
 *    [Command.parallaxes_clear](#Command.parallaxes_clear)
 *    [Command.percent(value, max)](#Command.percentvalue-max)
@@ -844,7 +844,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.parallax_zoom_x(id, zoom)
+##### Command.parallax_zoom_x(id, zoom, *duration, *wait_flag)
 
 > Zoom horizontal d'un panorama
 
@@ -853,6 +853,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 

@@ -1170,7 +1170,9 @@ module Command
                           "Zoom horizontal d'un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
-                            :zoom => ["taille en pourcentage", :Fixnum]
+                            :zoom => ["taille en pourcentage", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
   register_command :parallax, "Command.parallax_zoom_x"
   link_method_documentation "Command.parallax_zoom_y", 
