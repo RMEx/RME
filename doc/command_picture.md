@@ -148,7 +148,7 @@ Commandes relatives à la manipulation des images
 `*zoom_x`|`Fixnum`|Zoom sur la largeur de l'image par défaut 100 (pour 100%)  
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
-`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition  
+`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 
 
 **picture_tone(`id`, `R`, `V`, `B`, `*G`)**

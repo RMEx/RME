@@ -593,6 +593,51 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+**Command.parallax_auto_x(`id`, `speed`)**
+
+> Défilement horizontal automatique d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`speed`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+**Command.parallax_auto_y(`id`, `speed`)**
+
+> Défilement vertical automatique d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`speed`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+**Command.parallax_blend(`id`, `blend_type`)**
+
+> Change le mode de fusion d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`blend_type`|`Fixnum`|mode de fusion (0 => normal, 1 => Addition, 2 => Soustraction)  
+
+
+
+
+
+
 **Command.parallax_hide(`id`)**
 
 > Supprime un panorama
@@ -620,7 +665,37 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité (par défaut 255)  
-`*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+`*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+
+
+
+
+
+
+**Command.parallax_scroll_x(`id`, `speed`)**
+
+> Défilement horizontal d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`speed`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+**Command.parallax_scroll_y(`id`, `speed`)**
+
+> Défilement vertical d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`speed`|`Fixnum`|Vitesse de défilement  
 
 
 
@@ -645,7 +720,67 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `*blend_type`|`Fixnum`|Mode de fusion (par défaut 0), mode normal  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
-`*tone`|`Fixnum`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
+`*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
+
+
+
+
+
+
+**Command.parallax_tone(`id`, `tone`)**
+
+> Change la teinte d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standars)  
+
+
+
+
+
+
+**Command.parallax_zoom(`id`, `zoom`)**
+
+> Zoom sur les deux axes d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`zoom`|`Fixnum`|taille en pourcentage  
+
+
+
+
+
+
+**Command.parallax_zoom_x(`id`, `zoom`)**
+
+> Zoom horizontal d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`zoom`|`Fixnum`|taille en pourcentage  
+
+
+
+
+
+
+**Command.parallax_zoom_y(`id`, `zoom`)**
+
+> Zoom vertical d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`zoom`|`Fixnum`|taille en pourcentage  
 
 
 
@@ -888,7 +1023,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*zoom_x`|`Fixnum`|Zoom sur la largeur de l'image par défaut 100 (pour 100%)  
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
-`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition  
+`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 
 
 

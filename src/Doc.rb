@@ -896,7 +896,7 @@ module Command
                             :"*zoom_x" => ["Zoom sur la largeur de l'image par défaut 100 (pour 100%)", :Fixnum],
                             :"*zoom_y" => ["Zoom sur la hauteur de l'image par défaut 100 (pour 100%)", :Fixnum],
                             :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
-                            :"*blend_type" => ["Mode de fusion, par défaut 0, 0=Normal, 1=Soustraction, 2=Addition", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction", :Fixnum],
                           }
   register_command :picture, "Command.picture_show"
 
@@ -1099,7 +1099,7 @@ module Command
                             :"*blend_type" => ["Mode de fusion (par défaut 0), mode normal", :Fixnum],
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
                             :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
-                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale", :Fixnum]
+                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale", :Tone]
                           }
   register_command :parallax, "Command.parallax_show"
   link_method_documentation "Command.parallax_move", 
@@ -1111,7 +1111,7 @@ module Command
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
                             :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
                             :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
-                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Fixnum]
+                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone]
                           }
   register_command :parallax, "Command.parallax_move"
   link_method_documentation "Command.parallax_hide", 
@@ -1123,7 +1123,71 @@ module Command
   link_method_documentation "Command.parallaxes_clear", 
                           "Supprime tous les panoramas", 
                           {}
-  register_command :parallax, "Command.parallax_hide"
+  register_command :parallax, "Command.parallaxes_clear"
+  link_method_documentation "Command.parallax_blend", 
+                          "Change le mode de fusion d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :blend_type => ["mode de fusion (0 => normal, 1 => Addition, 2 => Soustraction)", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_blend"
+  link_method_documentation "Command.parallax_auto_x", 
+                          "Défilement horizontal automatique d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :speed => ["Vitesse de défilement", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_auto_x"
+  link_method_documentation "Command.parallax_auto_y", 
+                          "Défilement vertical automatique d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :speed => ["Vitesse de défilement", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_auto_y"
+  link_method_documentation "Command.parallax_scroll_x", 
+                          "Défilement horizontal d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :speed => ["Vitesse de défilement", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_scroll_x"
+  link_method_documentation "Command.parallax_scroll_y", 
+                          "Défilement vertical d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :speed => ["Vitesse de défilement", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_scroll_y"
+  link_method_documentation "Command.parallax_zoom_x", 
+                          "Zoom horizontal d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :zoom => ["taille en pourcentage", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_zoom_x"
+  link_method_documentation "Command.parallax_zoom_y", 
+                          "Zoom vertical d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :zoom => ["taille en pourcentage", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_zoom_y"
+  link_method_documentation "Command.parallax_zoom", 
+                          "Zoom sur les deux axes d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :zoom => ["taille en pourcentage", :Fixnum]
+                          }
+  register_command :parallax, "Command.parallax_zoom"
+  link_method_documentation "Command.parallax_tone", 
+                          "Change la teinte d'un panorama", 
+                          {
+                            :id => ["ID du panorama", :Fixnum], 
+                            :tone => ["teinte du panorama (utilisez la commande tone des commandes standars)", :Tone]
+                          }
+  register_command :parallax, "Command.parallax_zoom"
+
 
   # # Retirée car trop peu performante en ce moment :)
   # register_command :picture, "Command.pictures_collide?"
