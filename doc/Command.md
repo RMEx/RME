@@ -46,12 +46,12 @@ Collection des commandes EventExtender
 *    [Command.mouse_y](#Command.mouse_y)
 *    [Command.num_lock?](#Command.num_lock)
 *    [Command.page_runnable?(map_id, event_id, page_id, *context)](#Command.page_runnablemap_id-event_id-page_id-context)
-*    [Command.parallax_autoscroll_x(id, speed)](#Command.parallax_autoscroll_xid-speed)
+*    [Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag)](#Command.parallax_autoscroll_xid-speed-duration-wait_flag)
 *    [Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag)](#Command.parallax_autoscroll_yid-speed-duration-wait_flag)
 *    [Command.parallax_blend(id, blend_type)](#Command.parallax_blendid-blend_type)
 *    [Command.parallax_erase(id)](#Command.parallax_eraseid)
 *    [Command.parallax_opacity(id, opacity, *duration, *wait_flag)](#Command.parallax_opacityid-opacity-duration-wait_flag)
-*    [Command.parallax_scroll_x(id, speed, *duration, *wait_flag)](#Command.parallax_scroll_xid-speed-duration-wait_flag)
+*    [Command.parallax_scroll_x(id, speed)](#Command.parallax_scroll_xid-speed)
 *    [Command.parallax_scroll_y(id, speed)](#Command.parallax_scroll_yid-speed)
 *    [Command.parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#Command.parallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
 *    [Command.parallax_tone(id, tone, *duration, *wait_flag)](#Command.parallax_toneid-tone-duration-wait_flag)
@@ -659,7 +659,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.parallax_autoscroll_x(id, speed)
+##### Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag)
 
 > Défilement horizontal automatique d'un panorama
 
@@ -668,6 +668,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -737,7 +739,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.parallax_scroll_x(id, speed, *duration, *wait_flag)
+##### Command.parallax_scroll_x(id, speed)
 
 > Défilement horizontal d'un panorama par rapport au défilement de la carte
 
@@ -746,8 +748,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
-`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
-`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 

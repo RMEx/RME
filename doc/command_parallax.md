@@ -4,12 +4,12 @@
 Commandes relatives à la manipulation des panoramas
 
 ##Liste des commandes
-*    [parallax_autoscroll_x(id, speed)](#parallax_autoscroll_xid-speed)
+*    [parallax_autoscroll_x(id, speed, *duration, *wait_flag)](#parallax_autoscroll_xid-speed-duration-wait_flag)
 *    [parallax_autoscroll_y(id, speed, *duration, *wait_flag)](#parallax_autoscroll_yid-speed-duration-wait_flag)
 *    [parallax_blend(id, blend_type)](#parallax_blendid-blend_type)
 *    [parallax_erase(id)](#parallax_eraseid)
 *    [parallax_opacity(id, opacity, *duration, *wait_flag)](#parallax_opacityid-opacity-duration-wait_flag)
-*    [parallax_scroll_x(id, speed, *duration, *wait_flag)](#parallax_scroll_xid-speed-duration-wait_flag)
+*    [parallax_scroll_x(id, speed)](#parallax_scroll_xid-speed)
 *    [parallax_scroll_y(id, speed)](#parallax_scroll_yid-speed)
 *    [parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#parallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
 *    [parallax_tone(id, tone, *duration, *wait_flag)](#parallax_toneid-tone-duration-wait_flag)
@@ -21,7 +21,7 @@ Commandes relatives à la manipulation des panoramas
 
 
 ##Description des commandes
-##### parallax_autoscroll_x(id, speed)
+##### parallax_autoscroll_x(id, speed, *duration, *wait_flag)
 
 > Défilement horizontal automatique d'un panorama
 
@@ -30,6 +30,8 @@ Commandes relatives à la manipulation des panoramas
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### parallax_autoscroll_y(id, speed, *duration, *wait_flag)
@@ -79,7 +81,7 @@ Commandes relatives à la manipulation des panoramas
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### parallax_scroll_x(id, speed, *duration, *wait_flag)
+##### parallax_scroll_x(id, speed)
 
 > Défilement horizontal d'un panorama par rapport au défilement de la carte
 
@@ -88,8 +90,6 @@ Commandes relatives à la manipulation des panoramas
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
-`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
-`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### parallax_scroll_y(id, speed)
