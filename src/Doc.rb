@@ -1138,25 +1138,29 @@ module Command
                             :blend_type => ["mode de fusion (0 => normal, 1 => Addition, 2 => Soustraction)", :Fixnum]
                           }
   register_command :parallax, "Command.parallax_blend"
-  link_method_documentation "Command.parallax_auto_x", 
+  link_method_documentation "Command.parallax_autoscroll_x", 
                           "Défilement horizontal automatique d'un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
                             :speed => ["Vitesse de défilement", :Fixnum]
                           }
-  register_command :parallax, "Command.parallax_auto_x"
-  link_method_documentation "Command.parallax_auto_y", 
+  register_command :parallax, "Command.parallax_autoscroll_x"
+  link_method_documentation "Command.parallax_autoscroll_y", 
                           "Défilement vertical automatique d'un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
-                            :speed => ["Vitesse de défilement", :Fixnum]
+                            :speed => ["Vitesse de défilement", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
-  register_command :parallax, "Command.parallax_auto_y"
+  register_command :parallax, "Command.parallax_autoscroll_y"
   link_method_documentation "Command.parallax_scroll_x", 
                           "Défilement horizontal d'un panorama par rapport au défilement de la carte", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
-                            :speed => ["Vitesse de défilement", :Fixnum]
+                            :speed => ["Vitesse de défilement", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
   register_command :parallax, "Command.parallax_scroll_x"
   link_method_documentation "Command.parallax_scroll_y", 

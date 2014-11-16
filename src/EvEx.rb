@@ -430,6 +430,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   attr_accessor :id, :name, :z, :opacity, :zoom_x, :zoom_y, :blend_type
   attr_accessor :autospeed_x, :autospeed_y, :move_x, :move_y, :tone
+  attr_accessor :target_auto_x, :target_auto_y, :duration
   #--------------------------------------------------------------------------
   # * Initialize
   #--------------------------------------------------------------------------
@@ -445,7 +446,7 @@ class Game_Parallax
     @name, @z, @opacity = "", -100, 255.0
     @zoom_x, @zoom_y = 100.0, 100.0
     @blend_type = 0
-    @autospeed_x = @autospeed_y = 0
+    @autospeed_x = @autospeed_y = 0.0
     @move_x = @move_y = 0
     @tone = Tone.new(0,0,0)
     @duration = 0
@@ -456,9 +457,23 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   def init_targets
     @target_tone = Tone.new
+    @target_auto_x = @autospeed_x
+    @target_auto_y = @autospeed_y
     @target_zoom_x = @zoom_x
     @target_zoom_y = @zoom_y
     @target_opacity = @opacity
+  end
+  #--------------------------------------------------------------------------
+  # * Start auto duration
+  #--------------------------------------------------------------------------
+  def start_auto_change(x, y, duration)
+    @target_auto_x = x
+    @target_auto_y = y
+    @auto_duration = duration 
+    if @auto_duration == 0
+      @autospeed_x = @target_auto_x
+      @autospeed_y = @target_auto_y
+    end
   end
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
@@ -480,6 +495,16 @@ class Game_Parallax
     @duration -= 1
   end
   #--------------------------------------------------------------------------
+  # * Update auto Change
+  #--------------------------------------------------------------------------
+  def update_auto_change
+    return if @auto_duration == 0
+    d = @auto_duration
+    @autospeed_x  = (@autospeed_x  * (d - 1) + @target_auto_x)  / d
+    @autospeed_y  = (@autospeed_y  * (d - 1) + @target_auto_y)  / d
+    @auto_duration -= 1
+  end
+  #--------------------------------------------------------------------------
   # * Update Color Tone Change
   #--------------------------------------------------------------------------
   def update_tone_change
@@ -497,6 +522,7 @@ class Game_Parallax
   def update
     update_move
     update_tone_change
+    update_auto_change
   end
   #--------------------------------------------------------------------------
   # * hide parallax
@@ -586,14 +612,26 @@ module Command
   #--------------------------------------------------------------------------
   # * Change autospeed_x 
   #--------------------------------------------------------------------------
-  def parallax_auto_x(id, v)
-    $game_map.parallaxes[id].autospeed_x =v
+  def parallax_autoscroll_x(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.start_auto_change(v.to_f, pr.autospeed_y, duration)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].autospeed_x = v
+    end
   end
   #--------------------------------------------------------------------------
   # * Change autospeed_x 
   #--------------------------------------------------------------------------
-  def parallax_auto_y(id, v)
-    $game_map.parallaxes[id].autospeed_y =v
+  def parallax_autoscroll_y(id, v, duration = nil, wf = false)
+    if duration.is_a?(Fixnum)
+      pr = $game_map.parallaxes[id]
+      pr.start_auto_change(pr.autospeed_x, v.to_f, duration)
+      wait(duration) if wf
+    else
+      $game_map.parallaxes[id].autospeed_y = v
+    end
   end
   #--------------------------------------------------------------------------
   # * Change scroll_x
