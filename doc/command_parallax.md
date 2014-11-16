@@ -11,6 +11,7 @@ Commandes relatives à la manipulation des panoramas
 *    [parallax_scroll_x(id, speed)](#parallax_scroll_xid-speed)
 *    [parallax_scroll_y(id, speed)](#parallax_scroll_yid-speed)
 *    [parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#parallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
+*    [parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#parallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
 *    [parallax_zoom(id, zoom)](#parallax_zoomid-zoom)
 *    [parallax_zoom_x(id, zoom)](#parallax_zoom_xid-zoom)
 *    [parallax_zoom_y(id, zoom)](#parallax_zoom_yid-zoom)
@@ -102,6 +103,22 @@ Commandes relatives à la manipulation des panoramas
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
+
+
+##### parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)
+
+> Transforme un panorama durant une période
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`duration`|`Fixnum`|Durée en frame du déplacement  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
+`*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
+`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
 
 
 ##### parallax_zoom(id, zoom)
