@@ -9,9 +9,9 @@ Représente un point dans un plan cartésien
 *    [self.null!](#self.null!)
 *    [self.set(`x`, `y`)](#self.set)
 
-l
-l##Description des méthodes
-**Point.new(`x`, `y`)**(#Point.new)
+
+##Description des méthodes
+**Point.new(`x`, `y`)**
 
 > Constructeur de point
 
@@ -26,7 +26,7 @@ l##Description des méthodes
 
 
 
-**self.in?(`rect`)**(#self.in?)
+**self.in?(`rect`)**
 
 > Vérifie si un point est inscrit dans un rectangle
 
@@ -40,7 +40,7 @@ l##Description des méthodes
 
 
 
-**self.null!**(#self.null!)
+**self.null!**
 
 > Replace le X et le Y du point à zéro
 
@@ -51,7 +51,7 @@ l##Description des méthodes
 
 
 
-**self.set(`x`, `y`)**(#self.set)
+**self.set(`x`, `y`)**
 
 > Change les coordonnées du point
 
