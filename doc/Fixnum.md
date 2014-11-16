@@ -5,8 +5,10 @@ Extension des entiers
 
 ##Liste des méthodes
 *    [self.to_digit](#self.to_digit)
-##Description des méthodes
-[**self.to_digit**](#self.to_digit)
+
+l
+l##Description des méthodes
+**self.to_digit**(#self.to_digit)
 
 > Renvoie la représentation textuelle d'un chiffre
 

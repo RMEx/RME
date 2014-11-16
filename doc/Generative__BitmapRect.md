@@ -6,8 +6,10 @@ Module pour les classes dérivant un attribut Bitmap. Il ajoute une méthode rec
 
 ##Liste des méthodes
 *    [self.rect](#self.rect)
-##Description des méthodes
-[**self.rect**](#self.rect)
+
+l
+l##Description des méthodes
+**self.rect**(#self.rect)
 
 > Renvoie le rectangle référant à l'instance
 

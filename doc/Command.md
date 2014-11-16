@@ -95,8 +95,10 @@ Collection des commandes EventExtender
 *    [Command.tile_id(`x`, `y`)](#Command.tile_id)
 *    [Command.tone(`red`, `green`, `blue`, `*gray`)](#Command.tone)
 *    [Command.wait(`duration`)](#Command.wait)
-##Description des méthodes
-[**Command.alt_gr?**](#Command.alt_gr?)
+
+l
+l##Description des méthodes
+**Command.alt_gr?**(#Command.alt_gr?)
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
@@ -107,7 +109,7 @@ Collection des commandes EventExtender
 
 
 
-[**Command.apply_percent(`percent`, `max`)**](#Command.apply_percent)
+**Command.apply_percent(`percent`, `max`)**(#Command.apply_percent)
 
 > Applique percent à max
 
@@ -127,7 +129,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.caps_lock?**](#Command.caps_lock?)
+**Command.caps_lock?**(#Command.caps_lock?)
 
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
@@ -138,7 +140,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.click_time(`key`)**](#Command.click_time)
+**Command.click_time(`key`)**(#Command.click_time)
 
 > Renvoie le nombre de frame pressée d'une touche en cours
 
@@ -152,7 +154,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.ctrl?(`key`)**](#Command.ctrl?)
+**Command.ctrl?(`key`)**(#Command.ctrl?)
 
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
 
@@ -166,7 +168,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.fresh_event_id**](#Command.fresh_event_id)
+**Command.fresh_event_id**(#Command.fresh_event_id)
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
 
@@ -177,7 +179,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.id_at(`x`, `y`)**](#Command.id_at)
+**Command.id_at(`x`, `y`)**(#Command.id_at)
 
 > Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)
 
@@ -192,7 +194,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.include_page(`map_id`, `event_id`, `page_id`, `*runnable`, `*context`)**](#Command.include_page)
+**Command.include_page(`map_id`, `event_id`, `page_id`, `*runnable`, `*context`)**(#Command.include_page)
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
 
@@ -210,7 +212,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.invoke_event(`map_id`, `event_id`, `new_id`, `*x`, `*y`)**](#Command.invoke_event)
+**Command.invoke_event(`map_id`, `event_id`, `new_id`, `*x`, `*y`)**(#Command.invoke_event)
 
 > Invoque un évènement d'une autre map (ou de la même) sur la carte
 
@@ -228,7 +230,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_current(`method`)**](#Command.key_current)
+**Command.key_current(`method`)**(#Command.key_current)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -242,7 +244,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_current_rgss(`method`)**](#Command.key_current_rgss)
+**Command.key_current_rgss(`method`)**(#Command.key_current_rgss)
 
 > Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -256,7 +258,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_press?(`key`)**](#Command.key_press?)
+**Command.key_press?(`key`)**(#Command.key_press?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
@@ -270,7 +272,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_release?(`key`)**](#Command.key_release?)
+**Command.key_release?(`key`)**(#Command.key_release?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
@@ -284,7 +286,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_repeat?(`key`)**](#Command.key_repeat?)
+**Command.key_repeat?(`key`)**(#Command.key_repeat?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
 
@@ -298,7 +300,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_time(`key`)**](#Command.key_time)
+**Command.key_time(`key`)**(#Command.key_time)
 
 > Renvoie le nombre de frame pressée d'une touche en cours
 
@@ -312,7 +314,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.key_trigger?(`key`)**](#Command.key_trigger?)
+**Command.key_trigger?(`key`)**(#Command.key_trigger?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
@@ -326,7 +328,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.keyboard_all?(`method`, `keys`)**](#Command.keyboard_all?)
+**Command.keyboard_all?(`method`, `keys`)**(#Command.keyboard_all?)
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
 
@@ -341,7 +343,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.keyboard_any?(`method`, `keys`)**](#Command.keyboard_any?)
+**Command.keyboard_any?(`method`, `keys`)**(#Command.keyboard_any?)
 
 > Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
 
@@ -356,7 +358,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.keyboard_current_char**](#Command.keyboard_current_char)
+**Command.keyboard_current_char**(#Command.keyboard_current_char)
 
 > Renvoie le caractère actuel pressé par le clavier
 
@@ -367,7 +369,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.keyboard_current_digit**](#Command.keyboard_current_digit)
+**Command.keyboard_current_digit**(#Command.keyboard_current_digit)
 
 > Renvoie le chiffre actuel pressé par le clavier
 
@@ -378,7 +380,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.map_id**](#Command.map_id)
+**Command.map_id**(#Command.map_id)
 
 > Renvoie l'ID de la map en cours
 
@@ -389,7 +391,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.map_name**](#Command.map_name)
+**Command.map_name**(#Command.map_name)
 
 > Renvoie le nom de la map en cours
 
@@ -400,7 +402,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.max_event_id**](#Command.max_event_id)
+**Command.max_event_id**(#Command.max_event_id)
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
 
@@ -411,7 +413,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_all?(`method`, `keys`)**](#Command.mouse_all?)
+**Command.mouse_all?(`method`, `keys`)**(#Command.mouse_all?)
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
 
@@ -426,7 +428,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_any?(`method`, `keys`)**](#Command.mouse_any?)
+**Command.mouse_any?(`method`, `keys`)**(#Command.mouse_any?)
 
 > Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
 
@@ -441,7 +443,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_click?(`key`)**](#Command.mouse_click?)
+**Command.mouse_click?(`key`)**(#Command.mouse_click?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
 
@@ -455,7 +457,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_current_key(`method`)**](#Command.mouse_current_key)
+**Command.mouse_current_key(`method`)**(#Command.mouse_current_key)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -469,7 +471,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_dragging?**](#Command.mouse_dragging?)
+**Command.mouse_dragging?**(#Command.mouse_dragging?)
 
 > Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
 
@@ -480,7 +482,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_in?(`rectangle`)**](#Command.mouse_in?)
+**Command.mouse_in?(`rectangle`)**(#Command.mouse_in?)
 
 > Renvoie true si la souris se trouve dans le rectangle passé en argument
 
@@ -494,7 +496,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_last_rect**](#Command.mouse_last_rect)
+**Command.mouse_last_rect**(#Command.mouse_last_rect)
 
 > Renvoie le dernier rectangle de sélection de la souris effectué
 
@@ -505,7 +507,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_point**](#Command.mouse_point)
+**Command.mouse_point**(#Command.mouse_point)
 
 > Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
 
@@ -516,7 +518,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_press?(`key`)**](#Command.mouse_press?)
+**Command.mouse_press?(`key`)**(#Command.mouse_press?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
@@ -530,7 +532,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_rect**](#Command.mouse_rect)
+**Command.mouse_rect**(#Command.mouse_rect)
 
 > Renvoie le rectangle de sélection de la souris (tracé en cours)
 
@@ -541,7 +543,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_release?(`key`)**](#Command.mouse_release?)
+**Command.mouse_release?(`key`)**(#Command.mouse_release?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
@@ -555,7 +557,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_repeat?(`key`)**](#Command.mouse_repeat?)
+**Command.mouse_repeat?(`key`)**(#Command.mouse_repeat?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
 
@@ -569,7 +571,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_square_x**](#Command.mouse_square_x)
+**Command.mouse_square_x**(#Command.mouse_square_x)
 
 > Renvoie la position (en cases) X de la souris
 
@@ -580,7 +582,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_square_y**](#Command.mouse_square_y)
+**Command.mouse_square_y**(#Command.mouse_square_y)
 
 > Renvoie la position (en cases) Y de la souris
 
@@ -591,7 +593,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_trigger?(`key`)**](#Command.mouse_trigger?)
+**Command.mouse_trigger?(`key`)**(#Command.mouse_trigger?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
@@ -605,7 +607,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_x**](#Command.mouse_x)
+**Command.mouse_x**(#Command.mouse_x)
 
 > Renvoie la position (en pixels) X de la souris
 
@@ -616,7 +618,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.mouse_y**](#Command.mouse_y)
+**Command.mouse_y**(#Command.mouse_y)
 
 > Renvoie la position (en pixels) Y de la souris
 
@@ -627,7 +629,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.num_lock?**](#Command.num_lock?)
+**Command.num_lock?**(#Command.num_lock?)
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
@@ -638,7 +640,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.page_runnable?(`map_id`, `event_id`, `page_id`, `*context`)**](#Command.page_runnable?)
+**Command.page_runnable?(`map_id`, `event_id`, `page_id`, `*context`)**(#Command.page_runnable?)
 
 > Vérifie si la page est exécutable dans le contexte de l'évènement appelant.
 
@@ -655,7 +657,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_auto_x(`id`, `speed`)**](#Command.parallax_auto_x)
+**Command.parallax_auto_x(`id`, `speed`)**(#Command.parallax_auto_x)
 
 > Défilement horizontal automatique d'un panorama
 
@@ -670,7 +672,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_auto_y(`id`, `speed`)**](#Command.parallax_auto_y)
+**Command.parallax_auto_y(`id`, `speed`)**(#Command.parallax_auto_y)
 
 > Défilement vertical automatique d'un panorama
 
@@ -685,7 +687,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_blend(`id`, `blend_type`)**](#Command.parallax_blend)
+**Command.parallax_blend(`id`, `blend_type`)**(#Command.parallax_blend)
 
 > Change le mode de fusion d'un panorama
 
@@ -700,7 +702,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_erase(`id`)**](#Command.parallax_erase)
+**Command.parallax_erase(`id`)**(#Command.parallax_erase)
 
 > Supprime un panorama
 
@@ -714,7 +716,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_scroll_x(`id`, `speed`)**](#Command.parallax_scroll_x)
+**Command.parallax_scroll_x(`id`, `speed`)**(#Command.parallax_scroll_x)
 
 > Défilement horizontal d'un panorama par rapport au défilement de la carte
 
@@ -729,7 +731,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_scroll_y(`id`, `speed`)**](#Command.parallax_scroll_y)
+**Command.parallax_scroll_y(`id`, `speed`)**(#Command.parallax_scroll_y)
 
 > Défilement vertical d'un panorama par rapport au défilement de la carte
 
@@ -744,7 +746,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`, `*tone`)**](#Command.parallax_show)
+**Command.parallax_show(`id`, `name`, `*z`, `*opacity`, `*auto_x`, `*auto_y`, `*scroll_x`, `*scroll_y`, `*blend_type`, `*zoom_x`, `*zoom_y`, `*tone`)**(#Command.parallax_show)
 
 > Affiche un panorama
 
@@ -769,7 +771,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_tone(`id`, `tone`)**](#Command.parallax_tone)
+**Command.parallax_tone(`id`, `tone`)**(#Command.parallax_tone)
 
 > Change la teinte d'un panorama
 
@@ -784,7 +786,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_transform(`id`, `duration`, `*wait_flag`, `*zoom_x`, `*zoom_y`, `*opacity`, `*tone`)**](#Command.parallax_transform)
+**Command.parallax_transform(`id`, `duration`, `*wait_flag`, `*zoom_x`, `*zoom_y`, `*opacity`, `*tone`)**(#Command.parallax_transform)
 
 > Transforme un panorama durant une période
 
@@ -804,7 +806,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_zoom(`id`, `zoom`)**](#Command.parallax_zoom)
+**Command.parallax_zoom(`id`, `zoom`)**(#Command.parallax_zoom)
 
 > Zoom sur les deux axes d'un panorama
 
@@ -819,7 +821,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_zoom_x(`id`, `zoom`)**](#Command.parallax_zoom_x)
+**Command.parallax_zoom_x(`id`, `zoom`)**(#Command.parallax_zoom_x)
 
 > Zoom horizontal d'un panorama
 
@@ -834,7 +836,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallax_zoom_y(`id`, `zoom`)**](#Command.parallax_zoom_y)
+**Command.parallax_zoom_y(`id`, `zoom`)**(#Command.parallax_zoom_y)
 
 > Zoom vertical d'un panorama
 
@@ -849,7 +851,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.parallaxes_clear**](#Command.parallaxes_clear)
+**Command.parallaxes_clear**(#Command.parallaxes_clear)
 
 > Supprime tous les panoramas
 
@@ -860,7 +862,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-[**Command.percent(`value`, `max`)**](#Command.percent)
+**Command.percent(`value`, `max`)**(#Command.percent)
 
 > Renvoie le pourcentage de value par rapport à max
 
@@ -880,7 +882,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_angle(`id`, `angle`)**](#Command.picture_angle)
+**Command.picture_angle(`id`, `angle`)**(#Command.picture_angle)
 
 > Change l'angle de l'image
 
@@ -895,7 +897,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_blend(`id`, `mode`)**](#Command.picture_blend)
+**Command.picture_blend(`id`, `mode`)**(#Command.picture_blend)
 
 > Change le mode de fusion d'une image
 
@@ -910,7 +912,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_erase(`id`)**](#Command.picture_erase)
+**Command.picture_erase(`id`)**(#Command.picture_erase)
 
 > Efface l'image
 
@@ -924,7 +926,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_flip(`id`)**](#Command.picture_flip)
+**Command.picture_flip(`id`)**(#Command.picture_flip)
 
 > Applique un effet miroir sur l'image
 
@@ -938,7 +940,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*wait_flag`, `*opacity`, `*blend_type`, `*origin`)**](#Command.picture_move)
+**Command.picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*wait_flag`, `*opacity`, `*blend_type`, `*origin`)**(#Command.picture_move)
 
 > Déplace une image
 
@@ -961,7 +963,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_opacity(`id`, `opacity`)**](#Command.picture_opacity)
+**Command.picture_opacity(`id`, `opacity`)**(#Command.picture_opacity)
 
 > Change l'opacité d'une image
 
@@ -976,7 +978,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_origin(`id`, `origin`)**](#Command.picture_origin)
+**Command.picture_origin(`id`, `origin`)**(#Command.picture_origin)
 
 > Change l'origine d'une image
 
@@ -991,7 +993,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_pin(`id`)**](#Command.picture_pin)
+**Command.picture_pin(`id`)**(#Command.picture_pin)
 
 > Fait défiler une image avec la carte (la fixe à une position)
 
@@ -1005,7 +1007,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_position(`id`, `x`, `y`)**](#Command.picture_position)
+**Command.picture_position(`id`, `x`, `y`)**(#Command.picture_position)
 
 > Change la position de l'image
 
@@ -1021,7 +1023,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_rotate(`id`, `speed`)**](#Command.picture_rotate)
+**Command.picture_rotate(`id`, `speed`)**(#Command.picture_rotate)
 
 > Fait tourner l'image
 
@@ -1036,7 +1038,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_scroll(`id`, `vitesse`)**](#Command.picture_scroll)
+**Command.picture_scroll(`id`, `vitesse`)**(#Command.picture_scroll)
 
 > Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
 
@@ -1051,7 +1053,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_scroll_x(`id`, `vitesse`)**](#Command.picture_scroll_x)
+**Command.picture_scroll_x(`id`, `vitesse`)**(#Command.picture_scroll_x)
 
 > Change la vitesse de défilement horizontal d'une image fixée sur la carte
 
@@ -1066,7 +1068,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_scroll_y(`id`, `vitesse`)**](#Command.picture_scroll_y)
+**Command.picture_scroll_y(`id`, `vitesse`)**(#Command.picture_scroll_y)
 
 > Change la vitesse de défilement vertical d'une image fixée sur la carte
 
@@ -1081,7 +1083,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_shake(`id`, `power`, `speed`, `duration`)**](#Command.picture_shake)
+**Command.picture_shake(`id`, `power`, `speed`, `duration`)**(#Command.picture_shake)
 
 > Fait trembler l'image pendant un temps donné
 
@@ -1098,7 +1100,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**](#Command.picture_show)
+**Command.picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**(#Command.picture_show)
 
 > Affiche une image à l'écran
 
@@ -1120,7 +1122,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_tone(`id`, `R`, `V`, `B`, `*G`)**](#Command.picture_tone)
+**Command.picture_tone(`id`, `R`, `V`, `B`, `*G`)**(#Command.picture_tone)
 
 > Change la teinte d'une image
 
@@ -1138,7 +1140,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_unpin(`id`)**](#Command.picture_unpin)
+**Command.picture_unpin(`id`)**(#Command.picture_unpin)
 
 > Arrête de faire défiler une image avec la carte
 
@@ -1152,7 +1154,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_wave(`id`, `amplitude`, `vitesse`)**](#Command.picture_wave)
+**Command.picture_wave(`id`, `amplitude`, `vitesse`)**(#Command.picture_wave)
 
 > Fait onduler l'image
 
@@ -1168,7 +1170,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_x(`id`, `x`)**](#Command.picture_x)
+**Command.picture_x(`id`, `x`)**(#Command.picture_x)
 
 > Change l'axe X d'une image
 
@@ -1183,7 +1185,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_y(`id`, `x`)**](#Command.picture_y)
+**Command.picture_y(`id`, `x`)**(#Command.picture_y)
 
 > Change l'axe Y d'une image
 
@@ -1198,7 +1200,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_zoom(`id`, `zoom_x`, `zoom_y`)**](#Command.picture_zoom)
+**Command.picture_zoom(`id`, `zoom_x`, `zoom_y`)**(#Command.picture_zoom)
 
 > Change la taille d'une image
 
@@ -1214,7 +1216,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_zoom_x(`id`, `zoom`)**](#Command.picture_zoom_x)
+**Command.picture_zoom_x(`id`, `zoom`)**(#Command.picture_zoom_x)
 
 > Change la largeur d'une image
 
@@ -1229,7 +1231,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.picture_zoom_y(`id`, `zoom`)**](#Command.picture_zoom_y)
+**Command.picture_zoom_y(`id`, `zoom`)**(#Command.picture_zoom_y)
 
 > Change la hauteur d'une image
 
@@ -1244,7 +1246,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.pictures_collide?(`id`, `id2`)**](#Command.pictures_collide?)
+**Command.pictures_collide?(`id`, `id2`)**(#Command.pictures_collide?)
 
 > Vérifie que deux images sont en collisions
 
@@ -1259,7 +1261,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.pixel_in_picture?(`id`, `x`, `y`, `*precise`)**](#Command.pixel_in_picture?)
+**Command.pixel_in_picture?(`id`, `x`, `y`, `*precise`)**(#Command.pixel_in_picture?)
 
 > Vérifie que le x, y sont inscrit dans l'image
 
@@ -1276,7 +1278,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.random(`min`, `max`)**](#Command.random)
+**Command.random(`min`, `max`)**(#Command.random)
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX inclus
 
@@ -1291,7 +1293,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.random_figures(`x`)**](#Command.random_figures)
+**Command.random_figures(`x`)**(#Command.random_figures)
 
 > Renvoie un nombre à virgule aléatoire compris entre x et x+1
 
@@ -1305,7 +1307,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.region_id(`x`, `y`)**](#Command.region_id)
+**Command.region_id(`x`, `y`)**(#Command.region_id)
 
 > Renvoie l'ID de la région pointée par les coordonnées X,Y
 
@@ -1320,7 +1322,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.scroll_lock?**](#Command.scroll_lock?)
+**Command.scroll_lock?**(#Command.scroll_lock?)
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
 
@@ -1331,7 +1333,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.shift?**](#Command.shift?)
+**Command.shift?**(#Command.shift?)
 
 > Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
@@ -1342,7 +1344,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.square_passable?(`x`, `y`, `direction`)**](#Command.square_passable?)
+**Command.square_passable?(`x`, `y`, `direction`)**(#Command.square_passable?)
 
 > Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon
 
@@ -1358,7 +1360,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.terrain_tag(`x`, `y`)**](#Command.terrain_tag)
+**Command.terrain_tag(`x`, `y`)**(#Command.terrain_tag)
 
 > Renvoie le tag du terrain de la case pointée par les coordonnées X,Y
 
@@ -1373,7 +1375,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.tile_id(`x`, `y`)**](#Command.tile_id)
+**Command.tile_id(`x`, `y`)**(#Command.tile_id)
 
 > Renvoie l'ID de la tile pointée par les coordonnées X,Y
 
@@ -1388,7 +1390,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.tone(`red`, `green`, `blue`, `*gray`)**](#Command.tone)
+**Command.tone(`red`, `green`, `blue`, `*gray`)**(#Command.tone)
 
 > Renvoie une teinte
 
@@ -1405,7 +1407,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-[**Command.wait(`duration`)**](#Command.wait)
+**Command.wait(`duration`)**(#Command.wait)
 
 > Attend un nombre de frames donné
 

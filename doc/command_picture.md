@@ -26,8 +26,10 @@ Commandes relatives à la manipulation des images
 *    [picture_zoom_x(`id`, `zoom`)](#picture_zoom_x)
 *    [picture_zoom_y(`id`, `zoom`)](#picture_zoom_y)
 *    [pixel_in_picture?(`id`, `x`, `y`, `*precise`)](#pixel_in_picture?)
-##Description des commandes
-[**picture_angle(`id`, `angle`)**](#picture_angle)
+
+l
+l##Description des commandes
+**picture_angle(`id`, `angle`)**(#picture_angle)
 
 > Change l'angle de l'image
 
@@ -38,7 +40,7 @@ Commandes relatives à la manipulation des images
 `angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
 
 
-[**picture_blend(`id`, `mode`)**](#picture_blend)
+**picture_blend(`id`, `mode`)**(#picture_blend)
 
 > Change le mode de fusion d'une image
 
@@ -49,7 +51,7 @@ Commandes relatives à la manipulation des images
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
-[**picture_erase(`id`)**](#picture_erase)
+**picture_erase(`id`)**(#picture_erase)
 
 > Efface l'image
 
@@ -59,7 +61,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-[**picture_flip(`id`)**](#picture_flip)
+**picture_flip(`id`)**(#picture_flip)
 
 > Applique un effet miroir sur l'image
 
@@ -69,7 +71,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-[**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*wait_flag`, `*opacity`, `*blend_type`, `*origin`)**](#picture_move)
+**picture_move(`id`, `x`, `y`, `zoom_x`, `zoom_y`, `duration`, `*wait_flag`, `*opacity`, `*blend_type`, `*origin`)**(#picture_move)
 
 > Déplace une image
 
@@ -88,7 +90,7 @@ Commandes relatives à la manipulation des images
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
 
 
-[**picture_opacity(`id`, `opacity`)**](#picture_opacity)
+**picture_opacity(`id`, `opacity`)**(#picture_opacity)
 
 > Change l'opacité d'une image
 
@@ -99,7 +101,7 @@ Commandes relatives à la manipulation des images
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
 
 
-[**picture_origin(`id`, `origin`)**](#picture_origin)
+**picture_origin(`id`, `origin`)**(#picture_origin)
 
 > Change l'origine d'une image
 
@@ -110,7 +112,7 @@ Commandes relatives à la manipulation des images
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
 
 
-[**picture_pin(`id`)**](#picture_pin)
+**picture_pin(`id`)**(#picture_pin)
 
 > Fait défiler une image avec la carte (la fixe à une position)
 
@@ -120,7 +122,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-[**picture_rotate(`id`, `speed`)**](#picture_rotate)
+**picture_rotate(`id`, `speed`)**(#picture_rotate)
 
 > Fait tourner l'image
 
@@ -131,7 +133,7 @@ Commandes relatives à la manipulation des images
 `speed`|`Fixnum`|Vitesse de rotation de l'image  
 
 
-[**picture_scroll(`id`, `vitesse`)**](#picture_scroll)
+**picture_scroll(`id`, `vitesse`)**(#picture_scroll)
 
 > Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
 
@@ -142,7 +144,7 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
-[**picture_scroll_x(`id`, `vitesse`)**](#picture_scroll_x)
+**picture_scroll_x(`id`, `vitesse`)**(#picture_scroll_x)
 
 > Change la vitesse de défilement horizontal d'une image fixée sur la carte
 
@@ -153,7 +155,7 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
-[**picture_scroll_y(`id`, `vitesse`)**](#picture_scroll_y)
+**picture_scroll_y(`id`, `vitesse`)**(#picture_scroll_y)
 
 > Change la vitesse de défilement vertical d'une image fixée sur la carte
 
@@ -164,7 +166,7 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
-[**picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**](#picture_show)
+**picture_show(`id`, `name`, `*x`, `*y`, `*origin`, `*zoom_x`, `*zoom_y`, `*opacity`, `*blend_type`)**(#picture_show)
 
 > Affiche une image à l'écran
 
@@ -182,7 +184,7 @@ Commandes relatives à la manipulation des images
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 
 
-[**picture_tone(`id`, `R`, `V`, `B`, `*G`)**](#picture_tone)
+**picture_tone(`id`, `R`, `V`, `B`, `*G`)**(#picture_tone)
 
 > Change la teinte d'une image
 
@@ -196,7 +198,7 @@ Commandes relatives à la manipulation des images
 `*G`|`Fixnum`|Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0  
 
 
-[**picture_unpin(`id`)**](#picture_unpin)
+**picture_unpin(`id`)**(#picture_unpin)
 
 > Arrête de faire défiler une image avec la carte
 
@@ -206,7 +208,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-[**picture_wave(`id`, `amplitude`, `vitesse`)**](#picture_wave)
+**picture_wave(`id`, `amplitude`, `vitesse`)**(#picture_wave)
 
 > Fait onduler l'image
 
@@ -218,7 +220,7 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
 
-[**picture_x(`id`, `x`)**](#picture_x)
+**picture_x(`id`, `x`)**(#picture_x)
 
 > Change l'axe X d'une image
 
@@ -229,7 +231,7 @@ Commandes relatives à la manipulation des images
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
 
 
-[**picture_y(`id`, `x`)**](#picture_y)
+**picture_y(`id`, `x`)**(#picture_y)
 
 > Change l'axe Y d'une image
 
@@ -240,7 +242,7 @@ Commandes relatives à la manipulation des images
 `x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
 
 
-[**picture_zoom(`id`, `zoom_x`, `zoom_y`)**](#picture_zoom)
+**picture_zoom(`id`, `zoom_x`, `zoom_y`)**(#picture_zoom)
 
 > Change la taille d'une image
 
@@ -252,7 +254,7 @@ Commandes relatives à la manipulation des images
 `zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
 
 
-[**picture_zoom_x(`id`, `zoom`)**](#picture_zoom_x)
+**picture_zoom_x(`id`, `zoom`)**(#picture_zoom_x)
 
 > Change la largeur d'une image
 
@@ -263,7 +265,7 @@ Commandes relatives à la manipulation des images
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.  
 
 
-[**picture_zoom_y(`id`, `zoom`)**](#picture_zoom_y)
+**picture_zoom_y(`id`, `zoom`)**(#picture_zoom_y)
 
 > Change la hauteur d'une image
 
@@ -274,7 +276,7 @@ Commandes relatives à la manipulation des images
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
 
 
-[**pixel_in_picture?(`id`, `x`, `y`, `*precise`)**](#pixel_in_picture?)
+**pixel_in_picture?(`id`, `x`, `y`, `*precise`)**(#pixel_in_picture?)
 
 > Vérifie que le x, y sont inscrit dans l'image
 
