@@ -353,8 +353,8 @@ class Game_Map
   #--------------------------------------------------------------------------
   def setup(map_id)
     rm_extender_setup(map_id)
-    Game_Map.eval_proc(map_id, self.interpreter)
     Game_Map.eval_proc(:all, self.interpreter)
+    Game_Map.eval_proc(map_id, self.interpreter)
   end
   #--------------------------------------------------------------------------
   # * Return Max Event Id
@@ -554,7 +554,7 @@ module Command
   def parallax_transform(
       id, 
       duration, 
-      wf = true, 
+      wf = false, 
       zoom_x = 100, 
       zoom_y = 100, 
       opacity = 255, 
@@ -990,11 +990,13 @@ module Command
   #--------------------------------------------------------------------------
   # * Pin picture on the map
   #--------------------------------------------------------------------------
-  def picture_pin(id)
+  def picture_pin(id, x, y)
+    picture_x(id, x)
+    picture_y(id, y)
     pictures[id].pin
   end
   #--------------------------------------------------------------------------
-  # * Pin picture on the map
+  # * Unpin picture on the map
   #--------------------------------------------------------------------------
   def picture_unpin(id)
     pictures[id].unpin
