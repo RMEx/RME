@@ -12,7 +12,11 @@ Nom|Description
 `width`|(Lecture/écriture) Largeur du rectangle  
 `height`|(Lecture/écriture) Hauteur du rectangle  
 ##Liste des méthodes
-**self.append(`obj`)**
+*    [self.append(`obj`)](#self.append)
+*    [self.calc_height](#self.calc_height)
+*    [self.calc_width](#self.calc_width)
+##Description des méthodes
+[**self.append(`obj`)**](#self.append)
 
 > Méthode (idéalement) privée d'ajout d'un élément dans le viewport (et à @elts)
 
@@ -26,7 +30,7 @@ Nom|Description
 
 
 
-**self.calc_height**
+[**self.calc_height**](#self.calc_height)
 
 > Renvoie la hauteur minimum requise pour afficher tous les éléments du viewport
 
@@ -37,7 +41,7 @@ Nom|Description
 
 
 
-**self.calc_width**
+[**self.calc_width**](#self.calc_width)
 
 > Renvoie la largeur minimum requise pour afficher tous les éléments du viewport
 

@@ -4,7 +4,25 @@
 Commande relatives à la gestion de la souris
 
 ##Liste des commandes
-**click_time(`key`)**
+*    [click_time(`key`)](#click_time)
+*    [mouse_all?(`method`, `keys`)](#mouse_all?)
+*    [mouse_any?(`method`, `keys`)](#mouse_any?)
+*    [mouse_click?(`key`)](#mouse_click?)
+*    [mouse_dragging?](#mouse_dragging?)
+*    [mouse_in?(`rectangle`)](#mouse_in?)
+*    [mouse_last_rect](#mouse_last_rect)
+*    [mouse_point](#mouse_point)
+*    [mouse_press?(`key`)](#mouse_press?)
+*    [mouse_rect](#mouse_rect)
+*    [mouse_release?(`key`)](#mouse_release?)
+*    [mouse_repeat?(`key`)](#mouse_repeat?)
+*    [mouse_square_x](#mouse_square_x)
+*    [mouse_square_y](#mouse_square_y)
+*    [mouse_trigger?(`key`)](#mouse_trigger?)
+*    [mouse_x](#mouse_x)
+*    [mouse_y](#mouse_y)
+##Description des commandes
+[**click_time(`key`)**](#click_time)
 
 > Renvoie le nombre de frame pressée d'une touche en cours
 
@@ -14,7 +32,7 @@ Commande relatives à la gestion de la souris
 `key`|`Symbol`|Touche à vérifier  
 
 
-**mouse_all?(`method`, `keys`)**
+[**mouse_all?(`method`, `keys`)**](#mouse_all?)
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
 
@@ -25,7 +43,7 @@ Commande relatives à la gestion de la souris
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
 
 
-**mouse_any?(`method`, `keys`)**
+[**mouse_any?(`method`, `keys`)**](#mouse_any?)
 
 > Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
 
@@ -36,7 +54,7 @@ Commande relatives à la gestion de la souris
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
-**mouse_click?(`key`)**
+[**mouse_click?(`key`)**](#mouse_click?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
 
@@ -46,14 +64,14 @@ Commande relatives à la gestion de la souris
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
 
-**mouse_dragging?**
+[**mouse_dragging?**](#mouse_dragging?)
 
 > Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
 
   
 > 
 
-**mouse_in?(`rectangle`)**
+[**mouse_in?(`rectangle`)**](#mouse_in?)
 
 > Renvoie true si la souris se trouve dans le rectangle passé en argument
 
@@ -63,21 +81,21 @@ Commande relatives à la gestion de la souris
 `rectangle`|`Rect`|Rectangle à vérifier  
 
 
-**mouse_last_rect**
+[**mouse_last_rect**](#mouse_last_rect)
 
 > Renvoie le dernier rectangle de sélection de la souris effectué
 
   
 > 
 
-**mouse_point**
+[**mouse_point**](#mouse_point)
 
 > Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
 
   
 > 
 
-**mouse_press?(`key`)**
+[**mouse_press?(`key`)**](#mouse_press?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
@@ -87,14 +105,14 @@ Commande relatives à la gestion de la souris
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
 
-**mouse_rect**
+[**mouse_rect**](#mouse_rect)
 
 > Renvoie le rectangle de sélection de la souris (tracé en cours)
 
   
 > 
 
-**mouse_release?(`key`)**
+[**mouse_release?(`key`)**](#mouse_release?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
@@ -104,7 +122,7 @@ Commande relatives à la gestion de la souris
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
 
-**mouse_repeat?(`key`)**
+[**mouse_repeat?(`key`)**](#mouse_repeat?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
 
@@ -114,21 +132,21 @@ Commande relatives à la gestion de la souris
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
 
-**mouse_square_x**
+[**mouse_square_x**](#mouse_square_x)
 
 > Renvoie la position (en cases) X de la souris
 
   
 > 
 
-**mouse_square_y**
+[**mouse_square_y**](#mouse_square_y)
 
 > Renvoie la position (en cases) Y de la souris
 
   
 > 
 
-**mouse_trigger?(`key`)**
+[**mouse_trigger?(`key`)**](#mouse_trigger?)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
@@ -138,14 +156,14 @@ Commande relatives à la gestion de la souris
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
 
-**mouse_x**
+[**mouse_x**](#mouse_x)
 
 > Renvoie la position (en pixels) X de la souris
 
   
 > 
 
-**mouse_y**
+[**mouse_y**](#mouse_y)
 
 > Renvoie la position (en pixels) Y de la souris
 

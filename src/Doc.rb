@@ -955,8 +955,8 @@ module Command
                             :vitesse => ["Vitesse de l'ondulation", :Fixnum],
                           }
   register_command :picture, "Command.picture_wave"
-  link_method_documentation "Applique un effet miroir sur l'image", 
-                          "Change la position de l'image", 
+  link_method_documentation "Command.picture_flip", 
+                          "Applique un effet miroir sur l'image", 
                           {
                             :id => ["ID de l'image", :Fixnum],
                           }
@@ -1020,6 +1020,12 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                           }
   register_command :picture, "Command.picture_pin"
+  link_method_documentation "Command.picture_erase", 
+                          "Efface l'image", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_erase"
   link_method_documentation "Command.picture_unpin", 
                           "Arrête de faire défiler une image avec la carte", 
                           {
@@ -1042,22 +1048,16 @@ module Command
                             :duration => ["La durée en frame du tremblement", :Fixnum],
                           }
   register_command :picture, "Command.picture_opacity"
-  link_method_documentation "Command.in_picture?", 
+  link_method_documentation "Command.pixel_in_picture?", 
                           "Vérifie que le x, y sont inscrit dans l'image", 
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :x => ["Coordonnées X", :Fixnum],
                             :y => ["Coordonnées Y", :Fixnum],
+                            :"*precise" => ["Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparent seront prit en compte", :Boolean]
                           }, true
-  register_command :picture, "Command.in_picture?"
-  link_method_documentation "Command.precise_in_picture?", 
-                          "Vérifie que le x, y sont inscrit dans l'image (en tenant compte de la transparence)", 
-                          {
-                            :id => ["ID de l'image", :Fixnum],
-                            :x => ["Coordonnées X", :Fixnum],
-                            :y => ["Coordonnées Y", :Fixnum],
-                          }, true
-  register_command :picture, "Command.precise_in_picture?"
+  register_command :picture, "Command.pixel_in_picture?"
+
   link_method_documentation "Command.pictures_collide?", 
                           "Vérifie que deux images sont en collisions", 
                           {
@@ -1102,8 +1102,8 @@ module Command
                             :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale", :Tone]
                           }
   register_command :parallax, "Command.parallax_show"
-  link_method_documentation "Command.parallax_move", 
-                          "Déplace un panorama durant une durée", 
+  link_method_documentation "Command.parallax_transform", 
+                          "Transforme un panorama durant une période", 
                           {
                             :id => ["ID du panorama", :Fixnum],
                             :duration => ["Durée en frame du déplacement", :Fixnum],
@@ -1114,12 +1114,12 @@ module Command
                             :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone]
                           }
   register_command :parallax, "Command.parallax_move"
-  link_method_documentation "Command.parallax_hide", 
+  link_method_documentation "Command.parallax_erase", 
                           "Supprime un panorama", 
                           {
                             :id => ["ID du panorama", :Fixnum]
                           }
-  register_command :parallax, "Command.parallax_hide"
+  register_command :parallax, "Command.parallax_erase"
   link_method_documentation "Command.parallaxes_clear", 
                           "Supprime tous les panoramas", 
                           {}
@@ -1146,14 +1146,14 @@ module Command
                           }
   register_command :parallax, "Command.parallax_auto_y"
   link_method_documentation "Command.parallax_scroll_x", 
-                          "Défilement horizontal d'un panorama", 
+                          "Défilement horizontal d'un panorama par rapport au défilement de la carte", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
                             :speed => ["Vitesse de défilement", :Fixnum]
                           }
   register_command :parallax, "Command.parallax_scroll_x"
   link_method_documentation "Command.parallax_scroll_y", 
-                          "Défilement vertical d'un panorama", 
+                          "Défilement vertical d'un panorama par rapport au défilement de la carte", 
                           {
                             :id => ["ID du panorama", :Fixnum], 
                             :speed => ["Vitesse de défilement", :Fixnum]

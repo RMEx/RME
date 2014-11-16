@@ -4,7 +4,18 @@
 Extension des sprites
 
 ##Liste des méthodes
-**self.click?**
+*    [self.click?](#self.click?)
+*    [self.hover?](#self.hover?)
+*    [self.in?(`x`, `y`)](#self.in?)
+*    [self.mouse_x](#self.mouse_x)
+*    [self.mouse_y](#self.mouse_y)
+*    [self.press?(`key`)](#self.press?)
+*    [self.rect](#self.rect)
+*    [self.release?(`key`)](#self.release?)
+*    [self.repeat?(`key`)](#self.repeat?)
+*    [self.trigger?(`key`)](#self.trigger?)
+##Description des méthodes
+[**self.click?**](#self.click?)
 
 > Vérifie si le rectangle du sprite est cliqué
 
@@ -15,7 +26,7 @@ Extension des sprites
 
 
 
-**self.hover?**
+[**self.hover?**](#self.hover?)
 
 > Vérifie si la souris passe au dessus du rectangle du sprite
 
@@ -26,7 +37,7 @@ Extension des sprites
 
 
 
-**self.in?(`x`, `y`)**
+[**self.in?(`x`, `y`)**](#self.in?)
 
 > Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle du sprite
 
@@ -41,7 +52,7 @@ Extension des sprites
 
 
 
-**self.mouse_x**
+[**self.mouse_x**](#self.mouse_x)
 
 > Retourne la position x de la souris relative au rectangle du sprite
 
@@ -52,7 +63,7 @@ Extension des sprites
 
 
 
-**self.mouse_y**
+[**self.mouse_y**](#self.mouse_y)
 
 > Retourne la position y de la souris relative au rectangle du sprite
 
@@ -63,7 +74,7 @@ Extension des sprites
 
 
 
-**self.press?(`key`)**
+[**self.press?(`key`)**](#self.press?)
 
 > Vérifie si le rectangle du sprite est enfoncé par la touche passée en argument
 
@@ -77,7 +88,7 @@ Extension des sprites
 
 
 
-**self.rect**
+[**self.rect**](#self.rect)
 
 > Retourne le rectangle relatif d'un sprite
 
@@ -88,7 +99,7 @@ Extension des sprites
 
 
 
-**self.release?(`key`)**
+[**self.release?(`key`)**](#self.release?)
 
 > Vérifie si le rectangle du sprite est relaché par la touche passée en argument
 
@@ -102,7 +113,7 @@ Extension des sprites
 
 
 
-**self.repeat?(`key`)**
+[**self.repeat?(`key`)**](#self.repeat?)
 
 > Vérifie si le rectangle du sprite est clické de manière répétée par la touche passée en argument
 
@@ -116,7 +127,7 @@ Extension des sprites
 
 
 
-**self.trigger?(`key`)**
+[**self.trigger?(`key`)**](#self.trigger?)
 
 > Vérifie si le rectangle du sprite est clické une fois par la touche passée en argument
 

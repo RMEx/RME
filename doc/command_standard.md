@@ -4,7 +4,13 @@
 Commandes standards
 
 ##Liste des commandes
-**apply_percent(`percent`, `max`)**
+*    [apply_percent(`percent`, `max`)](#apply_percent)
+*    [percent(`value`, `max`)](#percent)
+*    [random(`min`, `max`)](#random)
+*    [random_figures(`x`)](#random_figures)
+*    [wait(`duration`)](#wait)
+##Description des commandes
+[**apply_percent(`percent`, `max`)**](#apply_percent)
 
 > Applique percent à max
 
@@ -15,7 +21,7 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
-**percent(`value`, `max`)**
+[**percent(`value`, `max`)**](#percent)
 
 > Renvoie le pourcentage de value par rapport à max
 
@@ -26,7 +32,7 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
-**random(`min`, `max`)**
+[**random(`min`, `max`)**](#random)
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX inclus
 
@@ -37,7 +43,7 @@ Commandes standards
 `max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)  
 
 
-**random_figures(`x`)**
+[**random_figures(`x`)**](#random_figures)
 
 > Renvoie un nombre à virgule aléatoire compris entre x et x+1
 
@@ -47,7 +53,7 @@ Commandes standards
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
 
-**wait(`duration`)**
+[**wait(`duration`)**](#wait)
 
 > Attend un nombre de frames donné
 

@@ -36,7 +36,7 @@ module DocGenerator
     def nl; "  \n"; end
     def np; "\n"*2; end
     def title(size, value); ("#"*size) + value.to_s + "\n"; end
-    def strong(value); "**#{value}**"; end
+    def strong(value, n=""); "[**#{value}**](#{'#'+n})"; end
     def italic(value); "*#{value}*"; end 
     def ul; ""; end
     def end_ul; ""; end
@@ -83,7 +83,7 @@ module DocGenerator
     def nl; "  \n"; end
     def np; "<br />"; end
     def title(size, value); ("<h#{size}>") + value.to_s + "</h#{size}>\n"; end
-    def strong(value); "<strong>#{value}</strong>"; end
+    def strong(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
     def italic(value); "<i>#{value}</i>"; end 
     def ul; "<ul>"; end
     def end_ul; "</ul>"; end
@@ -200,9 +200,10 @@ module DocGenerator
     #--------------------------------------------------------------------------
     # * Create Method list
     #--------------------------------------------------------------------------
-    def make_class_methods(mdl, c, title_i =  "Liste des méthodes", proc = IDENTITY, snip = true)
+    def make_class_methods(mdl, c, title_i =  "Description des méthodes", title_c = "Liste des méthodes", proc = IDENTITY, snip = true)
       k = Hash[c.sort]
       if k.length > 0 
+        ls = mdl.title 2, title_c + mdl.ul
         t = mdl.title 2, title_i
         k.each do |name, data|
           desc = data[:description]
@@ -219,12 +220,13 @@ module DocGenerator
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
           inline_args = (atr.length == 0 ? "" : "(#{inline_args})")
-          t += mdl.strong("#{name}#{inline_args}")
+          t += mdl.strong("#{name}#{inline_args}", name.to_s)
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
+          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+name.to_s}"))
         end
-        return t
+        return ls + mdl.end_ul + t
       end
       return ""
     end
@@ -234,7 +236,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_cmd_methods(mdl, classname)
       kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
-      make_class_methods(mdl, classname, "Liste des commandes", kname, false)
+      make_class_methods(mdl, classname, "Description des commandes", "Liste des commandes", kname, false)
     end
 
     #--------------------------------------------------------------------------

@@ -473,7 +473,7 @@ module Command
   #--------------------------------------------------------------------------
   # * Hide parallax
   #--------------------------------------------------------------------------
-  def parallax_hide(id)
+  def parallax_erase(id)
     $game_map.parallaxes[id].hide
   end
   #--------------------------------------------------------------------------
@@ -746,6 +746,12 @@ module Command
     pictures[id].show(n, ori, x, y, z_x, z_y, op, bl)
   end
   #--------------------------------------------------------------------------
+  # * Picture erase
+  #--------------------------------------------------------------------------
+  def picture_erase(id)
+    pictures[id].erase
+  end
+  #--------------------------------------------------------------------------
   # * Modify Origin
   # Origin : 0 | 1 (0 = Corner High Left, 1 = Center)
   #--------------------------------------------------------------------------
@@ -879,18 +885,11 @@ module Command
   #--------------------------------------------------------------------------
   # * Point in picture
   #--------------------------------------------------------------------------
-  def in_picture?(id, x, y)
+  def pixel_in_picture?(id, x, y, precise = false)
     spr = sprite_picture(id)
     return false unless spr
-    spr.in?(x, y)
-  end
-  #--------------------------------------------------------------------------
-  # * Precise in picture
-  #--------------------------------------------------------------------------
-  def precise_in_picture?(id, x, y)
-    spr = sprite_picture(id)
-    return false unless spr
-    spr.precise_in?(x, y)
+    spr.in?(x, y) unless precise
+    spr.precise_in?(x, y) if precise
   end
   #--------------------------------------------------------------------------
   # * Picture collisions

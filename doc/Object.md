@@ -4,7 +4,14 @@
 Extension de la classe Object
 
 ##Liste des méthodes
-**Object.delegate(`obj`, `method`, `m_alias`)**
+*    [Object.delegate(`obj`, `method`, `m_alias`)](#Object.delegate)
+*    [Object.delegate_accessor(`obj`, `field`)](#Object.delegate_accessor)
+*    [Object.externalize(`obj`, `m_alias`)](#Object.externalize)
+*    [self.attr_values](#self.attr_values)
+*    [self.buffer(`size`)](#self.buffer)
+*    [self.identity](#self.identity)
+##Description des méthodes
+[**Object.delegate(`obj`, `method`, `m_alias`)**](#Object.delegate)
 
 > Délègue une méthode à une autre méthode ou à un attribut
 
@@ -20,7 +27,7 @@ Extension de la classe Object
 
 
 
-**Object.delegate_accessor(`obj`, `field`)**
+[**Object.delegate_accessor(`obj`, `field`)**](#Object.delegate_accessor)
 
 > Délègue les accesseurs, mutateurs d'un attribut à une méthode
 
@@ -35,7 +42,7 @@ Extension de la classe Object
 
 
 
-**Object.externalize(`obj`, `m_alias`)**
+[**Object.externalize(`obj`, `m_alias`)**](#Object.externalize)
 
 > Transforme un object 'callable' en méthode
 
@@ -50,7 +57,7 @@ Extension de la classe Object
 
 
 
-**self.attr_values**
+[**self.attr_values**](#self.attr_values)
 
 > Renvoie un hash des attributs où la clé est le nom de l'attribut
                             et la valeur est celle de l'attribut
@@ -62,7 +69,7 @@ Extension de la classe Object
 
 
 
-**self.buffer(`size`)**
+[**self.buffer(`size`)**](#self.buffer)
 
 > Renvoie un buffer (pour les Win32API's)
 
@@ -76,7 +83,7 @@ Extension de la classe Object
 
 
 
-**self.identity**
+[**self.identity**](#self.identity)
 
 > Renvoie l'instance pointée
 

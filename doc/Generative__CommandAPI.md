@@ -4,7 +4,9 @@
 Rend accessibles les commandes EventExtender
 
 ##Liste des méthodes
-**self.command(`name`, `args`)**
+*    [self.command(`name`, `args`)](#self.command)
+##Description des méthodes
+[**self.command(`name`, `args`)**](#self.command)
 
 > Appel d'une commande, alias : c, cmd
 

@@ -2,7 +2,7 @@
 Outil d'extension de RPG Maker 
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-**Classes et modules**
+[**Classes et modules**](#)
 
 *    [Bitmap](Bitmap.md)
 *    [Command](Command.md)
@@ -22,7 +22,7 @@ Outil d'extension de RPG Maker
 *    [Viewport](Viewport.md)
 
 
-**Index des commandes**
+[**Index des commandes**](#)
 
 *    [Commandes évènements](command_event.md)
 *    [Commandes du clavier](command_keyboard.md)
