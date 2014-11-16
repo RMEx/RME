@@ -246,6 +246,40 @@ class Module
 end
 
 #==============================================================================
+# ** Window_Base
+#------------------------------------------------------------------------------
+#  This is a super class of all windows within the game.
+#==============================================================================
+
+class Window_Base 
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :rm_extender_convert_escape_characters, :convert_escape_characters
+  #--------------------------------------------------------------------------
+  # * Preconvert Control Characters
+  #    As a rule, replace only what will be changed into text strings before
+  #    starting actual drawing. The character "\" is replaced with the escape
+  #    character (\e).
+  #--------------------------------------------------------------------------
+  def convert_escape_characters(text)
+    result = rm_extender_convert_escape_characters(text).to_s.clone
+    result.gsub!(/\eL\[\:(\w+)\]/i) { L[$1.to_sym] }
+    result.gsub!(/\eSL\[\:(\w+)\]/i) { SL[$game_message.call_event, $1.to_sym] }
+    result.gsub!(/\eSL\[(\d+)\,\s*\:(\w+)\]/i) { SL[$1.to_i, $2.to_sym] }
+    result.gsub!(/\eSL\[(\d+)\,\s*(\d+)\,\s*\:(\w+)\]/i) { SL[$1.to_i, $2.to_i, $3.to_sym] }
+    result.gsub!(/\eSV\[([^\]]+)\]/i) do
+      numbers = $1.extract_numbers
+      array = [*numbers]
+      if numbers.length == 1
+        array = [$game_message.call_event] + array
+      end
+      SV[*array]
+    end
+  end
+end
+
+#==============================================================================
 # ** Scene_Map
 #------------------------------------------------------------------------------
 #  This class performs the map screen processing.
@@ -1267,6 +1301,12 @@ class Game_Interpreter
   class << self
 
     #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :current_id
+    attr_accessor :current_map_id
+
+    #--------------------------------------------------------------------------
     # * Get page
     #--------------------------------------------------------------------------
     def get_page(map_id, event_id, page_id)
@@ -1316,28 +1356,19 @@ class Game_Interpreter
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
   alias_method :extender_command_355, :command_355 
-  #--------------------------------------------------------------------------
-  # * Singleton
-  #--------------------------------------------------------------------------
-  class << self
-    #--------------------------------------------------------------------------
-    # * Public instances variables
-    #--------------------------------------------------------------------------
-    attr_accessor :current_id
-    attr_accessor :current_map_id
-  end
+
   #--------------------------------------------------------------------------
   # * Show Text
   #--------------------------------------------------------------------------
   def command_101
-    $game_message.call_event = @id
+    $game_message.call_event = @event_id
     extender_command_101
   end
   #--------------------------------------------------------------------------
   # * Show Scrolling Text
   #--------------------------------------------------------------------------
   def command_105
-    $game_message.call_event = @id
+    $game_message.call_event = @event_id
     extender_command_105
   end
   #--------------------------------------------------------------------------
@@ -1346,14 +1377,14 @@ class Game_Interpreter
   def append_interpreter(page)
     list = page.list
     child = Game_Interpreter.new(@depth + 1)
-    child.setup(list, same_map? ? @id : 0)
+    child.setup(list, same_map? ? @event_id : 0)
     child.run
   end
   #--------------------------------------------------------------------------
   # * Conditional Branch
   #--------------------------------------------------------------------------
   def command_111
-    Game_Interpreter.current_id = @id
+    Game_Interpreter.current_id = @event_id
     Game_Interpreter.current_map_id = @map_id
     extender_command_111
   end
@@ -1361,7 +1392,7 @@ class Game_Interpreter
   # * Script
   #--------------------------------------------------------------------------
   def command_355
-    Game_Interpreter.current_id = @id
+    Game_Interpreter.current_id = @event_id
     Game_Interpreter.current_map_id = @map_id
     extender_command_355
   end
