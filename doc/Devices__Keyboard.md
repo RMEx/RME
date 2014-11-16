@@ -217,7 +217,7 @@ Nom|Description
 
 
 ##Description des méthodes
-**Keyboard.all?(`method`, `keys`)**
+**Keyboard.all?(`method`, `keys`)** [n]
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
 
@@ -237,7 +237,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.alt_gr?**
+**Keyboard.alt_gr?** [n]
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
@@ -248,7 +248,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.any?(`method`, `keys`)**
+**Keyboard.any?(`method`, `keys`)** [n]
 
 > Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
 
@@ -263,7 +263,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.caps_lock?**
+**Keyboard.caps_lock?** [n]
 
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
@@ -274,7 +274,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.ctrl?(`key`)**
+**Keyboard.ctrl?(`key`)** [n]
 
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
 
@@ -288,7 +288,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.current_char**
+**Keyboard.current_char** [n]
 
 > Renvoie le caractère actuel pressé par le clavier
 
@@ -299,7 +299,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.current_digit**
+**Keyboard.current_digit** [n]
 
 > Renvoie le chiffre actuel pressé par le clavier
 
@@ -310,7 +310,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.current_key(`method`)**
+**Keyboard.current_key(`method`)** [n]
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -324,7 +324,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.num_lock?**
+**Keyboard.num_lock?** [n]
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
@@ -335,7 +335,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.press?(`key`)**
+**Keyboard.press?(`key`)** [n]
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
@@ -349,7 +349,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.release?(`key`)**
+**Keyboard.release?(`key`)** [n]
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
@@ -363,7 +363,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.repeat?(`key`)**
+**Keyboard.repeat?(`key`)** [n]
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
 
@@ -377,7 +377,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.rgss_current_key(`method`)**
+**Keyboard.rgss_current_key(`method`)** [n]
 
 > Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -391,7 +391,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.scroll_lock?**
+**Keyboard.scroll_lock?** [n]
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
 
@@ -402,7 +402,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.shift?**
+**Keyboard.shift?** [n]
 
 > Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
@@ -413,7 +413,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.time(`key`)**
+**Keyboard.time(`key`)** [n]
 
 > Renvoie le nombre de frame pressée d'une touche en cours
 
@@ -427,7 +427,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.trigger?(`key`)**
+**Keyboard.trigger?(`key`)** [n]
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 

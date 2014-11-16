@@ -14,7 +14,7 @@ Commandes relatives aux informations des cartes
 
 
 ##Description des commandes
-**id_at(`x`, `y`)**
+**id_at(`x`, `y`)** [n]
 
 > Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)
 
@@ -25,21 +25,21 @@ Commandes relatives aux informations des cartes
 `y`|`Fixnum`|Coordonnées Y de la case  
 
 
-**map_id**
+**map_id** [n]
 
 > Renvoie l'ID de la map en cours
 
   
 > 
 
-**map_name**
+**map_name** [n]
 
 > Renvoie le nom de la map en cours
 
   
 > 
 
-**region_id(`x`, `y`)**
+**region_id(`x`, `y`)** [n]
 
 > Renvoie l'ID de la région pointée par les coordonnées X,Y
 
@@ -50,7 +50,7 @@ Commandes relatives aux informations des cartes
 `y`|`Fixnum`|Coordonnées Y de la case  
 
 
-**square_passable?(`x`, `y`, `direction`)**
+**square_passable?(`x`, `y`, `direction`)** [n]
 
 > Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon
 
@@ -62,7 +62,7 @@ Commandes relatives aux informations des cartes
 `direction`|`Fixnum`|Direction (2,4,6,8)  
 
 
-**terrain_tag(`x`, `y`)**
+**terrain_tag(`x`, `y`)** [n]
 
 > Renvoie le tag du terrain de la case pointée par les coordonnées X,Y
 
@@ -73,7 +73,7 @@ Commandes relatives aux informations des cartes
 `y`|`Fixnum`|Coordonnées Y de la case  
 
 
-**tile_id(`x`, `y`)**
+**tile_id(`x`, `y`)** [n]
 
 > Renvoie l'ID de la tile pointée par les coordonnées X,Y
 

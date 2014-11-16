@@ -12,14 +12,14 @@ Commandes relatives aux évènements
 
 
 ##Description des commandes
-**fresh_event_id**
+**fresh_event_id** [n]
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
 
   
 > 
 
-**include_page(`map_id`, `event_id`, `page_id`, `*runnable`, `*context`)**
+**include_page(`map_id`, `event_id`, `page_id`, `*runnable`, `*context`)** [n]
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
 
@@ -33,7 +33,7 @@ Commandes relatives aux évènements
 `*context`|`Boolean`|Par défaut, cette variable a pour valeur `false`. Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.  
 
 
-**invoke_event(`map_id`, `event_id`, `new_id`, `*x`, `*y`)**
+**invoke_event(`map_id`, `event_id`, `new_id`, `*x`, `*y`)** [n]
 
 > Invoque un évènement d'une autre map (ou de la même) sur la carte
 
@@ -47,14 +47,14 @@ Commandes relatives aux évènements
 `*y`|`Fixnum`|Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué  
 
 
-**max_event_id**
+**max_event_id** [n]
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
 
   
 > 
 
-**page_runnable?(`map_id`, `event_id`, `page_id`, `*context`)**
+**page_runnable?(`map_id`, `event_id`, `page_id`, `*context`)** [n]
 
 > Vérifie si la page est exécutable dans le contexte de l'évènement appelant.
 

@@ -1,4 +1,4 @@
-**Index des commandes**
+**Index des commandes** [n]
 
 *    [Commandes évènements](command_event.md)
 *    [Commandes du clavier](command_keyboard.md)

@@ -11,7 +11,7 @@ Représente un point dans un plan cartésien
 
 
 ##Description des méthodes
-**Point.new(`x`, `y`)**
+**Point.new(`x`, `y`)** [n]
 
 > Constructeur de point
 
@@ -26,7 +26,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.in?(`rect`)**
+**self.in?(`rect`)** [n]
 
 > Vérifie si un point est inscrit dans un rectangle
 
@@ -40,7 +40,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.null!**
+**self.null!** [n]
 
 > Replace le X et le Y du point à zéro
 
@@ -51,7 +51,7 @@ Représente un point dans un plan cartésien
 
 
 
-**self.set(`x`, `y`)**
+**self.set(`x`, `y`)** [n]
 
 > Change les coordonnées du point
 

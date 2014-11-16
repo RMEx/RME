@@ -36,7 +36,7 @@ module DocGenerator
     def nl; "  \n"; end
     def np; "\n"*2; end
     def title(size, value); ("#"*size) + value.to_s + "\n"; end
-    def strong(value, n=""); "**#{value}**"; end
+    def strong(value, n=""); "**#{value}** [n]"; end
     def italic(value); "*#{value}*"; end 
     def ul; ""; end
     def end_ul; np; end

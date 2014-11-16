@@ -16,7 +16,7 @@ Extension des rectangles
 
 
 ##Description des méthodes
-**self.click?**
+**self.click?** [n]
 
 > Vérifie si le rectangle est cliqué
 
@@ -27,7 +27,7 @@ Extension des rectangles
 
 
 
-**self.hover?**
+**self.hover?** [n]
 
 > Vérifie si la souris passe au dessus du rectangle
 
@@ -38,7 +38,7 @@ Extension des rectangles
 
 
 
-**self.in?(`x`, `y`)**
+**self.in?(`x`, `y`)** [n]
 
 > Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle
 
@@ -53,7 +53,7 @@ Extension des rectangles
 
 
 
-**self.mouse_x**
+**self.mouse_x** [n]
 
 > Retourne la position x de la souris relative au rectangle
 
@@ -64,7 +64,7 @@ Extension des rectangles
 
 
 
-**self.mouse_y**
+**self.mouse_y** [n]
 
 > Retourne la position y de la souris relative au rectangle
 
@@ -75,7 +75,7 @@ Extension des rectangles
 
 
 
-**self.press?(`key`)**
+**self.press?(`key`)** [n]
 
 > Vérifie si le rectangle est enfoncé par la touche passée en argument
 
@@ -89,7 +89,7 @@ Extension des rectangles
 
 
 
-**self.release?(`key`)**
+**self.release?(`key`)** [n]
 
 > Vérifie si le rectangle est relaché par la touche passée en argument
 
@@ -103,7 +103,7 @@ Extension des rectangles
 
 
 
-**self.repeat?(`key`)**
+**self.repeat?(`key`)** [n]
 
 > Vérifie si le rectangle est clické de manière répétée par la touche passée en argument
 
@@ -117,7 +117,7 @@ Extension des rectangles
 
 
 
-**self.trigger?(`key`)**
+**self.trigger?(`key`)** [n]
 
 > Vérifie si le rectangle est clické une fois par la touche passée en argument
 

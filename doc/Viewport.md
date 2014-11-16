@@ -18,7 +18,7 @@ Nom|Description
 
 
 ##Description des méthodes
-**self.append(`obj`)**
+**self.append(`obj`)** [n]
 
 > Méthode (idéalement) privée d'ajout d'un élément dans le viewport (et à @elts)
 
@@ -32,7 +32,7 @@ Nom|Description
 
 
 
-**self.calc_height**
+**self.calc_height** [n]
 
 > Renvoie la hauteur minimum requise pour afficher tous les éléments du viewport
 
@@ -43,7 +43,7 @@ Nom|Description
 
 
 
-**self.calc_width**
+**self.calc_width** [n]
 
 > Renvoie la largeur minimum requise pour afficher tous les éléments du viewport
 
