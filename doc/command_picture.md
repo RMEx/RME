@@ -8,7 +8,7 @@ Commandes relatives à la manipulation des images
 *    [picture_blend(id, mode)](#picture_blendid-mode)
 *    [picture_erase(id)](#picture_eraseid)
 *    [picture_flip(id)](#picture_flipid)
-*    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-*wait_flag-*opacity-*blend_type-*origin)
+*    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [picture_opacity(id, opacity)](#picture_opacityid-opacity)
 *    [picture_origin(id, origin)](#picture_originid-origin)
 *    [picture_pin(id)](#picture_pinid)
@@ -16,8 +16,8 @@ Commandes relatives à la manipulation des images
 *    [picture_scroll(id, vitesse)](#picture_scrollid-vitesse)
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
 *    [picture_scroll_y(id, vitesse)](#picture_scroll_yid-vitesse)
-*    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-*x-*y-*origin-*zoom_x-*zoom_y-*opacity-*blend_type)
-*    [picture_tone(id, R, V, B, *G)](#picture_toneid-R-V-B-*G)
+*    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
+*    [picture_tone(id, R, V, B, *G)](#picture_toneid-R-V-B-G)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
 *    [picture_x(id, x)](#picture_xid-x)
@@ -25,7 +25,7 @@ Commandes relatives à la manipulation des images
 *    [picture_zoom(id, zoom_x, zoom_y)](#picture_zoomid-zoom_x-zoom_y)
 *    [picture_zoom_x(id, zoom)](#picture_zoom_xid-zoom)
 *    [picture_zoom_y(id, zoom)](#picture_zoom_yid-zoom)
-*    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_picture?id-x-y-*precise)
+*    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_picture?id-x-y-precise)
 
 
 ##Description des commandes

@@ -10,7 +10,7 @@ Commandes relatives à la manipulation des panoramas
 *    [parallax_erase(id)](#parallax_eraseid)
 *    [parallax_scroll_x(id, speed)](#parallax_scroll_xid-speed)
 *    [parallax_scroll_y(id, speed)](#parallax_scroll_yid-speed)
-*    [parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#parallax_showid-name-*z-*opacity-*auto_x-*auto_y-*scroll_x-*scroll_y-*blend_type-*zoom_x-*zoom_y-*tone)
+*    [parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#parallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
 *    [parallax_zoom(id, zoom)](#parallax_zoomid-zoom)
 *    [parallax_zoom_x(id, zoom)](#parallax_zoom_xid-zoom)
 *    [parallax_zoom_y(id, zoom)](#parallax_zoom_yid-zoom)
