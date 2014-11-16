@@ -4,9 +4,9 @@
 Extension des chaines de caractère
 
 ##Liste des méthodes
-*    [self.damerau_levenshtein(oth)](#self.damerau_levenshtein(oth))
+*    [self.damerau_levenshtein(oth)](#self.damerau_levenshteinoth)
 *    [self.extract_numbers](#self.extract_numbers)
-*    [self.stretch(lin_len)](#self.stretch(lin_len))
+*    [self.stretch(lin_len)](#self.stretchlin_len)
 
 
 ##Description des méthodes

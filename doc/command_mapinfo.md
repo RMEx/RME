@@ -4,13 +4,13 @@
 Commandes relatives aux informations des cartes
 
 ##Liste des commandes
-*    [id_at(x, y)](#id_at(x, y))
+*    [id_at(x, y)](#id_atx-y)
 *    [map_id](#map_id)
 *    [map_name](#map_name)
-*    [region_id(x, y)](#region_id(x, y))
-*    [square_passable?(x, y, direction)](#square_passable?(x, y, direction))
-*    [terrain_tag(x, y)](#terrain_tag(x, y))
-*    [tile_id(x, y)](#tile_id(x, y))
+*    [region_id(x, y)](#region_idx-y)
+*    [square_passable?(x, y, direction)](#square_passable?x-y-direction)
+*    [terrain_tag(x, y)](#terrain_tagx-y)
+*    [tile_id(x, y)](#tile_idx-y)
 
 
 ##Description des commandes

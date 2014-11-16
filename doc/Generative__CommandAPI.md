@@ -4,7 +4,7 @@
 Rend accessibles les commandes EventExtender
 
 ##Liste des méthodes
-*    [self.command(name, args)](#self.command(name, args))
+*    [self.command(name, args)](#self.commandname-args)
 
 
 ##Description des méthodes

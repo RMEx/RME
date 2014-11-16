@@ -216,21 +216,21 @@ module DocGenerator
           atr_list = ""
           atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
           atr.each do |name, dt|
-            inline_args2 += name.to_s + ", "
-            inline_args += mdl.inline_code(name.to_s) + ", "
+            inline_args2 += name.to_s + "-"
+            inline_args += name.to_s+ ", "
             atr_list += mdl.tr(mdl.inline_code(name.to_s), mdl.inline_code(dt[1]), dt[0])
           end
           name = proc.call(name) || name
           atr_list += mdl.end_table
           inline_args = inline_args[0...-2]
           inline_args = (atr.length == 0 ? "" : "(#{inline_args})")
-          inline_args2 = inline_args2[0...-2]
-          inline_args2 = (atr.length == 0 ? "" : "(#{inline_args2})")
-          t += mdl.strong_t("#{name}#{inline_args2}", "#{name}#{inline_args2}")
+          inline_args2 = inline_args2[0...-1]
+          inline_args2 = (atr.length == 0 ? "" : "#{inline_args2}")
+          t += mdl.strong_t("#{name}#{inline_args}", "#{name}#{inline_args2}")
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
-          ls += mdl.li(mdl.link("#{name}#{inline_args2}", "#{'#'+"#{name}#{inline_args2}"}"))
+          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name}#{inline_args2}"}"))
         end
         return ls + mdl.end_ul + t
       end

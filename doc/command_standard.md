@@ -4,11 +4,11 @@
 Commandes standards
 
 ##Liste des commandes
-*    [apply_percent(percent, max)](#apply_percent(percent, max))
-*    [percent(value, max)](#percent(value, max))
-*    [random(min, max)](#random(min, max))
-*    [random_figures(x)](#random_figures(x))
-*    [wait(duration)](#wait(duration))
+*    [apply_percent(percent, max)](#apply_percentpercent-max)
+*    [percent(value, max)](#percentvalue-max)
+*    [random(min, max)](#randommin-max)
+*    [random_figures(x)](#random_figuresx)
+*    [wait(duration)](#waitduration)
 
 
 ##Description des commandes

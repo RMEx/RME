@@ -4,10 +4,10 @@
 Représente un point dans un plan cartésien
 
 ##Liste des méthodes
-*    [Point.new(x, y)](#Point.new(x, y))
-*    [self.in?(rect)](#self.in?(rect))
+*    [Point.new(x, y)](#Point.newx-y)
+*    [self.in?(rect)](#self.in?rect)
 *    [self.null!](#self.null!)
-*    [self.set(x, y)](#self.set(x, y))
+*    [self.set(x, y)](#self.setx-y)
 
 
 ##Description des méthodes

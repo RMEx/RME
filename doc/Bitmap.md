@@ -4,7 +4,7 @@
 Extension des Bitmaps
 
 ##Liste des méthodes
-*    [self.fast_get_pixel(x, y)](#self.fast_get_pixel(x, y))
+*    [self.fast_get_pixel(x, y)](#self.fast_get_pixelx-y)
 
 
 ##Description des méthodes
