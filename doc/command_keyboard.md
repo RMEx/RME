@@ -4,21 +4,21 @@
 Commandes relatives au clavier
 
 ##Liste des commandes
-*    [alt_gr?](#alt_gr?)
-*    [caps_lock?](#caps_lock?)
-*    [ctrl?(key)](#ctrl?key)
+*    [alt_gr?](#alt_gr)
+*    [caps_lock?](#caps_lock)
+*    [ctrl?(key)](#ctrlkey)
 *    [key_current(method)](#key_currentmethod)
 *    [key_current_rgss(method)](#key_current_rgssmethod)
-*    [key_press?(key)](#key_press?key)
-*    [key_release?(key)](#key_release?key)
-*    [key_repeat?(key)](#key_repeat?key)
+*    [key_press?(key)](#key_presskey)
+*    [key_release?(key)](#key_releasekey)
+*    [key_repeat?(key)](#key_repeatkey)
 *    [key_time(key)](#key_timekey)
-*    [key_trigger?(key)](#key_trigger?key)
+*    [key_trigger?(key)](#key_triggerkey)
 *    [keyboard_current_char](#keyboard_current_char)
 *    [keyboard_current_digit](#keyboard_current_digit)
-*    [num_lock?](#num_lock?)
-*    [scroll_lock?](#scroll_lock?)
-*    [shift?](#shift?)
+*    [num_lock?](#num_lock)
+*    [scroll_lock?](#scroll_lock)
+*    [shift?](#shift)
 
 
 ##Description des commandes

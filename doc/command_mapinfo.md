@@ -8,7 +8,7 @@ Commandes relatives aux informations des cartes
 *    [map_id](#map_id)
 *    [map_name](#map_name)
 *    [region_id(x, y)](#region_idx-y)
-*    [square_passable?(x, y, direction)](#square_passable?x-y-direction)
+*    [square_passable?(x, y, direction)](#square_passablex-y-direction)
 *    [terrain_tag(x, y)](#terrain_tagx-y)
 *    [tile_id(x, y)](#tile_idx-y)
 

@@ -4,15 +4,15 @@
 Extension des rectangles
 
 ##Liste des méthodes
-*    [self.click?](#self.click?)
-*    [self.hover?](#self.hover?)
-*    [self.in?(x, y)](#self.in?x-y)
+*    [self.click?](#self.click)
+*    [self.hover?](#self.hover)
+*    [self.in?(x, y)](#self.inx-y)
 *    [self.mouse_x](#self.mouse_x)
 *    [self.mouse_y](#self.mouse_y)
-*    [self.press?(key)](#self.press?key)
-*    [self.release?(key)](#self.release?key)
-*    [self.repeat?(key)](#self.repeat?key)
-*    [self.trigger?(key)](#self.trigger?key)
+*    [self.press?(key)](#self.presskey)
+*    [self.release?(key)](#self.releasekey)
+*    [self.repeat?(key)](#self.repeatkey)
+*    [self.trigger?(key)](#self.triggerkey)
 
 
 ##Description des méthodes

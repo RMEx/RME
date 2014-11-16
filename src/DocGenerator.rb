@@ -225,12 +225,13 @@ module DocGenerator
           inline_args = inline_args[0...-2]
           inline_args = (atr.length == 0 ? "" : "(#{inline_args})")
           inline_args2 = inline_args2[0...-1]
+          name2 = name.to_s.gsub("*", "").gsub("?", "").gsub("!", "")
           inline_args2 = (atr.length == 0 ? "" : "#{inline_args2}".gsub("*", "").gsub("?", "").gsub("!", ""))
-          t += mdl.strong_t("#{name}#{inline_args}", "#{name}#{inline_args2}")
+          t += mdl.strong_t("#{name}#{inline_args}", "#{name2}#{inline_args2}")
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
-          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name}#{inline_args2}"}"))
+          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name2}#{inline_args2}"}"))
         end
         return ls + mdl.end_ul + t
       end

@@ -8,7 +8,7 @@ Commandes relatives aux évènements
 *    [include_page(map_id, event_id, page_id, *runnable, *context)](#include_pagemap_id-event_id-page_id-runnable-context)
 *    [invoke_event(map_id, event_id, new_id, *x, *y)](#invoke_eventmap_id-event_id-new_id-x-y)
 *    [max_event_id](#max_event_id)
-*    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnable?map_id-event_id-page_id-context)
+*    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 
 
 ##Description des commandes

@@ -25,7 +25,7 @@ Commandes relatives à la manipulation des images
 *    [picture_zoom(id, zoom_x, zoom_y)](#picture_zoomid-zoom_x-zoom_y)
 *    [picture_zoom_x(id, zoom)](#picture_zoom_xid-zoom)
 *    [picture_zoom_y(id, zoom)](#picture_zoom_yid-zoom)
-*    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_picture?id-x-y-precise)
+*    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_pictureid-x-y-precise)
 
 
 ##Description des commandes
