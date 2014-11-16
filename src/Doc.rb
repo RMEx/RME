@@ -1118,7 +1118,7 @@ module Command
                             :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
                             :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone]
                           }
-  register_command :parallax, "Command.parallax_move"
+  register_command :parallax, "Command.parallax_transform"
   link_method_documentation "Command.parallax_erase", 
                           "Supprime un panorama", 
                           {
