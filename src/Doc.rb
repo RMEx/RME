@@ -1026,6 +1026,11 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                           }
   register_command :picture, "Command.picture_erase"
+  link_method_documentation "Command.pictures_clear", 
+                          "Efface toutes les images", 
+                          {
+                          }
+  register_command :picture, "Command.pictures_clear"
   link_method_documentation "Command.picture_unpin", 
                           "Arrête de faire défiler une image avec la carte", 
                           {

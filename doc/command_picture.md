@@ -25,6 +25,7 @@ Commandes relatives à la manipulation des images
 *    [picture_zoom(id, zoom_x, zoom_y)](#picture_zoomid-zoom_x-zoom_y)
 *    [picture_zoom_x(id, zoom)](#picture_zoom_xid-zoom)
 *    [picture_zoom_y(id, zoom)](#picture_zoom_yid-zoom)
+*    [pictures_clear](#pictures_clear)
 *    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_pictureid-x-y-precise)
 
 
@@ -275,6 +276,13 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
 
+
+##### pictures_clear
+
+> Efface toutes les images
+
+  
+> 
 
 ##### pixel_in_picture?(id, x, y, *precise)
 

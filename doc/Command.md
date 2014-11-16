@@ -83,6 +83,7 @@ Collection des commandes EventExtender
 *    [Command.picture_zoom(id, zoom_x, zoom_y)](#Command.picture_zoomid-zoom_x-zoom_y)
 *    [Command.picture_zoom_x(id, zoom)](#Command.picture_zoom_xid-zoom)
 *    [Command.picture_zoom_y(id, zoom)](#Command.picture_zoom_yid-zoom)
+*    [Command.pictures_clear](#Command.pictures_clear)
 *    [Command.pictures_collide?(id, id2)](#Command.pictures_collideid-id2)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#Command.pixel_in_pictureid-x-y-precise)
 *    [Command.random(min, max)](#Command.randommin-max)
@@ -1241,6 +1242,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
 
+
+
+
+
+
+##### Command.pictures_clear
+
+> Efface toutes les images
+
+  
+> 
 
 
 

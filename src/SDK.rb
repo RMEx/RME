@@ -408,6 +408,37 @@ class Fixnum
 end
 
 #==============================================================================
+# ** Numeric
+#------------------------------------------------------------------------------
+# Managing digits separately
+#==============================================================================
+
+class Numeric
+   #--------------------------------------------------------------------------
+   # * handle isoler
+   #--------------------------------------------------------------------------
+   def isole_int(i); (self%(10**i))/(10**(i-1)).to_i; end
+   #--------------------------------------------------------------------------
+   # * Int isoler
+   #--------------------------------------------------------------------------
+   [:units, :tens, :hundreds, :thousands,
+     :tens_thousands, :hundreds_thousands,
+     :millions, :tens_millions, 
+     :hundreds_millions ].each.with_index{|m, i|define_method(m){isole_int(i+1)}}
+   #--------------------------------------------------------------------------
+   # * alias
+   #--------------------------------------------------------------------------
+   alias :unites              :units
+   alias :dizaines            :tens
+   alias :centaines           :hundreds
+   alias :milliers            :thousands
+   alias :dizaines_milliers   :tens_thousands
+   alias :centaines_milliers  :hundreds_thousands
+   alias :dizaines_millions   :tens_millions
+   alias :centaines_millions  :hundreds_millions
+end
+
+#==============================================================================
 # ** String
 #------------------------------------------------------------------------------
 #  String char extension
