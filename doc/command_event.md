@@ -10,10 +10,10 @@ Commandes relatives aux évènements
 *    [max_event_id](#max_event_id)
 *    [mouse_click_event?(events)](#mouse_click_eventevents)
 *    [mouse_hover_event?(events)](#mouse_hover_eventevents)
-*    [mouse_press_event?(events, key)](#mouse_press_eventevents-key)
-*    [mouse_release_event?(events, key)](#mouse_release_eventevents-key)
-*    [mouse_repeat_event?(events, key)](#mouse_repeat_eventevents-key)
-*    [mouse_trigger_event?(events, key)](#mouse_trigger_eventevents-key)
+*    [mouse_press_event?(events, *key)](#mouse_press_eventevents-key)
+*    [mouse_release_event?(events, *key)](#mouse_release_eventevents-key)
+*    [mouse_repeat_event?(events, *key)](#mouse_repeat_eventevents-key)
+*    [mouse_trigger_event?(events, *key)](#mouse_trigger_eventevents-key)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 
 
@@ -80,7 +80,7 @@ Commandes relatives aux évènements
 `events`|`Selectors`|Selecteur d'évènements  
 
 
-##### mouse_press_event?(events, key)
+##### mouse_press_event?(events, *key)
 
 > Renvoie true si la souris presse un évènement du sélecteur passé en argument
 
@@ -88,10 +88,10 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
-##### mouse_release_event?(events, key)
+##### mouse_release_event?(events, *key)
 
 > Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument
 
@@ -99,10 +99,10 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
-##### mouse_repeat_event?(events, key)
+##### mouse_repeat_event?(events, *key)
 
 > Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
 
@@ -110,10 +110,10 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
-##### mouse_trigger_event?(events, key)
+##### mouse_trigger_event?(events, *key)
 
 > Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
 
@@ -121,7 +121,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
 ##### page_runnable?(map_id, event_id, page_id, *context)

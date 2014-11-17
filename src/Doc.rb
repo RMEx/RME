@@ -719,7 +719,7 @@ module Command
                         "Renvoie true si la souris presse un évènement du sélecteur passé en argument",
                         {
                           :events => ["Selecteur d'évènements", :Selectors],
-                          :key => ["Touche à presser", :Selector]
+                          :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left", :Selector]
                         }, true
   register_command :event, "Command.mouse_press_event?"
 
@@ -727,7 +727,7 @@ module Command
                         "Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument",
                         {
                           :events => ["Selecteur d'évènements", :Selectors],
-                          :key => ["Touche à presser", :Selector]
+                          :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left", :Selector]
                         }, true
   register_command :event, "Command.mouse_trigger_event?"
 
@@ -735,7 +735,7 @@ module Command
                         "Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument",
                         {
                           :events => ["Selecteur d'évènements", :Selectors],
-                          :key => ["Touche à presser", :Selector]
+                          :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left", :Selector]
                         }, true
   register_command :event, "Command.mouse_repeat_event?"
 
@@ -743,7 +743,7 @@ module Command
                         "Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument",
                         {
                           :events => ["Selecteur d'évènements", :Selectors],
-                          :key => ["Touche à presser", :Selector]
+                          :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left", :Selector]
                         }, true
   register_command :event, "Command.mouse_release_event?"
 

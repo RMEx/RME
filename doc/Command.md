@@ -39,16 +39,16 @@ Collection des commandes EventExtender
 *    [Command.mouse_last_rect](#Command.mouse_last_rect)
 *    [Command.mouse_point](#Command.mouse_point)
 *    [Command.mouse_press?(key)](#Command.mouse_presskey)
-*    [Command.mouse_press_event?(events, key)](#Command.mouse_press_eventevents-key)
+*    [Command.mouse_press_event?(events, *key)](#Command.mouse_press_eventevents-key)
 *    [Command.mouse_rect](#Command.mouse_rect)
 *    [Command.mouse_release?(key)](#Command.mouse_releasekey)
-*    [Command.mouse_release_event?(events, key)](#Command.mouse_release_eventevents-key)
+*    [Command.mouse_release_event?(events, *key)](#Command.mouse_release_eventevents-key)
 *    [Command.mouse_repeat?(key)](#Command.mouse_repeatkey)
-*    [Command.mouse_repeat_event?(events, key)](#Command.mouse_repeat_eventevents-key)
+*    [Command.mouse_repeat_event?(events, *key)](#Command.mouse_repeat_eventevents-key)
 *    [Command.mouse_square_x](#Command.mouse_square_x)
 *    [Command.mouse_square_y](#Command.mouse_square_y)
 *    [Command.mouse_trigger?(key)](#Command.mouse_triggerkey)
-*    [Command.mouse_trigger_event?(events, key)](#Command.mouse_trigger_eventevents-key)
+*    [Command.mouse_trigger_event?(events, *key)](#Command.mouse_trigger_eventevents-key)
 *    [Command.mouse_x](#Command.mouse_x)
 *    [Command.mouse_y](#Command.mouse_y)
 *    [Command.num_lock?](#Command.num_lock)
@@ -587,7 +587,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.mouse_press_event?(events, key)
+##### Command.mouse_press_event?(events, *key)
 
 > Renvoie true si la souris presse un évènement du sélecteur passé en argument
 
@@ -595,7 +595,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
 
@@ -627,7 +627,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.mouse_release_event?(events, key)
+##### Command.mouse_release_event?(events, *key)
 
 > Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument
 
@@ -635,7 +635,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
 
@@ -656,7 +656,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.mouse_repeat_event?(events, key)
+##### Command.mouse_repeat_event?(events, *key)
 
 > Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
 
@@ -664,7 +664,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
 
@@ -707,7 +707,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.mouse_trigger_event?(events, key)
+##### Command.mouse_trigger_event?(events, *key)
 
 > Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
 
@@ -715,7 +715,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`key`|`Selector`|Touche à presser  
+`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
 
 
 
