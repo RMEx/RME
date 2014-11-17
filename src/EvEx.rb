@@ -228,6 +228,32 @@ module Kernel
     block
   end
   alias :listener :trigger
+  #--------------------------------------------------------------------------
+  # * Cast Events args
+  #--------------------------------------------------------------------------
+  def select_events(e)
+    e = events(e) if e.is_a?(Fixnum)
+  end
+  #--------------------------------------------------------------------------
+  # * All selector
+  #--------------------------------------------------------------------------
+  def all_events
+    events(:all_events)
+  end
+  #--------------------------------------------------------------------------
+  # * Selectors
+  #--------------------------------------------------------------------------
+  def events(*ids, &block)
+    return [] unless SceneManager.scene.is_a?(Scene_Map)
+    if ids.length == 1 && ids[0] == :all_events
+      return $game_map.each_events.values.dup
+    end
+    result = []
+    ids.each{|id| result << $game_map.each_events[id] if $game_map.each_events[id]}
+    result += $game_map.each_events.values.select(&block) if block_given?
+    result
+  end
+  alias :e :events
 end
 
 #==============================================================================
@@ -365,6 +391,12 @@ class Game_Map
     rm_extender_setup(map_id)
     Game_Map.eval_proc(:all, self.interpreter)
     Game_Map.eval_proc(map_id, self.interpreter)
+  end
+  #--------------------------------------------------------------------------
+  # * Get each events
+  #--------------------------------------------------------------------------
+  def each_events
+    {0=>$game_player}.merge(@events.dup)
   end
   #--------------------------------------------------------------------------
   # * Return Max Event Id
