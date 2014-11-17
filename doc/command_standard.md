@@ -8,6 +8,7 @@ Commandes standards
 *    [percent(value, max)](#percentvalue-max)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
+*    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [wait(duration)](#waitduration)
 
 
@@ -53,6 +54,19 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
+
+
+##### tone(red, green, blue, *gray)
+
+> Renvoie une teinte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`red`|`Fixnum`|Valeur de rouge  
+`green`|`Fixnum`|Valeur de vert  
+`blue`|`Fixnum`|Valeur de bleu  
+`*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
 
 
 ##### wait(duration)

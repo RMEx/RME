@@ -221,6 +221,13 @@ module Kernel
   def map_onload(*ids, &block)
     Game_Map.onload(ids, &block)
   end
+  #--------------------------------------------------------------------------
+  # * Define custom Trigger
+  #--------------------------------------------------------------------------
+  def trigger(&block)
+    block
+  end
+  alias :listener :trigger
 end
 
 #==============================================================================
@@ -278,6 +285,7 @@ class Window_Base
       end
       SV[*array]
     end
+    return result
   end
 end
 
@@ -1364,6 +1372,47 @@ class Sprite_Picture
   end
 end 
 
+#==============================================================================
+# ** Game_Event
+#------------------------------------------------------------------------------
+#  This class handles events. Functions include event page switching via
+# condition determinants and running parallel process events. Used within the
+# Game_Map class.
+#==============================================================================
+
+class Game_Event
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias :rm_extender_conditions_met?  :conditions_met?
+  #--------------------------------------------------------------------------
+  # * Determine if Event Page Conditions Are Met
+  #--------------------------------------------------------------------------
+  def conditions_met?(page)
+    value = rm_extender_conditions_met?(page)
+    first = first_is_trigger?(page)
+    return value unless first
+    return value && first.()
+  end
+  #--------------------------------------------------------------------------
+  # * Determine if the first command is a Trigger
+  #--------------------------------------------------------------------------
+  def first_is_trigger?(page)
+    return false unless page || page.list || page.list[0]
+    return false unless page.list[0].code == 355
+    index = 0
+    script = page.list[index].parameters[0] + "\n"
+    while page.list[index].code == 655
+      index += 1
+      script += page.list[index].parameters[0] + "\n"
+    end
+    if script =~ /^\s*(trigger|listener)/
+      potential_trigger = eval(script, $game_map.interpreter.get_binding)
+      return potential_trigger if potential_trigger.is_a?(Proc)
+    end
+    return false
+  end
+end
 
 #==============================================================================
 # ** Game_Interpreter
@@ -1619,6 +1668,12 @@ module Command
   #--------------------------------------------------------------------------
   def tone(r, v, b, gray = 0)
     Tone.new(r, v, b, gray)
+  end
+  #--------------------------------------------------------------------------
+  # * Create a Color
+  #--------------------------------------------------------------------------
+  def color(r, v, b, a = 255)
+    Color.new(r,v,b,a)
   end
 end
 

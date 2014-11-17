@@ -554,6 +554,17 @@ module Command
                           :blue => ["Valeur de bleu", :Fixnum],
                           :"*gray" => ["Valeur de gris, par défaut 0!", :Fixnum]
                         }, true
+  register_command :standard, "Command.tone"
+
+  link_method_documentation "Command.color", 
+                        "Renvoie une couleur",
+                        {
+                          :red => ["Valeur de rouge", :Fixnum],
+                          :green => ["Valeur de vert", :Fixnum], 
+                          :blue => ["Valeur de bleu", :Fixnum],
+                          :"*alpha" => ["Opacité, par défaut 255!", :Fixnum]
+                        }, true
+  register_command :standard, "Command.tone"
 
   link_method_documentation "Command.random", 
                         "Renvoie un nombre aléatoire compris entre MIN et MAX inclus",
@@ -1007,6 +1018,7 @@ module Command
                             :"*G" => ["Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0", :Fixnum],
                           }
   register_command :picture, "Command.picture_tone"
+
   link_method_documentation "Command.picture_blend", 
                           "Change le mode de fusion d'une image", 
                           {

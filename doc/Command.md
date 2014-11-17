@@ -8,6 +8,7 @@ Collection des commandes EventExtender
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
 *    [Command.caps_lock?](#Command.caps_lock)
 *    [Command.click_time(key)](#Command.click_timekey)
+*    [Command.color(red, green, blue, *alpha)](#Command.colorred-green-blue-alpha)
 *    [Command.ctrl?(key)](#Command.ctrlkey)
 *    [Command.fresh_event_id](#Command.fresh_event_id)
 *    [Command.id_at(x, y)](#Command.id_atx-y)
@@ -150,6 +151,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
+
+
+
+
+
+
+##### Command.color(red, green, blue, *alpha)
+
+> Renvoie une couleur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`red`|`Fixnum`|Valeur de rouge  
+`green`|`Fixnum`|Valeur de vert  
+`blue`|`Fixnum`|Valeur de bleu  
+`*alpha`|`Fixnum`|Opacité, par défaut 255!  
 
 
 
