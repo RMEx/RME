@@ -543,6 +543,7 @@ module Command
   register_command_category :mouse, "Commandes de la souris", "Commande relatives à la gestion de la souris"
   register_command_category :picture, "Commandes de manipulation des images", "Commandes relatives à la manipulation des images"
   register_command_category :parallax, "Commandes de manipulation des panoramas", "Commandes relatives à la manipulation des panoramas"
+  register_command_category :micro, "Commandes de manipulation des micros events", "Commandes relatives à la gestion des micro events"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -555,6 +556,11 @@ module Command
                           :"*gray" => ["Valeur de gris, par défaut 0!", :Fixnum]
                         }, true
   register_command :standard, "Command.tone"
+
+  link_method_documentation "Command.session_username", 
+                        "Renvoie le nom d'utilisateur de la session Windows",
+                        {}, true
+  register_command :standard, "Command.session_username"
 
   link_method_documentation "Command.color", 
                         "Renvoie une couleur",
@@ -698,6 +704,48 @@ module Command
                         "Renvoie un ID libre (utile en cas d'invocation d'évènement)",
                         {}, true
   register_command :event, "Command.fresh_event_id"
+
+  link_method_documentation "Command.mouse_hover_event?", 
+                        "Renvoie true si la souris survol un évènement du sélecteur passé en argument",
+                        {:events => ["Selecteur d'évènements", :Selectors]}, true
+  register_command :event, "Command.mouse_hover_event?"
+
+  link_method_documentation "Command.mouse_click_event?", 
+                        "Renvoie true si la souris clique un évènement du sélecteur passé en argument",
+                        {:events => ["Selecteur d'évènements", :Selectors]}, true
+  register_command :event, "Command.mouse_click_event?"
+
+  link_method_documentation "Command.mouse_press_event?", 
+                        "Renvoie true si la souris presse un évènement du sélecteur passé en argument",
+                        {
+                          :events => ["Selecteur d'évènements", :Selectors],
+                          :key => ["Touche à presser", :Selector]
+                        }, true
+  register_command :event, "Command.mouse_press_event?"
+
+  link_method_documentation "Command.mouse_trigger_event?", 
+                        "Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument",
+                        {
+                          :events => ["Selecteur d'évènements", :Selectors],
+                          :key => ["Touche à presser", :Selector]
+                        }, true
+  register_command :event, "Command.mouse_trigger_event?"
+
+  link_method_documentation "Command.mouse_repeat_event?", 
+                        "Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument",
+                        {
+                          :events => ["Selecteur d'évènements", :Selectors],
+                          :key => ["Touche à presser", :Selector]
+                        }, true
+  register_command :event, "Command.mouse_repeat_event?"
+
+  link_method_documentation "Command.mouse_release_event?", 
+                        "Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument",
+                        {
+                          :events => ["Selecteur d'évènements", :Selectors],
+                          :key => ["Touche à presser", :Selector]
+                        }, true
+  register_command :event, "Command.mouse_release_event?"
 
   link_method_documentation "Command.key_trigger?", 
                           "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",

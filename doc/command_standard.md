@@ -8,6 +8,7 @@ Commandes standards
 *    [percent(value, max)](#percentvalue-max)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
+*    [session_username](#session_username)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [wait(duration)](#waitduration)
 
@@ -55,6 +56,13 @@ Commandes standards
 --- | --- | ---  
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
+
+##### session_username
+
+> Renvoie le nom d'utilisateur de la session Windows
+
+  
+> 
 
 ##### tone(red, green, blue, *gray)
 

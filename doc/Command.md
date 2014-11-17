@@ -31,18 +31,24 @@ Collection des commandes EventExtender
 *    [Command.mouse_all?(method, keys)](#Command.mouse_allmethod-keys)
 *    [Command.mouse_any?(method, keys)](#Command.mouse_anymethod-keys)
 *    [Command.mouse_click?(key)](#Command.mouse_clickkey)
+*    [Command.mouse_click_event?(events)](#Command.mouse_click_eventevents)
 *    [Command.mouse_current_key(method)](#Command.mouse_current_keymethod)
 *    [Command.mouse_dragging?](#Command.mouse_dragging)
+*    [Command.mouse_hover_event?(events)](#Command.mouse_hover_eventevents)
 *    [Command.mouse_in?(rectangle)](#Command.mouse_inrectangle)
 *    [Command.mouse_last_rect](#Command.mouse_last_rect)
 *    [Command.mouse_point](#Command.mouse_point)
 *    [Command.mouse_press?(key)](#Command.mouse_presskey)
+*    [Command.mouse_press_event?(events, key)](#Command.mouse_press_eventevents-key)
 *    [Command.mouse_rect](#Command.mouse_rect)
 *    [Command.mouse_release?(key)](#Command.mouse_releasekey)
+*    [Command.mouse_release_event?(events, key)](#Command.mouse_release_eventevents-key)
 *    [Command.mouse_repeat?(key)](#Command.mouse_repeatkey)
+*    [Command.mouse_repeat_event?(events, key)](#Command.mouse_repeat_eventevents-key)
 *    [Command.mouse_square_x](#Command.mouse_square_x)
 *    [Command.mouse_square_y](#Command.mouse_square_y)
 *    [Command.mouse_trigger?(key)](#Command.mouse_triggerkey)
+*    [Command.mouse_trigger_event?(events, key)](#Command.mouse_trigger_eventevents-key)
 *    [Command.mouse_x](#Command.mouse_x)
 *    [Command.mouse_y](#Command.mouse_y)
 *    [Command.num_lock?](#Command.num_lock)
@@ -92,6 +98,7 @@ Collection des commandes EventExtender
 *    [Command.random_figures(x)](#Command.random_figuresx)
 *    [Command.region_id(x, y)](#Command.region_idx-y)
 *    [Command.scroll_lock?](#Command.scroll_lock)
+*    [Command.session_username](#Command.session_username)
 *    [Command.shift?](#Command.shift)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
 *    [Command.terrain_tag(x, y)](#Command.terrain_tagx-y)
@@ -477,6 +484,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.mouse_click_event?(events)
+
+> Renvoie true si la souris clique un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+
+
+
+
+
+
 ##### Command.mouse_current_key(method)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
@@ -497,6 +518,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.mouse_hover_event?(events)
+
+> Renvoie true si la souris survol un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+
 
 
 
@@ -552,6 +587,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.mouse_press_event?(events, key)
+
+> Renvoie true si la souris presse un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
+
+
+
+
+
+
 ##### Command.mouse_rect
 
 > Renvoie le rectangle de sélection de la souris (tracé en cours)
@@ -577,6 +627,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.mouse_release_event?(events, key)
+
+> Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
+
+
+
+
+
+
 ##### Command.mouse_repeat?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
@@ -585,6 +650,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+##### Command.mouse_repeat_event?(events, key)
+
+> Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
 
 
 
@@ -621,6 +701,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+##### Command.mouse_trigger_event?(events, key)
+
+> Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
 
 
 
@@ -1387,6 +1482,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.scroll_lock?
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
+##### Command.session_username
+
+> Renvoie le nom d'utilisateur de la session Windows
 
   
 > 

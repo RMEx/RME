@@ -233,6 +233,7 @@ module Kernel
   #--------------------------------------------------------------------------
   def select_events(e)
     e = events(e) if e.is_a?(Fixnum)
+    e
   end
   #--------------------------------------------------------------------------
   # * All selector
@@ -277,6 +278,302 @@ class Module
   def include_commands
     include Generative::CommandAPI
     include Command
+  end
+end
+
+#==============================================================================
+# ** Handler
+#------------------------------------------------------------------------------
+#  Custom Event Handler
+#==============================================================================
+
+module Handler
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    #--------------------------------------------------------------------------
+    # * Public instance variable
+    #--------------------------------------------------------------------------
+    attr_accessor :std_triggers
+    Handler.std_triggers = [
+      :hover,
+      :click,
+      :trigger,
+      :release,
+      :repeat
+    ] 
+  end
+  #--------------------------------------------------------------------------
+  # * Event behaviour
+  #--------------------------------------------------------------------------
+  module Behaviour
+    #--------------------------------------------------------------------------
+    # * Setup Event Handler
+    #--------------------------------------------------------------------------
+    def setup_eHandler
+      @__std_triggers = {
+        press:    nil,
+        hover:    nil,
+        click:    nil,
+        trigger:  nil,
+        release:  nil, 
+        repeat:   nil
+      }
+      @__cst_triggers = {}
+      @table_triggers = {
+        press:    method(:press?),
+        hover:    method(:hover?),
+        click:    method(:click?),
+        trigger:  method(:trigger?),
+        release:  method(:release?),
+        repeat:   method(:repeat?)
+      }
+    end
+    #--------------------------------------------------------------------------
+    # * Unbinding process
+    #--------------------------------------------------------------------------
+    def unbind(key = nil)
+      unless key
+        setup_eHandler
+        return
+      end
+      if(Handler.std_triggers.include?(key))
+        @__std_triggers[key.to_sym] = nil
+        return
+      end
+      @__cst_triggers[key.to_sym] = nil if @__cst_triggers[key.to_sym]
+    end
+    #--------------------------------------------------------------------------
+    # * Binding event
+    #--------------------------------------------------------------------------
+    def bind(key, *args, &block)
+      if(Handler.std_triggers.include?(key))
+        ntriggers = args[0] || -1
+        @__std_triggers[key.to_sym] = {
+          fun:        block,
+          ntriggers:  ntriggers
+        }
+        return
+      end
+      trigger = args[0]
+      ntriggers = args[1] || -1
+      @__cst_triggers[key.to_sym] = {
+        trigger:    trigger,
+        fun:        block,
+        ntriggers:  ntriggers
+      }
+    end
+    #--------------------------------------------------------------------------
+    # * Update events
+    #--------------------------------------------------------------------------
+    def update_eHandler
+      @__std_triggers.each do |key, event|
+        if event && event[:ntriggers] != 0
+          if @table_triggers[key] && @table_triggers[key].()
+            event[:fun].(self)
+            event[:ntriggers] -= 1 if event[:ntriggers] != -1
+          end
+        end
+      end
+      @__cst_triggers.each do |key, event|
+        if event
+          if event[:ntriggers] != 0
+            event[:fun].(self) if event[:trigger].(self)
+            event[:ntriggers] -= 1 if event[:ntriggers] != -1
+          else
+            event = nil
+          end
+        end
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Hover
+    #--------------------------------------------------------------------------
+    def hover?
+      @rect.hover?
+    end
+    #--------------------------------------------------------------------------
+    # * Click
+    #--------------------------------------------------------------------------
+    def click?
+      @rect.click?
+    end
+    #--------------------------------------------------------------------------
+    # * Press
+    #--------------------------------------------------------------------------
+    def press?(key = :mouse_left)
+      @rect.press?(key)
+    end
+    #--------------------------------------------------------------------------
+    # * Trigger
+    #--------------------------------------------------------------------------
+    def trigger?(key = :mouse_left)
+      @rect.trigger?(key)
+    end
+    #--------------------------------------------------------------------------
+    # * Repeat
+    #--------------------------------------------------------------------------
+    def repeat?(key = :mouse_left)
+      @rect.repeat?(key)
+    end
+    #--------------------------------------------------------------------------
+    # * Release
+    #--------------------------------------------------------------------------
+    def release?(key = :mouse_left)
+      @rect.release?(key)
+    end
+  end
+  #==============================================================================
+  # ** API
+  #------------------------------------------------------------------------------
+  #  Command handling
+  #==============================================================================
+  module API
+    #--------------------------------------------------------------------------
+    # * Binding
+    #--------------------------------------------------------------------------
+    def bind(e, *args, &block)
+      e = select_events(e)
+      e.each{|ev|ev.bind(*args, &block)}
+    end
+    #--------------------------------------------------------------------------
+    # * UnBinding
+    #--------------------------------------------------------------------------
+    def unbind(e, k=nil)
+      e = select_events(e)
+      e.each{|ev|ev.unbind(k)}
+    end
+    #--------------------------------------------------------------------------
+    # * Mouse Hover Event
+    #--------------------------------------------------------------------------
+    def mouse_hover_event?(e)
+      e = select_events(e)
+      e.any?{|ev| ev.hover?}
+    end
+    #--------------------------------------------------------------------------
+    # * clicked event
+    #--------------------------------------------------------------------------
+    def mouse_click_event?(e)
+      e = select_events(e)
+      e.any?{|ev| ev.click?}
+    end
+    #--------------------------------------------------------------------------
+    # * Pressed event
+    #--------------------------------------------------------------------------
+    def mouse_press_event?(e, k=:mouse_left)
+      e = select_events(e)
+      e.any?{|ev| ev.press?(k)}
+    end
+    #--------------------------------------------------------------------------
+    # * Triggered event
+    #--------------------------------------------------------------------------
+    def mouse_trigger_event?(e, k=:mouse_left)
+      e = select_events(e)
+      e.any?{|ev| ev.trigger?(k)}
+    end
+    #--------------------------------------------------------------------------
+    # * Repeated event
+    #--------------------------------------------------------------------------
+    def mouse_repeat_event?(e, k=:mouse_left)
+      e = select_events(e)
+      e.any?{|ev| ev.repeat?(k)}
+    end
+    #--------------------------------------------------------------------------
+    # * Released event
+    #--------------------------------------------------------------------------
+    def mouse_release_event?(e, k=:mouse_left)
+      e = select_events(e)
+      e.any?{|ev| ev.release?(k)}
+    end
+    #--------------------------------------------------------------------------
+    # * Load Commands
+    #--------------------------------------------------------------------------
+    append_commands
+  end
+end
+
+#==============================================================================
+# ** Game_CharacterBase
+#------------------------------------------------------------------------------
+#  This base class handles characters. It retains basic information, such as 
+# coordinates and graphics, shared by all characters.
+#==============================================================================
+
+class Game_CharacterBase
+  #--------------------------------------------------------------------------
+  # * alias
+  #--------------------------------------------------------------------------
+  alias :rm_extender_initialize          :initialize
+  alias :rm_extender_init_public_members :init_public_members
+  alias :rm_extender_update              :update
+  #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_reader :rect
+  #--------------------------------------------------------------------------
+  # * Event Handling
+  #--------------------------------------------------------------------------
+  include Handler::Behaviour
+  #--------------------------------------------------------------------------
+  # * Object initialize
+  #--------------------------------------------------------------------------
+  def initialize
+    rm_extender_initialize
+    @rect = Rect.new(0,0,0,0)
+  end
+  #--------------------------------------------------------------------------
+  # * Initialize Public Member Variables
+  #--------------------------------------------------------------------------
+  def init_public_members
+    rm_extender_init_public_members
+    setup_eHandler
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    rm_extender_update
+    update_eHandler
+  end
+end
+
+#==============================================================================
+# ** Sprite_Character
+#------------------------------------------------------------------------------
+#  This sprite is used to display characters. It observes an instance of the
+# Game_Character class and automatically changes sprite state.
+#==============================================================================
+
+class Sprite_Character
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias :rm_extender_update      :update
+  alias :rm_extender_initialize  :initialize
+  #--------------------------------------------------------------------------
+  # * Object initialization
+  #--------------------------------------------------------------------------
+  def initialize(viewport, character = nil)
+    rm_extender_initialize(viewport, character)
+    set_rect
+  end
+  #--------------------------------------------------------------------------
+  # * Set rect to dynamic layer
+  #--------------------------------------------------------------------------
+  def set_rect
+    if character
+      x_rect, y_rect = self.x-self.ox, self.y-self.oy
+      w_rect, h_rect = self.src_rect.width, self.src_rect.height
+      character.rect.set(x_rect, y_rect, w_rect, h_rect)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    rm_extender_update
+    set_rect
   end
 end
 

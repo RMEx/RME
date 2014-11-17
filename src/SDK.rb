@@ -194,6 +194,7 @@ module Externlib
   FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
   GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
   GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  MultiByteToWideChar = Win32API.new('kernel32', 'MultiByteToWideChar', 'ilpipi', 'i')
   RtlMoveMemory       = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
   ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
   ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
@@ -445,7 +446,43 @@ end
 #==============================================================================
 
 class String
- 
+  #--------------------------------------------------------------------------
+  # * Import
+  #--------------------------------------------------------------------------
+  externalize Externlib::WideCharToMultiByte, :to_multibyte
+  externalize Externlib::MultiByteToWideChar, :to_widechar
+  ASCII8BIT = 0
+  UTF8 = 65001
+  #--------------------------------------------------------------------------
+  # * Convert
+  #--------------------------------------------------------------------------
+  def convert_format(from, to)
+    size = to_widechar(from, 0, self, -1, nil, 0)
+    buff = [].pack("x#{size*2}")
+    to_widechar(from, 0, self, -1, buff, buff.size/2)
+    size = to_multibyte(to, 0, buff, -1, nil, 0, nil, nil)
+    sbuf = [].pack("x#{size}")
+    to_multibyte(to, 0, buff, -1, sbuf, sbuf.size, nil, nil)
+    sbuf.delete!("\000") if to == 65001
+    sbuf.delete!("\x00") if to == 0
+    sbuf
+  end
+  #--------------------------------------------------------------------------
+  # * return self in ASCII-8BIT
+  #--------------------------------------------------------------------------
+  def to_ascii; convert_format(UTF8, ASCII8BIT);end
+  #--------------------------------------------------------------------------
+  # * convert self in ASCII-8BIT
+  #--------------------------------------------------------------------------
+  def to_ascii!; replace(to_ascii); end
+  #--------------------------------------------------------------------------
+  # * return self to UTF8
+  #--------------------------------------------------------------------------
+  def to_utf8; convert_format(ASCII8BIT, UTF8); end
+  #--------------------------------------------------------------------------
+  # * convert self in UTF8
+  #--------------------------------------------------------------------------
+  def to_utf8!; replace(to_utf8); end
   #--------------------------------------------------------------------------
   # * Extract number
   #--------------------------------------------------------------------------
@@ -1218,6 +1255,7 @@ module Kernel
   #--------------------------------------------------------------------------
   HWND = Externlib::FindWindow.call('RGSS Player', 0)
   IDENTITY = lambda{|x| x}
+  USERNAME = ENV['USERNAME'].dup.to_utf8
   #--------------------------------------------------------------------------
   # * Import CMD API
   #--------------------------------------------------------------------------
@@ -1507,4 +1545,5 @@ module Command
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end
   def wait(d); d.times {Fiber.yield}; end
+  def session_username; USERNAME; end
 end

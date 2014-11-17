@@ -8,6 +8,12 @@ Commandes relatives aux évènements
 *    [include_page(map_id, event_id, page_id, *runnable, *context)](#include_pagemap_id-event_id-page_id-runnable-context)
 *    [invoke_event(map_id, event_id, new_id, *x, *y)](#invoke_eventmap_id-event_id-new_id-x-y)
 *    [max_event_id](#max_event_id)
+*    [mouse_click_event?(events)](#mouse_click_eventevents)
+*    [mouse_hover_event?(events)](#mouse_hover_eventevents)
+*    [mouse_press_event?(events, key)](#mouse_press_eventevents-key)
+*    [mouse_release_event?(events, key)](#mouse_release_eventevents-key)
+*    [mouse_repeat_event?(events, key)](#mouse_repeat_eventevents-key)
+*    [mouse_trigger_event?(events, key)](#mouse_trigger_eventevents-key)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 
 
@@ -53,6 +59,70 @@ Commandes relatives aux évènements
 
   
 > 
+
+##### mouse_click_event?(events)
+
+> Renvoie true si la souris clique un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+
+
+##### mouse_hover_event?(events)
+
+> Renvoie true si la souris survol un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+
+
+##### mouse_press_event?(events, key)
+
+> Renvoie true si la souris presse un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
+
+
+##### mouse_release_event?(events, key)
+
+> Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
+
+
+##### mouse_repeat_event?(events, key)
+
+> Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
+
+
+##### mouse_trigger_event?(events, key)
+
+> Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`events`|`Selectors`|Selecteur d'évènements  
+`key`|`Selector`|Touche à presser  
+
 
 ##### page_runnable?(map_id, event_id, page_id, *context)
 
