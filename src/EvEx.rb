@@ -247,11 +247,11 @@ module Kernel
   def events(*ids, &block)
     return [] unless SceneManager.scene.is_a?(Scene_Map)
     if ids.length == 1 && ids[0] == :all_events
-      return $game_map.each_events.values.dup
+      return $game_map.each_events
     end
     result = []
-    ids.each{|id| result << $game_map.each_events[id] if $game_map.each_events[id]}
-    result += $game_map.each_events.values.select(&block) if block_given?
+    ids.each{|id| result << id if $game_map.each_events[id]}
+    result += $game_map.each_events.select(&block) if block_given?
     result
   end
   alias :e :events
@@ -431,60 +431,67 @@ module Handler
   #==============================================================================
   module API
     #--------------------------------------------------------------------------
+    # * Event
+    #--------------------------------------------------------------------------
+    def event(i)
+      return $game_player if i == 0 
+      $game_map.events[i]
+    end
+    #--------------------------------------------------------------------------
     # * Binding
     #--------------------------------------------------------------------------
     def bind(e, *args, &block)
       e = select_events(e)
-      e.each{|ev|ev.bind(*args, &block)}
+      e.each{|i|event(i).bind(*args, &block)}
     end
     #--------------------------------------------------------------------------
     # * UnBinding
     #--------------------------------------------------------------------------
     def unbind(e, k=nil)
       e = select_events(e)
-      e.each{|ev|ev.unbind(k)}
+      e.each{|i|event(i).unbind(k)}
     end
     #--------------------------------------------------------------------------
     # * Mouse Hover Event
     #--------------------------------------------------------------------------
     def mouse_hover_event?(e)
       e = select_events(e)
-      e.any?{|ev| ev.hover?}
+      e.any?{|i|event(i).hover?}
     end
     #--------------------------------------------------------------------------
     # * clicked event
     #--------------------------------------------------------------------------
     def mouse_click_event?(e)
       e = select_events(e)
-      e.any?{|ev| ev.click?}
+      e.any?{|i|event(i).click?}
     end
     #--------------------------------------------------------------------------
     # * Pressed event
     #--------------------------------------------------------------------------
     def mouse_press_event?(e, k=:mouse_left)
       e = select_events(e)
-      e.any?{|ev| ev.press?(k)}
+      e.any?{|i|event(i).press?(k)}
     end
     #--------------------------------------------------------------------------
     # * Triggered event
     #--------------------------------------------------------------------------
     def mouse_trigger_event?(e, k=:mouse_left)
       e = select_events(e)
-      e.any?{|ev| ev.trigger?(k)}
+      e.any?{|i|event(i).trigger?(k)}
     end
     #--------------------------------------------------------------------------
     # * Repeated event
     #--------------------------------------------------------------------------
     def mouse_repeat_event?(e, k=:mouse_left)
       e = select_events(e)
-      e.any?{|ev| ev.repeat?(k)}
+      e.any?{|i|event(i).repeat?(k)}
     end
     #--------------------------------------------------------------------------
     # * Released event
     #--------------------------------------------------------------------------
     def mouse_release_event?(e, k=:mouse_left)
       e = select_events(e)
-      e.any?{|ev| ev.release?(k)}
+      e.any?{|i|event(i).release?(k)}
     end
     #--------------------------------------------------------------------------
     # * Load Commands
@@ -693,7 +700,8 @@ class Game_Map
   # * Get each events
   #--------------------------------------------------------------------------
   def each_events
-    {0=>$game_player}.merge(@events.dup)
+    result = events.keys.dup << 0
+    result
   end
   #--------------------------------------------------------------------------
   # * Return Max Event Id
