@@ -1375,7 +1375,10 @@ class Sprite
   #--------------------------------------------------------------------------
   def precise_in?(x, y)
     return false unless self.bitmap
-    in?(x, y) && bitmap.fast_get_pixel(x-self.x+self.ox, y-self.y+self.oy).alpha > 0
+    return false if self.zoom_x == 0 || self.zoom_y == 0
+    tx = ((x-self.x)/self.zoom_x+self.ox).to_i
+    ty = ((y-self.y)/self.zoom_y+self.oy).to_i
+    in?(x, y) && bitmap.fast_get_pixel(tx, ty).alpha > 0
   end
   #--------------------------------------------------------------------------
   # * Collision
@@ -1438,8 +1441,10 @@ class Rect
     elsif p.length == 1
       x, y = p[0].x, p[0].y
     end 
-    check_x = x.between?(self.x, self.x+self.width)
-    check_y = y.between?(self.y, self.y+self.height)
+    a, b = [self.x, self.x+self.width].sort
+    c, d = [self.y, self.y+self.height].sort
+    check_x = x.between?(a, b)
+    check_y = y.between?(c, d)
     check_x && check_y
   end
   #--------------------------------------------------------------------------
@@ -1515,7 +1520,7 @@ class Bitmap
   # * Fast get pixel
   #--------------------------------------------------------------------------
   def fast_get_pixel(x_in, y_in)
-    return Color.new(0,0,0,0) if x_in >= self.width || y_in >= self.height
+    return Color.new(0,0,0,0) unless x_in.between?(0, self.width) && y_in.between?(0, self.height)
     data = self.get_data_ptr
     i = (x_in + (self.height - 1 - y_in) * self.width) * 4
     blue = data.getbyte(i)
