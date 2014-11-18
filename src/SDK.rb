@@ -1375,7 +1375,7 @@ class Sprite
   #--------------------------------------------------------------------------
   def precise_in?(x, y)
     return false unless self.bitmap
-    in?(x, y) && bitmap.fast_get_pixel(x-self.x, y-self.y).alpha > 0
+    in?(x, y) && bitmap.fast_get_pixel(x-self.x+self.ox, y-self.y+self.oy).alpha > 0
   end
   #--------------------------------------------------------------------------
   # * Collision
