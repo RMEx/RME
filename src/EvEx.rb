@@ -371,7 +371,7 @@ module Handler
       @__std_triggers.each do |key, event|
         if event && event[:ntriggers] != 0
           if @table_triggers[key] && @table_triggers[key].()
-            event[:fun].(self)
+            event[:fun].(self.id)
             event[:ntriggers] -= 1 if event[:ntriggers] != -1
           end
         end
@@ -379,7 +379,7 @@ module Handler
       @__cst_triggers.each do |key, event|
         if event
           if event[:ntriggers] != 0
-            event[:fun].(self) if event[:trigger].(self)
+            event[:fun].(self) if event[:trigger].(self.id)
             event[:ntriggers] -= 1 if event[:ntriggers] != -1
           else
             event = nil
