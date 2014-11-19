@@ -1426,6 +1426,86 @@ link_method_documentation "Command.is_key_item?",
                         {:id => ["Id de l'objet'", :Fixnum]}, true
 register_command :items, "Command.is_key_item?"
 
+link_method_documentation "Command.weapon_max_hit_points", 
+                        "Renvoie le maximum des points de dégat d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_max_hit_points"
+
+link_method_documentation "Command.weapon_max_magic_points", 
+                        "Renvoie le maximum des points de magie d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_max_magic_points"
+
+link_method_documentation "Command.weapon_attack_power", 
+                        "Renvoie la puissance d'attaque d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_attack_power"
+
+link_method_documentation "Command.weapon_defense_power", 
+                        "Renvoie la puissance de défense d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_defense_power"
+
+link_method_documentation "Command.weapon_magic_attack_power", 
+                        "Renvoie la puissance d'attaque magique d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_magic_attack_power"
+
+link_method_documentation "Command.weapon_magic_defense_power", 
+                        "Renvoie la puissance de défense magique d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_magic_defense_power"
+
+link_method_documentation "Command.weapon_agility", 
+                        "Renvoie l'apport d'agilité d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_agility"
+
+link_method_documentation "Command.weapon_luck", 
+                        "Renvoie l'apport de chance d'une arme référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.weapon_luck"
+
+link_method_documentation "Command.armor_max_hit_points", 
+                        "Renvoie le maximum des points de dégat d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_max_hit_points"
+
+link_method_documentation "Command.armor_max_magic_points", 
+                        "Renvoie le maximum des points de magie d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_max_magic_points"
+
+link_method_documentation "Command.armor_attack_power", 
+                        "Renvoie la puissance d'attaque d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_attack_power"
+
+link_method_documentation "Command.armor_defense_power", 
+                        "Renvoie la puissance de défense d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_defense_power"
+
+link_method_documentation "Command.armor_magic_attack_power", 
+                        "Renvoie la puissance d'attaque magique d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_magic_attack_power"
+
+link_method_documentation "Command.armor_magic_defense_power", 
+                        "Renvoie la puissance de défense magique d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_magic_defense_power"
+
+link_method_documentation "Command.armor_agility", 
+                        "Renvoie l'apport d'agilité d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_agility"
+
+link_method_documentation "Command.armor_luck", 
+                        "Renvoie l'apport de chance d'une armure référencée par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.armor_luck"
+
 end
 
 ## Documentation generator

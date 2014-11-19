@@ -4,9 +4,17 @@
 Commandes permettant d'obtenir ou de manipuler les objets
 
 ##Liste des commandes
+*    [armor_agility(id)](#armor_agilityid)
+*    [armor_attack_power(id)](#armor_attack_powerid)
 *    [armor_count(id)](#armor_countid)
+*    [armor_defense_power(id)](#armor_defense_powerid)
 *    [armor_description(id)](#armor_descriptionid)
 *    [armor_icon(id)](#armor_iconid)
+*    [armor_luck(id)](#armor_luckid)
+*    [armor_magic_attack_power(id)](#armor_magic_attack_powerid)
+*    [armor_magic_defense_power(id)](#armor_magic_defense_powerid)
+*    [armor_max_hit_points(id)](#armor_max_hit_pointsid)
+*    [armor_max_magic_points(id)](#armor_max_magic_pointsid)
 *    [armor_name(id)](#armor_nameid)
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
@@ -18,15 +26,43 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_name(id)](#item_nameid)
 *    [item_note(id)](#item_noteid)
 *    [item_price(id)](#item_priceid)
+*    [weapon_agility(id)](#weapon_agilityid)
+*    [weapon_attack_power(id)](#weapon_attack_powerid)
 *    [weapon_count(id)](#weapon_countid)
+*    [weapon_defense_power(id)](#weapon_defense_powerid)
 *    [weapon_description(id)](#weapon_descriptionid)
 *    [weapon_icon(id)](#weapon_iconid)
+*    [weapon_luck(id)](#weapon_luckid)
+*    [weapon_magic_attack_power(id)](#weapon_magic_attack_powerid)
+*    [weapon_magic_defense_power(id)](#weapon_magic_defense_powerid)
+*    [weapon_max_hit_points(id)](#weapon_max_hit_pointsid)
+*    [weapon_max_magic_points(id)](#weapon_max_magic_pointsid)
 *    [weapon_name(id)](#weapon_nameid)
 *    [weapon_note(id)](#weapon_noteid)
 *    [weapon_price(id)](#weapon_priceid)
 
 
 ##Description des commandes
+##### armor_agility(id)
+
+> Renvoie l'apport d'agilité d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### armor_attack_power(id)
+
+> Renvoie la puissance d'attaque d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
 ##### armor_count(id)
 
 > Renvoie le nombre d'armures référencées par son ID possédées par l'équipe
@@ -35,6 +71,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure à compter  
+
+
+##### armor_defense_power(id)
+
+> Renvoie la puissance de défense d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 ##### armor_description(id)
@@ -55,6 +101,56 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure'  
+
+
+##### armor_luck(id)
+
+> Renvoie l'apport de chance d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### armor_magic_attack_power(id)
+
+> Renvoie la puissance d'attaque magique d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### armor_magic_defense_power(id)
+
+> Renvoie la puissance de défense magique d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### armor_max_hit_points(id)
+
+> Renvoie le maximum des points de dégat d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### armor_max_magic_points(id)
+
+> Renvoie le maximum des points de magie d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 ##### armor_name(id)
@@ -167,6 +263,26 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'objet'  
 
 
+##### weapon_agility(id)
+
+> Renvoie l'apport d'agilité d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### weapon_attack_power(id)
+
+> Renvoie la puissance d'attaque d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
 ##### weapon_count(id)
 
 > Renvoie le nombre d'armes référencées par son ID possédées par l'équipe
@@ -175,6 +291,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme à compter  
+
+
+##### weapon_defense_power(id)
+
+> Renvoie la puissance de défense d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 ##### weapon_description(id)
@@ -195,6 +321,56 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme'  
+
+
+##### weapon_luck(id)
+
+> Renvoie l'apport de chance d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### weapon_magic_attack_power(id)
+
+> Renvoie la puissance d'attaque magique d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### weapon_magic_defense_power(id)
+
+> Renvoie la puissance de défense magique d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### weapon_max_hit_points(id)
+
+> Renvoie le maximum des points de dégat d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### weapon_max_magic_points(id)
+
+> Renvoie le maximum des points de magie d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 ##### weapon_name(id)

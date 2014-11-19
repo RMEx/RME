@@ -6,9 +6,17 @@ Collection des commandes EventExtender
 ##Liste des méthodes
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
+*    [Command.armor_agility(id)](#Command.armor_agilityid)
+*    [Command.armor_attack_power(id)](#Command.armor_attack_powerid)
 *    [Command.armor_count(id)](#Command.armor_countid)
+*    [Command.armor_defense_power(id)](#Command.armor_defense_powerid)
 *    [Command.armor_description(id)](#Command.armor_descriptionid)
 *    [Command.armor_icon(id)](#Command.armor_iconid)
+*    [Command.armor_luck(id)](#Command.armor_luckid)
+*    [Command.armor_magic_attack_power(id)](#Command.armor_magic_attack_powerid)
+*    [Command.armor_magic_defense_power(id)](#Command.armor_magic_defense_powerid)
+*    [Command.armor_max_hit_points(id)](#Command.armor_max_hit_pointsid)
+*    [Command.armor_max_magic_points(id)](#Command.armor_max_magic_pointsid)
 *    [Command.armor_name(id)](#Command.armor_nameid)
 *    [Command.armor_note(id)](#Command.armor_noteid)
 *    [Command.armor_price(id)](#Command.armor_priceid)
@@ -126,9 +134,17 @@ Collection des commandes EventExtender
 *    [Command.timer](#Command.timer)
 *    [Command.tone(red, green, blue, *gray)](#Command.tonered-green-blue-gray)
 *    [Command.wait(duration)](#Command.waitduration)
+*    [Command.weapon_agility(id)](#Command.weapon_agilityid)
+*    [Command.weapon_attack_power(id)](#Command.weapon_attack_powerid)
 *    [Command.weapon_count(id)](#Command.weapon_countid)
+*    [Command.weapon_defense_power(id)](#Command.weapon_defense_powerid)
 *    [Command.weapon_description(id)](#Command.weapon_descriptionid)
 *    [Command.weapon_icon(id)](#Command.weapon_iconid)
+*    [Command.weapon_luck(id)](#Command.weapon_luckid)
+*    [Command.weapon_magic_attack_power(id)](#Command.weapon_magic_attack_powerid)
+*    [Command.weapon_magic_defense_power(id)](#Command.weapon_magic_defense_powerid)
+*    [Command.weapon_max_hit_points(id)](#Command.weapon_max_hit_pointsid)
+*    [Command.weapon_max_magic_points(id)](#Command.weapon_max_magic_pointsid)
 *    [Command.weapon_name(id)](#Command.weapon_nameid)
 *    [Command.weapon_note(id)](#Command.weapon_noteid)
 *    [Command.weapon_price(id)](#Command.weapon_priceid)
@@ -166,6 +182,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.armor_agility(id)
+
+> Renvoie l'apport d'agilité d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.armor_attack_power(id)
+
+> Renvoie la puissance d'attaque d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
 ##### Command.armor_count(id)
 
 > Renvoie le nombre d'armures référencées par son ID possédées par l'équipe
@@ -174,6 +218,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure à compter  
+
+
+
+
+
+
+##### Command.armor_defense_power(id)
+
+> Renvoie la puissance de défense d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 
@@ -202,6 +260,76 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure'  
+
+
+
+
+
+
+##### Command.armor_luck(id)
+
+> Renvoie l'apport de chance d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.armor_magic_attack_power(id)
+
+> Renvoie la puissance d'attaque magique d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.armor_magic_defense_power(id)
+
+> Renvoie la puissance de défense magique d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.armor_max_hit_points(id)
+
+> Renvoie le maximum des points de dégat d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.armor_max_magic_points(id)
+
+> Renvoie le maximum des points de magie d'une armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 
@@ -1889,6 +2017,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.weapon_agility(id)
+
+> Renvoie l'apport d'agilité d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.weapon_attack_power(id)
+
+> Renvoie la puissance d'attaque d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
 ##### Command.weapon_count(id)
 
 > Renvoie le nombre d'armes référencées par son ID possédées par l'équipe
@@ -1897,6 +2053,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme à compter  
+
+
+
+
+
+
+##### Command.weapon_defense_power(id)
+
+> Renvoie la puissance de défense d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 
@@ -1925,6 +2095,76 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme'  
+
+
+
+
+
+
+##### Command.weapon_luck(id)
+
+> Renvoie l'apport de chance d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.weapon_magic_attack_power(id)
+
+> Renvoie la puissance d'attaque magique d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.weapon_magic_defense_power(id)
+
+> Renvoie la puissance de défense magique d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.weapon_max_hit_points(id)
+
+> Renvoie le maximum des points de dégat d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.weapon_max_magic_points(id)
+
+> Renvoie le maximum des points de magie d'une arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 

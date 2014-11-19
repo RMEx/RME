@@ -2110,6 +2110,22 @@ module Command
   def armor_price(id); $data_armors[id].price; end
   def item_consumable?(id); $data_items[id].consumable; end
   def is_key_item?(id); $data_items[id].key_item?; end
+  def weapon_max_hit_points(id); $data_weapons[id].params[0]; end
+  def weapon_max_magic_points(id); $data_weapons[id].params[1]; end
+  def weapon_attack_power(id); $data_weapons[id].params[2]; end
+  def weapon_defense_power(id); $data_weapons[id].params[3]; end
+  def weapon_magic_attack_power(id); $data_weapons[id].params[4]; end
+  def weapon_magic_defense_power(id); $data_weapons[id].params[5]; end
+  def weapon_agility(id); $data_weapons[id].params[6]; end
+  def weapon_luck(id); $data_weapons[id].params[7]; end
+  def armor_max_hit_points(id); $data_armors[id].params[0]; end
+  def armor_max_magic_points(id); $data_armors[id].params[1]; end
+  def armor_attack_power(id); $data_armors[id].params[2]; end
+  def armor_defense_power(id); $data_armors[id].params[3]; end
+  def armor_magic_attack_power(id); $data_armors[id].params[4]; end
+  def armor_magic_defense_power(id); $data_armors[id].params[5]; end
+  def armor_agility(id); $data_armors[id].params[6]; end
+  def armor_luck(id); $data_armors[id].params[7]; end
 end
 
 #==============================================================================
