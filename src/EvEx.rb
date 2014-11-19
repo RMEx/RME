@@ -2126,7 +2126,8 @@ module Command
   def armor_magic_defense_power(id); $data_armors[id].params[5]; end
   def armor_agility(id); $data_armors[id].params[6]; end
   def armor_luck(id); $data_armors[id].params[7]; end
-  def give_item(id, amount, include_equip = false)
+
+  def give_item(id, amount)
     item = $data_items[id];
     $game_party.gain_item(item, amount, include_equip)
   end
@@ -2149,6 +2150,16 @@ module Command
   def has_armor?(id, include_equip = false)
     item = $data_armors[id]
     $game_party.has_item?(item, include_equip)
+  end
+  def weapon_equiped?(id, member = nil)
+    item = $data_weapons[id]
+    return $game_party.members_equip_include?(item) unless member
+    $game_actors[member].equips.include?(item)
+  end
+  def armor_equiped?(id, member = nil)
+    item = $data_armors[id]
+    return $game_party.members_equip_include?(item) unless member
+    $game_actors[member].equips.include?(item)
   end
 end
 

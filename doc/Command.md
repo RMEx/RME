@@ -11,6 +11,7 @@ Collection des commandes EventExtender
 *    [Command.armor_count(id)](#Command.armor_countid)
 *    [Command.armor_defense_power(id)](#Command.armor_defense_powerid)
 *    [Command.armor_description(id)](#Command.armor_descriptionid)
+*    [Command.armor_eequiped?(id, *member_id)](#Command.armor_eequipedid-member_id)
 *    [Command.armor_icon(id)](#Command.armor_iconid)
 *    [Command.armor_luck(id)](#Command.armor_luckid)
 *    [Command.armor_magic_attack_power(id)](#Command.armor_magic_attack_powerid)
@@ -145,6 +146,7 @@ Collection des commandes EventExtender
 *    [Command.weapon_count(id)](#Command.weapon_countid)
 *    [Command.weapon_defense_power(id)](#Command.weapon_defense_powerid)
 *    [Command.weapon_description(id)](#Command.weapon_descriptionid)
+*    [Command.weapon_equiped?(id, *member_id)](#Command.weapon_equipedid-member_id)
 *    [Command.weapon_icon(id)](#Command.weapon_iconid)
 *    [Command.weapon_luck(id)](#Command.weapon_luckid)
 *    [Command.weapon_magic_attack_power(id)](#Command.weapon_magic_attack_powerid)
@@ -252,6 +254,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
+
+
+
+
+
+
+##### Command.armor_eequiped?(id, *member_id)
+
+> Renvoie true si l'armure référencé par son ID est équipée par un des membres de l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+`*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
 
 
 
@@ -2178,6 +2195,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
+
+
+
+
+
+
+##### Command.weapon_equiped?(id, *member_id)
+
+> Renvoie true si l'arme référencé par son ID est équipée par un des membres de l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+`*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
 
 
 
