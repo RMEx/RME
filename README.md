@@ -5,4 +5,4 @@ Outil d'extension de RPG Maker
 **Index**
 
 *    [Wiki](/wiki)
-*    [Documentation](Command.md/doc/README.md)
+*    [Documentation](/doc/README.md)
