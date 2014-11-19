@@ -2102,7 +2102,12 @@ module Command
   def item_description(id); $data_items[id].description; end
   def weapon_description(id); $data_weapons[id].description; end
   def armor_description(id); $data_armors[id].description; end
-
+  def item_icon(id); $data_items[id].icon_index; end
+  def weapon_icon(id); $data_weapons[id].icon_index; end
+  def armor_icon(id); $data_armors[id].icon_index; end
+  def item_price(id); $data_items[id].price; end
+  def weapon_price(id); $data_weapons[id].price; end
+  def armor_price(id); $data_armors[id].price; end
 end
 
 #==============================================================================

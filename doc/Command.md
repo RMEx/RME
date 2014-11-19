@@ -8,8 +8,10 @@ Collection des commandes EventExtender
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
 *    [Command.armor_count(id)](#Command.armor_countid)
 *    [Command.armor_description(id)](#Command.armor_descriptionid)
+*    [Command.armor_icon(id)](#Command.armor_iconid)
 *    [Command.armor_name(id)](#Command.armor_nameid)
 *    [Command.armor_note(id)](#Command.armor_noteid)
+*    [Command.armor_price(id)](#Command.armor_priceid)
 *    [Command.battle_count](#Command.battle_count)
 *    [Command.caps_lock?](#Command.caps_lock)
 *    [Command.click_time(key)](#Command.click_timekey)
@@ -22,8 +24,10 @@ Collection des commandes EventExtender
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#Command.invoke_eventmap_id-event_id-new_id-x-y)
 *    [Command.item_count(id)](#Command.item_countid)
 *    [Command.item_description(id)](#Command.item_descriptionid)
+*    [Command.item_icon(id)](#Command.item_iconid)
 *    [Command.item_name(id)](#Command.item_nameid)
 *    [Command.item_note(id)](#Command.item_noteid)
+*    [Command.item_price(id)](#Command.item_priceid)
 *    [Command.key_current(method)](#Command.key_currentmethod)
 *    [Command.key_current_rgss(method)](#Command.key_current_rgssmethod)
 *    [Command.key_press?(key)](#Command.key_presskey)
@@ -122,8 +126,10 @@ Collection des commandes EventExtender
 *    [Command.wait(duration)](#Command.waitduration)
 *    [Command.weapon_count(id)](#Command.weapon_countid)
 *    [Command.weapon_description(id)](#Command.weapon_descriptionid)
+*    [Command.weapon_icon(id)](#Command.weapon_iconid)
 *    [Command.weapon_name(id)](#Command.weapon_nameid)
 *    [Command.weapon_note(id)](#Command.weapon_noteid)
+*    [Command.weapon_price(id)](#Command.weapon_priceid)
 
 
 ##Description des méthodes
@@ -186,6 +192,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.armor_icon(id)
+
+> Renvoie l'index de l'icone  de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure'  
+
+
+
+
+
+
 ##### Command.armor_name(id)
 
 > Renvoie le nom de l'armure référencé par son ID
@@ -203,6 +223,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.armor_note(id)
 
 > Renvoie le commentaire de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure'  
+
+
+
+
+
+
+##### Command.armor_price(id)
+
+> Renvoie le prix  de l'armure référencé par son ID
 
   
 > Nom|Type|Description  
@@ -382,6 +416,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.item_icon(id)
+
+> Renvoie l'index de l'icone de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
 ##### Command.item_name(id)
 
 > Renvoie le nom de l'objet référencé par son ID
@@ -399,6 +447,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.item_note(id)
 
 > Renvoie le commentaire de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.item_price(id)
+
+> Renvoie le prix de l'objet référencé par son ID
 
   
 > Nom|Type|Description  
@@ -1825,6 +1887,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.weapon_icon(id)
+
+> Renvoie l'index de l'icone de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme'  
+
+
+
+
+
+
 ##### Command.weapon_name(id)
 
 > Renvoie le nom de l'arme référencée par son ID
@@ -1842,6 +1918,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.weapon_note(id)
 
 > Renvoie le commentaire de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme'  
+
+
+
+
+
+
+##### Command.weapon_price(id)
+
+> Renvoie le prix de l'arme référencée par son ID
 
   
 > Nom|Type|Description  

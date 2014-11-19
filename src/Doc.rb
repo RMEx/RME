@@ -1386,6 +1386,36 @@ link_method_documentation "Command.armor_description",
                         {:id => ["Id de l'armure'", :Fixnum]}, true
 register_command :items, "Command.armor_description"
 
+link_method_documentation "Command.item_icon", 
+                        "Renvoie l'index de l'icone de l'objet référencé par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.item_icon"
+
+link_method_documentation "Command.weapon_icon", 
+                        "Renvoie l'index de l'icone de l'arme référencée par son ID",
+                        {:id => ["Id de l'arme'", :Fixnum]}, true
+register_command :items, "Command.weapon_icon"
+
+link_method_documentation "Command.armor_icon", 
+                        "Renvoie l'index de l'icone  de l'armure référencé par son ID",
+                        {:id => ["Id de l'armure'", :Fixnum]}, true
+register_command :items, "Command.armor_icon"
+
+link_method_documentation "Command.item_price", 
+                        "Renvoie le prix de l'objet référencé par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.item_price"
+
+link_method_documentation "Command.weapon_price", 
+                        "Renvoie le prix de l'arme référencée par son ID",
+                        {:id => ["Id de l'arme'", :Fixnum]}, true
+register_command :items, "Command.weapon_price"
+
+link_method_documentation "Command.armor_price", 
+                        "Renvoie le prix  de l'armure référencé par son ID",
+                        {:id => ["Id de l'armure'", :Fixnum]}, true
+register_command :items, "Command.armor_price"
+
 end
 
 ## Documentation generator
