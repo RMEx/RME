@@ -1511,7 +1511,6 @@ link_method_documentation "Command.give_item",
                         {
                           :id => ["Id de l'objet", :Fixnum], 
                           :amount => ["Nombre à donner. Si le nombre est négatif, l'objet sera retiré", :Fixnum], 
-                          :"*include_equipement" => ["Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement", :Boolean]
 
                         }
 register_command :items, "Command.give_item"
@@ -1535,6 +1534,32 @@ link_method_documentation "Command.give_armor",
 
                         }
 register_command :items, "Command.give_armor"
+
+link_method_documentation "Command.has_item?", 
+                        "Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+
+                        }, true
+register_command :items, "Command.has_item?"
+
+link_method_documentation "Command.has_weapon?", 
+                        "Renvoie true si l'arme référencé par son ID est possédée par l'équipe, false sinon",
+                        {
+                          :id => ["Id de l'arme", :Fixnum], 
+                           :"*include_equipement" => ["Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)", :Boolean]
+
+                        }, true
+register_command :items, "Command.has_weapon?"
+
+link_method_documentation "Command.has_armor?", 
+                        "Renvoie true si l'armure référencé par son ID est possédée par l'équipe, false sinon",
+                        {
+                          :id => ["Id de l'armure", :Fixnum], 
+                           :"*include_equipement" => ["Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)", :Boolean]
+
+                        }, true
+register_command :items, "Command.has_armor?"
 
 end
 

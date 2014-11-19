@@ -27,9 +27,12 @@ Collection des commandes EventExtender
 *    [Command.ctrl?(key)](#Command.ctrlkey)
 *    [Command.fresh_event_id](#Command.fresh_event_id)
 *    [Command.give_armor(id, amount, *include_equipement)](#Command.give_armorid-amount-include_equipement)
-*    [Command.give_item(id, amount, *include_equipement)](#Command.give_itemid-amount-include_equipement)
+*    [Command.give_item(id, amount)](#Command.give_itemid-amount)
 *    [Command.give_weapon(id, amount, *include_equipement)](#Command.give_weaponid-amount-include_equipement)
 *    [Command.gold](#Command.gold)
+*    [Command.has_armor?(id, *include_equipement)](#Command.has_armorid-include_equipement)
+*    [Command.has_item?(id)](#Command.has_itemid)
+*    [Command.has_weapon?(id, *include_equipement)](#Command.has_weaponid-include_equipement)
 *    [Command.id_at(x, y)](#Command.id_atx-y)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#Command.include_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#Command.invoke_eventmap_id-event_id-new_id-x-y)
@@ -475,7 +478,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.give_item(id, amount, *include_equipement)
+##### Command.give_item(id, amount)
 
 > Fait gagner à l'équipe l'objet référencé par son ID
 
@@ -484,7 +487,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
-`*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
 
 
 
@@ -513,6 +515,50 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.has_armor?(id, *include_equipement)
+
+> Renvoie true si l'armure référencé par son ID est possédée par l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+`*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
+
+
+
+
+
+
+##### Command.has_item?(id)
+
+> Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.has_weapon?(id, *include_equipement)
+
+> Renvoie true si l'arme référencé par son ID est possédée par l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+`*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
+
 
 
 

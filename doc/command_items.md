@@ -19,8 +19,11 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
 *    [give_armor(id, amount, *include_equipement)](#give_armorid-amount-include_equipement)
-*    [give_item(id, amount, *include_equipement)](#give_itemid-amount-include_equipement)
+*    [give_item(id, amount)](#give_itemid-amount)
 *    [give_weapon(id, amount, *include_equipement)](#give_weaponid-amount-include_equipement)
+*    [has_armor?(id, *include_equipement)](#has_armorid-include_equipement)
+*    [has_item?(id)](#has_itemid)
+*    [has_weapon?(id, *include_equipement)](#has_weaponid-include_equipement)
 *    [is_key_item?(id)](#is_key_itemid)
 *    [item_consumable?(id)](#item_consumableid)
 *    [item_count(id)](#item_countid)
@@ -198,7 +201,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
 
 
-##### give_item(id, amount, *include_equipement)
+##### give_item(id, amount)
 
 > Fait gagner à l'équipe l'objet référencé par son ID
 
@@ -207,7 +210,6 @@ Commandes permettant d'obtenir ou de manipuler les objets
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
-`*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
 
 
 ##### give_weapon(id, amount, *include_equipement)
@@ -220,6 +222,38 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'arme  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
 `*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
+
+
+##### has_armor?(id, *include_equipement)
+
+> Renvoie true si l'armure référencé par son ID est possédée par l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+`*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
+
+
+##### has_item?(id)
+
+> Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### has_weapon?(id, *include_equipement)
+
+> Renvoie true si l'arme référencé par son ID est possédée par l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+`*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
 
 
 ##### is_key_item?(id)
