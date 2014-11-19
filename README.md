@@ -1,6 +1,5 @@
 #RME : RPG Maker Extender
-Outil d'extension de RPG Maker 
-    (en cours de développement.)
+Projet en cours de développement.
 
 **Index**
 
