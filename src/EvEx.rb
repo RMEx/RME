@@ -2161,8 +2161,70 @@ module Command
     return $game_party.members_equip_include?(item) unless member
     $game_actors[member].equips.include?(item)
   end
+  
+  def weapon_type(id)
+   i = $data_weapons[id].wtype_id
+   $data_system.weapon_types[i]
+  end
+  def armor_type(id)
+    i = $data_armors[id].atype_id
+    $data_system.armor_types[i]
+  end
+  def item_scope(id)
+    $data_items[id].scope
+  end
+  def item_has_no_scope?(id)
+    item_scope(id) == 0
+  end
+  def item_for_one_enemy?(id)
+    item_scope(id) == 1
+  end
+  def item_for_all_enemies?(id)
+    item_scope(id) == 2
+  end
+  def item_for_one_random_enemy?(id)
+    item_scope(id) == 3
+  end
+  def item_for_two_random_enemy?(id)
+    item_scope(id) == 4
+  end
+  def item_for_three_random_enemy?(id)
+    item_scope(id) == 5
+  end
+  def item_for_four_random_enemy?(id)
+    item_scope(id) == 6
+  end
+  def item_for_one_ally?(id)
+    item_scope(id) == 7
+  end
+  def item_for_all_allies?(id)
+    item_scope(id) == 8
+  end
+  def item_for_one_dead_ally?(id)
+    item_scope(id) == 9
+  end
+  def item_for_all_dead_allies?(id)
+    item_scope(id) == 10
+  end
+  def item_for_caller?(id)
+    item_scope(id) == 11
+  end
+  def item_occasion(id)
+    $data_items[id].occasion
+  end
+  def item_always_usable?(id)
+    item_occasion(id) == 0
+  end
+  def item_battle_usable?(id)
+    item_occasion(id) == 1
+  end
+  def item_menu_usable?(id)
+    item_occasion(id) == 2
+  end
+  def item_never_usable?(id)
+    item_occasion(id) == 3
+  end
 end
-
 #==============================================================================
 # ** DataManager
 #------------------------------------------------------------------------------

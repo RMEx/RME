@@ -21,6 +21,7 @@ Collection des commandes EventExtender
 *    [Command.armor_name(id)](#Command.armor_nameid)
 *    [Command.armor_note(id)](#Command.armor_noteid)
 *    [Command.armor_price(id)](#Command.armor_priceid)
+*    [Command.armor_type(id)](#Command.armor_typeid)
 *    [Command.battle_count](#Command.battle_count)
 *    [Command.caps_lock?](#Command.caps_lock)
 *    [Command.click_time(key)](#Command.click_timekey)
@@ -38,13 +39,31 @@ Collection des commandes EventExtender
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#Command.include_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#Command.invoke_eventmap_id-event_id-new_id-x-y)
 *    [Command.is_key_item?(id)](#Command.is_key_itemid)
+*    [Command.item_always_usable?(id)](#Command.item_always_usableid)
+*    [Command.item_battle_usable?(id)](#Command.item_battle_usableid)
 *    [Command.item_consumable?(id)](#Command.item_consumableid)
 *    [Command.item_count(id)](#Command.item_countid)
 *    [Command.item_description(id)](#Command.item_descriptionid)
+*    [Command.item_for_all_allies?(id)](#Command.item_for_all_alliesid)
+*    [Command.item_for_all_dead_allies?(id)](#Command.item_for_all_dead_alliesid)
+*    [Command.item_for_all_enemies?(id)](#Command.item_for_all_enemiesid)
+*    [Command.item_for_caller?(id)](#Command.item_for_callerid)
+*    [Command.item_for_four_random_enemies?(id)](#Command.item_for_four_random_enemiesid)
+*    [Command.item_for_one_ally?(id)](#Command.item_for_one_allyid)
+*    [Command.item_for_one_dead_ally?(id)](#Command.item_for_one_dead_allyid)
+*    [Command.item_for_one_enemy?(id)](#Command.item_for_one_enemyid)
+*    [Command.item_for_one_random_enemy?(id)](#Command.item_for_one_random_enemyid)
+*    [Command.item_for_three_random_enemies?(id)](#Command.item_for_three_random_enemiesid)
+*    [Command.item_for_two_random_enemies?(id)](#Command.item_for_two_random_enemiesid)
+*    [Command.item_has_no_scope?(id)](#Command.item_has_no_scopeid)
 *    [Command.item_icon(id)](#Command.item_iconid)
+*    [Command.item_menu_usable?(id)](#Command.item_menu_usableid)
 *    [Command.item_name(id)](#Command.item_nameid)
+*    [Command.item_never_usable?(id)](#Command.item_never_usableid)
 *    [Command.item_note(id)](#Command.item_noteid)
+*    [Command.item_occasion(id)](#Command.item_occasionid)
 *    [Command.item_price(id)](#Command.item_priceid)
+*    [Command.item_scope(id)](#Command.item_scopeid)
 *    [Command.key_current(method)](#Command.key_currentmethod)
 *    [Command.key_current_rgss(method)](#Command.key_current_rgssmethod)
 *    [Command.key_press?(key)](#Command.key_presskey)
@@ -156,6 +175,7 @@ Collection des commandes EventExtender
 *    [Command.weapon_name(id)](#Command.weapon_nameid)
 *    [Command.weapon_note(id)](#Command.weapon_noteid)
 *    [Command.weapon_price(id)](#Command.weapon_priceid)
+*    [Command.weapon_type(id)](#Command.weapon_typeid)
 
 
 ##Description des méthodes
@@ -390,6 +410,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.armor_price(id)
 
 > Renvoie le prix  de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+
+
+
+
+
+
+##### Command.armor_type(id)
+
+> Renvoie le type de l'armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -646,6 +680,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.item_always_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID est utilisable partout
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_battle_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID est utilisable en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_consumable?(id)
 
 > Renvoie true si l'objet référencé par son ID est consommable, false sinon
@@ -688,9 +750,191 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.item_for_all_allies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_all_dead_allies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés morts, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_all_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise tous les ennemis, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_caller?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID l'utilisateur, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_four_random_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise quatre ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_one_ally?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un allié, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_one_dead_ally?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un allié mort, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_one_enemy?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un ennemi, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_one_random_enemy?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un ennemi au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_three_random_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise trois ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_two_random_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise deux ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_has_no_scope?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise personne, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_icon(id)
 
 > Renvoie l'index de l'icone de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_menu_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID est utilisable dans le menu
 
   
 > Nom|Type|Description  
@@ -716,9 +960,37 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.item_never_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID n'est jamais utilisable
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_note(id)
 
 > Renvoie le commentaire de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_occasion(id)
+
+> Renvoie un entier correspondant au droit d'utilisation de l'objet
 
   
 > Nom|Type|Description  
@@ -738,6 +1010,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_scope(id)
+
+> Renvoie la portée (en Entier) d'un objet référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
 
 
 
@@ -2331,6 +2617,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.weapon_price(id)
 
 > Renvoie le prix de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+
+
+
+
+
+
+##### Command.weapon_type(id)
+
+> Renvoie le type de l'arme référencée par son ID
 
   
 > Nom|Type|Description  

@@ -1575,6 +1575,146 @@ link_method_documentation "Command.armor_equiped?",
                         }, true
 register_command :items, "Command.armor_equiped?"
 
+link_method_documentation "Command.weapon_type", 
+                        "Renvoie le type de l'arme référencée par son ID",
+                        {
+                          :id => ["Id de l'arme", :Fixnum], 
+                        }, true
+register_command :items, "Command.weapon_type"
+
+link_method_documentation "Command.armor_type", 
+                        "Renvoie le type de l'armure référencée par son ID",
+                        {
+                          :id => ["Id de l'armure", :Fixnum], 
+                        }, true
+register_command :items, "Command.armor_type"
+
+link_method_documentation "Command.item_scope", 
+                        "Renvoie la portée (en Entier) d'un objet référencée par son ID",
+                        {
+                          :id => ["Id de l'armure", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_scope"
+
+link_method_documentation "Command.item_has_no_scope?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise personne, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_has_scope?"
+
+link_method_documentation "Command.item_for_one_enemy?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise un ennemi, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_one_enemy?"
+
+link_method_documentation "Command.item_for_all_enemies?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise tous les ennemis, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_all_enemies?"
+
+link_method_documentation "Command.item_for_one_random_enemy?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise un ennemi au hasard, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_one_random_enemy?"
+
+link_method_documentation "Command.item_for_two_random_enemies?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise deux ennemis au hasard, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_two_random_enemies?"
+
+link_method_documentation "Command.item_for_three_random_enemies?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise trois ennemis au hasard, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_three_random_enemies?"
+
+link_method_documentation "Command.item_for_four_random_enemies?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise quatre ennemis au hasard, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_four_random_enemies?"
+
+link_method_documentation "Command.item_for_one_ally?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise un allié, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_one_ally?"
+
+link_method_documentation "Command.item_for_all_allies?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_all_allies?"
+
+link_method_documentation "Command.item_for_one_dead_ally?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise un allié mort, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_one_dead_ally?"
+
+link_method_documentation "Command.item_for_all_dead_allies?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés morts, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_all_dead_allies?"
+
+link_method_documentation "Command.item_for_caller?", 
+                        "Renvoie true si la cible d'un objet référencée par son ID l'utilisateur, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_caller?"
+
+link_method_documentation "Command.item_occasion", 
+                        "Renvoie un entier correspondant au droit d'utilisation de l'objet",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_occasion"
+
+link_method_documentation "Command.item_always_usable?", 
+                        "Renvoie true si l'objet référencé par son ID est utilisable partout",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_always_usable?"
+
+link_method_documentation "Command.item_battle_usable?", 
+                        "Renvoie true si l'objet référencé par son ID est utilisable en combat",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_battle_usable?"
+
+link_method_documentation "Command.item_menu_usable?", 
+                        "Renvoie true si l'objet référencé par son ID est utilisable dans le menu",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_menu_usable?"
+
+link_method_documentation "Command.item_never_usable?", 
+                        "Renvoie true si l'objet référencé par son ID n'est jamais utilisable",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_never_usable?"
+
 end
 
 ## Documentation generator

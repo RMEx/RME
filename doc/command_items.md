@@ -19,6 +19,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [armor_name(id)](#armor_nameid)
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
+*    [armor_type(id)](#armor_typeid)
 *    [give_armor(id, amount, *include_equipement)](#give_armorid-amount-include_equipement)
 *    [give_item(id, amount)](#give_itemid-amount)
 *    [give_weapon(id, amount, *include_equipement)](#give_weaponid-amount-include_equipement)
@@ -26,13 +27,30 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [has_item?(id)](#has_itemid)
 *    [has_weapon?(id, *include_equipement)](#has_weaponid-include_equipement)
 *    [is_key_item?(id)](#is_key_itemid)
+*    [item_always_usable?(id)](#item_always_usableid)
+*    [item_battle_usable?(id)](#item_battle_usableid)
 *    [item_consumable?(id)](#item_consumableid)
 *    [item_count(id)](#item_countid)
 *    [item_description(id)](#item_descriptionid)
+*    [item_for_all_allies?(id)](#item_for_all_alliesid)
+*    [item_for_all_dead_allies?(id)](#item_for_all_dead_alliesid)
+*    [item_for_all_enemies?(id)](#item_for_all_enemiesid)
+*    [item_for_caller?(id)](#item_for_callerid)
+*    [item_for_four_random_enemies?(id)](#item_for_four_random_enemiesid)
+*    [item_for_one_ally?(id)](#item_for_one_allyid)
+*    [item_for_one_dead_ally?(id)](#item_for_one_dead_allyid)
+*    [item_for_one_enemy?(id)](#item_for_one_enemyid)
+*    [item_for_one_random_enemy?(id)](#item_for_one_random_enemyid)
+*    [item_for_three_random_enemies?(id)](#item_for_three_random_enemiesid)
+*    [item_for_two_random_enemies?(id)](#item_for_two_random_enemiesid)
 *    [item_icon(id)](#item_iconid)
+*    [item_menu_usable?(id)](#item_menu_usableid)
 *    [item_name(id)](#item_nameid)
+*    [item_never_usable?(id)](#item_never_usableid)
 *    [item_note(id)](#item_noteid)
+*    [item_occasion(id)](#item_occasionid)
 *    [item_price(id)](#item_priceid)
+*    [item_scope(id)](#item_scopeid)
 *    [weapon_agility(id)](#weapon_agilityid)
 *    [weapon_attack_power(id)](#weapon_attack_powerid)
 *    [weapon_count(id)](#weapon_countid)
@@ -48,6 +66,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [weapon_name(id)](#weapon_nameid)
 *    [weapon_note(id)](#weapon_noteid)
 *    [weapon_price(id)](#weapon_priceid)
+*    [weapon_type(id)](#weapon_typeid)
 
 
 ##Description des commandes
@@ -202,6 +221,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'armure  
 
 
+##### armor_type(id)
+
+> Renvoie le type de l'armure référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+
+
 ##### give_armor(id, amount, *include_equipement)
 
 > Fait gagner à l'équipe l'armure référencé par son ID
@@ -279,6 +308,26 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'objet  
 
 
+##### item_always_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID est utilisable partout
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_battle_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID est utilisable en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
 ##### item_consumable?(id)
 
 > Renvoie true si l'objet référencé par son ID est consommable, false sinon
@@ -309,9 +358,129 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'objet  
 
 
+##### item_for_all_allies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_all_dead_allies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés morts, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_all_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise tous les ennemis, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_caller?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID l'utilisateur, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_four_random_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise quatre ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_one_ally?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un allié, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_one_dead_ally?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un allié mort, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_one_enemy?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un ennemi, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_one_random_enemy?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise un ennemi au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_three_random_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise trois ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_for_two_random_enemies?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise deux ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
 ##### item_icon(id)
 
 > Renvoie l'index de l'icone de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_menu_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID est utilisable dans le menu
 
   
 > Nom|Type|Description  
@@ -329,9 +498,29 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'objet  
 
 
+##### item_never_usable?(id)
+
+> Renvoie true si l'objet référencé par son ID n'est jamais utilisable
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
 ##### item_note(id)
 
 > Renvoie le commentaire de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_occasion(id)
+
+> Renvoie un entier correspondant au droit d'utilisation de l'objet
 
   
 > Nom|Type|Description  
@@ -347,6 +536,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
+
+
+##### item_scope(id)
+
+> Renvoie la portée (en Entier) d'un objet référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
 
 
 ##### weapon_agility(id)
@@ -493,6 +692,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 ##### weapon_price(id)
 
 > Renvoie le prix de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+
+
+##### weapon_type(id)
+
+> Renvoie le type de l'arme référencée par son ID
 
   
 > Nom|Type|Description  
