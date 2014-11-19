@@ -1749,7 +1749,15 @@ link_method_documentation "Command.start_y",
 register_command :system, "Command.start_y"
 
 
+link_method_documentation "Command.gain_gold", 
+                        "Fait gagner de l'argent à l'équipe",
+                        {:amount => "Total d'argent a faire gagner"}
+register_command :system, "Command.gain_gold"
 
+link_method_documentation "Command.lose_gold", 
+                        "Fait perdre de l'argent à l'équipe",
+                        {:amount => "Total d'argent a faire perdre"}
+register_command :system, "Command.lose_gold"
 
 end
 

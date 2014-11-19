@@ -2078,7 +2078,7 @@ end
 
 module Command
   #--------------------------------------------------------------------------
-  # * Operands
+  # * Party data
   #--------------------------------------------------------------------------
   def team_size; $game_party.members.size; end
   def gold; $game_party.gold; end
@@ -2087,6 +2087,8 @@ module Command
   def timer; $game_timer.sec; end
   def save_count; $game_system.save_count; end
   def battle_count; $game_system.battle_count; end
+  def gain_gold(amount); $game_party.gain_gold(amount); end
+  def lose_gold(amount); $game_party.lose_gold(amount); end
   #--------------------------------------------------------------------------
   # * Items
   #--------------------------------------------------------------------------

@@ -29,6 +29,7 @@ Collection des commandes EventExtender
 *    [Command.ctrl?(key)](#Command.ctrlkey)
 *    [Command.currency](#Command.currency)
 *    [Command.fresh_event_id](#Command.fresh_event_id)
+*    [Command.gain_gold(amount)](#Command.gain_goldamount)
 *    [Command.game_title](#Command.game_title)
 *    [Command.give_armor(id, amount, *include_equipement)](#Command.give_armorid-amount-include_equipement)
 *    [Command.give_item(id, amount)](#Command.give_itemid-amount)
@@ -77,6 +78,7 @@ Collection des commandes EventExtender
 *    [Command.keyboard_any?(method, keys)](#Command.keyboard_anymethod-keys)
 *    [Command.keyboard_current_char](#Command.keyboard_current_char)
 *    [Command.keyboard_current_digit](#Command.keyboard_current_digit)
+*    [Command.lose_gold(amount)](#Command.lose_goldamount)
 *    [Command.map_id](#Command.map_id)
 *    [Command.map_name](#Command.map_name)
 *    [Command.max_event_id](#Command.max_event_id)
@@ -525,6 +527,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.gain_gold(amount)
+
+> Fait gagner de l'argent à l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`amount`|`o`|T  
+
 
 
 
@@ -1203,6 +1219,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.lose_gold(amount)
+
+> Fait perdre de l'argent à l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`amount`|`o`|T  
+
 
 
 
