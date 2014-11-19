@@ -27,7 +27,9 @@ Collection des commandes EventExtender
 *    [Command.click_time(key)](#Command.click_timekey)
 *    [Command.color(red, green, blue, *alpha)](#Command.colorred-green-blue-alpha)
 *    [Command.ctrl?(key)](#Command.ctrlkey)
+*    [Command.currency](#Command.currency)
 *    [Command.fresh_event_id](#Command.fresh_event_id)
+*    [Command.game_title](#Command.game_title)
 *    [Command.give_armor(id, amount, *include_equipement)](#Command.give_armorid-amount-include_equipement)
 *    [Command.give_item(id, amount)](#Command.give_itemid-amount)
 *    [Command.give_weapon(id, amount, *include_equipement)](#Command.give_weaponid-amount-include_equipement)
@@ -153,12 +155,16 @@ Collection des commandes EventExtender
 *    [Command.session_username](#Command.session_username)
 *    [Command.shift?](#Command.shift)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
+*    [Command.start_map_id](#Command.start_map_id)
+*    [Command.start_x](#Command.start_x)
+*    [Command.start_y](#Command.start_y)
 *    [Command.steps](#Command.steps)
 *    [Command.team_size](#Command.team_size)
 *    [Command.terrain_tag(x, y)](#Command.terrain_tagx-y)
 *    [Command.tile_id(x, y)](#Command.tile_idx-y)
 *    [Command.timer](#Command.timer)
 *    [Command.tone(red, green, blue, *gray)](#Command.tonered-green-blue-gray)
+*    [Command.version_id](#Command.version_id)
 *    [Command.wait(duration)](#Command.waitduration)
 *    [Command.weapon_agility(id)](#Command.weapon_agilityid)
 *    [Command.weapon_attack_power(id)](#Command.weapon_attack_powerid)
@@ -353,7 +359,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_max_hit_points(id)
 
-> Renvoie le maximum des points de dégat d'une armure référencée par son ID
+> Renvoie le maximum des points de vie d'une armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -502,9 +508,31 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.currency
+
+> Renvoie la monnaie du jeu
+
+  
+> 
+
+
+
+
+
 ##### Command.fresh_event_id
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
+
+  
+> 
+
+
+
+
+
+##### Command.game_title
+
+> Renvoie le titre du jeu
 
   
 > 
@@ -2323,6 +2351,39 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.start_map_id
+
+> Renvoie l'ID de la map de départ
+
+  
+> 
+
+
+
+
+
+##### Command.start_x
+
+> Renvoie la position X de départ du joueur
+
+  
+> 
+
+
+
+
+
+##### Command.start_y
+
+> Renvoie la position Y de départ du joueur
+
+  
+> 
+
+
+
+
+
 ##### Command.steps
 
 > Renvoie le nombre de pas effectué par l'équipe
@@ -2398,6 +2459,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `blue`|`Fixnum`|Valeur de bleu  
 `*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
 
+
+
+
+
+
+##### Command.version_id
+
+> Renvoie l'ID de la version du jeu
+
+  
+> 
 
 
 
@@ -2560,7 +2632,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_max_hit_points(id)
 
-> Renvoie le maximum des points de dégat d'une arme référencée par son ID
+> Renvoie le maximum des points de vie d'une arme référencée par son ID
 
   
 > Nom|Type|Description  

@@ -151,7 +151,7 @@ Commandes permettant de manipuler les armes
 
 ##### weapon_max_hit_points(id)
 
-> Renvoie le maximum des points de dégat d'une arme référencée par son ID
+> Renvoie le maximum des points de vie d'une arme référencée par son ID
 
   
 > Nom|Type|Description  

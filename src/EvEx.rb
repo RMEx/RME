@@ -2087,7 +2087,7 @@ module Command
   def timer; $game_timer.sec; end
   def save_count; $game_system.save_count; end
   def battle_count; $game_system.battle_count; end
-   #--------------------------------------------------------------------------
+  #--------------------------------------------------------------------------
   # * Items
   #--------------------------------------------------------------------------
   def item_count(id); $game_party.item_number($data_items[id]); end
@@ -2224,6 +2224,16 @@ module Command
   def item_never_usable?(id)
     item_occasion(id) == 3
   end
+  #--------------------------------------------------------------------------
+  # * Systems
+  #--------------------------------------------------------------------------
+  def sys; $data_system; end
+  def game_title; sys.game_title; end
+  def version_id; sys.version_id; end
+  def currency; sys.currency_unit; end
+  def start_map_id; sys.start_map_id; end
+  def start_x; sys.start_x; end 
+  def start_y; sys.start_y; end
 end
 #==============================================================================
 # ** DataManager

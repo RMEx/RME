@@ -37,4 +37,5 @@ Outil d'extension de RPG Maker
 *    [Commandes relatives à la gestion de partie](command_party.md)
 *    [Commandes de manipulation des images](command_picture.md)
 *    [Commandes standards](command_standard.md)
+*    [Commandes systèmes](command_system.md)
 *    [Commandes relatives aux armes](command_weapons.md)

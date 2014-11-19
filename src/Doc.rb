@@ -548,7 +548,8 @@ module Command
   register_command_category :items, "Commandes relatives aux objets", "Commandes permettant d'obtenir ou de manipuler les objets"
   register_command_category :armors, "Commandes relatives aux armures", "Commandes permettant de manipuler les armures"
   register_command_category :weapons, "Commandes relatives aux armes", "Commandes permettant de manipuler les armes" 
-
+  register_command_category :system, "Commandes systèmes", "Offre une collection d'informations sur le système"
+  
   link_class_documentation "Collection des commandes EventExtender"
 
   link_method_documentation "Command.tone", 
@@ -1429,7 +1430,7 @@ link_method_documentation "Command.is_key_item?",
 register_command :items, "Command.is_key_item?"
 
 link_method_documentation "Command.weapon_max_hit_points", 
-                        "Renvoie le maximum des points de dégat d'une arme référencée par son ID",
+                        "Renvoie le maximum des points de vie d'une arme référencée par son ID",
                         {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :weapons, "Command.weapon_max_hit_points"
 
@@ -1469,7 +1470,7 @@ link_method_documentation "Command.weapon_luck",
 register_command :weapons, "Command.weapon_luck"
 
 link_method_documentation "Command.armor_max_hit_points", 
-                        "Renvoie le maximum des points de dégat d'une armure référencée par son ID",
+                        "Renvoie le maximum des points de vie d'une armure référencée par son ID",
                         {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :armors, "Command.armor_max_hit_points"
 
@@ -1716,6 +1717,39 @@ link_method_documentation "Command.item_never_usable?",
                           :id => ["Id de l'objet", :Fixnum], 
                         }, true
 register_command :items, "Command.item_never_usable?"
+
+link_method_documentation "Command.game_title", 
+                        "Renvoie le titre du jeu",
+                        {}, true
+register_command :system, "Command.game_title"
+
+link_method_documentation "Command.version_id", 
+                        "Renvoie l'ID de la version du jeu",
+                        {}, true
+register_command :system, "Command.version_id"
+
+link_method_documentation "Command.currency", 
+                        "Renvoie la monnaie du jeu",
+                        {}, true
+register_command :system, "Command.currency"
+
+link_method_documentation "Command.start_map_id", 
+                        "Renvoie l'ID de la map de départ",
+                        {}, true
+register_command :system, "Command.start_map_id"
+
+link_method_documentation "Command.start_x", 
+                        "Renvoie la position X de départ du joueur",
+                        {}, true
+register_command :system, "Command.start_x"
+
+link_method_documentation "Command.start_y", 
+                        "Renvoie la position Y de départ du joueur",
+                        {}, true
+register_command :system, "Command.start_y"
+
+
+
 
 end
 
