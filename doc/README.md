@@ -26,6 +26,9 @@ Outil d'extension de RPG Maker
 
 **Index des commandes**
 
+*    [undefined](command_armor.md)
+*    [Commandes relatives aux armures](command_armors.md)
+*    [undefined](command_armorss.md)
 *    [Commandes évènements](command_event.md)
 *    [Commandes relatives aux objets](command_items.md)
 *    [Commandes du clavier](command_keyboard.md)
@@ -36,3 +39,4 @@ Outil d'extension de RPG Maker
 *    [Commandes relatives à la gestion de partie](command_party.md)
 *    [Commandes de manipulation des images](command_picture.md)
 *    [Commandes standards](command_standard.md)
+*    [Commandes relatives aux armes](command_weapons.md)
