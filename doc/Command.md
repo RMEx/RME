@@ -22,6 +22,8 @@ Collection des commandes EventExtender
 *    [Command.id_at(x, y)](#Command.id_atx-y)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#Command.include_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#Command.invoke_eventmap_id-event_id-new_id-x-y)
+*    [Command.is_key_item?(id)](#Command.is_key_itemid)
+*    [Command.item_consumable?(id)](#Command.item_consumableid)
 *    [Command.item_count(id)](#Command.item_countid)
 *    [Command.item_description(id)](#Command.item_descriptionid)
 *    [Command.item_icon(id)](#Command.item_iconid)
@@ -382,6 +384,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué  
 `*x`|`Fixnum`|Position X où placer l'évènement invoqué, par défaut, conserve la valeur de l'évènement invoqué  
 `*y`|`Fixnum`|Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué  
+
+
+
+
+
+
+##### Command.is_key_item?(id)
+
+> Renvoie true si l'objet référencé par son ID est un objet clé, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.item_consumable?(id)
+
+> Renvoie true si l'objet référencé par son ID est consommable, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 

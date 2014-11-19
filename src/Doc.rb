@@ -1416,6 +1416,16 @@ link_method_documentation "Command.armor_price",
                         {:id => ["Id de l'armure'", :Fixnum]}, true
 register_command :items, "Command.armor_price"
 
+link_method_documentation "Command.item_consumable?", 
+                        "Renvoie true si l'objet référencé par son ID est consommable, false sinon",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.item_consumable?"
+
+link_method_documentation "Command.is_key_item?", 
+                        "Renvoie true si l'objet référencé par son ID est un objet clé, false sinon",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.is_key_item?"
+
 end
 
 ## Documentation generator

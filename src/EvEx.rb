@@ -2108,6 +2108,8 @@ module Command
   def item_price(id); $data_items[id].price; end
   def weapon_price(id); $data_weapons[id].price; end
   def armor_price(id); $data_armors[id].price; end
+  def item_consumable?(id); $data_items[id].consumable; end
+  def is_key_item?(id); $data_items[id].key_item?; end
 end
 
 #==============================================================================

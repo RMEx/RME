@@ -10,6 +10,8 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [armor_name(id)](#armor_nameid)
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
+*    [is_key_item?(id)](#is_key_itemid)
+*    [item_consumable?(id)](#item_consumableid)
 *    [item_count(id)](#item_countid)
 *    [item_description(id)](#item_descriptionid)
 *    [item_icon(id)](#item_iconid)
@@ -83,6 +85,26 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure'  
+
+
+##### is_key_item?(id)
+
+> Renvoie true si l'objet référencé par son ID est un objet clé, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+##### item_consumable?(id)
+
+> Renvoie true si l'objet référencé par son ID est consommable, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 ##### item_count(id)
