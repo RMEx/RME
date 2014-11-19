@@ -1294,37 +1294,37 @@ module Command
 link_method_documentation "Command.team_size", 
                         "Renvoie la taille de l'équipe",
                         {}, true
-register_command :operand, "Command.team_size"
+register_command :party, "Command.team_size"
 
 link_method_documentation "Command.gold", 
                         "Renvoie l'argent possédé",
                         {}, true
-register_command :operand, "Command.gold"
+register_command :party, "Command.gold"
 
 link_method_documentation "Command.steps", 
                         "Renvoie le nombre de pas effectué par l'équipe",
                         {}, true
-register_command :operand, "Command.steps"
+register_command :party, "Command.steps"
 
 link_method_documentation "Command.play_time", 
                         "Renvoie le temps de jeu en secondes",
                         {}, true
-register_command :operand, "Command.play_time"
+register_command :party, "Command.play_time"
 
 link_method_documentation "Command.timer", 
                         "Renvoie la valeur du chronomètre",
                         {}, true
-register_command :operand, "Command.timer"
+register_command :party, "Command.timer"
 
 link_method_documentation "Command.save_count", 
                         "Renvoie le nombre de sauvegarde effectuées par partie",
                         {}, true
-register_command :operand, "Command.save_count"
+register_command :party, "Command.save_count"
 
 link_method_documentation "Command.battle_count", 
                         "Renvoie le nombre de combat effectués par partie",
                         {}, true
-register_command :operand, "Command.battle_count"
+register_command :party, "Command.battle_count"
 
 link_method_documentation "Command.item_count", 
                         "Renvoie le nombre d'objet référencé par son ID possédés par l'équipe",
