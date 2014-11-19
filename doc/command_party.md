@@ -5,7 +5,9 @@ Commande associées à la gestion de la partie
 
 ##Liste des commandes
 *    [battle_count](#battle_count)
+*    [gain_gold(amount)](#gain_goldamount)
 *    [gold](#gold)
+*    [lose_gold(amount)](#lose_goldamount)
 *    [play_time](#play_time)
 *    [save_count](#save_count)
 *    [steps](#steps)
@@ -21,12 +23,32 @@ Commande associées à la gestion de la partie
   
 > 
 
+##### gain_gold(amount)
+
+> Fait gagner de l'argent à l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`amount`|`o`|T  
+
+
 ##### gold
 
 > Renvoie l'argent possédé
 
   
 > 
+
+##### lose_gold(amount)
+
+> Fait perdre de l'argent à l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`amount`|`o`|T  
+
 
 ##### play_time
 
