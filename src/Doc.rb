@@ -1566,14 +1566,14 @@ link_method_documentation "Command.weapon_equiped?",
                           :id => ["Id de l'arme", :Fixnum], 
                           :"*member_id" => ["Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe ", :Fixnum], 
                         }, true
-register_command :items, "Command.weapon_quiped?"
-link_method_documentation "Command.armor_eequiped?", 
+register_command :items, "Command.weapon_equiped?"
+link_method_documentation "Command.armor_equiped?", 
                         "Renvoie true si l'armure référencé par son ID est équipée par un des membres de l'équipe, false sinon",
                         {
                           :id => ["Id de l'armure", :Fixnum], 
                           :"*member_id" => ["Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe ", :Fixnum],
                         }, true
-register_command :items, "Command.armor_quiped?"
+register_command :items, "Command.armor_equiped?"
 
 end
 
