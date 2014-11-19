@@ -11,7 +11,7 @@ Collection des commandes EventExtender
 *    [Command.armor_count(id)](#Command.armor_countid)
 *    [Command.armor_defense_power(id)](#Command.armor_defense_powerid)
 *    [Command.armor_description(id)](#Command.armor_descriptionid)
-*    [Command.armor_eequiped?(id, *member_id)](#Command.armor_eequipedid-member_id)
+*    [Command.armor_equiped?(id, *member_id)](#Command.armor_equipedid-member_id)
 *    [Command.armor_icon(id)](#Command.armor_iconid)
 *    [Command.armor_luck(id)](#Command.armor_luckid)
 *    [Command.armor_magic_attack_power(id)](#Command.armor_magic_attack_powerid)
@@ -260,7 +260,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.armor_eequiped?(id, *member_id)
+##### Command.armor_equiped?(id, *member_id)
 
 > Renvoie true si l'armure référencé par son ID est équipée par un des membres de l'équipe, false sinon
 

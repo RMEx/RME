@@ -9,6 +9,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [armor_count(id)](#armor_countid)
 *    [armor_defense_power(id)](#armor_defense_powerid)
 *    [armor_description(id)](#armor_descriptionid)
+*    [armor_equiped?(id, *member_id)](#armor_equipedid-member_id)
 *    [armor_icon(id)](#armor_iconid)
 *    [armor_luck(id)](#armor_luckid)
 *    [armor_magic_attack_power(id)](#armor_magic_attack_powerid)
@@ -37,6 +38,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [weapon_count(id)](#weapon_countid)
 *    [weapon_defense_power(id)](#weapon_defense_powerid)
 *    [weapon_description(id)](#weapon_descriptionid)
+*    [weapon_equiped?(id, *member_id)](#weapon_equipedid-member_id)
 *    [weapon_icon(id)](#weapon_iconid)
 *    [weapon_luck(id)](#weapon_luckid)
 *    [weapon_magic_attack_power(id)](#weapon_magic_attack_powerid)
@@ -97,6 +99,17 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
+
+
+##### armor_equiped?(id, *member_id)
+
+> Renvoie true si l'armure référencé par son ID est équipée par un des membres de l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+`*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
 
 
 ##### armor_icon(id)
@@ -384,6 +397,17 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
+
+
+##### weapon_equiped?(id, *member_id)
+
+> Renvoie true si l'arme référencé par son ID est équipée par un des membres de l'équipe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+`*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
 
 
 ##### weapon_icon(id)
