@@ -222,6 +222,13 @@ module Kernel
     Game_Map.onload(ids, &block)
   end
   #--------------------------------------------------------------------------
+  # * Define an onRunning behaviour
+  #--------------------------------------------------------------------------
+  def map_onprogress(*ids, &block)
+    Game_Map.onprogress(ids, &block)
+  end
+  
+  #--------------------------------------------------------------------------
   # * Define custom Trigger
   #--------------------------------------------------------------------------
   def trigger(&block)
@@ -656,7 +663,9 @@ class Game_Map
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
+  alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_setup, :setup
+  alias_method :rm_extender_update, :update
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -665,7 +674,9 @@ class Game_Map
     # * Public instances variables
     #--------------------------------------------------------------------------
     attr_accessor :loaded_proc
+    attr_accessor :running_proc
     Game_Map.loaded_proc ||= Hash.new 
+    Game_Map.running_proc ||= Hash.new
     #--------------------------------------------------------------------------
     # * Map onload
     #--------------------------------------------------------------------------
@@ -680,21 +691,43 @@ class Game_Map
       end
     end
     #--------------------------------------------------------------------------
-    # * Eval proc
+    # * Map onRunning
     #--------------------------------------------------------------------------
-    def eval_proc(id, i)
-      if Game_Map.loaded_proc.has_key?(id)
-        Game_Map.loaded_proc[id].call
+    def onprogress(ids, &block)
+      ids.each do |id|
+        oth = Game_Map.running_proc[id] || Proc.new {}
+        nex = Proc.new do 
+          $game_map.interpreter.instance_eval(&oth)
+          $game_map.interpreter.instance_eval(&block)
+        end
+        Game_Map.running_proc[id] = nex
       end
     end
+    #--------------------------------------------------------------------------
+    # * Eval proc
+    #--------------------------------------------------------------------------
+    def eval_proc(id, c = Game_Map.loaded_proc)
+      c[id].call if c.has_key?(id)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Public instance variables
+  #--------------------------------------------------------------------------
+  attr_accessor :parallaxes
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize
+    @parallaxes = Game_Parallaxes.new
+    rm_extender_initialize
   end
   #--------------------------------------------------------------------------
   # * Setup
   #--------------------------------------------------------------------------
   def setup(map_id)
     rm_extender_setup(map_id)
-    Game_Map.eval_proc(:all, self.interpreter)
-    Game_Map.eval_proc(map_id, self.interpreter)
+    Game_Map.eval_proc(:all)
+    Game_Map.eval_proc(map_id)
   end
   #--------------------------------------------------------------------------
   # * Get each events
@@ -724,6 +757,22 @@ class Game_Map
     @events[new_id].moveto(x, y)
     @need_refresh = true
     SceneManager.scene.refresh_spriteset
+  end
+  #--------------------------------------------------------------------------
+  # * Clear parallaxes
+  #--------------------------------------------------------------------------
+  def clear_parallaxes
+    @parallaxes.each {|parallax| parallax.hide}
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #     main:  Interpreter update flag
+  #--------------------------------------------------------------------------
+  def update(main = false)
+    Game_Map.eval_proc(:all, Game_Map.running_proc)
+    Game_Map.eval_proc(map_id, Game_Map.running_proc)
+    @parallaxes.each {|parallax| parallax.update}
+    rm_extender_update(main)
   end
 end
 
@@ -1521,67 +1570,6 @@ class Plane_Parallax < Plane
     self.opacity = @parallax.opacity
     self.blend_type = @parallax.blend_type
     self.tone.set(@parallax.tone)
-  end
-end
-
-#==============================================================================
-# ** Game_Map
-#------------------------------------------------------------------------------
-# This class handles maps. It includes scrolling and passage determination
-# functions. The instance of this class is referenced by $game_map.
-#==============================================================================
-class Game_Map
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
-  alias_method :rm_extender_initialize, :initialize
-  alias_method :rm_extender_update, :update
-  #--------------------------------------------------------------------------
-  # * Public instance variables
-  #--------------------------------------------------------------------------
-  attr_accessor :parallaxes
-  #--------------------------------------------------------------------------
-  # * Object Initialization
-  #--------------------------------------------------------------------------
-  def initialize
-    @parallaxes = Game_Parallaxes.new
-    rm_extender_initialize
-  end
-  #--------------------------------------------------------------------------
-  # * Frame Update
-  #     main:  Interpreter update flag
-  #--------------------------------------------------------------------------
-  def update(main = false)
-    @parallaxes.each {|parallax| parallax.update}
-    rm_extender_update(main)
-  end
-  #--------------------------------------------------------------------------
-  # * Clear parallaxes
-  #--------------------------------------------------------------------------
-  def clear_parallaxes
-    @parallaxes.each {|parallax| parallax.hide}
-  end
-  #--------------------------------------------------------------------------
-  # * Return Max Event Id
-  #--------------------------------------------------------------------------
-  def max_id
-    @events.keys.max
-  end
-  #--------------------------------------------------------------------------
-  # * Add event to map
-  #--------------------------------------------------------------------------
-  def add_event(map_id, event_id, new_id,x=nil,y=nil)
-    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
-    return unless map
-    event = map.events[event_id]
-    return unless event
-    event.id = new_id
-    @events.store(new_id, Game_Event.new(@map_id, event))
-    x ||= event.x
-    y ||= event.y
-    @events[new_id].moveto(x, y)
-    @need_refresh = true
-    SceneManager.scene.refresh_spriteset
   end
 end
 
