@@ -1341,7 +1341,7 @@ register_command :weapons, "Command.weapon_count"
 link_method_documentation "Command.armor_count", 
                         "Renvoie le nombre d'armures référencées par son ID possédées par l'équipe",
                         {:id => ["Id de l'armure à compter", :Fixnum]}, true
-register_command :armorss, "Command.armor_count"
+register_command :armors, "Command.armor_count"
 
 link_method_documentation "Command.item_name", 
                         "Renvoie le nom de l'objet référencé par son ID",
@@ -1386,7 +1386,7 @@ register_command :weapons, "Command.weapon_description"
 link_method_documentation "Command.armor_description", 
                         "Renvoie la description de l'armure référencé par son ID",
                         {:id => ["Id de l'armure", :Fixnum]}, true
-register_command :armor, "Command.armor_description"
+register_command :armors, "Command.armor_description"
 
 link_method_documentation "Command.item_icon", 
                         "Renvoie l'index de l'icone de l'objet référencé par son ID",

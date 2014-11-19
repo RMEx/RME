@@ -1,8 +1,6 @@
 **Index des commandes**
 
-*    [undefined](command_armor.md)
 *    [Commandes relatives aux armures](command_armors.md)
-*    [undefined](command_armorss.md)
 *    [Commandes évènements](command_event.md)
 *    [Commandes relatives aux objets](command_items.md)
 *    [Commandes du clavier](command_keyboard.md)

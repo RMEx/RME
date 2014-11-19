@@ -6,7 +6,9 @@ Commandes permettant de manipuler les armures
 ##Liste des commandes
 *    [armor_agility(id)](#armor_agilityid)
 *    [armor_attack_power(id)](#armor_attack_powerid)
+*    [armor_count(id)](#armor_countid)
 *    [armor_defense_power(id)](#armor_defense_powerid)
+*    [armor_description(id)](#armor_descriptionid)
 *    [armor_equiped?(id, *member_id)](#armor_equipedid-member_id)
 *    [armor_icon(id)](#armor_iconid)
 *    [armor_luck(id)](#armor_luckid)
@@ -43,6 +45,16 @@ Commandes permettant de manipuler les armures
 `id`|`Fixnum`|Id de l'objet  
 
 
+##### armor_count(id)
+
+> Renvoie le nombre d'armures référencées par son ID possédées par l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure à compter  
+
+
 ##### armor_defense_power(id)
 
 > Renvoie la puissance de défense d'une armure référencée par son ID
@@ -51,6 +63,16 @@ Commandes permettant de manipuler les armures
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
+
+
+##### armor_description(id)
+
+> Renvoie la description de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
 
 
 ##### armor_equiped?(id, *member_id)
