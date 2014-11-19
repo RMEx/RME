@@ -6,7 +6,6 @@
 *    [Informations cartes](command_mapinfo.md)
 *    [Commandes de manipulation des micros events](command_micro.md)
 *    [Commandes de la souris](command_mouse.md)
-*    [undefined](command_operand.md)
 *    [Commandes de manipulation des panoramas](command_parallax.md)
 *    [Commandes relatives à la gestion de partie](command_party.md)
 *    [Commandes de manipulation des images](command_picture.md)
