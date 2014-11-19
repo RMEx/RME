@@ -18,6 +18,8 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [armor_name(id)](#armor_nameid)
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
+*    [give_item(id, amount, *include_equipement)](#give_itemid-amount-include_equipement)
+*    [give_weapon(id, amount, *include_equipement)](#give_weaponid-amount-include_equipement)
 *    [is_key_item?(id)](#is_key_itemid)
 *    [item_consumable?(id)](#item_consumableid)
 *    [item_count(id)](#item_countid)
@@ -50,7 +52,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_attack_power(id)
@@ -60,7 +62,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_count(id)
@@ -80,7 +82,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_description(id)
@@ -90,7 +92,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'armure'  
+`id`|`Fixnum`|Id de l'armure  
 
 
 ##### armor_icon(id)
@@ -100,7 +102,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'armure'  
+`id`|`Fixnum`|Id de l'armure  
 
 
 ##### armor_luck(id)
@@ -110,7 +112,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_magic_attack_power(id)
@@ -120,7 +122,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_magic_defense_power(id)
@@ -130,7 +132,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_max_hit_points(id)
@@ -140,7 +142,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_max_magic_points(id)
@@ -150,7 +152,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### armor_name(id)
@@ -160,7 +162,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'armure'  
+`id`|`Fixnum`|Id de l'armure  
 
 
 ##### armor_note(id)
@@ -170,7 +172,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'armure'  
+`id`|`Fixnum`|Id de l'armure  
 
 
 ##### armor_price(id)
@@ -180,7 +182,31 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'armure'  
+`id`|`Fixnum`|Id de l'armure  
+
+
+##### give_item(id, amount, *include_equipement)
+
+> Fait gagner à l'équipe l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+`amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
+`*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
+
+
+##### give_weapon(id, amount, *include_equipement)
+
+> Fait gagner à l'équipe l'arme référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme  
+`amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
+`*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
 
 
 ##### is_key_item?(id)
@@ -190,7 +216,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### item_consumable?(id)
@@ -200,7 +226,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### item_count(id)
@@ -220,7 +246,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### item_icon(id)
@@ -230,7 +256,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### item_name(id)
@@ -240,7 +266,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### item_note(id)
@@ -250,7 +276,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### item_price(id)
@@ -260,7 +286,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_agility(id)
@@ -270,7 +296,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_attack_power(id)
@@ -280,7 +306,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_count(id)
@@ -300,7 +326,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_description(id)
@@ -310,7 +336,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'arme'  
+`id`|`Fixnum`|Id de l'arme  
 
 
 ##### weapon_icon(id)
@@ -320,7 +346,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'arme'  
+`id`|`Fixnum`|Id de l'arme  
 
 
 ##### weapon_luck(id)
@@ -330,7 +356,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_magic_attack_power(id)
@@ -340,7 +366,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_magic_defense_power(id)
@@ -350,7 +376,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_max_hit_points(id)
@@ -360,7 +386,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_max_magic_points(id)
@@ -370,7 +396,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'objet'  
+`id`|`Fixnum`|Id de l'objet  
 
 
 ##### weapon_name(id)
@@ -380,7 +406,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'arme'  
+`id`|`Fixnum`|Id de l'arme  
 
 
 ##### weapon_note(id)
@@ -390,7 +416,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'arme'  
+`id`|`Fixnum`|Id de l'arme  
 
 
 ##### weapon_price(id)
@@ -400,6 +426,6 @@ Commandes permettant d'obtenir ou de manipuler les objets
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'arme'  
+`id`|`Fixnum`|Id de l'arme  
 
 

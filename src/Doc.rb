@@ -1343,168 +1343,198 @@ register_command :items, "Command.armor_count"
 
 link_method_documentation "Command.item_name", 
                         "Renvoie le nom de l'objet référencé par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.item_name"
 
 link_method_documentation "Command.weapon_name", 
                         "Renvoie le nom de l'arme référencée par son ID",
-                        {:id => ["Id de l'arme'", :Fixnum]}, true
+                        {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :items, "Command.weapon_name"
 
 link_method_documentation "Command.armor_name", 
                         "Renvoie le nom de l'armure référencé par son ID",
-                        {:id => ["Id de l'armure'", :Fixnum]}, true
+                        {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :items, "Command.armor_name"
 
 link_method_documentation "Command.item_note", 
                         "Renvoie le commentaire de l'objet référencé par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.item_note"
 
 link_method_documentation "Command.weapon_note", 
                         "Renvoie le commentaire de l'arme référencée par son ID",
-                        {:id => ["Id de l'arme'", :Fixnum]}, true
+                        {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :items, "Command.weapon_note"
 
 link_method_documentation "Command.armor_note", 
                         "Renvoie le commentaire de l'armure référencé par son ID",
-                        {:id => ["Id de l'armure'", :Fixnum]}, true
+                        {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :items, "Command.armor_note"
 
 link_method_documentation "Command.item_description", 
                         "Renvoie la description de l'objet référencé par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.item_description"
 
 link_method_documentation "Command.weapon_description", 
                         "Renvoie la description de l'arme référencée par son ID",
-                        {:id => ["Id de l'arme'", :Fixnum]}, true
+                        {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :items, "Command.weapon_description"
 
 link_method_documentation "Command.armor_description", 
                         "Renvoie la description de l'armure référencé par son ID",
-                        {:id => ["Id de l'armure'", :Fixnum]}, true
+                        {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :items, "Command.armor_description"
 
 link_method_documentation "Command.item_icon", 
                         "Renvoie l'index de l'icone de l'objet référencé par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.item_icon"
 
 link_method_documentation "Command.weapon_icon", 
                         "Renvoie l'index de l'icone de l'arme référencée par son ID",
-                        {:id => ["Id de l'arme'", :Fixnum]}, true
+                        {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :items, "Command.weapon_icon"
 
 link_method_documentation "Command.armor_icon", 
                         "Renvoie l'index de l'icone  de l'armure référencé par son ID",
-                        {:id => ["Id de l'armure'", :Fixnum]}, true
+                        {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :items, "Command.armor_icon"
 
 link_method_documentation "Command.item_price", 
                         "Renvoie le prix de l'objet référencé par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.item_price"
 
 link_method_documentation "Command.weapon_price", 
                         "Renvoie le prix de l'arme référencée par son ID",
-                        {:id => ["Id de l'arme'", :Fixnum]}, true
+                        {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :items, "Command.weapon_price"
 
 link_method_documentation "Command.armor_price", 
                         "Renvoie le prix  de l'armure référencé par son ID",
-                        {:id => ["Id de l'armure'", :Fixnum]}, true
+                        {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :items, "Command.armor_price"
 
 link_method_documentation "Command.item_consumable?", 
                         "Renvoie true si l'objet référencé par son ID est consommable, false sinon",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.item_consumable?"
 
 link_method_documentation "Command.is_key_item?", 
                         "Renvoie true si l'objet référencé par son ID est un objet clé, false sinon",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.is_key_item?"
 
 link_method_documentation "Command.weapon_max_hit_points", 
                         "Renvoie le maximum des points de dégat d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_max_hit_points"
 
 link_method_documentation "Command.weapon_max_magic_points", 
                         "Renvoie le maximum des points de magie d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_max_magic_points"
 
 link_method_documentation "Command.weapon_attack_power", 
                         "Renvoie la puissance d'attaque d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_attack_power"
 
 link_method_documentation "Command.weapon_defense_power", 
                         "Renvoie la puissance de défense d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_defense_power"
 
 link_method_documentation "Command.weapon_magic_attack_power", 
                         "Renvoie la puissance d'attaque magique d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_magic_attack_power"
 
 link_method_documentation "Command.weapon_magic_defense_power", 
                         "Renvoie la puissance de défense magique d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_magic_defense_power"
 
 link_method_documentation "Command.weapon_agility", 
                         "Renvoie l'apport d'agilité d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_agility"
 
 link_method_documentation "Command.weapon_luck", 
                         "Renvoie l'apport de chance d'une arme référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.weapon_luck"
 
 link_method_documentation "Command.armor_max_hit_points", 
                         "Renvoie le maximum des points de dégat d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_max_hit_points"
 
 link_method_documentation "Command.armor_max_magic_points", 
                         "Renvoie le maximum des points de magie d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_max_magic_points"
 
 link_method_documentation "Command.armor_attack_power", 
                         "Renvoie la puissance d'attaque d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_attack_power"
 
 link_method_documentation "Command.armor_defense_power", 
                         "Renvoie la puissance de défense d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_defense_power"
 
 link_method_documentation "Command.armor_magic_attack_power", 
                         "Renvoie la puissance d'attaque magique d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_magic_attack_power"
 
 link_method_documentation "Command.armor_magic_defense_power", 
                         "Renvoie la puissance de défense magique d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_magic_defense_power"
 
 link_method_documentation "Command.armor_agility", 
                         "Renvoie l'apport d'agilité d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_agility"
 
 link_method_documentation "Command.armor_luck", 
                         "Renvoie l'apport de chance d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet'", :Fixnum]}, true
+                        {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :items, "Command.armor_luck"
+
+link_method_documentation "Command.give_item", 
+                        "Fait gagner à l'équipe l'objet référencé par son ID",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                          :amount => ["Nombre à donner. Si le nombre est négatif, l'objet sera retiré", :Fixnum], 
+                          :"*include_equipement" => ["Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement", :Boolean]
+
+                        }
+register_command :items, "Command.give_item"
+
+link_method_documentation "Command.give_weapon", 
+                        "Fait gagner à l'équipe l'arme référencé par son ID",
+                        {
+                          :id => ["Id de l'arme", :Fixnum], 
+                          :amount => ["Nombre à donner. Si le nombre est négatif, l'objet sera retiré", :Fixnum], 
+                          :"*include_equipement" => ["Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement", :Boolean]
+
+                        }
+register_command :items, "Command.give_weapon"
+
+link_method_documentation "Command.give_armor", 
+                        "Fait gagner à l'équipe l'armure référencé par son ID",
+                        {
+                          :id => ["Id de l'armure", :Fixnum], 
+                          :amount => ["Nombre à donner. Si le nombre est négatif, l'objet sera retiré", :Fixnum], 
+                          :"*include_equipement" => ["Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement", :Boolean]
+
+                        }
+register_command :items, "Command.give_weapon"
 
 end
 

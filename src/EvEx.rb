@@ -2126,6 +2126,18 @@ module Command
   def armor_magic_defense_power(id); $data_armors[id].params[5]; end
   def armor_agility(id); $data_armors[id].params[6]; end
   def armor_luck(id); $data_armors[id].params[7]; end
+  def give_item(id, amount, include_equip = false)
+    item = $data_items[id];
+    $game_party.gain_item(item, amount, include_equip)
+  end
+  def give_weapon(id, amount, include_equip = false)
+    item = $data_weapons[id];
+    $game_party.gain_item(item, amount, include_equip)
+  end
+  def give_armor(id, amount, include_equip = false)
+    item = $data_armors[id];
+    $game_party.gain_item(item, amount, include_equip)
+  end
 end
 
 #==============================================================================
