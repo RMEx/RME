@@ -1,6 +1,7 @@
 **Index des commandes**
 
 *    [Commandes évènements](command_event.md)
+*    [Commandes relatives aux objets](command_items.md)
 *    [Commandes du clavier](command_keyboard.md)
 *    [Informations cartes](command_mapinfo.md)
 *    [Commandes de manipulation des micros events](command_micro.md)

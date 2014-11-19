@@ -545,6 +545,7 @@ module Command
   register_command_category :parallax, "Commandes de manipulation des panoramas", "Commandes relatives à la manipulation des panoramas"
   register_command_category :micro, "Commandes de manipulation des micros events", "Commandes relatives à la gestion des micro events"
   register_command_category :operand, "Commandes des opérandes de variables", "Commande associées à la gestion des variables de RPGMaker"
+  register_command_category :items, "Commandes relatives aux objets", "Commandes permettant d'obtenir ou de manipuler les objets"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -1325,6 +1326,65 @@ link_method_documentation "Command.battle_count",
                         {}, true
 register_command :operand, "Command.battle_count"
 
+link_method_documentation "Command.item_count", 
+                        "Renvoie le nombre d'objet référencé par son ID possédés par l'équipe",
+                        {:id => ["Id de l'objet à compter", :Fixnum]}, true
+register_command :items, "Command.item_count"
+
+link_method_documentation "Command.weapon_count", 
+                        "Renvoie le nombre d'armes référencées par son ID possédées par l'équipe",
+                        {:id => ["Id de l'arme à compter", :Fixnum]}, true
+register_command :items, "Command.weapon_count"
+
+link_method_documentation "Command.armor_count", 
+                        "Renvoie le nombre d'armures référencées par son ID possédées par l'équipe",
+                        {:id => ["Id de l'armure à compter", :Fixnum]}, true
+register_command :items, "Command.armor_count"
+
+link_method_documentation "Command.item_name", 
+                        "Renvoie le nom de l'objet référencé par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.item_name"
+
+link_method_documentation "Command.weapon_name", 
+                        "Renvoie le nom de l'arme référencée par son ID",
+                        {:id => ["Id de l'arme'", :Fixnum]}, true
+register_command :items, "Command.weapon_name"
+
+link_method_documentation "Command.armor_name", 
+                        "Renvoie le nom de l'armure référencé par son ID",
+                        {:id => ["Id de l'armure'", :Fixnum]}, true
+register_command :items, "Command.armor_name"
+
+link_method_documentation "Command.item_note", 
+                        "Renvoie le commentaire de l'objet référencé par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.item_note"
+
+link_method_documentation "Command.weapon_note", 
+                        "Renvoie le commentaire de l'arme référencée par son ID",
+                        {:id => ["Id de l'arme'", :Fixnum]}, true
+register_command :items, "Command.weapon_note"
+
+link_method_documentation "Command.armor_note", 
+                        "Renvoie le commentaire de l'armure référencé par son ID",
+                        {:id => ["Id de l'armure'", :Fixnum]}, true
+register_command :items, "Command.armor_note"
+
+link_method_documentation "Command.item_description", 
+                        "Renvoie la description de l'objet référencé par son ID",
+                        {:id => ["Id de l'objet'", :Fixnum]}, true
+register_command :items, "Command.item_description"
+
+link_method_documentation "Command.weapon_description", 
+                        "Renvoie la description de l'arme référencée par son ID",
+                        {:id => ["Id de l'arme'", :Fixnum]}, true
+register_command :items, "Command.weapon_description"
+
+link_method_documentation "Command.armor_description", 
+                        "Renvoie la description de l'armure référencé par son ID",
+                        {:id => ["Id de l'armure'", :Fixnum]}, true
+register_command :items, "Command.armor_description"
 
 end
 

@@ -6,6 +6,10 @@ Collection des commandes EventExtender
 ##Liste des méthodes
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
+*    [Command.armor_count(id)](#Command.armor_countid)
+*    [Command.armor_description(id)](#Command.armor_descriptionid)
+*    [Command.armor_name(id)](#Command.armor_nameid)
+*    [Command.armor_note(id)](#Command.armor_noteid)
 *    [Command.battle_count](#Command.battle_count)
 *    [Command.caps_lock?](#Command.caps_lock)
 *    [Command.click_time(key)](#Command.click_timekey)
@@ -16,6 +20,10 @@ Collection des commandes EventExtender
 *    [Command.id_at(x, y)](#Command.id_atx-y)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#Command.include_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#Command.invoke_eventmap_id-event_id-new_id-x-y)
+*    [Command.item_count(id)](#Command.item_countid)
+*    [Command.item_description(id)](#Command.item_descriptionid)
+*    [Command.item_name(id)](#Command.item_nameid)
+*    [Command.item_note(id)](#Command.item_noteid)
 *    [Command.key_current(method)](#Command.key_currentmethod)
 *    [Command.key_current_rgss(method)](#Command.key_current_rgssmethod)
 *    [Command.key_press?(key)](#Command.key_presskey)
@@ -112,6 +120,10 @@ Collection des commandes EventExtender
 *    [Command.timer](#Command.timer)
 *    [Command.tone(red, green, blue, *gray)](#Command.tonered-green-blue-gray)
 *    [Command.wait(duration)](#Command.waitduration)
+*    [Command.weapon_count(id)](#Command.weapon_countid)
+*    [Command.weapon_description(id)](#Command.weapon_descriptionid)
+*    [Command.weapon_name(id)](#Command.weapon_nameid)
+*    [Command.weapon_note(id)](#Command.weapon_noteid)
 
 
 ##Description des méthodes
@@ -143,6 +155,62 @@ Exemple
 ```ruby  
 Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)  
 ```
+
+
+
+##### Command.armor_count(id)
+
+> Renvoie le nombre d'armures référencées par son ID possédées par l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure à compter  
+
+
+
+
+
+
+##### Command.armor_description(id)
+
+> Renvoie la description de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure'  
+
+
+
+
+
+
+##### Command.armor_name(id)
+
+> Renvoie le nom de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure'  
+
+
+
+
+
+
+##### Command.armor_note(id)
+
+> Renvoie le commentaire de l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure'  
+
+
+
 
 
 
@@ -280,6 +348,62 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `new_id`|`Fixnum`|Nouvel ID de l'évènement fraîchement invoqué  
 `*x`|`Fixnum`|Position X où placer l'évènement invoqué, par défaut, conserve la valeur de l'évènement invoqué  
 `*y`|`Fixnum`|Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué  
+
+
+
+
+
+
+##### Command.item_count(id)
+
+> Renvoie le nombre d'objet référencé par son ID possédés par l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet à compter  
+
+
+
+
+
+
+##### Command.item_description(id)
+
+> Renvoie la description de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.item_name(id)
+
+> Renvoie le nom de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
+
+
+
+
+
+
+##### Command.item_note(id)
+
+> Renvoie le commentaire de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet'  
 
 
 
@@ -1667,6 +1791,62 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Nombre de frames a attendre  
+
+
+
+
+
+
+##### Command.weapon_count(id)
+
+> Renvoie le nombre d'armes référencées par son ID possédées par l'équipe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme à compter  
+
+
+
+
+
+
+##### Command.weapon_description(id)
+
+> Renvoie la description de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme'  
+
+
+
+
+
+
+##### Command.weapon_name(id)
+
+> Renvoie le nom de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme'  
+
+
+
+
+
+
+##### Command.weapon_note(id)
+
+> Renvoie le commentaire de l'arme référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'arme'  
 
 
 

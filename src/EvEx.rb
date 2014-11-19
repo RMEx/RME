@@ -2087,6 +2087,22 @@ module Command
   def timer; $game_timer.sec; end
   def save_count; $game_system.save_count; end
   def battle_count; $game_system.battle_count; end
+   #--------------------------------------------------------------------------
+  # * Items
+  #--------------------------------------------------------------------------
+  def item_count(id); $game_party.item_number($data_items[id]); end
+  def weapon_count(id); $game_party.item_number($data_weapons[id]); end
+  def armor_count(id); $game_party.item_number($data_armors[id]); end
+  def item_name(id); $data_items[id].name; end
+  def weapon_name(id); $data_weapons[id].name; end
+  def armor_name(id); $data_armors[id].name; end
+  def item_note(id); $data_items[id].note; end
+  def weapon_note(id); $data_weapons[id].note; end
+  def armor_note(id); $data_armors[id].note; end
+  def item_description(id); $data_items[id].description; end
+  def weapon_description(id); $data_weapons[id].description; end
+  def armor_description(id); $data_armors[id].description; end
+
 end
 
 #==============================================================================
