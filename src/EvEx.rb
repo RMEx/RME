@@ -679,7 +679,7 @@ class Game_Map
     Game_Map.running_proc ||= Hash.new
     #--------------------------------------------------------------------------
     # * Map onload
-    #--------------------------------------------------------------------------
+    #-------------------------------------------------------------------------
     def onload(ids, &block)
       ids.each do |id|
         oth = Game_Map.loaded_proc[id] || Proc.new {}
@@ -845,6 +845,7 @@ class Game_Parallax
     @tone = Tone.new(0,0,0)
     @duration = 0
     @tone_duration = 0
+    @auto_duration = 0
   end
   #--------------------------------------------------------------------------
   # * Initialize Targets
