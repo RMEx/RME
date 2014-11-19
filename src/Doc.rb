@@ -544,7 +544,7 @@ module Command
   register_command_category :picture, "Commandes de manipulation des images", "Commandes relatives à la manipulation des images"
   register_command_category :parallax, "Commandes de manipulation des panoramas", "Commandes relatives à la manipulation des panoramas"
   register_command_category :micro, "Commandes de manipulation des micros events", "Commandes relatives à la gestion des micro events"
-  register_command_category :operand, "Commandes des opérandes de variables", "Commande associées à la gestion des variables de RPGMaker"
+  register_command_category :party, "Commandes relatives à la gestion de partie", "Commande associées à la gestion de la partie"
   register_command_category :items, "Commandes relatives aux objets", "Commandes permettant d'obtenir ou de manipuler les objets"
 
   link_class_documentation "Collection des commandes EventExtender"
