@@ -544,6 +544,7 @@ module Command
   register_command_category :picture, "Commandes de manipulation des images", "Commandes relatives à la manipulation des images"
   register_command_category :parallax, "Commandes de manipulation des panoramas", "Commandes relatives à la manipulation des panoramas"
   register_command_category :micro, "Commandes de manipulation des micros events", "Commandes relatives à la gestion des micro events"
+  register_command_category :operand, "Commandes des opérandes de variables", "Commande associées à la gestion des variables de RPGMaker"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -1286,6 +1287,44 @@ module Command
   #                           :id2 => ["ID de l'autre image", :Fixnum],
   #                         }, true
   # register_command :picture, "Command.pictures_perfect_collide?"
+
+
+
+link_method_documentation "Command.team_size", 
+                        "Renvoie la taille de l'équipe",
+                        {}, true
+register_command :operand, "Command.team_size"
+
+link_method_documentation "Command.gold", 
+                        "Renvoie l'argent possédé",
+                        {}, true
+register_command :operand, "Command.gold"
+
+link_method_documentation "Command.steps", 
+                        "Renvoie le nombre de pas effectué par l'équipe",
+                        {}, true
+register_command :operand, "Command.steps"
+
+link_method_documentation "Command.play_time", 
+                        "Renvoie le temps de jeu en secondes",
+                        {}, true
+register_command :operand, "Command.play_time"
+
+link_method_documentation "Command.timer", 
+                        "Renvoie la valeur du chronomètre",
+                        {}, true
+register_command :operand, "Command.timer"
+
+link_method_documentation "Command.save_count", 
+                        "Renvoie le nombre de sauvegarde effectuées par partie",
+                        {}, true
+register_command :operand, "Command.save_count"
+
+link_method_documentation "Command.battle_count", 
+                        "Renvoie le nombre de combat effectués par partie",
+                        {}, true
+register_command :operand, "Command.battle_count"
+
 
 end
 

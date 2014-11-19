@@ -6,11 +6,13 @@ Collection des commandes EventExtender
 ##Liste des méthodes
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
+*    [Command.battle_count](#Command.battle_count)
 *    [Command.caps_lock?](#Command.caps_lock)
 *    [Command.click_time(key)](#Command.click_timekey)
 *    [Command.color(red, green, blue, *alpha)](#Command.colorred-green-blue-alpha)
 *    [Command.ctrl?(key)](#Command.ctrlkey)
 *    [Command.fresh_event_id](#Command.fresh_event_id)
+*    [Command.gold](#Command.gold)
 *    [Command.id_at(x, y)](#Command.id_atx-y)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#Command.include_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#Command.invoke_eventmap_id-event_id-new_id-x-y)
@@ -94,15 +96,20 @@ Collection des commandes EventExtender
 *    [Command.pictures_clear](#Command.pictures_clear)
 *    [Command.pictures_collide?(id, id2)](#Command.pictures_collideid-id2)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#Command.pixel_in_pictureid-x-y-precise)
+*    [Command.play_time](#Command.play_time)
 *    [Command.random(min, max)](#Command.randommin-max)
 *    [Command.random_figures(x)](#Command.random_figuresx)
 *    [Command.region_id(x, y)](#Command.region_idx-y)
+*    [Command.save_count](#Command.save_count)
 *    [Command.scroll_lock?](#Command.scroll_lock)
 *    [Command.session_username](#Command.session_username)
 *    [Command.shift?](#Command.shift)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
+*    [Command.steps](#Command.steps)
+*    [Command.team_size](#Command.team_size)
 *    [Command.terrain_tag(x, y)](#Command.terrain_tagx-y)
 *    [Command.tile_id(x, y)](#Command.tile_idx-y)
+*    [Command.timer](#Command.timer)
 *    [Command.tone(red, green, blue, *gray)](#Command.tonered-green-blue-gray)
 *    [Command.wait(duration)](#Command.waitduration)
 
@@ -136,6 +143,17 @@ Exemple
 ```ruby  
 Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)  
 ```
+
+
+
+##### Command.battle_count
+
+> Renvoie le nombre de combat effectués par partie
+
+  
+> 
+
+
 
 
 
@@ -198,6 +216,17 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.fresh_event_id
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
+
+  
+> 
+
+
+
+
+
+##### Command.gold
+
+> Renvoie l'argent possédé
 
   
 > 
@@ -1435,6 +1464,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.play_time
+
+> Renvoie le temps de jeu en secondes
+
+  
+> 
+
+
+
+
+
 ##### Command.random(min, max)
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX inclus
@@ -1474,6 +1514,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 
+
+
+
+
+
+##### Command.save_count
+
+> Renvoie le nombre de sauvegarde effectuées par partie
+
+  
+> 
 
 
 
@@ -1528,6 +1579,28 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.steps
+
+> Renvoie le nombre de pas effectué par l'équipe
+
+  
+> 
+
+
+
+
+
+##### Command.team_size
+
+> Renvoie la taille de l'équipe
+
+  
+> 
+
+
+
+
+
 ##### Command.terrain_tag(x, y)
 
 > Renvoie le tag du terrain de la case pointée par les coordonnées X,Y
@@ -1553,6 +1626,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 
+
+
+
+
+
+##### Command.timer
+
+> Renvoie la valeur du chronomètre
+
+  
+> 
 
 
 

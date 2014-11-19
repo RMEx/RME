@@ -2070,6 +2070,24 @@ module Command
   def mouse_current_key(*m)   Mouse.current_key(*m);      end
 end
 
+#==============================================================================
+# ** Commands Device
+#------------------------------------------------------------------------------
+#  Common Commands
+#==============================================================================
+
+module Command
+  #--------------------------------------------------------------------------
+  # * Operands
+  #--------------------------------------------------------------------------
+  def team_size; $game_party.members.size; end
+  def gold; $game_party.gold; end
+  def steps; $game_party.steps; end
+  def play_time; (Graphics.frame_count / Graphics.frame_rate); end
+  def timer; $game_timer.sec; end
+  def save_count; $game_system.save_count; end
+  def battle_count; $game_system.battle_count; end
+end
 
 #==============================================================================
 # ** DataManager
