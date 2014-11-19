@@ -18,6 +18,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [armor_name(id)](#armor_nameid)
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
+*    [give_armor(id, amount, *include_equipement)](#give_armorid-amount-include_equipement)
 *    [give_item(id, amount, *include_equipement)](#give_itemid-amount-include_equipement)
 *    [give_weapon(id, amount, *include_equipement)](#give_weaponid-amount-include_equipement)
 *    [is_key_item?(id)](#is_key_itemid)
@@ -183,6 +184,18 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
+
+
+##### give_armor(id, amount, *include_equipement)
+
+> Fait gagner à l'équipe l'armure référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'armure  
+`amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
+`*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
 
 
 ##### give_item(id, amount, *include_equipement)

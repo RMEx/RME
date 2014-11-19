@@ -1534,7 +1534,7 @@ link_method_documentation "Command.give_armor",
                           :"*include_equipement" => ["Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement", :Boolean]
 
                         }
-register_command :items, "Command.give_weapon"
+register_command :items, "Command.give_armor"
 
 end
 
