@@ -2228,8 +2228,24 @@ module Command
   #--------------------------------------------------------------------------
   # * Database Actor
   #--------------------------------------------------------------------------
-  def actor_level(id); $game_actors[id].level; end 
-  def actor_exp(id); $game_actors[id].exp; end 
+  def type_equip(str)
+    [:Weapon, :Shield, :Head, :Body, :Accessory].index(str)
+  end
+  def actor_equip(id, t); $game_actors[id].equips[type_equip(t)]; end
+  def actor_weapon(id); actor_equip(id, :Weapon); end 
+  def actor_shield(id); actor_equip(id, :Shield); end 
+  def actor_head(id); actor_equip(id, :Head); end 
+  def actor_body(id); actor_equip(id, :Body); end 
+  def actor_accessory(id); actor_equip(id, :Accessory); end
+  def actor_has_weapon?(id); !!actor_weapon(id); end 
+  def actor_has_shield?(id); !!actor_shield(id); end 
+  def actor_has_head?(id); !!actor_head(id); end 
+  def actor_has_body?(id); !!actor_body(id); end 
+  def actor_has_accessory?(id); !!actor_accessory(id); end 
+  def actor_level(id); $game_actors[id].level; end
+  def actor_level_max(id); $game_actors[id].max_level; end
+  def actor_exp(id); $game_actors[id].exp; end
+  def actor_note(id);  $game_actors[id].actor.note; end
   def actor_hp(id); $game_actors[id].hp; end 
   def actor_mp(id); $game_actors[id].mp; end 
   def actor_tp(id); $game_actors[id].tp; end 
