@@ -2225,6 +2225,54 @@ module Command
   def start_map_id; sys.start_map_id; end
   def start_x; sys.start_x; end 
   def start_y; sys.start_y; end
+  #--------------------------------------------------------------------------
+  # * Database Actor
+  #--------------------------------------------------------------------------
+  def actor_level(id); $game_actors[id].level; end 
+  def actor_exp(id); $game_actors[id].exp; end 
+  def actor_hp(id); $game_actors[id].hp; end 
+  def actor_mp(id); $game_actors[id].mp; end 
+  def actor_tp(id); $game_actors[id].tp; end 
+  def actor_max_hp(id); $game_actors[id].mhp; end 
+  def actor_max_mp(id); $game_actors[id].mmp; end 
+  def actor_attack(id); $game_actors[id].atk; end 
+  def actor_defense(id); $game_actors[id].def; end 
+  def actor_magic_attack(id); $game_actors[id].mat; end 
+  def actor_magic_defense(id); $game_actors[id].mdf; end 
+  def actor_agility(id); $game_actors[id].agi; end 
+  def actor_luck(id); $game_actors[id].luk; end
+  def actor_hit_rate(id); $game_actors[id].hit; end
+  def actor_evasion_rate(id); $game_actors[id].eva; end
+  def actor_critical_rate(id); $game_actors[id].cri; end 
+  def actor_critical_evasion_rate(id); $game_actors[id].cev; end 
+  def actor_magical_evasion_rate(id); $game_actors[id].mev; end 
+  def actor_magical_reflection_rate(id); $game_actors[id].mrf; end 
+  def actor_counter_attack_rate(id); $game_actors[id].cnt; end 
+  def actor_hp_regeneration_rate(id); $game_actors[id].hrg; end 
+  def actor_mp_regeneration_rate(id); $game_actors[id].mrg; end 
+  def actor_tp_regeneration_rate(id); $game_actors[id].trg; end 
+  def actor_target_rate(id); $game_actors[id].tgr; end 
+  def actor_guard_effect_rate(id); $game_actors[id].grd; end 
+  def actor_recovery_effect_rate(id); $game_actors[id].rec; end 
+  def actor_pharmacology(id); $game_actors[id].pha; end 
+  def actor_mp_cost_rate(id); $game_actors[id].mcr; end 
+  def actor_tp_charge_rate(id); $game_actors[id].tcr; end 
+  def actor_physical_damage_rate(id); $game_actors[id].pdr; end 
+  def actor_magical_damage_rate(id); $game_actors[id].mdr; end 
+  def actor_floor_damage_rate(id); $game_actors[id].fdr; end
+  def actor_experience_rate(id); $game_actors[id].exr; end 
+  def actor_name(id); $game_actors[id].name; end
+  def set_actor_name(id, n); $game_actors[id].name = n; end
+  def actor_nickname(id); $game_actors[id].nickname; end
+  def set_actor_nickname(id, n); $game_actors[id].nickname = n; end
+  def actor_character_name(id); $game_actors[id].character_name; end
+  def actor_character_index(id); $game_actors[id].character_index; end
+  def actor_face_name(id); $game_actors[id].face_name; end
+  def actor_face_index(id); $game_actors[id].face_index; end
+  def actor_class(id); $game_actors[id].class_id; end
+  def actor_exp_for_next_level(id); $game_actors[id].next_level_exp; end
+
+  
 end
 #==============================================================================
 # ** DataManager

@@ -549,6 +549,7 @@ module Command
   register_command_category :armors, "Commandes relatives aux armures", "Commandes permettant de manipuler les armures"
   register_command_category :weapons, "Commandes relatives aux armes", "Commandes permettant de manipuler les armes" 
   register_command_category :system, "Commandes systèmes", "Offre une collection d'informations sur le système"
+  register_command_category :actors, "Commandes des acteurs", "Offre des commandes pour obtenir des informations sur les acteurs"
   
   link_class_documentation "Collection des commandes EventExtender"
 

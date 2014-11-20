@@ -26,6 +26,7 @@ Outil d'extension de RPG Maker
 
 **Index des commandes**
 
+*    [Commandes des acteurs](command_actors.md)
 *    [Commandes relatives aux armures](command_armors.md)
 *    [Commandes évènements](command_event.md)
 *    [Commandes relatives aux objets](command_items.md)
