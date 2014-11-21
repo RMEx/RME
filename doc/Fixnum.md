@@ -4,7 +4,7 @@
 Extension des entiers
 
 ##Liste des méthodes
-*    [self.to_digit](#self.to_digit)
+*    [self.to_digit](#selfto_digit)
 
 
 ##Description des méthodes

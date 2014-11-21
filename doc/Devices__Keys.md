@@ -178,10 +178,10 @@ Nom|Description
 `Keys::Oem_clear`|Pointe la touche oem_clear  
 `Keys::Ctrl`|Pointe la touche CTRL  
 ##Liste des méthodes
-*    [self.press?](#self.press)
-*    [self.release?](#self.release)
-*    [self.repeat?](#self.repeat)
-*    [self.trigger?](#self.trigger)
+*    [self.press?](#selfpress)
+*    [self.release?](#selfrelease)
+*    [self.repeat?](#selfrepeat)
+*    [self.trigger?](#selftrigger)
 
 
 ##Description des méthodes
