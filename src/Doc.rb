@@ -550,6 +550,7 @@ module Command
   register_command_category :weapons, "Commandes relatives aux armes", "Commandes permettant de manipuler les armes" 
   register_command_category :system, "Commandes systèmes", "Offre une collection d'informations sur le système"
   register_command_category :actors, "Commandes des acteurs", "Offre des commandes pour obtenir des informations sur les acteurs"
+  register_command_category :skills, "Commandes des techniques", "Offre des commandes pour obtenir des informations sur les techniques"
   
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -2437,6 +2438,133 @@ link_method_documentation "Command.actor_skills",
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_skills"
+
+link_method_documentation "Command.skill_scope", 
+                        "Renvoie la portée (en Entier) d'une technique référencée par son ID",
+                        {
+                          :id => ["Id de la techinuqe", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_scope"
+
+link_method_documentation "Command.skill_has_no_scope?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise personne, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_has_scope?"
+
+link_method_documentation "Command.skill_for_one_enemy?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise un ennemi, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_one_enemy?"
+
+link_method_documentation "Command.skill_for_all_enemies?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise tous les ennemis, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_all_enemies?"
+
+link_method_documentation "Command.skill_for_one_random_enemy?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise un ennemi au hasard, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_one_random_enemy?"
+
+link_method_documentation "Command.skill_for_two_random_enemies?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise deux ennemis au hasard, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_two_random_enemies?"
+
+link_method_documentation "Command.skill_for_three_random_enemies?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise trois ennemis au hasard, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_three_random_enemies?"
+
+link_method_documentation "Command.skill_for_four_random_enemies?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise quatre ennemis au hasard, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_four_random_enemies?"
+
+link_method_documentation "Command.skill_for_one_ally?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise un allié, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_one_ally?"
+
+link_method_documentation "Command.skill_for_all_allies?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_all_allies?"
+
+link_method_documentation "Command.skill_for_one_dead_ally?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise un allié mort, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_one_dead_ally?"
+
+link_method_documentation "Command.skill_for_all_dead_allies?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés morts, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_all_dead_allies?"
+
+link_method_documentation "Command.skill_for_caller?", 
+                        "Renvoie true si la cible d'une technique référencée par son ID l'utilisateur, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_caller?"
+
+link_method_documentation "Command.skill_occasion", 
+                        "Renvoie un entier correspondant au droit d'utilisation de la technique",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_occasion"
+
+link_method_documentation "Command.skill_always_usable?", 
+                        "Renvoie true si la technique référencé par son ID est utilisable partout",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_always_usable?"
+
+link_method_documentation "Command.skill_battle_usable?", 
+                        "Renvoie true si la technique référencé par son ID est utilisable en combat",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_battle_usable?"
+
+link_method_documentation "Command.skill_menu_usable?", 
+                        "Renvoie true si la technique référencé par son ID est utilisable dans le menu",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_menu_usable?"
+
+link_method_documentation "Command.skill_never_usable?", 
+                        "Renvoie true si la technique référencé par son ID n'est jamais utilisable",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_never_usable?"
+
 
 
 end

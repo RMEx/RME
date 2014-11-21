@@ -251,6 +251,24 @@ Collection des commandes EventExtender
 *    [Command.set_actor_name(id, new_name)](#Command.set_actor_nameid-new_name)
 *    [Command.set_actor_nickname(id, new_name)](#Command.set_actor_nicknameid-new_name)
 *    [Command.shift?](#Command.shift)
+*    [Command.skill_always_usable?(id)](#Command.skill_always_usableid)
+*    [Command.skill_battle_usable?(id)](#Command.skill_battle_usableid)
+*    [Command.skill_for_all_allies?(id)](#Command.skill_for_all_alliesid)
+*    [Command.skill_for_all_dead_allies?(id)](#Command.skill_for_all_dead_alliesid)
+*    [Command.skill_for_all_enemies?(id)](#Command.skill_for_all_enemiesid)
+*    [Command.skill_for_caller?(id)](#Command.skill_for_callerid)
+*    [Command.skill_for_four_random_enemies?(id)](#Command.skill_for_four_random_enemiesid)
+*    [Command.skill_for_one_ally?(id)](#Command.skill_for_one_allyid)
+*    [Command.skill_for_one_dead_ally?(id)](#Command.skill_for_one_dead_allyid)
+*    [Command.skill_for_one_enemy?(id)](#Command.skill_for_one_enemyid)
+*    [Command.skill_for_one_random_enemy?(id)](#Command.skill_for_one_random_enemyid)
+*    [Command.skill_for_three_random_enemies?(id)](#Command.skill_for_three_random_enemiesid)
+*    [Command.skill_for_two_random_enemies?(id)](#Command.skill_for_two_random_enemiesid)
+*    [Command.skill_has_no_scope?(id)](#Command.skill_has_no_scopeid)
+*    [Command.skill_menu_usable?(id)](#Command.skill_menu_usableid)
+*    [Command.skill_never_usable?(id)](#Command.skill_never_usableid)
+*    [Command.skill_occasion(id)](#Command.skill_occasionid)
+*    [Command.skill_scope(id)](#Command.skill_scopeid)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#Command.squares_betweenidA-idB)
 *    [Command.start_map_id](#Command.start_map_id)
@@ -3790,6 +3808,258 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.skill_always_usable?(id)
+
+> Renvoie true si la technique référencé par son ID est utilisable partout
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_battle_usable?(id)
+
+> Renvoie true si la technique référencé par son ID est utilisable en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_all_allies?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_all_dead_allies?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés morts, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_all_enemies?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise tous les ennemis, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_caller?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID l'utilisateur, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_four_random_enemies?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise quatre ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_one_ally?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise un allié, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_one_dead_ally?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise un allié mort, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_one_enemy?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise un ennemi, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_one_random_enemy?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise un ennemi au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_three_random_enemies?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise trois ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_two_random_enemies?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise deux ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_has_no_scope?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise personne, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_menu_usable?(id)
+
+> Renvoie true si la technique référencé par son ID est utilisable dans le menu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_never_usable?(id)
+
+> Renvoie true si la technique référencé par son ID n'est jamais utilisable
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_occasion(id)
+
+> Renvoie un entier correspondant au droit d'utilisation de la technique
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_scope(id)
+
+> Renvoie la portée (en Entier) d'une technique référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la techinuqe  
+
 
 
 

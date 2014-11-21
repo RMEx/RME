@@ -2312,86 +2312,34 @@ module Command
   def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
   def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
    #--------------------------------------------------------------------------
-  # * Get the x of an event (square)
+  # * Event position
   #--------------------------------------------------------------------------
   def event_x(id); event(id).x; end
-  #--------------------------------------------------------------------------
-  # * Get the y of an event (square)
-  #--------------------------------------------------------------------------
   def event_y(id); event(id).y; end
-  #--------------------------------------------------------------------------
-  # * Get the x (on screen) of an event
-  #--------------------------------------------------------------------------
   def event_screen_x(id); event(id).screen_x; end
-  #--------------------------------------------------------------------------
-  # * Get the y (on screen) of an event
-  #--------------------------------------------------------------------------
   def event_screen_y(id); event(id).screen_y; end
-  #--------------------------------------------------------------------------
-  # * Get the y of an event in pixels
-  #--------------------------------------------------------------------------
   def event_pixel_y(id) 
     ($game_map.display_y * 32) + event_screen_y(id)
   end
-  #--------------------------------------------------------------------------
-  # * Get the x of an event in pixels
-  #--------------------------------------------------------------------------
   def event_pixel_x(id) 
     ($game_map.display_x * 32) + event_screen_x(id)
   end
-  #--------------------------------------------------------------------------
-  # * Get the direction of an event
-  #--------------------------------------------------------------------------
   def event_direction(id); event(id).direction; end
-  #--------------------------------------------------------------------------
-  # * Get the x of the player (square)
-  #--------------------------------------------------------------------------
   def player_x; event(0).x; end
-  #--------------------------------------------------------------------------
-  # * Get the y of the player (square)
-  #--------------------------------------------------------------------------
   def player_y; event(0).y; end
-  #--------------------------------------------------------------------------
-  # * Get the x (on screen) of the player
-  #--------------------------------------------------------------------------
   def player_screen_x; event(0).screen_x; end
-  #--------------------------------------------------------------------------
-  # * Get the y (on screen) of the player
-  #--------------------------------------------------------------------------
   def player_screen_y; event(0).screen_y; end
-  #--------------------------------------------------------------------------
-  # * Get the x of player in pixels
-  #--------------------------------------------------------------------------
   def player_pixel_x; event_pixel_x(0); end
-  #--------------------------------------------------------------------------
-  # * Get the y of player in pixels
-  #--------------------------------------------------------------------------
   def player_pixel_y; event_pixel_y(0); end
-  #--------------------------------------------------------------------------
-  # * Get the direction of the player
-  #--------------------------------------------------------------------------
   def player_direction; event(0).direction; end
-  #--------------------------------------------------------------------------
-  # * Get the distance between two events
-  # flag = :square (in square) || _ (in pixel)
-  #--------------------------------------------------------------------------
   def distance_between(flag, ev1, ev2)
     ev1, ev2 = event(ev1), event(ev2)
     args = (ev1.screen_x-ev2.screen_x),(ev1.screen_y-ev2.screen_y)
     args = (ev1.x-ev2.x),(ev1.y-ev2.y) if flag == :square
     Math.hypot(*args).to_i
   end
-  #--------------------------------------------------------------------------
-  # * Squares between two event
-  #--------------------------------------------------------------------------
   def squares_between(ev1, ev2); distance_between(:square, ev1, ev2); end
-  #--------------------------------------------------------------------------
-  # * Pixels between two event
-  #--------------------------------------------------------------------------
   def pixels_between(ev1, ev2); distance_between(:pixel, ev1, ev2); end
-  #--------------------------------------------------------------------------
-  # * Event look another event
-  #--------------------------------------------------------------------------
   def event_look_at?(ev, to, scope, metric = :square)
     if event_direction(ev) == 8
       x_axis = event_x(to) == event_x(ev)
@@ -2411,9 +2359,6 @@ module Command
     end
     return x_axis && y_axis && (distance_between(metric, ev, to)<=scope)
   end
-  #--------------------------------------------------------------------------
-  # * determine collision (ev1 with ev2)
-  #--------------------------------------------------------------------------
   def event_collide?(ev1, ev2)
     event1 = event(ev1)
     event2 = event(ev2)
@@ -2426,20 +2371,71 @@ module Command
     end
     return flag && !event1.moving?
   end
-  #--------------------------------------------------------------------------
-  # * determine if event 's in the screen
-  #--------------------------------------------------------------------------
   def event_in_screen?(id)
     ev = event(id)
     check_x = ev.screen_x > 0 && ev.screen_x < Graphics.width
     check_y = ev.screen_y > 0 && ev.screen_y < Graphics.height
     check_x && check_y
   end
-  #--------------------------------------------------------------------------
-  # * determine if player's in the screen
-  #--------------------------------------------------------------------------
   def player_in_screen?
     event_in_screen?(0)
+  end
+  #--------------------------------------------------------------------------
+  # * Skills
+  #--------------------------------------------------------------------------
+    def skill_scope(id)
+    $data_skills[id].scope
+  end
+  def skill_has_no_scope?(id)
+    skill_scope(id) == 0
+  end
+  def skill_for_one_enemy?(id)
+    skill_scope(id) == 1
+  end
+  def skill_for_all_enemies?(id)
+    skill_scope(id) == 2
+  end
+  def skill_for_one_random_enemy?(id)
+    skill_scope(id) == 3
+  end
+  def skill_for_two_random_enemy?(id)
+    skill_scope(id) == 4
+  end
+  def skill_for_three_random_enemy?(id)
+    skill_scope(id) == 5
+  end
+  def skill_for_four_random_enemy?(id)
+    skill_scope(id) == 6
+  end
+  def skill_for_one_ally?(id)
+    skill_scope(id) == 7
+  end
+  def skill_for_all_allies?(id)
+    skill_scope(id) == 8
+  end
+  def skill_for_one_dead_ally?(id)
+    skill_scope(id) == 9
+  end
+  def skill_for_all_dead_allies?(id)
+    skill_scope(id) == 10
+  end
+  def skill_for_caller?(id)
+    skill_scope(id) == 11
+  end
+  def skill_occasion(id)
+    $data_skills[id].occasion
+  end
+  def skill_always_usable?(id)
+    skill_occasion(id) == 0
+  end
+  def skill_battle_usable?(id)
+    skill_occasion(id) == 1
+  end
+  def skill_menu_usable?(id)
+    skill_occasion(id) == 2
+  end
+  def skill_never_usable?(id)
+    skill_occasion(id) == 3
   end
 end
 #==============================================================================

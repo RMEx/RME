@@ -11,6 +11,7 @@
 *    [Commandes de manipulation des panoramas](command_parallax.md)
 *    [Commandes relatives à la gestion de partie](command_party.md)
 *    [Commandes de manipulation des images](command_picture.md)
+*    [Commandes des techniques](command_skills.md)
 *    [Commandes standards](command_standard.md)
 *    [Commandes systèmes](command_system.md)
 *    [Commandes relatives aux armes](command_weapons.md)
