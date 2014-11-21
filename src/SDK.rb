@@ -1568,4 +1568,5 @@ module Command
   def session_username; USERNAME; end
   def length(a); a.length; end
   def get(a, i); a[i]; end
+  def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
 end

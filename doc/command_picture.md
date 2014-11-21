@@ -17,7 +17,7 @@ Commandes relatives à la manipulation des images
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
 *    [picture_scroll_y(id, vitesse)](#picture_scroll_yid-vitesse)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
-*    [picture_tone(id, R, V, B, *G)](#picture_toneid-R-V-B-G)
+*    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
 *    [picture_x(id, x)](#picture_xid-x)
@@ -187,7 +187,7 @@ Commandes relatives à la manipulation des images
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 
 
-##### picture_tone(id, R, V, B, *G)
+##### picture_tone(id, tone, *duration, *wait_flag)
 
 > Change la teinte d'une image
 
@@ -195,10 +195,9 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`R`|`Fixnum`|Valeur de rouge (de -255 a +255)  
-`V`|`Fixnum`|Valeur de verte (de -255 a +255)  
-`B`|`Fixnum`|Valeur de bleu (de -255 a +255)  
-`*G`|`Fixnum`|Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0  
+`tone`|`Tone`|Teinte de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
 
 
 ##### picture_unpin(id)

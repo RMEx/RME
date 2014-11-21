@@ -757,12 +757,135 @@ module Command
   register_command :event, "Command.mouse_repeat_event?"
 
   link_method_documentation "Command.mouse_release_event?", 
-                        "Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument",
+                        "Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument",
                         {
                           :events => ["Selecteur d'évènements", :Selectors],
                           :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left", :Selector]
                         }, true
   register_command :event, "Command.mouse_release_event?"
+
+  link_method_documentation "Command.event_x", 
+                        "Renvoie la coordonnées X de la case sur laquelle est l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_x"
+
+  link_method_documentation "Command.event_in_screen?", 
+                        "Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_in_screen?"
+
+   link_method_documentation "Command.player_in_screen?", 
+                        "Renvoie true si le joueur est visible à l'écran, false sinon",
+                        {}, true
+  register_command :event, "Command.player_in_screen?"
+
+
+  link_method_documentation "Command.event_y", 
+                        "Renvoie la coordonnées Y de la case sur laquelle est l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_y"
+
+  link_method_documentation "Command.event_screen_x", 
+                        "Renvoie la coordonnées X de l'évènement référencé par son ID par rapport à l'écran",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_screen_x"
+
+  link_method_documentation "Command.event_screen_y", 
+                        "Renvoie la coordonnées Y de l'évènement référencé par son ID par rapport à l'écran",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_screen_y"
+
+  link_method_documentation "Command.event_pixel_x", 
+                        "Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_pixel_x"
+
+  link_method_documentation "Command.event_pixel_y", 
+                        "Renvoie la coordonnées Y de l'évènement référencé par son ID en pixel sur la carte",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_pixel_y"
+
+  link_method_documentation "Command.event_direction", 
+                        "Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_direction"
+
+  link_method_documentation "Command.player_x", 
+                        "Renvoie la coordonnées X de la case sur laquelle est le joueur",
+                         {}, true
+  register_command :event, "Command.player_x"
+
+  link_method_documentation "Command.player_y", 
+                        "Renvoie la coordonnées Y de la case sur laquelle est le joueur",
+                       {}, true
+  register_command :event, "Command.player_y"
+
+  link_method_documentation "Command.player_screen_x", 
+                        "Renvoie la coordonnées X du joueur par rapport à l'écran",
+                        {}, true
+  register_command :event, "Command.player_screen_x"
+
+  link_method_documentation "Command.player_screen_y", 
+                        "Renvoie la coordonnées Y du joueur par rapport à l'écran",
+                        {}, true
+  register_command :event, "Command.player_screen_y"
+
+  link_method_documentation "Command.player_pixel_x", 
+                        "Renvoie la coordonnées X du joueur en pixel sur la carte",
+                        {}, true
+  register_command :event, "Command.player_pixel_x"
+
+  link_method_documentation "Command.player_pixel_y", 
+                        "Renvoie la coordonnées Y du joueur en pixel sur la carte",
+                        {}, true
+  register_command :event, "Command.player_pixel_y"
+
+  link_method_documentation "Command.player_direction", 
+                        "Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte",
+                        {}, true
+  register_command :event, "Command.player_direction"
+
+  link_method_documentation "Command.squares_between", 
+                        "Renvoie le nombre de cases entre deux évènements référencés par leurs ID's",
+                        {
+                          :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
+                          :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
+
+                        },
+                        true
+  register_command :event, "Command.squares_between"
+
+  link_method_documentation "Command.pixels_between", 
+                        "Renvoie le nombre de pixels entre deux évènements référencés par leurs ID's",
+                        {
+                          :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
+                          :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
+
+                        },
+                        true
+  register_command :event, "Command.pixels_between"
+
+  link_method_documentation "Command.event_look_at?", 
+                        "Renvoie true si l'evenement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon",
+                        {
+                          :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
+                          :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
+                          :scope => ["Nombre de case ou de pixels", :Fixnum],
+                          :"*metric" => ["par défaut :square, pour en case, :pixels pour en pixels", :Fixnum],
+
+                        },
+                        true
+  register_command :event, "Command.event_look_at?"
+
+  link_method_documentation "Command.event_collide?", 
+                        "Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon",
+                        {
+                          :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
+                          :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
+
+                        },
+                        true
+  register_command :event, "Command.event_collide?"
 
   link_method_documentation "Command.key_trigger?", 
                           "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
@@ -1077,10 +1200,9 @@ module Command
                           "Change la teinte d'une image", 
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :R => ["Valeur de rouge (de -255 a +255)", :Fixnum],
-                            :V => ["Valeur de verte (de -255 a +255)", :Fixnum],
-                            :B => ["Valeur de bleu (de -255 a +255)", :Fixnum],
-                            :"*G" => ["Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0", :Fixnum],
+                            :tone => ["Teinte de l'image", :Tone],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
                           }
   register_command :picture, "Command.picture_tone"
 

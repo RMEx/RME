@@ -100,6 +100,16 @@ Collection des commandes EventExtender
 *    [Command.color(red, green, blue, *alpha)](#Command.colorred-green-blue-alpha)
 *    [Command.ctrl?(key)](#Command.ctrlkey)
 *    [Command.currency](#Command.currency)
+*    [Command.event_collide?(idA, idB)](#Command.event_collideidA-idB)
+*    [Command.event_direction(id)](#Command.event_directionid)
+*    [Command.event_in_screen?(id)](#Command.event_in_screenid)
+*    [Command.event_look_at?(idA, idB, scope, *metric)](#Command.event_look_atidA-idB-scope-metric)
+*    [Command.event_pixel_x(id)](#Command.event_pixel_xid)
+*    [Command.event_pixel_y(id)](#Command.event_pixel_yid)
+*    [Command.event_screen_x(id)](#Command.event_screen_xid)
+*    [Command.event_screen_y(id)](#Command.event_screen_yid)
+*    [Command.event_x(id)](#Command.event_xid)
+*    [Command.event_y(id)](#Command.event_yid)
 *    [Command.fresh_event_id](#Command.fresh_event_id)
 *    [Command.gain_gold(amount)](#Command.gain_goldamount)
 *    [Command.game_title](#Command.game_title)
@@ -211,7 +221,7 @@ Collection des commandes EventExtender
 *    [Command.picture_scroll_y(id, vitesse)](#Command.picture_scroll_yid-vitesse)
 *    [Command.picture_shake(id, power, speed, duration)](#Command.picture_shakeid-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#Command.picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
-*    [Command.picture_tone(id, R, V, B, *G)](#Command.picture_toneid-R-V-B-G)
+*    [Command.picture_tone(id, tone, *duration, *wait_flag)](#Command.picture_toneid-tone-duration-wait_flag)
 *    [Command.picture_unpin(id)](#Command.picture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#Command.picture_waveid-amplitude-vitesse)
 *    [Command.picture_x(id, x)](#Command.picture_xid-x)
@@ -222,7 +232,16 @@ Collection des commandes EventExtender
 *    [Command.pictures_clear](#Command.pictures_clear)
 *    [Command.pictures_collide?(id, id2)](#Command.pictures_collideid-id2)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#Command.pixel_in_pictureid-x-y-precise)
+*    [Command.pixels_between(idA, idB)](#Command.pixels_betweenidA-idB)
 *    [Command.play_time](#Command.play_time)
+*    [Command.player_direction](#Command.player_direction)
+*    [Command.player_in_screen?](#Command.player_in_screen)
+*    [Command.player_pixel_x](#Command.player_pixel_x)
+*    [Command.player_pixel_y](#Command.player_pixel_y)
+*    [Command.player_screen_x](#Command.player_screen_x)
+*    [Command.player_screen_y](#Command.player_screen_y)
+*    [Command.player_x](#Command.player_x)
+*    [Command.player_y](#Command.player_y)
 *    [Command.random(min, max)](#Command.randommin-max)
 *    [Command.random_figures(x)](#Command.random_figuresx)
 *    [Command.region_id(x, y)](#Command.region_idx-y)
@@ -233,6 +252,7 @@ Collection des commandes EventExtender
 *    [Command.set_actor_nickname(id, new_name)](#Command.set_actor_nicknameid-new_name)
 *    [Command.shift?](#Command.shift)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
+*    [Command.squares_between(idA, idB)](#Command.squares_betweenidA-idB)
 *    [Command.start_map_id](#Command.start_map_id)
 *    [Command.start_x](#Command.start_x)
 *    [Command.start_y](#Command.start_y)
@@ -1621,6 +1641,150 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_collide?(idA, idB)
+
+> Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_direction(id)
+
+> Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_in_screen?(id)
+
+> Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_look_at?(idA, idB, scope, *metric)
+
+> Renvoie true si l'evenement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+`scope`|`Fixnum`|Nombre de case ou de pixels  
+`*metric`|`Fixnum`|par défaut :square, pour en case, :pixels pour en pixels  
+
+
+
+
+
+
+##### Command.event_pixel_x(id)
+
+> Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_pixel_y(id)
+
+> Renvoie la coordonnées Y de l'évènement référencé par son ID en pixel sur la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_screen_x(id)
+
+> Renvoie la coordonnées X de l'évènement référencé par son ID par rapport à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_screen_y(id)
+
+> Renvoie la coordonnées Y de l'évènement référencé par son ID par rapport à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_x(id)
+
+> Renvoie la coordonnées X de la case sur laquelle est l'évènement référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_y(id)
+
+> Renvoie la coordonnées Y de la case sur laquelle est l'évènement référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
 ##### Command.fresh_event_id
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
@@ -2594,7 +2758,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_release_event?(events, *key)
 
-> Renvoie true si la sourisest relâchée sur un évènement du sélecteur passé en argument
+> Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument
 
   
 > Nom|Type|Description  
@@ -3233,7 +3397,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_tone(id, R, V, B, *G)
+##### Command.picture_tone(id, tone, *duration, *wait_flag)
 
 > Change la teinte d'une image
 
@@ -3241,10 +3405,9 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`R`|`Fixnum`|Valeur de rouge (de -255 a +255)  
-`V`|`Fixnum`|Valeur de verte (de -255 a +255)  
-`B`|`Fixnum`|Valeur de bleu (de -255 a +255)  
-`*G`|`Fixnum`|Valeur de Gris (de 0 a +255), par défaut, cette valeur vaut 0  
+`tone`|`Tone`|Teinte de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
 
 
 
@@ -3400,9 +3563,112 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.pixels_between(idA, idB)
+
+> Renvoie le nombre de pixels entre deux évènements référencés par leurs ID's
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+
+
+
+
+
+
 ##### Command.play_time
 
 > Renvoie le temps de jeu en secondes
+
+  
+> 
+
+
+
+
+
+##### Command.player_direction
+
+> Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
+
+  
+> 
+
+
+
+
+
+##### Command.player_in_screen?
+
+> Renvoie true si le joueur est visible à l'écran, false sinon
+
+  
+> 
+
+
+
+
+
+##### Command.player_pixel_x
+
+> Renvoie la coordonnées X du joueur en pixel sur la carte
+
+  
+> 
+
+
+
+
+
+##### Command.player_pixel_y
+
+> Renvoie la coordonnées Y du joueur en pixel sur la carte
+
+  
+> 
+
+
+
+
+
+##### Command.player_screen_x
+
+> Renvoie la coordonnées X du joueur par rapport à l'écran
+
+  
+> 
+
+
+
+
+
+##### Command.player_screen_y
+
+> Renvoie la coordonnées Y du joueur par rapport à l'écran
+
+  
+> 
+
+
+
+
+
+##### Command.player_x
+
+> Renvoie la coordonnées X de la case sur laquelle est le joueur
+
+  
+> 
+
+
+
+
+
+##### Command.player_y
+
+> Renvoie la coordonnées Y de la case sur laquelle est le joueur
 
   
 > 
@@ -3539,6 +3805,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 `direction`|`Fixnum`|Direction (2,4,6,8)  
+
+
+
+
+
+
+##### Command.squares_between(idA, idB)
+
+> Renvoie le nombre de cases entre deux évènements référencés par leurs ID's
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 
 
 
