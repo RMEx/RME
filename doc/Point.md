@@ -4,7 +4,7 @@
 Représente un point dans un plan cartésien
 
 ##Liste des méthodes
-*    [Point.new(x, y)](#Point.newx-y)
+*    [Point.new(x, y)](#point.newx-y)
 *    [self.in?(rect)](#self.inrect)
 *    [self.null!](#self.null)
 *    [self.set(x, y)](#self.setx-y)

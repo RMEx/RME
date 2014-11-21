@@ -4,10 +4,10 @@
 Commandes relatives aux évènements
 
 ##Liste des commandes
-*    [event_collide?(idA, idB)](#event_collideidA-idB)
+*    [event_collide?(idA, idB)](#event_collideida-idb)
 *    [event_direction(id)](#event_directionid)
 *    [event_in_screen?(id)](#event_in_screenid)
-*    [event_look_at?(idA, idB, scope, *metric)](#event_look_atidA-idB-scope-metric)
+*    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
 *    [event_screen_x(id)](#event_screen_xid)
@@ -25,7 +25,7 @@ Commandes relatives aux évènements
 *    [mouse_repeat_event?(events, *key)](#mouse_repeat_eventevents-key)
 *    [mouse_trigger_event?(events, *key)](#mouse_trigger_eventevents-key)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
-*    [pixels_between(idA, idB)](#pixels_betweenidA-idB)
+*    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_direction](#player_direction)
 *    [player_in_screen?](#player_in_screen)
 *    [player_pixel_x](#player_pixel_x)
@@ -34,7 +34,7 @@ Commandes relatives aux évènements
 *    [player_screen_y](#player_screen_y)
 *    [player_x](#player_x)
 *    [player_y](#player_y)
-*    [squares_between(idA, idB)](#squares_betweenidA-idB)
+*    [squares_between(idA, idB)](#squares_betweenida-idb)
 
 
 ##Description des commandes

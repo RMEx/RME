@@ -4,9 +4,9 @@
 Extension de la classe Object
 
 ##Liste des méthodes
-*    [Object.delegate(obj, method, m_alias)](#Object.delegateobj-method-m_alias)
-*    [Object.delegate_accessor(obj, field)](#Object.delegate_accessorobj-field)
-*    [Object.externalize(obj, m_alias)](#Object.externalizeobj-m_alias)
+*    [Object.delegate(obj, method, m_alias)](#object.delegateobj-method-m_alias)
+*    [Object.delegate_accessor(obj, field)](#object.delegate_accessorobj-field)
+*    [Object.externalize(obj, m_alias)](#object.externalizeobj-m_alias)
 *    [self.attr_values](#self.attr_values)
 *    [self.buffer(size)](#self.buffersize)
 *    [self.identity](#self.identity)

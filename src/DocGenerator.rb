@@ -85,7 +85,7 @@ module DocGenerator
     def np; "<br />"; end
     def title(size, value); ("<h#{size}>") + value.to_s + "</h#{size}>\n"; end
     def strong(value); "<strong>#{value}</strong>"; end
-    def strong_t(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
+    def strong_t(value, n=""); "<strong name='#{n}' id='#{n.downcase}'>#{value}</strong>"; end
     def italic(value); "<i>#{value}</i>"; end 
     def ul; "<ul>"; end
     def end_ul; "</ul>"; end
@@ -231,7 +231,7 @@ module DocGenerator
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
-          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name2}#{inline_args2}"}"))
+          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name2}#{inline_args2}"}".downcase))
         end
         return ls + mdl.end_ul + t
       end
