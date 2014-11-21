@@ -5,23 +5,50 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##Liste des commandes
 *    [actor_accessory(id)](#actor_accessoryid)
+*    [actor_agility(id)](#actor_agilityid)
+*    [actor_attack(id)](#actor_attackid)
 *    [actor_body(id)](#actor_bodyid)
+*    [actor_counter_attack_rate(id)](#actor_counter_attack_rateid)
+*    [actor_critical_evasion_rate(id)](#actor_critical_evasion_rateid)
+*    [actor_critical_rate(id)](#actor_critical_rateid)
+*    [actor_defense(id)](#actor_defenseid)
 *    [actor_description(id)](#actor_descriptionid)
 *    [actor_equip(id, slot)](#actor_equipid-slot)
+*    [actor_evasion_rate(id)](#actor_evasion_rateid)
 *    [actor_exp(id)](#actor_expid)
+*    [actor_experience_rate(id)](#actor_experience_rateid)
+*    [actor_floor_damage_rate(id)](#actor_floor_damage_rateid)
+*    [actor_guard_effect_rate(id)](#actor_guard_effect_rateid)
 *    [actor_has_accessory?(id)](#actor_has_accessoryid)
 *    [actor_has_body?(id)](#actor_has_bodyid)
 *    [actor_has_head?(id)](#actor_has_headid)
 *    [actor_has_shield?(id)](#actor_has_shieldid)
 *    [actor_has_weapon?(id)](#actor_has_weaponid)
 *    [actor_head(id)](#actor_headid)
+*    [actor_hit_rate(id)](#actor_hit_rateid)
 *    [actor_hp(id)](#actor_hpid)
+*    [actor_hp_regeneration_rate(id)](#actor_hp_regeneration_rateid)
 *    [actor_level(id)](#actor_levelid)
 *    [actor_level_max(id)](#actor_level_maxid)
+*    [actor_luck(id)](#actor_luckid)
+*    [actor_magic_attack(id)](#actor_magic_attackid)
+*    [actor_magic_defense(id)](#actor_magic_defenseid)
+*    [actor_magical_damage_rate(id)](#actor_magical_damage_rateid)
+*    [actor_magical_evasion_rate(id)](#actor_magical_evasion_rateid)
+*    [actor_max_hp(id)](#actor_max_hpid)
+*    [actor_max_mp(id)](#actor_max_mpid)
 *    [actor_mp(id)](#actor_mpid)
+*    [actor_mp_cost_rate(id)](#actor_mp_cost_rateid)
+*    [actor_mp_regeneration_rate(id)](#actor_mp_regeneration_rateid)
 *    [actor_note(id)](#actor_noteid)
+*    [actor_pharmacology(id)](#actor_pharmacologyid)
+*    [actor_physical_damage_rate(id)](#actor_physical_damage_rateid)
+*    [actor_recovery_effect_rate(id)](#actor_recovery_effect_rateid)
 *    [actor_shield(id)](#actor_shieldid)
+*    [actor_target_rate(id)](#actor_target_rateid)
 *    [actor_tp(id)](#actor_tpid)
+*    [actor_tp_charge_rate(id)](#actor_tp_charge_rateid)
+*    [actor_tp_regeneration_rate(id)](#actor_tp_regeneration_rateid)
 *    [actor_weapon(id)](#actor_weaponid)
 
 
@@ -36,9 +63,69 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_agility(id)
+
+> renvoie les points d'agilité du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_attack(id)
+
+> renvoie les points d'attaque du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
 ##### actor_body(id)
 
 > renvoie l'id de l'armure équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_counter_attack_rate(id)
+
+> renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_critical_evasion_rate(id)
+
+> renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_critical_rate(id)
+
+> renvoie la probabilité de coup critique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_defense(id)
+
+> renvoie les points de défense du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -67,9 +154,49 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `slot`|`Fixnum`|Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory  
 
 
+##### actor_evasion_rate(id)
+
+> renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
 ##### actor_exp(id)
 
 > renvoie les points d'expériences du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_experience_rate(id)
+
+> renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_floor_damage_rate(id)
+
+> renvoie le pourcentage de dommage des terrains reçu du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_guard_effect_rate(id)
+
+> renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -137,9 +264,29 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_hit_rate(id)
+
+> renvoie la probabilité de toucher du héros référencé par son ID sur un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
 ##### actor_hp(id)
 
 > renvoie les points de vie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_hp_regeneration_rate(id)
+
+> renvoie le pourcentage de régénration de HP à chaque tour du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -167,9 +314,99 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_luck(id)
+
+> renvoie les points de chance du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_magic_attack(id)
+
+> renvoie les points d'attaque magique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_magic_defense(id)
+
+> renvoie les points de défense magique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_magical_damage_rate(id)
+
+> renvoie le pourcentage de dommage magique reçu du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_magical_evasion_rate(id)
+
+> renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_max_hp(id)
+
+> renvoie le nombre de points de vie maximum du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_max_mp(id)
+
+> renvoie le nombre de points de magie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
 ##### actor_mp(id)
 
 > renvoie les points de magie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_mp_cost_rate(id)
+
+> renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_mp_regeneration_rate(id)
+
+> renvoie le pourcentage de régénration MP à chaque tour du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -187,6 +424,36 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_pharmacology(id)
+
+> renvoie le pourcentage de HP/MP récupéré via un objet du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_physical_damage_rate(id)
+
+> renvoie le pourcentage de dommage physique reçu du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_recovery_effect_rate(id)
+
+> renvoie le pourcentage de MP/HP recu, du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
 ##### actor_shield(id)
 
 > renvoie l'id du bouclier équipé du héros référencé par son ID
@@ -197,9 +464,39 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_target_rate(id)
+
+> renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
 ##### actor_tp(id)
 
 > renvoie les points de temps du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_tp_charge_rate(id)
+
+> renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_tp_regeneration_rate(id)
+
+> renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID
 
   
 > Nom|Type|Description  

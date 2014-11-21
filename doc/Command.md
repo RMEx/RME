@@ -5,23 +5,51 @@ Collection des commandes EventExtender
 
 ##Liste des méthodes
 *    [Command.actor_accessory(id)](#Command.actor_accessoryid)
+*    [Command.actor_agility(id)](#Command.actor_agilityid)
+*    [Command.actor_attack(id)](#Command.actor_attackid)
 *    [Command.actor_body(id)](#Command.actor_bodyid)
+*    [Command.actor_counter_attack_rate(id)](#Command.actor_counter_attack_rateid)
+*    [Command.actor_critical_evasion_rate(id)](#Command.actor_critical_evasion_rateid)
+*    [Command.actor_critical_rate(id)](#Command.actor_critical_rateid)
+*    [Command.actor_defense(id)](#Command.actor_defenseid)
 *    [Command.actor_description(id)](#Command.actor_descriptionid)
 *    [Command.actor_equip(id, slot)](#Command.actor_equipid-slot)
+*    [Command.actor_evasion_rate(id)](#Command.actor_evasion_rateid)
 *    [Command.actor_exp(id)](#Command.actor_expid)
+*    [Command.actor_experience_rate(id)](#Command.actor_experience_rateid)
+*    [Command.actor_floor_damage_rate(id)](#Command.actor_floor_damage_rateid)
+*    [Command.actor_guard_effect_rate(id)](#Command.actor_guard_effect_rateid)
 *    [Command.actor_has_accessory?(id)](#Command.actor_has_accessoryid)
 *    [Command.actor_has_body?(id)](#Command.actor_has_bodyid)
 *    [Command.actor_has_head?(id)](#Command.actor_has_headid)
 *    [Command.actor_has_shield?(id)](#Command.actor_has_shieldid)
 *    [Command.actor_has_weapon?(id)](#Command.actor_has_weaponid)
 *    [Command.actor_head(id)](#Command.actor_headid)
+*    [Command.actor_hit_rate(id)](#Command.actor_hit_rateid)
 *    [Command.actor_hp(id)](#Command.actor_hpid)
+*    [Command.actor_hp_regeneration_rate(id)](#Command.actor_hp_regeneration_rateid)
 *    [Command.actor_level(id)](#Command.actor_levelid)
 *    [Command.actor_level_max(id)](#Command.actor_level_maxid)
+*    [Command.actor_luck(id)](#Command.actor_luckid)
+*    [Command.actor_magic_attack(id)](#Command.actor_magic_attackid)
+*    [Command.actor_magic_defense(id)](#Command.actor_magic_defenseid)
+*    [Command.actor_magical_damage_rate(id)](#Command.actor_magical_damage_rateid)
+*    [Command.actor_magical_evasion_rate(id)](#Command.actor_magical_evasion_rateid)
+*    [Command.actor_magical_reflection_rate(id)](#Command.actor_magical_reflection_rateid)
+*    [Command.actor_max_hp(id)](#Command.actor_max_hpid)
+*    [Command.actor_max_mp(id)](#Command.actor_max_mpid)
 *    [Command.actor_mp(id)](#Command.actor_mpid)
+*    [Command.actor_mp_cost_rate(id)](#Command.actor_mp_cost_rateid)
+*    [Command.actor_mp_regeneration_rate(id)](#Command.actor_mp_regeneration_rateid)
 *    [Command.actor_note(id)](#Command.actor_noteid)
+*    [Command.actor_pharmacology(id)](#Command.actor_pharmacologyid)
+*    [Command.actor_physical_damage_rate(id)](#Command.actor_physical_damage_rateid)
+*    [Command.actor_recovery_effect_rate(id)](#Command.actor_recovery_effect_rateid)
 *    [Command.actor_shield(id)](#Command.actor_shieldid)
+*    [Command.actor_target_rate(id)](#Command.actor_target_rateid)
 *    [Command.actor_tp(id)](#Command.actor_tpid)
+*    [Command.actor_tp_charge_rate(id)](#Command.actor_tp_charge_rateid)
+*    [Command.actor_tp_regeneration_rate(id)](#Command.actor_tp_regeneration_rateid)
 *    [Command.actor_weapon(id)](#Command.actor_weaponid)
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
@@ -220,9 +248,93 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_agility(id)
+
+> renvoie les points d'agilité du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_attack(id)
+
+> renvoie les points d'attaque du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_body(id)
 
 > renvoie l'id de l'armure équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_counter_attack_rate(id)
+
+> renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_critical_evasion_rate(id)
+
+> renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_critical_rate(id)
+
+> renvoie la probabilité de coup critique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_defense(id)
+
+> renvoie les points de défense du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -263,9 +375,65 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_evasion_rate(id)
+
+> renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_exp(id)
 
 > renvoie les points d'expériences du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_experience_rate(id)
+
+> renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_floor_damage_rate(id)
+
+> renvoie le pourcentage de dommage des terrains reçu du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_guard_effect_rate(id)
+
+> renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -361,9 +529,37 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_hit_rate(id)
+
+> renvoie la probabilité de toucher du héros référencé par son ID sur un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_hp(id)
 
 > renvoie les points de vie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_hp_regeneration_rate(id)
+
+> renvoie le pourcentage de régénration de HP à chaque tour du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -403,9 +599,149 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_luck(id)
+
+> renvoie les points de chance du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_magic_attack(id)
+
+> renvoie les points d'attaque magique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_magic_defense(id)
+
+> renvoie les points de défense magique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_magical_damage_rate(id)
+
+> renvoie le pourcentage de dommage magique reçu du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_magical_evasion_rate(id)
+
+> renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_magical_reflection_rate(id)
+
+> renvoie la probabilité d'une réflexion magique du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_max_hp(id)
+
+> renvoie le nombre de points de vie maximum du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_max_mp(id)
+
+> renvoie le nombre de points de magie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_mp(id)
 
 > renvoie les points de magie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_mp_cost_rate(id)
+
+> renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_mp_regeneration_rate(id)
+
+> renvoie le pourcentage de régénration MP à chaque tour du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -431,6 +767,48 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_pharmacology(id)
+
+> renvoie le pourcentage de HP/MP récupéré via un objet du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_physical_damage_rate(id)
+
+> renvoie le pourcentage de dommage physique reçu du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_recovery_effect_rate(id)
+
+> renvoie le pourcentage de MP/HP recu, du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_shield(id)
 
 > renvoie l'id du bouclier équipé du héros référencé par son ID
@@ -445,9 +823,51 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_target_rate(id)
+
+> renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_tp(id)
 
 > renvoie les points de temps du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_tp_charge_rate(id)
+
+> renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_tp_regeneration_rate(id)
+
+> renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID
 
   
 > Nom|Type|Description  

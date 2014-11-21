@@ -1763,7 +1763,7 @@ register_command :party, "Command.lose_gold"
 link_method_documentation "Command.actor_", 
                         "héros référencé par son ID",
                         {
-                          [:id => "ID de l'acteur", :Fixnum]
+                          :id => ["ID de l'acteur", :Fixnum]
                         }
 register_command :actors, "Command.actor_"
 =end
@@ -1901,6 +1901,202 @@ link_method_documentation "Command.actor_tp",
                           :id => ["ID de l'acteur", :Fixnum], 
                         }
 register_command :actors, "Command.actor_tp"
+
+link_method_documentation "Command.actor_max_hp", 
+                        "renvoie le nombre de points de vie maximum du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_max_hp"
+
+link_method_documentation "Command.actor_max_mp", 
+                        "renvoie le nombre de points de magie du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_max_mp"
+
+link_method_documentation "Command.actor_attack", 
+                        "renvoie les points d'attaque du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_attack"
+
+link_method_documentation "Command.actor_defense", 
+                        "renvoie les points de défense du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_defense"
+
+link_method_documentation "Command.actor_magic_attack", 
+                        "renvoie les points d'attaque magique du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_magic_attack"
+
+link_method_documentation "Command.actor_magic_defense", 
+                        "renvoie les points de défense magique du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_magic_defense"
+
+link_method_documentation "Command.actor_agility", 
+                        "renvoie les points d'agilité du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_agility"
+
+link_method_documentation "Command.actor_luck", 
+                        "renvoie les points de chance du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_luck"
+
+link_method_documentation "Command.actor_hit_rate", 
+                        "renvoie la probabilité de toucher du héros référencé par son ID sur un ennemi",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_hit_rate"
+
+link_method_documentation "Command.actor_evasion_rate", 
+                        "renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_evasion_rate"
+
+link_method_documentation "Command.actor_critical_rate", 
+                        "renvoie la probabilité de coup critique du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_critical_rate"
+
+link_method_documentation "Command.actor_critical_evasion_rate", 
+                        "renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_critical_evasion_rate"
+
+link_method_documentation "Command.actor_magical_evasion_rate", 
+                        "renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_magical_evasion_rate"
+
+link_method_documentation "Command.actor_magical_reflection_rate", 
+                        "renvoie la probabilité d'une réflexion magique du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_magical_reflexion_rate"
+
+link_method_documentation "Command.actor_counter_attack_rate", 
+                        "renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_counter_attack_rate"
+
+link_method_documentation "Command.actor_hp_regeneration_rate", 
+                        "renvoie le pourcentage de régénration de HP à chaque tour du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_hp_regeneration_rate"
+
+link_method_documentation "Command.actor_mp_regeneration_rate", 
+                        "renvoie le pourcentage de régénration MP à chaque tour du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_mp_regeneration_rate"
+
+link_method_documentation "Command.actor_tp_regeneration_rate", 
+                        "renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_tp_regeneration_rate"
+
+link_method_documentation "Command.actor_target_rate", 
+                        "renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_target_rate"
+
+link_method_documentation "Command.actor_guard_effect_rate", 
+                        "renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_guard_effect_rate"
+
+link_method_documentation "Command.actor_recovery_effect_rate", 
+                        "renvoie le pourcentage de MP/HP recu, du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_recovery_effect_rate"
+
+link_method_documentation "Command.actor_pharmacology", 
+                        "renvoie le pourcentage de HP/MP récupéré via un objet du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_pharmacology"
+
+link_method_documentation "Command.actor_mp_cost_rate", 
+                        "renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_mp_cost_rate"
+
+link_method_documentation "Command.actor_tp_charge_rate", 
+                        "renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_tp_charge_rate"
+
+link_method_documentation "Command.actor_physical_damage_rate", 
+                        "renvoie le pourcentage de dommage physique reçu du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_physical_damage_rate"
+
+link_method_documentation "Command.actor_magical_damage_rate", 
+                        "renvoie le pourcentage de dommage magique reçu du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_magical_damage_rate"
+
+link_method_documentation "Command.actor_floor_damage_rate", 
+                        "renvoie le pourcentage de dommage des terrains reçu du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_floor_damage_rate"
+
+link_method_documentation "Command.actor_experience_rate", 
+                        "renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_experience_rate"
 
 end
 
