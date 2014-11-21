@@ -12,9 +12,9 @@ Nom|Description
 `width`|(Lecture/écriture) Largeur du rectangle  
 `height`|(Lecture/écriture) Hauteur du rectangle  
 ##Liste des méthodes
-*    [self.append(obj)](#self.appendobj)
-*    [self.calc_height](#self.calc_height)
-*    [self.calc_width](#self.calc_width)
+*    [self.append(obj)](#selfappendobj)
+*    [self.calc_height](#selfcalc_height)
+*    [self.calc_width](#selfcalc_width)
 
 
 ##Description des méthodes
