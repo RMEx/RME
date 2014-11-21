@@ -1772,331 +1772,517 @@ link_method_documentation "Command.actor_equip",
                         "Renvoie l'id de l'équipement du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                          :slot => ["Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory", :Fixnum]
-                        }
+                          :slot => ["Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory", :Symbol]
+                        }, true
 register_command :actors, "Command.actor_equip"
 
 link_method_documentation "Command.actor_weapon", 
                         "renvoie l'id de l'arme équipée du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_weapon"
 
 link_method_documentation "Command.actor_shield", 
                         "renvoie l'id du bouclier équipé du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_shield"
 
 link_method_documentation "Command.actor_head", 
                         "renvoie l'id du casque équipée du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true 
 register_command :actors, "Command.actor_head"
 
 link_method_documentation "Command.actor_body", 
                         "renvoie l'id de l'armure équipée du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_body"
 
 link_method_documentation "Command.actor_description", 
                         "renvoie la déscription du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_description"
 
 link_method_documentation "Command.actor_accessory", 
                         "renvoie l'id l' accessoire équipé du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_accessory"
 
 link_method_documentation "Command.actor_has_weapon?", 
                         "renvoie true si le héros référencé par son ID est équipé d'une arme, false sinon",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_has_weapon?"
 
 link_method_documentation "Command.actor_has_shield?", 
                         "renvoie true si le héros référencé par son ID est équipé d'un bouclier, false sinon",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_has_shield?"
 
 link_method_documentation "Command.actor_has_head?", 
                         "renvoie true si le héros référencé par son ID est équipé d'une casque, false sinon",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_has_head?"
 
 link_method_documentation "Command.actor_has_body?", 
                         "renvoie true si le héros référencé par son ID est équipé d'une armure, false sinon",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_has_body?"
 
 link_method_documentation "Command.actor_has_accessory?", 
                         "renvoie true si le héros référencé par son ID est équipé d'un accessoire, false sinon",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_has_accessory?"
 
 link_method_documentation "Command.actor_level", 
                         "renvoie le niveau du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_level"
 
 link_method_documentation "Command.actor_level_max", 
                         "renvoie le niveau maximum du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_level_max"
 
 link_method_documentation "Command.actor_exp", 
                         "renvoie les points d'expériences du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_exp"
 
 link_method_documentation "Command.actor_note", 
                         "renvoie le commentaire de la base de données du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_note"
 
 link_method_documentation "Command.actor_hp", 
                         "renvoie les points de vie du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_hp"
 
 link_method_documentation "Command.actor_mp", 
                         "renvoie les points de magie du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_mp"
 
 link_method_documentation "Command.actor_tp", 
                         "renvoie les points de temps du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum], 
-                        }
+                        }, true
 register_command :actors, "Command.actor_tp"
 
 link_method_documentation "Command.actor_max_hp", 
                         "renvoie le nombre de points de vie maximum du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_max_hp"
 
 link_method_documentation "Command.actor_max_mp", 
                         "renvoie le nombre de points de magie du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_max_mp"
 
 link_method_documentation "Command.actor_attack", 
                         "renvoie les points d'attaque du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_attack"
 
 link_method_documentation "Command.actor_defense", 
                         "renvoie les points de défense du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_defense"
 
 link_method_documentation "Command.actor_magic_attack", 
                         "renvoie les points d'attaque magique du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_magic_attack"
 
 link_method_documentation "Command.actor_magic_defense", 
                         "renvoie les points de défense magique du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_magic_defense"
 
 link_method_documentation "Command.actor_agility", 
                         "renvoie les points d'agilité du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_agility"
 
 link_method_documentation "Command.actor_luck", 
                         "renvoie les points de chance du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_luck"
 
 link_method_documentation "Command.actor_hit_rate", 
                         "renvoie la probabilité de toucher du héros référencé par son ID sur un ennemi",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_hit_rate"
 
 link_method_documentation "Command.actor_evasion_rate", 
                         "renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_evasion_rate"
 
 link_method_documentation "Command.actor_critical_rate", 
                         "renvoie la probabilité de coup critique du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_critical_rate"
 
 link_method_documentation "Command.actor_critical_evasion_rate", 
                         "renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_critical_evasion_rate"
 
 link_method_documentation "Command.actor_magical_evasion_rate", 
                         "renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_magical_evasion_rate"
 
 link_method_documentation "Command.actor_magical_reflection_rate", 
                         "renvoie la probabilité d'une réflexion magique du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_magical_reflexion_rate"
 
 link_method_documentation "Command.actor_counter_attack_rate", 
                         "renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_counter_attack_rate"
 
 link_method_documentation "Command.actor_hp_regeneration_rate", 
                         "renvoie le pourcentage de régénration de HP à chaque tour du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_hp_regeneration_rate"
 
 link_method_documentation "Command.actor_mp_regeneration_rate", 
                         "renvoie le pourcentage de régénration MP à chaque tour du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_mp_regeneration_rate"
 
 link_method_documentation "Command.actor_tp_regeneration_rate", 
                         "renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_tp_regeneration_rate"
 
 link_method_documentation "Command.actor_target_rate", 
                         "renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_target_rate"
 
 link_method_documentation "Command.actor_guard_effect_rate", 
                         "renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_guard_effect_rate"
 
 link_method_documentation "Command.actor_recovery_effect_rate", 
                         "renvoie le pourcentage de MP/HP recu, du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_recovery_effect_rate"
 
 link_method_documentation "Command.actor_pharmacology", 
                         "renvoie le pourcentage de HP/MP récupéré via un objet du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_pharmacology"
 
 link_method_documentation "Command.actor_mp_cost_rate", 
                         "renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_mp_cost_rate"
 
 link_method_documentation "Command.actor_tp_charge_rate", 
                         "renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_tp_charge_rate"
 
 link_method_documentation "Command.actor_physical_damage_rate", 
                         "renvoie le pourcentage de dommage physique reçu du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_physical_damage_rate"
 
 link_method_documentation "Command.actor_magical_damage_rate", 
                         "renvoie le pourcentage de dommage magique reçu du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_magical_damage_rate"
 
 link_method_documentation "Command.actor_floor_damage_rate", 
                         "renvoie le pourcentage de dommage des terrains reçu du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_floor_damage_rate"
 
 link_method_documentation "Command.actor_experience_rate", 
                         "renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
-                        }
+                        }, true
 register_command :actors, "Command.actor_experience_rate"
+
+link_method_documentation "Command.actor_name", 
+                        "renvoie le nom du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_name"
+
+link_method_documentation "Command.set_actor_name", 
+                        "modifie le nom du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :new_name => ["Nouveau nom", :String]
+                        }
+register_command :actors, "Command.set_actor_name"
+
+link_method_documentation "Command.actor_nickname", 
+                        "renvoie le surnom du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_nickname"
+
+link_method_documentation "Command.set_actor_nickname", 
+                        "modifie le surnom du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :new_name => ["Nouveau surnom", :String]
+                        }
+register_command :actors, "Command.set_actor_nickname"
+
+link_method_documentation "Command.actor_character_name", 
+                        "renvoie le nom du charset du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_character_name"
+
+link_method_documentation "Command.actor_character_index", 
+                        "renvoie l'index du charset du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_character_index"
+
+link_method_documentation "Command.actor_face_name", 
+                        "renvoie le nom du faceset du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_face_name"
+
+link_method_documentation "Command.actor_face_index", 
+                        "renvoie l'index du faceset du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_face_index"
+
+link_method_documentation "Command.actor_class", 
+                        "renvoie l'ID de la classe du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_class"
+
+link_method_documentation "Command.actor_exp_for_next_level", 
+                        "renvoie le nombre d'expérience nécéssaire pour passer au niveau suivant du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_exp_for_next_level"
+
+link_method_documentation "Command.actor_change_equip", 
+                        "Change l'équipement du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :slot => ["Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)", :Symbol], 
+                          :object_id => ["ID de l'Arme ou de l'Armure (La commande déduira s'il doit s'agir d'une arme ou d'une armure)", :Fixnum]
+                        }
+register_command :actors, "Command.actor_change_equip"
+
+link_method_documentation "Command.actor_equip_weapon", 
+                        "Change l'arme du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :object_id => ["ID de l'Arme", :Fixnum]
+                        }
+register_command :actors, "Command.actor_equip_weapon"
+
+link_method_documentation "Command.actor_equip_shield", 
+                        "Change le bouclier du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :object_id => ["ID de l'Armure", :Fixnum]
+                        }
+register_command :actors, "Command.actor_equip_shield"
+
+link_method_documentation "Command.actor_equip_head", 
+                        "Change le casque du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :object_id => ["ID de l'Armure", :Fixnum]
+                        }
+register_command :actors, "Command.actor_equip_head"
+
+link_method_documentation "Command.actor_equip_body", 
+                        "Change l'armure du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :object_id => ["ID de l'Armure", :Fixnum]
+                        }
+register_command :actors, "Command.actor_equip_body"
+
+link_method_documentation "Command.actor_equip_accessory", 
+                        "Change l'accessoire du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :object_id => ["ID de l'Armure", :Fixnum]
+                        }
+register_command :actors, "Command.actor_equip_accessory"
+
+link_method_documentation "Command.actor_optimize_equipement", 
+                        "Optimise l'équipement du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_optimize_equipement"
+
+link_method_documentation "Command.actor_level_up", 
+                        "fait gagner un niveau au héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_level_up"
+
+link_method_documentation "Command.actor_level_down", 
+                        "fait perdre un niveau au héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }
+register_command :actors, "Command.actor_level_down"
+
+link_method_documentation "Command.actor_give_exp", 
+                        "fait gagner de l'expérience au héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum], 
+                          :exp => ["Expérience donnée", :Fixnum]
+                        }
+register_command :actors, "Command.actor_give_exp"
+
+link_method_documentation "Command.actor_learn", 
+                        "Apprend la technique passée en argument au héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum],
+                          :skill_id => ["ID de le technique", :Fixnum],
+                        }
+register_command :actors, "Command.actor_learn"
+
+link_method_documentation "Command.actor_forget", 
+                        "Oublie la technique passée en argument au héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum],
+                          :skill_id => ["ID de le technique", :Fixnum],
+                        }
+register_command :actors, "Command.actor_forget"
+
+link_method_documentation "Command.actor_knowns", 
+                        "Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum],
+                          :skill_id => ["ID de le technique", :Fixnum],
+                        }
+register_command :actors, "Command.actor_knowns"
+
+link_method_documentation "Command.actor_set_graphic", 
+                        "Change les graphisme du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum],
+                          :character_name => ["Charset", :String],
+                          :character_index => ["index du Charset", :Fixnum],
+                          :face_name => ["Faceset", :String],
+                          :face_index => ["Index du faceset", :Fixnum],
+                        }
+register_command :actors, "Command.actor_set_graphic"
+
 
 end
 

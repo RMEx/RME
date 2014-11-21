@@ -8,16 +8,30 @@ Collection des commandes EventExtender
 *    [Command.actor_agility(id)](#Command.actor_agilityid)
 *    [Command.actor_attack(id)](#Command.actor_attackid)
 *    [Command.actor_body(id)](#Command.actor_bodyid)
+*    [Command.actor_change_equip(id, slot, object_id)](#Command.actor_change_equipid-slot-object_id)
+*    [Command.actor_character_index(id)](#Command.actor_character_indexid)
+*    [Command.actor_character_name(id)](#Command.actor_character_nameid)
+*    [Command.actor_class(id)](#Command.actor_classid)
 *    [Command.actor_counter_attack_rate(id)](#Command.actor_counter_attack_rateid)
 *    [Command.actor_critical_evasion_rate(id)](#Command.actor_critical_evasion_rateid)
 *    [Command.actor_critical_rate(id)](#Command.actor_critical_rateid)
 *    [Command.actor_defense(id)](#Command.actor_defenseid)
 *    [Command.actor_description(id)](#Command.actor_descriptionid)
 *    [Command.actor_equip(id, slot)](#Command.actor_equipid-slot)
+*    [Command.actor_equip_accessory(id, object_id)](#Command.actor_equip_accessoryid-object_id)
+*    [Command.actor_equip_body(id, object_id)](#Command.actor_equip_bodyid-object_id)
+*    [Command.actor_equip_head(id, object_id)](#Command.actor_equip_headid-object_id)
+*    [Command.actor_equip_shield(id, object_id)](#Command.actor_equip_shieldid-object_id)
+*    [Command.actor_equip_weapon(id, object_id)](#Command.actor_equip_weaponid-object_id)
 *    [Command.actor_evasion_rate(id)](#Command.actor_evasion_rateid)
 *    [Command.actor_exp(id)](#Command.actor_expid)
+*    [Command.actor_exp_for_next_level(id)](#Command.actor_exp_for_next_levelid)
 *    [Command.actor_experience_rate(id)](#Command.actor_experience_rateid)
+*    [Command.actor_face_index(id)](#Command.actor_face_indexid)
+*    [Command.actor_face_name(id)](#Command.actor_face_nameid)
 *    [Command.actor_floor_damage_rate(id)](#Command.actor_floor_damage_rateid)
+*    [Command.actor_forget(id, skill_id)](#Command.actor_forgetid-skill_id)
+*    [Command.actor_give_exp(id, exp)](#Command.actor_give_expid-exp)
 *    [Command.actor_guard_effect_rate(id)](#Command.actor_guard_effect_rateid)
 *    [Command.actor_has_accessory?(id)](#Command.actor_has_accessoryid)
 *    [Command.actor_has_body?(id)](#Command.actor_has_bodyid)
@@ -28,8 +42,12 @@ Collection des commandes EventExtender
 *    [Command.actor_hit_rate(id)](#Command.actor_hit_rateid)
 *    [Command.actor_hp(id)](#Command.actor_hpid)
 *    [Command.actor_hp_regeneration_rate(id)](#Command.actor_hp_regeneration_rateid)
+*    [Command.actor_knowns(id, skill_id)](#Command.actor_knownsid-skill_id)
+*    [Command.actor_learn(id, skill_id)](#Command.actor_learnid-skill_id)
 *    [Command.actor_level(id)](#Command.actor_levelid)
+*    [Command.actor_level_down(id)](#Command.actor_level_downid)
 *    [Command.actor_level_max(id)](#Command.actor_level_maxid)
+*    [Command.actor_level_up(id)](#Command.actor_level_upid)
 *    [Command.actor_luck(id)](#Command.actor_luckid)
 *    [Command.actor_magic_attack(id)](#Command.actor_magic_attackid)
 *    [Command.actor_magic_defense(id)](#Command.actor_magic_defenseid)
@@ -41,10 +59,14 @@ Collection des commandes EventExtender
 *    [Command.actor_mp(id)](#Command.actor_mpid)
 *    [Command.actor_mp_cost_rate(id)](#Command.actor_mp_cost_rateid)
 *    [Command.actor_mp_regeneration_rate(id)](#Command.actor_mp_regeneration_rateid)
+*    [Command.actor_name(id)](#Command.actor_nameid)
+*    [Command.actor_nickname(id)](#Command.actor_nicknameid)
 *    [Command.actor_note(id)](#Command.actor_noteid)
+*    [Command.actor_optimize_equipement(id)](#Command.actor_optimize_equipementid)
 *    [Command.actor_pharmacology(id)](#Command.actor_pharmacologyid)
 *    [Command.actor_physical_damage_rate(id)](#Command.actor_physical_damage_rateid)
 *    [Command.actor_recovery_effect_rate(id)](#Command.actor_recovery_effect_rateid)
+*    [Command.actor_set_graphic(id, character_name, character_index, face_name, face_index)](#Command.actor_set_graphicid-character_name-character_index-face_name-face_index)
 *    [Command.actor_shield(id)](#Command.actor_shieldid)
 *    [Command.actor_target_rate(id)](#Command.actor_target_rateid)
 *    [Command.actor_tp(id)](#Command.actor_tpid)
@@ -202,6 +224,8 @@ Collection des commandes EventExtender
 *    [Command.save_count](#Command.save_count)
 *    [Command.scroll_lock?](#Command.scroll_lock)
 *    [Command.session_username](#Command.session_username)
+*    [Command.set_actor_name(id, new_name)](#Command.set_actor_nameid-new_name)
+*    [Command.set_actor_nickname(id, new_name)](#Command.set_actor_nicknameid-new_name)
 *    [Command.shift?](#Command.shift)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
 *    [Command.start_map_id](#Command.start_map_id)
@@ -279,6 +303,64 @@ Collection des commandes EventExtender
 ##### Command.actor_body(id)
 
 > renvoie l'id de l'armure équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_change_equip(id, slot, object_id)
+
+> Change l'équipement du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`slot`|`Symbol`|Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)  
+`object_id`|`Fixnum`|ID de l'Arme ou de l'Armure (La commande déduira s'il doit s'agir d'une arme ou d'une armure)  
+
+
+
+
+
+
+##### Command.actor_character_index(id)
+
+> renvoie l'index du charset du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_character_name(id)
+
+> renvoie le nom du charset du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_class(id)
+
+> renvoie l'ID de la classe du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -368,7 +450,82 @@ Collection des commandes EventExtender
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
-`slot`|`Fixnum`|Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory  
+`slot`|`Symbol`|Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory  
+
+
+
+
+
+
+##### Command.actor_equip_accessory(id, object_id)
+
+> Change l'accessoire du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`object_id`|`Fixnum`|ID de l'Armure  
+
+
+
+
+
+
+##### Command.actor_equip_body(id, object_id)
+
+> Change l'armure du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`object_id`|`Fixnum`|ID de l'Armure  
+
+
+
+
+
+
+##### Command.actor_equip_head(id, object_id)
+
+> Change le casque du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`object_id`|`Fixnum`|ID de l'Armure  
+
+
+
+
+
+
+##### Command.actor_equip_shield(id, object_id)
+
+> Change le bouclier du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`object_id`|`Fixnum`|ID de l'Armure  
+
+
+
+
+
+
+##### Command.actor_equip_weapon(id, object_id)
+
+> Change l'arme du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`object_id`|`Fixnum`|ID de l'Arme  
 
 
 
@@ -403,9 +560,51 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_exp_for_next_level(id)
+
+> renvoie le nombre d'expérience nécéssaire pour passer au niveau suivant du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_experience_rate(id)
 
 > renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_face_index(id)
+
+> renvoie l'index du faceset du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_face_name(id)
+
+> renvoie le nom du faceset du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -425,6 +624,36 @@ Collection des commandes EventExtender
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_forget(id, skill_id)
+
+> Oublie la technique passée en argument au héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`skill_id`|`Fixnum`|ID de le technique  
+
+
+
+
+
+
+##### Command.actor_give_exp(id, exp)
+
+> fait gagner de l'expérience au héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`exp`|`Fixnum`|Expérience donnée  
 
 
 
@@ -571,6 +800,36 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_knowns(id, skill_id)
+
+> Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`skill_id`|`Fixnum`|ID de le technique  
+
+
+
+
+
+
+##### Command.actor_learn(id, skill_id)
+
+> Apprend la technique passée en argument au héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`skill_id`|`Fixnum`|ID de le technique  
+
+
+
+
+
+
 ##### Command.actor_level(id)
 
 > renvoie le niveau du héros référencé par son ID
@@ -585,9 +844,37 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_level_down(id)
+
+> fait perdre un niveau au héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_level_max(id)
 
 > renvoie le niveau maximum du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_level_up(id)
+
+> fait gagner un niveau au héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -753,9 +1040,51 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_name(id)
+
+> renvoie le nom du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_nickname(id)
+
+> renvoie le surnom du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.actor_note(id)
 
 > renvoie le commentaire de la base de données du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_optimize_equipement(id)
+
+> Optimise l'équipement du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -803,6 +1132,24 @@ Collection des commandes EventExtender
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_set_graphic(id, character_name, character_index, face_name, face_index)
+
+> Change les graphisme du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`character_name`|`String`|Charset  
+`character_index`|`Fixnum`|index du Charset  
+`face_name`|`String`|Faceset  
+`face_index`|`Fixnum`|Index du faceset  
 
 
 
@@ -3055,6 +3402,36 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.set_actor_name(id, new_name)
+
+> modifie le nom du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`new_name`|`String`|Nouveau nom  
+
+
+
+
+
+
+##### Command.set_actor_nickname(id, new_name)
+
+> modifie le surnom du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`new_name`|`String`|Nouveau surnom  
+
 
 
 
