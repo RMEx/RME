@@ -2231,11 +2231,12 @@ module Command
   def type_equip(str)
     [:Weapon, :Shield, :Head, :Body, :Accessory].index(str)
   end
-  def actor_equip(id, t); $game_actors[id].equips[type_equip(t)]; end
+  def actor_equip(id, t); $game_actors[id].equips[type_equip(t)].id; end
   def actor_weapon(id); actor_equip(id, :Weapon); end 
   def actor_shield(id); actor_equip(id, :Shield); end 
   def actor_head(id); actor_equip(id, :Head); end 
   def actor_body(id); actor_equip(id, :Body); end 
+  def actor_description(id); $game_actors[id].description; end
   def actor_accessory(id); actor_equip(id, :Accessory); end
   def actor_has_weapon?(id); !!actor_weapon(id); end 
   def actor_has_shield?(id); !!actor_shield(id); end 
@@ -2287,8 +2288,24 @@ module Command
   def actor_face_index(id); $game_actors[id].face_index; end
   def actor_class(id); $game_actors[id].class_id; end
   def actor_exp_for_next_level(id); $game_actors[id].next_level_exp; end
-
-  
+  def actor_equip(id, slot, wp_id)
+    $game_actors[id].change_equip_by_id(type_equip(slot), wp_id)
+  end
+  def actor_equip_weapon(id, wp); actor_equip(id, :Weapon, wp_id); end 
+  def actor_equip_shield(id, wp); actor_equip(id, :Shield, wp_id); end 
+  def actor_equip_head(id, wp); actor_equip(id, :Head, wp_id); end 
+  def actor_equip_body(id, wp); actor_equip(id, :Body, wp_id); end 
+  def actor_equip_accessory(id, wp); actor_equip(id, :Accessory, wp_id); end 
+  def actor_optimize_equipement(id); $game_actors[id].optimize_equipement; end
+  def actor_level_up(id); $game_actors[id].level_up; end
+  def actor_level_down(id); $game_actors[id].level_down; end
+  def actor_give_exp(id, exp); $game_actors[id].gain_exp(exp); end
+  def actor_learn(id, skill_id); $game_actors[id].learn_skill(skill_id); end
+  def actor_forget(id, skill_id); $game_actors[id].forget_skill(skill_id); end
+  def actor_knowns?(id, skill_id); $game_actors[id].learn_skill?(skill_id); end
+  def actor_set_graphic(character_name, character_index, face_name, face_index)
+    $game_actors.set_graphic(character_name, character_index, face_name, face_index)
+  end
 end
 #==============================================================================
 # ** DataManager

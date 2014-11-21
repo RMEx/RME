@@ -4,6 +4,22 @@
 Collection des commandes EventExtender
 
 ##Liste des méthodes
+*    [Command.actor_accessory(id)](#Command.actor_accessoryid)
+*    [Command.actor_body(id)](#Command.actor_bodyid)
+*    [Command.actor_description(id)](#Command.actor_descriptionid)
+*    [Command.actor_equip(id, slot)](#Command.actor_equipid-slot)
+*    [Command.actor_exp(id)](#Command.actor_expid)
+*    [Command.actor_has_accessory?(id)](#Command.actor_has_accessoryid)
+*    [Command.actor_has_body?(id)](#Command.actor_has_bodyid)
+*    [Command.actor_has_head?(id)](#Command.actor_has_headid)
+*    [Command.actor_has_shield?(id)](#Command.actor_has_shieldid)
+*    [Command.actor_has_weapon?(id)](#Command.actor_has_weaponid)
+*    [Command.actor_head(id)](#Command.actor_headid)
+*    [Command.actor_level(id)](#Command.actor_levelid)
+*    [Command.actor_level_max(id)](#Command.actor_level_maxid)
+*    [Command.actor_note(id)](#Command.actor_noteid)
+*    [Command.actor_shield(id)](#Command.actor_shieldid)
+*    [Command.actor_weapon(id)](#Command.actor_weaponid)
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
 *    [Command.armor_agility(id)](#Command.armor_agilityid)
@@ -187,6 +203,231 @@ Collection des commandes EventExtender
 
 
 ##Description des méthodes
+##### Command.actor_accessory(id)
+
+> renvoie l'id l' accessoire équipé du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_body(id)
+
+> renvoie l'id de l'armure équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_description(id)
+
+> renvoie la déscription du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_equip(id, slot)
+
+> Renvoie l'id de l'équipement du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+`slot`|`l`|S  
+
+
+
+
+
+
+##### Command.actor_exp(id)
+
+> renvoie les points d'expériences du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_has_accessory?(id)
+
+> renvoie true si le héros référencé par son ID est équipé d'un accessoire, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_has_body?(id)
+
+> renvoie true si le héros référencé par son ID est équipé d'une armure, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_has_head?(id)
+
+> renvoie true si le héros référencé par son ID est équipé d'une casque, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_has_shield?(id)
+
+> renvoie true si le héros référencé par son ID est équipé d'un bouclier, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_has_weapon?(id)
+
+> renvoie true si le héros référencé par son ID est équipé d'une arme, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_head(id)
+
+> renvoie l'id du casque équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_level(id)
+
+> renvoie le niveau du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_level_max(id)
+
+> renvoie le niveau maximum du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_note(id)
+
+> renvoie le commentaire de la base de données du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_shield(id)
+
+> renvoie l'id du bouclier équipé du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
+##### Command.actor_weapon(id)
+
+> renvoie l'id de l'arme équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`D`|I  
+
+
+
+
+
+
 ##### Command.alt_gr?
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
