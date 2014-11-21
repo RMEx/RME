@@ -2779,6 +2779,34 @@ link_method_documentation "Command.skill_tp_gain",
                         }, true
 register_command :skills, "Command.skill_tp_gain"
 
+link_method_documentation "Command.skill_name", 
+                        "Renvoie le nom de la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_name"
+
+link_method_documentation "Command.skill_note", 
+                        "Renvoie le commentaire de la base de données de la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_note"
+
+link_method_documentation "Command.skill_description", 
+                        "Renvoie la description la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_description"
+
+link_method_documentation "Command.skill_icon", 
+                        "Renvoie l'index de l'icone de la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_icon"
+
 end
 
 ## Documentation generator

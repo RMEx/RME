@@ -7,6 +7,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_always_usable?(id)](#skill_always_usableid)
 *    [skill_battle_usable?(id)](#skill_battle_usableid)
 *    [skill_certain?(id)](#skill_certainid)
+*    [skill_description(id)](#skill_descriptionid)
 *    [skill_for_all?(id)](#skill_for_allid)
 *    [skill_for_all_allies?(id)](#skill_for_all_alliesid)
 *    [skill_for_all_dead_allies?(id)](#skill_for_all_dead_alliesid)
@@ -24,11 +25,14 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_for_random?(id)](#skill_for_randomid)
 *    [skill_for_three_random_enemies?(id)](#skill_for_three_random_enemiesid)
 *    [skill_for_two_random_enemies?(id)](#skill_for_two_random_enemiesid)
+*    [skill_icon(id)](#skill_iconid)
 *    [skill_magical?(id)](#skill_magicalid)
 *    [skill_menu_usable?(id)](#skill_menu_usableid)
+*    [skill_name(id)](#skill_nameid)
 *    [skill_nb_hits(id)](#skill_nb_hitsid)
 *    [skill_need_selection?(id)](#skill_need_selectionid)
 *    [skill_never_usable?(id)](#skill_never_usableid)
+*    [skill_note(id)](#skill_noteid)
 *    [skill_occasion(id)](#skill_occasionid)
 *    [skill_physical?(id)](#skill_physicalid)
 *    [skill_scope(id)](#skill_scopeid)
@@ -61,6 +65,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 ##### skill_certain?(id)
 
 > Renvoie true si une technique référencée par son ID a une garantie de réussite total, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+##### skill_description(id)
+
+> Renvoie la description la technique référencé par son ID
 
   
 > Nom|Type|Description  
@@ -238,6 +252,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 `id`|`Fixnum`|Id de la technique  
 
 
+##### skill_icon(id)
+
+> Renvoie l'index de l'icone de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
 ##### skill_magical?(id)
 
 > Renvoie true si une technique référencée par son ID produit un dommage magique, false sinon
@@ -251,6 +275,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 ##### skill_menu_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable dans le menu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+##### skill_name(id)
+
+> Renvoie le nom de la technique référencé par son ID
 
   
 > Nom|Type|Description  
@@ -281,6 +315,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 ##### skill_never_usable?(id)
 
 > Renvoie true si la technique référencé par son ID n'est jamais utilisable
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+##### skill_note(id)
+
+> Renvoie le commentaire de la base de données de la technique référencé par son ID
 
   
 > Nom|Type|Description  

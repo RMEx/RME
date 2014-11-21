@@ -2398,7 +2398,11 @@ module Command
   #--------------------------------------------------------------------------
   # * Skills
   #--------------------------------------------------------------------------
-    def skill_scope(id)
+  def skill_name(id); $data_skills[id].name; end 
+  def skill_note(id); $data_skills[id].note; end 
+  def skill_description(id); $data_skills[id].description; end
+  def skill_icon(id); $data_skills[id].icon_index; end
+  def skill_scope(id)
     $data_skills[id].scope
   end
   def skill_has_no_scope?(id)
@@ -2467,6 +2471,7 @@ module Command
   def skill_nb_hits(i); $data_skills[i].repeats; end 
   def skill_success_rate(i); $data_skills[i].success_rate; end
   def skill_tp_gain(i); $data_skills[i].tp_gain; end
+
 end
 #==============================================================================
 # ** DataManager

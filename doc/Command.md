@@ -269,6 +269,7 @@ Collection des commandes EventExtender
 *    [Command.skill_always_usable?(id)](#Command.skill_always_usableid)
 *    [Command.skill_battle_usable?(id)](#Command.skill_battle_usableid)
 *    [Command.skill_certain?(id)](#Command.skill_certainid)
+*    [Command.skill_description(id)](#Command.skill_descriptionid)
 *    [Command.skill_for_all?(id)](#Command.skill_for_allid)
 *    [Command.skill_for_all_allies?(id)](#Command.skill_for_all_alliesid)
 *    [Command.skill_for_all_dead_allies?(id)](#Command.skill_for_all_dead_alliesid)
@@ -287,11 +288,14 @@ Collection des commandes EventExtender
 *    [Command.skill_for_three_random_enemies?(id)](#Command.skill_for_three_random_enemiesid)
 *    [Command.skill_for_two_random_enemies?(id)](#Command.skill_for_two_random_enemiesid)
 *    [Command.skill_has_no_scope?(id)](#Command.skill_has_no_scopeid)
+*    [Command.skill_icon(id)](#Command.skill_iconid)
 *    [Command.skill_magical?(id)](#Command.skill_magicalid)
 *    [Command.skill_menu_usable?(id)](#Command.skill_menu_usableid)
+*    [Command.skill_name(id)](#Command.skill_nameid)
 *    [Command.skill_nb_hits(id)](#Command.skill_nb_hitsid)
 *    [Command.skill_need_selection?(id)](#Command.skill_need_selectionid)
 *    [Command.skill_never_usable?(id)](#Command.skill_never_usableid)
+*    [Command.skill_note(id)](#Command.skill_noteid)
 *    [Command.skill_number_of_targets(id)](#Command.skill_number_of_targetsid)
 *    [Command.skill_occasion(id)](#Command.skill_occasionid)
 *    [Command.skill_physical?(id)](#Command.skill_physicalid)
@@ -4095,6 +4099,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_description(id)
+
+> Renvoie la description la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_for_all?(id)
 
 > Renvoie true si une technique référencée par son ID cible tout le groupe, false sinon
@@ -4347,6 +4365,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_icon(id)
+
+> Renvoie l'index de l'icone de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_magical?(id)
 
 > Renvoie true si une technique référencée par son ID produit un dommage magique, false sinon
@@ -4364,6 +4396,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.skill_menu_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable dans le menu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_name(id)
+
+> Renvoie le nom de la technique référencé par son ID
 
   
 > Nom|Type|Description  
@@ -4406,6 +4452,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.skill_never_usable?(id)
 
 > Renvoie true si la technique référencé par son ID n'est jamais utilisable
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_note(id)
+
+> Renvoie le commentaire de la base de données de la technique référencé par son ID
 
   
 > Nom|Type|Description  
