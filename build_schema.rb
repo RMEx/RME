@@ -14,6 +14,7 @@ library("RME", 'src/') do
   add_author "Hiino"
   add_author "Raho"
   add_author "Grim", "grimfw@gmail.com"
+  add_author "Joke"
 
   add_component "RME.SDK",            "SDK.rb"
   add_component "RME.EvEx",           "EvEx.rb"
