@@ -6,6 +6,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 ##Liste des commandes
 *    [actor_accessory(id)](#actor_accessoryid)
 *    [actor_agility(id)](#actor_agilityid)
+*    [actor_armors(id)](#actor_armorsid)
 *    [actor_attack(id)](#actor_attackid)
 *    [actor_body(id)](#actor_bodyid)
 *    [actor_change_equip(id, slot, object_id)](#actor_change_equipid-slot-object_id)
@@ -72,6 +73,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_tp_charge_rate(id)](#actor_tp_charge_rateid)
 *    [actor_tp_regeneration_rate(id)](#actor_tp_regeneration_rateid)
 *    [actor_weapon(id)](#actor_weaponid)
+*    [actor_weapons(id)](#actor_weaponsid)
 *    [set_actor_name(id, new_name)](#set_actor_nameid-new_name)
 *    [set_actor_nickname(id, new_name)](#set_actor_nicknameid-new_name)
 
@@ -90,6 +92,16 @@ Offre des commandes pour obtenir des informations sur les acteurs
 ##### actor_agility(id)
 
 > renvoie les points d'agilité du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_armors(id)
+
+> renvoie le tableau des ID's des armures équipées du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -766,6 +778,16 @@ Offre des commandes pour obtenir des informations sur les acteurs
 ##### actor_weapon(id)
 
 > renvoie l'id de l'arme équipée du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_weapons(id)
+
+> renvoie le tableau des ID's des armes équipées du héros référencé par son ID
 
   
 > Nom|Type|Description  

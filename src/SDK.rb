@@ -1566,4 +1566,6 @@ module Command
   def scene; SceneManager.scene; end
   def wait(d); d.times {Fiber.yield}; end
   def session_username; USERNAME; end
+  def length(a); a.length; end
+  def get(a, i); a[i]; end
 end

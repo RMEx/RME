@@ -563,10 +563,21 @@ module Command
                         }, true
   register_command :standard, "Command.tone"
 
+  link_method_documentation "Command.get", 
+                        "Renvoie la cellule à la valeur donné d'un tableau",
+                        {:array =>["Tableau dont il faut renvoyer la taille", :Array], :index => ["Index à trouver", :Fixnum]}, true
+  register_command :standard, "Command.get"
+  link_snippet("Command.get", "Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule et que l'indexation des tableaux commence à 0)")
+
   link_method_documentation "Command.session_username", 
                         "Renvoie le nom d'utilisateur de la session Windows",
                         {}, true
   register_command :standard, "Command.session_username"
+
+  link_method_documentation "Command.length", 
+                        "Renvoie la taille d'un tableau",
+                        {:array =>["Tableau dont il faut renvoyer la taille", :Array]}, true
+  register_command :standard, "Command.length"
 
   link_method_documentation "Command.color", 
                         "Renvoie une couleur",
@@ -2282,6 +2293,21 @@ link_method_documentation "Command.actor_set_graphic",
                           :face_index => ["Index du faceset", :Fixnum],
                         }
 register_command :actors, "Command.actor_set_graphic"
+
+link_method_documentation "Command.actor_weapons", 
+                        "renvoie le tableau des ID's des armes équipées du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_weapons"
+
+
+link_method_documentation "Command.actor_armors", 
+                        "renvoie le tableau des ID's des armures équipées du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_armors"
 
 
 end

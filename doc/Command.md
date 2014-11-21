@@ -6,6 +6,7 @@ Collection des commandes EventExtender
 ##Liste des méthodes
 *    [Command.actor_accessory(id)](#Command.actor_accessoryid)
 *    [Command.actor_agility(id)](#Command.actor_agilityid)
+*    [Command.actor_armors(id)](#Command.actor_armorsid)
 *    [Command.actor_attack(id)](#Command.actor_attackid)
 *    [Command.actor_body(id)](#Command.actor_bodyid)
 *    [Command.actor_change_equip(id, slot, object_id)](#Command.actor_change_equipid-slot-object_id)
@@ -73,6 +74,7 @@ Collection des commandes EventExtender
 *    [Command.actor_tp_charge_rate(id)](#Command.actor_tp_charge_rateid)
 *    [Command.actor_tp_regeneration_rate(id)](#Command.actor_tp_regeneration_rateid)
 *    [Command.actor_weapon(id)](#Command.actor_weaponid)
+*    [Command.actor_weapons(id)](#Command.actor_weaponsid)
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
 *    [Command.armor_agility(id)](#Command.armor_agilityid)
@@ -100,6 +102,7 @@ Collection des commandes EventExtender
 *    [Command.fresh_event_id](#Command.fresh_event_id)
 *    [Command.gain_gold(amount)](#Command.gain_goldamount)
 *    [Command.game_title](#Command.game_title)
+*    [Command.get(array, index)](#Command.getarray-index)
 *    [Command.give_armor(id, amount, *include_equipement)](#Command.give_armorid-amount-include_equipement)
 *    [Command.give_item(id, amount)](#Command.give_itemid-amount)
 *    [Command.give_weapon(id, amount, *include_equipement)](#Command.give_weaponid-amount-include_equipement)
@@ -147,6 +150,7 @@ Collection des commandes EventExtender
 *    [Command.keyboard_any?(method, keys)](#Command.keyboard_anymethod-keys)
 *    [Command.keyboard_current_char](#Command.keyboard_current_char)
 *    [Command.keyboard_current_digit](#Command.keyboard_current_digit)
+*    [Command.length(array)](#Command.lengtharray)
 *    [Command.lose_gold(amount)](#Command.lose_goldamount)
 *    [Command.map_id](#Command.map_id)
 *    [Command.map_name](#Command.map_name)
@@ -275,6 +279,20 @@ Collection des commandes EventExtender
 ##### Command.actor_agility(id)
 
 > renvoie les points d'agilité du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_armors(id)
+
+> renvoie le tableau des ID's des armures équipées du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -1240,6 +1258,20 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_weapons(id)
+
+> renvoie le tableau des ID's des armes équipées du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
 ##### Command.alt_gr?
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
@@ -1607,6 +1639,26 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > 
 
 
+
+
+
+##### Command.get(array, index)
+
+> Renvoie la cellule à la valeur donné d'un tableau
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|Tableau dont il faut renvoyer la taille  
+`index`|`Fixnum`|Index à trouver  
+
+
+
+
+Exemple  
+```ruby  
+Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule et que l'indexation des tableaux commence à 0)  
+```
 
 
 
@@ -2272,6 +2324,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.length(array)
+
+> Renvoie la taille d'un tableau
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|Tableau dont il faut renvoyer la taille  
+
 
 
 

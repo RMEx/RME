@@ -5,6 +5,8 @@ Commandes standards
 
 ##Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
+*    [get(array, index)](#getarray-index)
+*    [length(array)](#lengtharray)
 *    [percent(value, max)](#percentvalue-max)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
@@ -23,6 +25,27 @@ Commandes standards
 --- | --- | ---  
 `percent`|`Fixnum`|Valeur à appliquer  
 `max`|`Fixnum`|Valeur maximum  
+
+
+##### get(array, index)
+
+> Renvoie la cellule à la valeur donné d'un tableau
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|Tableau dont il faut renvoyer la taille  
+`index`|`Fixnum`|Index à trouver  
+
+
+##### length(array)
+
+> Renvoie la taille d'un tableau
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|Tableau dont il faut renvoyer la taille  
 
 
 ##### percent(value, max)

@@ -2,6 +2,7 @@
 <a href='__command_list.html'>Retourner à l'index</a><br />Offre des commandes pour obtenir des informations sur les acteurs<br /><h2>Liste des commandes<ul></h2>
 <li><a href='#actor_accessoryid'>actor_accessory(id)</a></li>
 <li><a href='#actor_agilityid'>actor_agility(id)</a></li>
+<li><a href='#actor_armorsid'>actor_armors(id)</a></li>
 <li><a href='#actor_attackid'>actor_attack(id)</a></li>
 <li><a href='#actor_bodyid'>actor_body(id)</a></li>
 <li><a href='#actor_change_equipid-slot-object_id'>actor_change_equip(id, slot, object_id)</a></li>
@@ -68,11 +69,13 @@
 <li><a href='#actor_tp_charge_rateid'>actor_tp_charge_rate(id)</a></li>
 <li><a href='#actor_tp_regeneration_rateid'>actor_tp_regeneration_rate(id)</a></li>
 <li><a href='#actor_weaponid'>actor_weapon(id)</a></li>
+<li><a href='#actor_weaponsid'>actor_weapons(id)</a></li>
 <li><a href='#set_actor_nameid-new_name'>set_actor_name(id, new_name)</a></li>
 <li><a href='#set_actor_nicknameid-new_name'>set_actor_nickname(id, new_name)</a></li>
 </ul><h2>Description des commandes</h2>
 <strong name='actor_accessoryid' id='actor_accessoryid'>actor_accessory(id)</strong><br /><blockquote>renvoie l'id l' accessoire équipé du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_agilityid' id='actor_agilityid'>actor_agility(id)</strong><br /><blockquote>renvoie les points d'agilité du héros référencé par son ID</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_armorsid' id='actor_armorsid'>actor_armors(id)</strong><br /><blockquote>renvoie le tableau des ID's des armures équipées du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_attackid' id='actor_attackid'>actor_attack(id)</strong><br /><blockquote>renvoie les points d'attaque du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_bodyid' id='actor_bodyid'>actor_body(id)</strong><br /><blockquote>renvoie l'id de l'armure équipée du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_change_equipid-slot-object_id' id='actor_change_equipid-slot-object_id'>actor_change_equip(id, slot, object_id)</strong><br /><blockquote>Change l'équipement du héros référencé par son ID</blockquote>  
@@ -139,6 +142,7 @@
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_tp_charge_rateid' id='actor_tp_charge_rateid'>actor_tp_charge_rate(id)</strong><br /><blockquote>renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_tp_regeneration_rateid' id='actor_tp_regeneration_rateid'>actor_tp_regeneration_rate(id)</strong><br /><blockquote>renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_weaponid' id='actor_weaponid'>actor_weapon(id)</strong><br /><blockquote>renvoie l'id de l'arme équipée du héros référencé par son ID</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='actor_weaponsid' id='actor_weaponsid'>actor_weapons(id)</strong><br /><blockquote>renvoie le tableau des ID's des armes équipées du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr></table></blockquote><strong name='set_actor_nameid-new_name' id='set_actor_nameid-new_name'>set_actor_name(id, new_name)</strong><br /><blockquote>modifie le nom du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr><tr><td><code>new_name</code></td><td><code>String</code></td><td>Nouveau nom</td></tr></table></blockquote><strong name='set_actor_nicknameid-new_name' id='set_actor_nicknameid-new_name'>set_actor_nickname(id, new_name)</strong><br /><blockquote>modifie le surnom du héros référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'acteur</td></tr><tr><td><code>new_name</code></td><td><code>String</code></td><td>Nouveau surnom</td></tr></table></blockquote></body></html>
