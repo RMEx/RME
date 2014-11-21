@@ -85,7 +85,7 @@ module DocGenerator
     def np; "<br />"; end
     def title(size, value); ("<h#{size}>") + value.to_s + "</h#{size}>\n"; end
     def strong(value); "<strong>#{value}</strong>"; end
-    def strong_t(value, n=""); "<strong name='#{n}' id='#{n.downcase}'>#{value}</strong>"; end
+    def strong_t(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
     def italic(value); "<i>#{value}</i>"; end 
     def ul; "<ul>"; end
     def end_ul; "</ul>"; end
