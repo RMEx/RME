@@ -15,10 +15,13 @@ Collection des commandes EventExtender
 *    [Command.actor_has_shield?(id)](#Command.actor_has_shieldid)
 *    [Command.actor_has_weapon?(id)](#Command.actor_has_weaponid)
 *    [Command.actor_head(id)](#Command.actor_headid)
+*    [Command.actor_hp(id)](#Command.actor_hpid)
 *    [Command.actor_level(id)](#Command.actor_levelid)
 *    [Command.actor_level_max(id)](#Command.actor_level_maxid)
+*    [Command.actor_mp(id)](#Command.actor_mpid)
 *    [Command.actor_note(id)](#Command.actor_noteid)
 *    [Command.actor_shield(id)](#Command.actor_shieldid)
+*    [Command.actor_tp(id)](#Command.actor_tpid)
 *    [Command.actor_weapon(id)](#Command.actor_weaponid)
 *    [Command.alt_gr?](#Command.alt_gr)
 *    [Command.apply_percent(percent, max)](#Command.apply_percentpercent-max)
@@ -210,7 +213,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -224,7 +227,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -238,7 +241,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -252,8 +255,8 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
-`slot`|`l`|S  
+`id`|`Fixnum`|ID de l'acteur  
+`slot`|`Fixnum`|Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory  
 
 
 
@@ -267,7 +270,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -281,7 +284,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -295,7 +298,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -309,7 +312,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -323,7 +326,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -337,7 +340,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -351,7 +354,21 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_hp(id)
+
+> renvoie les points de vie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -365,7 +382,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -379,7 +396,21 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_mp(id)
+
+> renvoie les points de magie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -393,7 +424,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -407,7 +438,21 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_tp(id)
+
+> renvoie les points de temps du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 
@@ -421,7 +466,7 @@ Collection des commandes EventExtender
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 

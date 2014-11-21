@@ -2231,18 +2231,21 @@ module Command
   def type_equip(str)
     [:Weapon, :Shield, :Head, :Body, :Accessory].index(str)
   end
-  def actor_equip(id, t); $game_actors[id].equips[type_equip(t)].id; end
+  def actor_equip(id, t)
+    k = $game_actors[id].equips[type_equip(t)]
+    (k.nil?) ? 0 : k.id
+  end
   def actor_weapon(id); actor_equip(id, :Weapon); end 
   def actor_shield(id); actor_equip(id, :Shield); end 
   def actor_head(id); actor_equip(id, :Head); end 
   def actor_body(id); actor_equip(id, :Body); end 
   def actor_description(id); $game_actors[id].description; end
   def actor_accessory(id); actor_equip(id, :Accessory); end
-  def actor_has_weapon?(id); !!actor_weapon(id); end 
-  def actor_has_shield?(id); !!actor_shield(id); end 
-  def actor_has_head?(id); !!actor_head(id); end 
-  def actor_has_body?(id); !!actor_body(id); end 
-  def actor_has_accessory?(id); !!actor_accessory(id); end 
+  def actor_has_weapon?(id); actor_weapon(id) != 0; end 
+  def actor_has_shield?(id); actor_shield(id) != 0; end 
+  def actor_has_head?(id); actor_head(id) != 0; end 
+  def actor_has_body?(id); actor_body(id) != 0; end 
+  def actor_has_accessory?(id); actor_accessory(id) != 0; end 
   def actor_level(id); $game_actors[id].level; end
   def actor_level_max(id); $game_actors[id].max_level; end
   def actor_exp(id); $game_actors[id].exp; end
@@ -2288,7 +2291,7 @@ module Command
   def actor_face_index(id); $game_actors[id].face_index; end
   def actor_class(id); $game_actors[id].class_id; end
   def actor_exp_for_next_level(id); $game_actors[id].next_level_exp; end
-  def actor_equip(id, slot, wp_id)
+  def actor_change_equip(id, slot, wp_id)
     $game_actors[id].change_equip_by_id(type_equip(slot), wp_id)
   end
   def actor_equip_weapon(id, wp); actor_equip(id, :Weapon, wp_id); end 

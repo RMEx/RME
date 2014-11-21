@@ -15,10 +15,13 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_has_shield?(id)](#actor_has_shieldid)
 *    [actor_has_weapon?(id)](#actor_has_weaponid)
 *    [actor_head(id)](#actor_headid)
+*    [actor_hp(id)](#actor_hpid)
 *    [actor_level(id)](#actor_levelid)
 *    [actor_level_max(id)](#actor_level_maxid)
+*    [actor_mp(id)](#actor_mpid)
 *    [actor_note(id)](#actor_noteid)
 *    [actor_shield(id)](#actor_shieldid)
+*    [actor_tp(id)](#actor_tpid)
 *    [actor_weapon(id)](#actor_weaponid)
 
 
@@ -30,7 +33,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_body(id)
@@ -40,7 +43,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_description(id)
@@ -50,7 +53,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_equip(id, slot)
@@ -60,8 +63,8 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
-`slot`|`l`|S  
+`id`|`Fixnum`|ID de l'acteur  
+`slot`|`Fixnum`|Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory  
 
 
 ##### actor_exp(id)
@@ -71,7 +74,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_has_accessory?(id)
@@ -81,7 +84,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_has_body?(id)
@@ -91,7 +94,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_has_head?(id)
@@ -101,7 +104,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_has_shield?(id)
@@ -111,7 +114,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_has_weapon?(id)
@@ -121,7 +124,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_head(id)
@@ -131,7 +134,17 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_hp(id)
+
+> renvoie les points de vie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_level(id)
@@ -141,7 +154,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_level_max(id)
@@ -151,7 +164,17 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_mp(id)
+
+> renvoie les points de magie du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_note(id)
@@ -161,7 +184,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_shield(id)
@@ -171,7 +194,17 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_tp(id)
+
+> renvoie les points de temps du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
 
 
 ##### actor_weapon(id)
@@ -181,6 +214,6 @@ Offre des commandes pour obtenir des informations sur les acteurs
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`D`|I  
+`id`|`Fixnum`|ID de l'acteur  
 
 
