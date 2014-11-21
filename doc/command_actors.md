@@ -68,6 +68,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_recovery_effect_rate(id)](#actor_recovery_effect_rateid)
 *    [actor_set_graphic(id, character_name, character_index, face_name, face_index)](#actor_set_graphicid-character_name-character_index-face_name-face_index)
 *    [actor_shield(id)](#actor_shieldid)
+*    [actor_skills(id)](#actor_skillsid)
 *    [actor_target_rate(id)](#actor_target_rateid)
 *    [actor_tp(id)](#actor_tpid)
 *    [actor_tp_charge_rate(id)](#actor_tp_charge_rateid)
@@ -728,6 +729,16 @@ Offre des commandes pour obtenir des informations sur les acteurs
 ##### actor_shield(id)
 
 > renvoie l'id du bouclier équipé du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_skills(id)
+
+> renvoie le tableau des ID's des techniques connues du héros référencé par son ID
 
   
 > Nom|Type|Description  

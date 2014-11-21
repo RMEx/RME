@@ -2309,6 +2309,13 @@ link_method_documentation "Command.actor_armors",
                         }, true
 register_command :actors, "Command.actor_armors"
 
+link_method_documentation "Command.actor_skills", 
+                        "renvoie le tableau des ID's des techniques connues du héros référencé par son ID",
+                        {
+                          :id => ["ID de l'acteur", :Fixnum]
+                        }, true
+register_command :actors, "Command.actor_skills"
+
 
 end
 

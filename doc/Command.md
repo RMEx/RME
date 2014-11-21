@@ -69,6 +69,7 @@ Collection des commandes EventExtender
 *    [Command.actor_recovery_effect_rate(id)](#Command.actor_recovery_effect_rateid)
 *    [Command.actor_set_graphic(id, character_name, character_index, face_name, face_index)](#Command.actor_set_graphicid-character_name-character_index-face_name-face_index)
 *    [Command.actor_shield(id)](#Command.actor_shieldid)
+*    [Command.actor_skills(id)](#Command.actor_skillsid)
 *    [Command.actor_target_rate(id)](#Command.actor_target_rateid)
 *    [Command.actor_tp(id)](#Command.actor_tpid)
 *    [Command.actor_tp_charge_rate(id)](#Command.actor_tp_charge_rateid)
@@ -1177,6 +1178,20 @@ Collection des commandes EventExtender
 ##### Command.actor_shield(id)
 
 > renvoie l'id du bouclier équipé du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_skills(id)
+
+> renvoie le tableau des ID's des techniques connues du héros référencé par son ID
 
   
 > Nom|Type|Description  
