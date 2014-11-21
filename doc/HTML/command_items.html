@@ -30,6 +30,7 @@
 <li><a href='#item_magicalid'>item_magical?(id)</a></li>
 <li><a href='#item_menu_usableid'>item_menu_usable?(id)</a></li>
 <li><a href='#item_nameid'>item_name(id)</a></li>
+<li><a href='#item_nb_hitsid'>item_nb_hits(id)</a></li>
 <li><a href='#item_need_selectionid'>item_need_selection?(id)</a></li>
 <li><a href='#item_never_usableid'>item_never_usable?(id)</a></li>
 <li><a href='#item_noteid'>item_note(id)</a></li>
@@ -37,6 +38,9 @@
 <li><a href='#item_physicalid'>item_physical?(id)</a></li>
 <li><a href='#item_priceid'>item_price(id)</a></li>
 <li><a href='#item_scopeid'>item_scope(id)</a></li>
+<li><a href='#item_speedid'>item_speed(id)</a></li>
+<li><a href='#item_sucess_rateid'>item_sucess_rate(id)</a></li>
+<li><a href='#item_tp_gainid'>item_tp_gain(id)</a></li>
 </ul><h2>Description des commandes</h2>
 <strong name='give_itemid-amount' id='give_itemid-amount'>give_item(id, amount)</strong><br /><blockquote>Fait gagner à l'équipe l'objet référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr><tr><td><code>amount</code></td><td><code>Fixnum</code></td><td>Nombre à donner. Si le nombre est négatif, l'objet sera retiré</td></tr></table></blockquote><strong name='has_itemid' id='has_itemid'>has_item?(id)</strong><br /><blockquote>Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon</blockquote>  
@@ -68,6 +72,7 @@
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_magicalid' id='item_magicalid'>item_magical?(id)</strong><br /><blockquote>Renvoie true si un objet référencée par son ID produit un dommage magique, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_menu_usableid' id='item_menu_usableid'>item_menu_usable?(id)</strong><br /><blockquote>Renvoie true si l'objet référencé par son ID est utilisable dans le menu</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_nameid' id='item_nameid'>item_name(id)</strong><br /><blockquote>Renvoie le nom de l'objet référencé par son ID</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_nb_hitsid' id='item_nb_hitsid'>item_nb_hits(id)</strong><br /><blockquote>Renvoie le nombre de coup porté par l'objet référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_need_selectionid' id='item_need_selectionid'>item_need_selection?(id)</strong><br /><blockquote>Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_never_usableid' id='item_never_usableid'>item_never_usable?(id)</strong><br /><blockquote>Renvoie true si l'objet référencé par son ID n'est jamais utilisable</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_noteid' id='item_noteid'>item_note(id)</strong><br /><blockquote>Renvoie le commentaire de l'objet référencé par son ID</blockquote>  
@@ -75,4 +80,7 @@
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_physicalid' id='item_physicalid'>item_physical?(id)</strong><br /><blockquote>Renvoie true si un objet référencée par son ID produit un dommage physique, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_priceid' id='item_priceid'>item_price(id)</strong><br /><blockquote>Renvoie le prix de l'objet référencé par son ID</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_scopeid' id='item_scopeid'>item_scope(id)</strong><br /><blockquote>Renvoie la portée (en Entier) d'un objet référencée par son ID</blockquote>  
-<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'armure</td></tr></table></blockquote></body></html>
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'armure</td></tr></table></blockquote><strong name='item_speedid' id='item_speedid'>item_speed(id)</strong><br /><blockquote>Renvoie l'apport de vitesse de l'objet référencé par son ID</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_sucess_rateid' id='item_sucess_rateid'>item_sucess_rate(id)</strong><br /><blockquote>Renvoie la probabilité de succès de l'objet référencé par son ID</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote><strong name='item_tp_gainid' id='item_tp_gainid'>item_tp_gain(id)</strong><br /><blockquote>Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table></blockquote></body></html>

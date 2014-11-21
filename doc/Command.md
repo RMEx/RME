@@ -153,6 +153,7 @@ Collection des commandes EventExtender
 *    [Command.item_magical?(id)](#Command.item_magicalid)
 *    [Command.item_menu_usable?(id)](#Command.item_menu_usableid)
 *    [Command.item_name(id)](#Command.item_nameid)
+*    [Command.item_nb_hits(id)](#Command.item_nb_hitsid)
 *    [Command.item_need_selection?(id)](#Command.item_need_selectionid)
 *    [Command.item_never_usable?(id)](#Command.item_never_usableid)
 *    [Command.item_note(id)](#Command.item_noteid)
@@ -161,6 +162,9 @@ Collection des commandes EventExtender
 *    [Command.item_physical?(id)](#Command.item_physicalid)
 *    [Command.item_price(id)](#Command.item_priceid)
 *    [Command.item_scope(id)](#Command.item_scopeid)
+*    [Command.item_speed(id)](#Command.item_speedid)
+*    [Command.item_sucess_rate(id)](#Command.item_sucess_rateid)
+*    [Command.item_tp_gain(id)](#Command.item_tp_gainid)
 *    [Command.key_current(method)](#Command.key_currentmethod)
 *    [Command.key_current_rgss(method)](#Command.key_current_rgssmethod)
 *    [Command.key_press?(key)](#Command.key_presskey)
@@ -285,12 +289,16 @@ Collection des commandes EventExtender
 *    [Command.skill_has_no_scope?(id)](#Command.skill_has_no_scopeid)
 *    [Command.skill_magical?(id)](#Command.skill_magicalid)
 *    [Command.skill_menu_usable?(id)](#Command.skill_menu_usableid)
+*    [Command.skill_nb_hits(id)](#Command.skill_nb_hitsid)
 *    [Command.skill_need_selection?(id)](#Command.skill_need_selectionid)
 *    [Command.skill_never_usable?(id)](#Command.skill_never_usableid)
 *    [Command.skill_number_of_targets(id)](#Command.skill_number_of_targetsid)
 *    [Command.skill_occasion(id)](#Command.skill_occasionid)
 *    [Command.skill_physical?(id)](#Command.skill_physicalid)
 *    [Command.skill_scope(id)](#Command.skill_scopeid)
+*    [Command.skill_speed(id)](#Command.skill_speedid)
+*    [Command.skill_sucess_rate(id)](#Command.skill_sucess_rateid)
+*    [Command.skill_tp_gain(id)](#Command.skill_tp_gainid)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#Command.squares_betweenidA-idB)
 *    [Command.start_map_id](#Command.start_map_id)
@@ -2440,6 +2448,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.item_nb_hits(id)
+
+> Renvoie le nombre de coup porté par l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_need_selection?(id)
 
 > Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon
@@ -2546,6 +2568,48 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
+
+
+
+
+
+
+##### Command.item_speed(id)
+
+> Renvoie l'apport de vitesse de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_sucess_rate(id)
+
+> Renvoie la probabilité de succès de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_tp_gain(id)
+
+> Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
 
 
 
@@ -4311,6 +4375,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_nb_hits(id)
+
+> Renvoie le nombre de coup porté par la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_need_selection?(id)
 
 > Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon
@@ -4389,6 +4467,48 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la techinuqe  
+
+
+
+
+
+
+##### Command.skill_speed(id)
+
+> Renvoie l'apport de vitesse de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_sucess_rate(id)
+
+> Renvoie la probabilité de succès de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_tp_gain(id)
+
+> Renvoie le gain de TP que la technique référencé par son ID apporte une fois utilisé en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
 
 
 

@@ -34,6 +34,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_magical?(id)](#item_magicalid)
 *    [item_menu_usable?(id)](#item_menu_usableid)
 *    [item_name(id)](#item_nameid)
+*    [item_nb_hits(id)](#item_nb_hitsid)
 *    [item_need_selection?(id)](#item_need_selectionid)
 *    [item_never_usable?(id)](#item_never_usableid)
 *    [item_note(id)](#item_noteid)
@@ -41,6 +42,9 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_physical?(id)](#item_physicalid)
 *    [item_price(id)](#item_priceid)
 *    [item_scope(id)](#item_scopeid)
+*    [item_speed(id)](#item_speedid)
+*    [item_sucess_rate(id)](#item_sucess_rateid)
+*    [item_tp_gain(id)](#item_tp_gainid)
 
 
 ##Description des commandes
@@ -345,6 +349,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'objet  
 
 
+##### item_nb_hits(id)
+
+> Renvoie le nombre de coup porté par l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
 ##### item_need_selection?(id)
 
 > Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon
@@ -413,5 +427,35 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
+
+
+##### item_speed(id)
+
+> Renvoie l'apport de vitesse de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_sucess_rate(id)
+
+> Renvoie la probabilité de succès de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_tp_gain(id)
+
+> Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
 
 

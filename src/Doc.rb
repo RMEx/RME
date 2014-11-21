@@ -1933,6 +1933,34 @@ link_method_documentation "Command.item_never_usable?",
                         }, true
 register_command :items, "Command.item_never_usable?"
 
+link_method_documentation "Command.item_speed", 
+                        "Renvoie l'apport de vitesse de l'objet référencé par son ID",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_speed"
+
+link_method_documentation "Command.item_nb_hits", 
+                        "Renvoie le nombre de coup porté par l'objet référencé par son ID",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_nb_hits"
+
+link_method_documentation "Command.item_sucess_rate", 
+                        "Renvoie la probabilité de succès de l'objet référencé par son ID",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_sucess_rate"
+
+link_method_documentation "Command.item_tp_gain", 
+                        "Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_tp_gain"
+
 link_method_documentation "Command.game_title", 
                         "Renvoie le titre du jeu",
                         {}, true
@@ -2723,6 +2751,33 @@ link_method_documentation "Command.skill_number_of_targets",
                         }, true
 register_command :skills, "Command.number_of_targets"
 
+link_method_documentation "Command.skill_speed", 
+                        "Renvoie l'apport de vitesse de la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_speed"
+
+link_method_documentation "Command.skill_nb_hits", 
+                        "Renvoie le nombre de coup porté par la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_nb_hits"
+
+link_method_documentation "Command.skill_sucess_rate", 
+                        "Renvoie la probabilité de succès de la technique référencé par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_sucess_rate"
+
+link_method_documentation "Command.skill_tp_gain", 
+                        "Renvoie le gain de TP que la technique référencé par son ID apporte une fois utilisé en combat",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_tp_gain"
 
 end
 

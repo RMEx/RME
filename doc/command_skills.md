@@ -26,11 +26,15 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_for_two_random_enemies?(id)](#skill_for_two_random_enemiesid)
 *    [skill_magical?(id)](#skill_magicalid)
 *    [skill_menu_usable?(id)](#skill_menu_usableid)
+*    [skill_nb_hits(id)](#skill_nb_hitsid)
 *    [skill_need_selection?(id)](#skill_need_selectionid)
 *    [skill_never_usable?(id)](#skill_never_usableid)
 *    [skill_occasion(id)](#skill_occasionid)
 *    [skill_physical?(id)](#skill_physicalid)
 *    [skill_scope(id)](#skill_scopeid)
+*    [skill_speed(id)](#skill_speedid)
+*    [skill_sucess_rate(id)](#skill_sucess_rateid)
+*    [skill_tp_gain(id)](#skill_tp_gainid)
 
 
 ##Description des commandes
@@ -254,6 +258,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 `id`|`Fixnum`|Id de la technique  
 
 
+##### skill_nb_hits(id)
+
+> Renvoie le nombre de coup porté par la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
 ##### skill_need_selection?(id)
 
 > Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon
@@ -302,5 +316,35 @@ Offre des commandes pour obtenir des informations sur les techniques
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la techinuqe  
+
+
+##### skill_speed(id)
+
+> Renvoie l'apport de vitesse de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+##### skill_sucess_rate(id)
+
+> Renvoie la probabilité de succès de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+##### skill_tp_gain(id)
+
+> Renvoie le gain de TP que la technique référencé par son ID apporte une fois utilisé en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
 
 

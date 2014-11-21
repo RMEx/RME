@@ -2225,6 +2225,10 @@ module Command
   def item_physical?(i); $data_items[i].physical?; end 
   def item_magical?(i); $data_items[i].magical?; end 
   def item_number_of_targets(i); $data_items[i].number_of_targets; end 
+  def item_speed(i); $data_items[i].speed; end 
+  def item_nb_hits(i); $data_items[i].repeats; end 
+  def item_success_rate(i); $data_items[i].success_rate; end
+  def item_tp_gain(i); $data_items[i].tp_gain; end
   #--------------------------------------------------------------------------
   # * Systems
   #--------------------------------------------------------------------------
@@ -2459,6 +2463,10 @@ module Command
   def skill_physical?(i); $data_skills[i].physical?; end 
   def skill_magical?(i); $data_skills[i].magical?; end 
   def skill_number_of_targets(i); $data_skills[i].number_of_targets; end 
+  def skill_speed(i); $data_skills[i].speed; end 
+  def skill_nb_hits(i); $data_skills[i].repeats; end 
+  def skill_success_rate(i); $data_skills[i].success_rate; end
+  def skill_tp_gain(i); $data_skills[i].tp_gain; end
 end
 #==============================================================================
 # ** DataManager
