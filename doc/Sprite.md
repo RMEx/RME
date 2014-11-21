@@ -4,16 +4,16 @@
 Extension des sprites
 
 ##Liste des méthodes
-*    [self.click?](#self.click)
-*    [self.hover?](#self.hover)
-*    [self.in?(x, y)](#self.inx-y)
-*    [self.mouse_x](#self.mouse_x)
-*    [self.mouse_y](#self.mouse_y)
-*    [self.press?(key)](#self.presskey)
-*    [self.rect](#self.rect)
-*    [self.release?(key)](#self.releasekey)
-*    [self.repeat?(key)](#self.repeatkey)
-*    [self.trigger?(key)](#self.triggerkey)
+*    [self.click?](#selfclick)
+*    [self.hover?](#selfhover)
+*    [self.in?(x, y)](#selfinx-y)
+*    [self.mouse_x](#selfmouse_x)
+*    [self.mouse_y](#selfmouse_y)
+*    [self.press?(key)](#selfpresskey)
+*    [self.rect](#selfrect)
+*    [self.release?(key)](#selfreleasekey)
+*    [self.repeat?(key)](#selfrepeatkey)
+*    [self.trigger?(key)](#selftriggerkey)
 
 
 ##Description des méthodes
