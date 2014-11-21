@@ -127,27 +127,38 @@ Collection des commandes EventExtender
 *    [Command.is_key_item?(id)](#Command.is_key_itemid)
 *    [Command.item_always_usable?(id)](#Command.item_always_usableid)
 *    [Command.item_battle_usable?(id)](#Command.item_battle_usableid)
+*    [Command.item_certain?(id)](#Command.item_certainid)
 *    [Command.item_consumable?(id)](#Command.item_consumableid)
 *    [Command.item_count(id)](#Command.item_countid)
 *    [Command.item_description(id)](#Command.item_descriptionid)
+*    [Command.item_for_all?(id)](#Command.item_for_allid)
 *    [Command.item_for_all_allies?(id)](#Command.item_for_all_alliesid)
 *    [Command.item_for_all_dead_allies?(id)](#Command.item_for_all_dead_alliesid)
 *    [Command.item_for_all_enemies?(id)](#Command.item_for_all_enemiesid)
 *    [Command.item_for_caller?(id)](#Command.item_for_callerid)
+*    [Command.item_for_dead_friend?(id)](#Command.item_for_dead_friendid)
 *    [Command.item_for_four_random_enemies?(id)](#Command.item_for_four_random_enemiesid)
+*    [Command.item_for_friend?(id)](#Command.item_for_friendid)
+*    [Command.item_for_one?(id)](#Command.item_for_oneid)
 *    [Command.item_for_one_ally?(id)](#Command.item_for_one_allyid)
 *    [Command.item_for_one_dead_ally?(id)](#Command.item_for_one_dead_allyid)
 *    [Command.item_for_one_enemy?(id)](#Command.item_for_one_enemyid)
 *    [Command.item_for_one_random_enemy?(id)](#Command.item_for_one_random_enemyid)
+*    [Command.item_for_opponent?(id)](#Command.item_for_opponentid)
+*    [Command.item_for_random?(id)](#Command.item_for_randomid)
 *    [Command.item_for_three_random_enemies?(id)](#Command.item_for_three_random_enemiesid)
 *    [Command.item_for_two_random_enemies?(id)](#Command.item_for_two_random_enemiesid)
 *    [Command.item_has_no_scope?(id)](#Command.item_has_no_scopeid)
 *    [Command.item_icon(id)](#Command.item_iconid)
+*    [Command.item_magical?(id)](#Command.item_magicalid)
 *    [Command.item_menu_usable?(id)](#Command.item_menu_usableid)
 *    [Command.item_name(id)](#Command.item_nameid)
+*    [Command.item_need_selection?(id)](#Command.item_need_selectionid)
 *    [Command.item_never_usable?(id)](#Command.item_never_usableid)
 *    [Command.item_note(id)](#Command.item_noteid)
+*    [Command.item_number_of_targets(id)](#Command.item_number_of_targetsid)
 *    [Command.item_occasion(id)](#Command.item_occasionid)
+*    [Command.item_physical?(id)](#Command.item_physicalid)
 *    [Command.item_price(id)](#Command.item_priceid)
 *    [Command.item_scope(id)](#Command.item_scopeid)
 *    [Command.key_current(method)](#Command.key_currentmethod)
@@ -253,21 +264,32 @@ Collection des commandes EventExtender
 *    [Command.shift?](#Command.shift)
 *    [Command.skill_always_usable?(id)](#Command.skill_always_usableid)
 *    [Command.skill_battle_usable?(id)](#Command.skill_battle_usableid)
+*    [Command.skill_certain?(id)](#Command.skill_certainid)
+*    [Command.skill_for_all?(id)](#Command.skill_for_allid)
 *    [Command.skill_for_all_allies?(id)](#Command.skill_for_all_alliesid)
 *    [Command.skill_for_all_dead_allies?(id)](#Command.skill_for_all_dead_alliesid)
 *    [Command.skill_for_all_enemies?(id)](#Command.skill_for_all_enemiesid)
 *    [Command.skill_for_caller?(id)](#Command.skill_for_callerid)
+*    [Command.skill_for_dead_friend?(id)](#Command.skill_for_dead_friendid)
 *    [Command.skill_for_four_random_enemies?(id)](#Command.skill_for_four_random_enemiesid)
+*    [Command.skill_for_friend?(id)](#Command.skill_for_friendid)
+*    [Command.skill_for_one?(id)](#Command.skill_for_oneid)
 *    [Command.skill_for_one_ally?(id)](#Command.skill_for_one_allyid)
 *    [Command.skill_for_one_dead_ally?(id)](#Command.skill_for_one_dead_allyid)
 *    [Command.skill_for_one_enemy?(id)](#Command.skill_for_one_enemyid)
 *    [Command.skill_for_one_random_enemy?(id)](#Command.skill_for_one_random_enemyid)
+*    [Command.skill_for_opponent?(id)](#Command.skill_for_opponentid)
+*    [Command.skill_for_random?(id)](#Command.skill_for_randomid)
 *    [Command.skill_for_three_random_enemies?(id)](#Command.skill_for_three_random_enemiesid)
 *    [Command.skill_for_two_random_enemies?(id)](#Command.skill_for_two_random_enemiesid)
 *    [Command.skill_has_no_scope?(id)](#Command.skill_has_no_scopeid)
+*    [Command.skill_magical?(id)](#Command.skill_magicalid)
 *    [Command.skill_menu_usable?(id)](#Command.skill_menu_usableid)
+*    [Command.skill_need_selection?(id)](#Command.skill_need_selectionid)
 *    [Command.skill_never_usable?(id)](#Command.skill_never_usableid)
+*    [Command.skill_number_of_targets(id)](#Command.skill_number_of_targetsid)
 *    [Command.skill_occasion(id)](#Command.skill_occasionid)
+*    [Command.skill_physical?(id)](#Command.skill_physicalid)
 *    [Command.skill_scope(id)](#Command.skill_scopeid)
 *    [Command.square_passable?(x, y, direction)](#Command.square_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#Command.squares_betweenidA-idB)
@@ -2054,6 +2076,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.item_certain?(id)
+
+> Renvoie true si un objet référencée par son ID a une garantie de réussite total, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_consumable?(id)
 
 > Renvoie true si l'objet référencé par son ID est consommable, false sinon
@@ -2085,6 +2121,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 ##### Command.item_description(id)
 
 > Renvoie la description de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_all?(id)
+
+> Renvoie true si un objet référencée par son ID cible tout le groupe, false sinon
 
   
 > Nom|Type|Description  
@@ -2140,7 +2190,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_caller?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID l'utilisateur, false sinon
+> Renvoie true si la cible d'un objet référencée par son ID , false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_dead_friend?(id)
+
+> Renvoie true si un objet référencée par son ID cible (un ou) les alliés morts, false sinon
 
   
 > Nom|Type|Description  
@@ -2155,6 +2219,34 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 ##### Command.item_for_four_random_enemies?(id)
 
 > Renvoie true si la cible d'un objet référencée par son ID vise quatre ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_friend?(id)
+
+> Renvoie true si un objet référencée par son ID cible (un ou) les alliés, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_one?(id)
+
+> Renvoie true si un objet référencée par son ID cible une cible, false sinon
 
   
 > Nom|Type|Description  
@@ -2222,6 +2314,34 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.item_for_opponent?(id)
+
+> Renvoie true si un objet référencée par son ID cible les ennemis, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_for_random?(id)
+
+> Renvoie true si un objet référencée par son ID cible aléatoirement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_for_three_random_enemies?(id)
 
 > Renvoie true si la cible d'un objet référencée par son ID vise trois ennemis au hasard, false sinon
@@ -2278,6 +2398,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.item_magical?(id)
+
+> Renvoie true si un objet référencée par son ID produit un dommage magique, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_menu_usable?(id)
 
 > Renvoie true si l'objet référencé par son ID est utilisable dans le menu
@@ -2295,6 +2429,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 ##### Command.item_name(id)
 
 > Renvoie le nom de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_need_selection?(id)
+
+> Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon
 
   
 > Nom|Type|Description  
@@ -2334,9 +2482,37 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.item_number_of_targets(id)
+
+> Renvoie le nombre de cibles d'un objet référencée par son ID produit un dommage magique, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
 ##### Command.item_occasion(id)
 
 > Renvoie un entier correspondant au droit d'utilisation de l'objet
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+
+
+
+
+##### Command.item_physical?(id)
+
+> Renvoie true si un objet référencée par son ID produit un dommage physique, false sinon
 
   
 > Nom|Type|Description  
@@ -3841,6 +4017,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_certain?(id)
+
+> Renvoie true si une technique référencée par son ID a une garantie de réussite total, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_all?(id)
+
+> Renvoie true si une technique référencée par son ID cible tout le groupe, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_for_all_allies?(id)
 
 > Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés, false sinon
@@ -3897,9 +4101,51 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_for_dead_friend?(id)
+
+> Renvoie true si une technique référencée par son ID cible (un ou) les alliés morts, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_for_four_random_enemies?(id)
 
 > Renvoie true si la cible d'une technique référencée par son ID vise quatre ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_friend?(id)
+
+> Renvoie true si une technique référencée par son ID cible (un ou) les alliés, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_one?(id)
+
+> Renvoie true si une technique référencée par son ID cible une cible, false sinon
 
   
 > Nom|Type|Description  
@@ -3967,6 +4213,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_for_opponent?(id)
+
+> Renvoie true si une technique référencée par son ID cible les ennemis, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_for_random?(id)
+
+> Renvoie true si une technique référencée par son ID cible aléatoirement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_for_three_random_enemies?(id)
 
 > Renvoie true si la cible d'une technique référencée par son ID vise trois ennemis au hasard, false sinon
@@ -4009,9 +4283,37 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_magical?(id)
+
+> Renvoie true si une technique référencée par son ID produit un dommage magique, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_menu_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable dans le menu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_need_selection?(id)
+
+> Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon
 
   
 > Nom|Type|Description  
@@ -4037,9 +4339,37 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.skill_number_of_targets(id)
+
+> Renvoie le nombre de cibles d'une technique référencée par son ID produit un dommage magique, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
 ##### Command.skill_occasion(id)
 
 > Renvoie un entier correspondant au droit d'utilisation de la technique
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.skill_physical?(id)
+
+> Renvoie true si une technique référencée par son ID produit un dommage physique, false sinon
 
   
 > Nom|Type|Description  

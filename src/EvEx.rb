@@ -2206,14 +2206,25 @@ module Command
     item_occasion(id) == 0
   end
   def item_battle_usable?(id)
-    item_occasion(id) == 1
+    item_always_usable?(id) || item_occasion(id) == 1
   end
   def item_menu_usable?(id)
-    item_occasion(id) == 2
+    item_always_usable?(id) || item_occasion(id) == 2
   end
   def item_never_usable?(id)
-    item_occasion(id) == 3
+    item_occasion(id) == 3 
   end
+  def item_for_oponent?(i); $data_items[i].for_opponent?; end
+  def item_for_friend?(i); $data_items[i].for_friend?; end 
+  def item_for_dead_friend?(i); $data_items[i].for_dead_friend?; end 
+  def item_for_one?(i); $data_items[i].for_one?; end 
+  def item_for_random?(i); $data_items[i].for_random?; end 
+  def item_for_all?(i); $data_items[i].for_all?; end 
+  def item_need_selection?(i); $data_items[i].need_selection?; end 
+  def item_certain?(i); $data_items[i].certain?; end 
+  def item_physical?(i); $data_items[i].physical?; end 
+  def item_magical?(i); $data_items[i].magical?; end 
+  def item_number_of_targets(i); $data_items[i].number_of_targets; end 
   #--------------------------------------------------------------------------
   # * Systems
   #--------------------------------------------------------------------------
@@ -2429,14 +2440,25 @@ module Command
     skill_occasion(id) == 0
   end
   def skill_battle_usable?(id)
-    skill_occasion(id) == 1
+    skill_always_usable(id) || skill_occasion(id) == 1
   end
   def skill_menu_usable?(id)
-    skill_occasion(id) == 2
+    skill_always_usable(id) || skill_occasion(id) == 2
   end
   def skill_never_usable?(id)
     skill_occasion(id) == 3
   end
+  def skill_for_oponent?(i); $data_skills[i].for_opponent?; end
+  def skill_for_friend?(i); $data_skills[i].for_friend?; end 
+  def skill_for_dead_friend?(i); $data_skills[i].for_dead_friend?; end 
+  def skill_for_one?(i); $data_skills[i].for_one?; end 
+  def skill_for_random?(i); $data_skills[i].for_random?; end 
+  def skill_for_all?(i); $data_skills[i].for_all?; end 
+  def skill_need_selection?(i); $data_skills[i].need_selection?; end 
+  def skill_certain?(i); $data_skills[i].certain?; end 
+  def skill_physical?(i); $data_skills[i].physical?; end 
+  def skill_magical?(i); $data_skills[i].magical?; end 
+  def skill_number_of_targets(i); $data_skills[i].number_of_targets; end 
 end
 #==============================================================================
 # ** DataManager

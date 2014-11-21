@@ -1812,11 +1812,91 @@ link_method_documentation "Command.item_for_all_dead_allies?",
 register_command :items, "Command.item_for_all_dead_allies?"
 
 link_method_documentation "Command.item_for_caller?", 
-                        "Renvoie true si la cible d'un objet référencée par son ID l'utilisateur, false sinon",
+                        "Renvoie true si la cible d'un objet référencée par son ID , false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum], 
                         }, true
 register_command :items, "Command.item_for_caller?"
+
+link_method_documentation "Command.item_for_opponent?", 
+                        "Renvoie true si un objet référencée par son ID cible les ennemis, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_opponent?"
+
+link_method_documentation "Command.item_for_friend?", 
+                        "Renvoie true si un objet référencée par son ID cible (un ou) les alliés, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_friend?"
+
+link_method_documentation "Command.item_for_dead_friend?", 
+                        "Renvoie true si un objet référencée par son ID cible (un ou) les alliés morts, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_dead_friend?"
+
+link_method_documentation "Command.item_for_one?", 
+                        "Renvoie true si un objet référencée par son ID cible une cible, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_one?"
+
+link_method_documentation "Command.item_for_random?", 
+                        "Renvoie true si un objet référencée par son ID cible aléatoirement, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_random?"
+
+link_method_documentation "Command.item_for_all?", 
+                        "Renvoie true si un objet référencée par son ID cible tout le groupe, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_for_all?"
+
+link_method_documentation "Command.item_need_selection?", 
+                        "Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_need_selection?"
+
+
+link_method_documentation "Command.item_certain?", 
+                        "Renvoie true si un objet référencée par son ID a une garantie de réussite total, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_certain?"
+
+link_method_documentation "Command.item_physical?", 
+                        "Renvoie true si un objet référencée par son ID produit un dommage physique, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_physical?"
+
+link_method_documentation "Command.item_magical?", 
+                        "Renvoie true si un objet référencée par son ID produit un dommage magique, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.item_magical?"
+
+link_method_documentation "Command.item_number_of_targets", 
+                        "Renvoie le nombre de cibles d'un objet référencée par son ID produit un dommage magique, false sinon",
+                        {
+                          :id => ["Id de l'objet", :Fixnum], 
+                        }, true
+register_command :items, "Command.number_of_targets"
+
+
 
 link_method_documentation "Command.item_occasion", 
                         "Renvoie un entier correspondant au droit d'utilisation de l'objet",
@@ -2565,6 +2645,83 @@ link_method_documentation "Command.skill_never_usable?",
                         }, true
 register_command :skills, "Command.skill_never_usable?"
 
+link_method_documentation "Command.skill_for_opponent?", 
+                        "Renvoie true si une technique référencée par son ID cible les ennemis, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_opponent?"
+
+link_method_documentation "Command.skill_for_friend?", 
+                        "Renvoie true si une technique référencée par son ID cible (un ou) les alliés, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_friend?"
+
+link_method_documentation "Command.skill_for_dead_friend?", 
+                        "Renvoie true si une technique référencée par son ID cible (un ou) les alliés morts, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_dead_friend?"
+
+link_method_documentation "Command.skill_for_one?", 
+                        "Renvoie true si une technique référencée par son ID cible une cible, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_one?"
+
+link_method_documentation "Command.skill_for_random?", 
+                        "Renvoie true si une technique référencée par son ID cible aléatoirement, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_random?"
+
+link_method_documentation "Command.skill_for_all?", 
+                        "Renvoie true si une technique référencée par son ID cible tout le groupe, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_for_all?"
+
+link_method_documentation "Command.skill_need_selection?", 
+                        "Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_need_selection?"
+
+
+link_method_documentation "Command.skill_certain?", 
+                        "Renvoie true si une technique référencée par son ID a une garantie de réussite total, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_certain?"
+
+link_method_documentation "Command.skill_physical?", 
+                        "Renvoie true si une technique référencée par son ID produit un dommage physique, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_physical?"
+
+link_method_documentation "Command.skill_magical?", 
+                        "Renvoie true si une technique référencée par son ID produit un dommage magique, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.skill_magical?"
+
+link_method_documentation "Command.skill_number_of_targets", 
+                        "Renvoie le nombre de cibles d'une technique référencée par son ID produit un dommage magique, false sinon",
+                        {
+                          :id => ["Id de la technique", :Fixnum], 
+                        }, true
+register_command :skills, "Command.number_of_targets"
 
 
 end
