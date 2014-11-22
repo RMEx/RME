@@ -54,6 +54,25 @@ class Object
 end
 
 #==============================================================================
+# ** Array
+#------------------------------------------------------------------------------
+#  The Array class
+#==============================================================================
+
+class Array
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Extension des arrays"
+  link_method_documentation :"self.to_point", 
+                            "Renvoit l'objet 'Point', que l'array contienne l'objet 'Point' comme les coordonnées 'x, y'",
+                            {}, true
+  link_method_documentation :"self.to_xy", 
+                            "Renvoit les valeurs 'x, y', que l'array contienne l'objet 'Point' comme les coordonnées 'x,y'",
+                            {}, true
+end
+
+#==============================================================================
 # ** Sprite
 #------------------------------------------------------------------------------
 #  The Sprite class
@@ -237,8 +256,24 @@ class Point
   link_method_documentation :"self.null!", 
                             "Replace le X et le Y du point à zéro", 
                             {}
-
-  end
+  link_method_documentation :"self.rotate", 
+                            "Rotation du point par rapport à un second point (via (x, y), ou via une instance de Point)", 
+                            {
+                              :angle => ["Angle de rotation (sens positif = sens trigonométrique)", :Fixnum],
+                              :x => ["Coordonnées X du point à l'origine de la rotation", :Fixnum],
+                              :y => ["Coordonnées Y du point à l'origine de la rotation", :Fixnum]
+                            }
+  link_method_documentation :"self.screen_to_sprite", 
+                            "Convertis les coordonnées, de l'écran vers le référentiel du sprite", 
+                            {
+                              :sprite => ["Sprite", :Fixnum]
+                            }
+  link_method_documentation :"self.screen_to_bitmap", 
+                            "Convertis les coordonnées, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite", 
+                            {
+                              :sprite => ["Sprite", :Fixnum]
+                            }
+end
 
 #==============================================================================
 # ** Keys
