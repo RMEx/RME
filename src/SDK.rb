@@ -421,6 +421,25 @@ class Array
   def not(*ids, &block)
     self.delete_if{|e| ids.include?(e)}.delete_if(&block)
   end
+  #--------------------------------------------------------------------------
+  # * Extract Point object from array "[x,y]" or "[Point]"
+  #--------------------------------------------------------------------------
+  def to_point
+    if length == 2
+      p = Point.new(*self)
+    elsif length == 1
+      p = self[0]
+    end
+    return p
+  end
+  #--------------------------------------------------------------------------
+  # * Extract x, y from array "[x,y]" or "[Point]"
+  #--------------------------------------------------------------------------
+  def to_xy
+    a = self
+    a = [a[0].x, a[0].y] if length == 1
+    return *a
+  end
 end
 
 #==============================================================================
@@ -576,12 +595,58 @@ class Point < Struct.new(:x, :y)
   end
 
   #--------------------------------------------------------------------------
+  # * Translation after a rotation from a point
+  #--------------------------------------------------------------------------
+  def rotate(angle, *p)
+    return if angle == 0
+    ox, oy = p.to_xy
+    angle *= Math::PI/180
+    c, s = Math.cos(angle), Math.sin(angle)
+    x, y = self.x, self.y
+    x, y = x-ox, y-oy
+    x, y = (x*c+y*s), (-x*s+y*c)
+    x, y = x+ox, y+oy
+    set(x, y)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Transforms point from screen to rect
+  #--------------------------------------------------------------------------
+  def screen_to_sprite(spr)
+    rotate(-spr.angle, spr.x, spr.y)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Transforms point from screen to bitmap
+  #--------------------------------------------------------------------------
+  def screen_to_bitmap(spr)
+    rotate(-spr.angle, spr.x, spr.y)
+    x, y = self.x-spr.x, self.y-spr.y
+    x /= spr.zoom_x if spr.zoom_x != 0
+    y /= spr.zoom_y if spr.zoom_y != 0
+    x, y = x+spr.ox, y+spr.oy
+    set(x.to_i, y.to_i)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Transforms point from bitmap to screen
+  #--------------------------------------------------------------------------
+  def bitmap_to_screen(spr)
+    self.x = (self.x-spr.ox)*spr.zoom_x
+    self.y = (self.y-spr.oy)*spr.zoom_y
+    rotate(spr.angle, 0, 0)
+    set(self.x+spr.x, self.y+spr.y)
+  end
+
+  #--------------------------------------------------------------------------
   # * In area
   #--------------------------------------------------------------------------
   def in?(rect)
     return rect && (
-      check_x = self.x.between?(rect.x, rect.x+rect.width)
-      check_y = self.y.between?(rect.y, rect.y+rect.height)
+      a, b = [rect.x, rect.x+rect.width].sort
+      c, d = [rect.y, rect.y+rect.height].sort
+      check_x = self.x.between?(a, b)
+      check_y = self.y.between?(c, d)
       check_x && check_y
     )
   end
@@ -1359,7 +1424,6 @@ class Sprite
   # * Delegate Process
   #--------------------------------------------------------------------------
   [
-    :in?,
     :hover?,
     :click?, 
     :press?, 
@@ -1371,14 +1435,23 @@ class Sprite
   ].each{|m| delegate :rect, m}
 
   #--------------------------------------------------------------------------
+  # * check if point 's include in the rect
+  #--------------------------------------------------------------------------
+  def in?(*p)
+    point = p.to_point
+    point.screen_to_sprite(self)
+    point.in?(rect)
+  end
+  #--------------------------------------------------------------------------
   # * Precise inclusion
   #--------------------------------------------------------------------------
-  def precise_in?(x, y)
+  def precise_in?(*p)
     return false unless self.bitmap
     return false if self.zoom_x == 0 || self.zoom_y == 0
-    tx = ((x-self.x)/self.zoom_x+self.ox).to_i
-    ty = ((y-self.y)/self.zoom_y+self.oy).to_i
-    in?(x, y) && bitmap.fast_get_pixel(tx, ty).alpha > 0
+    p1 = p.to_point
+    p2 = p1.clone
+    p2.screen_to_bitmap(self)
+    in?(p1) && !bitmap.is_transparent?(p2)
   end
   #--------------------------------------------------------------------------
   # * Collision
@@ -1435,17 +1508,8 @@ class Rect
   # * check if point 's include in the rect
   #--------------------------------------------------------------------------
   def in?(*p)
-    x = y = 0
-    if p.length == 2
-      x, y = *p
-    elsif p.length == 1
-      x, y = p[0].x, p[0].y
-    end 
-    a, b = [self.x, self.x+self.width].sort
-    c, d = [self.y, self.y+self.height].sort
-    check_x = x.between?(a, b)
-    check_y = y.between?(c, d)
-    check_x && check_y
+    point = p.to_point
+    point.in?(self)
   end
   #--------------------------------------------------------------------------
   # * check if the mouse 's hover
@@ -1519,7 +1583,8 @@ class Bitmap
   #--------------------------------------------------------------------------
   # * Fast get pixel
   #--------------------------------------------------------------------------
-  def fast_get_pixel(x_in, y_in)
+  def fast_get_pixel(*p)
+    x_in, y_in = p.to_xy
     return Color.new(0,0,0,0) unless x_in.between?(0, self.width) && y_in.between?(0, self.height)
     data = self.get_data_ptr
     i = (x_in + (self.height - 1 - y_in) * self.width) * 4
@@ -1533,15 +1598,17 @@ class Bitmap
   #--------------------------------------------------------------------------
   # * Transparency
   #--------------------------------------------------------------------------
-  def is_transparent?(x_in, y_in)
-    return true if x_in >= self.width || y_in >= self.height
+  def is_transparent?(*p)
+    x_in, y_in = p.to_xy
+    return true unless x_in.between?(0, self.width) && y_in.between?(0, self.height)
     data = self.get_data_ptr
     i = (x_in + (self.height - 1 - y_in) * self.width) * 4
     alpha = data.getbyte(i+3)
     data.free
     (alpha == 0)
   end
-  def pixel_visible?(x, y)
+  def pixel_visible?(*p)
+    x, y = p.to_xy
     @pixel_visible ||= Array.new(width) do |ix| 
       Array.new(height) {|iy| !is_transparent?(ix, iy)}
     end

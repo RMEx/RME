@@ -7,6 +7,9 @@ Représente un point dans un plan cartésien
 *    [Point.new(x, y)](#pointnewx-y)
 *    [self.in?(rect)](#selfinrect)
 *    [self.null!](#selfnull)
+*    [self.rotate(angle, x, y)](#selfrotateangle-x-y)
+*    [self.screen_to_bitmap(sprite)](#selfscreen_to_bitmapsprite)
+*    [self.screen_to_sprite(sprite)](#selfscreen_to_spritesprite)
 *    [self.set(x, y)](#selfsetx-y)
 
 
@@ -33,7 +36,7 @@ Représente un point dans un plan cartésien
   
 > Nom|Type|Description  
 --- | --- | ---  
-`rect`|`Rect`|Rectangle  
+`rect`|`Rect`|Rectangle à vérifier  
 
 
 
@@ -46,6 +49,50 @@ Représente un point dans un plan cartésien
 
   
 > 
+
+
+
+
+
+##### self.rotate(angle, x, y)
+
+> Rotation du point par rapport au point passé en argument (via (x, y), ou via une instance de Point)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`angle`|`Fixnum`|Angle de rotation en degrés décimaux (sens positif = sens trigonométrique)  
+`x`|`Fixnum`|Coordonnées X du point à l'origine de la rotation  
+`y`|`Fixnum`|Coordonnées Y du point à l'origine de la rotation  
+
+
+
+
+
+
+##### self.screen_to_bitmap(sprite)
+
+> Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`sprite`|`Sprite`|Sprite à vérifier  
+
+
+
+
+
+
+##### self.screen_to_sprite(sprite)
+
+> Transforme les coordonnées du point, de l'écran vers le référentiel du sprite
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`sprite`|`Sprite`|Sprite à vérifier  
+
 
 
 

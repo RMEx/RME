@@ -22,7 +22,7 @@ Commandes relatives à la manipulation des images
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
 *    [picture_x(id, x)](#picture_xid-x)
 *    [picture_y(id, x)](#picture_yid-x)
-*    [picture_zoom(id, zoom_x, zoom_y)](#picture_zoomid-zoom_x-zoom_y)
+*    [picture_zoom(id, zoom_x, *zoom_y)](#picture_zoomid-zoom_x-zoom_y)
 *    [picture_zoom_x(id, zoom)](#picture_zoom_xid-zoom)
 *    [picture_zoom_y(id, zoom)](#picture_zoom_yid-zoom)
 *    [pictures_clear](#pictures_clear)
@@ -38,7 +38,7 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+`angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
 
 
 ##### picture_blend(id, mode)
@@ -244,7 +244,7 @@ Commandes relatives à la manipulation des images
 `x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
 
 
-##### picture_zoom(id, zoom_x, zoom_y)
+##### picture_zoom(id, zoom_x, *zoom_y)
 
 > Change la taille d'une image
 
@@ -253,7 +253,7 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
-`zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+`*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
 
 
 ##### picture_zoom_x(id, zoom)
@@ -264,7 +264,7 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.  
 
 
 ##### picture_zoom_y(id, zoom)
@@ -275,7 +275,7 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.  
 
 
 ##### pictures_clear

@@ -9,6 +9,7 @@ Extension des sprites
 *    [self.in?(x, y)](#selfinx-y)
 *    [self.mouse_x](#selfmouse_x)
 *    [self.mouse_y](#selfmouse_y)
+*    [self.precise_in?(x, y)](#selfprecise_inx-y)
 *    [self.press?(key)](#selfpresskey)
 *    [self.rect](#selfrect)
 *    [self.release?(key)](#selfreleasekey)
@@ -41,7 +42,7 @@ Extension des sprites
 
 ##### self.in?(x, y)
 
-> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle du sprite
+> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle du sprite
 
   
 > Nom|Type|Description  
@@ -71,6 +72,21 @@ Extension des sprites
 
   
 > 
+
+
+
+
+
+##### self.precise_in?(x, y)
+
+> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le bitmap du sprite, en tenant compte de la transparence
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X du point  
+`y`|`Fixnum`|Coordonnées Y du point  
+
 
 
 
