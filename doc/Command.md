@@ -183,7 +183,7 @@ Collection des commandes EventExtender
 *    [Command.max_event_id](#commandmax_event_id)
 *    [Command.mouse_all?(method, keys)](#commandmouse_allmethod-keys)
 *    [Command.mouse_any?(method, keys)](#commandmouse_anymethod-keys)
-*    [Command.mouse_click?(key)](#commandmouse_clickkey)
+*    [Command.mouse_click?](#commandmouse_click)
 *    [Command.mouse_click_event?(events)](#commandmouse_click_eventevents)
 *    [Command.mouse_current_key(method)](#commandmouse_current_keymethod)
 *    [Command.mouse_dragging?](#commandmouse_dragging)
@@ -2861,15 +2861,12 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_click?(key)
+##### Command.mouse_click?
 
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
+> Renvoie true lorsqu'on effectue un clic gauche
 
   
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
+> 
 
 
 

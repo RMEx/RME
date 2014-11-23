@@ -1048,8 +1048,8 @@ module Command
   register_command :mouse, "Command.mouse_press?"
 
   link_method_documentation "Command.mouse_click?", 
-                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)",
-                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          "Renvoie true lorsqu'on effectue un clic gauche",
+                          {},
                           true
   register_command :mouse, "Command.mouse_click?"
 
