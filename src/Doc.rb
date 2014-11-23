@@ -286,6 +286,9 @@ class Point
   link_method_documentation :"self.screen_to_bitmap", 
                             "Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite", 
                             {:sprite => ["Sprite à vérifier", :Sprite]}
+  link_method_documentation :"self.bitmap_to_screen", 
+                            "Transforme les coordonnées du point, du référentiel du bitmap vers l'écran en fonction des paramètres du sprite", 
+                            {:sprite => ["Sprite à vérifier", :Sprite]}
 end
 
 #==============================================================================

@@ -629,6 +629,16 @@ class Point < Struct.new(:x, :y)
   end
 
   #--------------------------------------------------------------------------
+  # * Transforms point from bitmap to screen
+  #--------------------------------------------------------------------------
+  def bitmap_to_screen(spr)
+    self.x = (self.x-spr.ox)*spr.zoom_x
+    self.y = (self.y-spr.oy)*spr.zoom_y
+    rotate(spr.angle, 0, 0)
+    set(self.x+spr.x, self.y+spr.y)
+  end
+
+  #--------------------------------------------------------------------------
   # * In area
   #--------------------------------------------------------------------------
   def in?(rect)
