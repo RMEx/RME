@@ -428,7 +428,7 @@ class Array
     if length == 2
       p = Point.new(*self)
     elsif length == 1
-      p = self[0]
+      p = self[0].clone
     end
     return p
   end
@@ -1424,12 +1424,6 @@ class Sprite
   # * Delegate Process
   #--------------------------------------------------------------------------
   [
-    :hover?,
-    :click?, 
-    :press?, 
-    :trigger?, 
-    :repeat?, 
-    :release?, 
     :mouse_x,
     :mouse_y
   ].each{|m| delegate :rect, m}
@@ -1442,6 +1436,18 @@ class Sprite
     point.screen_to_sprite(self)
     point.in?(rect)
   end
+  #--------------------------------------------------------------------------
+  # * check if the mouse 's hover
+  #--------------------------------------------------------------------------
+  def hover?; in?(Mouse.point); end
+    #--------------------------------------------------------------------------
+  # * check Mouse Interaction
+  #--------------------------------------------------------------------------
+  def click?;         hover? && Mouse.click?;         end
+  def press?(key);    hover? && Mouse.press?(key);    end
+  def trigger?(key);  hover? && Mouse.trigger?(key);  end
+  def repeat?(key);   hover? && Mouse.repeat?(key);   end
+  def release?(key);  hover? && Mouse.release?(key);  end
   #--------------------------------------------------------------------------
   # * Precise inclusion
   #--------------------------------------------------------------------------
