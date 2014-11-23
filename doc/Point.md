@@ -72,7 +72,7 @@ Représente un point dans un plan cartésien
 
 ##### self.screen_to_bitmap(sprite)
 
-> Convertis les coordonnées, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite
+> Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite
 
   
 > Nom|Type|Description  
@@ -86,7 +86,7 @@ Représente un point dans un plan cartésien
 
 ##### self.screen_to_sprite(sprite)
 
-> Convertis les coordonnées, de l'écran vers le référentiel du sprite
+> Transforme les coordonnées du point, de l'écran vers le référentiel du sprite
 
   
 > Nom|Type|Description  

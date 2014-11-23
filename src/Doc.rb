@@ -281,10 +281,10 @@ class Point
                               :y => ["Coordonnées Y du point à l'origine de la rotation", :Fixnum]
                             }
   link_method_documentation :"self.screen_to_sprite", 
-                            "Convertis les coordonnées, de l'écran vers le référentiel du sprite", 
+                            "Transforme les coordonnées du point, de l'écran vers le référentiel du sprite", 
                             {:sprite => ["Sprite à vérifier", :Sprite]}
   link_method_documentation :"self.screen_to_bitmap", 
-                            "Convertis les coordonnées, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite", 
+                            "Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite", 
                             {:sprite => ["Sprite à vérifier", :Sprite]}
 end
 
