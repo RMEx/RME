@@ -36,7 +36,7 @@ Représente un point dans un plan cartésien
   
 > Nom|Type|Description  
 --- | --- | ---  
-`rect`|`Rect`|Rectangle  
+`rect`|`Rect`|Rectangle à vérifier  
 
 
 
@@ -56,12 +56,12 @@ Représente un point dans un plan cartésien
 
 ##### self.rotate(angle, x, y)
 
-> Rotation du point par rapport à un second point (via (x, y), ou via une instance de Point)
+> Rotation du point par rapport au point passé en argument (via (x, y), ou via une instance de Point)
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`angle`|`Fixnum`|Angle de rotation (sens positif = sens trigonométrique)  
+`angle`|`Fixnum`|Angle de rotation en degrés décimaux (sens positif = sens trigonométrique)  
 `x`|`Fixnum`|Coordonnées X du point à l'origine de la rotation  
 `y`|`Fixnum`|Coordonnées Y du point à l'origine de la rotation  
 
@@ -77,7 +77,7 @@ Représente un point dans un plan cartésien
   
 > Nom|Type|Description  
 --- | --- | ---  
-`sprite`|`Fixnum`|Sprite  
+`sprite`|`Sprite`|Sprite à vérifier  
 
 
 
@@ -91,7 +91,7 @@ Représente un point dans un plan cartésien
   
 > Nom|Type|Description  
 --- | --- | ---  
-`sprite`|`Fixnum`|Sprite  
+`sprite`|`Sprite`|Sprite à vérifier  
 
 
 

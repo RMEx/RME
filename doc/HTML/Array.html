@@ -3,6 +3,13 @@
 <li><a href='#selfto_point'>self.to_point</a></li>
 <li><a href='#selfto_xy'>self.to_xy</a></li>
 </ul><h2>Description des méthodes</h2>
-<strong name='selfto_point' id='selfto_point'>self.to_point</strong><br /><blockquote>Renvoit l'objet 'Point', que l'array contienne l'objet 'Point' comme les coordonnées 'x, y'</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='selfto_xy' id='selfto_xy'>self.to_xy</strong><br /><blockquote>Renvoit les valeurs 'x, y', que l'array contienne l'objet 'Point' comme les coordonnées 'x,y'</blockquote>  
-<blockquote></table></blockquote><br /><br /></body></html>
+<strong name='selfto_point' id='selfto_point'>self.to_point</strong><br /><blockquote>Retourne l'objet Point, que le tableau ait la forme [x, y] ou [Point]</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='selfto_xy' id='selfto_xy'>self.to_xy</strong><br /><blockquote>Retourne les valeurs 'x, y', que le tableau ait la forme [x, y] ou [Point]</blockquote>  
+<blockquote></table></blockquote><br />Exemple  
+<pre><code class='ruby'>  
+def foo?(*p)
+  x, y = p.to_xy
+  bar(x, y)
+end
+# La méthode foo? pourra recevoir soit (x, y), soit une instance de point en argument  
+</code></pre><br /><br /></body></html>

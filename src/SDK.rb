@@ -1441,7 +1441,7 @@ class Sprite
     p1 = p.to_point
     p2 = p1.clone
     p2.screen_to_bitmap(self)
-    in?(p1) && bitmap.fast_get_pixel(p2).alpha > 0
+    in?(p1) && !bitmap.is_transparent?(p2)
   end
   #--------------------------------------------------------------------------
   # * Collision
@@ -1499,7 +1499,7 @@ class Rect
   #--------------------------------------------------------------------------
   def in?(*p)
     point = p.to_point
-    return point.in?(self)
+    point.in?(self)
   end
   #--------------------------------------------------------------------------
   # * check if the mouse 's hover
@@ -1588,15 +1588,17 @@ class Bitmap
   #--------------------------------------------------------------------------
   # * Transparency
   #--------------------------------------------------------------------------
-  def is_transparent?(x_in, y_in)
-    return true if x_in >= self.width || y_in >= self.height
+  def is_transparent?(*p)
+    x_in, y_in = p.to_xy
+    return true unless x_in.between?(0, self.width) && y_in.between?(0, self.height)
     data = self.get_data_ptr
     i = (x_in + (self.height - 1 - y_in) * self.width) * 4
     alpha = data.getbyte(i+3)
     data.free
     (alpha == 0)
   end
-  def pixel_visible?(x, y)
+  def pixel_visible?(*p)
+    x, y = p.to_xy
     @pixel_visible ||= Array.new(width) do |ix| 
       Array.new(height) {|iy| !is_transparent?(ix, iy)}
     end

@@ -241,7 +241,7 @@ Collection des commandes EventExtender
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
 *    [Command.picture_x(id, x)](#commandpicture_xid-x)
 *    [Command.picture_y(id, x)](#commandpicture_yid-x)
-*    [Command.picture_zoom(id, zoom_x, zoom_y)](#commandpicture_zoomid-zoom_x-zoom_y)
+*    [Command.picture_zoom(id, zoom_x, *zoom_y)](#commandpicture_zoomid-zoom_x-zoom_y)
 *    [Command.picture_zoom_x(id, zoom)](#commandpicture_zoom_xid-zoom)
 *    [Command.picture_zoom_y(id, zoom)](#commandpicture_zoom_yid-zoom)
 *    [Command.pictures_clear](#commandpictures_clear)
@@ -3425,7 +3425,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+`angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
 
 
 
@@ -3736,7 +3736,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_zoom(id, zoom_x, zoom_y)
+##### Command.picture_zoom(id, zoom_x, *zoom_y)
 
 > Change la taille d'une image
 
@@ -3745,7 +3745,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
-`zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+`*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
 
 
 
@@ -3760,7 +3760,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.  
 
 
 
@@ -3775,7 +3775,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.  
 
 
 

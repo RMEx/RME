@@ -5,6 +5,7 @@
 <li><a href='#selfinx-y'>self.in?(x, y)</a></li>
 <li><a href='#selfmouse_x'>self.mouse_x</a></li>
 <li><a href='#selfmouse_y'>self.mouse_y</a></li>
+<li><a href='#selfprecise_inx-y'>self.precise_in?(x, y)</a></li>
 <li><a href='#selfpresskey'>self.press?(key)</a></li>
 <li><a href='#selfrect'>self.rect</a></li>
 <li><a href='#selfreleasekey'>self.release?(key)</a></li>
@@ -13,10 +14,11 @@
 </ul><h2>Description des méthodes</h2>
 <strong name='selfclick' id='selfclick'>self.click?</strong><br /><blockquote>Vérifie si le rectangle du sprite est cliqué</blockquote>  
 <blockquote></table></blockquote><br /><br /><strong name='selfhover' id='selfhover'>self.hover?</strong><br /><blockquote>Vérifie si la souris passe au dessus du rectangle du sprite</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='selfinx-y' id='selfinx-y'>self.in?(x, y)</strong><br /><blockquote>Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle du sprite</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='selfinx-y' id='selfinx-y'>self.in?(x, y)</strong><br /><blockquote>Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle du sprite</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>x</code></td><td><code>Fixnum</code></td><td>Coordonnées X du point</td></tr><tr><td><code>y</code></td><td><code>Fixnum</code></td><td>Coordonnées Y du point</td></tr></table></blockquote><br /><br /><strong name='selfmouse_x' id='selfmouse_x'>self.mouse_x</strong><br /><blockquote>Retourne la position x de la souris relative au rectangle du sprite</blockquote>  
 <blockquote></table></blockquote><br /><br /><strong name='selfmouse_y' id='selfmouse_y'>self.mouse_y</strong><br /><blockquote>Retourne la position y de la souris relative au rectangle du sprite</blockquote>  
-<blockquote></table></blockquote><br /><br /><strong name='selfpresskey' id='selfpresskey'>self.press?(key)</strong><br /><blockquote>Vérifie si le rectangle du sprite est enfoncé par la touche passée en argument</blockquote>  
+<blockquote></table></blockquote><br /><br /><strong name='selfprecise_inx-y' id='selfprecise_inx-y'>self.precise_in?(x, y)</strong><br /><blockquote>Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le bitmap du sprite, en tenant compte de la transparence</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>x</code></td><td><code>Fixnum</code></td><td>Coordonnées X du point</td></tr><tr><td><code>y</code></td><td><code>Fixnum</code></td><td>Coordonnées Y du point</td></tr></table></blockquote><br /><br /><strong name='selfpresskey' id='selfpresskey'>self.press?(key)</strong><br /><blockquote>Vérifie si le rectangle du sprite est enfoncé par la touche passée en argument</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Touche d'activation</td></tr></table></blockquote><br /><br /><strong name='selfrect' id='selfrect'>self.rect</strong><br /><blockquote>Retourne le rectangle relatif d'un sprite</blockquote>  
 <blockquote></table></blockquote><br /><br /><strong name='selfreleasekey' id='selfreleasekey'>self.release?(key)</strong><br /><blockquote>Vérifie si le rectangle du sprite est relaché par la touche passée en argument</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Touche d'activation</td></tr></table></blockquote><br /><br /><strong name='selfrepeatkey' id='selfrepeatkey'>self.repeat?(key)</strong><br /><blockquote>Vérifie si le rectangle du sprite est clické de manière répétée par la touche passée en argument</blockquote>  

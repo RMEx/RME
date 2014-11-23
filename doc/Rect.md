@@ -40,7 +40,7 @@ Extension des rectangles
 
 ##### self.in?(x, y)
 
-> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle
+> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle
 
   
 > Nom|Type|Description  
