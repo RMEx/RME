@@ -5,6 +5,7 @@ Représente un point dans un plan cartésien
 
 ##Liste des méthodes
 *    [Point.new(x, y)](#pointnewx-y)
+*    [self.bitmap_to_screen(sprite)](#selfbitmap_to_screensprite)
 *    [self.in?(rect)](#selfinrect)
 *    [self.null!](#selfnull)
 *    [self.rotate(angle, x, y)](#selfrotateangle-x-y)
@@ -23,6 +24,20 @@ Représente un point dans un plan cartésien
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X du point  
 `y`|`Fixnum`|Coordonnées Y du point  
+
+
+
+
+
+
+##### self.bitmap_to_screen(sprite)
+
+> Transforme les coordonnées du point, du référentiel du bitmap vers l'écran en fonction des paramètres du sprite
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`sprite`|`Sprite`|Sprite à vérifier  
 
 
 
