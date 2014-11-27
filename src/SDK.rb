@@ -1277,24 +1277,6 @@ end
 module Generative
 
   #==============================================================================
-  # ** Frames
-  #------------------------------------------------------------------------------
-  #  Rect API
-  #==============================================================================
-  module Frames
-    def frames
-      @frames ||= Frames.new
-      @frames
-    end
-    class Frames
-      attr_accessor :rows, :columns, :id, :row, :col
-      def division(rows, columns)
-        @rows, @columns = rows, columns
-      end
-    end
-  end
-
-  #==============================================================================
   # ** BitmapRect
   #------------------------------------------------------------------------------
   #  Rect API
@@ -1304,8 +1286,7 @@ module Generative
     #--------------------------------------------------------------------------
     # * Rect accessor 
     #--------------------------------------------------------------------------
-    def rect
-      return
+    def rect 
       return Rect.new(0,0,0,0) unless self.bitmap 
       tx, ty = self.x, self.y
       if viewport
@@ -1425,7 +1406,7 @@ class Viewport
     v = @elts.max{|a, b| (a.x + a.rect.width) <=> (b.x + b.rect.width)}
     [(v.x+v.rect.width), rect.width].max
   end
-end
+end 
 
 #==============================================================================
 # ** Sprite
@@ -1439,7 +1420,6 @@ class Sprite
   # * Extend sprite behaviour
   #--------------------------------------------------------------------------
   include Generative::BitmapRect
-  include Generative::Frames
   #--------------------------------------------------------------------------
   # * Delegate Process
   #--------------------------------------------------------------------------
