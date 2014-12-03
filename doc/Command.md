@@ -183,7 +183,7 @@ Collection des commandes EventExtender
 *    [Command.max_event_id](#commandmax_event_id)
 *    [Command.mouse_all?(method, keys)](#commandmouse_allmethod-keys)
 *    [Command.mouse_any?(method, keys)](#commandmouse_anymethod-keys)
-*    [Command.mouse_click?(key)](#commandmouse_clickkey)
+*    [Command.mouse_click?](#commandmouse_click)
 *    [Command.mouse_click_event?(events)](#commandmouse_click_eventevents)
 *    [Command.mouse_current_key(method)](#commandmouse_current_keymethod)
 *    [Command.mouse_dragging?](#commandmouse_dragging)
@@ -241,7 +241,7 @@ Collection des commandes EventExtender
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
 *    [Command.picture_x(id, x)](#commandpicture_xid-x)
 *    [Command.picture_y(id, x)](#commandpicture_yid-x)
-*    [Command.picture_zoom(id, zoom_x, zoom_y)](#commandpicture_zoomid-zoom_x-zoom_y)
+*    [Command.picture_zoom(id, zoom_x, *zoom_y)](#commandpicture_zoomid-zoom_x-zoom_y)
 *    [Command.picture_zoom_x(id, zoom)](#commandpicture_zoom_xid-zoom)
 *    [Command.picture_zoom_y(id, zoom)](#commandpicture_zoom_yid-zoom)
 *    [Command.pictures_clear](#commandpictures_clear)
@@ -2861,15 +2861,12 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_click?(key)
+##### Command.mouse_click?
 
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
+> Renvoie true lorsqu'on effectue un clic gauche
 
   
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
+> 
 
 
 
@@ -3425,7 +3422,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`angle`|`Fixnum`|Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+`angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
 
 
 
@@ -3736,7 +3733,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_zoom(id, zoom_x, zoom_y)
+##### Command.picture_zoom(id, zoom_x, *zoom_y)
 
 > Change la taille d'une image
 
@@ -3745,7 +3742,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
-`zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+`*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
 
 
 
@@ -3760,7 +3757,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.  
 
 
 
@@ -3775,7 +3772,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.  
 
 
 

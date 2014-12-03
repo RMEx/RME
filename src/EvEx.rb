@@ -1129,6 +1129,224 @@ class Game_Picture
 end
 
 #==============================================================================
+<<<<<<< HEAD
+=======
+# ** Commands Picture
+#------------------------------------------------------------------------------
+#  Pictures manipulation
+#==============================================================================
+
+module Command
+  #--------------------------------------------------------------------------
+  # * Spriteset
+  #--------------------------------------------------------------------------
+  def spriteset
+    scene.spriteset
+  end
+  #--------------------------------------------------------------------------
+  # * Sprite picture
+  #--------------------------------------------------------------------------
+  def sprite_picture(id)
+    spriteset.picture_sprites[id]
+  end
+  #--------------------------------------------------------------------------
+  # * Picture show
+  #--------------------------------------------------------------------------
+  def picture_show(id, n, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+    pictures[id].show(n, ori, x, y, z_x, z_y, op, bl)
+  end
+  #--------------------------------------------------------------------------
+  # * Picture erase
+  #--------------------------------------------------------------------------
+  def picture_erase(id)
+    pictures[id].erase
+  end
+  #--------------------------------------------------------------------------
+  # * Modify Origin
+  # Origin : 0 | 1 (0 = Corner High Left, 1 = Center)
+  #--------------------------------------------------------------------------
+  def picture_origin(id, *origin)
+    origin = origin[0] if origin.length == 1
+    pictures[id].origin = origin
+  end
+  #--------------------------------------------------------------------------
+  # * Modify x position
+  #--------------------------------------------------------------------------
+  def picture_x(id, x=false)
+    return pictures[id].x unless x
+    pictures[id].x = x
+  end
+  #--------------------------------------------------------------------------
+  # * Modify y position
+  #--------------------------------------------------------------------------
+  def picture_y(id, y=false)
+    return pictures[id].y unless y
+    pictures[id].y = y
+  end
+  #--------------------------------------------------------------------------
+  # * Modify position
+  #--------------------------------------------------------------------------
+  def picture_position(id, x, y)
+    picture_x(id, x)
+    picture_y(id, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Move picture
+  #--------------------------------------------------------------------------
+  def picture_move(id, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1)
+    p = pictures[id]
+    opacity = (opacity == -1) ? p.opacity : opacity
+    blend = (bt == -1) ? p.blend_type : bt
+    origin = (o == -1) ? p.origin : o
+    p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur)
+    wait(dur) if wf
+  end
+  #--------------------------------------------------------------------------
+  # * Modify wave
+  #--------------------------------------------------------------------------
+  def picture_wave(id, amp, speed)
+    pictures[id].wave_amp = amp
+    pictures[id].wave_speed = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Apply Mirror
+  #--------------------------------------------------------------------------
+  def picture_flip(id)
+    pictures[id].mirror = !pictures[id].mirror
+  end
+  #--------------------------------------------------------------------------
+  # * Modify Angle
+  #--------------------------------------------------------------------------
+  def picture_angle(id, angle=false)
+    return pictures[id].angle unless angle
+    pictures[id].angle = angle%360
+  end
+  #--------------------------------------------------------------------------
+  # * Rotate
+  #--------------------------------------------------------------------------
+  def picture_rotate(id, speed)
+    pictures[id].rotate(speed)
+  end
+  #--------------------------------------------------------------------------
+  # * change Zoom X
+  #--------------------------------------------------------------------------
+  def picture_zoom_x(id, zoom_x=false)
+    return pictures[id].zoom_x unless zoom_x
+    pictures[id].zoom_x = zoom_x
+  end
+  #--------------------------------------------------------------------------
+  # * change Zoom Y
+  #--------------------------------------------------------------------------
+  def picture_zoom_y(id, zoom_y=false)
+    return pictures[id].zoom_y unless zoom_y
+    pictures[id].zoom_y = zoom_y
+  end
+  #--------------------------------------------------------------------------
+  # * change Zoom
+  #--------------------------------------------------------------------------
+  def picture_zoom(id, zoom_x, zoom_y = -1)
+    zoom_y = zoom_x if zoom_y == -1
+    picture_zoom_x(id, zoom_x)
+    picture_zoom_y(id, zoom_y)
+  end
+  #--------------------------------------------------------------------------
+  # * change Tone
+  #--------------------------------------------------------------------------
+  def picture_tone(id, tone, d = nil, wf = false)
+    if d.is_a?(Fixnum)
+      pictures[id].start_tone_change(tone, d)
+      wait(d) if wf
+    else
+      pictures[id].tone = tone
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Change blend type
+  #--------------------------------------------------------------------------
+  def picture_blend(id, blend)
+    pictures[id].blend = blend
+  end
+  #--------------------------------------------------------------------------
+  # * Pin picture on the map
+  #--------------------------------------------------------------------------
+  def picture_pin(id, x, y)
+    picture_x(id, x)
+    picture_y(id, y)
+    pictures[id].pin
+  end
+  #--------------------------------------------------------------------------
+  # * Unpin picture on the map
+  #--------------------------------------------------------------------------
+  def picture_unpin(id)
+    pictures[id].unpin
+  end
+  #--------------------------------------------------------------------------
+  # * Change Picture Opacity
+  #--------------------------------------------------------------------------
+  def picture_opacity(id, value)
+    pictures[id].opacity = value
+  end
+  #--------------------------------------------------------------------------
+  # * Shake the picture
+  #--------------------------------------------------------------------------
+  def picture_shake(id, power, speed, duration)
+    pictures[id].start_shake(power, speed, duration)
+  end
+  #--------------------------------------------------------------------------
+  # * Point in picture
+  #--------------------------------------------------------------------------
+  def pixel_in_picture?(id, x, y, precise = false)
+    spr = sprite_picture(id)
+    return false unless spr
+    precise ? spr.precise_in?(x, y) : spr.in?(x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Picture collisions
+  #--------------------------------------------------------------------------
+  def pictures_collide?(a, b)
+    spr_a = sprite_picture(a)
+    spr_b = sprite_picture(b)
+    return if (!spr_a) || (!spr_b)
+    spr_a.collide_with?(spr_b)
+  end
+  #--------------------------------------------------------------------------
+  # * Picture collisions (perfect pixel)
+  #--------------------------------------------------------------------------
+  def pictures_perfect_collide?(a, b)
+    spr_a = sprite_picture(a)
+    spr_b = sprite_picture(b)
+    return if (!spr_a) || (!spr_b)
+    spr_a.pixel_collide_with(spr_b)
+  end
+  #--------------------------------------------------------------------------
+  # * Change scroll speed (in X)
+  #--------------------------------------------------------------------------
+  def picture_scroll_x(id, speed)
+    pictures[id].scroll_speed_x = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Change scroll speed (in Y)
+  #--------------------------------------------------------------------------
+  def picture_scroll_y(id, speed)
+    pictures[id].scroll_speed_y = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Change scroll speed
+  #--------------------------------------------------------------------------
+  def picture_scroll(id, speed)
+    picture_scroll_x(id, speed)
+    picture_scroll_y(id, speed)
+  end
+  #--------------------------------------------------------------------------
+  # * Clear all pictures
+  #--------------------------------------------------------------------------
+  def pictures_clear
+    screen.clear_pictures
+  end
+end
+
+#==============================================================================
+>>>>>>> bee6204a96fd18d1a59c9ce744ae884afb7dcc8b
 # ** Plane_Parallax
 #------------------------------------------------------------------------------
 #  This plane is used to display parallaxes.

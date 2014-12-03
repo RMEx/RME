@@ -7,7 +7,7 @@ Commande relatives à la gestion de la souris
 *    [click_time(key)](#click_timekey)
 *    [mouse_all?(method, keys)](#mouse_allmethod-keys)
 *    [mouse_any?(method, keys)](#mouse_anymethod-keys)
-*    [mouse_click?(key)](#mouse_clickkey)
+*    [mouse_click?](#mouse_click)
 *    [mouse_dragging?](#mouse_dragging)
 *    [mouse_in?(rectangle)](#mouse_inrectangle)
 *    [mouse_last_rect](#mouse_last_rect)
@@ -56,15 +56,12 @@ Commande relatives à la gestion de la souris
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
-##### mouse_click?(key)
+##### mouse_click?
 
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
+> Renvoie true lorsqu'on effectue un clic gauche
 
   
-> Nom|Type|Description  
---- | --- | ---  
-`key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
+> 
 
 ##### mouse_dragging?
 

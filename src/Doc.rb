@@ -54,6 +54,31 @@ class Object
 end
 
 #==============================================================================
+# ** Array
+#------------------------------------------------------------------------------
+#  The Array class
+#==============================================================================
+
+class Array
+  #--------------------------------------------------------------------------
+  # * Documentation
+  #--------------------------------------------------------------------------
+  link_class_documentation "Extension des arrays"
+  link_method_documentation :"self.to_point", 
+                            "Retourne l'objet Point, que le tableau ait la forme [x, y] ou [Point]",
+                            {}, true
+  link_method_documentation :"self.to_xy", 
+                            "Retourne les valeurs 'x, y', que le tableau ait la forme [x, y] ou [Point]",
+                            {}, true
+  link_snippet "self.to_xy",
+"def foo?(*p)
+  x, y = p.to_xy
+  bar(x, y)
+end
+# La méthode foo? pourra recevoir soit (x, y), soit une instance de point en argument"
+end
+
+#==============================================================================
 # ** Sprite
 #------------------------------------------------------------------------------
 #  The Sprite class
@@ -68,7 +93,13 @@ class Sprite
                             "Retourne le rectangle relatif d'un sprite", 
                             {}, true
   link_method_documentation :"self.in?", 
-                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle du sprite", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle du sprite", 
+                            {
+                              :x=> ["Coordonnées X du point", :Fixnum], 
+                              :y=> ["Coordonnées Y du point", :Fixnum]
+                            }, true
+  link_method_documentation :"self.precise_in?", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le bitmap du sprite, en tenant compte de la transparence", 
                             {
                               :x=> ["Coordonnées X du point", :Fixnum], 
                               :y=> ["Coordonnées Y du point", :Fixnum]
@@ -112,7 +143,7 @@ class Rect
   #--------------------------------------------------------------------------
   link_class_documentation "Extension des rectangles"
   link_method_documentation :"self.in?", 
-                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrite dans le rectangle", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle", 
                             {
                               :x=> ["Coordonnées X du point", :Fixnum], 
                               :y=> ["Coordonnées Y du point", :Fixnum]
@@ -156,9 +187,14 @@ class Bitmap
   #--------------------------------------------------------------------------
   link_class_documentation "Extension des Bitmaps"
   link_method_documentation :"self.fast_get_pixel", 
-                            "Retourne l'objet Color correspondant aux coordonnées données de manière très rapide", 
+                            "Retourne l'objet Color correspondant au point passé en argument (via (x, y), ou via une instance de Point) de manière très rapide", 
                             {
-
+                              :x => ["Coordonnées X", :Fixnum],
+                              :y => ["Coordonnées Y", :Fixnum]
+                            }, true
+  link_method_documentation :"self.is_transparent?", 
+                            "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est sur un pixel transparent", 
+                            {
                               :x => ["Coordonnées X", :Fixnum],
                               :y => ["Coordonnées Y", :Fixnum]
                             }, true
@@ -233,12 +269,27 @@ class Point
                             }
   link_method_documentation :"self.in?", 
                             "Vérifie si un point est inscrit dans un rectangle", 
-                            {:rect => ["Rectangle", :Rect]}, true
+                            {:rect => ["Rectangle à vérifier", :Rect]}, true
   link_method_documentation :"self.null!", 
                             "Replace le X et le Y du point à zéro", 
                             {}
-
-  end
+  link_method_documentation :"self.rotate", 
+                            "Rotation du point par rapport au point passé en argument (via (x, y), ou via une instance de Point)", 
+                            {
+                              :angle => ["Angle de rotation en degrés décimaux (sens positif = sens trigonométrique)", :Fixnum],
+                              :x => ["Coordonnées X du point à l'origine de la rotation", :Fixnum],
+                              :y => ["Coordonnées Y du point à l'origine de la rotation", :Fixnum]
+                            }
+  link_method_documentation :"self.screen_to_sprite", 
+                            "Transforme les coordonnées du point, de l'écran vers le référentiel du sprite", 
+                            {:sprite => ["Sprite à vérifier", :Sprite]}
+  link_method_documentation :"self.screen_to_bitmap", 
+                            "Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite", 
+                            {:sprite => ["Sprite à vérifier", :Sprite]}
+  link_method_documentation :"self.bitmap_to_screen", 
+                            "Transforme les coordonnées du point, du référentiel du bitmap vers l'écran en fonction des paramètres du sprite", 
+                            {:sprite => ["Sprite à vérifier", :Sprite]}
+end
 
 #==============================================================================
 # ** Keys
@@ -272,9 +323,9 @@ class Devices::Keys
                           {}, true
 
   link_snippet("self.trigger?",
-  "if Keys::Mouse_left.trigger?
-    p :mouse_pressed
-  end")
+"if Keys::Mouse_left.trigger?
+  p :mouse_pressed
+end")
 
 end
 
@@ -998,8 +1049,8 @@ module Command
   register_command :mouse, "Command.mouse_press?"
 
   link_method_documentation "Command.mouse_click?", 
-                          "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)",
-                          {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                          "Renvoie true lorsqu'on effectue un clic gauche",
+                          {},
                           true
   register_command :mouse, "Command.mouse_click?"
 
@@ -1166,7 +1217,7 @@ module Command
                           "Change l'angle de l'image", 
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :angle => ["Angle d'orientation de l'image. Si aucun angle n'est donné, la commande renverra l'angle de l'image", :Fixnum],
+                            :angle => ["Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image", :Fixnum],
                           }, true
   register_command :picture, "Command.picture_angle"
   link_method_documentation "Command.picture_rotate", 
@@ -1180,14 +1231,14 @@ module Command
                           "Change la largeur d'une image", 
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_x de l'image.", :Fixnum],
+                            :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.", :Fixnum],
                           }, true
   register_command :picture, "Command.picture_zoom_x"
   link_method_documentation "Command.picture_zoom_y", 
                           "Change la hauteur d'une image", 
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucun angle n'est donné, la commande renverra le zoom_y de l'image.", :Fixnum],
+                            :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.", :Fixnum],
                           }, true
   register_command :picture, "Command.picture_zoom_y"
   link_method_documentation "Command.picture_zoom", 
@@ -1195,7 +1246,7 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :zoom_x => ["Pourcentage d'agrandissement de la largeur de l'image", :Fixnum],
-                            :zoom_y => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.", :Fixnum],
+                            :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.", :Fixnum],
                           }, true
   register_command :picture, "Command.picture_zoom"
   link_method_documentation "Command.picture_tone", 
