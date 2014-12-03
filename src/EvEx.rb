@@ -234,7 +234,8 @@ module Kernel
   def trigger(&block)
     block
   end
-  alias :listener :trigger
+  alias_method :listener, :trigger
+  alias_method :ignore_left, :trigger 
   #--------------------------------------------------------------------------
   # * Cast Events args
   #--------------------------------------------------------------------------
@@ -1343,6 +1344,9 @@ class Game_Event
   def conditions_met?(page)
     value = rm_extender_conditions_met?(page)
     first = first_is_trigger?(page)
+    if first.is_a?(Array)
+      return first[0].()
+    end
     return value unless first
     return value && first.()
   end
@@ -1361,6 +1365,9 @@ class Game_Event
     if script =~ /^\s*(trigger|listener)/
       potential_trigger = eval(script, $game_map.interpreter.get_binding)
       return potential_trigger if potential_trigger.is_a?(Proc)
+    elsif script =~ /^\s*(ignore_left)/
+      potential_trigger = eval(script, $game_map.interpreter.get_binding)
+      return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
     end
     return false
   end
