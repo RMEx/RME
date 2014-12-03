@@ -1632,17 +1632,6 @@ end
 module Command
   extend self
   #--------------------------------------------------------------------------
-  # * Screen data
-  #--------------------------------------------------------------------------
-  def screen; Game_Screen.get; end
-  def pictures; screen.pictures; end
-  def scene; SceneManager.scene; end
-  def wait(d); d.times {Fiber.yield}; end
-  def session_username; USERNAME; end
-  def length(a); a.length; end
-  def get(a, i); a[i]; end
-  def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
-  #--------------------------------------------------------------------------
   # * Method suggestions
   #--------------------------------------------------------------------------
   def method_missing(*args)
