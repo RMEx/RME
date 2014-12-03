@@ -551,7 +551,8 @@ module Command
   register_command_category :system, "Commandes systèmes", "Offre une collection d'informations sur le système"
   register_command_category :actors, "Commandes des acteurs", "Offre des commandes pour obtenir des informations sur les acteurs"
   register_command_category :skills, "Commandes des techniques", "Offre des commandes pour obtenir des informations sur les techniques"
-  
+  register_command_category :math, "Commandes mathématiques et arithmétiques", "Outils de traitement mathématiques un peu avancé"
+
   link_class_documentation "Collection des commandes EventExtender"
 
   link_method_documentation "Command.tone", 

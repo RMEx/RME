@@ -18,6 +18,7 @@ library("RME", 'src/') do
 
   add_component "RME.SDK",            "SDK.rb"
   add_component "RME.EvEx",           "EvEx.rb"
+  add_component "RME.Commands",       "Commands.rb"
   add_component "RME.DocGenerator",   "DocGenerator.rb"
   add_component "RME.Documentation",  "Doc.rb"
 

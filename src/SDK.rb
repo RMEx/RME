@@ -1569,4 +1569,17 @@ module Command
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
+  #--------------------------------------------------------------------------
+  # * Method suggestions
+  #--------------------------------------------------------------------------
+  def method_missing(*args)
+    keywords = Command.singleton_methods
+    keywords.uniq!
+    keywords.delete(:method_missing)
+    keywords.collect!{|i|i.to_s}
+    keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
+    snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+    msg = "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+    raise(NoMethodError, msg)
+  end
 end
