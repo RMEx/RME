@@ -1466,15 +1466,11 @@ class Sprite
     raise RuntimeError.new("Not a rect !") unless with_rect.respond_to?(:rect)
     a = self.rect
     b = with_rect.rect
-    if ((b.x >= a.x + a.width) || 
+    return !((b.x >= a.x + a.width) || 
         (b.x + b.width < a.x)  || 
         (b.y >= a.y + a.height)|| 
         (b.y + b.height < a.y)
       ) 
-    return false
-    else
-      return true
-    end
   end
   #--------------------------------------------------------------------------
   # * Super precise Collision
