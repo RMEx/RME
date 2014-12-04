@@ -232,6 +232,13 @@ class RPG::CommonEvent
     rme_parallel? || custom_trigger
   end
   #--------------------------------------------------------------------------
+  # * Check in battle state
+  #--------------------------------------------------------------------------
+  def for_battle?
+    c = custom_trigger
+    c.is_a?(Array) && c[1] == :ibt
+  end
+  #--------------------------------------------------------------------------
   # * Define custom trigger
   #--------------------------------------------------------------------------
   def cst_trigger
@@ -249,6 +256,9 @@ class RPG::CommonEvent
     elsif script =~ /^\s*(ignore_left)/
       potential_trigger = eval(script)
       return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
+    elsif script =~ /^\s*(in_battle)/
+      potential_trigger = eval(script)
+      return [potential_trigger, :ibt] if potential_trigger.is_a?(Proc)
     end
     return false
   end
@@ -267,17 +277,23 @@ class Game_CommonEvent
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rme_active?, :active?
+  attr_accessor :event
   #--------------------------------------------------------------------------
   # * Determine if Active State
   #--------------------------------------------------------------------------
   def active?
     trigg = @event.custom_trigger
     if trigg.is_a?(Array)
+      f = trigg[1]
+      return trigg[0].() if f == :ibt && in_battle?
+      return false if f == :ibt
+      return false if in_battle?
       return trigg[0].()
     elsif trigg.is_a?(Proc)
+      return false if in_battle?
       return rme_active? && trigg.()
     end
-    return rme_active?
+    return !in_battle? && rme_active?
   end
 end
 
@@ -318,6 +334,13 @@ module Kernel
   end
   #--------------------------------------------------------------------------
   # * Trigger in battle
+  #--------------------------------------------------------------------------
+  def in_battle(&block)
+    return lambda{|*id| true} unless block_given?
+    block
+  end
+  #--------------------------------------------------------------------------
+  # * check if in battle
   #--------------------------------------------------------------------------
   def in_battle? 
     $game_party.in_battle
