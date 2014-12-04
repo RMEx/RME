@@ -208,6 +208,80 @@ module SS
 end
 
 #==============================================================================
+# ** RPG::CommonEvent
+#------------------------------------------------------------------------------
+#  Awesome Monkeypatch
+#==============================================================================
+
+class RPG::CommonEvent
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :rme_parallel?, :parallel?
+  #--------------------------------------------------------------------------
+  # * custom trigger
+  #--------------------------------------------------------------------------
+  def custom_trigger
+    @custom_trigger ||= cst_trigger
+    @custom_trigger
+  end
+  #--------------------------------------------------------------------------
+  # * Check parallel state
+  #--------------------------------------------------------------------------
+  def parallel?
+    rme_parallel? || custom_trigger
+  end
+  #--------------------------------------------------------------------------
+  # * Define custom trigger
+  #--------------------------------------------------------------------------
+  def cst_trigger
+    return false unless @list || @list[0]
+    return false unless @list[0].code == 355
+    index = 0
+    script = ""
+    while @list[index] && [355, 655].include?(@list[index].code)
+      script += @list[index].parameters[0] + "\n"
+      index += 1
+    end
+    if script =~ /^\s*(trigger|listener)/
+      potential_trigger = eval(script.gsub("trigger", "listener"))
+      return potential_trigger if potential_trigger.is_a?(Proc)
+    elsif script =~ /^\s*(ignore_left)/
+      potential_trigger = eval(script)
+      return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
+    end
+    return false
+  end
+end
+
+#==============================================================================
+# ** Game_CommonEvent
+#------------------------------------------------------------------------------
+#  This class handles common events. It includes functionality for execution of
+# parallel process events. It's used within the Game_Map class ($game_map).
+# Extended for Game_Battle (so SWAGG )
+#==============================================================================
+
+class Game_CommonEvent
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :rme_active?, :active?
+  #--------------------------------------------------------------------------
+  # * Determine if Active State
+  #--------------------------------------------------------------------------
+  def active?
+    trigg = @event.custom_trigger
+    if trigg.is_a?(Array)
+      return trigg[0].()
+    elsif trigg.is_a?(Proc)
+      return rme_active? && trigg.()
+    end
+    return rme_active?
+  end
+end
+
+#==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
 #  Object class methods are defined in this module. 
@@ -236,6 +310,18 @@ module Kernel
   end
   alias_method :listener, :trigger
   alias_method :ignore_left, :trigger 
+  #--------------------------------------------------------------------------
+  # * Trigger true
+  #--------------------------------------------------------------------------
+  def always_run
+    true
+  end
+  #--------------------------------------------------------------------------
+  # * Trigger in battle
+  #--------------------------------------------------------------------------
+  def in_battle? 
+    $game_party.in_battle
+  end
   #--------------------------------------------------------------------------
   # * Cast Events args
   #--------------------------------------------------------------------------
@@ -667,6 +753,7 @@ class Game_Map
   alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_setup, :setup
   alias_method :rm_extender_update, :update
+  alias_method :rm_extender_setup_events, :setup_events
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -774,6 +861,13 @@ class Game_Map
     Game_Map.eval_proc(map_id, Game_Map.running_proc)
     @parallaxes.each {|parallax| parallax.update}
     rm_extender_update(main)
+  end
+  #--------------------------------------------------------------------------
+  # * Event Setup
+  #--------------------------------------------------------------------------
+  def setup_events
+    rm_extender_setup_events
+    @common_events.each {|event| event.refresh }
   end
 end
 
