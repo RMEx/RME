@@ -208,96 +208,6 @@ module SS
 end
 
 #==============================================================================
-# ** RPG::CommonEvent
-#------------------------------------------------------------------------------
-#  Awesome Monkeypatch
-#==============================================================================
-
-class RPG::CommonEvent
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
-  alias_method :rme_parallel?, :parallel?
-  #--------------------------------------------------------------------------
-  # * custom trigger
-  #--------------------------------------------------------------------------
-  def custom_trigger
-    @custom_trigger ||= cst_trigger
-    @custom_trigger
-  end
-  #--------------------------------------------------------------------------
-  # * Check parallel state
-  #--------------------------------------------------------------------------
-  def parallel?
-    rme_parallel? || custom_trigger
-  end
-  #--------------------------------------------------------------------------
-  # * Check in battle state
-  #--------------------------------------------------------------------------
-  def for_battle?
-    c = custom_trigger
-    c.is_a?(Array) && c[1] == :ibt
-  end
-  #--------------------------------------------------------------------------
-  # * Define custom trigger
-  #--------------------------------------------------------------------------
-  def cst_trigger
-    return false unless @list || @list[0]
-    return false unless @list[0].code == 355
-    index = 0
-    script = ""
-    while @list[index] && [355, 655].include?(@list[index].code)
-      script += @list[index].parameters[0] + "\n"
-      index += 1
-    end
-    if script =~ /^\s*(trigger|listener)/
-      potential_trigger = eval(script.gsub("trigger", "listener"))
-      return potential_trigger if potential_trigger.is_a?(Proc)
-    elsif script =~ /^\s*(ignore_left)/
-      potential_trigger = eval(script)
-      return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
-    elsif script =~ /^\s*(in_battle)/
-      potential_trigger = eval(script)
-      return [potential_trigger, :ibt] if potential_trigger.is_a?(Proc)
-    end
-    return false
-  end
-end
-
-#==============================================================================
-# ** Game_CommonEvent
-#------------------------------------------------------------------------------
-#  This class handles common events. It includes functionality for execution of
-# parallel process events. It's used within the Game_Map class ($game_map).
-# Extended for Game_Battle (so SWAGG )
-#==============================================================================
-
-class Game_CommonEvent
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
-  alias_method :rme_active?, :active?
-  attr_accessor :event
-  #--------------------------------------------------------------------------
-  # * Determine if Active State
-  #--------------------------------------------------------------------------
-  def active?
-    trigg = @event.custom_trigger
-    if trigg.is_a?(Array)
-      f = trigg[1]
-      return trigg[0].() if f == :ibt && in_battle?
-      return false if f == :ibt
-      return false if in_battle?
-      return trigg[0].()
-    elsif trigg.is_a?(Proc)
-      return false if in_battle?
-      return rme_active? && trigg.()
-    end
-    return !in_battle? && rme_active?
-  end
-end
-
-#==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
 #  Object class methods are defined in this module. 
@@ -1473,11 +1383,11 @@ class Game_Event
   def first_is_trigger?(page)
     return false unless page || page.list || page.list[0]
     return false unless page.list[0].code == 355
-    index = 0
-    script = page.list[index].parameters[0] + "\n"
+    script = page.list[0].parameters[0] + "\n"
+    index = 1
     while page.list[index].code == 655
-      index += 1
       script += page.list[index].parameters[0] + "\n"
+      index += 1
     end
     if script =~ /^\s*(trigger|listener)/
       potential_trigger = eval(script, $game_map.interpreter.get_binding)
