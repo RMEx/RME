@@ -253,7 +253,7 @@ module Kernel
   # * check if in battle
   #--------------------------------------------------------------------------
   def in_battle? 
-    $game_party.in_battle
+    Game_Temp.in_battle
   end
   #--------------------------------------------------------------------------
   # * Cast Events args

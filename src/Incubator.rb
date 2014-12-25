@@ -5,6 +5,7 @@
 =begin 
 Implémentation des évènements communs dans le système de combat 
 - Solution proposée par <Grim>
+  - Special thanks to Zeus81
 - Etat : En cours
 =end
 
@@ -43,6 +44,48 @@ class RPG::CommonEvent
   #--------------------------------------------------------------------------
   def for_battle?
     !!battle_trigger
+  end
+end
+
+#==============================================================================
+# ** Game_Temp
+#------------------------------------------------------------------------------
+#  This class handles temporary data that is not included with save data.
+# The instance of this class is referenced by $game_temp.
+#==============================================================================
+
+class Game_Temp
+  class << self
+    attr_accessor :in_battle
+    Game_Temp.in_battle = false
+  end
+end
+
+#==============================================================================
+# ** BattleManager
+#------------------------------------------------------------------------------
+#  This module manages battle progress.
+#==============================================================================
+
+module BattleManager
+  class << self
+    alias_method :incubator_setup, :setup 
+    alias_method :incubator_end, :battle_end
+    #--------------------------------------------------------------------------
+    # * Setup
+    #--------------------------------------------------------------------------
+    def setup(*a)
+      Game_Temp.in_battle = true
+      incubator_setup(*a)
+    end
+    #--------------------------------------------------------------------------
+    # * End Battle
+    #     result : Result (0: Win 1: Escape 2: Lose)
+    #--------------------------------------------------------------------------
+    def battle_end(result)
+      Game_Temp.in_battle = false
+      incubator_end(result)
+    end
   end
 end
 
@@ -100,31 +143,11 @@ class Game_Troop
   def update
     incubator_update
     event_update
-    interpreter_update
   end
   #--------------------------------------------------------------------------
   # * Event Update
   #--------------------------------------------------------------------------
   def event_update
     @common_events.each {|e| e.update}
-  end
-  #--------------------------------------------------------------------------
-  # * Interpreter Update
-  #--------------------------------------------------------------------------
-  def interpreter_update
-    @interpreter.update
-    return if @interpreter.running?
-    @interpreter.clear if @interpreter.event_id > 0
-    return unless find_event
-  end
-  #--------------------------------------------------------------------------
-  # * Find event
-  #--------------------------------------------------------------------------
-  def find_event
-    event = $data_common_events.find do |event|
-      event && event.for_battle? && (event.battle_trigger.())
-    end
-    @interpreter.setup(event.list) if event
-    event
   end
 end
