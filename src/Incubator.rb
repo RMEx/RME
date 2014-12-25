@@ -4,6 +4,127 @@
 
 =begin 
 Implémentation des évènements communs dans le système de combat 
-- Solution proposée par <Nuki>
+- Solution proposée par <Grim>
 - Etat : En cours
 =end
+
+#==============================================================================
+# ** RPG::CommonEvent
+#------------------------------------------------------------------------------
+#  The data class for common events.
+#==============================================================================
+
+class RPG::CommonEvent
+  #--------------------------------------------------------------------------
+  # * Define battle trigger
+  #--------------------------------------------------------------------------
+  def def_battle_trigger 
+    return false if !@list[0] || @list[0].code != 355
+    script = @list[0].parameters[0] + "\n"
+    index = 1 
+    while @list[index].code == 655
+      script += @list[index].parameters[0] + "\n"
+      index += 1
+    end
+    if script =~ /^\s*(in_battle)/
+      potential_trigger = eval(script)
+      return potential_trigger if potential_trigger.is_a?(Proc)
+    end
+    return false
+  end
+  #--------------------------------------------------------------------------
+  # * get battle trigger
+  #--------------------------------------------------------------------------
+  def battle_trigger
+    @battle_trigger ||= def_battle_trigger
+  end
+  #--------------------------------------------------------------------------
+  # * Is for battle
+  #--------------------------------------------------------------------------
+  def for_battle?
+    !!battle_trigger
+  end
+end
+
+#==============================================================================
+# ** Game_CommonEvent
+#------------------------------------------------------------------------------
+#  This class handles common events. It includes functionality for execution of
+# parallel process events. It's used within the Game_Map class ($game_map).
+#==============================================================================
+
+class Game_CommonEvent
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :incubator_active?, :active? 
+  #--------------------------------------------------------------------------
+  # * Determine if Active State
+  #--------------------------------------------------------------------------
+  def active?
+    return incubator_active? if not in_battle?
+    @event.for_battle? && @event.battle_trigger.call()
+  end
+end
+
+#==============================================================================
+# ** Game_Troop
+#------------------------------------------------------------------------------
+#  This class handles enemy groups and battle-related data. Also performs
+# battle events. The instance of this class is referenced by $game_troop.
+#==============================================================================
+
+class Game_Troop
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :incubator_setup, :setup
+  alias_method :incubator_update, :update
+  #--------------------------------------------------------------------------
+  # * Setup
+  #--------------------------------------------------------------------------
+  def setup(troop_id)
+    incubator_setup(troop_id)
+    init_common_events
+  end
+  #--------------------------------------------------------------------------
+  # * Initialize common events
+  #--------------------------------------------------------------------------
+  def init_common_events
+    events = $data_common_events.select {|event| event && event.for_battle? }
+    @common_events = events.map {|e| Game_CommonEvent.new(e.id)}
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    incubator_update
+    event_update
+    interpreter_update
+  end
+  #--------------------------------------------------------------------------
+  # * Event Update
+  #--------------------------------------------------------------------------
+  def event_update
+    @common_events.each {|e| e.update}
+  end
+  #--------------------------------------------------------------------------
+  # * Interpreter Update
+  #--------------------------------------------------------------------------
+  def interpreter_update
+    @interpreter.update
+    return if @interpreter.running?
+    @interpreter.clear if @interpreter.event_id > 0
+    return unless find_event
+  end
+  #--------------------------------------------------------------------------
+  # * Find event
+  #--------------------------------------------------------------------------
+  def find_event
+    event = $data_common_events.find do |event|
+      event && event.for_battle? && (event.battle_trigger.())
+    end
+    @interpreter.setup(event.list) if event
+    event
+  end
+end
