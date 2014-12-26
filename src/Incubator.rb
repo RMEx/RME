@@ -4,9 +4,9 @@
 
 =begin 
 Implémentation des évènements communs dans le système de combat 
-- Solution proposée par <Grim>
+- Solution proposée par <Grim, Nuki>
   - Special thanks to Zeus81
-- Etat : En cours
+- Etat : Incubé
 =end
 
 #==============================================================================
