@@ -38,7 +38,7 @@ module RMECommands
   #  Parallaxes Commands
   #==============================================================================
   module Parallaxes
-     #--------------------------------------------------------------------------
+    #--------------------------------------------------------------------------
     # * Show parallax
     #--------------------------------------------------------------------------
     def parallax_show(
@@ -1037,6 +1037,33 @@ module RMECommands
     def skill_success_rate(i); $data_skills[i].success_rate; end
     def skill_tp_gain(i); $data_skills[i].tp_gain; end
 
+    append_commands
+  end
+
+  #==============================================================================
+  # ** Mathematics
+  #------------------------------------------------------------------------------
+  #  Math cmds
+  #==============================================================================
+  module Mathematics 
+    def pi; Math.pi; end
+    def acos(x); Math.acos(x); end 
+    def acosh(x); Math.acosh(x); end
+    def asin(x); Math.asin(x); end 
+    def asinh(x); Math.asinh(x); end
+    def atan(x); Math.atan(x); end 
+    def atan2(x, y); Math.atan2(x, y); end 
+    def atanh(x); Math.atanh(x); end 
+    def cos(x); Math.cos(x); end 
+    def cosh(x); Math.cosh(x); end 
+    def hypot(x, y); Math.hypot(x, y); end 
+    def sin(x); Math.sin(x); end 
+    def sinh(x); Math.sinh(x); end 
+    def sqrt(x); Math.sqrt(x); end 
+    def tan(x); Math.tan(x); end 
+    def tanh(x); Math.tanh(x); end 
+    def to_deg(x); (x.to_f)*57.2957795; end 
+    def to_rad(x); (x.to_f)/57.2957795; end
     append_commands
   end
 

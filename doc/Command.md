@@ -4,6 +4,8 @@
 Collection des commandes EventExtender
 
 ##Liste des méthodes
+*    [Command.acos(x)](#commandacosx)
+*    [Command.acosh(x)](#commandacoshx)
 *    [Command.actor_accessory(id)](#commandactor_accessoryid)
 *    [Command.actor_agility(id)](#commandactor_agilityid)
 *    [Command.actor_armors(id)](#commandactor_armorsid)
@@ -94,10 +96,17 @@ Collection des commandes EventExtender
 *    [Command.armor_note(id)](#commandarmor_noteid)
 *    [Command.armor_price(id)](#commandarmor_priceid)
 *    [Command.armor_type(id)](#commandarmor_typeid)
+*    [Command.asin(x)](#commandasinx)
+*    [Command.asinh(x)](#commandasinhx)
+*    [Command.atan(x)](#commandatanx)
+*    [Command.atan2(x, y)](#commandatan2x-y)
+*    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
 *    [Command.caps_lock?](#commandcaps_lock)
 *    [Command.click_time(key)](#commandclick_timekey)
 *    [Command.color(red, green, blue, *alpha)](#commandcolorred-green-blue-alpha)
+*    [Command.cos(x)](#commandcosx)
+*    [Command.cosh(x)](#commandcoshx)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
 *    [Command.event_collide?(idA, idB)](#commandevent_collideida-idb)
@@ -121,6 +130,7 @@ Collection des commandes EventExtender
 *    [Command.has_armor?(id, *include_equipement)](#commandhas_armorid-include_equipement)
 *    [Command.has_item?(id)](#commandhas_itemid)
 *    [Command.has_weapon?(id, *include_equipement)](#commandhas_weaponid-include_equipement)
+*    [Command.hypot(x, y)](#commandhypotx-y)
 *    [Command.id_at(x, y)](#commandid_atx-y)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#commandinclude_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#commandinvoke_eventmap_id-event_id-new_id-x-y)
@@ -221,6 +231,7 @@ Collection des commandes EventExtender
 *    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)](#commandparallax_zoom_yid-zoom-duration-wait_flag)
 *    [Command.parallaxes_clear](#commandparallaxes_clear)
 *    [Command.percent(value, max)](#commandpercentvalue-max)
+*    [Command.pi](#commandpi)
 *    [Command.picture_angle(id, angle)](#commandpicture_angleid-angle)
 *    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
@@ -266,6 +277,8 @@ Collection des commandes EventExtender
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
 *    [Command.set_actor_nickname(id, new_name)](#commandset_actor_nicknameid-new_name)
 *    [Command.shift?](#commandshift)
+*    [Command.sin(x)](#commandsinx)
+*    [Command.sinh(x)](#commandsinhx)
 *    [Command.skill_always_usable?(id)](#commandskill_always_usableid)
 *    [Command.skill_battle_usable?(id)](#commandskill_battle_usableid)
 *    [Command.skill_certain?(id)](#commandskill_certainid)
@@ -303,16 +316,21 @@ Collection des commandes EventExtender
 *    [Command.skill_speed(id)](#commandskill_speedid)
 *    [Command.skill_sucess_rate(id)](#commandskill_sucess_rateid)
 *    [Command.skill_tp_gain(id)](#commandskill_tp_gainid)
+*    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
 *    [Command.start_map_id](#commandstart_map_id)
 *    [Command.start_x](#commandstart_x)
 *    [Command.start_y](#commandstart_y)
 *    [Command.steps](#commandsteps)
+*    [Command.tan(x)](#commandtanx)
+*    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.timer](#commandtimer)
+*    [Command.to_deg(x)](#commandto_degx)
+*    [Command.to_rad(x)](#commandto_radx)
 *    [Command.tone(red, green, blue, *gray)](#commandtonered-green-blue-gray)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
@@ -335,6 +353,34 @@ Collection des commandes EventExtender
 
 
 ##Description des méthodes
+##### Command.acos(x)
+
+> Renvoie l'arc cosinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.acosh(x)
+
+> Renvoie l'inverse hyperbolique cosinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
 ##### Command.actor_accessory(id)
 
 > renvoie l'id l' accessoire équipé du héros référencé par son ID
@@ -1615,6 +1661,77 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.asin(x)
+
+> Renvoie l'arc sinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.asinh(x)
+
+> Renvoie l'inverse hyperbolique sinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.atan(x)
+
+> Renvoie l'arc tangeant de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.atan2(x, y)
+
+> Renvoie l'arc tangeant pour x et y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+`y`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.atanh(x)
+
+> Renvoie l'inverse hyperbolique tangeant de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
 ##### Command.battle_count
 
 > Renvoie le nombre de combat effectués par partie
@@ -1662,6 +1779,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+
+
+
+
+
+
+##### Command.cos(x)
+
+> Renvoie le cosinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.cosh(x)
+
+> Renvoie le cosinus hyperbolique de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
 
 
 
@@ -1989,6 +2134,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 `*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
+
+
+
+
+
+
+##### Command.hypot(x, y)
+
+> Renvoie l'hypothénuse de x et y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+`y`|`Numeric`|Valeur numérique  
 
 
 
@@ -3414,6 +3574,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.pi
+
+> Renvoie une approximation de PI
+
+  
+> 
+
+
+
+
+
 ##### Command.picture_angle(id, angle)
 
 > Change l'angle de l'image
@@ -4054,6 +4225,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.sin(x)
+
+> Renvoie le sinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.sinh(x)
+
+> Renvoie le sinus hyperbolique de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
 ##### Command.skill_always_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable partout
@@ -4572,6 +4771,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.sqrt(x)
+
+> Renvoie la racine carrée de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
 ##### Command.square_passable?(x, y, direction)
 
 > Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon
@@ -4647,6 +4860,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.tan(x)
+
+> Renvoie la tangeante de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.tanh(x)
+
+> Renvoie la tangeante hyperbolique de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
 ##### Command.team_size
 
 > Renvoie la taille de l'équipe
@@ -4694,6 +4935,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.to_deg(x)
+
+> Renvoie x (supposé radian) convertit en degré
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+
+
+
+
+##### Command.to_rad(x)
+
+> Renvoie x (supposé degré) convertit en radian
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
 
 
 
