@@ -1046,7 +1046,7 @@ module RMECommands
   #  Math cmds
   #==============================================================================
   module Mathematics 
-    def pi; Math.pi; end
+    def pi; Math::PI; end
     def acos(x); Math.acos(x); end 
     def acosh(x); Math.acosh(x); end
     def asin(x); Math.asin(x); end 
@@ -1064,6 +1064,17 @@ module RMECommands
     def tanh(x); Math.tanh(x); end 
     def to_deg(x); (x.to_f)*57.2957795; end 
     def to_rad(x); (x.to_f)/57.2957795; end
+    append_commands
+  end
+
+  #==============================================================================
+  # ** Troop
+  #------------------------------------------------------------------------------
+  #  cmd about troops
+  #==============================================================================
+
+  module Troop
+    def troop(id); ;end
     append_commands
   end
 
