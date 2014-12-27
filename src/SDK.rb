@@ -1466,15 +1466,11 @@ class Sprite
     raise RuntimeError.new("Not a rect !") unless with_rect.respond_to?(:rect)
     a = self.rect
     b = with_rect.rect
-    if ((b.x >= a.x + a.width) || 
+    return !((b.x >= a.x + a.width) || 
         (b.x + b.width < a.x)  || 
         (b.y >= a.y + a.height)|| 
         (b.y + b.height < a.y)
       ) 
-    return false
-    else
-      return true
-    end
   end
   #--------------------------------------------------------------------------
   # * Super precise Collision
@@ -1632,14 +1628,16 @@ end
 module Command
   extend self
   #--------------------------------------------------------------------------
-  # * Screen data
+  # * Method suggestions
   #--------------------------------------------------------------------------
-  def screen; Game_Screen.get; end
-  def pictures; screen.pictures; end
-  def scene; SceneManager.scene; end
-  def wait(d); d.times {Fiber.yield}; end
-  def session_username; USERNAME; end
-  def length(a); a.length; end
-  def get(a, i); a[i]; end
-  def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
+  def method_missing(*args)
+    keywords = Command.singleton_methods
+    keywords.uniq!
+    keywords.delete(:method_missing)
+    keywords.collect!{|i|i.to_s}
+    keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
+    snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+    msg = "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+    raise(NoMethodError, msg)
+  end
 end

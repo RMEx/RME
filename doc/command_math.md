@@ -1,0 +1,206 @@
+#Commandes mathématiques et arithmétiques
+[Retourner à l'index](__command_list.md)
+
+Outils de traitement mathématiques un peu avancé
+
+##Liste des commandes
+*    [acos(x)](#acosx)
+*    [acosh(x)](#acoshx)
+*    [asin(x)](#asinx)
+*    [asinh(x)](#asinhx)
+*    [atan(x)](#atanx)
+*    [atan2(x, y)](#atan2x-y)
+*    [atanh(x)](#atanhx)
+*    [cos(x)](#cosx)
+*    [cosh(x)](#coshx)
+*    [hypot(x, y)](#hypotx-y)
+*    [pi](#pi)
+*    [sin(x)](#sinx)
+*    [sinh(x)](#sinhx)
+*    [sqrt(x)](#sqrtx)
+*    [tan(x)](#tanx)
+*    [tanh(x)](#tanhx)
+*    [to_deg(x)](#to_degx)
+*    [to_rad(x)](#to_radx)
+
+
+##Description des commandes
+##### acos(x)
+
+> Renvoie l'arc cosinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### acosh(x)
+
+> Renvoie l'inverse hyperbolique cosinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### asin(x)
+
+> Renvoie l'arc sinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### asinh(x)
+
+> Renvoie l'inverse hyperbolique sinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### atan(x)
+
+> Renvoie l'arc tangeant de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### atan2(x, y)
+
+> Renvoie l'arc tangeant pour x et y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+`y`|`Numeric`|Valeur numérique  
+
+
+##### atanh(x)
+
+> Renvoie l'inverse hyperbolique tangeant de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### cos(x)
+
+> Renvoie le cosinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### cosh(x)
+
+> Renvoie le cosinus hyperbolique de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### hypot(x, y)
+
+> Renvoie l'hypothénuse de x et y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+`y`|`Numeric`|Valeur numérique  
+
+
+##### pi
+
+> Renvoie une approximation de PI
+
+  
+> 
+
+##### sin(x)
+
+> Renvoie le sinus de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### sinh(x)
+
+> Renvoie le sinus hyperbolique de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### sqrt(x)
+
+> Renvoie la racine carrée de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### tan(x)
+
+> Renvoie la tangeante de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### tanh(x)
+
+> Renvoie la tangeante hyperbolique de x
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### to_deg(x)
+
+> Renvoie x (supposé radian) convertit en degré
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+
+##### to_rad(x)
+
+> Renvoie x (supposé degré) convertit en radian
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Numeric`|Valeur numérique  
+
+

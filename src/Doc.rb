@@ -602,7 +602,8 @@ module Command
   register_command_category :system, "Commandes systèmes", "Offre une collection d'informations sur le système"
   register_command_category :actors, "Commandes des acteurs", "Offre des commandes pour obtenir des informations sur les acteurs"
   register_command_category :skills, "Commandes des techniques", "Offre des commandes pour obtenir des informations sur les techniques"
-  
+  register_command_category :math, "Commandes mathématiques et arithmétiques", "Outils de traitement mathématiques un peu avancé"
+
   link_class_documentation "Collection des commandes EventExtender"
 
   link_method_documentation "Command.tone", 
@@ -2857,6 +2858,98 @@ link_method_documentation "Command.skill_icon",
                           :id => ["Id de la technique", :Fixnum], 
                         }, true
 register_command :skills, "Command.skill_icon"
+
+link_method_documentation "Command.pi", 
+                        "Renvoie une approximation de PI",
+                        { }, true
+register_command :math, "Command.pi"
+
+link_method_documentation "Command.acos", 
+                        "Renvoie l'arc cosinus de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.acos"
+
+link_method_documentation "Command.acosh", 
+                        "Renvoie l'inverse hyperbolique cosinus de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.acosh"
+
+
+link_method_documentation "Command.asin", 
+                        "Renvoie l'arc sinus de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.asin"
+
+link_method_documentation "Command.asinh", 
+                        "Renvoie l'inverse hyperbolique sinus de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.asinh"
+
+link_method_documentation "Command.atan", 
+                        "Renvoie l'arc tangeant de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.atan"
+
+link_method_documentation "Command.atan2", 
+                        "Renvoie l'arc tangeant pour x et y",
+                        { :x => ["Valeur numérique", :Numeric],  :y => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.atan2"
+
+link_method_documentation "Command.atanh", 
+                        "Renvoie l'inverse hyperbolique tangeant de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.atanh"
+
+link_method_documentation "Command.cos", 
+                        "Renvoie le cosinus de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.cos"
+
+link_method_documentation "Command.cosh", 
+                        "Renvoie le cosinus hyperbolique de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.cosh"
+
+
+link_method_documentation "Command.sin", 
+                        "Renvoie le sinus de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.sin"
+
+link_method_documentation "Command.sinh", 
+                        "Renvoie le sinus hyperbolique de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.sinh"
+
+link_method_documentation "Command.hypot", 
+                        "Renvoie l'hypothénuse de x et y",
+                        { :x => ["Valeur numérique", :Numeric],  :y => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.hypot"
+
+link_method_documentation "Command.sqrt", 
+                        "Renvoie la racine carrée de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.sqrt"
+
+link_method_documentation "Command.tan", 
+                        "Renvoie la tangeante de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.tan"
+
+link_method_documentation "Command.tanh", 
+                        "Renvoie la tangeante hyperbolique de x",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.tanh"
+
+link_method_documentation "Command.to_deg", 
+                        "Renvoie x (supposé radian) convertit en degré",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.to_deg"
+
+link_method_documentation "Command.to_rad", 
+                        "Renvoie x (supposé degré) convertit en radian",
+                        { :x => ["Valeur numérique", :Numeric] }, true
+register_command :math, "Command.to_rad"
 
 end
 

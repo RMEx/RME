@@ -6,6 +6,7 @@
 *    [Commandes relatives aux objets](command_items.md)
 *    [Commandes du clavier](command_keyboard.md)
 *    [Informations cartes](command_mapinfo.md)
+*    [Commandes mathématiques et arithmétiques](command_math.md)
 *    [Commandes de manipulation des micros events](command_micro.md)
 *    [Commandes de la souris](command_mouse.md)
 *    [Commandes de manipulation des panoramas](command_parallax.md)
