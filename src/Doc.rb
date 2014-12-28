@@ -604,7 +604,7 @@ module Command
   register_command_category :skills, "Commandes des techniques", "Offre des commandes pour obtenir des informations sur les techniques"
   register_command_category :math, "Commandes mathématiques et arithmétiques", "Outils de traitement mathématiques un peu avancé"
   register_command_category :troop, "Commandes relatives aux groupes", "Informations sur les groupes de monstres"
-
+  register_command_category :enemy, "Commandes relatives aux ennemis", "Informations sur les monstres rencontrables"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -2952,6 +2952,37 @@ link_method_documentation "Command.to_rad",
                         "Renvoie x (supposé degré) convertit en radian",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.to_rad"
+
+link_method_documentation "Command.troop_size", 
+                        "Renvoie la taille d'un groupe de monstres référencé par son ID.",
+                        { :id => ["ID du groupe de monstre", :Fixnum] }, true
+register_command :troop, "Command.troop_size"
+
+link_method_documentation "Command.troop_name", 
+                        "Renvoie le nom d'un groupe de monstres référencé par son ID.",
+                        { :id => ["ID du groupe de monstre", :Fixnum] }, true
+register_command :troop, "Command.troop_name"
+
+link_method_documentation "Command.troop_members", 
+                        "Renvoie un tableau des enemy_id  d'un groupe de monstres référencé par son ID.",
+                        { :id => ["ID du groupe de monstre", :Fixnum] }, true
+register_command :troop, "Command.troop_members"
+
+link_method_documentation "Command.troop_member", 
+                        "Renvoie l'id d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier).",
+                        { :id => ["ID du groupe de monstre", :Fixnum], :position => ["Position du monstre", :Fixnum]  }, true
+register_command :troop, "Command.troop_member"
+
+link_method_documentation "Command.troop_member_x", 
+                        "Renvoie la position X d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.",
+                        { :id => ["ID du groupe de monstre", :Fixnum], :position => ["Position du monstre", :Fixnum]  }, true
+register_command :troop, "Command.troop_member_x"
+
+link_method_documentation "Command.troop_member_y", 
+                        "Renvoie la position Y d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.",
+                        { :id => ["ID du groupe de monstre", :Fixnum], :position => ["Position du monstre", :Fixnum]  }, true
+register_command :troop, "Command.troop_member_y"
+
 
 end
 

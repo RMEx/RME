@@ -2,6 +2,7 @@
 
 *    [Commandes des acteurs](command_actors.md)
 *    [Commandes relatives aux armures](command_armors.md)
+*    [Commandes relatives aux ennemis](command_enemy.md)
 *    [Commandes évènements](command_event.md)
 *    [Commandes relatives aux objets](command_items.md)
 *    [Commandes du clavier](command_keyboard.md)
@@ -15,4 +16,5 @@
 *    [Commandes des techniques](command_skills.md)
 *    [Commandes standards](command_standard.md)
 *    [Commandes systèmes](command_system.md)
+*    [Commandes relatives aux groupes](command_troop.md)
 *    [Commandes relatives aux armes](command_weapons.md)

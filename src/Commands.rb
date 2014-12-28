@@ -1068,13 +1068,27 @@ module RMECommands
   end
 
   #==============================================================================
-  # ** Troop
+  # ** TroopAndEnemy
   #------------------------------------------------------------------------------
   #  cmd about troops
   #==============================================================================
 
-  module Troop
-    def troop(id); ;end
+  module TroopAndEnemy
+    def enemy(id); $data_enemies[id]; end
+    def troop(id); $data_troops[id]; end
+    def troop_size(id); troop(id).members.length; end
+    def troop_name(id); troop(id).name; end 
+    def troop_members(id); troop(id).members.collect{|e| e.enemy_id}; end
+    def troop_member(id, pos); troop_members(id)[pos]; end
+    def troop_member_x(id, pos); troop(id).members[pos].x; end 
+    def troop_member_y(id, pos); troop(id).members[pos].y; end 
+
+    def picture_show_enemy(id, pos)
+      x ||= troop_member_x(id_troop, pos)
+      y ||= troop_member_y(id_troop, pos)
+    end
+
+
     append_commands
   end
 

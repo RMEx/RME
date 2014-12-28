@@ -332,6 +332,12 @@ Collection des commandes EventExtender
 *    [Command.to_deg(x)](#commandto_degx)
 *    [Command.to_rad(x)](#commandto_radx)
 *    [Command.tone(red, green, blue, *gray)](#commandtonered-green-blue-gray)
+*    [Command.troop_member(id, position)](#commandtroop_memberid-position)
+*    [Command.troop_member_x(id, position)](#commandtroop_member_xid-position)
+*    [Command.troop_member_y(id, position)](#commandtroop_member_yid-position)
+*    [Command.troop_members(id)](#commandtroop_membersid)
+*    [Command.troop_name(id)](#commandtroop_nameid)
+*    [Command.troop_size(id)](#commandtroop_sizeid)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
 *    [Command.weapon_agility(id)](#commandweapon_agilityid)
@@ -4979,6 +4985,93 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
+
+
+
+
+
+
+##### Command.troop_member(id, position)
+
+> Renvoie l'id d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier).
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.troop_member_x(id, position)
+
+> Renvoie la position X d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.troop_member_y(id, position)
+
+> Renvoie la position Y d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.troop_members(id)
+
+> Renvoie un tableau des enemy_id  d'un groupe de monstres référencé par son ID.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+
+
+
+
+
+
+##### Command.troop_name(id)
+
+> Renvoie le nom d'un groupe de monstres référencé par son ID.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+
+
+
+
+
+
+##### Command.troop_size(id)
+
+> Renvoie la taille d'un groupe de monstres référencé par son ID.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
 
 
 
