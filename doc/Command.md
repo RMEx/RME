@@ -247,6 +247,7 @@ Collection des commandes EventExtender
 *    [Command.picture_scroll_y(id, vitesse)](#commandpicture_scroll_yid-vitesse)
 *    [Command.picture_shake(id, power, speed, duration)](#commandpicture_shakeid-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
+*    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
 *    [Command.picture_tone(id, tone, *duration, *wait_flag)](#commandpicture_toneid-tone-duration-wait_flag)
 *    [Command.picture_unpin(id)](#commandpicture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
@@ -3827,6 +3828,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
+
+
+
+
+
+
+##### Command.picture_show_enemy(pic_id, id, position)
+
+> Affiche un monstre d'un groupe à sa position définie dans la base de données
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
 
 
 

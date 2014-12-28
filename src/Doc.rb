@@ -2984,6 +2984,15 @@ link_method_documentation "Command.troop_member_y",
 register_command :troop, "Command.troop_member_y"
 
 
+link_method_documentation "Command.picture_show_enemy", 
+                        "Affiche un monstre d'un groupe à sa position définie dans la base de données",
+                        { 
+                          :pic_id => ["ID de l'image dans laquelle afficher le monstre", :Fixnum],
+                          :id => ["ID du groupe de monstre", :Fixnum], 
+                          :position => ["Position du monstre", :Fixnum]  
+                        }, false
+register_command :picture, "Command.picture_show_enemy"
+
 end
 
 ## Documentation generator

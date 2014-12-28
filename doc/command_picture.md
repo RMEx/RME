@@ -17,6 +17,7 @@ Commandes relatives à la manipulation des images
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
 *    [picture_scroll_y(id, vitesse)](#picture_scroll_yid-vitesse)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
+*    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
 *    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
@@ -185,6 +186,18 @@ Commandes relatives à la manipulation des images
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
+
+
+##### picture_show_enemy(pic_id, id, position)
+
+> Affiche un monstre d'un groupe à sa position définie dans la base de données
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
 
 
 ##### picture_tone(id, tone, *duration, *wait_flag)

@@ -1083,9 +1083,15 @@ module RMECommands
     def troop_member_x(id, pos); troop(id).members[pos].x; end 
     def troop_member_y(id, pos); troop(id).members[pos].y; end 
 
-    def picture_show_enemy(id, pos)
-      x ||= troop_member_x(id_troop, pos)
-      y ||= troop_member_y(id_troop, pos)
+    def picture_show_enemy(id_pic, id, pos)
+      x = troop_member_x(id, pos)
+      y = troop_member_y(id, pos)
+      enemy = enemy(troop_member(id, pos))
+      picture = enemy.battler_name
+      picture_name = "Battlers/"+picture
+      bmp = Cache.battler(picture, enemy.battler_hue)
+      w, h = bmp.width/2, bmp.height
+      c(:picture_show, id_pic, picture_name, x, y, [w, h])
     end
 
 
