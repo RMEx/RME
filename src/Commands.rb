@@ -1074,6 +1074,7 @@ module RMECommands
   #==============================================================================
 
   module TroopAndEnemy
+
     def enemy(id); $data_enemies[id]; end
     def troop(id); $data_troops[id]; end
     def troop_size(id); troop(id).members.length; end
@@ -1094,6 +1095,22 @@ module RMECommands
       c(:picture_show, id_pic, picture_name, x, y, [w, h])
     end
 
+    def enemy_name(id); enemy(id).name; end
+    def enemy_icon(id); enemy(id).icon_index; end 
+    def enemy_description(id); enemy(id).description; end 
+    def enemy_note(id); enemy(id).note; end
+    def enemy_battler_name(id); enemy(id).battler_name; end 
+    def enemy_battler_hue(id); enemy(id).battler_hue; end 
+    def enemy_max_hp(id); enemy(id).params[0]; end 
+    def enemy_max_mp(id); enemy(id).params[1]; end 
+    def enemy_attack_power(id); enemy(id).params[2]; end 
+    def enemy_defense_power(id); enemy(id).params[3]; end 
+    def enemy_magic_attack_power(id); enemy(id).params[4]; end 
+    def enemy_magic_defense_power(id); enemy(id).params[5]; end 
+    def enemy_agility(id); enemy(id).params[6]; end
+    def enemy_luck(id); enemy(id).params[7]; end 
+    def enemy_give_exp(id); enemy(id).exp; end 
+    def enemy_give_gold(id); enemy(id).gold; end 
 
     append_commands
   end

@@ -2993,6 +2993,87 @@ link_method_documentation "Command.picture_show_enemy",
                         }, false
 register_command :picture, "Command.picture_show_enemy"
 
+
+link_method_documentation "Command.enemy_name", 
+                        "renvoie le nom d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_name"
+
+link_method_documentation "Command.enemy_icon", 
+                        "renvoie l'icone index d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_icon"
+
+link_method_documentation "Command.enemy_description", 
+                        "renvoie la description d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_description"
+
+link_method_documentation "Command.enemy_note", 
+                        "renvoie la note/commentaire d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_note"
+
+link_method_documentation "Command.enemy_battler_name", 
+                        "renvoie le nom du fichier battler d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_battler_name"
+
+link_method_documentation "Command.enemy_battler_hue", 
+                        "renvoie la teinte d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_battler_hue"
+
+link_method_documentation "Command.enemy_max_hp", 
+                        "renvoie le maximum de points de vie d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_max_hp"
+
+link_method_documentation "Command.enemy_max_mp", 
+                        "renvoie le maximum de point de magie d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_max_mp"
+
+link_method_documentation "Command.enemy_attack_power", 
+                        "renvoie les points d'attaque d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_attack_power"
+
+link_method_documentation "Command.enemy_defense_power", 
+                        "renvoie les points de défense d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_defense_power"
+
+link_method_documentation "Command.enemy_magic_attack_power", 
+                        "renvoie les points d'attaque magique d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_magic_attack_power"
+
+link_method_documentation "Command.enemy_magic_defense_power", 
+                        "renvoie les points de défense magique d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_magic_defense_power"
+
+link_method_documentation "Command.enemy_agility", 
+                        "renvoie l'agilité d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_agility"
+
+link_method_documentation "Command.enemy_luck", 
+                        "renvoie la chance d'un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_luck"
+
+link_method_documentation "Command.enemy_give_exp", 
+                        "renvoie l'experience donnée par un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_give_exp"
+
+link_method_documentation "Command.enemy_give_gold", 
+                        "renvoie l'or donnée par un ennemi référencé par son ID",
+                        { :id => ["ID de l'ennemi", :Fixnum]}, true
+register_command :enemy, "Command.enemy_give_gold"
+
 end
 
 ## Documentation generator

@@ -109,6 +109,22 @@ Collection des commandes EventExtender
 *    [Command.cosh(x)](#commandcoshx)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
+*    [Command.enemy_agility(id)](#commandenemy_agilityid)
+*    [Command.enemy_attack_power(id)](#commandenemy_attack_powerid)
+*    [Command.enemy_battler_hue(id)](#commandenemy_battler_hueid)
+*    [Command.enemy_battler_name(id)](#commandenemy_battler_nameid)
+*    [Command.enemy_defense_power(id)](#commandenemy_defense_powerid)
+*    [Command.enemy_description(id)](#commandenemy_descriptionid)
+*    [Command.enemy_give_exp(id)](#commandenemy_give_expid)
+*    [Command.enemy_give_gold(id)](#commandenemy_give_goldid)
+*    [Command.enemy_icon(id)](#commandenemy_iconid)
+*    [Command.enemy_luck(id)](#commandenemy_luckid)
+*    [Command.enemy_magic_attack_power(id)](#commandenemy_magic_attack_powerid)
+*    [Command.enemy_magic_defense_power(id)](#commandenemy_magic_defense_powerid)
+*    [Command.enemy_max_hp(id)](#commandenemy_max_hpid)
+*    [Command.enemy_max_mp(id)](#commandenemy_max_mpid)
+*    [Command.enemy_name(id)](#commandenemy_nameid)
+*    [Command.enemy_note(id)](#commandenemy_noteid)
 *    [Command.event_collide?(idA, idB)](#commandevent_collideida-idb)
 *    [Command.event_direction(id)](#commandevent_directionid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
@@ -1840,6 +1856,230 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.enemy_agility(id)
+
+> renvoie l'agilité d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_attack_power(id)
+
+> renvoie les points d'attaque d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_battler_hue(id)
+
+> renvoie la teinte d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_battler_name(id)
+
+> renvoie le nom du fichier battler d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_defense_power(id)
+
+> renvoie les points de défense d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_description(id)
+
+> renvoie la description d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_give_exp(id)
+
+> renvoie l'experience donnée par un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_give_gold(id)
+
+> renvoie l'or donnée par un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_icon(id)
+
+> renvoie l'icone index d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_luck(id)
+
+> renvoie la chance d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_magic_attack_power(id)
+
+> renvoie les points d'attaque magique d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_magic_defense_power(id)
+
+> renvoie les points de défense magique d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_max_hp(id)
+
+> renvoie le maximum de points de vie d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_max_mp(id)
+
+> renvoie le maximum de point de magie d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_name(id)
+
+> renvoie le nom d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.enemy_note(id)
+
+> renvoie la note/commentaire d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
 
 
 
