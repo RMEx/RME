@@ -604,7 +604,8 @@ module Command
   register_command_category :skills, "Commandes des techniques", "Offre des commandes pour obtenir des informations sur les techniques"
   register_command_category :math, "Commandes mathématiques et arithmétiques", "Outils de traitement mathématiques un peu avancé"
   register_command_category :troop, "Commandes relatives aux groupes", "Informations sur les groupes de monstres"
-  register_command_category :enemy, "Commandes relatives aux ennemis", "Informations sur les monstres rencontrables"
+  register_command_category :enemy, "Commandes relatives aux ennemis (tels que défini dans la base de données)", "Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout."
+  register_command_category :in_battle, "Commandes en combat", "Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -2993,86 +2994,319 @@ link_method_documentation "Command.picture_show_enemy",
                         }, false
 register_command :picture, "Command.picture_show_enemy"
 
-
-link_method_documentation "Command.enemy_name", 
+link_method_documentation "Command.monster_name", 
                         "renvoie le nom d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_name"
+register_command :enemy, "Command.monster_name"
 
-link_method_documentation "Command.enemy_icon", 
+link_method_documentation "Command.monster_icon", 
                         "renvoie l'icone index d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_icon"
+register_command :enemy, "Command.monster_icon"
 
-link_method_documentation "Command.enemy_description", 
+link_method_documentation "Command.monster_description", 
                         "renvoie la description d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_description"
+register_command :enemy, "Command.monster_description"
 
-link_method_documentation "Command.enemy_note", 
+link_method_documentation "Command.monster_note", 
                         "renvoie la note/commentaire d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_note"
+register_command :enemy, "Command.monster_note"
 
-link_method_documentation "Command.enemy_battler_name", 
+link_method_documentation "Command.monster_battler_name", 
                         "renvoie le nom du fichier battler d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_battler_name"
+register_command :enemy, "Command.monster_battler_name"
 
-link_method_documentation "Command.enemy_battler_hue", 
+link_method_documentation "Command.monster_battler_hue", 
                         "renvoie la teinte d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_battler_hue"
+register_command :enemy, "Command.monster_battler_hue"
 
-link_method_documentation "Command.enemy_max_hp", 
+link_method_documentation "Command.monster_max_hp", 
                         "renvoie le maximum de points de vie d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_max_hp"
+register_command :enemy, "Command.monster_max_hp"
 
-link_method_documentation "Command.enemy_max_mp", 
+link_method_documentation "Command.monster_max_mp", 
                         "renvoie le maximum de point de magie d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_max_mp"
+register_command :enemy, "Command.monster_max_mp"
 
-link_method_documentation "Command.enemy_attack_power", 
+link_method_documentation "Command.monster_attack_power", 
                         "renvoie les points d'attaque d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_attack_power"
+register_command :enemy, "Command.monster_attack_power"
 
-link_method_documentation "Command.enemy_defense_power", 
+link_method_documentation "Command.monster_defense_power", 
                         "renvoie les points de défense d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_defense_power"
+register_command :enemy, "Command.monster_defense_power"
 
-link_method_documentation "Command.enemy_magic_attack_power", 
+link_method_documentation "Command.monster_magic_attack_power", 
                         "renvoie les points d'attaque magique d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_magic_attack_power"
+register_command :enemy, "Command.monster_magic_attack_power"
 
-link_method_documentation "Command.enemy_magic_defense_power", 
+link_method_documentation "Command.monster_magic_defense_power", 
                         "renvoie les points de défense magique d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_magic_defense_power"
+register_command :enemy, "Command.monster_magic_defense_power"
 
-link_method_documentation "Command.enemy_agility", 
+link_method_documentation "Command.monster_agility", 
                         "renvoie l'agilité d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_agility"
+register_command :enemy, "Command.monster_agility"
 
-link_method_documentation "Command.enemy_luck", 
+link_method_documentation "Command.monster_luck", 
                         "renvoie la chance d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_luck"
+register_command :enemy, "Command.monster_luck"
 
-link_method_documentation "Command.enemy_give_exp", 
+link_method_documentation "Command.monster_give_exp", 
                         "renvoie l'experience donnée par un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_give_exp"
+register_command :enemy, "Command.monster_give_exp"
 
-link_method_documentation "Command.enemy_give_gold", 
+link_method_documentation "Command.monster_give_gold", 
                         "renvoie l'or donnée par un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.enemy_give_gold"
+register_command :enemy, "Command.monster_give_gold"
+
+
+link_method_documentation "Command.current_troop", 
+                        "Renvoie l'identifiant du groupe en cours de combat",
+                        {}, true
+register_command :in_battle, "Command.current_troop"
+
+link_method_documentation "Command.current_enemies", 
+                        "Renvoie un tableau contenant les ennemis en cours de combat",
+                        {}, true
+register_command :in_battle, "Command.current_enemies"
+
+link_method_documentation "Command.total_enemies", 
+                        "Renvoie le nombre d'enemis en combat (mort ou vivant)",
+                        {}, true
+register_command :in_battle, "Command.total_enemies"
+
+
+link_method_documentation "Command.enemy_hp", 
+                        "renvoie les points de vie de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum], 
+                        }, true
+register_command :in_battle, "Command.enemy_hp"
+
+link_method_documentation "Command.enemy_mp", 
+                        "renvoie les points de magie de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum], 
+                        }, true
+register_command :in_battle, "Command.enemy_mp"
+
+link_method_documentation "Command.enemy_tp", 
+                        "renvoie les points de temps de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum], 
+                        }, true
+register_command :in_battle, "Command.enemy_tp"
+
+link_method_documentation "Command.enemy_max_hp", 
+                        "renvoie le nombre de points de vie maximum de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_max_hp"
+
+link_method_documentation "Command.enemy_max_mp", 
+                        "renvoie le nombre de points de magie de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_max_mp"
+
+link_method_documentation "Command.enemy_attack", 
+                        "renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_attack"
+
+link_method_documentation "Command.enemy_defense", 
+                        "renvoie les points de défense de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_defense"
+
+link_method_documentation "Command.enemy_magic_attack", 
+                        "renvoie les points d'attaque magique de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_magic_attack"
+
+link_method_documentation "Command.enemy_magic_defense", 
+                        "renvoie les points de défense magique de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_magic_defense"
+
+link_method_documentation "Command.enemy_agility", 
+                        "renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_agility"
+
+link_method_documentation "Command.enemy_luck", 
+                        "renvoie les points de chance de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_luck"
+
+link_method_documentation "Command.enemy_hit_rate", 
+                        "renvoie la probabilité de toucher de l'ennemi en combat référencé par sa position en combat sur un ennemi",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_hit_rate"
+
+link_method_documentation "Command.enemy_evasion_rate", 
+                        "renvoie la probabilité d'esquiver une attaque physique de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_evasion_rate"
+
+link_method_documentation "Command.enemy_critical_rate", 
+                        "renvoie la probabilité de coup critique de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_critical_rate"
+
+link_method_documentation "Command.enemy_critical_evasion_rate", 
+                        "renvoie la probabilité de faire un coup critique en préemptif de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_critical_evasion_rate"
+
+link_method_documentation "Command.enemy_magical_evasion_rate", 
+                        "renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_magical_evasion_rate"
+
+link_method_documentation "Command.enemy_magical_reflection_rate", 
+                        "renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_magical_reflexion_rate"
+
+link_method_documentation "Command.enemy_counter_attack_rate", 
+                        "renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_counter_attack_rate"
+
+link_method_documentation "Command.enemy_hp_regeneration_rate", 
+                        "renvoie le pourcentage de régénration de HP à chaque tour de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_hp_regeneration_rate"
+
+link_method_documentation "Command.enemy_mp_regeneration_rate", 
+                        "renvoie le pourcentage de régénration MP à chaque tour de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_mp_regeneration_rate"
+
+link_method_documentation "Command.enemy_tp_regeneration_rate", 
+                        "renvoie le pourcentage de régénration de TP par tour de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_tp_regeneration_rate"
+
+link_method_documentation "Command.enemy_target_rate", 
+                        "renvoie la probabilité d'être ciblé par un ennemi, de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_target_rate"
+
+link_method_documentation "Command.enemy_guard_effect_rate", 
+                        "renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_guard_effect_rate"
+
+link_method_documentation "Command.enemy_recovery_effect_rate", 
+                        "renvoie le pourcentage de MP/HP recu, de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_recovery_effect_rate"
+
+link_method_documentation "Command.enemy_pharmacology", 
+                        "renvoie le pourcentage de HP/MP récupéré via un objet de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_pharmacology"
+
+link_method_documentation "Command.enemy_mp_cost_rate", 
+                        "renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_mp_cost_rate"
+
+link_method_documentation "Command.enemy_tp_charge_rate", 
+                        "renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_tp_charge_rate"
+
+link_method_documentation "Command.enemy_physical_damage_rate", 
+                        "renvoie le pourcentage de dommage physique reçu de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_physical_damage_rate"
+
+link_method_documentation "Command.enemy_magical_damage_rate", 
+                        "renvoie le pourcentage de dommage magique reçu de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_magical_damage_rate"
+
+link_method_documentation "Command.enemy_floor_damage_rate", 
+                        "renvoie le pourcentage de dommage des terrains reçu de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_floor_damage_rate"
+
+link_method_documentation "Command.enemy_experience_rate", 
+                        "renvoie le pourcentage de la variation d'acquisition d'expérience de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_experience_rate"
 
 end
 
