@@ -9,7 +9,7 @@ Commandes relatives à la manipulation des images
 *    [picture_erase(id)](#picture_eraseid)
 *    [picture_flip(id)](#picture_flipid)
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
-*    [picture_opacity(id, opacity)](#picture_opacityid-opacity)
+*    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
 *    [picture_pin(id, x, y)](#picture_pinid-x-y)
 *    [picture_rotate(id, speed)](#picture_rotateid-speed)
@@ -17,14 +17,15 @@ Commandes relatives à la manipulation des images
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
 *    [picture_scroll_y(id, vitesse)](#picture_scroll_yid-vitesse)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
+*    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
 *    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
-*    [picture_x(id, x)](#picture_xid-x)
-*    [picture_y(id, x)](#picture_yid-x)
-*    [picture_zoom(id, zoom_x, *zoom_y)](#picture_zoomid-zoom_x-zoom_y)
-*    [picture_zoom_x(id, zoom)](#picture_zoom_xid-zoom)
-*    [picture_zoom_y(id, zoom)](#picture_zoom_yid-zoom)
+*    [picture_x(id, x, *duration, *wait_flag)](#picture_xid-x-duration-wait_flag)
+*    [picture_y(id, x, *duration, *wait_flag)](#picture_yid-x-duration-wait_flag)
+*    [picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#picture_zoomid-zoom_x-zoom_y-duration-wait_flag)
+*    [picture_zoom_x(id, zoom, *duration, *wait_flag)](#picture_zoom_xid-zoom-duration-wait_flag)
+*    [picture_zoom_y(id, zoom, *duration, *wait_flag)](#picture_zoom_yid-zoom-duration-wait_flag)
 *    [pictures_clear](#pictures_clear)
 *    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_pictureid-x-y-precise)
 
@@ -91,7 +92,7 @@ Commandes relatives à la manipulation des images
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
 
 
-##### picture_opacity(id, opacity)
+##### picture_opacity(id, opacity, *duration, *wait_flag)
 
 > Change l'opacité d'une image
 
@@ -100,6 +101,8 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### picture_origin(id, origin)
@@ -187,6 +190,18 @@ Commandes relatives à la manipulation des images
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 
 
+##### picture_show_enemy(pic_id, id, position)
+
+> Affiche un monstre d'un groupe à sa position définie dans la base de données
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
 ##### picture_tone(id, tone, *duration, *wait_flag)
 
 > Change la teinte d'une image
@@ -222,7 +237,7 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
 
-##### picture_x(id, x)
+##### picture_x(id, x, *duration, *wait_flag)
 
 > Change l'axe X d'une image
 
@@ -231,9 +246,11 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### picture_y(id, x)
+##### picture_y(id, x, *duration, *wait_flag)
 
 > Change l'axe Y d'une image
 
@@ -242,9 +259,11 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### picture_zoom(id, zoom_x, *zoom_y)
+##### picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)
 
 > Change la taille d'une image
 
@@ -254,9 +273,11 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### picture_zoom_x(id, zoom)
+##### picture_zoom_x(id, zoom, *duration, *wait_flag)
 
 > Change la largeur d'une image
 
@@ -265,9 +286,11 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### picture_zoom_y(id, zoom)
+##### picture_zoom_y(id, zoom, *duration, *wait_flag)
 
 > Change la hauteur d'une image
 
@@ -276,6 +299,8 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### pictures_clear

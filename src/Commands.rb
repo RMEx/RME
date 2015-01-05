@@ -21,6 +21,8 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Public Commands
   #--------------------------------------------------------------------------
+  def max(a, b); [a, b].max; end 
+  def min(a, b); [a, b].min; end 
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end
@@ -231,23 +233,35 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
-    def picture_x(id, x=false)
+    def picture_x(id, x=false, duration = nil, wf = false)
       return pictures[id].x unless x
-      pictures[id].x = x
+      if duration.is_a?(Fixnum)
+        pictures[id].target_x = x
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].x = x
+      end
     end
     #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
-    def picture_y(id, y=false)
+    def picture_y(id, y=false, duration = nil, wf = false)
       return pictures[id].y unless y
-      pictures[id].y = y
+      if duration.is_a?(Fixnum)
+        pictures[id].target_y = y
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].y = y
+      end
     end
     #--------------------------------------------------------------------------
     # * Modify position
     #--------------------------------------------------------------------------
-    def picture_position(id, x, y)
-      picture_x(id, x)
-      picture_y(id, y)
+    def picture_position(id, x, y, duration = nil, wf = false)
+      picture_x(id, x, duration)
+      picture_y(id, y, duration, wf)
     end
     #--------------------------------------------------------------------------
     # * Move picture
@@ -289,24 +303,36 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom X
     #--------------------------------------------------------------------------
-    def picture_zoom_x(id, zoom_x=false)
+    def picture_zoom_x(id, zoom_x=false, duration = nil, wf = false)
       return pictures[id].zoom_x unless zoom_x
-      pictures[id].zoom_x = zoom_x
+      if duration.is_a?(Fixnum)
+        pictures[id].target_zoom_x = zoom_x
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].zoom_x = zoom_x
+      end
     end
     #--------------------------------------------------------------------------
     # * change Zoom Y
     #--------------------------------------------------------------------------
-    def picture_zoom_y(id, zoom_y=false)
+    def picture_zoom_y(id, zoom_y=false, duration = nil, wf = false)
       return pictures[id].zoom_y unless zoom_y
-      pictures[id].zoom_y = zoom_y
+      if duration.is_a?(Fixnum)
+        pictures[id].target_zoom_y = zoom_y
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].zoom_y = zoom_y
+      end
     end
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(id, zoom_x, zoom_y = -1)
-      zoom_y = zoom_x if zoom_y == -1
-      picture_zoom_x(id, zoom_x)
-      picture_zoom_y(id, zoom_y)
+    def picture_zoom(id, zoom_x, zoom_y, duration = nil, wf = false)
+      picture_zoom_x(id, zoom_x, duration)
+      picture_zoom_y(id, zoom_y, duration)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * change Tone
@@ -342,8 +368,14 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
-    def picture_opacity(id, value)
-      pictures[id].opacity = value
+    def picture_opacity(id, value, duration = nil, wf = false)
+      if duration.is_a?(Fixnum)
+        pictures[id].target_opacity = value 
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].opacity = value
+      end
     end
     #--------------------------------------------------------------------------
     # * Shake the picture
@@ -1068,13 +1100,100 @@ module RMECommands
   end
 
   #==============================================================================
-  # ** Troop
+  # ** TroopAndEnemy
   #------------------------------------------------------------------------------
   #  cmd about troops
   #==============================================================================
 
-  module Troop
-    def troop(id); ;end
+  module TroopAndEnemy
+
+    def enemy(id)
+      return id.enemy if id.is_a?(Game_Enemy)
+      $data_enemies[id]
+    end
+    def troop(id); $data_troops[id]; end
+    def troop_size(id); troop(id).members.length; end
+    def troop_name(id); troop(id).name; end 
+    def troop_members(id); troop(id).members.collect{|e| e.enemy_id}; end
+    def troop_member(id, pos); troop_members(id)[pos]; end
+    def troop_member_x(id, pos); troop(id).members[pos].x; end 
+    def troop_member_y(id, pos); troop(id).members[pos].y; end 
+
+    def picture_show_enemy(id_pic, id, pos)
+      x = troop_member_x(id, pos)
+      y = troop_member_y(id, pos)
+      enemy = enemy(troop_member(id, pos))
+      picture = enemy.battler_name
+      picture_name = "Battlers/"+picture
+      bmp = Cache.battler(picture, enemy.battler_hue)
+      w, h = bmp.width/2, bmp.height
+      c(:picture_show, id_pic, picture_name, x, y, [w, h])
+    end
+
+    def monster_battler_dimension(id, pos)
+      enemy = enemy(troop_member(id, pos))
+      picture = enemy.battler_name
+      picture_name = "Battlers/"+picture
+      bmp = Cache.battler(picture, enemy.battler_hue)
+      return [bmp.width, bmp.height]
+    end
+    def monster_battler_width(i, p); monster_battler_dimension(i, p)[0]; end
+    def monster_battler_height(i, p); monster_battler_dimension(i, p)[1]; end
+    def monster_name(id); enemy(id).name; end
+    def monster_icon(id); enemy(id).icon_index; end 
+    def monster_description(id); enemy(id).description; end 
+    def monster_note(id); enemy(id).note; end
+    def monster_max_hp(id); enemy(id).params[0]; end 
+    def monster_max_mp(id); enemy(id).params[1]; end 
+    def monster_attack_power(id); enemy(id).params[2]; end 
+    def monster_defense_power(id); enemy(id).params[3]; end 
+    def monster_magic_attack_power(id); enemy(id).params[4]; end 
+    def monster_magic_defense_power(id); enemy(id).params[5]; end 
+    def monster_agility(id); enemy(id).params[6]; end
+    def monster_luck(id); enemy(id).params[7]; end 
+    def monster_give_exp(id); enemy(id).exp; end 
+    def monster_give_gold(id); enemy(id).gold; end 
+    def monster_battler_name(id); enemy(id).battler_name; end 
+    def monster_battler_hue(id); enemy(id).battler_hue; end 
+
+
+    def enemy_hp(id); $game_troop.members[id].hp; end 
+    def enemy_mp(id); $game_troop.members[id].mp; end 
+    def enemy_tp(id); $game_troop.members[id].tp; end 
+    def enemy_max_hp(id); $game_troop.members[id].mhp; end 
+    def enemy_max_mp(id); $game_troop.members[id].mmp; end 
+    def enemy_attack(id); $game_troop.members[id].atk; end 
+    def enemy_defense(id); $game_troop.members[id].def; end 
+    def enemy_magic_attack(id); $game_troop.members[id].mat; end 
+    def enemy_magic_defense(id); $game_troop.members[id].mdf; end 
+    def enemy_agility(id); $game_troop.members[id].agi; end 
+    def enemy_luck(id); $game_troop.members[id].luk; end
+    def enemy_hit_rate(id); $game_troop.members[id].hit; end
+    def enemy_evasion_rate(id); $game_troop.members[id].eva; end
+    def enemy_critical_rate(id); $game_troop.members[id].cri; end 
+    def enemy_critical_evasion_rate(id); $game_troop.members[id].cev; end 
+    def enemy_magical_evasion_rate(id); $game_troop.members[id].mev; end 
+    def enemy_magical_reflection_rate(id); $game_troop.members[id].mrf; end 
+    def enemy_counter_attack_rate(id); $game_troop.members[id].cnt; end 
+    def enemy_hp_regeneration_rate(id); $game_troop.members[id].hrg; end 
+    def enemy_mp_regeneration_rate(id); $game_troop.members[id].mrg; end 
+    def enemy_tp_regeneration_rate(id); $game_troop.members[id].trg; end 
+    def enemy_target_rate(id); $game_troop.members[id].tgr; end 
+    def enemy_guard_effect_rate(id); $game_troop.members[id].grd; end 
+    def enemy_recovery_effect_rate(id); $game_troop.members[id].rec; end 
+    def enemy_pharmacology(id); $game_troop.members[id].pha; end 
+    def enemy_mp_cost_rate(id); $game_troop.members[id].mcr; end 
+    def enemy_tp_charge_rate(id); $game_troop.members[id].tcr; end 
+    def enemy_physical_damage_rate(id); $game_troop.members[id].pdr; end 
+    def enemy_magical_damage_rate(id); $game_troop.members[id].mdr; end 
+    def enemy_floor_damage_rate(id); $game_troop.members[id].fdr; end
+    def enemy_experience_rate(id); $game_troop.members[id].exr; end 
+    def enemy_die?(id); $game_troop.members[id].hp <= 0; end
+    def current_troop; $game_troop.troop.id; end 
+    def current_enemies; $game_troop.members; end 
+    def total_enemies; $game_troop.members.size; end
+
+
     append_commands
   end
 

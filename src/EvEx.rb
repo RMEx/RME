@@ -1035,6 +1035,7 @@ class Game_Picture
   attr_accessor  :mirror
   attr_accessor  :wave_amp
   attr_accessor  :wave_speed
+  attr_accessor  :duration
   attr_accessor  :target_x, :target_y, :target_zoom_x, :target_zoom_y
   attr_accessor  :target_opacity
   attr_accessor  :scroll_speed_x, :scroll_speed_y

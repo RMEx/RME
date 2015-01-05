@@ -109,6 +109,40 @@ Collection des commandes EventExtender
 *    [Command.cosh(x)](#commandcoshx)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
+*    [Command.current_enemies](#commandcurrent_enemies)
+*    [Command.current_troop](#commandcurrent_troop)
+*    [Command.enemy_agility(position)](#commandenemy_agilityposition)
+*    [Command.enemy_attack(position)](#commandenemy_attackposition)
+*    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
+*    [Command.enemy_critical_evasion_rate(position)](#commandenemy_critical_evasion_rateposition)
+*    [Command.enemy_critical_rate(position)](#commandenemy_critical_rateposition)
+*    [Command.enemy_defense(position)](#commandenemy_defenseposition)
+*    [Command.enemy_die?(position)](#commandenemy_dieposition)
+*    [Command.enemy_evasion_rate(position)](#commandenemy_evasion_rateposition)
+*    [Command.enemy_experience_rate(position)](#commandenemy_experience_rateposition)
+*    [Command.enemy_floor_damage_rate(position)](#commandenemy_floor_damage_rateposition)
+*    [Command.enemy_guard_effect_rate(position)](#commandenemy_guard_effect_rateposition)
+*    [Command.enemy_hit_rate(position)](#commandenemy_hit_rateposition)
+*    [Command.enemy_hp(position)](#commandenemy_hpposition)
+*    [Command.enemy_hp_regeneration_rate(position)](#commandenemy_hp_regeneration_rateposition)
+*    [Command.enemy_luck(position)](#commandenemy_luckposition)
+*    [Command.enemy_magic_attack(position)](#commandenemy_magic_attackposition)
+*    [Command.enemy_magic_defense(position)](#commandenemy_magic_defenseposition)
+*    [Command.enemy_magical_damage_rate(position)](#commandenemy_magical_damage_rateposition)
+*    [Command.enemy_magical_evasion_rate(position)](#commandenemy_magical_evasion_rateposition)
+*    [Command.enemy_magical_reflection_rate(position)](#commandenemy_magical_reflection_rateposition)
+*    [Command.enemy_max_hp(position)](#commandenemy_max_hpposition)
+*    [Command.enemy_max_mp(position)](#commandenemy_max_mpposition)
+*    [Command.enemy_mp(position)](#commandenemy_mpposition)
+*    [Command.enemy_mp_cost_rate(position)](#commandenemy_mp_cost_rateposition)
+*    [Command.enemy_mp_regeneration_rate(position)](#commandenemy_mp_regeneration_rateposition)
+*    [Command.enemy_pharmacology(position)](#commandenemy_pharmacologyposition)
+*    [Command.enemy_physical_damage_rate(position)](#commandenemy_physical_damage_rateposition)
+*    [Command.enemy_recovery_effect_rate(position)](#commandenemy_recovery_effect_rateposition)
+*    [Command.enemy_target_rate(position)](#commandenemy_target_rateposition)
+*    [Command.enemy_tp(position)](#commandenemy_tpposition)
+*    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
+*    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
 *    [Command.event_collide?(idA, idB)](#commandevent_collideida-idb)
 *    [Command.event_direction(id)](#commandevent_directionid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
@@ -190,7 +224,25 @@ Collection des commandes EventExtender
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
 *    [Command.map_id](#commandmap_id)
 *    [Command.map_name](#commandmap_name)
+*    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
+*    [Command.min(a, b)](#commandmina-b)
+*    [Command.monster_agility(id)](#commandmonster_agilityid)
+*    [Command.monster_attack_power(id)](#commandmonster_attack_powerid)
+*    [Command.monster_battler_hue(id)](#commandmonster_battler_hueid)
+*    [Command.monster_battler_name(id)](#commandmonster_battler_nameid)
+*    [Command.monster_defense_power(id)](#commandmonster_defense_powerid)
+*    [Command.monster_description(id)](#commandmonster_descriptionid)
+*    [Command.monster_give_exp(id)](#commandmonster_give_expid)
+*    [Command.monster_give_gold(id)](#commandmonster_give_goldid)
+*    [Command.monster_icon(id)](#commandmonster_iconid)
+*    [Command.monster_luck(id)](#commandmonster_luckid)
+*    [Command.monster_magic_attack_power(id)](#commandmonster_magic_attack_powerid)
+*    [Command.monster_magic_defense_power(id)](#commandmonster_magic_defense_powerid)
+*    [Command.monster_max_hp(id)](#commandmonster_max_hpid)
+*    [Command.monster_max_mp(id)](#commandmonster_max_mpid)
+*    [Command.monster_name(id)](#commandmonster_nameid)
+*    [Command.monster_note(id)](#commandmonster_noteid)
 *    [Command.mouse_all?(method, keys)](#commandmouse_allmethod-keys)
 *    [Command.mouse_any?(method, keys)](#commandmouse_anymethod-keys)
 *    [Command.mouse_click?](#commandmouse_click)
@@ -237,24 +289,25 @@ Collection des commandes EventExtender
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
 *    [Command.picture_flip(id)](#commandpicture_flipid)
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
-*    [Command.picture_opacity(id, opacity)](#commandpicture_opacityid-opacity)
+*    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
 *    [Command.picture_pin(id, x, y)](#commandpicture_pinid-x-y)
-*    [Command.picture_position(id, x, y)](#commandpicture_positionid-x-y)
+*    [Command.picture_position(id, x, y, *duration, *wait_flag)](#commandpicture_positionid-x-y-duration-wait_flag)
 *    [Command.picture_rotate(id, speed)](#commandpicture_rotateid-speed)
 *    [Command.picture_scroll(id, vitesse)](#commandpicture_scrollid-vitesse)
 *    [Command.picture_scroll_x(id, vitesse)](#commandpicture_scroll_xid-vitesse)
 *    [Command.picture_scroll_y(id, vitesse)](#commandpicture_scroll_yid-vitesse)
 *    [Command.picture_shake(id, power, speed, duration)](#commandpicture_shakeid-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
+*    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
 *    [Command.picture_tone(id, tone, *duration, *wait_flag)](#commandpicture_toneid-tone-duration-wait_flag)
 *    [Command.picture_unpin(id)](#commandpicture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
-*    [Command.picture_x(id, x)](#commandpicture_xid-x)
-*    [Command.picture_y(id, x)](#commandpicture_yid-x)
-*    [Command.picture_zoom(id, zoom_x, *zoom_y)](#commandpicture_zoomid-zoom_x-zoom_y)
-*    [Command.picture_zoom_x(id, zoom)](#commandpicture_zoom_xid-zoom)
-*    [Command.picture_zoom_y(id, zoom)](#commandpicture_zoom_yid-zoom)
+*    [Command.picture_x(id, x, *duration, *wait_flag)](#commandpicture_xid-x-duration-wait_flag)
+*    [Command.picture_y(id, x, *duration, *wait_flag)](#commandpicture_yid-x-duration-wait_flag)
+*    [Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#commandpicture_zoomid-zoom_x-zoom_y-duration-wait_flag)
+*    [Command.picture_zoom_x(id, zoom, *duration, *wait_flag)](#commandpicture_zoom_xid-zoom-duration-wait_flag)
+*    [Command.picture_zoom_y(id, zoom, *duration, *wait_flag)](#commandpicture_zoom_yid-zoom-duration-wait_flag)
 *    [Command.pictures_clear](#commandpictures_clear)
 *    [Command.pictures_collide?(id, id2)](#commandpictures_collideid-id2)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#commandpixel_in_pictureid-x-y-precise)
@@ -332,6 +385,13 @@ Collection des commandes EventExtender
 *    [Command.to_deg(x)](#commandto_degx)
 *    [Command.to_rad(x)](#commandto_radx)
 *    [Command.tone(red, green, blue, *gray)](#commandtonered-green-blue-gray)
+*    [Command.total_enemies](#commandtotal_enemies)
+*    [Command.troop_member(id, position)](#commandtroop_memberid-position)
+*    [Command.troop_member_x(id, position)](#commandtroop_member_xid-position)
+*    [Command.troop_member_y(id, position)](#commandtroop_member_yid-position)
+*    [Command.troop_members(id)](#commandtroop_membersid)
+*    [Command.troop_name(id)](#commandtroop_nameid)
+*    [Command.troop_size(id)](#commandtroop_sizeid)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
 *    [Command.weapon_agility(id)](#commandweapon_agilityid)
@@ -1838,6 +1898,476 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.current_enemies
+
+> Renvoie un tableau contenant les ennemis en cours de combat
+
+  
+> 
+
+
+
+
+
+##### Command.current_troop
+
+> Renvoie l'identifiant du groupe en cours de combat
+
+  
+> 
+
+
+
+
+
+##### Command.enemy_agility(position)
+
+> renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_attack(position)
+
+> renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_counter_attack_rate(position)
+
+> renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_critical_evasion_rate(position)
+
+> renvoie la probabilité de faire un coup critique en préemptif de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_critical_rate(position)
+
+> renvoie la probabilité de coup critique de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_defense(position)
+
+> renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_die?(position)
+
+> renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_evasion_rate(position)
+
+> renvoie la probabilité d'esquiver une attaque physique de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_experience_rate(position)
+
+> renvoie le pourcentage de la variation d'acquisition d'expérience de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_floor_damage_rate(position)
+
+> renvoie le pourcentage de dommage des terrains reçu de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_guard_effect_rate(position)
+
+> renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_hit_rate(position)
+
+> renvoie la probabilité de toucher de l'ennemi en combat référencé par sa position en combat sur un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_hp(position)
+
+> renvoie les points de vie de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_hp_regeneration_rate(position)
+
+> renvoie le pourcentage de régénration de HP à chaque tour de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_luck(position)
+
+> renvoie les points de chance de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_magic_attack(position)
+
+> renvoie les points d'attaque magique de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_magic_defense(position)
+
+> renvoie les points de défense magique de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_magical_damage_rate(position)
+
+> renvoie le pourcentage de dommage magique reçu de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_magical_evasion_rate(position)
+
+> renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_magical_reflection_rate(position)
+
+> renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_max_hp(position)
+
+> renvoie le nombre de points de vie maximum de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_max_mp(position)
+
+> renvoie le nombre de points de magie de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_mp(position)
+
+> renvoie les points de magie de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_mp_cost_rate(position)
+
+> renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_mp_regeneration_rate(position)
+
+> renvoie le pourcentage de régénration MP à chaque tour de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_pharmacology(position)
+
+> renvoie le pourcentage de HP/MP récupéré via un objet de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_physical_damage_rate(position)
+
+> renvoie le pourcentage de dommage physique reçu de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_recovery_effect_rate(position)
+
+> renvoie le pourcentage de MP/HP recu, de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_target_rate(position)
+
+> renvoie la probabilité d'être ciblé par un ennemi, de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_tp(position)
+
+> renvoie les points de temps de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_tp_charge_rate(position)
+
+> renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_tp_regeneration_rate(position)
+
+> renvoie le pourcentage de régénration de TP par tour de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
 ##### Command.event_collide?(idA, idB)
 
 > Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
@@ -2980,12 +3510,266 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.max(a, b)
+
+> Renvoie la plus grande des deux valeurs A, B
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`a`|`Object`|Valeur de A  
+`b`|`Object`|Valeur de B  
+
+
+
+
+
+
 ##### Command.max_event_id
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
 
   
 > 
+
+
+
+
+
+##### Command.min(a, b)
+
+> Renvoie la plus petite des deux valeurs A, B
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`a`|`Object`|Valeur de A  
+`b`|`Object`|Valeur de B  
+
+
+
+
+
+
+##### Command.monster_agility(id)
+
+> renvoie l'agilité d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_attack_power(id)
+
+> renvoie les points d'attaque d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_battler_hue(id)
+
+> renvoie la teinte d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_battler_name(id)
+
+> renvoie le nom du fichier battler d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_defense_power(id)
+
+> renvoie les points de défense d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_description(id)
+
+> renvoie la description d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_give_exp(id)
+
+> renvoie l'experience donnée par un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_give_gold(id)
+
+> renvoie l'or donnée par un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_icon(id)
+
+> renvoie l'icone index d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_luck(id)
+
+> renvoie la chance d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_magic_attack_power(id)
+
+> renvoie les points d'attaque magique d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_magic_defense_power(id)
+
+> renvoie les points de défense magique d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_max_hp(id)
+
+> renvoie le maximum de points de vie d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_max_mp(id)
+
+> renvoie le maximum de point de magie d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_name(id)
+
+> renvoie le nom d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_note(id)
+
+> renvoie la note/commentaire d'un ennemi référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'ennemi  
+
 
 
 
@@ -3666,7 +4450,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_opacity(id, opacity)
+##### Command.picture_opacity(id, opacity, *duration, *wait_flag)
 
 > Change l'opacité d'une image
 
@@ -3675,6 +4459,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -3712,7 +4498,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_position(id, x, y)
+##### Command.picture_position(id, x, y, *duration, *wait_flag)
 
 > Change la position de l'image
 
@@ -3722,6 +4508,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en x de l'image  
 `y`|`Fixnum`|Position en y de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -3827,6 +4615,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.picture_show_enemy(pic_id, id, position)
+
+> Affiche un monstre d'un groupe à sa position définie dans la base de données
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
 ##### Command.picture_tone(id, tone, *duration, *wait_flag)
 
 > Change la teinte d'une image
@@ -3874,7 +4678,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_x(id, x)
+##### Command.picture_x(id, x, *duration, *wait_flag)
 
 > Change l'axe X d'une image
 
@@ -3883,13 +4687,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
 
 
 
-##### Command.picture_y(id, x)
+##### Command.picture_y(id, x, *duration, *wait_flag)
 
 > Change l'axe Y d'une image
 
@@ -3898,13 +4704,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
 
 
 
-##### Command.picture_zoom(id, zoom_x, *zoom_y)
+##### Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)
 
 > Change la taille d'une image
 
@@ -3914,13 +4722,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `id`|`Fixnum`|ID de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
 
 
 
-##### Command.picture_zoom_x(id, zoom)
+##### Command.picture_zoom_x(id, zoom, *duration, *wait_flag)
 
 > Change la largeur d'une image
 
@@ -3929,13 +4739,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
 
 
 
-##### Command.picture_zoom_y(id, zoom)
+##### Command.picture_zoom_y(id, zoom, *duration, *wait_flag)
 
 > Change la hauteur d'une image
 
@@ -3944,6 +4756,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -4979,6 +5793,104 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
+
+
+
+
+
+
+##### Command.total_enemies
+
+> Renvoie le nombre d'enemis en combat (mort ou vivant)
+
+  
+> 
+
+
+
+
+
+##### Command.troop_member(id, position)
+
+> Renvoie l'id d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier).
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.troop_member_x(id, position)
+
+> Renvoie la position X d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.troop_member_y(id, position)
+
+> Renvoie la position Y d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+`position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.troop_members(id)
+
+> Renvoie un tableau des enemy_id  d'un groupe de monstres référencé par son ID.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+
+
+
+
+
+
+##### Command.troop_name(id)
+
+> Renvoie le nom d'un groupe de monstres référencé par son ID.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
+
+
+
+
+
+
+##### Command.troop_size(id)
+
+> Renvoie la taille d'un groupe de monstres référencé par son ID.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du groupe de monstre  
 
 
 
