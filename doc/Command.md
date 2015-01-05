@@ -223,7 +223,9 @@ Collection des commandes EventExtender
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
 *    [Command.map_id](#commandmap_id)
 *    [Command.map_name](#commandmap_name)
+*    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
+*    [Command.min(a, b)](#commandmina-b)
 *    [Command.monster_agility(id)](#commandmonster_agilityid)
 *    [Command.monster_attack_power(id)](#commandmonster_attack_powerid)
 *    [Command.monster_battler_hue(id)](#commandmonster_battler_hueid)
@@ -3493,12 +3495,42 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.max(a, b)
+
+> Renvoie la plus grande des deux valeurs A, B
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`a`|`Object`|Valeur de A  
+`b`|`Object`|Valeur de B  
+
+
+
+
+
+
 ##### Command.max_event_id
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
 
   
 > 
+
+
+
+
+
+##### Command.min(a, b)
+
+> Renvoie la plus petite des deux valeurs A, B
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`a`|`Object`|Valeur de A  
+`b`|`Object`|Valeur de B  
+
 
 
 

@@ -21,6 +21,8 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Public Commands
   #--------------------------------------------------------------------------
+  def max(a, b); [a, b].max; end 
+  def min(a, b); [a, b].min; end 
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end

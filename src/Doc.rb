@@ -609,6 +609,22 @@ module Command
 
   link_class_documentation "Collection des commandes EventExtender"
 
+  link_method_documentation "Command.max", 
+                        "Renvoie la plus grande des deux valeurs A, B",
+                        {
+                          :a => ["Valeur de A", :Object],
+                          :b => ["Valeur de B", :Object]
+                        }, true
+  register_command :standard, "Command.max"
+
+  link_method_documentation "Command.min", 
+                        "Renvoie la plus petite des deux valeurs A, B",
+                        {
+                          :a => ["Valeur de A", :Object],
+                          :b => ["Valeur de B", :Object]
+                        }, true
+  register_command :standard, "Command.min"
+
   link_method_documentation "Command.tone", 
                         "Renvoie une teinte",
                         {

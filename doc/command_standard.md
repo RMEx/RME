@@ -7,6 +7,8 @@ Commandes standards
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
+*    [max(a, b)](#maxa-b)
+*    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
@@ -46,6 +48,28 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `array`|`Array`|Tableau dont il faut renvoyer la taille  
+
+
+##### max(a, b)
+
+> Renvoie la plus grande des deux valeurs A, B
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`a`|`Object`|Valeur de A  
+`b`|`Object`|Valeur de B  
+
+
+##### min(a, b)
+
+> Renvoie la plus petite des deux valeurs A, B
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`a`|`Object`|Valeur de A  
+`b`|`Object`|Valeur de B  
 
 
 ##### percent(value, max)
