@@ -3,8 +3,6 @@
 
 Informations sur les groupes de monstres
 
-<<<<<<< HEAD
-=======
 ##Liste des commandes
 *    [troop_member(id, position)](#troop_memberid-position)
 *    [troop_member_x(id, position)](#troop_member_xid-position)
@@ -78,4 +76,3 @@ Informations sur les groupes de monstres
 `id`|`Fixnum`|ID du groupe de monstre  
 
 
->>>>>>> 79fe0110fabad6c71bf3ca64a0dee50b3f04edef

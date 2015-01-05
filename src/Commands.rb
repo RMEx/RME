@@ -389,13 +389,6 @@ module RMECommands
     def pixel_in_picture?(id, x, y, precise = false)
       spr = sprite_picture(id)
       return false unless spr
-      if spr.angle != 0
-        a = spr.angle * Math::PI/180
-        c, s = Math.cos(a), Math.sin(a)
-        x, y = x-spr.x, y-spr.y
-        x, y = (x*c - y*s).to_i, (x*s + y*c).to_i
-        x, y = x+spr.x, y+spr.y
-      end
       precise ? spr.precise_in?(x, y) : spr.in?(x, y)
     end
     #--------------------------------------------------------------------------
