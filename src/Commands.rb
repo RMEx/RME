@@ -233,23 +233,35 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
-    def picture_x(id, x=false)
+    def picture_x(id, x=false, duration = nil, wf = false)
       return pictures[id].x unless x
-      pictures[id].x = x
+      if duration.is_a?(Fixnum)
+        pictures[id].target_x = x
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].x = x
+      end
     end
     #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
-    def picture_y(id, y=false)
+    def picture_y(id, y=false, duration = nil, wf = false)
       return pictures[id].y unless y
-      pictures[id].y = y
+      if duration.is_a?(Fixnum)
+        pictures[id].target_y = y
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].y = y
+      end
     end
     #--------------------------------------------------------------------------
     # * Modify position
     #--------------------------------------------------------------------------
-    def picture_position(id, x, y)
-      picture_x(id, x)
-      picture_y(id, y)
+    def picture_position(id, x, y, duration = nil, wf = false)
+      picture_x(id, x, duration)
+      picture_y(id, y, duration, wf)
     end
     #--------------------------------------------------------------------------
     # * Move picture
@@ -291,24 +303,36 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom X
     #--------------------------------------------------------------------------
-    def picture_zoom_x(id, zoom_x=false)
+    def picture_zoom_x(id, zoom_x=false, duration = nil, wf = false)
       return pictures[id].zoom_x unless zoom_x
-      pictures[id].zoom_x = zoom_x
+      if duration.is_a?(Fixnum)
+        pictures[id].target_zoom_x = zoom_x
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].zoom_x = zoom_x
+      end
     end
     #--------------------------------------------------------------------------
     # * change Zoom Y
     #--------------------------------------------------------------------------
-    def picture_zoom_y(id, zoom_y=false)
+    def picture_zoom_y(id, zoom_y=false, duration = nil, wf = false)
       return pictures[id].zoom_y unless zoom_y
-      pictures[id].zoom_y = zoom_y
+      if duration.is_a?(Fixnum)
+        pictures[id].target_zoom_y = zoom_y
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].zoom_y = zoom_y
+      end
     end
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(id, zoom_x, zoom_y = -1)
-      zoom_y = zoom_x if zoom_y == -1
-      picture_zoom_x(id, zoom_x)
-      picture_zoom_y(id, zoom_y)
+    def picture_zoom(id, zoom_x, zoom_y, duration = nil, wf = false)
+      picture_zoom_x(id, zoom_x, duration)
+      picture_zoom_y(id, zoom_y, duration)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * change Tone
@@ -344,8 +368,14 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
-    def picture_opacity(id, value)
-      pictures[id].opacity = value
+    def picture_opacity(id, value, duration = nil, wf = false)
+      if duration.is_a?(Fixnum)
+        pictures[id].target_opacity = value 
+        pictures[id].duration = duration
+        wait(duration) if wf
+      else
+        pictures[id].opacity = value
+      end
     end
     #--------------------------------------------------------------------------
     # * Shake the picture

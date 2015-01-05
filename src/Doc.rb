@@ -1184,6 +1184,8 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :x => ["Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
   register_command :picture, "Command.picture_x"
 
@@ -1192,6 +1194,8 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :x => ["Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
   register_command :picture, "Command.picture_y"
   link_method_documentation "Command.picture_position", 
@@ -1200,6 +1204,8 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :x => ["Position en x de l'image", :Fixnum],
                             :y => ["Position en y de l'image", :Fixnum],
+                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
   register_command :picture, "Command.picture_move"
   link_method_documentation "Command.picture_move", 
@@ -1251,6 +1257,8 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],                        
                           }, true
   register_command :picture, "Command.picture_zoom_x"
   link_method_documentation "Command.picture_zoom_y", 
@@ -1258,6 +1266,8 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],                          
                           }, true
   register_command :picture, "Command.picture_zoom_y"
   link_method_documentation "Command.picture_zoom", 
@@ -1266,6 +1276,8 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :zoom_x => ["Pourcentage d'agrandissement de la largeur de l'image", :Fixnum],
                             :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],                         
                           }, true
   register_command :picture, "Command.picture_zoom"
   link_method_documentation "Command.picture_tone", 
@@ -1315,6 +1327,8 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :opacity => ["valeur de l'opacité (de 0 à 255)", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
   register_command :picture, "Command.picture_opacity"
   link_method_documentation "Command.picture_shake", 
