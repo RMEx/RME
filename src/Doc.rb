@@ -3338,6 +3338,14 @@ link_method_documentation "Command.enemy_experience_rate",
                         }, true
 register_command :in_battle, "Command.enemy_experience_rate"
 
+link_method_documentation "Command.enemy_die?", 
+                        "renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_die?"
+
+
 end
 
 ## Documentation generator

@@ -117,6 +117,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_critical_evasion_rate(position)](#commandenemy_critical_evasion_rateposition)
 *    [Command.enemy_critical_rate(position)](#commandenemy_critical_rateposition)
 *    [Command.enemy_defense(position)](#commandenemy_defenseposition)
+*    [Command.enemy_die?(position)](#commandenemy_dieposition)
 *    [Command.enemy_evasion_rate(position)](#commandenemy_evasion_rateposition)
 *    [Command.enemy_experience_rate(position)](#commandenemy_experience_rateposition)
 *    [Command.enemy_floor_damage_rate(position)](#commandenemy_floor_damage_rateposition)
@@ -1992,6 +1993,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.enemy_defense(position)
 
 > renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_die?(position)
+
+> renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
 
   
 > Nom|Type|Description  

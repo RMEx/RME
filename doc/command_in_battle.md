@@ -12,6 +12,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 *    [enemy_critical_evasion_rate(position)](#enemy_critical_evasion_rateposition)
 *    [enemy_critical_rate(position)](#enemy_critical_rateposition)
 *    [enemy_defense(position)](#enemy_defenseposition)
+*    [enemy_die?(position)](#enemy_dieposition)
 *    [enemy_evasion_rate(position)](#enemy_evasion_rateposition)
 *    [enemy_experience_rate(position)](#enemy_experience_rateposition)
 *    [enemy_floor_damage_rate(position)](#enemy_floor_damage_rateposition)
@@ -107,6 +108,16 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 ##### enemy_defense(position)
 
 > renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+##### enemy_die?(position)
+
+> renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
 
   
 > Nom|Type|Description  
