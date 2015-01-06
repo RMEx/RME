@@ -1182,7 +1182,6 @@ module RMECommands
     def enemy_floor_damage_rate(id); $game_troop.members[id].fdr; end
     def enemy_experience_rate(id); $game_troop.members[id].exr; end 
     def enemy_die?(id); $game_troop.members[id].hp <= 0; end
-    def current_troop; $game_troop.troop.id; end 
     def current_enemies; $game_troop.members; end 
     def total_enemies; $game_troop.members.size; end
 

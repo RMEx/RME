@@ -98,7 +98,9 @@ end
 class Game_Temp
   class << self
     attr_accessor :in_battle
+    attr_accessor :current_troop
     Game_Temp.in_battle = false
+    Game_Temp.current_troop = 0
   end
 end
 
@@ -117,6 +119,7 @@ module BattleManager
     #--------------------------------------------------------------------------
     def setup(*a)
       Game_Temp.in_battle = true
+      Game_Temp.current_troop = a[0]
       incubator_setup(*a)
     end
     #--------------------------------------------------------------------------
@@ -125,6 +128,7 @@ module BattleManager
     #--------------------------------------------------------------------------
     def battle_end(result)
       Game_Temp.in_battle = false
+      Game_Temp.current_troop = -1
       incubator_end(result)
     end
   end
