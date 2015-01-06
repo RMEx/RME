@@ -3324,6 +3324,13 @@ link_method_documentation "Command.enemy_magical_damage_rate",
                         }, true
 register_command :in_battle, "Command.enemy_magical_damage_rate"
 
+link_method_documentation "Command.enemy_hidden?", 
+                        "renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_hidden?"
+
 link_method_documentation "Command.enemy_floor_damage_rate", 
                         "renvoie le pourcentage de dommage des terrains reçu de l'ennemi en combat référencé par sa position en combat",
                         {

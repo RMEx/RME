@@ -122,6 +122,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_experience_rate(position)](#commandenemy_experience_rateposition)
 *    [Command.enemy_floor_damage_rate(position)](#commandenemy_floor_damage_rateposition)
 *    [Command.enemy_guard_effect_rate(position)](#commandenemy_guard_effect_rateposition)
+*    [Command.enemy_hidden?(position)](#commandenemy_hiddenposition)
 *    [Command.enemy_hit_rate(position)](#commandenemy_hit_rateposition)
 *    [Command.enemy_hp(position)](#commandenemy_hpposition)
 *    [Command.enemy_hp_regeneration_rate(position)](#commandenemy_hp_regeneration_rateposition)
@@ -2063,6 +2064,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.enemy_guard_effect_rate(position)
 
 > renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_hidden?(position)
+
+> renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
 
   
 > Nom|Type|Description  
