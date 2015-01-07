@@ -18,6 +18,7 @@ library("RME", 'src/') do
   add_author "Mspawn"
 
   add_component "RME.SDK",            "SDK.rb"
+  add_component "RME.Database",       "Database.rb"
   add_component "RME.EvEx",           "EvEx.rb"
   add_component "RME.Commands",       "Commands.rb"
   add_component "RME.Incubator",      "Incubator.rb"
