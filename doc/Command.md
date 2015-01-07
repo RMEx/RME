@@ -6,6 +6,8 @@ Collection des commandes EventExtender
 ##Liste des méthodes
 *    [Command.acos(x)](#commandacosx)
 *    [Command.acosh(x)](#commandacoshx)
+*    [Command.active_actor](#commandactive_actor)
+*    [Command.active_actor?](#commandactive_actor)
 *    [Command.actor_accessory(id)](#commandactor_accessoryid)
 *    [Command.actor_agility(id)](#commandactor_agilityid)
 *    [Command.actor_armors(id)](#commandactor_armorsid)
@@ -437,6 +439,28 @@ Collection des commandes EventExtender
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
+
+
+
+
+
+##### Command.active_actor
+
+> renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon
+
+  
+> 
+
+
+
+
+
+##### Command.active_actor?
+
+> renvoie true si un acteur est entrain de choisir une action, false sinon
+
+  
+> 
 
 
 

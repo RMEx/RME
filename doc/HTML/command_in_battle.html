@@ -1,5 +1,7 @@
 <!DOCTYPE html><html><head><meta charset='utf-8' /><title>in_battle</title></head><h1>Commandes en combat</h1>
 <a href='__command_list.html'>Retourner à l'index</a><br />Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat<br /><h2>Liste des commandes<ul></h2>
+<li><a href='#active_actor'>active_actor</a></li>
+<li><a href='#active_actor'>active_actor?</a></li>
 <li><a href='#current_enemies'>current_enemies</a></li>
 <li><a href='#current_troop'>current_troop</a></li>
 <li><a href='#enemy_agilityposition'>enemy_agility(position)</a></li>
@@ -36,7 +38,9 @@
 <li><a href='#enemy_tp_regeneration_rateposition'>enemy_tp_regeneration_rate(position)</a></li>
 <li><a href='#total_enemies'>total_enemies</a></li>
 </ul><h2>Description des commandes</h2>
-<strong name='current_enemies' id='current_enemies'>current_enemies</strong><br /><blockquote>Renvoie un tableau contenant les ennemis en cours de combat</blockquote>  
+<strong name='active_actor' id='active_actor'>active_actor</strong><br /><blockquote>renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon</blockquote>  
+<blockquote></table></blockquote><strong name='active_actor' id='active_actor'>active_actor?</strong><br /><blockquote>renvoie true si un acteur est entrain de choisir une action, false sinon</blockquote>  
+<blockquote></table></blockquote><strong name='current_enemies' id='current_enemies'>current_enemies</strong><br /><blockquote>Renvoie un tableau contenant les ennemis en cours de combat</blockquote>  
 <blockquote></table></blockquote><strong name='current_troop' id='current_troop'>current_troop</strong><br /><blockquote>Renvoie l'identifiant du groupe en cours de combat</blockquote>  
 <blockquote></table></blockquote><strong name='enemy_agilityposition' id='enemy_agilityposition'>enemy_agility(position)</strong><br /><blockquote>renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>position</code></td><td><code>Fixnum</code></td><td>Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)</td></tr></table></blockquote><strong name='enemy_attackposition' id='enemy_attackposition'>enemy_attack(position)</strong><br /><blockquote>renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat</blockquote>  

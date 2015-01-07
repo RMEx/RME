@@ -3352,6 +3352,20 @@ link_method_documentation "Command.enemy_die?",
                         }, true
 register_command :in_battle, "Command.enemy_die?"
 
+link_method_documentation "Command.active_actor?", 
+                        "renvoie true si un acteur est entrain de choisir une action, false sinon",
+                        {
+                         
+                        }, true
+register_command :in_battle, "Command.active_actor?"
+
+link_method_documentation "Command.active_actor", 
+                        "renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon",
+                        {
+                         
+                        }, true
+register_command :in_battle, "Command.active_actor"
+
 
 end
 

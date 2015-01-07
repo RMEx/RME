@@ -1185,6 +1185,11 @@ module RMECommands
     def enemy_die?(id); $game_troop.members[id].hp <= 0; end
     def current_enemies; $game_troop.members; end 
     def total_enemies; $game_troop.members.size; end
+    def active_actor
+      return BattleManager.actor.id if BattleManager.actor
+      nil
+    end 
+    def active_actor?; !!active_actor; end
 
 
     append_commands

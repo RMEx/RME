@@ -4,6 +4,8 @@
 Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat
 
 ##Liste des commandes
+*    [active_actor](#active_actor)
+*    [active_actor?](#active_actor)
 *    [current_enemies](#current_enemies)
 *    [current_troop](#current_troop)
 *    [enemy_agility(position)](#enemy_agilityposition)
@@ -42,6 +44,20 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 
 ##Description des commandes
+##### active_actor
+
+> renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon
+
+  
+> 
+
+##### active_actor?
+
+> renvoie true si un acteur est entrain de choisir une action, false sinon
+
+  
+> 
+
 ##### current_enemies
 
 > Renvoie un tableau contenant les ennemis en cours de combat
