@@ -606,7 +606,7 @@ module Command
   register_command_category :troop, "Commandes relatives aux groupes", "Informations sur les groupes de monstres"
   register_command_category :enemy, "Commandes relatives aux ennemis (tels que défini dans la base de données)", "Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout."
   register_command_category :in_battle, "Commandes en combat", "Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat"
-  register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran"
+  register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images."
 
   link_class_documentation "Collection des commandes EventExtender"
 
