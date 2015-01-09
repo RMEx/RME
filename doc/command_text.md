@@ -1,7 +1,7 @@
 #Commandes d'affichage de textes
 [Retourner à l'index](__command_list.md)
 
-Commandes pour afficher du texte à l'écran
+Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images.
 
 ##Liste des commandes
 *    [text_change(id, text)](#text_changeid-text)
