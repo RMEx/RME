@@ -1213,7 +1213,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Texte movement
     #--------------------------------------------------------------------------
-    def text_move(id, duration, wait_flag, x = -1, y = -1, zoom_x = -1, 
+    def text_move(id, duration, wait_flag, x, y, zoom_x = -1, 
         zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
       Game_Screen.get.texts[id].move(
         duration, x, y, zoom_x, zoom_y, opacity, 
@@ -1237,7 +1237,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change profile
     #--------------------------------------------------------------------------
-    def text_change_profile(id, profile)
+    def text_profile(id, profile)
      Game_Screen.get.texts[id].profile = profile
     end
     #--------------------------------------------------------------------------

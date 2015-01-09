@@ -3371,7 +3371,7 @@ register_command :in_battle, "Command.active_actor"
 link_method_documentation "Command.text_show", 
                           "Affiche un texte à l'écran", 
                           {
-                            :id => ["Identifiant de l'image",:Fixnum],
+                            :id => ["Identifiant du texte",:Fixnum],
                             :text => ["Texte a afficher",:String],
                             :profile => ["Profil du texte (voir Base de données)",:String],
                             :x => ["Position X",:Fixnum],
@@ -3384,6 +3384,53 @@ link_method_documentation "Command.text_show",
                           }
 register_command :text, "Command.text_show"
 
+link_method_documentation "Command.text_move", 
+                          "Déplace un texte affiché à l'écran", 
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :duration => ["Durée du déplacement en frames", :Fixnum],
+                            :"wait_flag" => ["Attendre la fin du déplacement, par défaut, true", :Boolean],
+                            :x => ["Position en x où le texte doit se rendre", :Fixnum],
+                            :y => ["Position en y ou le texte doit se rendre", :Fixnum],
+                            :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
+                            :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
+                            :"opacity" => ["Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
+                            :"blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
+                            :"origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
+
+                          }
+register_command :text, "Command.text_move"
+
+link_method_documentation "Command.text_erase", 
+                          "Supprime le texte affiché à l'écran",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                          }
+register_command :text, "Command.text_erase"
+
+link_method_documentation "Command.text_change", 
+                          "Change le texte affiché à l'écran",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :text => ["Nouveau texte", :String]
+                          }
+register_command :text, "Command.text_change"
+
+link_method_documentation "Command.text_profile", 
+                          "Change le profil du texte",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :profile => ["Nouveau profil", :String]
+                          }
+register_command :text, "Command.text_profile"
+
+link_method_documentation "Command.text_rotate", 
+                          "Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :speed => ["Vitesse de rotation", :Fixnum],
+                          }
+register_command :text, "Command.text_rotate"
 end
 
 ## Documentation generator

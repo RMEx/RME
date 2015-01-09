@@ -383,6 +383,11 @@ Collection des commandes EventExtender
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
+*    [Command.text_change(id, text)](#commandtext_changeid-text)
+*    [Command.text_erase(id)](#commandtext_eraseid)
+*    [Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#commandtext_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [Command.text_profile(id, profile)](#commandtext_profileid-profile)
+*    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
 *    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.timer](#commandtimer)
@@ -5768,6 +5773,88 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.text_change(id, text)
+
+> Change le texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`text`|`String`|Nouveau texte  
+
+
+
+
+
+
+##### Command.text_erase(id)
+
+> Supprime le texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+
+
+
+
+
+
+##### Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)
+
+> Déplace un texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`duration`|`Fixnum`|Durée du déplacement en frames  
+`wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
+`x`|`Fixnum`|Position en x où le texte doit se rendre  
+`y`|`Fixnum`|Position en y ou le texte doit se rendre  
+`zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
+`zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
+`opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
+`blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
+`origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+
+
+
+
+
+
+##### Command.text_profile(id, profile)
+
+> Change le profil du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`profile`|`String`|Nouveau profil  
+
+
+
+
+
+
+##### Command.text_rotate(id, speed)
+
+> Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`speed`|`Fixnum`|Vitesse de rotation  
+
+
+
+
+
+
 ##### Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)
 
 > Affiche un texte à l'écran
@@ -5775,7 +5862,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Identifiant de l'image  
+`id`|`Fixnum`|Identifiant du texte  
 `text`|`String`|Texte a afficher  
 `profile`|`String`|Profil du texte (voir Base de données)  
 `x`|`Fixnum`|Position X  

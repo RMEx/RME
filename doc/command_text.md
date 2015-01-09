@@ -4,10 +4,77 @@
 Commandes pour afficher du texte à l'écran
 
 ##Liste des commandes
+*    [text_change(id, text)](#text_changeid-text)
+*    [text_erase(id)](#text_eraseid)
+*    [text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#text_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [text_profile(id, profile)](#text_profileid-profile)
+*    [text_rotate(id, speed)](#text_rotateid-speed)
 *    [text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#text_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 
 
 ##Description des commandes
+##### text_change(id, text)
+
+> Change le texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`text`|`String`|Nouveau texte  
+
+
+##### text_erase(id)
+
+> Supprime le texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+
+
+##### text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)
+
+> Déplace un texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`duration`|`Fixnum`|Durée du déplacement en frames  
+`wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
+`x`|`Fixnum`|Position en x où le texte doit se rendre  
+`y`|`Fixnum`|Position en y ou le texte doit se rendre  
+`zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
+`zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
+`opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
+`blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
+`origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+
+
+##### text_profile(id, profile)
+
+> Change le profil du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`profile`|`String`|Nouveau profil  
+
+
+##### text_rotate(id, speed)
+
+> Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`speed`|`Fixnum`|Vitesse de rotation  
+
+
 ##### text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)
 
 > Affiche un texte à l'écran
@@ -15,7 +82,7 @@ Commandes pour afficher du texte à l'écran
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Identifiant de l'image  
+`id`|`Fixnum`|Identifiant du texte  
 `text`|`String`|Texte a afficher  
 `profile`|`String`|Profil du texte (voir Base de données)  
 `x`|`Fixnum`|Position X  
