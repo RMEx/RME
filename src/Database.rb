@@ -8,15 +8,6 @@
 # Provide two customs databases
 #==============================================================================
 
-#==============================================================================
-# ** Create Base
-#------------------------------------------------------------------------------
-#  Create folders
-#==============================================================================
-path = "Database"
-if $TEST 
-  Dir.mkdir(path, 0777) unless Dir.exists?(path+"/")
-end
 
 #==============================================================================
 # ** Object
@@ -30,6 +21,7 @@ class Object
   #--------------------------------------------------------------------------
   def nothing; self; end
   alias_method :noth, :nothing
+  alias_method :to_poly, :nothing
   #--------------------------------------------------------------------------
   # * Magic coersion
   #--------------------------------------------------------------------------
@@ -42,6 +34,32 @@ class Object
       end
   end
   alias_method :ptbo, :db_cast_boolean
+  alias_method :magic_to_bool, :ptbo
+end
+
+#==============================================================================
+# ** String
+#------------------------------------------------------------------------------
+#  Coersion stuff
+#==============================================================================
+
+class String
+  #--------------------------------------------------------------------------
+  # * Polymorphism cast
+  #--------------------------------------------------------------------------
+  def to_poly
+    begin
+      eval(row)
+    rescue Exception => exc
+      nil
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * bool cast
+  #--------------------------------------------------------------------------
+  def magic_to_bool
+    !!to_poly
+  end
 end
 
 #==============================================================================
@@ -190,8 +208,8 @@ module CommonDB
     Types::Simple.new(:integer,   [:int, :integer, :natural, :fixnum],    :to_i),
     Types::Simple.new(:float,     [:float, :double, :real, :numeric],     :to_f),
     Types::Simple.new(:string,    [:string, :text, :raw],                 :to_s),
-    Types::Simple.new(:boolean,   [:bool, :boolean, :switch],             :ptbo),
-    Types::Simple.new(:poly,      [:poly, :polymorphic, :script, :rgss],  :noth),
+    Types::Simple.new(:boolean,   [:bool, :boolean, :switch],             :magic_to_bool),
+    Types::Simple.new(:poly,      [:poly, :polymorphic, :script, :rgss],  :to_poly),
     # Types spéciaux (issu du RGSS)
     Types::Simple.new(:actor,     [:actor, :actors, :heroes, :people],    :to_i, true),
     Types::Simple.new(:map,       [:map, :maps, :game_map, :gamemap],     :to_i, true),
@@ -232,6 +250,12 @@ module CommonDB
   # * Singleton
   #--------------------------------------------------------------------------
   class << self
+    #--------------------------------------------------------------------------
+    # * Get table path
+    #--------------------------------------------------------------------------
+    def path
+      "Database"
+    end
     #--------------------------------------------------------------------------
     # * Get a RGSS ressource
     #--------------------------------------------------------------------------
@@ -315,9 +339,9 @@ module CommonDB
       #--------------------------------------------------------------------------
       def define_primary_key(key)
         if !@fields.has_key?(key)
-          raise(ArgumentError, "Le champ n'existe pas")
+          raise(ArgumentError, "Unknown field")
         elsif RGSS_TYPES.include?(@fields[key])
-          raise(ArgumentError, "Les champs RGSS ne peuvent être des primary_key") 
+          raise(ArgumentError, "RGSS fields couldnt be Primary Key") 
         else
           @primary_key = key
         end
@@ -386,13 +410,21 @@ module Static
     Static.tables ||= Hash.new
     private :tables=
     #--------------------------------------------------------------------------
-    # * Accès rapide à une table
+    # * Easy table access
     #--------------------------------------------------------------------------
     def method_missing(*args)
       name = args[0]
       return Static.tables[name] if Static.tables[name]
       super(*args)
     end 
+    #--------------------------------------------------------------------------
+    # * Get user tables
+    #--------------------------------------------------------------------------
+    def user_tables
+      Static.tables.select do |k, o|
+        !(k.to_s =~ /^VXACE_/)
+      end
+    end
   end 
 
   #==============================================================================
@@ -601,6 +633,74 @@ module DataManager
     alias :db_make_save_contents    :make_save_contents
     alias :db_extract_save_contents :extract_save_contents
     alias :db_create_game_objects   :create_game_objects
+    alias :db_init                  :init
+    #--------------------------------------------------------------------------
+    # * Init
+    #--------------------------------------------------------------------------
+    def init 
+      create_cst_views
+      purge_database
+      db_init
+    end
+    #--------------------------------------------------------------------------
+    # * Purge Database
+    #--------------------------------------------------------------------------
+    def purge_database
+      return unless $TEST
+      Dir["#{CommonDB.path}/tables/*.csv"].each do |f|
+        fname = File.basename(f, File.extname(f)).to_sym
+        File.delete(f) unless Static.user_tables.include?(fname)
+      end
+      Dir["#{CommonDB.path}/views/*.rvdata2"].each do |f|
+        fname = File.basename(f, File.extname(f)).to_sym
+        File.delete(f) unless Static.user_tables.include?(fname)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Create views
+    #--------------------------------------------------------------------------
+    def create_cst_views
+      return unless $TEST
+      Static.user_tables.each do |table_sym, const|
+        ref = CommonDB.path+"/views/#{table_sym.to_s}.rvdata2"
+        schema = const.schema
+        old_schema = (File.exists?(ref)) ? load_data(ref) : {}
+        if schema != old_schema
+          save_data(schema, ref)
+          clone_table_to_backup(table_sym)
+        end
+        unless File.exists?(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
+          create_table_layout(table_sym, schema) 
+        else 
+          # retreive datas
+          content = FileTools.read(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
+          content = content.split("\n")[1..-1]
+          content.each do |line|
+            fields = line.split(";")
+            const.insert(*fields)
+          end
+        end
+      end  
+    end
+    #--------------------------------------------------------------------------
+    # * Create table layout
+    #--------------------------------------------------------------------------
+    def create_table_layout(t, schema)
+      return unless $TEST
+      fname = CommonDB.path+"/tables/#{t.to_s}.csv"
+      contn = schema.keys.join(";")
+      FileTools.write(fname, contn)
+    end
+    #--------------------------------------------------------------------------
+    # * Create backup
+    #--------------------------------------------------------------------------
+    def clone_table_to_backup(t)
+      return unless $TEST
+      fname = CommonDB.path+"/tables/#{t.to_s}.csv"
+      bname = CommonDB.path+"/backups/#{t.to_s}_#{Time.now.to_i}.csv"
+      return unless File.exists?(fname)
+      FileTools.move(fname, bname)
+    end
     #--------------------------------------------------------------------------
     # * Create Game Objects
     #--------------------------------------------------------------------------
@@ -637,7 +737,14 @@ end
 #------------------------------------------------------------------------------
 #  Create folders
 #==============================================================================
-path = "Database"
+
 if $TEST 
+  path = CommonDB.path
   Dir.mkdir(path, 0777) unless Dir.exists?(path+"/")
+  Dir.mkdir(path+"/views/", 0777) unless Dir.exists?(path+"/views/")
+  Dir.mkdir(path+"/backups/", 0777) unless Dir.exists?(path+"/backups/")
+  Dir.mkdir(path+"/tables/", 0777) unless Dir.exists?(path+"/tables/")
 end
+
+
+
