@@ -660,7 +660,9 @@ module DataManager
       return unless $TEST
       Dir["#{CommonDB.path}/tables/*.csv"].each do |f|
         fname = File.basename(f, File.extname(f)).to_sym
-        File.delete(f) unless Static.user_tables.include?(fname)
+        unless Static.user_tables.include?(fname)
+          FileTools.move(f, "#{CommonDB.path}/backups/#{fname}_#{Time.now.to_i}.csv")
+        end
       end
       Dir["#{CommonDB.path}/views/*.rvdata2"].each do |f|
         fname = File.basename(f, File.extname(f)).to_sym
@@ -683,7 +685,7 @@ module DataManager
           clone_table_to_backup(table_sym)
         end
         unless File.exists?(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
-          create_table_layout(table_sym, schema) 
+          create_table_layout(table_sym, schema, const) 
         else 
           # retreive datas
           content = FileTools.read(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
@@ -699,10 +701,16 @@ module DataManager
     #--------------------------------------------------------------------------
     # * Create table layout
     #--------------------------------------------------------------------------
-    def create_table_layout(t, schema)
+    def create_table_layout(t, schema, const)
       return unless $TEST
       fname = CommonDB.path+"/tables/#{t.to_s}.csv"
       contn = schema.keys.join(";")
+      if const.count > 0 
+        const.each do |pk, r|
+          ll = schema.keys.collect {|mth| r.send(mth)}
+          contn += "\n" + ll.join(";")
+        end
+      end
       FileTools.write(fname, contn)
     end
     #--------------------------------------------------------------------------
