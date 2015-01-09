@@ -1195,4 +1195,150 @@ module RMECommands
     append_commands
   end
 
+  #==============================================================================
+  # ** Texts
+  #------------------------------------------------------------------------------
+  #  cmd about texts
+  #==============================================================================
+
+  module Texts 
+
+    #--------------------------------------------------------------------------
+    # * Display a text
+    #--------------------------------------------------------------------------
+    def text_show(id, *args)
+      Game_Screen.get.texts[id].show(*args)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Texte movement
+    #--------------------------------------------------------------------------
+    def text_move(id, duration, wait_flag, x = -1, y = -1, zoom_x = -1, 
+        zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
+      Game_Screen.get.texts[id].move(
+        duration, x, y, zoom_x, zoom_y, opacity, 
+        blend_type, origin
+      )
+      wait(duration) if wait_flag
+    end
+
+    #--------------------------------------------------------------------------
+    # * Erase
+    #--------------------------------------------------------------------------
+    def text_erase(id)
+      Game_Screen.get.texts[id].erase
+    end
+    #--------------------------------------------------------------------------
+    # * Change text
+    #--------------------------------------------------------------------------
+    def text_change(id, value)
+      Game_Screen.get.texts[id].text_value = value
+    end
+    #--------------------------------------------------------------------------
+    # * Change profile
+    #--------------------------------------------------------------------------
+    def text_change_profile(id, profile)
+     Game_Screen.get.texts[id].profile = profile
+    end
+    #--------------------------------------------------------------------------
+    # * Rotation
+    #--------------------------------------------------------------------------
+    def text_rotate(id, speed)
+      Game_Screen.get.texts[id].rotate(speed)
+    end
+    #--------------------------------------------------------------------------
+    # * Change opacity
+    #--------------------------------------------------------------------------
+    def text_opacity(id, value)
+      Game_Screen.get.texts[id].opacity = value
+    end
+
+    #--------------------------------------------------------------------------
+    # * Modify x position
+    #--------------------------------------------------------------------------
+    def text_x(id, x=false, duration = nil, wf = false)
+      return Game_Screen.get.texts[id].x unless x
+      if duration.is_a?(Fixnum)
+        Game_Screen.get.texts[id].target_x = x
+        Game_Screen.get.texts[id].duration = duration
+        wait(duration) if wf
+      else
+        Game_Screen.get.texts[id].x = x
+      end
+    end
+
+    #--------------------------------------------------------------------------
+    # * Modify y position
+    #--------------------------------------------------------------------------
+    def text_y(id, y=false, duration = nil, wf = false)
+      return Game_Screen.get.texts[id].y unless y
+      if duration.is_a?(Fixnum)
+        Game_Screen.get.texts[id].target_y = y
+        Game_Screen.get.texts[id].duration = duration
+        wait(duration) if wf
+      else
+        Game_Screen.get.texts[id].y = y
+      end
+    end
+
+    #--------------------------------------------------------------------------
+    # * change position
+    #--------------------------------------------------------------------------
+    def text_position(id, x, y, duration = nil, wf = false)
+      text_x(id, x, duration)
+      text_y(id, y, duration, wf)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Modify zoom x
+    #--------------------------------------------------------------------------
+    def text_zoom_x(id, x=false, duration = nil, wf = false)
+      return Game_Screen.get.texts[id].zoom_x unless x
+      if duration.is_a?(Fixnum)
+        Game_Screen.get.texts[id].target_zoom_x = x
+        Game_Screen.get.texts[id].duration = duration
+        wait(duration) if wf
+      else
+        Game_Screen.get.texts[id].zoom_x = x
+      end
+    end
+
+    #--------------------------------------------------------------------------
+    # * Modify zoom y
+    #--------------------------------------------------------------------------
+    def text_zoom_y(id, y=false, duration = nil, wf = false)
+      return Game_Screen.get.texts[id].zoom_y unless y
+      if duration.is_a?(Fixnum)
+        Game_Screen.get.texts[id].target_zoom_y = y
+        Game_Screen.get.texts[id].duration = duration
+        wait(duration) if wf
+      else
+        Game_Screen.get.texts[id].zoom_y = y
+      end
+    end
+
+    #--------------------------------------------------------------------------
+    # * change zoom
+    #--------------------------------------------------------------------------
+    def text_zoom(id, x, y, duration = nil, wf = false)
+      text_zoom_x(id, x, duration)
+      text_zoom_y(id, y, duration, wf)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change Text Opacity
+    #--------------------------------------------------------------------------
+    def text_opacity(id, value, duration = nil, wf = false)
+      if duration.is_a?(Fixnum)
+        Game_Screen.get.texts[id].target_opacity = value 
+        Game_Screen.get.texts[id].duration = duration
+        wait(duration) if wf
+      else
+        Game_Screen.get.texts[id].opacity = value
+      end
+    end
+
+    append_commands
+  end
+
 end

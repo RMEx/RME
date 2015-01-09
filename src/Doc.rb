@@ -606,6 +606,7 @@ module Command
   register_command_category :troop, "Commandes relatives aux groupes", "Informations sur les groupes de monstres"
   register_command_category :enemy, "Commandes relatives aux ennemis (tels que défini dans la base de données)", "Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout."
   register_command_category :in_battle, "Commandes en combat", "Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat"
+  register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -1206,8 +1207,8 @@ module Command
                             :y => ["Position en y de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                          }, true
-  register_command :picture, "Command.picture_move"
+                          }
+  register_command :picture, "Command.picture_position"
   link_method_documentation "Command.picture_move", 
                           "Déplace une image", 
                           {
@@ -3366,6 +3367,22 @@ link_method_documentation "Command.active_actor",
                         }, true
 register_command :in_battle, "Command.active_actor"
 
+
+link_method_documentation "Command.text_show", 
+                          "Affiche un texte à l'écran", 
+                          {
+                            :id => ["Identifiant de l'image",:Fixnum],
+                            :text => ["Texte a afficher",:String],
+                            :profile => ["Profil du texte (voir Base de données)",:String],
+                            :x => ["Position X",:Fixnum],
+                            :y => ["Position Y",:Fixnum],
+                            :"*zoom_x" => ["Zoom sur la largeur du texte par défaut 100 (pour 100%)", :Fixnum],
+                            :"*zoom_y" => ["Zoom sur la hauteur du text par défaut 100 (pour 100%)", :Fixnum],
+                            :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction", :Fixnum],
+                            :"*origin" => ["Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro", :Fixnum],
+                          }
+register_command :text, "Command.text_show"
 
 end
 

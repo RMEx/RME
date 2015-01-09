@@ -383,6 +383,7 @@ Collection des commandes EventExtender
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
+*    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.timer](#commandtimer)
 *    [Command.to_deg(x)](#commandto_degx)
@@ -5761,6 +5762,29 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
+##### Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)
+
+> Affiche un texte à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant de l'image  
+`text`|`String`|Texte a afficher  
+`profile`|`String`|Profil du texte (voir Base de données)  
+`x`|`Fixnum`|Position X  
+`y`|`Fixnum`|Position Y  
+`*zoom_x`|`Fixnum`|Zoom sur la largeur du texte par défaut 100 (pour 100%)  
+`*zoom_y`|`Fixnum`|Zoom sur la hauteur du text par défaut 100 (pour 100%)  
+`*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
+`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
+`*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro  
 
 
 

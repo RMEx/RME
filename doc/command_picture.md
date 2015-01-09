@@ -12,6 +12,7 @@ Commandes relatives à la manipulation des images
 *    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
 *    [picture_pin(id, x, y)](#picture_pinid-x-y)
+*    [picture_position(id, x, y, *duration, *wait_flag)](#picture_positionid-x-y-duration-wait_flag)
 *    [picture_rotate(id, speed)](#picture_rotateid-speed)
 *    [picture_scroll(id, vitesse)](#picture_scrollid-vitesse)
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
@@ -126,6 +127,20 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Coordonnées X de la carte en pixel  
 `y`|`Fixnum`|Coordonnées X de la carte en pixel  
+
+
+##### picture_position(id, x, y, *duration, *wait_flag)
+
+> Change la position de l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`x`|`Fixnum`|Position en x de l'image  
+`y`|`Fixnum`|Position en y de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### picture_rotate(id, speed)
