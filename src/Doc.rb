@@ -3394,9 +3394,9 @@ link_method_documentation "Command.text_move",
                             :y => ["Position en y ou le texte doit se rendre", :Fixnum],
                             :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
                             :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
-                            :"opacity" => ["Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
-                            :"blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
-                            :"origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
+                            :"opacity" => ["Opacitée (de 0 à 255)", :Fixnum],
+                            :"blend_type" => ["Mode de fusion (0, 1, 2) ", :Fixnum],
+                            :"origin" => ["Origine", :Fixnum],
 
                           }
 register_command :text, "Command.text_move"
@@ -3431,6 +3431,80 @@ link_method_documentation "Command.text_rotate",
                             :speed => ["Vitesse de rotation", :Fixnum],
                           }
 register_command :text, "Command.text_rotate"
+
+link_method_documentation "Command.text_opacity", 
+                          "Change l'opacité du texte",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :opacity => ["valeur de l'opacité", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }
+register_command :text, "Command.text_opacity"
+
+link_method_documentation "Command.text_x", 
+                          "Change l'axe X d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :x => ["Position en x du texte, si aucun argument n'est passé, la commande renverra la position X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_x"
+
+link_method_documentation "Command.text_y", 
+                          "Change l'axe Y d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :y => ["Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_y"
+
+link_method_documentation "Command.text_position", 
+                          "Change la position d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :x => ["Position en x du texte", :Fixnum],
+                            :y => ["Position en y du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_position"
+
+link_method_documentation "Command.text_zoom_x", 
+                          "Change le zoom X d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_x => ["zoom x du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoom_x"
+
+link_method_documentation "Command.text_y", 
+                          "Change le zoom y d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_y => ["zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoom_y"
+
+link_method_documentation "Command.text_zoom", 
+                          "Change le zoom d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_x => ["zoom x du texte", :Fixnum],
+                            :zoom_y => ["zoom y du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoom"
+
+
 end
 
 ## Documentation generator
