@@ -49,7 +49,7 @@ class String
   #--------------------------------------------------------------------------
   def to_poly
     begin
-      eval(row)
+      eval(self)
     rescue Exception => exc
       nil
     end
@@ -408,7 +408,6 @@ module Static
     #--------------------------------------------------------------------------
     attr_accessor :tables
     Static.tables ||= Hash.new
-    private :tables=
     #--------------------------------------------------------------------------
     # * Easy table access
     #--------------------------------------------------------------------------
@@ -640,7 +639,19 @@ module DataManager
     def init 
       create_cst_views
       purge_database
+      set_db_rvdata
       db_init
+    end
+    #--------------------------------------------------------------------------
+    # * Get persistent layout
+    #--------------------------------------------------------------------------
+    def set_db_rvdata
+      t = load_data("Data/StaticDB.rvdata2")
+      t.each do |table_sym, v|
+        v.each do |fields|
+          Object.const_get(table_sym).insert(*fields)
+        end
+      end
     end
     #--------------------------------------------------------------------------
     # * Purge Database
@@ -661,7 +672,9 @@ module DataManager
     #--------------------------------------------------------------------------
     def create_cst_views
       return unless $TEST
+      hashed = {}
       Static.user_tables.each do |table_sym, const|
+        hashed[table_sym] = []
         ref = CommonDB.path+"/views/#{table_sym.to_s}.rvdata2"
         schema = const.schema
         old_schema = (File.exists?(ref)) ? load_data(ref) : {}
@@ -677,10 +690,11 @@ module DataManager
           content = content.split("\n")[1..-1]
           content.each do |line|
             fields = line.split(";")
-            const.insert(*fields)
+            hashed[table_sym] << fields
           end
         end
-      end  
+      end
+      save_data(hashed, "Data/StaticDB.rvdata2") 
     end
     #--------------------------------------------------------------------------
     # * Create table layout
