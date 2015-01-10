@@ -1,6 +1,8 @@
-#Commandes relatives aux groupes
-[Retourner à l'index](__command_list.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker
+    (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes relatives aux groupes**- - -#Commandes relatives aux groupes
 Informations sur les groupes de monstres
 
 ##Liste des commandes

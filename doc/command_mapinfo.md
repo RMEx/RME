@@ -1,6 +1,8 @@
-#Informations cartes
-[Retourner à l'index](__command_list.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker
+    (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Informations cartes**- - -#Informations cartes
 Commandes relatives aux informations des cartes
 
 ##Liste des commandes

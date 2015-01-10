@@ -62,7 +62,9 @@ module RME
       attr_accessor :schema
       attr_accessor :header
       attr_accessor :commands
+      attr_accessor :links
       Doc.schema ||= Hash.new
+      Doc.links ||= Hash.new
       Doc.header ||= Hash.new
       Doc.commands ||= Hash.new
     end
@@ -127,12 +129,16 @@ module RME
       Doc.schema[classname][:methods][meth.to_sym][:snippet] = value
     end
 
+    def link_documentation_link(name, link)
+      Doc.links[name] = link
+    end
+
     #--------------------------------------------------------------------------
     # * Header
     #--------------------------------------------------------------------------
     Doc.header[:title]  = "RME : RPG Maker Extender"
-    Doc.header[:desc]   = "Outil d'extension de RPG Maker 
-    (les objets étendus ne sont documentés que pour les ajouts.)" 
+    Doc.header[:desc]   = "Outil d'extension de RPG Maker
+    (les objets étendus ne sont documentés que pour les ajouts.)"
   end
 
   #==============================================================================

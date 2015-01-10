@@ -1,6 +1,8 @@
-#Devices::Keys
-[Retourner à l'index](README.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker
+    (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Devices::Keys**- - -#Devices::Keys
 Représentation des touches clavier/souris, est accessible via Keys, Key, ou Devices::Keys
 
 ##Attributs

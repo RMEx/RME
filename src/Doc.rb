@@ -10,10 +10,15 @@
 #
 #==============================================================================
 
+module Doc
+  link_documentation_link "GitHub", "https://github.com/funkywork/RME"
+  link_documentation_link "Manuel d'utilisation (Wiki)", "https://github.com/funkywork/RME/wiki"
+end
+
 #==============================================================================
-# ** Fixnum
+# ** Object
 #------------------------------------------------------------------------------
-#  Integer representation
+#  The superclass of all classes. Defines the general behavior of objects.
 #==============================================================================
 
 class Object
