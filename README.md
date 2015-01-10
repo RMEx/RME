@@ -32,4 +32,6 @@ Vous pouvez évidemment corrigé des bogues, en soumettant des "pull requests". 
 *   Toute commande ajoutée doit être documentée
 *   Si une fonctionnalité expérimentale est ajoutée, elle doit l'être dans le fichier Incubator.rb
 
+Consulter également : [Wiki:Index:Pour les scripteurs](https://github.com/funkywork/RME/wiki#pour-les-scripteurs)
+
 > Ce fichier sera complété.
