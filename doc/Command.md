@@ -6,6 +6,8 @@ Collection des commandes EventExtender
 ##Liste des méthodes
 *    [Command.acos(x)](#commandacosx)
 *    [Command.acosh(x)](#commandacoshx)
+*    [Command.active_actor](#commandactive_actor)
+*    [Command.active_actor?](#commandactive_actor)
 *    [Command.actor_accessory(id)](#commandactor_accessoryid)
 *    [Command.actor_agility(id)](#commandactor_agilityid)
 *    [Command.actor_armors(id)](#commandactor_armorsid)
@@ -122,6 +124,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_experience_rate(position)](#commandenemy_experience_rateposition)
 *    [Command.enemy_floor_damage_rate(position)](#commandenemy_floor_damage_rateposition)
 *    [Command.enemy_guard_effect_rate(position)](#commandenemy_guard_effect_rateposition)
+*    [Command.enemy_hidden?(position)](#commandenemy_hiddenposition)
 *    [Command.enemy_hit_rate(position)](#commandenemy_hit_rateposition)
 *    [Command.enemy_hp(position)](#commandenemy_hpposition)
 *    [Command.enemy_hp_regeneration_rate(position)](#commandenemy_hp_regeneration_rateposition)
@@ -380,6 +383,18 @@ Collection des commandes EventExtender
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
+*    [Command.text_change(id, text)](#commandtext_changeid-text)
+*    [Command.text_erase(id)](#commandtext_eraseid)
+*    [Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#commandtext_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [Command.text_opacity(id, opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
+*    [Command.text_position(id, x, y, *duration, *wait_flag)](#commandtext_positionid-x-y-duration-wait_flag)
+*    [Command.text_profile(id, profile)](#commandtext_profileid-profile)
+*    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
+*    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [Command.text_x(id, x, *duration, *wait_flag)](#commandtext_xid-x-duration-wait_flag)
+*    [Command.text_y(id, zoom_y, *duration, *wait_flag)](#commandtext_yid-zoom_y-duration-wait_flag)
+*    [Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#commandtext_zoomid-zoom_x-zoom_y-duration-wait_flag)
+*    [Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)](#commandtext_zoom_xid-zoom_x-duration-wait_flag)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.timer](#commandtimer)
 *    [Command.to_deg(x)](#commandto_degx)
@@ -436,6 +451,28 @@ Collection des commandes EventExtender
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
+
+
+
+
+
+##### Command.active_actor
+
+> renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon
+
+  
+> 
+
+
+
+
+
+##### Command.active_actor?
+
+> renvoie true si un acteur est entrain de choisir une action, false sinon
+
+  
+> 
 
 
 
@@ -2063,6 +2100,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.enemy_guard_effect_rate(position)
 
 > renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
+##### Command.enemy_hidden?(position)
+
+> renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
 
   
 > Nom|Type|Description  
@@ -5722,6 +5773,215 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
+##### Command.text_change(id, text)
+
+> Change le texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`text`|`String`|Nouveau texte  
+
+
+
+
+
+
+##### Command.text_erase(id)
+
+> Supprime le texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+
+
+
+
+
+
+##### Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)
+
+> Déplace un texte affiché à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`duration`|`Fixnum`|Durée du déplacement en frames  
+`wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
+`x`|`Fixnum`|Position en x où le texte doit se rendre  
+`y`|`Fixnum`|Position en y ou le texte doit se rendre  
+`zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
+`zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
+`opacity`|`Fixnum`|Opacitée (de 0 à 255)  
+`blend_type`|`Fixnum`|Mode de fusion (0, 1, 2)   
+`origin`|`Fixnum`|Origine  
+
+
+
+
+
+
+##### Command.text_opacity(id, opacity, *duration, *wait_flag)
+
+> Change l'opacité du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`opacity`|`Fixnum`|valeur de l'opacité  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_position(id, x, y, *duration, *wait_flag)
+
+> Change la position d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`x`|`Fixnum`|Position en x du texte  
+`y`|`Fixnum`|Position en y du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_profile(id, profile)
+
+> Change le profil du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`profile`|`String`|Nouveau profil  
+
+
+
+
+
+
+##### Command.text_rotate(id, speed)
+
+> Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`speed`|`Fixnum`|Vitesse de rotation  
+
+
+
+
+
+
+##### Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)
+
+> Affiche un texte à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du texte  
+`text`|`String`|Texte a afficher  
+`profile`|`String`|Profil du texte (voir Base de données)  
+`x`|`Fixnum`|Position X  
+`y`|`Fixnum`|Position Y  
+`*zoom_x`|`Fixnum`|Zoom sur la largeur du texte par défaut 100 (pour 100%)  
+`*zoom_y`|`Fixnum`|Zoom sur la hauteur du text par défaut 100 (pour 100%)  
+`*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
+`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
+`*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro  
+
+
+
+
+
+
+##### Command.text_x(id, x, *duration, *wait_flag)
+
+> Change l'axe X d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`x`|`Fixnum`|Position en x du texte, si aucun argument n'est passé, la commande renverra la position X du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_y(id, zoom_y, *duration, *wait_flag)
+
+> Change le zoom y d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`zoom_y`|`Fixnum`|zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)
+
+> Change le zoom d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`zoom_x`|`Fixnum`|zoom x du texte  
+`zoom_y`|`Fixnum`|zoom y du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)
+
+> Change le zoom X d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`zoom_x`|`Fixnum`|zoom x du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 

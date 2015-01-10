@@ -250,6 +250,10 @@ module Kernel
     block
   end
   #--------------------------------------------------------------------------
+  # * Current battle troop
+  #--------------------------------------------------------------------------
+  def current_troop; Game_Temp.current_troop; end 
+  #--------------------------------------------------------------------------
   # * check if in battle
   #--------------------------------------------------------------------------
   def in_battle? 
@@ -524,6 +528,174 @@ module Handler
     # * Load Commands
     #--------------------------------------------------------------------------
     append_commands
+  end
+end
+
+#==============================================================================
+# ** Game_Text
+#------------------------------------------------------------------------------
+#  Dynamic text representation
+#==============================================================================
+
+class Game_Text 
+  #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_reader :number
+  attr_accessor :origin 
+  attr_accessor :x, :y 
+  attr_accessor :zoom_x, :zoom_y
+  attr_accessor :opacity
+  attr_reader :angle
+  attr_reader :blend_type
+  attr_accessor :text_value 
+  attr_reader :profile
+  attr_accessor :target_y, :target_x
+  attr_accessor :target_zoom_x, :target_zoom_y
+  attr_accessor :target_opacity
+  attr_accessor :duration
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize(index)
+    @profile = nil
+    @number = index
+    init_basic
+    init_target
+    init_rotate
+  end
+  #--------------------------------------------------------------------------
+  # * Set profile
+  #--------------------------------------------------------------------------
+  def profile=(p)
+    @profile = get_profile(p)
+  end
+  #--------------------------------------------------------------------------
+  # * Init basic values
+  #--------------------------------------------------------------------------
+  def init_basic
+    @text_value = ""
+    @origin = @x = @y = 0
+    @zoom_x = @zoom_y = 100.0
+    @opacity = 255.0
+    @blend_type = 1
+  end
+  #--------------------------------------------------------------------------
+  # * Init movement
+  #--------------------------------------------------------------------------
+  def init_target
+    @target_x = @x
+    @target_y = @y
+    @target_zoom_x = @zoom_x
+    @target_zoom_y = @zoom_y
+    @target_opacity = @opacity
+    @duration = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Init rotate
+  #--------------------------------------------------------------------------
+  def init_rotate
+    @angle = 0
+    @rotate_speed = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Display
+  #--------------------------------------------------------------------------
+  def show(text_value, profile, x, y, z_x = 100, z_y = 100, op = 255, bt = 0, ori = 0)
+    @profile = get_profile(profile)
+    @text_value = text_value.to_s
+    @origin = ori
+    @x = x.to_f
+    @y = y.to_f
+    @zoom_x = z_x.to_f
+    @zoom_y = z_y.to_f
+    @opacity = op.to_f
+    @blend_type = bt
+    init_target
+    init_rotate
+  end
+  #--------------------------------------------------------------------------
+  # * Move
+  #--------------------------------------------------------------------------
+  def move(duration, x = -1, y = -1, zoom_x = -1, zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
+    @origin = origin unless origin == -1
+    @target_x = x.to_f unless x == -1
+    @target_y = y.to_f unless y == -1
+    @target_zoom_x = zoom_x.to_f unless zoom_x == -1
+    @target_zoom_y = zoom_y.to_f unless zoom_y == -1
+    @target_opacity = opacity.to_f unless opacity == -1
+    @blend_type = blend_type unless blend_type == -1
+    @duration = duration
+  end
+  #--------------------------------------------------------------------------
+  # * Change rotate
+  #--------------------------------------------------------------------------
+  def rotate(speed)
+    @rotate_speed = speed
+  end
+  #--------------------------------------------------------------------------
+  # * Erase text
+  #--------------------------------------------------------------------------
+  def erase
+    @text_value = ""
+    @profile = nil
+    @origin = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Update frame
+  #--------------------------------------------------------------------------
+  def update
+    update_move
+    update_rotate
+  end
+  #--------------------------------------------------------------------------
+  # * Update movement
+  #--------------------------------------------------------------------------
+  def update_move
+    return if @duration == 0
+    d = @duration
+    @x = (@x * (d - 1) + @target_x) / d
+    @y = (@y * (d - 1) + @target_y) / d
+    @zoom_x  = (@zoom_x  * (d - 1) + @target_zoom_x)  / d
+    @zoom_y  = (@zoom_y  * (d - 1) + @target_zoom_y)  / d
+    @opacity = (@opacity * (d - 1) + @target_opacity) / d
+    @duration -= 1
+  end
+  #--------------------------------------------------------------------------
+  # * Update rotate
+  #--------------------------------------------------------------------------
+  def update_rotate
+    return if @rotate_speed == 0
+    @angle += @rotate_speed / 2.0
+    @angle += 360 while @angle < 0
+    @angle %= 360
+  end
+end
+
+#==============================================================================
+# ** Game_Texts
+#------------------------------------------------------------------------------
+#  Text's collection
+#==============================================================================
+
+class Game_Texts
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize
+    @data = []
+  end
+  #--------------------------------------------------------------------------
+  # * Get a text
+  #--------------------------------------------------------------------------
+  def [](number)
+    @data[number] ||= Game_Text.new(number)
+  end
+  #--------------------------------------------------------------------------
+  # * Iterator
+  #--------------------------------------------------------------------------
+  def each
+    @data.compact.each {|text| yield text } if block_given?
   end
 end
 
@@ -837,6 +1009,163 @@ class Game_Screen
     def get
       $game_party.in_battle ? $game_troop.screen : $game_map.screen
     end
+  end
+  #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_reader :texts 
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias :displaytext_initialize :initialize
+  alias :displaytext_update     :update
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize
+    @texts = Game_Texts.new
+    displaytext_initialize
+  end
+  #--------------------------------------------------------------------------
+  # * Clear
+  #--------------------------------------------------------------------------
+  alias_method :displaytext_clear, :clear
+  def clear
+    displaytext_clear
+    clear_texts
+  end
+  #--------------------------------------------------------------------------
+  # * Clear text
+  #--------------------------------------------------------------------------
+  def clear_texts
+    @texts.each{|t|t.erase}
+  end
+  #--------------------------------------------------------------------------
+  # * Frame update
+  #--------------------------------------------------------------------------
+  def update
+    displaytext_update
+    update_texts
+  end
+  #--------------------------------------------------------------------------
+  # * Update texts
+  #--------------------------------------------------------------------------
+  def update_texts
+    @texts.each{|t|t.update}
+  end
+end
+
+#==============================================================================
+# ** Sprite_Text
+#------------------------------------------------------------------------------
+#  text view
+#==============================================================================
+
+class Sprite_Text < Sprite
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize(viewport, dynamic_text)
+    super(viewport)
+    @text = dynamic_text
+    @text_value = ""
+    @profile = nil
+  end
+  #--------------------------------------------------------------------------
+  # * Free bitmap
+  #--------------------------------------------------------------------------
+  def dispose
+    bitmap.dispose if bitmap
+    super
+  end
+  #--------------------------------------------------------------------------
+  # * Modification à chaque frames
+  #--------------------------------------------------------------------------
+  def update
+    super
+    update_bitmap
+    update_origin
+    update_position
+    update_zoom
+    update_other
+  end
+  #--------------------------------------------------------------------------
+  # * Création du bitmap
+  #--------------------------------------------------------------------------
+  def create_bitmap 
+    font = @text.profile.to_font
+    bmp = Bitmap.new(1, 1)
+    bmp.font = font 
+    lines = @text_value.split("\n")
+    widths = Array.new 
+    heights = Array.new 
+    lines.each do |line|
+      r = bmp.text_size(line) 
+      widths << r.width 
+      heights << r.height
+    end
+    width, height = widths.max, heights.max
+    total_height = height * lines.length
+    self.bitmap = Bitmap.new(width+32, total_height)
+    self.bitmap.font = font 
+    iterator = 0 
+    lines.each do |line|
+      self.bitmap.draw_text(0, iterator, width+32, height, line, 0)
+      iterator += height
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Update bitmap
+  #--------------------------------------------------------------------------
+  def update_bitmap
+    if @text.text_value.empty?
+      self.bitmap = nil
+      @text_value = ""
+    else
+      if @text.text_value != @text_value || @profile != @text.profile
+        @profile = @text.profile
+        @text_value = @text.text_value
+        if self.bitmap && !self.bitmap.disposed?
+          self.bitmap = nil
+        end
+        create_bitmap
+      end
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Update origin
+  #--------------------------------------------------------------------------
+  def update_origin
+    if @text.origin == 0
+      self.ox = 0
+      self.oy = 0
+    else
+      self.ox = bitmap.width / 2
+      self.oy = bitmap.height / 2
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Update Position
+  #--------------------------------------------------------------------------
+  def update_position
+    self.x = @text.x
+    self.y = @text.y
+    self.z = @text.number
+  end
+  #--------------------------------------------------------------------------
+  # * Update Zoom Factor
+  #--------------------------------------------------------------------------
+  def update_zoom
+    self.zoom_x = @text.zoom_x / 100.0
+    self.zoom_y = @text.zoom_y / 100.0
+  end
+  #--------------------------------------------------------------------------
+  # * Update Other
+  #--------------------------------------------------------------------------
+  def update_other
+    self.opacity = @text.opacity
+    self.blend_type = @text.blend_type
+    self.angle = @text.angle
   end
 end
 
@@ -1234,6 +1563,9 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
+  alias_method :rme_initialize, :initialize
+  alias_method :rme_dispose, :dispose
+  alias_method :rme_update,  :update
   alias_method :rm_extender_create_parallax, :create_parallax
   alias_method :rm_extender_dispose_parallax, :dispose_parallax
   alias_method :rm_extender_update_parallax, :update_parallax
@@ -1241,6 +1573,48 @@ class Spriteset_Map
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :picture_sprites
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize
+    create_texts
+    rme_initialize
+  end
+  #--------------------------------------------------------------------------
+  # * Text creation
+  #--------------------------------------------------------------------------
+  def create_texts
+    @text_sprites = Array.new
+  end
+  #--------------------------------------------------------------------------
+  # * Free
+  #--------------------------------------------------------------------------
+  def dispose
+    rme_dispose
+    dispose_texts
+  end
+  #--------------------------------------------------------------------------
+  # * Free text
+  #--------------------------------------------------------------------------
+  def dispose_texts
+    @text_sprites.compact.each {|t| t.dispose }
+  end
+  #--------------------------------------------------------------------------
+  # * Update frame
+  #--------------------------------------------------------------------------
+  def update
+    update_texts
+    rme_update
+  end
+  #--------------------------------------------------------------------------
+  # * Modification des texts
+  #--------------------------------------------------------------------------
+  def update_texts
+    Game_Screen.get.texts.each do |txt|
+      @text_sprites[txt.number] ||= Sprite_Text.new(@viewport2, txt)
+      @text_sprites[txt.number].update
+    end
+  end
   #--------------------------------------------------------------------------
   # * Create Parallax
   #--------------------------------------------------------------------------

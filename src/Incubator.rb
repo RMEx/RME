@@ -48,6 +48,47 @@ class RPG::CommonEvent
 end
 
 #==============================================================================
+# ** Game_Map
+#------------------------------------------------------------------------------
+#  This class handles maps. It includes scrolling and passage determination
+# functions. The instance of this class is referenced by $game_map.
+#==============================================================================
+
+class Game_Map
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :incubator_pc, :parallel_common_events
+  #--------------------------------------------------------------------------
+  # * Get Array of Parallel Common Events
+  #--------------------------------------------------------------------------
+  def parallel_common_events
+    incubator_pc.select {|e| e && !e.for_battle?}
+  end
+end
+
+#==============================================================================
+# ** Game_Interpreter
+#------------------------------------------------------------------------------
+#  An interpreter for executing event commands. This class is used within the
+# Game_Map, Game_Troop, and Game_Event classes.
+#==============================================================================
+
+class Game_Interpreter
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :incubator_ce, :command_117
+  #--------------------------------------------------------------------------
+  # * Common Event
+  #--------------------------------------------------------------------------
+  def command_117
+    return if $data_common_events[@params[0]].for_battle?
+    incubator_ce
+  end
+end
+
+#==============================================================================
 # ** Game_Temp
 #------------------------------------------------------------------------------
 #  This class handles temporary data that is not included with save data.
@@ -57,7 +98,9 @@ end
 class Game_Temp
   class << self
     attr_accessor :in_battle
+    attr_accessor :current_troop
     Game_Temp.in_battle = false
+    Game_Temp.current_troop = 0
   end
 end
 
@@ -76,6 +119,7 @@ module BattleManager
     #--------------------------------------------------------------------------
     def setup(*a)
       Game_Temp.in_battle = true
+      Game_Temp.current_troop = a[0]
       incubator_setup(*a)
     end
     #--------------------------------------------------------------------------
@@ -84,6 +128,7 @@ module BattleManager
     #--------------------------------------------------------------------------
     def battle_end(result)
       Game_Temp.in_battle = false
+      Game_Temp.current_troop = -1
       incubator_end(result)
     end
   end

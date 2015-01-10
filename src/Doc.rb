@@ -606,6 +606,7 @@ module Command
   register_command_category :troop, "Commandes relatives aux groupes", "Informations sur les groupes de monstres"
   register_command_category :enemy, "Commandes relatives aux ennemis (tels que défini dans la base de données)", "Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout."
   register_command_category :in_battle, "Commandes en combat", "Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat"
+  register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images."
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -1206,8 +1207,8 @@ module Command
                             :y => ["Position en y de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                          }, true
-  register_command :picture, "Command.picture_move"
+                          }
+  register_command :picture, "Command.picture_position"
   link_method_documentation "Command.picture_move", 
                           "Déplace une image", 
                           {
@@ -3324,6 +3325,13 @@ link_method_documentation "Command.enemy_magical_damage_rate",
                         }, true
 register_command :in_battle, "Command.enemy_magical_damage_rate"
 
+link_method_documentation "Command.enemy_hidden?", 
+                        "renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.enemy_hidden?"
+
 link_method_documentation "Command.enemy_floor_damage_rate", 
                         "renvoie le pourcentage de dommage des terrains reçu de l'ennemi en combat référencé par sa position en combat",
                         {
@@ -3344,6 +3352,157 @@ link_method_documentation "Command.enemy_die?",
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_die?"
+
+link_method_documentation "Command.active_actor?", 
+                        "renvoie true si un acteur est entrain de choisir une action, false sinon",
+                        {
+                         
+                        }, true
+register_command :in_battle, "Command.active_actor?"
+
+link_method_documentation "Command.active_actor", 
+                        "renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon",
+                        {
+                         
+                        }, true
+register_command :in_battle, "Command.active_actor"
+
+
+link_method_documentation "Command.text_show", 
+                          "Affiche un texte à l'écran", 
+                          {
+                            :id => ["Identifiant du texte",:Fixnum],
+                            :text => ["Texte a afficher",:String],
+                            :profile => ["Profil du texte (voir Base de données)",:String],
+                            :x => ["Position X",:Fixnum],
+                            :y => ["Position Y",:Fixnum],
+                            :"*zoom_x" => ["Zoom sur la largeur du texte par défaut 100 (pour 100%)", :Fixnum],
+                            :"*zoom_y" => ["Zoom sur la hauteur du text par défaut 100 (pour 100%)", :Fixnum],
+                            :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction", :Fixnum],
+                            :"*origin" => ["Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro", :Fixnum],
+                          }
+register_command :text, "Command.text_show"
+
+link_method_documentation "Command.text_move", 
+                          "Déplace un texte affiché à l'écran", 
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :duration => ["Durée du déplacement en frames", :Fixnum],
+                            :"wait_flag" => ["Attendre la fin du déplacement, par défaut, true", :Boolean],
+                            :x => ["Position en x où le texte doit se rendre", :Fixnum],
+                            :y => ["Position en y ou le texte doit se rendre", :Fixnum],
+                            :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
+                            :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
+                            :"opacity" => ["Opacitée (de 0 à 255)", :Fixnum],
+                            :"blend_type" => ["Mode de fusion (0, 1, 2) ", :Fixnum],
+                            :"origin" => ["Origine", :Fixnum],
+
+                          }
+register_command :text, "Command.text_move"
+
+link_method_documentation "Command.text_erase", 
+                          "Supprime le texte affiché à l'écran",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                          }
+register_command :text, "Command.text_erase"
+
+link_method_documentation "Command.text_change", 
+                          "Change le texte affiché à l'écran",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :text => ["Nouveau texte", :String]
+                          }
+register_command :text, "Command.text_change"
+
+link_method_documentation "Command.text_profile", 
+                          "Change le profil du texte",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :profile => ["Nouveau profil", :String]
+                          }
+register_command :text, "Command.text_profile"
+
+link_method_documentation "Command.text_rotate", 
+                          "Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :speed => ["Vitesse de rotation", :Fixnum],
+                          }
+register_command :text, "Command.text_rotate"
+
+link_method_documentation "Command.text_opacity", 
+                          "Change l'opacité du texte",
+                          {
+                            :id => ["Identifiant du texte", :Fixnum],
+                            :opacity => ["valeur de l'opacité", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }
+register_command :text, "Command.text_opacity"
+
+link_method_documentation "Command.text_x", 
+                          "Change l'axe X d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :x => ["Position en x du texte, si aucun argument n'est passé, la commande renverra la position X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_x"
+
+link_method_documentation "Command.text_y", 
+                          "Change l'axe Y d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :y => ["Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_y"
+
+link_method_documentation "Command.text_position", 
+                          "Change la position d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :x => ["Position en x du texte", :Fixnum],
+                            :y => ["Position en y du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_position"
+
+link_method_documentation "Command.text_zoom_x", 
+                          "Change le zoom X d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_x => ["zoom x du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoom_x"
+
+link_method_documentation "Command.text_y", 
+                          "Change le zoom y d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_y => ["zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoom_y"
+
+link_method_documentation "Command.text_zoom", 
+                          "Change le zoom d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_x => ["zoom x du texte", :Fixnum],
+                            :zoom_y => ["zoom y du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoom"
 
 
 end

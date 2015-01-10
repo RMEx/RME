@@ -4,6 +4,8 @@
 Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat
 
 ##Liste des commandes
+*    [active_actor](#active_actor)
+*    [active_actor?](#active_actor)
 *    [current_enemies](#current_enemies)
 *    [current_troop](#current_troop)
 *    [enemy_agility(position)](#enemy_agilityposition)
@@ -17,6 +19,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 *    [enemy_experience_rate(position)](#enemy_experience_rateposition)
 *    [enemy_floor_damage_rate(position)](#enemy_floor_damage_rateposition)
 *    [enemy_guard_effect_rate(position)](#enemy_guard_effect_rateposition)
+*    [enemy_hidden?(position)](#enemy_hiddenposition)
 *    [enemy_hit_rate(position)](#enemy_hit_rateposition)
 *    [enemy_hp(position)](#enemy_hpposition)
 *    [enemy_hp_regeneration_rate(position)](#enemy_hp_regeneration_rateposition)
@@ -41,6 +44,20 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 
 ##Description des commandes
+##### active_actor
+
+> renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon
+
+  
+> 
+
+##### active_actor?
+
+> renvoie true si un acteur est entrain de choisir une action, false sinon
+
+  
+> 
+
 ##### current_enemies
 
 > Renvoie un tableau contenant les ennemis en cours de combat
@@ -158,6 +175,16 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 ##### enemy_guard_effect_rate(position)
 
 > renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+##### enemy_hidden?(position)
+
+> renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
 
   
 > Nom|Type|Description  
