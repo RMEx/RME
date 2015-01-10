@@ -733,13 +733,13 @@ module RMECommands
     def item_for_one_random_enemy?(id)
       item_scope(id) == 3
     end
-    def item_for_two_random_enemy?(id)
+    def item_for_two_random_enemies?(id)
       item_scope(id) == 4
     end
-    def item_for_three_random_enemy?(id)
+    def item_for_three_random_enemies?(id)
       item_scope(id) == 5
     end
-    def item_for_four_random_enemy?(id)
+    def item_for_four_random_enemies?(id)
       item_scope(id) == 6
     end
     def item_for_one_ally?(id)
@@ -772,7 +772,7 @@ module RMECommands
     def item_never_usable?(id)
       item_occasion(id) == 3 
     end
-    def item_for_oponent?(i); $data_items[i].for_opponent?; end
+    def item_for_opponent?(i); $data_items[i].for_opponent?; end
     def item_for_friend?(i); $data_items[i].for_friend?; end 
     def item_for_dead_friend?(i); $data_items[i].for_dead_friend?; end 
     def item_for_one?(i); $data_items[i].for_one?; end 
@@ -1007,13 +1007,13 @@ module RMECommands
     def skill_for_one_random_enemy?(id)
       skill_scope(id) == 3
     end
-    def skill_for_two_random_enemy?(id)
+    def skill_for_two_random_enemies?(id)
       skill_scope(id) == 4
     end
-    def skill_for_three_random_enemy?(id)
+    def skill_for_three_random_enemies?(id)
       skill_scope(id) == 5
     end
-    def skill_for_four_random_enemy?(id)
+    def skill_for_four_random_enemies?(id)
       skill_scope(id) == 6
     end
     def skill_for_one_ally?(id)
@@ -1046,7 +1046,7 @@ module RMECommands
     def skill_never_usable?(id)
       skill_occasion(id) == 3
     end
-    def skill_for_oponent?(i); $data_skills[i].for_opponent?; end
+    def skill_for_opponent?(i); $data_skills[i].for_opponent?; end
     def skill_for_friend?(i); $data_skills[i].for_friend?; end 
     def skill_for_dead_friend?(i); $data_skills[i].for_dead_friend?; end 
     def skill_for_one?(i); $data_skills[i].for_one?; end 
@@ -1123,15 +1123,15 @@ module RMECommands
       c(:picture_show, id_pic, picture_name, x, y, [w, h])
     end
 
-    def monster_battler_dimension(id, pos)
-      enemy = enemy(troop_member(id, pos))
+    def monster_battler_dimension(pos)
+      enemy = enemy(troop_member(current_troop, pos))
       picture = enemy.battler_name
       picture_name = "Battlers/"+picture
       bmp = Cache.battler(picture, enemy.battler_hue)
       return [bmp.width, bmp.height]
     end
-    def monster_battler_width(i, p); monster_battler_dimension(i, p)[0]; end
-    def monster_battler_height(i, p); monster_battler_dimension(i, p)[1]; end
+    def monster_battler_width(i); monster_battler_dimension(i)[0]; end
+    def monster_battler_height(i); monster_battler_dimension(i)[1]; end
     def monster_name(id); enemy(id).name; end
     def monster_icon(id); enemy(id).icon_index; end 
     def monster_description(id); enemy(id).description; end 
@@ -1245,12 +1245,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     def text_rotate(id, speed)
       Game_Screen.get.texts[id].rotate(speed)
-    end
-    #--------------------------------------------------------------------------
-    # * Change opacity
-    #--------------------------------------------------------------------------
-    def text_opacity(id, value)
-      Game_Screen.get.texts[id].opacity = value
     end
 
     #--------------------------------------------------------------------------

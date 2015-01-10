@@ -40,7 +40,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_physical?(id)](#skill_physicalid)
 *    [skill_scope(id)](#skill_scopeid)
 *    [skill_speed(id)](#skill_speedid)
-*    [skill_sucess_rate(id)](#skill_sucess_rateid)
+*    [skill_success_rate(id)](#skill_success_rateid)
 *    [skill_tp_gain(id)](#skill_tp_gainid)
 
 
@@ -375,7 +375,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 `id`|`Fixnum`|Id de la technique  
 
 
-##### skill_sucess_rate(id)
+##### skill_success_rate(id)
 
 > Renvoie la probabilité de succès de la technique référencé par son ID
 

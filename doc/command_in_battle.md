@@ -43,6 +43,8 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 *    [enemy_tp(position)](#enemy_tpposition)
 *    [enemy_tp_charge_rate(position)](#enemy_tp_charge_rateposition)
 *    [enemy_tp_regeneration_rate(position)](#enemy_tp_regeneration_rateposition)
+*    [monster_battler_height(position)](#monster_battler_heightposition)
+*    [monster_battler_width(position)](#monster_battler_widthposition)
 *    [total_enemies](#total_enemies)
 
 
@@ -388,6 +390,26 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 ##### enemy_tp_regeneration_rate(position)
 
 > renvoie le pourcentage de régénration de TP par tour de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+##### monster_battler_height(position)
+
+> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+##### monster_battler_width(position)
+
+> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  

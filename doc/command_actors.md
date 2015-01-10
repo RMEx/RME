@@ -46,7 +46,6 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_hit_rate(id)](#actor_hit_rateid)
 *    [actor_hp(id)](#actor_hpid)
 *    [actor_hp_regeneration_rate(id)](#actor_hp_regeneration_rateid)
-*    [actor_knowns(id, skill_id)](#actor_knownsid-skill_id)
 *    [actor_learn(id, skill_id)](#actor_learnid-skill_id)
 *    [actor_level(id)](#actor_levelid)
 *    [actor_level_down(id)](#actor_level_downid)
@@ -481,17 +480,6 @@ Offre des commandes pour obtenir des informations sur les acteurs
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
-
-
-##### actor_knowns(id, skill_id)
-
-> Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'acteur  
-`skill_id`|`Fixnum`|ID de le technique  
 
 
 ##### actor_learn(id, skill_id)

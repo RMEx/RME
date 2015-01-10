@@ -46,7 +46,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_price(id)](#item_priceid)
 *    [item_scope(id)](#item_scopeid)
 *    [item_speed(id)](#item_speedid)
-*    [item_sucess_rate(id)](#item_sucess_rateid)
+*    [item_success_rate(id)](#item_success_rateid)
 *    [item_tp_gain(id)](#item_tp_gainid)
 
 
@@ -442,7 +442,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 `id`|`Fixnum`|Id de l'objet  
 
 
-##### item_sucess_rate(id)
+##### item_success_rate(id)
 
 > Renvoie la probabilité de succès de l'objet référencé par son ID
 

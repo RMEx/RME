@@ -50,7 +50,7 @@ Collection des commandes EventExtender
 *    [Command.actor_hit_rate(id)](#commandactor_hit_rateid)
 *    [Command.actor_hp(id)](#commandactor_hpid)
 *    [Command.actor_hp_regeneration_rate(id)](#commandactor_hp_regeneration_rateid)
-*    [Command.actor_knowns(id, skill_id)](#commandactor_knownsid-skill_id)
+*    [Command.actor_knowns?(id, skill_id)](#commandactor_knownsid-skill_id)
 *    [Command.actor_learn(id, skill_id)](#commandactor_learnid-skill_id)
 *    [Command.actor_level(id)](#commandactor_levelid)
 *    [Command.actor_level_down(id)](#commandactor_level_downid)
@@ -213,7 +213,7 @@ Collection des commandes EventExtender
 *    [Command.item_price(id)](#commanditem_priceid)
 *    [Command.item_scope(id)](#commanditem_scopeid)
 *    [Command.item_speed(id)](#commanditem_speedid)
-*    [Command.item_sucess_rate(id)](#commanditem_sucess_rateid)
+*    [Command.item_success_rate(id)](#commanditem_success_rateid)
 *    [Command.item_tp_gain(id)](#commanditem_tp_gainid)
 *    [Command.key_current(method)](#commandkey_currentmethod)
 *    [Command.key_current_rgss(method)](#commandkey_current_rgssmethod)
@@ -235,8 +235,10 @@ Collection des commandes EventExtender
 *    [Command.min(a, b)](#commandmina-b)
 *    [Command.monster_agility(id)](#commandmonster_agilityid)
 *    [Command.monster_attack_power(id)](#commandmonster_attack_powerid)
+*    [Command.monster_battler_height(position)](#commandmonster_battler_heightposition)
 *    [Command.monster_battler_hue(id)](#commandmonster_battler_hueid)
 *    [Command.monster_battler_name(id)](#commandmonster_battler_nameid)
+*    [Command.monster_battler_width(position)](#commandmonster_battler_widthposition)
 *    [Command.monster_defense_power(id)](#commandmonster_defense_powerid)
 *    [Command.monster_description(id)](#commandmonster_descriptionid)
 *    [Command.monster_give_exp(id)](#commandmonster_give_expid)
@@ -373,7 +375,7 @@ Collection des commandes EventExtender
 *    [Command.skill_physical?(id)](#commandskill_physicalid)
 *    [Command.skill_scope(id)](#commandskill_scopeid)
 *    [Command.skill_speed(id)](#commandskill_speedid)
-*    [Command.skill_sucess_rate(id)](#commandskill_sucess_rateid)
+*    [Command.skill_success_rate(id)](#commandskill_success_rateid)
 *    [Command.skill_tp_gain(id)](#commandskill_tp_gainid)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
@@ -395,9 +397,10 @@ Collection des commandes EventExtender
 *    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
 *    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.text_x(id, x, *duration, *wait_flag)](#commandtext_xid-x-duration-wait_flag)
-*    [Command.text_y(id, zoom_y, *duration, *wait_flag)](#commandtext_yid-zoom_y-duration-wait_flag)
+*    [Command.text_y(id, y, *duration, *wait_flag)](#commandtext_yid-y-duration-wait_flag)
 *    [Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#commandtext_zoomid-zoom_x-zoom_y-duration-wait_flag)
 *    [Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)](#commandtext_zoom_xid-zoom_x-duration-wait_flag)
+*    [Command.text_zoom_y(id, zoom_y, *duration, *wait_flag)](#commandtext_zoom_yid-zoom_y-duration-wait_flag)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.timer](#commandtimer)
 *    [Command.to_deg(x)](#commandto_degx)
@@ -1037,7 +1040,7 @@ Collection des commandes EventExtender
 
 
 
-##### Command.actor_knowns(id, skill_id)
+##### Command.actor_knowns?(id, skill_id)
 
 > Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon
 
@@ -3336,7 +3339,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.item_sucess_rate(id)
+##### Command.item_success_rate(id)
 
 > Renvoie la probabilité de succès de l'objet référencé par son ID
 
@@ -3633,6 +3636,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.monster_battler_height(position)
+
+> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+
+
+
+
 ##### Command.monster_battler_hue(id)
 
 > renvoie la teinte d'un ennemi référencé par son ID
@@ -3655,6 +3672,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
+
+
+
+
+
+
+##### Command.monster_battler_width(position)
+
+> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
 
 
@@ -5611,7 +5642,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.skill_sucess_rate(id)
+##### Command.skill_success_rate(id)
 
 > Renvoie la probabilité de succès de la technique référencé par son ID
 
@@ -5939,15 +5970,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.text_y(id, zoom_y, *duration, *wait_flag)
+##### Command.text_y(id, y, *duration, *wait_flag)
 
-> Change le zoom y d'un texte
+> Change l'axe Y d'un texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
-`zoom_y`|`Fixnum`|zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
+`y`|`Fixnum`|Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -5983,6 +6014,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `zoom_x`|`Fixnum`|zoom x du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_zoom_y(id, zoom_y, *duration, *wait_flag)
+
+> Change le zoom y d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`zoom_y`|`Fixnum`|zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 

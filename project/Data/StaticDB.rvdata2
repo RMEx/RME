@@ -1,4 +1,4 @@
-{:IColor[[
+{:IColor[[
 "
 black"0"0"0"	255[
 "
@@ -7,9 +7,12 @@ white"255"255"255"	255[
 "
 green"0"255"0"	255[
 "	blue"0"0"255"	255[
-"	gray"120"120"120"	255:ITextProfile[["default"24"VL Gothic"
+"	gray"120"120"120"	255[
+"	pink"255"13"255"	255[
+"darkgray"20"20"20"	255:ITextProfile[["default"24"VL Gothic"
 white"
 false"
 false"	true"
-black"
-false
+black"false["pinktext"32"Impact"	pink"
+false"	true"	true"red"
+true

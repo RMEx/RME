@@ -2068,12 +2068,12 @@ link_method_documentation "Command.item_nb_hits",
                         }, true
 register_command :items, "Command.item_nb_hits"
 
-link_method_documentation "Command.item_sucess_rate", 
+link_method_documentation "Command.item_success_rate", 
                         "Renvoie la probabilité de succès de l'objet référencé par son ID",
                         {
                           :id => ["Id de l'objet", :Fixnum], 
                         }, true
-register_command :items, "Command.item_sucess_rate"
+register_command :items, "Command.item_success_rate"
 
 link_method_documentation "Command.item_tp_gain", 
                         "Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat",
@@ -2627,7 +2627,7 @@ link_method_documentation "Command.actor_forget",
                         }
 register_command :actors, "Command.actor_forget"
 
-link_method_documentation "Command.actor_knowns", 
+link_method_documentation "Command.actor_knowns?", 
                         "Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
@@ -2886,12 +2886,12 @@ link_method_documentation "Command.skill_nb_hits",
                         }, true
 register_command :skills, "Command.skill_nb_hits"
 
-link_method_documentation "Command.skill_sucess_rate", 
+link_method_documentation "Command.skill_success_rate", 
                         "Renvoie la probabilité de succès de la technique référencé par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum], 
                         }, true
-register_command :skills, "Command.skill_sucess_rate"
+register_command :skills, "Command.skill_success_rate"
 
 link_method_documentation "Command.skill_tp_gain", 
                         "Renvoie le gain de TP que la technique référencé par son ID apporte une fois utilisé en combat",
@@ -3311,6 +3311,22 @@ link_method_documentation "Command.enemy_target_rate",
                         }, true
 register_command :in_battle, "Command.enemy_target_rate"
 
+
+link_method_documentation "Command.monster_battler_width", 
+                        "renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.monster_battler_width"
+
+link_method_documentation "Command.monster_battler_height", 
+                        "renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat",
+                        {
+                          :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
+                        }, true
+register_command :in_battle, "Command.monster_battler_height"
+
+
 link_method_documentation "Command.enemy_guard_effect_rate", 
                         "renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat",
                         {
@@ -3518,7 +3534,7 @@ link_method_documentation "Command.text_zoom_x",
                           }, true
 register_command :text, "Command.text_zoom_x"
 
-link_method_documentation "Command.text_y", 
+link_method_documentation "Command.text_zoom_y", 
                           "Change le zoom y d'un texte", 
                           {
                             :id => ["ID du texte", :Fixnum],
