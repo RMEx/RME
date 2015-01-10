@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Informations cartes**- - -#Informations cartes
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Informations cartes**  
+- - -  
+#Informations cartes
 Commandes relatives aux informations des cartes
 
 ##Liste des commandes

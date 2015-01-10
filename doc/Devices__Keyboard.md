@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Devices::Keyboard**- - -#Devices::Keyboard
+[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Devices::Keyboard**  
+- - -  
+#Devices::Keyboard
 Représentation du clavier, est accessible via Keyboard
 
 ##Attributs

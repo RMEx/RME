@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Rect**- - -#Rect
+[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Rect**  
+- - -  
+#Rect
 Extension des rectangles
 
 ##Liste des méthodes

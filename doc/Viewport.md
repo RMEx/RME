@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Viewport**- - -#Viewport
+[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Viewport**  
+- - -  
+#Viewport
 Représente une portion de l'écran
 
 ##Attributs

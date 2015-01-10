@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Point**- - -#Point
+[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Point**  
+- - -  
+#Point
 Représente un point dans un plan cartésien
 
 ##Liste des méthodes

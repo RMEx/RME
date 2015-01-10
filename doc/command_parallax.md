@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes de manipulation des panoramas**- - -#Commandes de manipulation des panoramas
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes de manipulation des panoramas**  
+- - -  
+#Commandes de manipulation des panoramas
 Commandes relatives à la manipulation des panoramas
 
 ##Liste des commandes

@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Object**- - -#Object
+[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Object**  
+- - -  
+#Object
 Extension de la classe Object
 
 ##Liste des méthodes

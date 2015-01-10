@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes en combat**- - -#Commandes en combat
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes en combat**  
+- - -  
+#Commandes en combat
 Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat
 
 ##Liste des commandes

@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes mathématiques et arithmétiques**- - -#Commandes mathématiques et arithmétiques
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes mathématiques et arithmétiques**  
+- - -  
+#Commandes mathématiques et arithmétiques
 Outils de traitement mathématiques un peu avancé
 
 ##Liste des commandes

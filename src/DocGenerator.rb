@@ -53,7 +53,7 @@ module DocGenerator
     def end_table; ""; end
     def blockquote(s); "> #{s}"+np; end
     def link(text, url); "[#{text}](#{url})"; end
-    def line; "- - -"; end
+    def line; "  \n- - -  \n"; end
 
     #--------------------------------------------------------------------------
     # * Data Navigation

@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes des techniques**- - -#Commandes des techniques
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes des techniques**  
+- - -  
+#Commandes des techniques
 Offre des commandes pour obtenir des informations sur les techniques
 
 ##Liste des commandes

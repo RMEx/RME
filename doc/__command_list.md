@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > **Index des commandes**- - -*    [Commandes des acteurs](command_actors.md)
+[Documentation](README.md) > **Index des commandes**  
+- - -  
+*    [Commandes des acteurs](command_actors.md)
 *    [Commandes relatives aux armures](command_armors.md)
 *    [Commandes relatives aux ennemis (tels que défini dans la base de données)](command_enemy.md)
 *    [Commandes évènements](command_event.md)

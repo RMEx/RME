@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > **Classes et modules**- - -*    [Array](Array.md)
+[Documentation](README.md) > **Classes et modules**  
+- - -  
+*    [Array](Array.md)
 *    [Bitmap](Bitmap.md)
 *    [Command](Command.md)
 *    [Devices::Keyboard](Devices__Keyboard.md)

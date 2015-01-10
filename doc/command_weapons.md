@@ -2,7 +2,9 @@
 Outil d'extension de RPG Maker
     (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes relatives aux armes**- - -#Commandes relatives aux armes
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes relatives aux armes**  
+- - -  
+#Commandes relatives aux armes
 Commandes permettant de manipuler les armes
 
 ##Liste des commandes
