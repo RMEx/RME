@@ -5,6 +5,7 @@
 # With: 
 #  Nuki
 #  Grim
+#  Joke (useless stuff)
 # 
 #==============================================================================
 
@@ -52,13 +53,14 @@ module DocGenerator
     def end_table; ""; end
     def blockquote(s); "> #{s}"+np; end
     def link(text, url); "[#{text}](#{url})"; end
-    def line; "- - -"; end
+    def line; "  \n- - -  \n"; end
 
     #--------------------------------------------------------------------------
     # * Data Navigation
     #--------------------------------------------------------------------------
     def index; "README"; end
     def cmdindex; "__command_list"; end
+    def clindex; "__class-and-module_list"; end
     def extension; "md"; end
   end
 
@@ -82,7 +84,7 @@ module DocGenerator
     end
     def footer; "</body></html>"; end
     def nl; "  \n"; end
-    def np; "<br />"; end
+    def np; "<br /><br />"; end
     def title(size, value); ("<h#{size}>") + value.to_s + "</h#{size}>\n"; end
     def strong(value); "<strong>#{value}</strong>"; end
     def strong_t(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
@@ -107,6 +109,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def index; "index"; end
     def cmdindex; "__command_list"; end
+    def clindex; "__class-and-module_list"; end
     def extension; "html"; end
   end
 
@@ -137,6 +140,13 @@ module DocGenerator
     end
 
     #--------------------------------------------------------------------------
+    # * Class Index
+    #--------------------------------------------------------------------------
+    def clindex(mdl) 
+      mdl.clindex + "." + mdl.extension
+    end
+
+    #--------------------------------------------------------------------------
     # * File name
     #--------------------------------------------------------------------------
     def filename(mdl, classname)
@@ -148,39 +158,35 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_header(mdl)
       h = mdl.header("")
-      t = mdl.title(1, RME::Doc.header[:title])
-      d = RME::Doc.header[:desc] + mdl.np
-      l = mdl.strong "Classes et modules"
-      h + t + d + l + mdl.np
-    end
-
-    #--------------------------------------------------------------------------
-    # * Create Front page (CMD)
-    #--------------------------------------------------------------------------
-    def make_cmd_title(mdl)
-      mdl.strong "Index des commandes"
+      t = mdl.title(1, RME::Doc.vocab[:title])
+      d = RME::Doc.vocab[:desc] + mdl.np
+      h + t + d
     end
 
     #--------------------------------------------------------------------------
     # * Create class page (header)
     #--------------------------------------------------------------------------
     def make_class_header(mdl, classname)
-      h = mdl.header(classname.to_s)
+      h = make_header(mdl)
+      a = mdl.link(RME::Doc.vocab[:index], index(mdl))
+      a = a + " > " + mdl.link(RME::Doc.vocab[:cl_title], clindex(mdl))
+      a = a + " > " + mdl.strong(classname)
       t = mdl.title(1, classname)
-      a = mdl.link("Retourner à l'index", index(mdl)) + mdl.np
       d = RME::Doc.schema[classname][:description] + mdl.np
-      h + t + a + d
+      h + a + mdl.line + t + d
     end
 
     #--------------------------------------------------------------------------
     # * Create Command page (header)
     #--------------------------------------------------------------------------
     def make_cmd_header(mdl, classname)
-      h = mdl.header(classname.to_s)
+      h = make_header(mdl)
+      a = mdl.link(RME::Doc.vocab[:index], index(mdl))
+      a = a + " > " + mdl.link(RME::Doc.vocab[:cmd_title], cmdindex(mdl))
+      a = a + " > " + mdl.strong(RME::Doc.commands[classname][:name])
       t = mdl.title(1, RME::Doc.commands[classname][:name])
-      a = mdl.link("Retourner à l'index", cmdindex(mdl)) + mdl.np
       d = RME::Doc.commands[classname][:desc] + mdl.np
-      h + t + a + d
+      h + a + mdl.line + t + d
     end
 
     #--------------------------------------------------------------------------
@@ -189,8 +195,8 @@ module DocGenerator
     def make_class_attributes(mdl, classname)
       k = RME::Doc.schema[classname][:attributes]
       if k.length > 0 
-        t = mdl.title 2, "Attributs"
-        t += mdl.table("Nom", "Description")
+        t = mdl.title 2, RME::Doc.vocab[:l_attr]
+        t += mdl.table(RME::Doc.vocab[:l_name], RME::Doc.vocab[:l_desc])
         k.each do |atr, desc|
           t += mdl.tr(mdl.inline_code(atr), desc)
         end
@@ -202,7 +208,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     # * Create Method list
     #--------------------------------------------------------------------------
-    def make_class_methods(mdl, c, title_i =  "Description des méthodes", title_c = "Liste des méthodes", proc = IDENTITY, snip = true)
+    def make_class_methods(mdl, c, title_i = RME::Doc.vocab[:m_desc], title_c = RME::Doc.vocab[:m_list], proc = IDENTITY, snip = true)
       k = Hash[c.sort]
       if k.length > 0 
         ls = mdl.title 2, title_c + mdl.ul
@@ -214,7 +220,7 @@ module DocGenerator
           inline_args = ""
           inline_args2 = ""
           atr_list = ""
-          atr_list = mdl.table("Nom", "Type", "Description") if atr.length > 0
+          atr_list = mdl.table(RME::Doc.vocab[:l_name], RME::Doc.vocab[:l_type], RME::Doc.vocab[:l_desc]) if atr.length > 0
           atr.each do |name, dt|
             inline_args2 += name.to_s + "-"
             inline_args += name.to_s+ ", "
@@ -243,7 +249,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_cmd_methods(mdl, classname)
       kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
-      make_class_methods(mdl, classname, "Description des commandes", "Liste des commandes", kname, false)
+      make_class_methods(mdl, classname, RME::Doc.vocab[:cmd_desc], RME::Doc.vocab[:cmd_list], kname, false)
     end
 
     #--------------------------------------------------------------------------
@@ -251,7 +257,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_class_snippet(mdl, c)
       if c[:snippet]
-        t = "Exemple" + mdl.nl
+        t = RME::Doc.vocab[:l_sample] + mdl.nl
         t += mdl.code("ruby", c[:snippet]) + mdl.np
         return t
       end
@@ -261,9 +267,9 @@ module DocGenerator
     #--------------------------------------------------------------------------
     # * Create class page
     #--------------------------------------------------------------------------
-    def make_class_page(mdl, klass, indexl, output)
+    def make_class_page(mdl, klass, index, output)
       name = filename(mdl, klass)
-      indexl += mdl.li(mdl.link(klass, name))
+      index += mdl.li(mdl.link(klass, name))
       page = make_class_header(mdl, klass)
       page += make_class_attributes(mdl, klass)
       page += make_class_methods(mdl, RME::Doc.schema[klass][:methods])
@@ -272,15 +278,15 @@ module DocGenerator
         f.write(page)
       end
       p "#{name} created!"
-      return indexl
+      return index
     end
 
     #--------------------------------------------------------------------------
     # * Create command page
     #--------------------------------------------------------------------------
-    def make_command_page(mdl, c, command, indexc, output)
+    def make_command_page(mdl, c, command, index, output)
       fname = filename(mdl, "command_#{c}")
-      indexc += mdl.li(mdl.link(command[:name], fname))
+      index += mdl.li(mdl.link(command[:name], fname))
       page = make_cmd_header(mdl, c)
       page += make_cmd_methods(mdl, RME::Doc.commands[c][:commands])
       page += mdl.footer
@@ -288,27 +294,68 @@ module DocGenerator
         f.write(page)
       end
       p "#{fname} created!"
-      return indexc
+      return index
+    end
+
+    #--------------------------------------------------------------------------
+    # * Create command index page
+    #--------------------------------------------------------------------------
+    def make_command_index_page(mdl, output)
+      h = make_header(mdl)
+      a = mdl.link(RME::Doc.vocab[:index], index(mdl))
+      a = a + " > " + mdl.strong(RME::Doc.vocab[:cmd_title])
+      l = mdl.ul
+      Hash[RME::Doc.commands.sort].each do |c, command|
+        l = make_command_page(mdl, c, command, l, output)
+      end
+      l += mdl.end_ul
+      page = h + a + mdl.line + l + mdl.footer
+      File.open(output + "/" + cmdindex(mdl), 'w'){|f| f.write(page)}
+      p "#{cmdindex(mdl)} created!"
+    end
+
+    #--------------------------------------------------------------------------
+    # * Create class index page
+    #--------------------------------------------------------------------------
+    def make_class_index_page(mdl, output)
+      h = make_header(mdl)
+      a = mdl.link(RME::Doc.vocab[:index], index(mdl))
+      a = a + " > " + mdl.strong(RME::Doc.vocab[:cl_title])
+      l = mdl.ul
+      Hash[RME::Doc.schema.sort].each do |klass, i|
+        l = make_class_page(mdl, klass, l, output)
+      end
+      l += mdl.end_ul
+      page = h + a + mdl.line + l + mdl.footer
+      File.open(output + "/" + clindex(mdl), 'w'){|f| f.write(page)}
+      p "#{clindex(mdl)} created!"
+    end
+
+    #--------------------------------------------------------------------------
+    # * Create index page
+    #--------------------------------------------------------------------------
+    def make_index_page(mdl, output)
+      h = make_header(mdl)
+      a = mdl.strong(RME::Doc.vocab[:index])
+      l = mdl.ul
+      l += mdl.li(mdl.link(RME::Doc.vocab[:cmd_title], cmdindex(mdl)))
+      l += mdl.li(mdl.link(RME::Doc.vocab[:cl_title], clindex(mdl)))
+      l += mdl.end_ul
+      s = mdl.np + mdl.strong(RME::Doc.vocab[:links]) + mdl.line + mdl.ul
+      RME::Doc.links.each{|k,v| s += mdl.li(mdl.link(k, v))}
+      s += mdl.end_ul
+      page = h + a + mdl.line + l + s + mdl.footer
+      File.open(output + "/" + index(mdl), 'w'){|f| f.write(page)}
+      p "#{index(mdl)} created!"
     end
 
     #--------------------------------------------------------------------------
     # * Create documentation
     #--------------------------------------------------------------------------
     def make(mdl, output)
-      indexl = make_header(mdl) + mdl.ul
-      Hash[RME::Doc.schema.sort].each do |klass, i|
-        indexl = make_class_page(mdl, klass, indexl, output)
-      end
-      indexl = indexl + mdl.end_ul + mdl.np
-      indexc = make_cmd_title(mdl) + mdl.np + mdl.ul
-      Hash[RME::Doc.commands.sort].each do |c, command|
-        indexc = make_command_page(mdl, c, command, indexc, output)
-      end
-      indexc += mdl.footer
-      indexl += indexc
-      indexc = mdl.header("") + indexc + mdl.footer
-      File.open(output + "/" + cmdindex(mdl), 'w'){|f| f.write(indexc)}
-      File.open(output + "/" + index(mdl), 'w'){|f| f.write(indexl)}
+      make_index_page(mdl, output)
+      make_class_index_page(mdl, output)
+      make_command_index_page(mdl, output)
     end
 
   end

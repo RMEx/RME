@@ -1,6 +1,9 @@
-#Commandes du clavier
-[Retourner à l'index](__command_list.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes du clavier**  
+- - -  
+#Commandes du clavier
 Commandes relatives au clavier
 
 ##Liste des commandes

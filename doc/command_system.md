@@ -1,6 +1,9 @@
-#Commandes systèmes
-[Retourner à l'index](__command_list.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes systèmes**  
+- - -  
+#Commandes systèmes
 Offre une collection d'informations sur le système
 
 ##Liste des commandes
