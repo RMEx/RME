@@ -433,27 +433,27 @@ module DocGenerator
       #--------------------------------------------------------------------------
       def save_report(o)
         r = "Report,\n"
-        r += "#{RME::Doc.vocab[:documented]},"
+        r += "\##{RME::Doc.vocab[:documented]},"
         r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n,\n"
-        r += "#{RME::Doc.vocab[:undocumented]},#{RME::Doc.vocab[:suggest]}\n"
+        r += "\##{RME::Doc.vocab[:undocumented]},#{RME::Doc.vocab[:suggest]}\n"
         Checker.undocumented_methods.each do |c| 
           m = RME::Doc.schema[:Command][:methods]["Command.#{c}".to_sym]
-          t = "Enregistrer la commande dans sa catégorie" if m 
+          t = "Commande documentée mais non enregistrée" if m 
           n = RME::Doc.to_fix.collect {|i| (i.to_s =~ /.+\.(.+)/) && $1}
           n = n.collect(&:to_s).sort_by{|o| o.damerau_levenshtein(c.to_s)}
           t = "Modifier l'enregistrement [#{n[0]}] par  [#{c}]"  if n.length >= 1  && (n[0].damerau_levenshtein(c.to_s)) < 3
           t ||= "Aucune suggestion"
           r += "#{c},#{t}\n" 
         end
-        r += "\n,\n#{RME::Doc.vocab[:orphans]},#{RME::Doc.vocab[:suggest]}\n"
+        r += "\n,\n\##{RME::Doc.vocab[:orphans]},#{RME::Doc.vocab[:suggest]}\n"
         Checker.orphans.each do |c| 
           keywords = Checker.undocumented_methods
           keywords.uniq!
           keywords.delete(:method_missing)
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
-          s = (keywords.length >= 1) ? keywords[0] : ".."
-          r += "#{c},#{keywords[0]}\n" 
+          s = (keywords.length >= 1) ? "Peut être remplacer [#{c}] par [{keywords[0]}]" : "Aucune suggestion"
+          r += "#{c},#{s}\n" 
         end
         FileTools.write(o, r)
       end

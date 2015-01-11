@@ -1,26 +1,26 @@
 Report,
-Commandes documentées,412/439
+#Commandes documentées,412/439
 ,
-Commandes non documentées,Suggestion
+#Commandes non documentées,Suggestion
 enemy,Aucune suggestion
 troop,Aucune suggestion
 monster_battler_dimension,Aucune suggestion
 enemy_magical_reflection_rate,Modifier l'enregistrement [enemy_magical_reflexion_rate] par  [enemy_magical_reflection_rate]
-skill_has_no_scope?,Enregistrer la commande dans sa catégorie
-skill_number_of_targets,Enregistrer la commande dans sa catégorie
+skill_has_no_scope?,Commande documentée mais non enregistrée
+skill_number_of_targets,Commande documentée mais non enregistrée
 distance_between,Aucune suggestion
 type_equip,Aucune suggestion
 actor_magical_reflection_rate,Modifier l'enregistrement [actor_magical_reflexion_rate] par  [actor_magical_reflection_rate]
 actor_knowns?,Modifier l'enregistrement [actor_knowns] par  [actor_knowns?]
 sys,Aucune suggestion
-item_number_of_targets,Enregistrer la commande dans sa catégorie
+item_number_of_targets,Commande documentée mais non enregistrée
 keyboard_all?,Modifier l'enregistrement [keyboard_all] par  [keyboard_all?]
 keyboard_any?,Modifier l'enregistrement [keyboard_any] par  [keyboard_any?]
 mouse_current_key,Modifier l'enregistrement [mouse_current_key?] par  [mouse_current_key]
-color,Enregistrer la commande dans sa catégorie
+color,Commande documentée mais non enregistrée
 spriteset,Aucune suggestion
 sprite_picture,Aucune suggestion
-picture_shake,Enregistrer la commande dans sa catégorie
+picture_shake,Commande documentée mais non enregistrée
 pictures_perfect_collide?,Aucune suggestion
 screen,Aucune suggestion
 pictures,Aucune suggestion
@@ -30,5 +30,5 @@ bind,Aucune suggestion
 unbind,Aucune suggestion
 
 ,
-Commandes inconnues,Suggestion
-current_troop,troop
+#Commandes inconnues,Suggestion
+current_troop,Peut être remplacer [current_troop] par [{keywords[0]}]
