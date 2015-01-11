@@ -18,6 +18,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [text_x(id, x, *duration, *wait_flag)](#text_xid-x-duration-wait_flag)
 *    [text_y(id, y, *duration, *wait_flag)](#text_yid-y-duration-wait_flag)
 *    [text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#text_zoomid-zoom_x-zoom_y-duration-wait_flag)
+*    [text_zoomLOL(id, zoom_x, zoom_y, *duration, *wait_flag)](#text_zoomlolid-zoom_x-zoom_y-duration-wait_flag)
 *    [text_zoom_x(id, zoom_x, *duration, *wait_flag)](#text_zoom_xid-zoom_x-duration-wait_flag)
 *    [text_zoom_y(id, zoom_y, *duration, *wait_flag)](#text_zoom_yid-zoom_y-duration-wait_flag)
 
@@ -158,6 +159,20 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 
 
 ##### text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)
+
+> Change le zoom d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`zoom_x`|`Fixnum`|zoom x du texte  
+`zoom_y`|`Fixnum`|zoom y du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+##### text_zoomLOL(id, zoom_x, zoom_y, *duration, *wait_flag)
 
 > Change le zoom d'un texte
 

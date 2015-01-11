@@ -1,0 +1,34 @@
+Commandes documentées :	412/439
+
+Commandes non documentées:
+	-troop
+	-actor_knowns?
+	-type_equip
+	-event
+	-color
+	-pictures
+	-enemy
+	-picture_shake
+	-spriteset
+	-sprite_picture
+	-bind
+	-scene
+	-screen
+	-sys
+	-keyboard_all?
+	-keyboard_any?
+	-unbind
+	-distance_between
+	-mouse_current_key
+	-skill_has_no_scope?
+	-item_number_of_targets
+	-pictures_perfect_collide?
+	-skill_number_of_targets
+	-monster_battler_dimension
+	-enemy_magical_reflection_rate
+	-actor_magical_reflection_rate
+
+
+Commandes inconnues:
+	-current_troop Suggestion : 	[troop]
+	-text_zoomLOL Suggestion : 	[troop]

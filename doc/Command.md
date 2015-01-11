@@ -399,6 +399,7 @@ Collection des commandes EventExtender
 *    [Command.text_x(id, x, *duration, *wait_flag)](#commandtext_xid-x-duration-wait_flag)
 *    [Command.text_y(id, y, *duration, *wait_flag)](#commandtext_yid-y-duration-wait_flag)
 *    [Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#commandtext_zoomid-zoom_x-zoom_y-duration-wait_flag)
+*    [Command.text_zoomLOL(id, zoom_x, zoom_y, *duration, *wait_flag)](#commandtext_zoomlolid-zoom_x-zoom_y-duration-wait_flag)
 *    [Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)](#commandtext_zoom_xid-zoom_x-duration-wait_flag)
 *    [Command.text_zoom_y(id, zoom_y, *duration, *wait_flag)](#commandtext_zoom_yid-zoom_y-duration-wait_flag)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
@@ -5988,6 +5989,24 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 ##### Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)
+
+> Change le zoom d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`zoom_x`|`Fixnum`|zoom x du texte  
+`zoom_y`|`Fixnum`|zoom y du texte  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.text_zoomLOL(id, zoom_x, zoom_y, *duration, *wait_flag)
 
 > Change le zoom d'un texte
 

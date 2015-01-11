@@ -39,7 +39,11 @@ module Doc
     :l_desc    => "Description",
     :l_sample  => "Exemple",
     #other
-    :links     => "Liens utiles"
+    :links     => "Liens utiles",
+    :documented   => "Commandes documentées",
+    :undocumented => "Commandes non documentées",
+    :orphans      => "Commandes inconnues", 
+    :suggest      => "Suggestion", 
   }
   documentation_add_link "GitHub", "https://github.com/funkywork/RME"
   documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/funkywork/RME/wiki"
@@ -1392,6 +1396,8 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :id2 => ["ID de l'autre image", :Fixnum],
                           }, true
+  register_command :picture, "Command.pictures_collide?"
+
   link_method_documentation "Command.picture_scroll_x", 
                           "Change la vitesse de défilement horizontal d'une image fixée sur la carte", 
                           {
@@ -1860,7 +1866,7 @@ link_method_documentation "Command.item_has_no_scope?",
                         {
                           :id => ["Id de l'objet", :Fixnum], 
                         }, true
-register_command :items, "Command.item_has_scope?"
+register_command :items, "Command.item_has_no_scope?"
 
 link_method_documentation "Command.item_for_one_enemy?", 
                         "Renvoie true si la cible d'un objet référencée par son ID vise un ennemi, false sinon",
@@ -3555,6 +3561,17 @@ link_method_documentation "Command.text_zoom",
                           }, true
 register_command :text, "Command.text_zoom"
 
+link_method_documentation "Command.text_zoomLOL", 
+                          "Change le zoom d'un texte", 
+                          {
+                            :id => ["ID du texte", :Fixnum],
+                            :zoom_x => ["zoom x du texte", :Fixnum],
+                            :zoom_y => ["zoom y du texte", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          }, true
+register_command :text, "Command.text_zoomLOL"
+
 
 end
 
@@ -3562,4 +3579,5 @@ end
 if $TEST
   DocGenerator.markdown("../doc") 
   DocGenerator.html("../doc/HTML") 
+  DocGenerator::Checker.run("../doc_report.txt")
 end

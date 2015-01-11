@@ -31,6 +31,7 @@ Commandes relatives à la manipulation des images
 *    [picture_zoom_x(id, zoom, *duration, *wait_flag)](#picture_zoom_xid-zoom-duration-wait_flag)
 *    [picture_zoom_y(id, zoom, *duration, *wait_flag)](#picture_zoom_yid-zoom-duration-wait_flag)
 *    [pictures_clear](#pictures_clear)
+*    [pictures_collide?(id, id2)](#pictures_collideid-id2)
 *    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_pictureid-x-y-precise)
 
 
@@ -327,6 +328,17 @@ Commandes relatives à la manipulation des images
 
   
 > 
+
+##### pictures_collide?(id, id2)
+
+> Vérifie que deux images sont en collisions
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`id2`|`Fixnum`|ID de l'autre image  
+
 
 ##### pixel_in_picture?(id, x, y, *precise)
 

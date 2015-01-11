@@ -380,4 +380,96 @@ module DocGenerator
 
   end
 
+  #==============================================================================
+  # ** Check
+  #------------------------------------------------------------------------------
+  #  Provide documentation fixer (for commands)
+  #==============================================================================
+
+  module Checker 
+    #--------------------------------------------------------------------------
+    # *  Singleton
+    #--------------------------------------------------------------------------
+    class << self 
+      attr_accessor :documented_methods
+      attr_accessor :undocumented_methods 
+      attr_accessor :orphans
+      attr_accessor :raw_methods
+      #--------------------------------------------------------------------------
+      # *  Run
+      #--------------------------------------------------------------------------
+      def run(output = nil, show = true)
+        get_raw_methods
+        Checker.documented_methods = Array.new
+        Checker.undocumented_methods = Array.new 
+        Checker.orphans = Array.new
+        get_raw_methods
+        each_commands_methods
+        show_report if show
+        save_report(output) if output
+      end
+      #--------------------------------------------------------------------------
+      # *  Return all documented raw methods
+      #--------------------------------------------------------------------------
+      def get_raw_methods
+        Checker.raw_methods = Array.new
+        RME::Doc.commands.each do |category, cmds|
+          all_cmds = cmds[:commands].keys.collect {|i| (i.to_s =~ /.+\.(.+)/) && $1}
+          Checker.raw_methods += all_cmds.collect(&:to_sym)
+        end
+      end
+      #--------------------------------------------------------------------------
+      # *  Iteration on each methods
+      #--------------------------------------------------------------------------
+      def each_commands_methods 
+        Checker.documented_methods = 
+          Command.singleton_methods.select {|i| raw_methods.include?(i)}
+        Checker.undocumented_methods = Command.singleton_methods - Checker.raw_methods
+        Checker.orphans = 
+          Checker.raw_methods - Checker.documented_methods - Checker.undocumented_methods
+      end
+      #--------------------------------------------------------------------------
+      # *  Save report
+      #--------------------------------------------------------------------------
+      def save_report(o)
+        r = "#{RME::Doc.vocab[:documented]} :\t"
+        r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n\n"
+        r += "#{RME::Doc.vocab[:undocumented]}:\n"
+        Checker.undocumented_methods.each {|c| r += "\t-#{c}\n"}
+        r += "\n\n#{RME::Doc.vocab[:orphans]}:\n"
+        Checker.orphans.each do |c| 
+          keywords = Checker.undocumented_methods
+          keywords.uniq!
+          keywords.delete(:method_missing)
+          keywords.collect!{|i|i.to_s}
+          keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
+          s = (keywords.length >= 1) ? keywords[0] : ".."
+          r += "\t-#{c} #{RME::Doc.vocab[:suggest]} : \t[#{keywords[0]}]\n" 
+        end
+        FileTools.write(o, r)
+      end
+      #--------------------------------------------------------------------------
+      # *  Show report
+      #--------------------------------------------------------------------------
+      def show_report
+        p "=============================================="
+        p "#{RME::Doc.vocab[:documented]} : #{Checker.documented_methods.length}/#{Command.singleton_methods.length}"
+        p "#{RME::Doc.vocab[:undocumented]}:"
+        Checker.undocumented_methods.each {|c| p "  * #{c}"}
+        p "#{RME::Doc.vocab[:orphans]}:"
+        Checker.orphans.each do |c| 
+          keywords = Checker.undocumented_methods
+          keywords.uniq!
+          keywords.delete(:method_missing)
+          keywords.collect!{|i|i.to_s}
+          keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
+          s = (keywords.length >= 1) ? keywords[0] : ".."
+          p "  * #{c} #{RME::Doc.vocab[:suggest]} : [#{keywords[0]}]" 
+        end
+        p "=============================================="
+      end
+    end 
+  end 
+
 end
+

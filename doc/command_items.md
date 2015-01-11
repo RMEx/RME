@@ -33,6 +33,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_for_random?(id)](#item_for_randomid)
 *    [item_for_three_random_enemies?(id)](#item_for_three_random_enemiesid)
 *    [item_for_two_random_enemies?(id)](#item_for_two_random_enemiesid)
+*    [item_has_no_scope?(id)](#item_has_no_scopeid)
 *    [item_icon(id)](#item_iconid)
 *    [item_magical?(id)](#item_magicalid)
 *    [item_menu_usable?(id)](#item_menu_usableid)
@@ -305,6 +306,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 ##### item_for_two_random_enemies?(id)
 
 > Renvoie true si la cible d'un objet référencée par son ID vise deux ennemis au hasard, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_has_no_scope?(id)
+
+> Renvoie true si la cible d'un objet référencée par son ID vise personne, false sinon
 
   
 > Nom|Type|Description  
