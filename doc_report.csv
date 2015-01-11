@@ -31,4 +31,4 @@ unbind,Aucune suggestion
 
 ,
 #Commandes inconnues,Suggestion
-current_troop,Peut être remplacer [current_troop] par [{keywords[0]}]
+current_troop,Peut être remplacer [current_troop] par [troop]

@@ -452,7 +452,7 @@ module DocGenerator
           keywords.delete(:method_missing)
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
-          s = (keywords.length >= 1) ? "Peut être remplacer [#{c}] par [{keywords[0]}]" : "Aucune suggestion"
+          s = (keywords.length >= 1) ? "Peut être remplacer [#{c}] par [#{keywords[0]}]" : "Aucune suggestion"
           r += "#{c},#{s}\n" 
         end
         FileTools.write(o, r)
