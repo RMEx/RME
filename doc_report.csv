@@ -29,5 +29,5 @@ event,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,
-# Commandes inconnues,Suggestion
+# Commandes inconnues,# Suggestion
 current_troop,Peut être remplacer [current_troop] par [troop]

@@ -445,7 +445,7 @@ module DocGenerator
           t ||= "Aucune suggestion"
           r += "#{c},#{t}\n" 
         end
-        r += ",\n\# #{RME::Doc.vocab[:orphans]},#{RME::Doc.vocab[:suggest]}\n"
+        r += ",\n\# #{RME::Doc.vocab[:orphans]},\# #{RME::Doc.vocab[:suggest]}\n"
         Checker.orphans.each do |c| 
           keywords = Checker.undocumented_methods
           keywords.uniq!
