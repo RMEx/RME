@@ -435,8 +435,7 @@ module DocGenerator
         r = "Report,\n"
         r += "#{RME::Doc.vocab[:documented]},"
         r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n,\n"
-        r += "#{RME::Doc.vocab[:undocumented]},\n"
-        r += ",#{RME::Doc.vocab[:suggest]}\n"
+        r += "#{RME::Doc.vocab[:undocumented]},#{RME::Doc.vocab[:suggest]}\n"
         Checker.undocumented_methods.each do |c| 
           m = RME::Doc.schema[:Command][:methods]["Command.#{c}".to_sym]
           t = "Enregistrer la commande dans sa catégorie" if m 
@@ -446,8 +445,7 @@ module DocGenerator
           t ||= "Aucune suggestion"
           r += "#{c},#{t}\n" 
         end
-        r += "\n,\n#{RME::Doc.vocab[:orphans]},\n"
-        r += ",#{RME::Doc.vocab[:suggest]}\n"
+        r += "\n,\n#{RME::Doc.vocab[:orphans]},#{RME::Doc.vocab[:suggest]}\n"
         Checker.orphans.each do |c| 
           keywords = Checker.undocumented_methods
           keywords.uniq!
