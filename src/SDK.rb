@@ -63,6 +63,7 @@ module RME
       attr_accessor :header
       attr_accessor :commands
       attr_accessor :links
+      attr_accessor :vocab
       Doc.schema ||= Hash.new
       Doc.links ||= Hash.new
       Doc.header ||= Hash.new
@@ -129,8 +130,11 @@ module RME
       Doc.schema[classname][:methods][meth.to_sym][:snippet] = value
     end
 
-    def link_documentation_link(name, link)
+    def documentation_add_link(name, link)
       Doc.links[name] = link
+    end
+    def documentation_define(sadly_useless, vocab)
+      Doc.vocab = define
     end
 
     #--------------------------------------------------------------------------

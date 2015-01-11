@@ -10,9 +10,37 @@
 #
 #==============================================================================
 
+#==============================================================================
+# ** Doc
+#------------------------------------------------------------------------------
+#  Documentation representation.
+#==============================================================================
+
 module Doc
-  link_documentation_link "GitHub", "https://github.com/funkywork/RME"
-  link_documentation_link "Manuel d'utilisation (Wiki)", "https://github.com/funkywork/RME/wiki"
+  documentation_define :vocab,
+  {
+    #doc
+    :title     => "RME : RPG Maker Extender",
+    :desc      => "Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)",
+    :index     => "Documentation",
+    #class
+    :cl_title  => "Classes et modules",
+    #methods
+    :m_desc    => "Description des méthodes",
+    :m_list    => "Liste des méthodes",
+    #commands
+    :cmd_title => "Index des commandes",
+    :cmd_desc  => "Description des commandes",
+    :cmd_list  => "Liste des commandes",
+    #labels
+    :l_attr    => "Attributs",
+    :l_name    => "Nom",
+    :l_type    => "Type",
+    :l_desc    => "Description",
+    :l_sample  => "Exemple"
+  }
+  documentation_add_link "GitHub", "https://github.com/funkywork/RME"
+  documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/funkywork/RME/wiki"
 end
 
 #==============================================================================
