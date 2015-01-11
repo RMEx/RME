@@ -1,6 +1,6 @@
 Report,
 # Commandes documentées,412/439
-
+,
 # Commandes non documentées,# Suggestion
 enemy,Aucune suggestion
 troop,Aucune suggestion
@@ -28,6 +28,6 @@ scene,Aucune suggestion
 event,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
-
+,
 # Commandes inconnues,Suggestion
 current_troop,Peut être remplacer [current_troop] par [troop]
