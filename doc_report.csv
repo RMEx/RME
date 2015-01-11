@@ -1,0 +1,34 @@
+Commandes documentées,	412/439
+
+Commandes non documentées:
+enemy
+troop
+monster_battler_dimension
+enemy_magical_reflection_rate
+skill_has_no_scope?
+skill_number_of_targets
+distance_between
+type_equip
+actor_magical_reflection_rate
+actor_knowns?
+sys
+item_number_of_targets
+keyboard_all?
+keyboard_any?
+mouse_current_key
+color
+spriteset
+sprite_picture
+picture_shake
+pictures_perfect_collide?
+screen
+pictures
+scene
+event
+bind
+unbind
+method_missing
+
+
+Commandes inconnues
+Suggestioncurrent_troop,[troop]

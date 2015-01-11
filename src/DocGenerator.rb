@@ -398,15 +398,14 @@ module DocGenerator
       #--------------------------------------------------------------------------
       # *  Run
       #--------------------------------------------------------------------------
-      def run(output = nil, show = true)
+      def run(output)
         get_raw_methods
         Checker.documented_methods = Array.new
         Checker.undocumented_methods = Array.new 
         Checker.orphans = Array.new
         get_raw_methods
         each_commands_methods
-        show_report if show
-        save_report(output) if output
+        save_report(output)
       end
       #--------------------------------------------------------------------------
       # *  Return all documented raw methods
@@ -432,11 +431,12 @@ module DocGenerator
       # *  Save report
       #--------------------------------------------------------------------------
       def save_report(o)
-        r = "#{RME::Doc.vocab[:documented]} :\t"
+        r = "#{RME::Doc.vocab[:documented]},\t"
         r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n\n"
         r += "#{RME::Doc.vocab[:undocumented]}:\n"
-        Checker.undocumented_methods.each {|c| r += "\t-#{c}\n"}
-        r += "\n\n#{RME::Doc.vocab[:orphans]}:\n"
+        Checker.undocumented_methods.each {|c| r += "#{c}\n"}
+        r += "\n\n#{RME::Doc.vocab[:orphans]}\n"
+        r += "#{RME::Doc.vocab[:suggest]}"
         Checker.orphans.each do |c| 
           keywords = Checker.undocumented_methods
           keywords.uniq!
@@ -444,30 +444,11 @@ module DocGenerator
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
           s = (keywords.length >= 1) ? keywords[0] : ".."
-          r += "\t-#{c} => \t#{RME::Doc.vocab[:suggest]} : [#{keywords[0]}]\n" 
+          r += "#{c},[#{keywords[0]}]\n" 
         end
         FileTools.write(o, r)
       end
-      #--------------------------------------------------------------------------
-      # *  Show report
-      #--------------------------------------------------------------------------
-      def show_report
-        p "=============================================="
-        p "#{RME::Doc.vocab[:documented]} : #{Checker.documented_methods.length}/#{Command.singleton_methods.length}"
-        p "#{RME::Doc.vocab[:undocumented]}:"
-        Checker.undocumented_methods.each {|c| p "  * #{c}"}
-        p "#{RME::Doc.vocab[:orphans]}:"
-        Checker.orphans.each do |c| 
-          keywords = Checker.undocumented_methods
-          keywords.uniq!
-          keywords.delete(:method_missing)
-          keywords.collect!{|i|i.to_s}
-          keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
-          s = (keywords.length >= 1) ? keywords[0] : ".."
-          p "  * #{c} => #{RME::Doc.vocab[:suggest]} : [#{keywords[0]}]" 
-        end
-        p "=============================================="
-      end
+      
     end 
   end 
 

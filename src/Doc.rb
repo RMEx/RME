@@ -3561,17 +3561,6 @@ link_method_documentation "Command.text_zoom",
                           }, true
 register_command :text, "Command.text_zoom"
 
-link_method_documentation "Command.text_zoomLOL", 
-                          "Change le zoom d'un texte", 
-                          {
-                            :id => ["ID du texte", :Fixnum],
-                            :zoom_x => ["zoom x du texte", :Fixnum],
-                            :zoom_y => ["zoom y du texte", :Fixnum],
-                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
-                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                          }, true
-register_command :text, "Command.text_zoomLOL"
-
 
 end
 
@@ -3579,5 +3568,5 @@ end
 if $TEST
   DocGenerator.markdown("../doc") 
   DocGenerator.html("../doc/HTML") 
-  DocGenerator::Checker.run("../doc_report.txt")
+  DocGenerator::Checker.run("../doc_report.csv")
 end
