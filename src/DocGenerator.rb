@@ -433,7 +433,7 @@ module DocGenerator
       def save_report(o)
         r = "#{RME::Doc.vocab[:documented]},"
         r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n\n"
-        r += "#{RME::Doc.vocab[:undocumented]}:\n"
+        r += "#{RME::Doc.vocab[:undocumented]},\n"
         Checker.undocumented_methods.each {|c| r += "#{c},\n"}
         r += "\n\n#{RME::Doc.vocab[:orphans]},\n"
         r += "#{RME::Doc.vocab[:suggest]}"
