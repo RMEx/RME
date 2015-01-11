@@ -699,7 +699,7 @@ module Command
                           :blue => ["Valeur de bleu", :Fixnum],
                           :"*alpha" => ["Opacité, par défaut 255!", :Fixnum]
                         }, true
-  register_command :standard, "Command.tone"
+  register_command :standard, "Command.color"
 
   link_method_documentation "Command.random", 
                         "Renvoie un nombre aléatoire compris entre MIN et MAX inclus",
@@ -1029,7 +1029,7 @@ module Command
                             :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
                           }, true
-  register_command :keyboard, "Command.keyboard_all"
+  register_command :keyboard, "Command.keyboard_all?"
 
   link_method_documentation "Command.keyboard_any?", 
                           "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method", 
@@ -1037,7 +1037,7 @@ module Command
                             :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
                           }, true
-  register_command :keyboard, "Command.keyboard_any"
+  register_command :keyboard, "Command.keyboard_any?"
 
   link_method_documentation "Command.keyboard_current_char", 
                           "Renvoie le caractère actuel pressé par le clavier",
@@ -1189,7 +1189,7 @@ module Command
   link_method_documentation "Command.mouse_current_key", 
                           "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
-  register_command :mouse, "Command.mouse_current_key?"
+  register_command :mouse, "Command.mouse_current_key"
 
   link_method_documentation "Command.click_time", 
                           "Renvoie le nombre de frame pressée d'une touche en cours", 
@@ -1379,7 +1379,8 @@ module Command
                             :speed => ["La vitesse du tremblement", :Fixnum],
                             :duration => ["La durée en frame du tremblement", :Fixnum],
                           }
-  register_command :picture, "Command.picture_opacity"
+  register_command :picture, "Command.picture_shake"
+
   link_method_documentation "Command.pixel_in_picture?", 
                           "Vérifie que le x, y sont inscrit dans l'image", 
                           {
@@ -2021,7 +2022,7 @@ link_method_documentation "Command.item_number_of_targets",
                         {
                           :id => ["Id de l'objet", :Fixnum], 
                         }, true
-register_command :items, "Command.number_of_targets"
+register_command :items, "Command.item_number_of_targets"
 
 
 
@@ -2367,7 +2368,7 @@ link_method_documentation "Command.actor_magical_reflection_rate",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
-register_command :actors, "Command.actor_magical_reflexion_rate"
+register_command :actors, "Command.actor_magical_reflection_rate"
 
 link_method_documentation "Command.actor_counter_attack_rate", 
                         "renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
@@ -2639,7 +2640,7 @@ link_method_documentation "Command.actor_knowns?",
                           :id => ["ID de l'acteur", :Fixnum],
                           :skill_id => ["ID de le technique", :Fixnum],
                         }
-register_command :actors, "Command.actor_knowns"
+register_command :actors, "Command.actor_knowns?"
 
 link_method_documentation "Command.actor_set_graphic", 
                         "Change les graphisme du héros référencé par son ID",
@@ -2686,7 +2687,7 @@ link_method_documentation "Command.skill_has_no_scope?",
                         {
                           :id => ["Id de la technique", :Fixnum], 
                         }, true
-register_command :skills, "Command.skill_has_scope?"
+register_command :skills, "Command.skill_has_no_scope?"
 
 link_method_documentation "Command.skill_for_one_enemy?", 
                         "Renvoie true si la cible d'une technique référencée par son ID vise un ennemi, false sinon",
@@ -2876,7 +2877,7 @@ link_method_documentation "Command.skill_number_of_targets",
                         {
                           :id => ["Id de la technique", :Fixnum], 
                         }, true
-register_command :skills, "Command.number_of_targets"
+register_command :skills, "Command.skill_number_of_targets"
 
 link_method_documentation "Command.skill_speed", 
                         "Renvoie l'apport de vitesse de la technique référencé par son ID",
@@ -3280,7 +3281,7 @@ link_method_documentation "Command.enemy_magical_reflection_rate",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
-register_command :in_battle, "Command.enemy_magical_reflexion_rate"
+register_command :in_battle, "Command.enemy_magical_reflection_rate"
 
 link_method_documentation "Command.enemy_counter_attack_rate", 
                         "renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat",

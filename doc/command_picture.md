@@ -20,6 +20,7 @@ Commandes relatives à la manipulation des images
 *    [picture_scroll(id, vitesse)](#picture_scrollid-vitesse)
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
 *    [picture_scroll_y(id, vitesse)](#picture_scroll_yid-vitesse)
+*    [picture_shake(id, power, speed, duration)](#picture_shakeid-power-speed-duration)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
 *    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
@@ -189,6 +190,19 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+##### picture_shake(id, power, speed, duration)
+
+> Fait trembler l'image pendant un temps donné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`power`|`Fixnum`|La puissance du tremblement  
+`speed`|`Fixnum`|La vitesse du tremblement  
+`duration`|`Fixnum`|La durée en frame du tremblement  
 
 
 ##### picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)

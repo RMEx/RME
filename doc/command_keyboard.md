@@ -17,6 +17,8 @@ Commandes relatives au clavier
 *    [key_repeat?(key)](#key_repeatkey)
 *    [key_time(key)](#key_timekey)
 *    [key_trigger?(key)](#key_triggerkey)
+*    [keyboard_all?(method, keys)](#keyboard_allmethod-keys)
+*    [keyboard_any?(method, keys)](#keyboard_anymethod-keys)
 *    [keyboard_current_char](#keyboard_current_char)
 *    [keyboard_current_digit](#keyboard_current_digit)
 *    [num_lock?](#num_lock)
@@ -117,6 +119,28 @@ Commandes relatives au clavier
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+##### keyboard_all?(method, keys)
+
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+
+
+##### keyboard_any?(method, keys)
+
+> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
 ##### keyboard_current_char

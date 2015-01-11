@@ -28,6 +28,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_for_random?(id)](#skill_for_randomid)
 *    [skill_for_three_random_enemies?(id)](#skill_for_three_random_enemiesid)
 *    [skill_for_two_random_enemies?(id)](#skill_for_two_random_enemiesid)
+*    [skill_has_no_scope?(id)](#skill_has_no_scopeid)
 *    [skill_icon(id)](#skill_iconid)
 *    [skill_magical?(id)](#skill_magicalid)
 *    [skill_menu_usable?(id)](#skill_menu_usableid)
@@ -36,6 +37,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_need_selection?(id)](#skill_need_selectionid)
 *    [skill_never_usable?(id)](#skill_never_usableid)
 *    [skill_note(id)](#skill_noteid)
+*    [skill_number_of_targets(id)](#skill_number_of_targetsid)
 *    [skill_occasion(id)](#skill_occasionid)
 *    [skill_physical?(id)](#skill_physicalid)
 *    [skill_scope(id)](#skill_scopeid)
@@ -255,6 +257,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 `id`|`Fixnum`|Id de la technique  
 
 
+##### skill_has_no_scope?(id)
+
+> Renvoie true si la cible d'une technique référencée par son ID vise personne, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
 ##### skill_icon(id)
 
 > Renvoie l'index de l'icone de la technique référencé par son ID
@@ -328,6 +340,16 @@ Offre des commandes pour obtenir des informations sur les techniques
 ##### skill_note(id)
 
 > Renvoie le commentaire de la base de données de la technique référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de la technique  
+
+
+##### skill_number_of_targets(id)
+
+> Renvoie le nombre de cibles d'une technique référencée par son ID produit un dommage magique, false sinon
 
   
 > Nom|Type|Description  

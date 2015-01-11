@@ -1148,6 +1148,7 @@ module RMECommands
     def monster_give_gold(id); enemy(id).gold; end 
     def monster_battler_name(id); enemy(id).battler_name; end 
     def monster_battler_hue(id); enemy(id).battler_hue; end 
+    def current_troop; Kernel.current_troop; end
 
 
     def enemy_hp(id); $game_troop.members[id].hp; end 

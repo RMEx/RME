@@ -46,6 +46,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_hit_rate(id)](#actor_hit_rateid)
 *    [actor_hp(id)](#actor_hpid)
 *    [actor_hp_regeneration_rate(id)](#actor_hp_regeneration_rateid)
+*    [actor_knowns?(id, skill_id)](#actor_knownsid-skill_id)
 *    [actor_learn(id, skill_id)](#actor_learnid-skill_id)
 *    [actor_level(id)](#actor_levelid)
 *    [actor_level_down(id)](#actor_level_downid)
@@ -56,6 +57,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_magic_defense(id)](#actor_magic_defenseid)
 *    [actor_magical_damage_rate(id)](#actor_magical_damage_rateid)
 *    [actor_magical_evasion_rate(id)](#actor_magical_evasion_rateid)
+*    [actor_magical_reflection_rate(id)](#actor_magical_reflection_rateid)
 *    [actor_max_hp(id)](#actor_max_hpid)
 *    [actor_max_mp(id)](#actor_max_mpid)
 *    [actor_mp(id)](#actor_mpid)
@@ -482,6 +484,17 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_knowns?(id, skill_id)
+
+> Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+`skill_id`|`Fixnum`|ID de le technique  
+
+
 ##### actor_learn(id, skill_id)
 
 > Apprend la technique passée en argument au héros référencé par son ID
@@ -576,6 +589,16 @@ Offre des commandes pour obtenir des informations sur les acteurs
 ##### actor_magical_evasion_rate(id)
 
 > renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_magical_reflection_rate(id)
+
+> renvoie la probabilité d'une réflexion magique du héros référencé par son ID
 
   
 > Nom|Type|Description  
