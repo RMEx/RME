@@ -1,6 +1,6 @@
-Commandes documentées,412/439
+**Commandes documentées**,412/439
 
-Commandes non documentées,
+**Commandes non documentées**,
 enemy,
 troop,
 monster_battler_dimension,
@@ -30,5 +30,6 @@ unbind,
 method_missing,
 
 
-Commandes inconnues,
-Suggestioncurrent_troop,[troop]
+**Commandes inconnues**,
+,**Suggestion**
+current_troop,[troop]
