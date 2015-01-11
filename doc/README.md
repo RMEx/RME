@@ -4,9 +4,15 @@ Outil d'extension de RPG Maker
 
 **Documentation**  
 - - -  
-*    [GitHub](https://github.com/funkywork/RME)
-*    [Manuel d'utilisation (Wiki)](https://github.com/funkywork/RME/wiki)
 *    [Index des commandes](__command_list.md)
 *    [Classes et modules](__class-and-module_list.md)
+
+
+
+
+**Liens utiles**  
+- - -  
+*    [GitHub](https://github.com/funkywork/RME)
+*    [Manuel d'utilisation (Wiki)](https://github.com/funkywork/RME/wiki)
 
 

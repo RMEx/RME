@@ -37,7 +37,9 @@ module Doc
     :l_name    => "Nom",
     :l_type    => "Type",
     :l_desc    => "Description",
-    :l_sample  => "Exemple"
+    :l_sample  => "Exemple",
+    #other
+    :links     => "Liens utiles"
   }
   documentation_add_link "GitHub", "https://github.com/funkywork/RME"
   documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/funkywork/RME/wiki"

@@ -133,8 +133,8 @@ module RME
     def documentation_add_link(name, link)
       Doc.links[name] = link
     end
-    def documentation_define(sadly_useless, vocab)
-      Doc.vocab = define
+    def documentation_define(sadly_useless_dude, vocab)
+      Doc.vocab = vocab
     end
 
     #--------------------------------------------------------------------------

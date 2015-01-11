@@ -335,11 +335,13 @@ module DocGenerator
       h = make_header(mdl)
       a = mdl.strong(RME::Doc.vocab[:index])
       l = mdl.ul
-      RME::Doc.links.each{|k,v| l += mdl.li(mdl.link(k, v))}
       l += mdl.li(mdl.link(RME::Doc.vocab[:cmd_title], cmdindex(mdl)))
       l += mdl.li(mdl.link(RME::Doc.vocab[:cl_title], clindex(mdl)))
       l += mdl.end_ul
-      page = h + a + mdl.line + l + mdl.footer
+      s = mdl.np + mdl.strong(RME::Doc.vocab[:links]) + mdl.line + mdl.ul
+      RME::Doc.links.each{|k,v| s += mdl.li(mdl.link(k, v))}
+      s += mdl.end_ul
+      page = h + a + mdl.line + l + s + mdl.footer
       File.open(output + "/" + index(mdl), 'w'){|f| f.write(page)}
       p "#{index(mdl)} created!"
     end
