@@ -30,5 +30,5 @@ Commandes non documentées:
 
 
 Commandes inconnues:
-	-current_troop Suggestion : 	[troop]
-	-text_zoomLOL Suggestion : 	[troop]
+	-current_troop => 	Suggestion : [troop]
+	-text_zoomLOL => 	Suggestion : [troop]

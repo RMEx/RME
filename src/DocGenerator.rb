@@ -444,7 +444,7 @@ module DocGenerator
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
           s = (keywords.length >= 1) ? keywords[0] : ".."
-          r += "\t-#{c} #{RME::Doc.vocab[:suggest]} : \t[#{keywords[0]}]\n" 
+          r += "\t-#{c} => \t#{RME::Doc.vocab[:suggest]} : [#{keywords[0]}]\n" 
         end
         FileTools.write(o, r)
       end
@@ -464,7 +464,7 @@ module DocGenerator
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
           s = (keywords.length >= 1) ? keywords[0] : ".."
-          p "  * #{c} #{RME::Doc.vocab[:suggest]} : [#{keywords[0]}]" 
+          p "  * #{c} => #{RME::Doc.vocab[:suggest]} : [#{keywords[0]}]" 
         end
         p "=============================================="
       end
