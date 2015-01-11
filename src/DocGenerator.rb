@@ -431,7 +431,7 @@ module DocGenerator
       # *  Save report
       #--------------------------------------------------------------------------
       def save_report(o)
-        r = "Report,"
+        r = "Report,\n"
         r += "#{RME::Doc.vocab[:documented]},"
         r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n,\n"
         r += "#{RME::Doc.vocab[:undocumented]},\n"
