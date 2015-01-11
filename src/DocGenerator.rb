@@ -139,6 +139,9 @@ module DocGenerator
       mdl.cmdindex + "." + mdl.extension
     end
 
+    #--------------------------------------------------------------------------
+    # * Class Index
+    #--------------------------------------------------------------------------
     def clindex(mdl) 
       mdl.clindex + "." + mdl.extension
     end
@@ -155,8 +158,8 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_header(mdl)
       h = mdl.header("")
-      t = mdl.title(1, RME::Doc.header[:title])
-      d = RME::Doc.header[:desc] + mdl.np
+      t = mdl.title(1, RME::Doc.vocab[:title])
+      d = RME::Doc.vocab[:desc] + mdl.np
       h + t + d
     end
 
@@ -350,9 +353,9 @@ module DocGenerator
     # * Create documentation
     #--------------------------------------------------------------------------
     def make(mdl, output)
+      make_index_page(mdl, output)
       make_class_index_page(mdl, output)
       make_command_index_page(mdl, output)
-      make_index_page(mdl, output)
     end
 
   end

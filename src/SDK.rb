@@ -66,7 +66,6 @@ module RME
       attr_accessor :vocab
       Doc.schema ||= Hash.new
       Doc.links ||= Hash.new
-      Doc.header ||= Hash.new
       Doc.commands ||= Hash.new
     end
     #--------------------------------------------------------------------------
@@ -121,7 +120,6 @@ module RME
       Doc.schema[classname][:methods][name.to_sym][:attributes] = attributes
       Doc.schema[classname][:methods][name.to_sym][:returnable] = returned
     end
-
     #--------------------------------------------------------------------------
     # * Snippet documentation
     #--------------------------------------------------------------------------
@@ -129,20 +127,19 @@ module RME
       init_doc_statement
       Doc.schema[classname][:methods][meth.to_sym][:snippet] = value
     end
-
+    #--------------------------------------------------------------------------
+    # * Additional links
+    #--------------------------------------------------------------------------
     def documentation_add_link(name, link)
       Doc.links[name] = link
     end
+    #--------------------------------------------------------------------------
+    # * Vocab
+    #--------------------------------------------------------------------------
     def documentation_define(sadly_useless_dude, vocab)
       Doc.vocab = vocab
     end
 
-    #--------------------------------------------------------------------------
-    # * Header
-    #--------------------------------------------------------------------------
-    Doc.header[:title]  = "RME : RPG Maker Extender"
-    Doc.header[:desc]   = "Outil d'extension de RPG Maker
-    (les objets étendus ne sont documentés que pour les ajouts.)"
   end
 
   #==============================================================================
