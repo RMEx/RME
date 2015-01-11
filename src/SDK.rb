@@ -64,6 +64,8 @@ module RME
       attr_accessor :commands
       attr_accessor :links
       attr_accessor :vocab
+      attr_accessor :to_fix
+      Doc.to_fix ||= Array.new
       Doc.schema ||= Hash.new
       Doc.links ||= Hash.new
       Doc.commands ||= Hash.new
@@ -95,6 +97,7 @@ module RME
       d = Doc.schema[classname][:methods][name.to_sym]
       register_command_category(cat, "undefined", "undefined")
       Doc.commands[cat][:commands][name.to_sym] = d if d
+      Doc.to_fix << name.to_sym unless d
     end
     #--------------------------------------------------------------------------
     # * Class documentation

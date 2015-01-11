@@ -424,6 +424,7 @@ module DocGenerator
         Checker.documented_methods = 
           Command.singleton_methods.select {|i| raw_methods.include?(i)}
         Checker.undocumented_methods = Command.singleton_methods - Checker.raw_methods
+        Checker.undocumented_methods.delete(:method_missing)
         Checker.orphans = 
           Checker.raw_methods - Checker.documented_methods - Checker.undocumented_methods
       end
@@ -435,8 +436,17 @@ module DocGenerator
         r += "#{RME::Doc.vocab[:documented]},"
         r += "#{Checker.documented_methods.length}/#{Command.singleton_methods.length}\n,\n"
         r += "#{RME::Doc.vocab[:undocumented]},\n"
-        Checker.undocumented_methods.each {|c| r += "#{c},\n"}
-        r += "\n,\n**#{RME::Doc.vocab[:orphans]},\n"
+        r += ",#{RME::Doc.vocab[:suggest]}\n"
+        Checker.undocumented_methods.each do |c| 
+          m = RME::Doc.schema[:Command][:methods]["Command.#{c}".to_sym]
+          t = "Enregistrer la commande dans sa catégorie" if m 
+          n = RME::Doc.to_fix.collect {|i| (i.to_s =~ /.+\.(.+)/) && $1}
+          n = n.collect(&:to_s).sort_by{|o| o.damerau_levenshtein(c.to_s)}
+          t = "Modifier l'enregistrement [#{n[0]}] par  [#{c}]"  if n.length >= 1  && (n[0].damerau_levenshtein(c.to_s)) < 3
+          t ||= "Aucune suggestion"
+          r += "#{c},#{t}\n" 
+        end
+        r += "\n,\n#{RME::Doc.vocab[:orphans]},\n"
         r += ",#{RME::Doc.vocab[:suggest]}\n"
         Checker.orphans.each do |c| 
           keywords = Checker.undocumented_methods
@@ -445,7 +455,7 @@ module DocGenerator
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
           s = (keywords.length >= 1) ? keywords[0] : ".."
-          r += "#{c},[#{keywords[0]}]\n" 
+          r += "#{c},#{keywords[0]}\n" 
         end
         FileTools.write(o, r)
       end
