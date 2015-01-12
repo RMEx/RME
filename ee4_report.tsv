@@ -501,6 +501,8 @@ troop_size(id)	troop_size(id)
 unbind(e,*k)	-
 version_id	-
 wait(d)	-
+wait_release(key)	-
+wait_trigger(key)	-
 wait_with(time,*block)	-
 weapon_agility(id)	-
 weapon_attack_power(id)	-

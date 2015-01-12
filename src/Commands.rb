@@ -31,7 +31,7 @@ module RMECommands
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
-  
+
   def wait_with(time, &block)
     time.times do 
       block.call
@@ -48,6 +48,16 @@ module RMECommands
       end
     end
     return flag
+  end
+
+  def wait_trigger(key)
+    wait(1)
+    Fiber.yield while(!Keyboard.trigger?(key))
+  end
+
+  def wait_release(key)
+    wait(1)
+    Fiber.yield while(!Keyboard.release?(key))
   end
 
   append_commands
