@@ -20,6 +20,8 @@ Commandes standards
 *    [session_username](#session_username)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [wait(duration)](#waitduration)
+*    [wait_release(key)](#wait_releasekey)
+*    [wait_trigger(key)](#wait_triggerkey)
 *    [wait_with(time, &block)](#wait_withtime-&block)
 
 
@@ -162,6 +164,26 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Nombre de frames a attendre  
+
+
+##### wait_release(key)
+
+> Attend le relâchement d'une touche
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à attendre  
+
+
+##### wait_trigger(key)
+
+> Attend l'appui d'une touche
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à attendre  
 
 
 ##### wait_with(time, &block)

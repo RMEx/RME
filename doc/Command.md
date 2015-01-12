@@ -430,6 +430,8 @@ Collection des commandes EventExtender
 *    [Command.troop_size(id)](#commandtroop_sizeid)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
+*    [Command.wait_release(key)](#commandwait_releasekey)
+*    [Command.wait_trigger(key)](#commandwait_triggerkey)
 *    [Command.wait_with(time, &block)](#commandwait_withtime-&block)
 *    [Command.weapon_agility(id)](#commandweapon_agilityid)
 *    [Command.weapon_attack_power(id)](#commandweapon_attack_powerid)
@@ -6435,6 +6437,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Nombre de frames a attendre  
+
+
+
+
+
+
+##### Command.wait_release(key)
+
+> Attend le relâchement d'une touche
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à attendre  
+
+
+
+
+
+
+##### Command.wait_trigger(key)
+
+> Attend l'appui d'une touche
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche à attendre  
 
 
 
