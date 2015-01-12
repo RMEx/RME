@@ -120,17 +120,17 @@ module SV
   # * Returns a self Variable
   #--------------------------------------------------------------------------
   def [](*args, id)
-    id = args[-1] || Game_Interpreter.current_id
+    ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_vars.fetch([map_id, id, id], 0)
+    $game_self_vars.fetch([map_id, ev_id, id], 0)
   end
   #--------------------------------------------------------------------------
   # * Modifies a self variable
   #--------------------------------------------------------------------------
   def []=(*args, id, value)
-    id = args[-1] || Game_Interpreter.current_id
+    ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_vars[[map_id, id, id]] = value
+    $game_self_vars[[map_id, ev_id, id]] = value
     $game_map.need_refresh = true
   end
 end
@@ -150,17 +150,17 @@ module SL
   # * Returns a self Variable
   #--------------------------------------------------------------------------
   def [](*args, id)
-    id = args[-1] || Game_Interpreter.current_id
+    ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_labels.fetch([map_id, id, id], 0)
+    $game_self_labels.fetch([map_id, ev_id, id], 0)
   end
   #--------------------------------------------------------------------------
   # * Modifies a self variable
   #--------------------------------------------------------------------------
   def []=(*args, id, value)
-    id = args[-1] || Game_Interpreter.current_id
+    ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_labels[[map_id, id, id]] = value
+    $game_self_labels[[map_id, ev_id, id]] = value
     $game_map.need_refresh = true
   end
 end
@@ -190,18 +190,18 @@ module SS
   # * Returns a self switch
   #--------------------------------------------------------------------------
   def [](*args, id)
-    id = args[-1] || Game_Interpreter.current_id
+    ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    key = [map_id, id, map_id_s(id)]
+    key = [map_id, ev_id, map_id_s(id)]
     $game_self_switches[key]
   end
   #--------------------------------------------------------------------------
   # * Modifies a self switch
   #--------------------------------------------------------------------------
   def []=(*args, id, value)
-    id = args[-1] || Game_Interpreter.current_id
+    ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    key = [map_id, id, map_id_s(id)]
+    key = [map_id, ev_id, map_id_s(id)]
     $game_self_switches[key] = value.to_bool
     $game_map.need_refresh = true
   end
