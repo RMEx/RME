@@ -51,7 +51,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### angle_xy(xa, ya, xb, yb)
 
-> Renvoie l' angle entre deux points par rapport a une horizontale située en bas de la fenêtre
+> Renvoie l' angle x->y entre deux points, défini entre 0 et 360 degrés
 
   
 > Nom|Type|Description  
