@@ -427,7 +427,7 @@ module DocGenerator
             ee_call = "#{m}" 
             h = EE4::Command_Description.send(m)
             if h[:args] && h[:args].length > 0 
-              k = h[:args].collect{|a| ((a[:default]) ? "*" : "") + a[:name].downcase.gsub(' ', '_')}
+              k = h[:args].collect{|a| ((a[:default]) ? "*" : "") + a[:name].downcase[/^\w/]}
               ee_call += "(" +k.join(",")+")"
             end
           end
