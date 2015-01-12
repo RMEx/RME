@@ -84,6 +84,7 @@ Collection des commandes EventExtender
 *    [Command.actor_weapon(id)](#commandactor_weaponid)
 *    [Command.actor_weapons(id)](#commandactor_weaponsid)
 *    [Command.alt_gr?](#commandalt_gr)
+*    [Command.angle_xy(xa, ya, xb, yb)](#commandangle_xyxa-ya-xb-yb)
 *    [Command.apply_percent(percent, max)](#commandapply_percentpercent-max)
 *    [Command.armor_agility(id)](#commandarmor_agilityid)
 *    [Command.armor_attack_power(id)](#commandarmor_attack_powerid)
@@ -318,6 +319,7 @@ Collection des commandes EventExtender
 *    [Command.picture_zoom_y(id, zoom, *duration, *wait_flag)](#commandpicture_zoom_yid-zoom-duration-wait_flag)
 *    [Command.pictures_clear](#commandpictures_clear)
 *    [Command.pictures_collide?(id, id2)](#commandpictures_collideid-id2)
+*    [Command.pictures_perfect_collide?(idA, idB)](#commandpictures_perfect_collideida-idb)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#commandpixel_in_pictureid-x-y-precise)
 *    [Command.pixels_between(idA, idB)](#commandpixels_betweenida-idb)
 *    [Command.play_time](#commandplay_time)
@@ -377,6 +379,12 @@ Collection des commandes EventExtender
 *    [Command.skill_speed(id)](#commandskill_speedid)
 *    [Command.skill_success_rate(id)](#commandskill_success_rateid)
 *    [Command.skill_tp_gain(id)](#commandskill_tp_gainid)
+*    [Command.socket_connect(address, port)](#commandsocket_connectaddress-port)
+*    [Command.socket_connected?](#commandsocket_connected)
+*    [Command.socket_disconnect](#commandsocket_disconnect)
+*    [Command.socket_recv(*len)](#commandsocket_recvlen)
+*    [Command.socket_send(data)](#commandsocket_senddata)
+*    [Command.socket_wait_recv(*len)](#commandsocket_wait_recvlen)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
@@ -1520,6 +1528,23 @@ Collection des commandes EventExtender
 
   
 > 
+
+
+
+
+
+##### Command.angle_xy(xa, ya, xb, yb)
+
+> Renvoie l' angle entre deux points par rapport a une horizontale située en bas de la fenêtre
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`xa`|`Fixnum`|Coordonnée X du point A  
+`ya`|`Fixnum`|Coordonnées Y du point A  
+`xb`|`Fixnum`|Coordonnées X du point B  
+`yb`|`Fixnum`|Coordonnées Y du point B  
+
 
 
 
@@ -4881,6 +4906,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.pictures_perfect_collide?(idA, idB)
+
+> Vérifie la collision entre deux images au pixel près. ATTENTION, CETTE COMMANDE LAG ENORMEMENT !IL EST DECONSEILLE DE L'UTILISER !
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de la première image  
+`idB`|`Fixnum`|ID de la seconde image  
+
+
+
+
+
+
 ##### Command.pixel_in_picture?(id, x, y, *precise)
 
 > Vérifie que le x, y sont inscrit dans l'image
@@ -5670,6 +5710,85 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.socket_connect(address, port)
+
+> Se connecte à un serveur, renvoie true si la connexion à réussie, false sinon.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`address`|`String`|Adresse du serveur  
+`port`|`Fixnum`|Port d'écoute  
+
+
+
+
+
+
+##### Command.socket_connected?
+
+> Renvoi true si la connexion est en cours, false, sinon
+
+  
+> 
+
+
+
+
+
+##### Command.socket_disconnect
+
+> Déconnecte la connexion courrante
+
+  
+> 
+
+
+
+
+
+##### Command.socket_recv(*len)
+
+> Renvoi le message envoyé par le serveur au client, false si aucun message n' est reçu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
+
+
+
+
+
+
+##### Command.socket_send(data)
+
+> Envoi un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`data`|`String`|Message à envoyer  
+
+
+
+
+
+
+##### Command.socket_wait_recv(*len)
+
+> Attend une réponse du serveur, se termine quand une réponse a été reçue (et l'a renvoi)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
 
 
 

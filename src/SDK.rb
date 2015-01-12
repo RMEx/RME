@@ -209,13 +209,21 @@ module Externlib
   #--------------------------------------------------------------------------
   # * Library as constants
   #--------------------------------------------------------------------------
+  CloseSocket         = Win32API.new('ws2_32', 'closesocket', 'p', 'l')
+  Connect             = Win32API.new('ws2_32', 'connect', 'ppl', 'l')
   FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
   GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
   GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  Htons               = Win32API.new('ws2_32', 'htons', 'l', 'l')
+  Inet_Addr           = Win32API.new('ws2_32', 'inet_addr', 'p', 'l')
   MultiByteToWideChar = Win32API.new('kernel32', 'MultiByteToWideChar', 'ilpipi', 'i')
+  Recv                = Win32API.new('ws2_32', 'recv', 'ppll', 'l')
   RtlMoveMemory       = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
   ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
+  Send                = Win32API.new('ws2_32', 'send', 'ppll', 'l')
   ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
+  Shutdown            = Win32API.new('ws2_32', 'shutdown', 'pl', 'l')
+  Socket              = Win32API.new('ws2_32', 'socket', 'lll', 'l')
   ToUnicode           = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
   WideCharToMultiByte = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
 end
@@ -1698,5 +1706,106 @@ module FileTools
   def move(src, dst)
     copy(src, dst)
     File.delete(src)
+  end
+end
+
+#==============================================================================
+# ** Socket
+#------------------------------------------------------------------------------
+# Adds the possibility to send/receive messages to/from a server
+# Big thanks to Zeus81 (and to Nuki, too)
+#==============================================================================
+
+class Socket
+  #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_reader :address 
+  attr_reader :port
+  #--------------------------------------------------------------------------
+  # * Externalize
+  #--------------------------------------------------------------------------
+  externalize Externlib::Htons,        :w32_htons
+  externalize Externlib::Inet_Addr,    :w32_inet_addr
+  externalize Externlib::Socket,       :w32_socket
+  externalize Externlib::Connect,      :w32_connect
+  externalize Externlib::Send,         :w32_send
+  externalize Externlib::Recv,         :w32_recv
+  externalize Externlib::Shutdown,     :w32_shutdown
+  externalize Externlib::CloseSocket,  :w32_close
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize(address, port)
+    @address = address
+    @port = port
+    init_sockaddr
+    @socket = w32_socket(2, 1, 0)
+    @connected = false
+  end
+  #--------------------------------------------------------------------------
+  # * Init sockaddr
+  #--------------------------------------------------------------------------
+  def init_sockaddr
+    sinf = 2
+    spor = w32_htons(@port)
+    iadr = w32_inet_addr(@address)
+    @sockaddr = [sinf, spor, iadr].pack('sSLx8')
+  end
+  #--------------------------------------------------------------------------
+  # * Connect
+  #--------------------------------------------------------------------------
+  def connect!
+    return unless @socket
+    f = w32_connect(@socket, @sockaddr, @sockaddr.size)
+    @connected = f != -1
+    @connected
+  end
+  #--------------------------------------------------------------------------
+  # * Send
+  #--------------------------------------------------------------------------
+  def send(data)
+    return if !@socket || !@connected
+    v = w32_send(@socket, data, data.length, 0)
+    shutdown(2) if v == -1
+    !v == -1
+  end
+  #--------------------------------------------------------------------------
+  # * Recv
+  #--------------------------------------------------------------------------
+  def recv(len = 1024)
+    return if !@socket || !@connected
+    buf = [].pacj('x'+len.to_s)
+    v = w32_recv(@socket, buf, len, 0)
+    return buf.gsub(/\x00/,"") if v != -1
+    false 
+  end
+  #--------------------------------------------------------------------------
+  # * Shutdown
+  #--------------------------------------------------------------------------
+  def shutdown(how)
+    return if !@socket || !@connected
+    w32_shutdown(@socket, how)
+  end
+  #--------------------------------------------------------------------------
+  # * Close
+  #--------------------------------------------------------------------------
+  def close
+    return if !@socket || !@connected
+    w32_close(@socket)
+    @socket = nil
+    @connected = false
+  end
+  #--------------------------------------------------------------------------
+  # * Connected
+  #--------------------------------------------------------------------------
+  def connected?
+    @socket && @connected
+  end
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self 
+    attr_accessor :instance 
   end
 end

@@ -79,7 +79,7 @@ actor_tp_regeneration_rate(id)	-
 actor_weapon(id)	-
 actor_weapons(id)	-
 alt_gr?	alt_gr?
--	angle_xy(point,point,point,point)
+angle_xy(xa,ya,xb,yb)	angle_xy(point,point,point,point)
 apply_percent(percent,max)	-
 armor_agility(id)	-
 armor_attack_power(id)	-
@@ -440,6 +440,12 @@ skill_scope(id)	-
 skill_speed(i)	-
 skill_success_rate(i)	-
 skill_tp_gain(i)	-
+socket_connect(address,port)	-
+socket_connected?	-
+socket_disconnect	-
+socket_recv(*len)	-
+socket_send(data)	-
+socket_wait_recv(*len)	-
 sqrt(x)	-
 square_passable?(x,y,*d)	square_passable?(x,y,*direction)
 squares_between(ev1,ev2)	squares_between(id,id)

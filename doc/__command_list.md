@@ -19,6 +19,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Commandes relatives à la gestion de partie](command_party.md)
 *    [Commandes de manipulation des images](command_picture.md)
 *    [Commandes des techniques](command_skills.md)
+*    [Commandes de communication client-serveur](command_socket.md)
 *    [Commandes standards](command_standard.md)
 *    [Commandes systèmes](command_system.md)
 *    [Commandes d'affichage de textes](command_text.md)

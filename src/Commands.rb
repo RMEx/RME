@@ -1089,6 +1089,24 @@ module RMECommands
     def tanh(x); Math.tanh(x); end 
     def to_deg(x); (x.to_f)*57.2957795; end 
     def to_rad(x); (x.to_f)/57.2957795; end
+    #--------------------------------------------------------------------------
+    # * Find angle from a couple of point
+    #--------------------------------------------------------------------------
+    def angle_xy(xa, ya, xb, yb)
+      angle = 0
+      if xa == xb && yb > ya
+        angle = 180
+      elsif xa == xb
+        angle = 0
+      elsif ya == yb && xb > xa
+        angle = 90
+      elsif ya == yb 
+        angle = 270
+      else
+        angle  = ((Math.atan2((xa-xb), (ya-yb)))*(180.0/Math::PI))-180
+      end 
+      angle
+    end
     append_commands
   end
 
@@ -1371,6 +1389,71 @@ module RMECommands
 
     append_commands
   
+  end
+
+  #==============================================================================
+  # ** Socket
+  #------------------------------------------------------------------------------
+  #  cmd about Socket
+  #==============================================================================
+
+  module TCP 
+
+    #--------------------------------------------------------------------------
+    # * Check Socket
+    #--------------------------------------------------------------------------
+    def socket_connected?
+      Socket.instance && Socket.instance.connected?
+    end
+
+    #--------------------------------------------------------------------------
+    # * Connect to serveur
+    #--------------------------------------------------------------------------
+    def socket_connect(address, port)
+      Socket.instance.close if socket_connected?
+      Socket.instance = Socket.new(address, port)
+      Socket.instance.connect!
+    end
+
+    #--------------------------------------------------------------------------
+    # * Disconnect of serveur
+    #--------------------------------------------------------------------------
+    def socket_disconnect
+      Socket.instance.close
+    end
+
+    #--------------------------------------------------------------------------
+    # * Send data
+    #--------------------------------------------------------------------------
+    def socket_send(data)
+      return unless socket_connected?
+      Socket.instance.send(data)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Recv data
+    #--------------------------------------------------------------------------
+    def socket_recv(len = 1024)
+      return false unless socket_connected?
+      Socket.instance.recv(len)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Wait a response
+    #--------------------------------------------------------------------------
+    def socket_wait_recv(len = 1024)
+      return false unless socket_connected?
+      flag = false
+      while !flag
+        Graphics.update 
+        Input.update 
+        flag = socket_recv(len)
+      end
+      flag
+    end
+
+    append_commands
+
   end
 
 end
