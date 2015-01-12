@@ -53,6 +53,8 @@ class Viewport
   #--------------------------------------------------------------------------
   def initialize(*args)
     sdk_initialize(*args)
+    @definition = Rect.new
+    @definition.x = rect.x
     @children = []
     @parent = nil
     @elts = []
