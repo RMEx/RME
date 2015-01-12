@@ -1089,6 +1089,24 @@ module RMECommands
     def tanh(x); Math.tanh(x); end 
     def to_deg(x); (x.to_f)*57.2957795; end 
     def to_rad(x); (x.to_f)/57.2957795; end
+    #--------------------------------------------------------------------------
+    # * Find angle from a couple of point
+    #--------------------------------------------------------------------------
+    def angle_xy(xa, ya, xb, yb)
+      angle = 0
+      if xa == xb && yb > ya
+        angle = 180
+      elsif xa == xb
+        angle = 0
+      elsif ya == yb && xb > xa
+        angle = 90
+      elsif ya == yb 
+        angle = 270
+      else
+        angle  = ((Math.atan2((xa-xb), (ya-yb)))*(180.0/Math::PI))-180
+      end 
+      angle
+    end
     append_commands
   end
 

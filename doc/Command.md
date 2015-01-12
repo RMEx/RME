@@ -84,6 +84,7 @@ Collection des commandes EventExtender
 *    [Command.actor_weapon(id)](#commandactor_weaponid)
 *    [Command.actor_weapons(id)](#commandactor_weaponsid)
 *    [Command.alt_gr?](#commandalt_gr)
+*    [Command.angle_xy(xa, ya, xb, yb)](#commandangle_xyxa-ya-xb-yb)
 *    [Command.apply_percent(percent, max)](#commandapply_percentpercent-max)
 *    [Command.armor_agility(id)](#commandarmor_agilityid)
 *    [Command.armor_attack_power(id)](#commandarmor_attack_powerid)
@@ -1527,6 +1528,23 @@ Collection des commandes EventExtender
 
   
 > 
+
+
+
+
+
+##### Command.angle_xy(xa, ya, xb, yb)
+
+> Renvoie l' angle entre deux points par rapport a une horizontale située en bas de la fenêtre
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`xa`|`Fixnum`|Coordonnée X du point A  
+`ya`|`Fixnum`|Coordonnées Y du point A  
+`xb`|`Fixnum`|Coordonnées X du point B  
+`yb`|`Fixnum`|Coordonnées Y du point B  
+
 
 
 

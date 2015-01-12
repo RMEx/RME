@@ -9,6 +9,7 @@ Outils de traitement mathématiques un peu avancé
 ##Liste des commandes
 *    [acos(x)](#acosx)
 *    [acosh(x)](#acoshx)
+*    [angle_xy(xa, ya, xb, yb)](#angle_xyxa-ya-xb-yb)
 *    [asin(x)](#asinx)
 *    [asinh(x)](#asinhx)
 *    [atan(x)](#atanx)
@@ -46,6 +47,19 @@ Outils de traitement mathématiques un peu avancé
 > Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
+
+
+##### angle_xy(xa, ya, xb, yb)
+
+> Renvoie l' angle entre deux points par rapport a une horizontale située en bas de la fenêtre
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`xa`|`Fixnum`|Coordonnée X du point A  
+`ya`|`Fixnum`|Coordonnées Y du point A  
+`xb`|`Fixnum`|Coordonnées X du point B  
+`yb`|`Fixnum`|Coordonnées Y du point B  
 
 
 ##### asin(x)

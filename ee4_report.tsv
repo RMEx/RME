@@ -79,7 +79,7 @@ actor_tp_regeneration_rate(id)	-
 actor_weapon(id)	-
 actor_weapons(id)	-
 alt_gr?	alt_gr?
--	angle_xy(point,point,point,point)
+angle_xy(xa,ya,xb,yb)	angle_xy(point,point,point,point)
 apply_percent(percent,max)	-
 armor_agility(id)	-
 armor_attack_power(id)	-

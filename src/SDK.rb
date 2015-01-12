@@ -1752,7 +1752,7 @@ class Socket
   #--------------------------------------------------------------------------
   def connect!
     return unless @socket
-    f = w32_connect(@socket, @sockaddr)
+    f = w32_connect(@socket, @sockaddr, @sockaddr.size)
     @connected = f != -1
     @connected
   end
