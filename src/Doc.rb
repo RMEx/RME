@@ -646,8 +646,13 @@ module Command
   register_command_category :enemy, "Commandes relatives aux ennemis (tels que défini dans la base de données)", "Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout."
   register_command_category :in_battle, "Commandes en combat", "Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat"
   register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images."
+  register_command_category :date, "Commandes de temps", "Commandes pour récupérer des informations sur la date et l'heure"
 
   link_class_documentation "Collection des commandes EventExtender"
+
+  add_internals :enemy, :troop, :monster_battler_dimension, :distance_between
+  add_internals :type_equip, :sys, :spriteset, :sprite_picture, :screen, :picture
+  add_internals :scene, :event, :method_missing, :pictures
 
   link_method_documentation "Command.max", 
                         "Renvoie la plus grande des deux valeurs A, B",
@@ -699,7 +704,7 @@ module Command
                           :blue => ["Valeur de bleu", :Fixnum],
                           :"*alpha" => ["Opacité, par défaut 255!", :Fixnum]
                         }, true
-  register_command :standard, "Command.tone"
+  register_command :standard, "Command.color"
 
   link_method_documentation "Command.random", 
                         "Renvoie un nombre aléatoire compris entre MIN et MAX inclus",
@@ -1029,7 +1034,7 @@ module Command
                             :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
                           }, true
-  register_command :keyboard, "Command.keyboard_all"
+  register_command :keyboard, "Command.keyboard_all?"
 
   link_method_documentation "Command.keyboard_any?", 
                           "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method", 
@@ -1037,7 +1042,7 @@ module Command
                             :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
                           }, true
-  register_command :keyboard, "Command.keyboard_any"
+  register_command :keyboard, "Command.keyboard_any?"
 
   link_method_documentation "Command.keyboard_current_char", 
                           "Renvoie le caractère actuel pressé par le clavier",
@@ -1189,7 +1194,7 @@ module Command
   link_method_documentation "Command.mouse_current_key", 
                           "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée", 
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
-  register_command :mouse, "Command.mouse_current_key?"
+  register_command :mouse, "Command.mouse_current_key"
 
   link_method_documentation "Command.click_time", 
                           "Renvoie le nombre de frame pressée d'une touche en cours", 
@@ -1379,7 +1384,8 @@ module Command
                             :speed => ["La vitesse du tremblement", :Fixnum],
                             :duration => ["La durée en frame du tremblement", :Fixnum],
                           }
-  register_command :picture, "Command.picture_opacity"
+  register_command :picture, "Command.picture_shake"
+
   link_method_documentation "Command.pixel_in_picture?", 
                           "Vérifie que le x, y sont inscrit dans l'image", 
                           {
@@ -2021,7 +2027,7 @@ link_method_documentation "Command.item_number_of_targets",
                         {
                           :id => ["Id de l'objet", :Fixnum], 
                         }, true
-register_command :items, "Command.number_of_targets"
+register_command :items, "Command.item_number_of_targets"
 
 
 
@@ -2367,7 +2373,7 @@ link_method_documentation "Command.actor_magical_reflection_rate",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
-register_command :actors, "Command.actor_magical_reflexion_rate"
+register_command :actors, "Command.actor_magical_reflection_rate"
 
 link_method_documentation "Command.actor_counter_attack_rate", 
                         "renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
@@ -2639,7 +2645,7 @@ link_method_documentation "Command.actor_knowns?",
                           :id => ["ID de l'acteur", :Fixnum],
                           :skill_id => ["ID de le technique", :Fixnum],
                         }
-register_command :actors, "Command.actor_knowns"
+register_command :actors, "Command.actor_knowns?"
 
 link_method_documentation "Command.actor_set_graphic", 
                         "Change les graphisme du héros référencé par son ID",
@@ -2686,7 +2692,7 @@ link_method_documentation "Command.skill_has_no_scope?",
                         {
                           :id => ["Id de la technique", :Fixnum], 
                         }, true
-register_command :skills, "Command.skill_has_scope?"
+register_command :skills, "Command.skill_has_no_scope?"
 
 link_method_documentation "Command.skill_for_one_enemy?", 
                         "Renvoie true si la cible d'une technique référencée par son ID vise un ennemi, false sinon",
@@ -2876,7 +2882,7 @@ link_method_documentation "Command.skill_number_of_targets",
                         {
                           :id => ["Id de la technique", :Fixnum], 
                         }, true
-register_command :skills, "Command.number_of_targets"
+register_command :skills, "Command.skill_number_of_targets"
 
 link_method_documentation "Command.skill_speed", 
                         "Renvoie l'apport de vitesse de la technique référencé par son ID",
@@ -3280,7 +3286,7 @@ link_method_documentation "Command.enemy_magical_reflection_rate",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
-register_command :in_battle, "Command.enemy_magical_reflexion_rate"
+register_command :in_battle, "Command.enemy_magical_reflection_rate"
 
 link_method_documentation "Command.enemy_counter_attack_rate", 
                         "renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat",
@@ -3561,6 +3567,42 @@ link_method_documentation "Command.text_zoom",
                           }, true
 register_command :text, "Command.text_zoom"
 
+# AUTOGenerated for time_year
+link_method_documentation 'Command.time_year', 
+  'Renvoi l\'année actuelle',
+  {}, true # Maybe changed
+register_command :date, 'Command.time_year' 
+
+# AUTOGenerated for time_month
+link_method_documentation 'Command.time_month', 
+  'Renvoi le mois actuel',
+  {}, true # Maybe changed
+register_command :date, 'Command.time_month' 
+
+# AUTOGenerated for time_day
+link_method_documentation 'Command.time_day', 
+  'Renvoi le jour actuel',
+  {}, true # Maybe changed
+register_command :date, 'Command.time_day' 
+
+# AUTOGenerated for time_hour
+link_method_documentation 'Command.time_hour', 
+  'Renvoi l\' heure actuelle',
+  {}, true # Maybe changed
+register_command :date, 'Command.time_hour' 
+
+# AUTOGenerated for time_min
+link_method_documentation 'Command.time_min', 
+  'Renvoi la minute actuelle',
+  {}, true # Maybe changed
+register_command :date, 'Command.time_min' 
+
+# AUTOGenerated for time_sec
+link_method_documentation 'Command.time_sec', 
+  'Renvoi la seconde actuelle',
+  {}, true # Maybe changed
+register_command :date, 'Command.time_sec' 
+
 
 end
 
@@ -3568,5 +3610,5 @@ end
 if $TEST
   DocGenerator.markdown("../doc") 
   DocGenerator.html("../doc/HTML") 
-  DocGenerator::Checker.run("../doc_report.csv")
+  DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb", "../ee4_report.tsv")
 end

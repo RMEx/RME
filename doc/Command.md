@@ -402,6 +402,12 @@ Collection des commandes EventExtender
 *    [Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)](#commandtext_zoom_xid-zoom_x-duration-wait_flag)
 *    [Command.text_zoom_y(id, zoom_y, *duration, *wait_flag)](#commandtext_zoom_yid-zoom_y-duration-wait_flag)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
+*    [Command.time_day](#commandtime_day)
+*    [Command.time_hour](#commandtime_hour)
+*    [Command.time_min](#commandtime_min)
+*    [Command.time_month](#commandtime_month)
+*    [Command.time_sec](#commandtime_sec)
+*    [Command.time_year](#commandtime_year)
 *    [Command.timer](#commandtimer)
 *    [Command.to_deg(x)](#commandto_degx)
 *    [Command.to_rad(x)](#commandto_radx)
@@ -6049,6 +6055,72 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 
+
+
+
+
+
+##### Command.time_day
+
+> Renvoi le jour actuel
+
+  
+> 
+
+
+
+
+
+##### Command.time_hour
+
+> Renvoi l' heure actuelle
+
+  
+> 
+
+
+
+
+
+##### Command.time_min
+
+> Renvoi la minute actuelle
+
+  
+> 
+
+
+
+
+
+##### Command.time_month
+
+> Renvoi le mois actuel
+
+  
+> 
+
+
+
+
+
+##### Command.time_sec
+
+> Renvoi la seconde actuelle
+
+  
+> 
+
+
+
+
+
+##### Command.time_year
+
+> Renvoi l'année actuelle
+
+  
+> 
 
 
 

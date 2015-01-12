@@ -31,6 +31,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 *    [enemy_magic_defense(position)](#enemy_magic_defenseposition)
 *    [enemy_magical_damage_rate(position)](#enemy_magical_damage_rateposition)
 *    [enemy_magical_evasion_rate(position)](#enemy_magical_evasion_rateposition)
+*    [enemy_magical_reflection_rate(position)](#enemy_magical_reflection_rateposition)
 *    [enemy_max_hp(position)](#enemy_max_hpposition)
 *    [enemy_max_mp(position)](#enemy_max_mpposition)
 *    [enemy_mp(position)](#enemy_mpposition)
@@ -270,6 +271,16 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 ##### enemy_magical_evasion_rate(position)
 
 > renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
+
+
+##### enemy_magical_reflection_rate(position)
+
+> renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  

@@ -65,6 +65,8 @@ module RME
       attr_accessor :links
       attr_accessor :vocab
       attr_accessor :to_fix
+      attr_accessor :internals
+      Doc.internals ||= Array.new
       Doc.to_fix ||= Array.new
       Doc.schema ||= Hash.new
       Doc.links ||= Hash.new
@@ -75,6 +77,12 @@ module RME
     #--------------------------------------------------------------------------
     def classname
       self.to_s.to_sym
+    end
+    #--------------------------------------------------------------------------
+    # * add internals
+    #--------------------------------------------------------------------------
+    def add_internals(*args)
+      Doc.internals += args
     end
     #--------------------------------------------------------------------------
     # * Init doc

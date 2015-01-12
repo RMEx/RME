@@ -42,6 +42,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_need_selection?(id)](#item_need_selectionid)
 *    [item_never_usable?(id)](#item_never_usableid)
 *    [item_note(id)](#item_noteid)
+*    [item_number_of_targets(id)](#item_number_of_targetsid)
 *    [item_occasion(id)](#item_occasionid)
 *    [item_physical?(id)](#item_physicalid)
 *    [item_price(id)](#item_priceid)
@@ -396,6 +397,16 @@ Commandes permettant d'obtenir ou de manipuler les objets
 ##### item_note(id)
 
 > Renvoie le commentaire de l'objet référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'objet  
+
+
+##### item_number_of_targets(id)
+
+> Renvoie le nombre de cibles d'un objet référencée par son ID produit un dommage magique, false sinon
 
   
 > Nom|Type|Description  

@@ -8,6 +8,7 @@ Commandes standards
 
 ##Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
+*    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
@@ -30,6 +31,19 @@ Commandes standards
 --- | --- | ---  
 `percent`|`Fixnum`|Valeur à appliquer  
 `max`|`Fixnum`|Valeur maximum  
+
+
+##### color(red, green, blue, *alpha)
+
+> Renvoie une couleur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`red`|`Fixnum`|Valeur de rouge  
+`green`|`Fixnum`|Valeur de vert  
+`blue`|`Fixnum`|Valeur de bleu  
+`*alpha`|`Fixnum`|Opacité, par défaut 255!  
 
 
 ##### get(array, index)

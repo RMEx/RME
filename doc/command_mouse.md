@@ -11,6 +11,7 @@ Commande relatives à la gestion de la souris
 *    [mouse_all?(method, keys)](#mouse_allmethod-keys)
 *    [mouse_any?(method, keys)](#mouse_anymethod-keys)
 *    [mouse_click?](#mouse_click)
+*    [mouse_current_key(method)](#mouse_current_keymethod)
 *    [mouse_dragging?](#mouse_dragging)
 *    [mouse_in?(rectangle)](#mouse_inrectangle)
 *    [mouse_last_rect](#mouse_last_rect)
@@ -65,6 +66,16 @@ Commande relatives à la gestion de la souris
 
   
 > 
+
+##### mouse_current_key(method)
+
+> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
+
 
 ##### mouse_dragging?
 
