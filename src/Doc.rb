@@ -3610,5 +3610,5 @@ end
 if $TEST
   DocGenerator.markdown("../doc") 
   DocGenerator.html("../doc/HTML") 
-  DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb")
+  DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb", "../ee4_report.tsv")
 end

@@ -399,7 +399,7 @@ module DocGenerator
       #--------------------------------------------------------------------------
       # *  Run
       #--------------------------------------------------------------------------
-      def run(output, out_gen)
+      def run(output, out_gen, ee=nil)
         get_raw_methods
         Checker.documented_methods = Array.new
         Checker.undocumented_methods = Array.new 
@@ -408,6 +408,33 @@ module DocGenerator
         get_raw_methods
         each_commands_methods
         save_report(output, out_gen)
+        ee_report(ee)
+      end
+      #--------------------------------------------------------------------------
+      # *  Process EE report
+      #--------------------------------------------------------------------------
+      def ee_report(ee)
+        g = "Command\tME\tEE\t\tRME_call\tEE_call\n"
+        eecmd = EE4::Command_Description.singleton_methods
+        total = eecmd + Checker.commands
+        p eecmd
+        total = total.uniq.sort.collect do |m|
+          a = Checker.commands.include?(m) ? "X" : "-"
+          b = eecmd.include?(m) ? "X" : "-"
+          rme_call = "-"
+          ee_call = "-"
+          if eecmd.include?(m)
+            ee_call = "#{m}" 
+            h = EE4::Command_Description.send(m)
+            if h[:args] && h[:args].length > 0 
+              k = h[:args].collect{|a| ((a[:default]) ? "*" : "") + a[:name].downcase.gsub(' ', '_')}
+              ee_call += "(" +k.join(",")+")"
+            end
+          end
+          "#{m}\t#{a}\t#{b}\t\t#{rme_call}\t#{ee_call}"
+        end
+        g += total.join("\n")
+        FileTools.write(ee, g)
       end
       #--------------------------------------------------------------------------
       # *  Return all documented raw methods

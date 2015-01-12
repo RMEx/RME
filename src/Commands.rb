@@ -1375,4 +1375,3 @@ module RMECommands
 
 end
 
-p Command.method(:text_opacity).parameters
