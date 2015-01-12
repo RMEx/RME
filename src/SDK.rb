@@ -1076,6 +1076,8 @@ module Devices
     #--------------------------------------------------------------------------
     attr_accessor :start
     attr_accessor :initiated
+    attr_accessor :ox
+    attr_accessor :oy
 
     #--------------------------------------------------------------------------
     # * Alias
@@ -1137,6 +1139,7 @@ module Devices
     attr_reader :square
     attr_reader :last_rect
     attr_reader :dragging
+    attr_reader :drag
 
     #--------------------------------------------------------------------------
     # * Alias
@@ -1216,6 +1219,8 @@ module Devices
           min_x, max_x  = *[@drag.start.x, @point.x].sort
           min_y, max_y  = *[@drag.start.y, @point.y].sort
           @drag.set(min_x, min_y, max_x-min_x, max_y-min_y)
+          @drag.ox = @point.x - @drag.start.x
+          @drag.oy = @point.y - @drag.start.y
         end
       elsif @drag.initiated?
         @last_rect    = rect
