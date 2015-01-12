@@ -1,513 +1,513 @@
-Command	ME	EE		RME_call	EE_call
-acos	X	-		acos(x)	-
-acosh	X	-		acosh(x)	-
-activate_textfield	-	X		-	activate_textfield(champ)
-active_actor	X	-		active_actor	-
-active_actor?	X	-		active_actor?	-
-actor_accessory	X	-		actor_accessory(id)	-
-actor_agility	X	X		actor_agility(id)	actor_agility(id)
-actor_armors	X	-		actor_armors(id)	-
-actor_attack	X	-		actor_attack(id)	-
-actor_body	X	-		actor_body(id)	-
-actor_change_equip	X	-		actor_change_equip(id,slot,wp_id)	-
-actor_character_index	X	-		actor_character_index(id)	-
-actor_character_name	X	-		actor_character_name(id)	-
-actor_class	X	-		actor_class(id)	-
-actor_counter_attack_rate	X	-		actor_counter_attack_rate(id)	-
-actor_critical_evasion_rate	X	-		actor_critical_evasion_rate(id)	-
-actor_critical_rate	X	-		actor_critical_rate(id)	-
-actor_defense	X	X		actor_defense(id)	actor_defense(id)
-actor_description	X	-		actor_description(id)	-
-actor_equip	X	-		actor_equip(id,t)	-
-actor_equip_accessory	X	-		actor_equip_accessory(id,wp)	-
-actor_equip_body	X	-		actor_equip_body(id,wp)	-
-actor_equip_head	X	-		actor_equip_head(id,wp)	-
-actor_equip_shield	X	-		actor_equip_shield(id,wp)	-
-actor_equip_weapon	X	-		actor_equip_weapon(id,wp)	-
-actor_evasion_rate	X	-		actor_evasion_rate(id)	-
-actor_exp	X	-		actor_exp(id)	-
-actor_exp_for_next_level	X	-		actor_exp_for_next_level(id)	-
-actor_experience	-	X		-	actor_experience(id)
-actor_experience_rate	X	-		actor_experience_rate(id)	-
-actor_face_index	X	-		actor_face_index(id)	-
-actor_face_name	X	-		actor_face_name(id)	-
-actor_floor_damage_rate	X	-		actor_floor_damage_rate(id)	-
-actor_forget	X	-		actor_forget(id,skill_id)	-
-actor_give_exp	X	-		actor_give_exp(id,exp)	-
-actor_guard_effect_rate	X	-		actor_guard_effect_rate(id)	-
-actor_has_accessory?	X	-		actor_has_accessory?(id)	-
-actor_has_body?	X	-		actor_has_body?(id)	-
-actor_has_head?	X	-		actor_has_head?(id)	-
-actor_has_shield?	X	-		actor_has_shield?(id)	-
-actor_has_weapon?	X	-		actor_has_weapon?(id)	-
-actor_head	X	-		actor_head(id)	-
-actor_hit_rate	X	-		actor_hit_rate(id)	-
-actor_hp	X	X		actor_hp(id)	actor_hp(id)
-actor_hp_regeneration_rate	X	-		actor_hp_regeneration_rate(id)	-
-actor_knowns?	X	-		actor_knowns?(id,skill_id)	-
-actor_learn	X	-		actor_learn(id,skill_id)	-
-actor_level	X	X		actor_level(id)	actor_level(id)
-actor_level_down	X	-		actor_level_down(id)	-
-actor_level_max	X	-		actor_level_max(id)	-
-actor_level_up	X	-		actor_level_up(id)	-
-actor_luck	X	X		actor_luck(id)	actor_luck(id)
-actor_magic	-	X		-	actor_magic(id)
-actor_magic_attack	X	-		actor_magic_attack(id)	-
-actor_magic_defense	X	X		actor_magic_defense(id)	actor_magic_defense(id)
-actor_magical_damage_rate	X	-		actor_magical_damage_rate(id)	-
-actor_magical_evasion_rate	X	-		actor_magical_evasion_rate(id)	-
-actor_magical_reflection_rate	X	-		actor_magical_reflection_rate(id)	-
-actor_max_hp	X	X		actor_max_hp(id)	actor_max_hp(id)
-actor_max_mp	X	X		actor_max_mp(id)	actor_max_mp(id)
-actor_mp	X	X		actor_mp(id)	actor_mp(id)
-actor_mp_cost_rate	X	-		actor_mp_cost_rate(id)	-
-actor_mp_regeneration_rate	X	-		actor_mp_regeneration_rate(id)	-
-actor_name	X	X		actor_name(id)	actor_name(id)
-actor_nickname	X	-		actor_nickname(id)	-
-actor_note	X	-		actor_note(id)	-
-actor_optimize_equipement	X	-		actor_optimize_equipement(id)	-
-actor_pharmacology	X	-		actor_pharmacology(id)	-
-actor_physical_damage_rate	X	-		actor_physical_damage_rate(id)	-
-actor_recovery_effect_rate	X	-		actor_recovery_effect_rate(id)	-
-actor_set_graphic	X	-		actor_set_graphic(character_name,character_index,face_name,face_index)	-
-actor_shield	X	-		actor_shield(id)	-
-actor_skills	X	-		actor_skills(id)	-
-actor_target_rate	X	-		actor_target_rate(id)	-
-actor_tp	X	-		actor_tp(id)	-
-actor_tp_charge_rate	X	-		actor_tp_charge_rate(id)	-
-actor_tp_regeneration_rate	X	-		actor_tp_regeneration_rate(id)	-
-actor_weapon	X	-		actor_weapon(id)	-
-actor_weapons	X	-		actor_weapons(id)	-
-alt_gr?	X	X		alt_gr?	alt_gr?
-angle_xy	-	X		-	angle_xy(point,point,point,point)
-apply_percent	X	-		apply_percent(percent,max)	-
-armor_agility	X	-		armor_agility(id)	-
-armor_attack_power	X	-		armor_attack_power(id)	-
-armor_count	X	X		armor_count(id)	armor_count(id)
-armor_defense_power	X	-		armor_defense_power(id)	-
-armor_description	X	-		armor_description(id)	-
-armor_equiped?	X	-		armor_equiped?(id,*member)	-
-armor_icon	X	-		armor_icon(id)	-
-armor_luck	X	-		armor_luck(id)	-
-armor_magic_attack_power	X	-		armor_magic_attack_power(id)	-
-armor_magic_defense_power	X	-		armor_magic_defense_power(id)	-
-armor_max_hit_points	X	-		armor_max_hit_points(id)	-
-armor_max_magic_points	X	-		armor_max_magic_points(id)	-
-armor_name	X	X		armor_name(id)	armor_name(id)
-armor_note	X	-		armor_note(id)	-
-armor_price	X	-		armor_price(id)	-
-armor_type	X	-		armor_type(id)	-
-asin	X	-		asin(x)	-
-asinh	X	-		asinh(x)	-
-atan	X	-		atan(x)	-
-atan2	X	-		atan2(x,y)	-
-atanh	X	-		atanh(x)	-
-battle_count	X	X		battle_count	battle_count
-bind	X	-		bind(e,*args,*block)	-
-buzz	-	X		-	buzz(id)
-caps_lock?	X	X		caps_lock?	caps_lock?
-click_time	X	-		click_time(k)	-
-collide?	-	X		-	collide?(id,id)
-color	X	X		color(r,v,b,*a)	color(rouge,vert,bleu,*alpha)
-cos	X	-		cos(x)	-
-cosh	X	-		cosh(x)	-
-create_circle_area	-	X		-	create_circle_area(point,point,rayon)
-create_ellipse_area	-	X		-	create_ellipse_area(point,point,largeur,hauteur)
-create_polygon_area	-	X		-	create_polygon_area(points)
-create_rect_area	-	X		-	create_rect_area(point,point,point,point)
-create_textfield	-	X		-	create_textfield(type,x,y,*largeur,texte,alignement)
-ctrl?	X	-		ctrl?(*k)	-
-currency	X	-		currency	-
-current_enemies	X	-		current_enemies	-
-current_troop	X	-		current_troop	-
-delete_save	-	X		-	delete_save(num)
-enemy_agility	X	-		enemy_agility(id)	-
-enemy_attack	X	-		enemy_attack(id)	-
-enemy_counter_attack_rate	X	-		enemy_counter_attack_rate(id)	-
-enemy_critical_evasion_rate	X	-		enemy_critical_evasion_rate(id)	-
-enemy_critical_rate	X	-		enemy_critical_rate(id)	-
-enemy_defense	X	-		enemy_defense(id)	-
-enemy_die?	X	-		enemy_die?(id)	-
-enemy_evasion_rate	X	-		enemy_evasion_rate(id)	-
-enemy_experience_rate	X	-		enemy_experience_rate(id)	-
-enemy_floor_damage_rate	X	-		enemy_floor_damage_rate(id)	-
-enemy_guard_effect_rate	X	-		enemy_guard_effect_rate(id)	-
-enemy_hidden?	X	-		enemy_hidden?(id)	-
-enemy_hit_rate	X	-		enemy_hit_rate(id)	-
-enemy_hp	X	-		enemy_hp(id)	-
-enemy_hp_regeneration_rate	X	-		enemy_hp_regeneration_rate(id)	-
-enemy_luck	X	-		enemy_luck(id)	-
-enemy_magic_attack	X	-		enemy_magic_attack(id)	-
-enemy_magic_defense	X	-		enemy_magic_defense(id)	-
-enemy_magical_damage_rate	X	-		enemy_magical_damage_rate(id)	-
-enemy_magical_evasion_rate	X	-		enemy_magical_evasion_rate(id)	-
-enemy_magical_reflection_rate	X	-		enemy_magical_reflection_rate(id)	-
-enemy_max_hp	X	-		enemy_max_hp(id)	-
-enemy_max_mp	X	-		enemy_max_mp(id)	-
-enemy_mp	X	-		enemy_mp(id)	-
-enemy_mp_cost_rate	X	-		enemy_mp_cost_rate(id)	-
-enemy_mp_regeneration_rate	X	-		enemy_mp_regeneration_rate(id)	-
-enemy_pharmacology	X	-		enemy_pharmacology(id)	-
-enemy_physical_damage_rate	X	-		enemy_physical_damage_rate(id)	-
-enemy_recovery_effect_rate	X	-		enemy_recovery_effect_rate(id)	-
-enemy_target_rate	X	-		enemy_target_rate(id)	-
-enemy_tp	X	-		enemy_tp(id)	-
-enemy_tp_charge_rate	X	-		enemy_tp_charge_rate(id)	-
-enemy_tp_regeneration_rate	X	-		enemy_tp_regeneration_rate(id)	-
-erase_textfield	-	X		-	erase_textfield(champ)
-event_collide?	X	-		event_collide?(ev1,ev2)	-
-event_direction	X	X		event_direction(id)	event_direction(id)
-event_in_screen?	X	X		event_in_screen?(id)	event_in_screen?(id)
-event_look_at?	X	-		event_look_at?(ev,to,scope,*metric)	-
-event_pixel_x	X	X		event_pixel_x(id)	event_pixel_x(id)
-event_pixel_y	X	X		event_pixel_y(id)	event_pixel_y(id)
-event_screen_x	X	X		event_screen_x(id)	event_screen_x(id)
-event_screen_y	X	X		event_screen_y(id)	event_screen_y(id)
-event_x	X	X		event_x(id)	event_x(id)
-event_y	X	X		event_y(id)	event_y(id)
-fresh_event_id	X	-		fresh_event_id	-
-gain_gold	X	-		gain_gold(amount)	-
-game_title	X	-		game_title	-
-get	X	-		get(a,i)	-
-get_textfield_value	-	X		-	get_textfield_value(champ)
-give_armor	X	-		give_armor(id,amount,*include_equip)	-
-give_item	X	-		give_item(id,amount)	-
-give_weapon	X	-		give_weapon(id,amount,*include_equip)	-
-gold	X	X		gold	gold
-has_armor?	X	-		has_armor?(id,*include_equip)	-
-has_item?	X	-		has_item?(id)	-
-has_weapon?	X	-		has_weapon?(id,*include_equip)	-
-hypot	X	-		hypot(x,y)	-
-id_at	X	X		id_at(x,y)	id_at(x,y,couche)
-import_variable	-	X		-	import_variable(num,id)
-in_area?	-	X		-	in_area?(zone,point,point)
-include_page	X	X		include_page(map_id,ev_id,p_id,*if_runnable,*context)	include_page(id,id,id)
-invoke_event	X	X		invoke_event(map_id,ev_id,new_id,*x,*y)	invoke_event(id,id,nouvel,position,position)
-is_key_item?	X	-		is_key_item?(id)	-
-item_always_usable?	X	-		item_always_usable?(id)	-
-item_battle_usable?	X	-		item_battle_usable?(id)	-
-item_certain?	X	-		item_certain?(i)	-
-item_consumable?	X	-		item_consumable?(id)	-
-item_count	X	X		item_count(id)	item_count(id)
-item_description	X	-		item_description(id)	-
-item_for_all?	X	-		item_for_all?(i)	-
-item_for_all_allies?	X	-		item_for_all_allies?(id)	-
-item_for_all_dead_allies?	X	-		item_for_all_dead_allies?(id)	-
-item_for_all_enemies?	X	-		item_for_all_enemies?(id)	-
-item_for_caller?	X	-		item_for_caller?(id)	-
-item_for_dead_friend?	X	-		item_for_dead_friend?(i)	-
-item_for_four_random_enemies?	X	-		item_for_four_random_enemies?(id)	-
-item_for_friend?	X	-		item_for_friend?(i)	-
-item_for_one?	X	-		item_for_one?(i)	-
-item_for_one_ally?	X	-		item_for_one_ally?(id)	-
-item_for_one_dead_ally?	X	-		item_for_one_dead_ally?(id)	-
-item_for_one_enemy?	X	-		item_for_one_enemy?(id)	-
-item_for_one_random_enemy?	X	-		item_for_one_random_enemy?(id)	-
-item_for_opponent?	X	-		item_for_opponent?(i)	-
-item_for_random?	X	-		item_for_random?(i)	-
-item_for_three_random_enemies?	X	-		item_for_three_random_enemies?(id)	-
-item_for_two_random_enemies?	X	-		item_for_two_random_enemies?(id)	-
-item_has_no_scope?	X	-		item_has_no_scope?(id)	-
-item_icon	X	-		item_icon(id)	-
-item_magical?	X	-		item_magical?(i)	-
-item_menu_usable?	X	-		item_menu_usable?(id)	-
-item_name	X	X		item_name(id)	item_name(id)
-item_nb_hits	X	-		item_nb_hits(i)	-
-item_need_selection?	X	-		item_need_selection?(i)	-
-item_never_usable?	X	-		item_never_usable?(id)	-
-item_note	X	-		item_note(id)	-
-item_number_of_targets	X	-		item_number_of_targets(i)	-
-item_occasion	X	-		item_occasion(id)	-
-item_physical?	X	-		item_physical?(i)	-
-item_price	X	-		item_price(id)	-
-item_scope	X	-		item_scope(id)	-
-item_speed	X	-		item_speed(i)	-
-item_success_rate	X	-		item_success_rate(i)	-
-item_tp_gain	X	-		item_tp_gain(i)	-
-jump_to	-	X		-	jump_to(id,x,y,attendre)
-key_char?	-	X		-	key_char?
-key_current	X	-		key_current(*m)	-
-key_current_rgss	X	-		key_current_rgss(*m)	-
-key_number	-	X		-	key_number
-key_press?	X	X		key_press?(k)	key_press?(touche)
-key_release?	X	X		key_release?(k)	key_release?(touche)
-key_repeat?	X	X		key_repeat?(k)	key_repeat?(touche)
-key_time	X	-		key_time(k)	-
-key_trigger?	X	X		key_trigger?(k)	key_trigger?(touche)
-keyboard_all?	X	-		keyboard_all?(m,*k)	-
-keyboard_any?	X	-		keyboard_any?(m,*k)	-
-keyboard_current_char	X	-		keyboard_current_char	-
-keyboard_current_digit	X	-		keyboard_current_digit	-
-last_clicked_event	-	X		-	last_clicked_event
-length	X	-		length(a)	-
-load_game	-	X		-	load_game(num,*dur)
-look_at	-	X		-	look_at(id,id,portee,unites)
-lose_gold	X	-		lose_gold(amount)	-
-maj?	-	X		-	maj?
-map_id	X	X		map_id	map_id
-map_name	X	-		map_name	-
-max	X	-		max(a,b)	-
-max_event_id	X	X		max_event_id	max_event_id
-message_height	-	X		-	message_height(nombre)
-min	X	-		min(a,b)	-
-monster_agility	X	X		monster_agility(id)	monster_agility(id)
-monster_attack	-	X		-	monster_attack(id)
-monster_attack_power	X	-		monster_attack_power(id)	-
-monster_battler_height	X	-		monster_battler_height(i)	-
-monster_battler_hue	X	-		monster_battler_hue(id)	-
-monster_battler_name	X	-		monster_battler_name(id)	-
-monster_battler_width	X	-		monster_battler_width(i)	-
-monster_defense	-	X		-	monster_defense(id)
-monster_defense_power	X	-		monster_defense_power(id)	-
-monster_description	X	-		monster_description(id)	-
-monster_give_exp	X	-		monster_give_exp(id)	-
-monster_give_gold	X	-		monster_give_gold(id)	-
-monster_hp	-	X		-	monster_hp(id)
-monster_icon	X	-		monster_icon(id)	-
-monster_luck	X	X		monster_luck(id)	monster_luck(id)
-monster_magic_attack	-	X		-	monster_magic_attack(id)
-monster_magic_attack_power	X	-		monster_magic_attack_power(id)	-
-monster_magic_defense	-	X		-	monster_magic_defense(id)
-monster_magic_defense_power	X	-		monster_magic_defense_power(id)	-
-monster_max_hp	X	-		monster_max_hp(id)	-
-monster_max_mp	X	-		monster_max_mp(id)	-
-monster_mp	-	X		-	monster_mp(id)
-monster_name	X	X		monster_name(id)	monster_name(id)
-monster_note	X	-		monster_note(id)	-
-mouse_all?	X	-		mouse_all?(m,*k)	-
-mouse_any?	X	-		mouse_any?(m,*k)	-
-mouse_click?	X	X		mouse_click?	mouse_click?(touche)
-mouse_click_event?	X	-		mouse_click_event?(e)	-
-mouse_clicked_area?	-	X		-	mouse_clicked_area?(zone,touche)
-mouse_clicked_event?	-	X		-	mouse_clicked_event?(id)
-mouse_clicked_player?	-	X		-	mouse_clicked_player?
-mouse_current_key	X	-		mouse_current_key(*m)	-
-mouse_dragging?	X	-		mouse_dragging?	-
-mouse_hover_area?	-	X		-	mouse_hover_area?(zone)
-mouse_hover_event?	X	X		mouse_hover_event?(e)	mouse_hover_event?(id)
-mouse_hover_player?	-	X		-	mouse_hover_player?
-mouse_in?	X	-		mouse_in?(rect)	-
-mouse_last_rect	X	-		mouse_last_rect	-
-mouse_point	X	-		mouse_point	-
-mouse_press?	X	-		mouse_press?(k)	-
-mouse_press_event?	X	-		mouse_press_event?(e,*k)	-
-mouse_rect	X	X		mouse_rect	mouse_rect
-mouse_release?	X	X		mouse_release?(k)	mouse_release?(touche)
-mouse_release_event?	X	-		mouse_release_event?(e,*k)	-
-mouse_released_area?	-	X		-	mouse_released_area?(zone,touche)
-mouse_repeat?	X	X		mouse_repeat?(k)	mouse_repeat?(touche)
-mouse_repeat_event?	X	-		mouse_repeat_event?(e,*k)	-
-mouse_repeated_area?	-	X		-	mouse_repeated_area?(zone,touche)
-mouse_square_clicked_area?	-	X		-	mouse_square_clicked_area?(zone,touche)
-mouse_square_hover_area?	-	X		-	mouse_square_hover_area?(zone)
-mouse_square_released_area?	-	X		-	mouse_square_released_area?(zone,touche)
-mouse_square_repeated_area?	-	X		-	mouse_square_repeated_area?(zone,touche)
-mouse_square_triggered_area?	-	X		-	mouse_square_triggered_area?(zone,touche)
-mouse_square_x	X	-		mouse_square_x	-
-mouse_square_y	X	-		mouse_square_y	-
-mouse_trigger?	X	X		mouse_trigger?(k)	mouse_trigger?(touche)
-mouse_trigger_event?	X	-		mouse_trigger_event?(e,*k)	-
-mouse_triggered_area?	-	X		-	mouse_triggered_area?(zone,touche)
-mouse_x	X	X		mouse_x	mouse_x
-mouse_x_square	-	X		-	mouse_x_square
-mouse_y	X	X		mouse_y	mouse_y
-mouse_y_square	-	X		-	mouse_y_square
-move_to	-	X		-	move_to(id,x,y,attendre)
-num_lock?	X	X		num_lock?	num_lock?
-page_runnable?	X	-		page_runnable?(map_id,ev_id,page,*context)	-
-parallax_autoscroll	-	X		-	parallax_autoscroll(id,vitesse,vitesse)
-parallax_autoscroll_x	X	-		parallax_autoscroll_x(id,v,*duration,*wf)	-
-parallax_autoscroll_y	X	-		parallax_autoscroll_y(id,v,*duration,*wf)	-
-parallax_blend	X	X		parallax_blend(id,v)	parallax_blend(id,*mode)
-parallax_erase	X	X		parallax_erase(id)	parallax_erase(id)
-parallax_opacity	X	X		parallax_opacity(id,v,*duration,*wf)	parallax_opacity(id,*opacit)
-parallax_scroll_x	X	-		parallax_scroll_x(id,v)	-
-parallax_scroll_y	X	-		parallax_scroll_y(id,v)	-
-parallax_scrollspeed	-	X		-	parallax_scrollspeed(id,vitesse,vitesse)
-parallax_show	X	X		parallax_show(id,name,*z,*op,*ax,*ay,*mx,*my,*b,*zx,*zy)	parallax_show(id,nom,*axe,*opacit,vitesse,vitesse,d,d)
-parallax_tone	X	X		parallax_tone(id,v,*duration,*wf)	parallax_tone(id,*rouge,*vert,*bleu,*gris)
-parallax_transform	X	-		parallax_transform(id,duration,*wf,*zoom_x,*zoom_y,*opacity,*tone)	-
-parallax_z	-	X		-	parallax_z(id,axe)
-parallax_zoom	X	X		parallax_zoom(id,v,*duration,*wf)	parallax_zoom(id,*zoom,*zoom)
-parallax_zoom_x	X	X		parallax_zoom_x(id,v,*duration,*wf)	parallax_zoom_x(id,zoom)
-parallax_zoom_y	X	X		parallax_zoom_y(id,v,*duration,*wf)	parallax_zoom_y(id,zoom)
-parallaxes_clear	X	-		parallaxes_clear	-
-percent	X	X		percent(value,max)	percent(valeur1,valeur2)
-pi	X	-		pi	-
-picture_angle	X	X		picture_angle(id,*angle)	picture_angle(id,angle)
-picture_blend	X	X		picture_blend(id,blend)	picture_blend(id,*mode)
-picture_detach	-	X		-	picture_detach(id)
-picture_erase	X	X		picture_erase(id)	picture_erase(id)
-picture_flip	X	X		picture_flip(id)	picture_flip(id)
-picture_move	X	X		picture_move(id,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o)	picture_move(id,*x,*y,*zoom,*zoom,*dur,*opacit,*mode,*origine)
-picture_opacity	X	X		picture_opacity(id,value,*duration,*wf)	picture_opacity(id,valeur)
-picture_origin	X	-		picture_origin(id,*origin)	-
-picture_origine	-	X		-	picture_origine(id,origine)
-picture_pin	X	X		picture_pin(id,x,y)	picture_pin(id)
-picture_position	X	X		picture_position(id,x,y,*duration,*wf)	picture_position(id,x,y)
-picture_rotate	X	X		picture_rotate(id,speed)	picture_rotate(id,vitesse)
-picture_screen	-	X		-	picture_screen(id)
-picture_scroll	X	-		picture_scroll(id,speed)	-
-picture_scroll_x	X	-		picture_scroll_x(id,speed)	-
-picture_scroll_y	X	-		picture_scroll_y(id,speed)	-
-picture_shake	X	X		picture_shake(id,power,speed,duration)	picture_shake(id,force,vitesse,dur)
-picture_show	X	X		picture_show(id,n,*x,*y,*ori,*z_x,*z_y,*op,*bl)	picture_show(id,nom,*x,*y,*origine,*zoom,*zoom,*opacit,*mode)
-picture_show_enemy	X	X		picture_show_enemy(id_pic,id,pos)	picture_show_enemy(id,id,position)
-picture_text	-	X		-	picture_text(id,texte,x,y,*taille,*police,color,gras,italique,contour,color,ombre)
-picture_tone	X	X		picture_tone(id,tone,*d,*wf)	picture_tone(id,*rouge,*vert,*bleu,*gris)
-picture_unpin	X	-		picture_unpin(id)	-
-picture_wave	X	X		picture_wave(id,amp,speed)	picture_wave(id,amplitude,vitesse)
-picture_x	X	X		picture_x(id,*x,*duration,*wf)	picture_x(id,x)
-picture_y	X	X		picture_y(id,*y,*duration,*wf)	picture_y(id,y)
-picture_zoom	X	X		picture_zoom(id,zoom_x,zoom_y,*duration,*wf)	picture_zoom(id,*zoom,*zoom)
-picture_zoom_x	X	X		picture_zoom_x(id,*zoom_x,*duration,*wf)	picture_zoom_x(id,*zoom)
-picture_zoom_y	X	X		picture_zoom_y(id,*zoom_y,*duration,*wf)	picture_zoom_y(id,*zoom)
-pictures_clear	X	-		pictures_clear	-
-pictures_collide?	X	-		pictures_collide?(a,b)	-
-pictures_perfect_collide?	X	-		pictures_perfect_collide?(a,b)	-
-pixel_in_picture?	X	-		pixel_in_picture?(id,x,y,*precise)	-
-pixels_between	X	X		pixels_between(ev1,ev2)	pixels_between(id,id)
-play_time	X	X		play_time	play_time
-player_direction	X	X		player_direction	player_direction
-player_in_screen?	X	X		player_in_screen?	player_in_screen?
-player_pixel_x	X	X		player_pixel_x	player_pixel_x
-player_pixel_y	X	X		player_pixel_y	player_pixel_y
-player_screen_x	X	X		player_screen_x	player_screen_x
-player_screen_y	X	X		player_screen_y	player_screen_y
-player_x	X	X		player_x	player_x
-player_y	X	X		player_y	player_y
-point_in_mouse_rect?	-	X		-	point_in_mouse_rect?(x,y)
-random	X	X		random(*min,max)	random(minimum,maximum)
-random_figures	X	-		random_figures(*x)	-
-region_id	X	X		region_id(x,y)	region_id(x,y)
-rtp_path	-	X		-	rtp_path
-save_count	X	X		save_count	save_count
-save_exists?	-	X		-	save_exists?(num)
-save_game	-	X		-	save_game(num)
-scroll_lock?	X	X		scroll_lock?	scroll_lock?
-server_close_connection	-	X		-	server_close_connection(socket)
-server_connect	-	X		-	server_connect(adresse,*port)
-server_recv	-	X		-	server_recv(socket)
-server_send	-	X		-	server_send(socket,message)
-server_single_close_connection	-	X		-	server_single_close_connection
-server_single_connect	-	X		-	server_single_connect(adresse,*port)
-server_single_recv	-	X		-	server_single_recv
-server_single_send	-	X		-	server_single_send(message)
-server_single_wait_recv	-	X		-	server_single_wait_recv
-server_wait_recv	-	X		-	server_wait_recv(socket)
-session_username	X	-		session_username	-
-set_actor_name	X	X		set_actor_name(id,n)	set_actor_name(id,name)
-set_actor_nickname	X	-		set_actor_nickname(id,n)	-
-set_textfield_value	-	X		-	set_textfield_value(champ,valeur)
-shift?	X	-		shift?	-
-show_cursor_system	-	X		-	show_cursor_system(activation)
-sin	X	-		sin(x)	-
-sinh	X	-		sinh(x)	-
-skill_always_usable?	X	-		skill_always_usable?(id)	-
-skill_battle_usable?	X	-		skill_battle_usable?(id)	-
-skill_certain?	X	-		skill_certain?(i)	-
-skill_description	X	-		skill_description(id)	-
-skill_for_all?	X	-		skill_for_all?(i)	-
-skill_for_all_allies?	X	-		skill_for_all_allies?(id)	-
-skill_for_all_dead_allies?	X	-		skill_for_all_dead_allies?(id)	-
-skill_for_all_enemies?	X	-		skill_for_all_enemies?(id)	-
-skill_for_caller?	X	-		skill_for_caller?(id)	-
-skill_for_dead_friend?	X	-		skill_for_dead_friend?(i)	-
-skill_for_four_random_enemies?	X	-		skill_for_four_random_enemies?(id)	-
-skill_for_friend?	X	-		skill_for_friend?(i)	-
-skill_for_one?	X	-		skill_for_one?(i)	-
-skill_for_one_ally?	X	-		skill_for_one_ally?(id)	-
-skill_for_one_dead_ally?	X	-		skill_for_one_dead_ally?(id)	-
-skill_for_one_enemy?	X	-		skill_for_one_enemy?(id)	-
-skill_for_one_random_enemy?	X	-		skill_for_one_random_enemy?(id)	-
-skill_for_opponent?	X	-		skill_for_opponent?(i)	-
-skill_for_random?	X	-		skill_for_random?(i)	-
-skill_for_three_random_enemies?	X	-		skill_for_three_random_enemies?(id)	-
-skill_for_two_random_enemies?	X	-		skill_for_two_random_enemies?(id)	-
-skill_has_no_scope?	X	-		skill_has_no_scope?(id)	-
-skill_icon	X	-		skill_icon(id)	-
-skill_magical?	X	-		skill_magical?(i)	-
-skill_menu_usable?	X	-		skill_menu_usable?(id)	-
-skill_name	X	-		skill_name(id)	-
-skill_nb_hits	X	-		skill_nb_hits(i)	-
-skill_need_selection?	X	-		skill_need_selection?(i)	-
-skill_never_usable?	X	-		skill_never_usable?(id)	-
-skill_note	X	-		skill_note(id)	-
-skill_number_of_targets	X	-		skill_number_of_targets(i)	-
-skill_occasion	X	-		skill_occasion(id)	-
-skill_physical?	X	-		skill_physical?(i)	-
-skill_scope	X	-		skill_scope(id)	-
-skill_speed	X	-		skill_speed(i)	-
-skill_success_rate	X	-		skill_success_rate(i)	-
-skill_tp_gain	X	-		skill_tp_gain(i)	-
-sqrt	X	-		sqrt(x)	-
-square_passable?	X	X		square_passable?(x,y,*d)	square_passable?(x,y,*direction)
-squares_between	X	X		squares_between(ev1,ev2)	squares_between(id,id)
-start_map_id	X	-		start_map_id	-
-start_x	X	-		start_x	-
-start_y	X	-		start_y	-
-steps	X	X		steps	steps
-tan	X	-		tan(x)	-
-tanh	X	-		tanh(x)	-
-team_size	X	X		team_size	team_size
-terrain_tag	X	X		terrain_tag(x,y)	terrain_tag(x,y)
-text_change	X	-		text_change(id,value)	-
-text_erase	X	-		text_erase(id)	-
-text_move	X	-		text_move(id,duration,wait_flag,x,y,*zoom_x,*zoom_y,*opacity,*blend_type,*origin)	-
-text_opacity	X	-		text_opacity(id,value,*duration,*wf)	-
-text_position	X	-		text_position(id,x,y,*duration,*wf)	-
-text_profile	X	-		text_profile(id,profile)	-
-text_rotate	X	-		text_rotate(id,speed)	-
-text_show	X	-		text_show(id,*args)	-
-text_x	X	-		text_x(id,*x,*duration,*wf)	-
-text_y	X	-		text_y(id,*y,*duration,*wf)	-
-text_zoom	X	-		text_zoom(id,x,y,*duration,*wf)	-
-text_zoom_x	X	-		text_zoom_x(id,*x,*duration,*wf)	-
-text_zoom_y	X	-		text_zoom_y(id,*y,*duration,*wf)	-
-textfield_actived?	-	X		-	textfield_actived?(champ)
-textfield_clicked?	-	X		-	textfield_clicked?(champ,touche)
-textfield_hover?	-	X		-	textfield_hover?(champ)
-textfield_opacity	-	X		-	textfield_opacity(champ,*opacit)
-textfield_tone	-	X		-	textfield_tone(champ,*rouge,*vert,*bleu,*gris)
-textfield_visibility	-	X		-	textfield_visibility(champ,touche)
-tile_id	X	-		tile_id(x,y,layer)	-
-time_day	X	X		time_day	time_day
-time_hour	X	X		time_hour	time_hour
-time_min	X	X		time_min	time_min
-time_month	X	X		time_month	time_month
-time_sec	X	X		time_sec	time_sec
-time_year	X	X		time_year	time_year
-timer	X	X		timer	timer
-to_deg	X	-		to_deg(x)	-
-to_rad	X	-		to_rad(x)	-
-tone	X	-		tone(r,v,b,*gray)	-
-total_enemies	X	-		total_enemies	-
-troop_member	X	-		troop_member(id,pos)	-
-troop_member_id	-	X		-	troop_member_id(id,position)
-troop_member_x	X	X		troop_member_x(id,pos)	troop_member_x(id,position)
-troop_member_y	X	X		troop_member_y(id,pos)	troop_member_y(id,position)
-troop_members	X	-		troop_members(id)	-
-troop_name	X	-		troop_name(id)	-
-troop_size	X	X		troop_size(id)	troop_size(id)
-unactivate_all_textfield	-	X		-	unactivate_all_textfield
-unactivate_textfield	-	X		-	unactivate_textfield(champ)
-unbind	X	-		unbind(e,*k)	-
-version_id	X	-		version_id	-
-wait	X	-		wait(d)	-
-weapon_agility	X	-		weapon_agility(id)	-
-weapon_attack_power	X	-		weapon_attack_power(id)	-
-weapon_count	X	X		weapon_count(id)	weapon_count(id)
-weapon_defense_power	X	-		weapon_defense_power(id)	-
-weapon_description	X	-		weapon_description(id)	-
-weapon_equiped?	X	-		weapon_equiped?(id,*member)	-
-weapon_icon	X	-		weapon_icon(id)	-
-weapon_luck	X	-		weapon_luck(id)	-
-weapon_magic_attack_power	X	-		weapon_magic_attack_power(id)	-
-weapon_magic_defense_power	X	-		weapon_magic_defense_power(id)	-
-weapon_max_hit_points	X	-		weapon_max_hit_points(id)	-
-weapon_max_magic_points	X	-		weapon_max_magic_points(id)	-
-weapon_name	X	X		weapon_name(id)	weapon_name(id)
-weapon_note	X	-		weapon_note(id)	-
-weapon_price	X	-		weapon_price(id)	-
-weapon_type	X	-		weapon_type(id)	-
-windows_username	-	X		-	windows_username
+RM	EE
+acos(x)	-
+acosh(x)	-
+-	activate_textfield(champ)
+active_actor	-
+active_actor?	-
+actor_accessory(id)	-
+actor_agility(id)	actor_agility(id)
+actor_armors(id)	-
+actor_attack(id)	-
+actor_body(id)	-
+actor_change_equip(id,slot,wp_id)	-
+actor_character_index(id)	-
+actor_character_name(id)	-
+actor_class(id)	-
+actor_counter_attack_rate(id)	-
+actor_critical_evasion_rate(id)	-
+actor_critical_rate(id)	-
+actor_defense(id)	actor_defense(id)
+actor_description(id)	-
+actor_equip(id,t)	-
+actor_equip_accessory(id,wp)	-
+actor_equip_body(id,wp)	-
+actor_equip_head(id,wp)	-
+actor_equip_shield(id,wp)	-
+actor_equip_weapon(id,wp)	-
+actor_evasion_rate(id)	-
+actor_exp(id)	-
+actor_exp_for_next_level(id)	-
+-	actor_experience(id)
+actor_experience_rate(id)	-
+actor_face_index(id)	-
+actor_face_name(id)	-
+actor_floor_damage_rate(id)	-
+actor_forget(id,skill_id)	-
+actor_give_exp(id,exp)	-
+actor_guard_effect_rate(id)	-
+actor_has_accessory?(id)	-
+actor_has_body?(id)	-
+actor_has_head?(id)	-
+actor_has_shield?(id)	-
+actor_has_weapon?(id)	-
+actor_head(id)	-
+actor_hit_rate(id)	-
+actor_hp(id)	actor_hp(id)
+actor_hp_regeneration_rate(id)	-
+actor_knowns?(id,skill_id)	-
+actor_learn(id,skill_id)	-
+actor_level(id)	actor_level(id)
+actor_level_down(id)	-
+actor_level_max(id)	-
+actor_level_up(id)	-
+actor_luck(id)	actor_luck(id)
+-	actor_magic(id)
+actor_magic_attack(id)	-
+actor_magic_defense(id)	actor_magic_defense(id)
+actor_magical_damage_rate(id)	-
+actor_magical_evasion_rate(id)	-
+actor_magical_reflection_rate(id)	-
+actor_max_hp(id)	actor_max_hp(id)
+actor_max_mp(id)	actor_max_mp(id)
+actor_mp(id)	actor_mp(id)
+actor_mp_cost_rate(id)	-
+actor_mp_regeneration_rate(id)	-
+actor_name(id)	actor_name(id)
+actor_nickname(id)	-
+actor_note(id)	-
+actor_optimize_equipement(id)	-
+actor_pharmacology(id)	-
+actor_physical_damage_rate(id)	-
+actor_recovery_effect_rate(id)	-
+actor_set_graphic(character_name,character_index,face_name,face_index)	-
+actor_shield(id)	-
+actor_skills(id)	-
+actor_target_rate(id)	-
+actor_tp(id)	-
+actor_tp_charge_rate(id)	-
+actor_tp_regeneration_rate(id)	-
+actor_weapon(id)	-
+actor_weapons(id)	-
+alt_gr?	alt_gr?
+-	angle_xy(point,point,point,point)
+apply_percent(percent,max)	-
+armor_agility(id)	-
+armor_attack_power(id)	-
+armor_count(id)	armor_count(id)
+armor_defense_power(id)	-
+armor_description(id)	-
+armor_equiped?(id,*member)	-
+armor_icon(id)	-
+armor_luck(id)	-
+armor_magic_attack_power(id)	-
+armor_magic_defense_power(id)	-
+armor_max_hit_points(id)	-
+armor_max_magic_points(id)	-
+armor_name(id)	armor_name(id)
+armor_note(id)	-
+armor_price(id)	-
+armor_type(id)	-
+asin(x)	-
+asinh(x)	-
+atan(x)	-
+atan2(x,y)	-
+atanh(x)	-
+battle_count	battle_count
+bind(e,*args,*block)	-
+-	buzz(id)
+caps_lock?	caps_lock?
+click_time(k)	-
+-	collide?(id,id)
+color(r,v,b,*a)	color(rouge,vert,bleu,*alpha)
+cos(x)	-
+cosh(x)	-
+-	create_circle_area(point,point,rayon)
+-	create_ellipse_area(point,point,largeur,hauteur)
+-	create_polygon_area(points)
+-	create_rect_area(point,point,point,point)
+-	create_textfield(type,x,y,*largeur,texte,alignement)
+ctrl?(*k)	-
+currency	-
+current_enemies	-
+current_troop	-
+-	delete_save(num)
+enemy_agility(id)	-
+enemy_attack(id)	-
+enemy_counter_attack_rate(id)	-
+enemy_critical_evasion_rate(id)	-
+enemy_critical_rate(id)	-
+enemy_defense(id)	-
+enemy_die?(id)	-
+enemy_evasion_rate(id)	-
+enemy_experience_rate(id)	-
+enemy_floor_damage_rate(id)	-
+enemy_guard_effect_rate(id)	-
+enemy_hidden?(id)	-
+enemy_hit_rate(id)	-
+enemy_hp(id)	-
+enemy_hp_regeneration_rate(id)	-
+enemy_luck(id)	-
+enemy_magic_attack(id)	-
+enemy_magic_defense(id)	-
+enemy_magical_damage_rate(id)	-
+enemy_magical_evasion_rate(id)	-
+enemy_magical_reflection_rate(id)	-
+enemy_max_hp(id)	-
+enemy_max_mp(id)	-
+enemy_mp(id)	-
+enemy_mp_cost_rate(id)	-
+enemy_mp_regeneration_rate(id)	-
+enemy_pharmacology(id)	-
+enemy_physical_damage_rate(id)	-
+enemy_recovery_effect_rate(id)	-
+enemy_target_rate(id)	-
+enemy_tp(id)	-
+enemy_tp_charge_rate(id)	-
+enemy_tp_regeneration_rate(id)	-
+-	erase_textfield(champ)
+event_collide?(ev1,ev2)	-
+event_direction(id)	event_direction(id)
+event_in_screen?(id)	event_in_screen?(id)
+event_look_at?(ev,to,scope,*metric)	-
+event_pixel_x(id)	event_pixel_x(id)
+event_pixel_y(id)	event_pixel_y(id)
+event_screen_x(id)	event_screen_x(id)
+event_screen_y(id)	event_screen_y(id)
+event_x(id)	event_x(id)
+event_y(id)	event_y(id)
+fresh_event_id	-
+gain_gold(amount)	-
+game_title	-
+get(a,i)	-
+-	get_textfield_value(champ)
+give_armor(id,amount,*include_equip)	-
+give_item(id,amount)	-
+give_weapon(id,amount,*include_equip)	-
+gold	gold
+has_armor?(id,*include_equip)	-
+has_item?(id)	-
+has_weapon?(id,*include_equip)	-
+hypot(x,y)	-
+id_at(x,y)	id_at(x,y,couche)
+-	import_variable(num,id)
+-	in_area?(zone,point,point)
+include_page(map_id,ev_id,p_id,*if_runnable,*context)	include_page(id,id,id)
+invoke_event(map_id,ev_id,new_id,*x,*y)	invoke_event(id,id,nouvel,position,position)
+is_key_item?(id)	-
+item_always_usable?(id)	-
+item_battle_usable?(id)	-
+item_certain?(i)	-
+item_consumable?(id)	-
+item_count(id)	item_count(id)
+item_description(id)	-
+item_for_all?(i)	-
+item_for_all_allies?(id)	-
+item_for_all_dead_allies?(id)	-
+item_for_all_enemies?(id)	-
+item_for_caller?(id)	-
+item_for_dead_friend?(i)	-
+item_for_four_random_enemies?(id)	-
+item_for_friend?(i)	-
+item_for_one?(i)	-
+item_for_one_ally?(id)	-
+item_for_one_dead_ally?(id)	-
+item_for_one_enemy?(id)	-
+item_for_one_random_enemy?(id)	-
+item_for_opponent?(i)	-
+item_for_random?(i)	-
+item_for_three_random_enemies?(id)	-
+item_for_two_random_enemies?(id)	-
+item_has_no_scope?(id)	-
+item_icon(id)	-
+item_magical?(i)	-
+item_menu_usable?(id)	-
+item_name(id)	item_name(id)
+item_nb_hits(i)	-
+item_need_selection?(i)	-
+item_never_usable?(id)	-
+item_note(id)	-
+item_number_of_targets(i)	-
+item_occasion(id)	-
+item_physical?(i)	-
+item_price(id)	-
+item_scope(id)	-
+item_speed(i)	-
+item_success_rate(i)	-
+item_tp_gain(i)	-
+-	jump_to(id,x,y,attendre)
+-	key_char?
+key_current(*m)	-
+key_current_rgss(*m)	-
+-	key_number
+key_press?(k)	key_press?(touche)
+key_release?(k)	key_release?(touche)
+key_repeat?(k)	key_repeat?(touche)
+key_time(k)	-
+key_trigger?(k)	key_trigger?(touche)
+keyboard_all?(m,*k)	-
+keyboard_any?(m,*k)	-
+keyboard_current_char	-
+keyboard_current_digit	-
+-	last_clicked_event
+length(a)	-
+-	load_game(num,*dur)
+-	look_at(id,id,portee,unites)
+lose_gold(amount)	-
+-	maj?
+map_id	map_id
+map_name	-
+max(a,b)	-
+max_event_id	max_event_id
+-	message_height(nombre)
+min(a,b)	-
+monster_agility(id)	monster_agility(id)
+-	monster_attack(id)
+monster_attack_power(id)	-
+monster_battler_height(i)	-
+monster_battler_hue(id)	-
+monster_battler_name(id)	-
+monster_battler_width(i)	-
+-	monster_defense(id)
+monster_defense_power(id)	-
+monster_description(id)	-
+monster_give_exp(id)	-
+monster_give_gold(id)	-
+-	monster_hp(id)
+monster_icon(id)	-
+monster_luck(id)	monster_luck(id)
+-	monster_magic_attack(id)
+monster_magic_attack_power(id)	-
+-	monster_magic_defense(id)
+monster_magic_defense_power(id)	-
+monster_max_hp(id)	-
+monster_max_mp(id)	-
+-	monster_mp(id)
+monster_name(id)	monster_name(id)
+monster_note(id)	-
+mouse_all?(m,*k)	-
+mouse_any?(m,*k)	-
+mouse_click?	mouse_click?(touche)
+mouse_click_event?(e)	-
+-	mouse_clicked_area?(zone,touche)
+-	mouse_clicked_event?(id)
+-	mouse_clicked_player?
+mouse_current_key(*m)	-
+mouse_dragging?	-
+-	mouse_hover_area?(zone)
+mouse_hover_event?(e)	mouse_hover_event?(id)
+-	mouse_hover_player?
+mouse_in?(rect)	-
+mouse_last_rect	-
+mouse_point	-
+mouse_press?(k)	-
+mouse_press_event?(e,*k)	-
+mouse_rect	mouse_rect
+mouse_release?(k)	mouse_release?(touche)
+mouse_release_event?(e,*k)	-
+-	mouse_released_area?(zone,touche)
+mouse_repeat?(k)	mouse_repeat?(touche)
+mouse_repeat_event?(e,*k)	-
+-	mouse_repeated_area?(zone,touche)
+-	mouse_square_clicked_area?(zone,touche)
+-	mouse_square_hover_area?(zone)
+-	mouse_square_released_area?(zone,touche)
+-	mouse_square_repeated_area?(zone,touche)
+-	mouse_square_triggered_area?(zone,touche)
+mouse_square_x	-
+mouse_square_y	-
+mouse_trigger?(k)	mouse_trigger?(touche)
+mouse_trigger_event?(e,*k)	-
+-	mouse_triggered_area?(zone,touche)
+mouse_x	mouse_x
+-	mouse_x_square
+mouse_y	mouse_y
+-	mouse_y_square
+-	move_to(id,x,y,attendre)
+num_lock?	num_lock?
+page_runnable?(map_id,ev_id,page,*context)	-
+-	parallax_autoscroll(id,vitesse,vitesse)
+parallax_autoscroll_x(id,v,*duration,*wf)	-
+parallax_autoscroll_y(id,v,*duration,*wf)	-
+parallax_blend(id,v)	parallax_blend(id,*mode)
+parallax_erase(id)	parallax_erase(id)
+parallax_opacity(id,v,*duration,*wf)	parallax_opacity(id,*opacit)
+parallax_scroll_x(id,v)	-
+parallax_scroll_y(id,v)	-
+-	parallax_scrollspeed(id,vitesse,vitesse)
+parallax_show(id,name,*z,*op,*ax,*ay,*mx,*my,*b,*zx,*zy)	parallax_show(id,nom,*axe,*opacit,vitesse,vitesse,d,d)
+parallax_tone(id,v,*duration,*wf)	parallax_tone(id,*rouge,*vert,*bleu,*gris)
+parallax_transform(id,duration,*wf,*zoom_x,*zoom_y,*opacity,*tone)	-
+-	parallax_z(id,axe)
+parallax_zoom(id,v,*duration,*wf)	parallax_zoom(id,*zoom,*zoom)
+parallax_zoom_x(id,v,*duration,*wf)	parallax_zoom_x(id,zoom)
+parallax_zoom_y(id,v,*duration,*wf)	parallax_zoom_y(id,zoom)
+parallaxes_clear	-
+percent(value,max)	percent(valeur1,valeur2)
+pi	-
+picture_angle(id,*angle)	picture_angle(id,angle)
+picture_blend(id,blend)	picture_blend(id,*mode)
+-	picture_detach(id)
+picture_erase(id)	picture_erase(id)
+picture_flip(id)	picture_flip(id)
+picture_move(id,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o)	picture_move(id,*x,*y,*zoom,*zoom,*dur,*opacit,*mode,*origine)
+picture_opacity(id,value,*duration,*wf)	picture_opacity(id,valeur)
+picture_origin(id,*origin)	-
+-	picture_origine(id,origine)
+picture_pin(id,x,y)	picture_pin(id)
+picture_position(id,x,y,*duration,*wf)	picture_position(id,x,y)
+picture_rotate(id,speed)	picture_rotate(id,vitesse)
+-	picture_screen(id)
+picture_scroll(id,speed)	-
+picture_scroll_x(id,speed)	-
+picture_scroll_y(id,speed)	-
+picture_shake(id,power,speed,duration)	picture_shake(id,force,vitesse,dur)
+picture_show(id,n,*x,*y,*ori,*z_x,*z_y,*op,*bl)	picture_show(id,nom,*x,*y,*origine,*zoom,*zoom,*opacit,*mode)
+picture_show_enemy(id_pic,id,pos)	picture_show_enemy(id,id,position)
+-	picture_text(id,texte,x,y,*taille,*police,color,gras,italique,contour,color,ombre)
+picture_tone(id,tone,*d,*wf)	picture_tone(id,*rouge,*vert,*bleu,*gris)
+picture_unpin(id)	-
+picture_wave(id,amp,speed)	picture_wave(id,amplitude,vitesse)
+picture_x(id,*x,*duration,*wf)	picture_x(id,x)
+picture_y(id,*y,*duration,*wf)	picture_y(id,y)
+picture_zoom(id,zoom_x,zoom_y,*duration,*wf)	picture_zoom(id,*zoom,*zoom)
+picture_zoom_x(id,*zoom_x,*duration,*wf)	picture_zoom_x(id,*zoom)
+picture_zoom_y(id,*zoom_y,*duration,*wf)	picture_zoom_y(id,*zoom)
+pictures_clear	-
+pictures_collide?(a,b)	-
+pictures_perfect_collide?(a,b)	-
+pixel_in_picture?(id,x,y,*precise)	-
+pixels_between(ev1,ev2)	pixels_between(id,id)
+play_time	play_time
+player_direction	player_direction
+player_in_screen?	player_in_screen?
+player_pixel_x	player_pixel_x
+player_pixel_y	player_pixel_y
+player_screen_x	player_screen_x
+player_screen_y	player_screen_y
+player_x	player_x
+player_y	player_y
+-	point_in_mouse_rect?(x,y)
+random(*min,max)	random(minimum,maximum)
+random_figures(*x)	-
+region_id(x,y)	region_id(x,y)
+-	rtp_path
+save_count	save_count
+-	save_exists?(num)
+-	save_game(num)
+scroll_lock?	scroll_lock?
+-	server_close_connection(socket)
+-	server_connect(adresse,*port)
+-	server_recv(socket)
+-	server_send(socket,message)
+-	server_single_close_connection
+-	server_single_connect(adresse,*port)
+-	server_single_recv
+-	server_single_send(message)
+-	server_single_wait_recv
+-	server_wait_recv(socket)
+session_username	-
+set_actor_name(id,n)	set_actor_name(id,name)
+set_actor_nickname(id,n)	-
+-	set_textfield_value(champ,valeur)
+shift?	-
+-	show_cursor_system(activation)
+sin(x)	-
+sinh(x)	-
+skill_always_usable?(id)	-
+skill_battle_usable?(id)	-
+skill_certain?(i)	-
+skill_description(id)	-
+skill_for_all?(i)	-
+skill_for_all_allies?(id)	-
+skill_for_all_dead_allies?(id)	-
+skill_for_all_enemies?(id)	-
+skill_for_caller?(id)	-
+skill_for_dead_friend?(i)	-
+skill_for_four_random_enemies?(id)	-
+skill_for_friend?(i)	-
+skill_for_one?(i)	-
+skill_for_one_ally?(id)	-
+skill_for_one_dead_ally?(id)	-
+skill_for_one_enemy?(id)	-
+skill_for_one_random_enemy?(id)	-
+skill_for_opponent?(i)	-
+skill_for_random?(i)	-
+skill_for_three_random_enemies?(id)	-
+skill_for_two_random_enemies?(id)	-
+skill_has_no_scope?(id)	-
+skill_icon(id)	-
+skill_magical?(i)	-
+skill_menu_usable?(id)	-
+skill_name(id)	-
+skill_nb_hits(i)	-
+skill_need_selection?(i)	-
+skill_never_usable?(id)	-
+skill_note(id)	-
+skill_number_of_targets(i)	-
+skill_occasion(id)	-
+skill_physical?(i)	-
+skill_scope(id)	-
+skill_speed(i)	-
+skill_success_rate(i)	-
+skill_tp_gain(i)	-
+sqrt(x)	-
+square_passable?(x,y,*d)	square_passable?(x,y,*direction)
+squares_between(ev1,ev2)	squares_between(id,id)
+start_map_id	-
+start_x	-
+start_y	-
+steps	steps
+tan(x)	-
+tanh(x)	-
+team_size	team_size
+terrain_tag(x,y)	terrain_tag(x,y)
+text_change(id,value)	-
+text_erase(id)	-
+text_move(id,duration,wait_flag,x,y,*zoom_x,*zoom_y,*opacity,*blend_type,*origin)	-
+text_opacity(id,value,*duration,*wf)	-
+text_position(id,x,y,*duration,*wf)	-
+text_profile(id,profile)	-
+text_rotate(id,speed)	-
+text_show(id,*args)	-
+text_x(id,*x,*duration,*wf)	-
+text_y(id,*y,*duration,*wf)	-
+text_zoom(id,x,y,*duration,*wf)	-
+text_zoom_x(id,*x,*duration,*wf)	-
+text_zoom_y(id,*y,*duration,*wf)	-
+-	textfield_actived?(champ)
+-	textfield_clicked?(champ,touche)
+-	textfield_hover?(champ)
+-	textfield_opacity(champ,*opacit)
+-	textfield_tone(champ,*rouge,*vert,*bleu,*gris)
+-	textfield_visibility(champ,touche)
+tile_id(x,y,layer)	-
+time_day	time_day
+time_hour	time_hour
+time_min	time_min
+time_month	time_month
+time_sec	time_sec
+time_year	time_year
+timer	timer
+to_deg(x)	-
+to_rad(x)	-
+tone(r,v,b,*gray)	-
+total_enemies	-
+troop_member(id,pos)	-
+-	troop_member_id(id,position)
+troop_member_x(id,pos)	troop_member_x(id,position)
+troop_member_y(id,pos)	troop_member_y(id,position)
+troop_members(id)	-
+troop_name(id)	-
+troop_size(id)	troop_size(id)
+-	unactivate_all_textfield
+-	unactivate_textfield(champ)
+unbind(e,*k)	-
+version_id	-
+wait(d)	-
+weapon_agility(id)	-
+weapon_attack_power(id)	-
+weapon_count(id)	weapon_count(id)
+weapon_defense_power(id)	-
+weapon_description(id)	-
+weapon_equiped?(id,*member)	-
+weapon_icon(id)	-
+weapon_luck(id)	-
+weapon_magic_attack_power(id)	-
+weapon_magic_defense_power(id)	-
+weapon_max_hit_points(id)	-
+weapon_max_magic_points(id)	-
+weapon_name(id)	weapon_name(id)
+weapon_note(id)	-
+weapon_price(id)	-
+weapon_type(id)	-
+-	windows_username
