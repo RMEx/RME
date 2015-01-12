@@ -431,6 +431,14 @@ module DocGenerator
               ee_call += "(" +k.join(",")+")"
             end
           end
+          if Checker.commands.include?(m)
+            rme_call = "#{m}"
+            h = Command.method(m).parameters
+            if h.length > 0
+              k = h.collect{|k| ((k[0] == :req) ? "" : "*") + k[1].to_s}
+              rme_call += "(" +k.join(",")+")"
+            end
+          end
           "#{m}\t#{a}\t#{b}\t\t#{rme_call}\t#{ee_call}"
         end
         g += total.join("\n")
