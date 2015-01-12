@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='__command_list.html'>Index des commandes</a> > <strong>Commandes de communication client-serveur</strong><hr /><h1>Commandes de communication client-serveur</h1>
+Commandes pour communiquer avec un serveur TCP/IP<br /><br /><h2>Liste des commandes<ul></h2>
+<li><a href='#socket_connectaddress-port'>socket_connect(address, port)</a></li>
+<li><a href='#socket_connected'>socket_connected?</a></li>
+<li><a href='#socket_disconnect'>socket_disconnect</a></li>
+<li><a href='#socket_recvlen'>socket_recv(*len)</a></li>
+<li><a href='#socket_senddata'>socket_send(data)</a></li>
+<li><a href='#socket_wait_recvlen'>socket_wait_recv(*len)</a></li>
+</ul><h2>Description des commandes</h2>
+<strong name='socket_connectaddress-port' id='socket_connectaddress-port'>socket_connect(address, port)</strong><br /><br /><blockquote>Se connecte à un serveur, renvoie true si la connexion à réussie, false sinon.</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>address</code></td><td><code>String</code></td><td>Adresse du serveur</td></tr><tr><td><code>port</code></td><td><code>Fixnum</code></td><td>Port d'écoute</td></tr></table></blockquote><strong name='socket_connected' id='socket_connected'>socket_connected?</strong><br /><br /><blockquote>Renvoi true si la connexion est en cours, false, sinon</blockquote>  
+<blockquote></table></blockquote><strong name='socket_disconnect' id='socket_disconnect'>socket_disconnect</strong><br /><br /><blockquote>Déconnecte la connexion courrante</blockquote>  
+<blockquote></table></blockquote><strong name='socket_recvlen' id='socket_recvlen'>socket_recv(*len)</strong><br /><br /><blockquote>Renvoi le message envoyé par le serveur au client, false si aucun message n' est reçu</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>*len</code></td><td><code>Fixnum</code></td><td>Taille maximale du message à recevoir, par défaut 1024</td></tr></table></blockquote><strong name='socket_senddata' id='socket_senddata'>socket_send(data)</strong><br /><br /><blockquote>Envoi un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>data</code></td><td><code>String</code></td><td>Message à envoyer</td></tr></table></blockquote><strong name='socket_wait_recvlen' id='socket_wait_recvlen'>socket_wait_recv(*len)</strong><br /><br /><blockquote>Attend une réponse du serveur, se termine quand une réponse a été reçue (et l'a renvoi)</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>*len</code></td><td><code>Fixnum</code></td><td>Taille maximale du message à recevoir, par défaut 1024</td></tr></table></blockquote></body></html>

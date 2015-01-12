@@ -440,6 +440,12 @@ skill_scope(id)	-
 skill_speed(i)	-
 skill_success_rate(i)	-
 skill_tp_gain(i)	-
+socket_connect(address,port)	-
+socket_connected?	-
+socket_disconnect	-
+socket_recv(*len)	-
+socket_send(data)	-
+socket_wait_recv(*len)	-
 sqrt(x)	-
 square_passable?(x,y,*d)	square_passable?(x,y,*direction)
 squares_between(ev1,ev2)	squares_between(id,id)

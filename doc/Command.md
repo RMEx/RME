@@ -378,6 +378,12 @@ Collection des commandes EventExtender
 *    [Command.skill_speed(id)](#commandskill_speedid)
 *    [Command.skill_success_rate(id)](#commandskill_success_rateid)
 *    [Command.skill_tp_gain(id)](#commandskill_tp_gainid)
+*    [Command.socket_connect(address, port)](#commandsocket_connectaddress-port)
+*    [Command.socket_connected?](#commandsocket_connected)
+*    [Command.socket_disconnect](#commandsocket_disconnect)
+*    [Command.socket_recv(*len)](#commandsocket_recvlen)
+*    [Command.socket_send(data)](#commandsocket_senddata)
+*    [Command.socket_wait_recv(*len)](#commandsocket_wait_recvlen)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
@@ -5686,6 +5692,85 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
+
+
+
+
+
+
+##### Command.socket_connect(address, port)
+
+> Se connecte à un serveur, renvoie true si la connexion à réussie, false sinon.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`address`|`String`|Adresse du serveur  
+`port`|`Fixnum`|Port d'écoute  
+
+
+
+
+
+
+##### Command.socket_connected?
+
+> Renvoi true si la connexion est en cours, false, sinon
+
+  
+> 
+
+
+
+
+
+##### Command.socket_disconnect
+
+> Déconnecte la connexion courrante
+
+  
+> 
+
+
+
+
+
+##### Command.socket_recv(*len)
+
+> Renvoi le message envoyé par le serveur au client, false si aucun message n' est reçu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
+
+
+
+
+
+
+##### Command.socket_send(data)
+
+> Envoi un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`data`|`String`|Message à envoyer  
+
+
+
+
+
+
+##### Command.socket_wait_recv(*len)
+
+> Attend une réponse du serveur, se termine quand une réponse a été reçue (et l'a renvoi)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
 
 
 
