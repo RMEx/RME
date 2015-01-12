@@ -26,11 +26,29 @@ module RMECommands
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end
-  def wait(d); d.times {Fiber.yield}; end
+  def wait(d); d.times { Fiber.yield}; end
   def session_username; USERNAME; end
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
+  
+  def wait_with(time, &block)
+    time.times do 
+      block.call
+      Fiber.yield
+    end
+  end
+
+  def qte(key, time)
+    flag = false
+    wait_with(time) do 
+      if Keyboard.press?(key)
+        flag = true
+        break
+      end
+    end
+    return flag
+  end
 
   append_commands
   

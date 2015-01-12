@@ -331,6 +331,7 @@ Collection des commandes EventExtender
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_x](#commandplayer_x)
 *    [Command.player_y](#commandplayer_y)
+*    [Command.qte(key, time)](#commandqtekey-time)
 *    [Command.random(min, max)](#commandrandommin-max)
 *    [Command.random_figures(x)](#commandrandom_figuresx)
 *    [Command.region_id(x, y)](#commandregion_idx-y)
@@ -429,6 +430,7 @@ Collection des commandes EventExtender
 *    [Command.troop_size(id)](#commandtroop_sizeid)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
+*    [Command.wait_with(time, &block)](#commandwait_withtime-&block)
 *    [Command.weapon_agility(id)](#commandweapon_agilityid)
 *    [Command.weapon_attack_power(id)](#commandweapon_attack_powerid)
 *    [Command.weapon_count(id)](#commandweapon_countid)
@@ -5052,6 +5054,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.qte(key, time)
+
+> Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche qu'il faut presser avant la fin  
+`time`|`Fixnum`|Durée  
+
+
+
+
+
+
 ##### Command.random(min, max)
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX inclus
@@ -6418,6 +6435,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Nombre de frames a attendre  
+
+
+
+
+
+
+##### Command.wait_with(time, &block)
+
+> Attend en exécutant une action
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`time`|`Fixnum`|Temps d'attente  
+`&block`|`Block`|Action a exécuter ({action})  
 
 
 

@@ -14,11 +14,13 @@ Commandes standards
 *    [max(a, b)](#maxa-b)
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
+*    [qte(key, time)](#qtekey-time)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
 *    [session_username](#session_username)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [wait(duration)](#waitduration)
+*    [wait_with(time, &block)](#wait_withtime-&block)
 
 
 ##Description des commandes
@@ -100,6 +102,17 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
+##### qte(key, time)
+
+> Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`key`|`Symbol`|Touche qu'il faut presser avant la fin  
+`time`|`Fixnum`|Durée  
+
+
 ##### random(min, max)
 
 > Renvoie un nombre aléatoire compris entre MIN et MAX inclus
@@ -149,5 +162,16 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Nombre de frames a attendre  
+
+
+##### wait_with(time, &block)
+
+> Attend en exécutant une action
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`time`|`Fixnum`|Temps d'attente  
+`&block`|`Block`|Action a exécuter ({action})  
 
 
