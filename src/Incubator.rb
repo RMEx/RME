@@ -29,6 +29,7 @@ class Viewport
     sdk_initialize(*args)
     @elts = []
     @children = []
+    @parent = nil
   end
 
   #--------------------------------------------------------------------------
@@ -46,7 +47,6 @@ class Viewport
   def push_into(v)
     @parent = v
     v.children << self
-    self.rect = @parent.rect
   end
   alias :>> :push_into
 
@@ -55,12 +55,11 @@ class Viewport
   #--------------------------------------------------------------------------
   alias :rme_update_viewport :update
   def update
-    delegate if @parent
+    inclusion if @parent != nil
     rme_update_viewport
   end
 
-  def delegate
-    self.rect = @parent.rect
+  def inclusion
     p "bilou"
   end
 end
