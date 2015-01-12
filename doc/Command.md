@@ -318,6 +318,7 @@ Collection des commandes EventExtender
 *    [Command.picture_zoom_y(id, zoom, *duration, *wait_flag)](#commandpicture_zoom_yid-zoom-duration-wait_flag)
 *    [Command.pictures_clear](#commandpictures_clear)
 *    [Command.pictures_collide?(id, id2)](#commandpictures_collideid-id2)
+*    [Command.pictures_perfect_collide?(idA, idB)](#commandpictures_perfect_collideida-idb)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#commandpixel_in_pictureid-x-y-precise)
 *    [Command.pixels_between(idA, idB)](#commandpixels_betweenida-idb)
 *    [Command.play_time](#commandplay_time)
@@ -4875,6 +4876,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `id2`|`Fixnum`|ID de l'autre image  
+
+
+
+
+
+
+##### Command.pictures_perfect_collide?(idA, idB)
+
+> Vérifie la collision entre deux images au pixel près. ATTENTION, CETTE COMMANDE LAG ENORMEMENT !IL EST DECONSEILLE DE L'UTILISER !
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de la première image  
+`idB`|`Fixnum`|ID de la seconde image  
 
 
 
