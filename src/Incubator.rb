@@ -10,6 +10,100 @@ Implémentation des évènements communs dans le système de combat
 =end
 
 #==============================================================================
+# ** Viewport
+#------------------------------------------------------------------------------
+#  Used when displaying sprites on one portion of the screen
+#==============================================================================
+
+class Viewport
+  #--------------------------------------------------------------------------
+  # * Public instances variables
+  #--------------------------------------------------------------------------
+  attr_accessor :children
+  attr_accessor :parent
+
+  #--------------------------------------------------------------------------
+  # * Object initialize
+  #--------------------------------------------------------------------------
+  def initialize(*args)
+    sdk_initialize(*args)
+    @elts = []
+    @children = []
+    @parent = nil
+  end
+
+  #--------------------------------------------------------------------------
+  # * pushes another viewport in self
+  #--------------------------------------------------------------------------
+  def push(v)
+    @children << (v)
+    v.parent = self
+  end
+  alias :<< :push
+
+  #--------------------------------------------------------------------------
+  # * pushes self in another viewport
+  #--------------------------------------------------------------------------
+  def push_into(v)
+    @parent = v
+    v.children << self
+  end
+  alias :>> :push_into
+
+  #--------------------------------------------------------------------------
+  # * Update
+  #--------------------------------------------------------------------------
+  alias :rme_update_viewport :update
+  def update
+    inclusion if @parent != nil
+    rme_update_viewport
+  end
+
+  def inclusion
+    p "bilou"
+  end
+end
+
+#==============================================================================
+# ** Bilou
+#------------------------------------------------------------------------------
+#  Experimental
+#==============================================================================
+
+class Bilou
+
+  attr_accessor :sprite
+  attr_accessor :viewport
+  attr_accessor :draggable
+
+  def initialize(x,y,w,h,c,draggable=true)
+    @draggable = draggable
+    @dragging = false
+    @viewport = Viewport.new(x,y,w,h)
+    @sprite = Sprite.new
+    @sprite.bitmap = Bitmap.new(w,h)
+    @sprite.bitmap.fill_rect(0,0,w,h,c)
+    @sprite.viewport = @viewport
+  end
+
+  def update
+    return unless @draggable
+    if Mouse.dragging?
+      if @dragging
+        @viewport.x = @x_start_drag + Mouse.drag.ox
+        @viewport.y = @y_start_drag + Mouse.drag.oy
+      elsif @sprite.in?(Mouse.drag.start)
+        @x_start_drag = @viewport.x
+        @y_start_drag = @viewport.y
+        @dragging = true
+      end
+    else
+      @dragging = false
+    end
+  end
+end
+
+#==============================================================================
 # ** RPG::CommonEvent
 #------------------------------------------------------------------------------
 #  The data class for common events.
