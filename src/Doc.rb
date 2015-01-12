@@ -649,6 +649,10 @@ module Command
 
   link_class_documentation "Collection des commandes EventExtender"
 
+  add_internals :enemy, :troop, :monster_battler_dimension, :distance_between
+  add_internals :type_equip, :sys, :spriteset, :sprite_picture, :screen, :picture
+  add_internals :scene, :event, :method_missing, :pictures
+
   link_method_documentation "Command.max", 
                         "Renvoie la plus grande des deux valeurs A, B",
                         {
@@ -3569,5 +3573,5 @@ end
 if $TEST
   DocGenerator.markdown("../doc") 
   DocGenerator.html("../doc/HTML") 
-  DocGenerator::Checker.run("../doc_report.csv")
+  DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb")
 end

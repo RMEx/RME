@@ -1,20 +1,14 @@
 Report,
-# Commandes documentées,424/440
+# Commandes documentées,424/433
 ,
 # Commandes non documentées,# Suggestion
-enemy,Aucune suggestion
-troop,Aucune suggestion
-monster_battler_dimension,Aucune suggestion
-distance_between,Aucune suggestion
-type_equip,Aucune suggestion
-sys,Aucune suggestion
-spriteset,Aucune suggestion
-sprite_picture,Aucune suggestion
+time_year,Aucune suggestion
+time_month,Aucune suggestion
+time_day,Aucune suggestion
+time_hour,Aucune suggestion
+time_min,Aucune suggestion
+time_sec,Aucune suggestion
 pictures_perfect_collide?,Aucune suggestion
-screen,Aucune suggestion
-pictures,Aucune suggestion
-scene,Aucune suggestion
-event,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,
