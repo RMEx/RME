@@ -414,24 +414,29 @@ module DocGenerator
       # *  Process EE report
       #--------------------------------------------------------------------------
       def ee_report(ee)
-        g = "Command\tME\tEE\t\tRME_call\tEE_call\n"
+        g = "RM\tEE\n"
         eecmd = EE4::Command_Description.singleton_methods
         total = eecmd + Checker.commands
-        p eecmd
         total = total.uniq.sort.collect do |m|
-          a = Checker.commands.include?(m) ? "X" : "-"
-          b = eecmd.include?(m) ? "X" : "-"
           rme_call = "-"
           ee_call = "-"
           if eecmd.include?(m)
             ee_call = "#{m}" 
             h = EE4::Command_Description.send(m)
             if h[:args] && h[:args].length > 0 
-              k = h[:args].collect{|a| ((a[:default]) ? "*" : "") + a[:name].downcase.gsub(' ', '_')}
+              k = h[:args].collect{|a| ((a[:default]) ? "*" : "") + a[:name].downcase[/^\w*/]}
               ee_call += "(" +k.join(",")+")"
             end
           end
-          "#{m}\t#{a}\t#{b}\t\t#{rme_call}\t#{ee_call}"
+          if Checker.commands.include?(m)
+            rme_call = "#{m}"
+            h = Command.method(m).parameters
+            if h.length > 0
+              k = h.collect{|k| ((k[0] == :req) ? "" : "*") + k[1].to_s}
+              rme_call += "(" +k.join(",")+")"
+            end
+          end
+          "#{rme_call}\t#{ee_call}"
         end
         g += total.join("\n")
         FileTools.write(ee, g)
