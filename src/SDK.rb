@@ -1317,7 +1317,7 @@ module Generative
     #--------------------------------------------------------------------------
     # * Rect accessor 
     #--------------------------------------------------------------------------
-    def rect 
+    def rect
       return Rect.new(0,0,0,0) unless self.bitmap 
       tx, ty = self.x, self.y
       if viewport
@@ -1373,71 +1373,6 @@ module Kernel
   include Generative::CommandAPI
   extend Generative::CommandAPI
 end
-
-#==============================================================================
-# ** Viewport
-#------------------------------------------------------------------------------
-#  Used when displaying sprites on one portion of the screen
-#==============================================================================
-
-class Viewport
-  #--------------------------------------------------------------------------
-  # * alias
-  #--------------------------------------------------------------------------
-  alias_method :sdk_initialize, :initialize
-  #--------------------------------------------------------------------------
-  # * Public instances variables
-  #--------------------------------------------------------------------------
-  attr_accessor :elts
-  [
-    :in?,
-    :hover?,
-    :click?, 
-    :press?, 
-    :trigger?, 
-    :repeat?, 
-    :release?, 
-    :mouse_x,
-    :mouse_y
-  ].each{|m| delegate :rect, m}
-  delegate_accessor :rect, :x 
-  delegate_accessor :rect, :y
-  delegate_accessor :rect, :width
-  delegate_accessor :rect, :height
-
-  #--------------------------------------------------------------------------
-  # * Object initialize
-  #--------------------------------------------------------------------------
-  def initialize(*args)
-    sdk_initialize(*args)
-    @elts = []
-  end
-
-  #--------------------------------------------------------------------------
-  # * append Sprites
-  #--------------------------------------------------------------------------
-  def append(s)
-    @elts << (s)
-  end
-
-  #--------------------------------------------------------------------------
-  # * Calcul height space
-  #--------------------------------------------------------------------------
-  def calc_height
-    return rect.height if @elts.empty?
-    v = @elts.max{|a, b| (a.y + a.rect.height) <=> (b.y + b.rect.height)}
-    [(v.y+v.rect.height), rect.height].max
-  end
-
-  #--------------------------------------------------------------------------
-  # * Calcul height space
-  #--------------------------------------------------------------------------
-  def calc_width
-    return rect.width if @elts.empty?
-    v = @elts.max{|a, b| (a.x + a.rect.width) <=> (b.x + b.rect.width)}
-    [(v.x+v.rect.width), rect.width].max
-  end
-end 
 
 #==============================================================================
 # ** Sprite

@@ -15,21 +15,72 @@ Implémentation des évènements communs dans le système de combat
 #  Used when displaying sprites on one portion of the screen
 #==============================================================================
 
+#==============================================================================
+# ** Viewport
+#------------------------------------------------------------------------------
+#  Used when displaying sprites on one portion of the screen
+#==============================================================================
+
 class Viewport
+  #--------------------------------------------------------------------------
+  # * alias
+  #--------------------------------------------------------------------------
+  alias_method :sdk_initialize, :initialize
   #--------------------------------------------------------------------------
   # * Public instances variables
   #--------------------------------------------------------------------------
+  attr_accessor :elts
   attr_accessor :children
   attr_accessor :parent
+  [
+    :in?,
+    :hover?,
+    :click?, 
+    :press?, 
+    :trigger?, 
+    :repeat?, 
+    :release?, 
+    :mouse_x,
+    :mouse_y
+  ].each{|m| delegate :rect, m}
+  delegate_accessor :rect, :x 
+  delegate_accessor :rect, :y
+  delegate_accessor :rect, :width
+  delegate_accessor :rect, :height
 
   #--------------------------------------------------------------------------
   # * Object initialize
   #--------------------------------------------------------------------------
   def initialize(*args)
     sdk_initialize(*args)
-    @elts = []
     @children = []
     @parent = nil
+    @elts = []
+  end
+
+  #--------------------------------------------------------------------------
+  # * append Sprites
+  #--------------------------------------------------------------------------
+  def append(s)
+    @elts << (s)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Calcul height space
+  #--------------------------------------------------------------------------
+  def calc_height
+    return rect.height if @elts.empty?
+    v = @elts.max{|a, b| (a.y + a.rect.height) <=> (b.y + b.rect.height)}
+    [(v.y+v.rect.height), rect.height].max
+  end
+
+  #--------------------------------------------------------------------------
+  # * Calcul height space
+  #--------------------------------------------------------------------------
+  def calc_width
+    return rect.width if @elts.empty?
+    v = @elts.max{|a, b| (a.x + a.rect.width) <=> (b.x + b.rect.width)}
+    [(v.x+v.rect.width), rect.width].max
   end
 
   #--------------------------------------------------------------------------
@@ -50,16 +101,13 @@ class Viewport
   end
   alias :>> :push_into
 
-  #--------------------------------------------------------------------------
-  # * Update
-  #--------------------------------------------------------------------------
-  alias :rme_update_viewport :update
-  def update
-    inclusion if @parent != nil
-    rme_update_viewport
+  def x=(v)
+    rect.x = v
+    update_rect_from_parent if @parent != nil
+    @children.each{|c| c.update_rect_from_parent}
   end
 
-  def inclusion
+  def update_rect_from_parent
     p "bilou"
   end
 end
