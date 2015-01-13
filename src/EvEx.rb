@@ -1858,6 +1858,7 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
+  def me; @event_id; end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
