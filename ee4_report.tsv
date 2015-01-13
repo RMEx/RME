@@ -340,6 +340,7 @@ parallax_zoom_y(id,v,*duration,*wf)	parallax_zoom_y(id,zoom)
 parallaxes_clear	-
 percent(value,max)	percent(valeur1,valeur2)
 pi	-
+pick_random(*args)	-
 picture_angle(id,*angle)	picture_angle(id,angle)
 picture_blend(id,blend)	picture_blend(id,*mode)
 -	picture_detach(id)

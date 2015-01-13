@@ -15,6 +15,7 @@ Commandes standards
 *    [max(a, b)](#maxa-b)
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
+*    [pick_random(*elts)](#pick_randomelts)
 *    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
 *    [random_combination(len, *keys)](#random_combinationlen-keys)
@@ -117,6 +118,16 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
+##### pick_random(*elts)
+
+> Renvoi un élément au hasard du tableau (ou de la liste d'argument)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*elts`|`ArgsList`|éléments dans lequel piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
+
+
 ##### qte(key, time, *strict)
 
 > Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
@@ -142,7 +153,7 @@ Commandes standards
 
 ##### random_combination(len, *keys)
 
-> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGH) )
+> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )
 
   
 > Nom|Type|Description  

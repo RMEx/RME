@@ -79,6 +79,13 @@ module RMECommands
     Fiber.yield while(!Keyboard.release?(key))
   end
 
+  def pick_random(*args)
+    if args.length == 1 && args[0].is_a?(Array)
+      return args[0][Kernel.rand(args[0].length)] 
+    end
+    args[Kernel.rand(args.length)]
+  end
+
   append_commands
   
   #==============================================================================

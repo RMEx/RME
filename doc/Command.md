@@ -301,6 +301,7 @@ Collection des commandes EventExtender
 *    [Command.parallaxes_clear](#commandparallaxes_clear)
 *    [Command.percent(value, max)](#commandpercentvalue-max)
 *    [Command.pi](#commandpi)
+*    [Command.pick_random(*elts)](#commandpick_randomelts)
 *    [Command.picture_angle(id, angle)](#commandpicture_angleid-angle)
 *    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
@@ -4614,6 +4615,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.pick_random(*elts)
+
+> Renvoi un élément au hasard du tableau (ou de la liste d'argument)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*elts`|`ArgsList`|éléments dans lequel piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
+
+
+
+
+
+
 ##### Command.picture_angle(id, angle)
 
 > Change l'angle de l'image
@@ -5214,7 +5229,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.random_combination(len, *keys)
 
-> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGH) )
+> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )
 
   
 > Nom|Type|Description  
