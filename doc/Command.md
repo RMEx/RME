@@ -157,6 +157,7 @@ Collection des commandes EventExtender
 *    [Command.event_direction(id)](#commandevent_directionid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
+*    [Command.event_name(id)](#commandevent_nameid)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
 *    [Command.event_screen_x(id)](#commandevent_screen_xid)
@@ -2566,6 +2567,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 `scope`|`Fixnum`|Nombre de case ou de pixels  
 `*metric`|`Fixnum`|par défaut :square, pour en case, :pixels pour en pixels  
+
+
+
+
+
+
+##### Command.event_name(id)
+
+> Renvoi le nom d'un évènement, renvoi nil s' il s'agit du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
 
 

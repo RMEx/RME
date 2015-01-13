@@ -748,6 +748,12 @@ class Game_CharacterBase
     rm_extender_update
     update_eHandler
   end
+  #--------------------------------------------------------------------------
+  # * Event name
+  #--------------------------------------------------------------------------
+  def name 
+    nil
+  end
 end
 
 #==============================================================================
@@ -1778,6 +1784,12 @@ class Game_Event
       return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
     end
     return false
+  end
+  #--------------------------------------------------------------------------
+  # * Get event name
+  #--------------------------------------------------------------------------
+  def name
+    @event.name
   end
 end
 

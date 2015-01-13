@@ -964,6 +964,7 @@ module RMECommands
   #==============================================================================
 
   module Events
+    def event_name(id); event(id).name; end
     def event_x(id); event(id).x; end
     def event_y(id); event(id).y; end
     def event_screen_x(id); event(id).screen_x; end

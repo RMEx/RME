@@ -162,6 +162,7 @@ event_collide?(ev1,ev2)	-
 event_direction(id)	event_direction(id)
 event_in_screen?(id)	event_in_screen?(id)
 event_look_at?(ev,to,scope,*metric)	-
+event_name(id)	-
 event_pixel_x(id)	event_pixel_x(id)
 event_pixel_y(id)	event_pixel_y(id)
 event_screen_x(id)	event_screen_x(id)

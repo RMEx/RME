@@ -9,6 +9,7 @@ Commandes standards
 ##Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
+*    [event_name(id)](#event_nameid)
 *    [fadeout(*time)](#fadeouttime)
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
@@ -52,6 +53,16 @@ Commandes standards
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+
+
+##### event_name(id)
+
+> Renvoi le nom d'un évènement, renvoi nil s' il s'agit du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
 
 ##### fadeout(*time)
