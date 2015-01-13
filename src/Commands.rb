@@ -62,7 +62,11 @@ module RMECommands
       end
       i += 1
     end
-    return flag
+    return false
+  end
+
+  def random_combination(len, *keys)
+    Array.new(len) {keys[Kernel.rand(keys.length)]}
   end
 
   def wait_trigger(key)

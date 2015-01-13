@@ -341,6 +341,7 @@ Collection des commandes EventExtender
 *    [Command.player_y](#commandplayer_y)
 *    [Command.qte(key, time, *strict)](#commandqtekey-time-strict)
 *    [Command.random(min, max)](#commandrandommin-max)
+*    [Command.random_combination(len, *keys)](#commandrandom_combinationlen-keys)
 *    [Command.random_figures(x)](#commandrandom_figuresx)
 *    [Command.region_id(x, y)](#commandregion_idx-y)
 *    [Command.rm_kill](#commandrm_kill)
@@ -5205,6 +5206,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `min`|`Fixnum`|Borne minimale  
 `max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)  
+
+
+
+
+
+
+##### Command.random_combination(len, *keys)
+
+> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGH) )
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`len`|`Fixnum`|Args description  
+`*keys`|`Argslist`|Liste des touches pouvant constituer la combinaison  
 
 
 

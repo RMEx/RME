@@ -17,6 +17,7 @@ Commandes standards
 *    [percent(value, max)](#percentvalue-max)
 *    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
+*    [random_combination(len, *keys)](#random_combinationlen-keys)
 *    [random_figures(x)](#random_figuresx)
 *    [rm_kill](#rm_kill)
 *    [session_username](#session_username)
@@ -137,6 +138,17 @@ Commandes standards
 --- | --- | ---  
 `min`|`Fixnum`|Borne minimale  
 `max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)  
+
+
+##### random_combination(len, *keys)
+
+> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGH) )
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`len`|`Fixnum`|Args description  
+`*keys`|`Argslist`|Liste des touches pouvant constituer la combinaison  
 
 
 ##### random_figures(x)
