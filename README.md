@@ -8,4 +8,4 @@ Il est le fruit du travail de plusieurs personnes et toute contribution est la b
 
 ##[Manuel d'utilisation (Wiki)](https://github.com/funkywork/RME/wiki)
 ##[Documentation](/doc/README.md)
-##[Contribuer au projet](https://github.com/funkywork/RME/wiki/Contribuer-au-projet) :+1:
+##[Contribuer au projet](https://github.com/funkywork/RME/wiki/Contribuer-au-projet)
