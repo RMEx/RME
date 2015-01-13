@@ -286,6 +286,12 @@ module Kernel
     result
   end
   alias :e :events
+  def once_event(&block)
+    $game_map.each_events.find(&block)
+  end
+  def once_random_event(&block)
+    $game_map.each_events.dup.shuffle.find(&block)
+  end
 end
 
 #==============================================================================
