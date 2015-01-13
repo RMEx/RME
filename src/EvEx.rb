@@ -1945,5 +1945,30 @@ module DataManager
       $game_labels = contents[:labels]
       $game_self_labels = contents[:self_labels]
     end
+    #--------------------------------------------------------------------------
+    # * Export Data
+    #--------------------------------------------------------------------------
+    def export(index)
+      datas = Hash.new
+      File.open(make_filename(index), "rb") do |file|
+        Marshal.load(file)
+        contents = Marshal.load(file)
+        game_system             = contents[:system]
+        game_timer              = contents[:timer]
+        game_message            = contents[:message]
+        datas[:switches]        = contents[:switches]
+        datas[:variables]       = contents[:variables]
+        datas[:self_switches]   = contents[:self_switches]
+        game_actors             = contents[:actors]
+        game_party              = contents[:party]
+        game_troop              = contents[:troop]
+        game_map                = contents[:map]
+        game_player             = contents[:player]
+        datas[:self_vars]       = contents[:self_vars]
+        datas[:labels]          = contents[:labels]
+        datas[:self_labels]     = contents[:self_labels]
+      end
+      return datas
+    end
   end
 end

@@ -7,6 +7,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Collection des commandes EventExtender
 
 ##Liste des méthodes
+*    [Command.a_save_exists?](#commanda_save_exists)
 *    [Command.acos(x)](#commandacosx)
 *    [Command.acosh(x)](#commandacoshx)
 *    [Command.active_actor](#commandactive_actor)
@@ -108,6 +109,8 @@ Collection des commandes EventExtender
 *    [Command.atan2(x, y)](#commandatan2x-y)
 *    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
+*    [Command.call_load_screen](#commandcall_load_screen)
+*    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.caps_lock?](#commandcaps_lock)
 *    [Command.click_time(key)](#commandclick_timekey)
 *    [Command.color(red, green, blue, *alpha)](#commandcolorred-green-blue-alpha)
@@ -160,6 +163,7 @@ Collection des commandes EventExtender
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
+*    [Command.fadeout(*time)](#commandfadeouttime)
 *    [Command.fresh_event_id](#commandfresh_event_id)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
 *    [Command.game_title](#commandgame_title)
@@ -173,6 +177,9 @@ Collection des commandes EventExtender
 *    [Command.has_weapon?(id, *include_equipement)](#commandhas_weaponid-include_equipement)
 *    [Command.hypot(x, y)](#commandhypotx-y)
 *    [Command.id_at(x, y)](#commandid_atx-y)
+*    [Command.import_label(index, idlabel)](#commandimport_labelindex-idlabel)
+*    [Command.import_switch(index, idswitch)](#commandimport_switchindex-idswitch)
+*    [Command.import_variable(index, idvar)](#commandimport_variableindex-idvar)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#commandinclude_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#commandinvoke_eventmap_id-event_id-new_id-x-y)
 *    [Command.is_key_item?(id)](#commandis_key_itemid)
@@ -228,6 +235,7 @@ Collection des commandes EventExtender
 *    [Command.keyboard_current_char](#commandkeyboard_current_char)
 *    [Command.keyboard_current_digit](#commandkeyboard_current_digit)
 *    [Command.length(array)](#commandlengtharray)
+*    [Command.load_game(index, *time)](#commandload_gameindex-time)
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
 *    [Command.map_id](#commandmap_id)
 *    [Command.map_name](#commandmap_name)
@@ -335,7 +343,15 @@ Collection des commandes EventExtender
 *    [Command.random(min, max)](#commandrandommin-max)
 *    [Command.random_figures(x)](#commandrandom_figuresx)
 *    [Command.region_id(x, y)](#commandregion_idx-y)
+*    [Command.rm_kill](#commandrm_kill)
 *    [Command.save_count](#commandsave_count)
+*    [Command.save_delete(index)](#commandsave_deleteindex)
+*    [Command.save_exists?(index)](#commandsave_existsindex)
+*    [Command.save_game(index)](#commandsave_gameindex)
+*    [Command.scene_call(scene)](#commandscene_callscene)
+*    [Command.scene_clear_history](#commandscene_clear_history)
+*    [Command.scene_goto(scene)](#commandscene_gotoscene)
+*    [Command.scene_return](#commandscene_return)
 *    [Command.scroll_lock?](#commandscroll_lock)
 *    [Command.session_username](#commandsession_username)
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
@@ -390,6 +406,7 @@ Collection des commandes EventExtender
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
 *    [Command.start_map_id](#commandstart_map_id)
+*    [Command.start_new_game](#commandstart_new_game)
 *    [Command.start_x](#commandstart_x)
 *    [Command.start_y](#commandstart_y)
 *    [Command.steps](#commandsteps)
@@ -452,6 +469,17 @@ Collection des commandes EventExtender
 
 
 ##Description des méthodes
+##### Command.a_save_exists?
+
+> Renvoie true si au moins une sauvegade a été faite, false sinon
+
+  
+> 
+
+
+
+
+
 ##### Command.acos(x)
 
 > Renvoie l'arc cosinus de x
@@ -1881,6 +1909,28 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.call_load_screen
+
+> Renvoi à la scene de chargement de partie
+
+  
+> 
+
+
+
+
+
+##### Command.call_title_screen
+
+> Renvoi à l'écran titre
+
+  
+> 
+
+
+
+
+
 ##### Command.caps_lock?
 
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
@@ -2604,6 +2654,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.fadeout(*time)
+
+> Fondu noir (et sonore) du jeu pendant la durée passée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*time`|`Fixnum`|Durée de fondu  
+
+
+
+
+
+
 ##### Command.fresh_event_id
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
@@ -2786,6 +2850,51 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
+##### Command.import_label(index, idlabel)
+
+> Renvoi la valeur d'un label issu d'une autre sauvegarde
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+`idlabel`|`Fixnum`|Identifiant du label  
+
+
+
+
+
+
+##### Command.import_switch(index, idswitch)
+
+> Renvoi la valeur d'un interrupteur issu d'une autre sauvegarde
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+`idswitch`|`Fixnum`|Numéro de l'interrupteur  
+
+
+
+
+
+
+##### Command.import_variable(index, idvar)
+
+> Renvoi la valeur d'une variable issue d'une autre sauvegarde
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+`idvar`|`Fixnum`|Numéro de la variable  
 
 
 
@@ -3560,6 +3669,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `array`|`Array`|Tableau dont il faut renvoyer la taille  
+
+
+
+
+
+
+##### Command.load_game(index, *time)
+
+> Charge la partie référencée par l'ID de sauvegarde donné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+`*time`|`Fixnum`|Durée du fadeout  
 
 
 
@@ -5115,9 +5239,112 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.rm_kill
+
+> Quitte le jeu... d'un coup sec... TCHAK
+
+  
+> 
+
+
+
+
+
 ##### Command.save_count
 
 > Renvoie le nombre de sauvegarde effectuées par partie
+
+  
+> 
+
+
+
+
+
+##### Command.save_delete(index)
+
+> Supprime la sauvegarde référencée par son numéro
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+
+
+
+
+
+
+##### Command.save_exists?(index)
+
+> Renvoie true si la sauvegarde référencée par son numéro existe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+
+
+
+
+
+
+##### Command.save_game(index)
+
+> Sauvegarde la partie sur la sauvegardé référencée par l'ID donné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`index`|`Fixnum`|Numéro de la sauvegarde  
+
+
+
+
+
+
+##### Command.scene_call(scene)
+
+> Appel une scene (et la place dans la pile de scene)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`scene`|`Scene`|Scene à appeler  
+
+
+
+
+
+
+##### Command.scene_clear_history
+
+> Vide la pile d'appel des scenes
+
+  
+> 
+
+
+
+
+
+##### Command.scene_goto(scene)
+
+> Appel une scene (sans la placer dans la pile de scene)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`scene`|`Scene`|Scene à appeler  
+
+
+
+
+
+
+##### Command.scene_return
+
+> Renvoi à la dernière scene dans la pile d'appel
 
   
 > 
@@ -5862,6 +6089,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.start_map_id
 
 > Renvoie l'ID de la map de départ
+
+  
+> 
+
+
+
+
+
+##### Command.start_new_game
+
+> Démarre une nouvelle partie
 
   
 > 

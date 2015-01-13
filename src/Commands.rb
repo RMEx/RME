@@ -21,6 +21,17 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Public Commands
   #--------------------------------------------------------------------------
+
+  def fadeout(time = 100)
+    RPG::BGM.fade(time)
+    RPG::BGS.fade(time)
+    RPG::ME.fade(time)
+    Graphics.fadeout(time * Graphics.frame_rate / 1000)
+    RPG::BGM.stop
+    RPG::BGS.stop
+    RPG::ME.stop
+  end
+
   def max(a, b); [a, b].max; end 
   def min(a, b); [a, b].min; end 
   def screen; Game_Screen.get; end
@@ -31,6 +42,7 @@ module RMECommands
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
+  def rm_kill; SceneManager.exit; end
 
   def wait_with(time, &block)
     time.times do 
@@ -1470,6 +1482,125 @@ module RMECommands
 
     append_commands
 
+  end
+
+  #==============================================================================
+  # ** Scene
+  #------------------------------------------------------------------------------
+  #  cmd about scene navigation
+  #==============================================================================
+
+  module Scene
+
+    #--------------------------------------------------------------------------
+    # * Go to title Screen
+    #--------------------------------------------------------------------------
+    def call_title_screen
+      SceneManager.call(Scene_Title)
+    end
+    #--------------------------------------------------------------------------
+    # * Go to Load Screen
+    #--------------------------------------------------------------------------
+    def call_load_screen
+      SceneManager.call(Scene_Load)
+    end
+
+    #--------------------------------------------------------------------------
+    # * call scene
+    #--------------------------------------------------------------------------
+    def scene_call(scene)
+      SceneManager.call(scene)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Goto scene
+    #--------------------------------------------------------------------------
+    def scene_goto(scene)
+      SceneManager.goto(scene)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Return scene
+    #--------------------------------------------------------------------------
+    def scene_return
+      SceneManager.return
+    end
+
+    #--------------------------------------------------------------------------
+    # * Clear scene history
+    #--------------------------------------------------------------------------
+    def scene_clear_history
+      SceneManager.clear
+    end
+
+
+    append_commands
+
+  end
+
+  #==============================================================================
+  # ** Save
+  #------------------------------------------------------------------------------
+  #  cmd about saves
+  #==============================================================================
+
+  module Save 
+
+    #--------------------------------------------------------------------------
+    # * Start new Game from the RMVXAce Editor
+    #--------------------------------------------------------------------------
+    def start_new_game
+      DataManager.setup_new_game
+    end
+
+    #--------------------------------------------------------------------------
+    # * Save Game
+    #--------------------------------------------------------------------------
+    def save_game(index)
+      DataManager.save_game(index - 1)
+    end 
+
+    #--------------------------------------------------------------------------
+    # * Load Game
+    #--------------------------------------------------------------------------
+    def load_game(index, time=100)
+      DataManager.load_game(index-1) 
+      fadeout(time)
+      $game_system.on_after_load
+      SceneManager.goto(Scene_Map)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Determine if save exists
+    #--------------------------------------------------------------------------
+    def a_save_exists? 
+      DataManager.save_file_exists?
+    end
+
+    #--------------------------------------------------------------------------
+    # * Determine if save exists
+    #--------------------------------------------------------------------------
+    def save_exists?(index)
+      File.exists?(DataManager.make_filename(index-1))
+    end
+
+    #--------------------------------------------------------------------------
+    # * Delete save
+    #--------------------------------------------------------------------------
+    def save_delete(index)
+      DataManager.delete_save_file(index-1)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Import_data
+    #--------------------------------------------------------------------------
+    def import_variable(ids, idvar); DataManager.export(ids-1)[:variables][idvar]; end
+    def import_switch(ids, idswitch); DataManager.export(ids-1)[:switches][idswitch]; end
+    def import_label(ids, idlabel); DataManager.export(ids-1)[:labels][idlabel]; end
+
+    
+
+    append_commands
   end
 
 end

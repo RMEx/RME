@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='__command_list.html'>Index des commandes</a> > <strong>Commande de manipulation des sauvegardes</strong><hr /><h1>Commande de manipulation des sauvegardes</h1>
+Commandes pour gerer et naviguer entre les sauvegardes<br /><br /><h2>Liste des commandes<ul></h2>
+<li><a href='#a_save_exists'>a_save_exists?</a></li>
+<li><a href='#import_labelindex-idlabel'>import_label(index, idlabel)</a></li>
+<li><a href='#import_switchindex-idswitch'>import_switch(index, idswitch)</a></li>
+<li><a href='#import_variableindex-idvar'>import_variable(index, idvar)</a></li>
+<li><a href='#load_gameindex-time'>load_game(index, *time)</a></li>
+<li><a href='#save_deleteindex'>save_delete(index)</a></li>
+<li><a href='#save_existsindex'>save_exists?(index)</a></li>
+<li><a href='#save_gameindex'>save_game(index)</a></li>
+<li><a href='#start_new_game'>start_new_game</a></li>
+</ul><h2>Description des commandes</h2>
+<strong name='a_save_exists' id='a_save_exists'>a_save_exists?</strong><br /><br /><blockquote>Renvoie true si au moins une sauvegade a été faite, false sinon</blockquote>  
+<blockquote></table></blockquote><strong name='import_labelindex-idlabel' id='import_labelindex-idlabel'>import_label(index, idlabel)</strong><br /><br /><blockquote>Renvoi la valeur d'un label issu d'une autre sauvegarde</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr><tr><td><code>idlabel</code></td><td><code>Fixnum</code></td><td>Identifiant du label</td></tr></table></blockquote><strong name='import_switchindex-idswitch' id='import_switchindex-idswitch'>import_switch(index, idswitch)</strong><br /><br /><blockquote>Renvoi la valeur d'un interrupteur issu d'une autre sauvegarde</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr><tr><td><code>idswitch</code></td><td><code>Fixnum</code></td><td>Numéro de l'interrupteur</td></tr></table></blockquote><strong name='import_variableindex-idvar' id='import_variableindex-idvar'>import_variable(index, idvar)</strong><br /><br /><blockquote>Renvoi la valeur d'une variable issue d'une autre sauvegarde</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr><tr><td><code>idvar</code></td><td><code>Fixnum</code></td><td>Numéro de la variable</td></tr></table></blockquote><strong name='load_gameindex-time' id='load_gameindex-time'>load_game(index, *time)</strong><br /><br /><blockquote>Charge la partie référencée par l'ID de sauvegarde donné</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr><tr><td><code>*time</code></td><td><code>Fixnum</code></td><td>Durée du fadeout</td></tr></table></blockquote><strong name='save_deleteindex' id='save_deleteindex'>save_delete(index)</strong><br /><br /><blockquote>Supprime la sauvegarde référencée par son numéro</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr></table></blockquote><strong name='save_existsindex' id='save_existsindex'>save_exists?(index)</strong><br /><br /><blockquote>Renvoie true si la sauvegarde référencée par son numéro existe</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr></table></blockquote><strong name='save_gameindex' id='save_gameindex'>save_game(index)</strong><br /><br /><blockquote>Sauvegarde la partie sur la sauvegardé référencée par l'ID donné</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Numéro de la sauvegarde</td></tr></table></blockquote><strong name='start_new_game' id='start_new_game'>start_new_game</strong><br /><br /><blockquote>Démarre une nouvelle partie</blockquote>  
+<blockquote></table></blockquote></body></html>

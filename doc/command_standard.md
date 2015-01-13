@@ -9,6 +9,7 @@ Commandes standards
 ##Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
+*    [fadeout(*time)](#fadeouttime)
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
@@ -17,6 +18,7 @@ Commandes standards
 *    [qte(key, time)](#qtekey-time)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
+*    [rm_kill](#rm_kill)
 *    [session_username](#session_username)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [wait(duration)](#waitduration)
@@ -48,6 +50,16 @@ Commandes standards
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+
+
+##### fadeout(*time)
+
+> Fondu noir (et sonore) du jeu pendant la durée passée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*time`|`Fixnum`|Durée de fondu  
 
 
 ##### get(array, index)
@@ -135,6 +147,13 @@ Commandes standards
 --- | --- | ---  
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
+
+##### rm_kill
+
+> Quitte le jeu... d'un coup sec... TCHAK
+
+  
+> 
 
 ##### session_username
 
