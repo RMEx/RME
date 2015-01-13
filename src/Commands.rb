@@ -86,6 +86,9 @@ module RMECommands
     args[Kernel.rand(args.length)]
   end
 
+  # Fix Username
+  alias_method :windows_username, :session_username
+
   append_commands
   
   #==============================================================================
@@ -646,6 +649,7 @@ module RMECommands
     def key_current_rgss(*m); Keyboard.rgss_current_key(*m);  end
     def keyboard_current_digit; Keyboard.current_digit;         end
     def keyboard_current_char;  Keyboard.current_char;          end
+    alias_method :key_number, :keyboard_current_digit
     #--------------------------------------------------------------------------
     # * Mouse Support
     #--------------------------------------------------------------------------
@@ -953,6 +957,12 @@ module RMECommands
     def actor_skills(id); $game_actors[id].skills.map{|s| s.id}; end
     def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
     def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
+
+    # Fix for the Event Extender 4 compatibilities!
+    alias_method :actor_experience, :actor_exp
+    alias_method :actor_exp_rate, :actor_experience_rate
+    alias_method :actor_magic, :actor_magic_attack
+
     append_commands
   end
 
@@ -1010,7 +1020,7 @@ module RMECommands
       end
       return x_axis && y_axis && (distance_between(metric, ev, to)<=scope)
     end
-    def event_collide?(ev1, ev2)
+    def events_collide?(ev1, ev2)
       event1 = event(ev1)
       event2 = event(ev2)
       flag = case event1.direction
@@ -1031,6 +1041,9 @@ module RMECommands
     def player_in_screen?
       event_in_screen?(0)
     end
+
+    # Fix for EE4 compatibilities
+    alias_method :collide?, :events_collide?
 
     append_commands
   end
@@ -1613,7 +1626,8 @@ module RMECommands
     def import_switch(ids, idswitch); DataManager.export(ids-1)[:switches][idswitch]; end
     def import_label(ids, idlabel); DataManager.export(ids-1)[:labels][idlabel]; end
 
-    
+    # Fix for EE4 compatibilities
+    alias_method :delete_save, :save_delete
 
     append_commands
   end

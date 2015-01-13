@@ -28,7 +28,8 @@ actor_equip_weapon(id,wp)	-
 actor_evasion_rate(id)	-
 actor_exp(id)	-
 actor_exp_for_next_level(id)	-
--	actor_experience(id)
+actor_exp_rate(id)	-
+actor_experience(id)	actor_experience(id)
 actor_experience_rate(id)	-
 actor_face_index(id)	-
 actor_face_name(id)	-
@@ -52,7 +53,7 @@ actor_level_down(id)	-
 actor_level_max(id)	-
 actor_level_up(id)	-
 actor_luck(id)	actor_luck(id)
--	actor_magic(id)
+actor_magic(id)	actor_magic(id)
 actor_magic_attack(id)	-
 actor_magic_defense(id)	actor_magic_defense(id)
 actor_magical_damage_rate(id)	-
@@ -110,7 +111,7 @@ call_load_screen	-
 call_title_screen	-
 caps_lock?	caps_lock?
 click_time(k)	-
--	collide?(id,id)
+collide?(ev1,ev2)	collide?(id,id)
 color(r,v,b,*a)	color(rouge,vert,bleu,*alpha)
 cos(x)	-
 cosh(x)	-
@@ -123,7 +124,7 @@ ctrl?(*k)	-
 currency	-
 current_enemies	-
 current_troop	-
--	delete_save(num)
+delete_save(index)	delete_save(num)
 enemy_agility(id)	-
 enemy_attack(id)	-
 enemy_counter_attack_rate(id)	-
@@ -158,7 +159,6 @@ enemy_tp(id)	-
 enemy_tp_charge_rate(id)	-
 enemy_tp_regeneration_rate(id)	-
 -	erase_textfield(champ)
-event_collide?(ev1,ev2)	-
 event_direction(id)	event_direction(id)
 event_in_screen?(id)	event_in_screen?(id)
 event_look_at?(ev,to,scope,*metric)	-
@@ -169,6 +169,7 @@ event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
 event_x(id)	event_x(id)
 event_y(id)	event_y(id)
+events_collide?(ev1,ev2)	-
 fadeout(*time)	-
 fresh_event_id	-
 gain_gold(amount)	-
@@ -235,7 +236,7 @@ item_tp_gain(i)	-
 -	key_char?
 key_current(*m)	-
 key_current_rgss(*m)	-
--	key_number
+key_number	key_number
 key_press?(k)	key_press?(touche)
 key_release?(k)	key_release?(touche)
 key_repeat?(k)	key_repeat?(touche)
@@ -536,4 +537,4 @@ weapon_name(id)	weapon_name(id)
 weapon_note(id)	-
 weapon_price(id)	-
 weapon_type(id)	-
--	windows_username
+windows_username	windows_username
