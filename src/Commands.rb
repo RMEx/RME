@@ -51,13 +51,16 @@ module RMECommands
     end
   end
 
-  def qte(key, time)
-    flag = false
+  def qte(key, time, strict = true)
+    i = 0
     wait_with(time) do 
-      if Keyboard.press?(key)
-        flag = true
-        break
+      unless strict
+        return true if Keyboard.trigger?(key) && i > 6
+      else
+        c = Keyboard.rgss_current_key(:trigger?)
+        return c == key if c && i > 6
       end
+      i += 1
     end
     return flag
   end

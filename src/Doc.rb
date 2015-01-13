@@ -3692,6 +3692,7 @@ link_method_documentation 'Command.qte',
   {
     :key => ["Touche qu'il faut presser avant la fin", :Symbol],
     :time => ["Durée", :Fixnum],
+    :"*strict" => ["Difficulté, si elle vaut true, aucune erreur admise, sinon erreur admises. Par défaut vaut true", :Boolean]
 
   }, true # Maybe changed
 register_command :standard, 'Command.qte' 

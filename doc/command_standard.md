@@ -15,7 +15,7 @@ Commandes standards
 *    [max(a, b)](#maxa-b)
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
-*    [qte(key, time)](#qtekey-time)
+*    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
 *    [random_figures(x)](#random_figuresx)
 *    [rm_kill](#rm_kill)
@@ -116,7 +116,7 @@ Commandes standards
 `max`|`Fixnum`|Valeur maximum  
 
 
-##### qte(key, time)
+##### qte(key, time, *strict)
 
 > Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
 
@@ -125,6 +125,7 @@ Commandes standards
 --- | --- | ---  
 `key`|`Symbol`|Touche qu'il faut presser avant la fin  
 `time`|`Fixnum`|Durée  
+`*strict`|`Boolean`|Difficulté, si elle vaut true, aucune erreur admise, sinon erreur admises. Par défaut vaut true  
 
 
 ##### random(min, max)

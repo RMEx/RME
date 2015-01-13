@@ -383,7 +383,7 @@ player_screen_y	player_screen_y
 player_x	player_x
 player_y	player_y
 -	point_in_mouse_rect?(x,y)
-qte(key,time)	-
+qte(key,time,*strict)	-
 random(*min,max)	random(minimum,maximum)
 random_figures(*x)	-
 region_id(x,y)	region_id(x,y)

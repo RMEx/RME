@@ -339,7 +339,7 @@ Collection des commandes EventExtender
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_x](#commandplayer_x)
 *    [Command.player_y](#commandplayer_y)
-*    [Command.qte(key, time)](#commandqtekey-time)
+*    [Command.qte(key, time, *strict)](#commandqtekey-time-strict)
 *    [Command.random(min, max)](#commandrandommin-max)
 *    [Command.random_figures(x)](#commandrandom_figuresx)
 *    [Command.region_id(x, y)](#commandregion_idx-y)
@@ -5180,7 +5180,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.qte(key, time)
+##### Command.qte(key, time, *strict)
 
 > Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
 
@@ -5189,6 +5189,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `key`|`Symbol`|Touche qu'il faut presser avant la fin  
 `time`|`Fixnum`|Durée  
+`*strict`|`Boolean`|Difficulté, si elle vaut true, aucune erreur admise, sinon erreur admises. Par défaut vaut true  
 
 
 
