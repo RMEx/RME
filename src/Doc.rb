@@ -657,6 +657,14 @@ module Command
   add_internals :type_equip, :sys, :spriteset, :sprite_picture, :screen, :picture
   add_internals :scene, :event, :method_missing, :pictures
 
+  # EE4 Fixture
+  add_internals :windows_username, :parallax_scrollspeed, :picture_origine
+  add_internals :picture_detach, :key_number, :key_char, :key_char?, :maj?
+  add_internals :mouse_x_square, :mouse_y_square, :show_cursor_system, :delete_save
+  add_internals :monster_attack, :monster_magic_attack, :monster_defense
+  add_internals :monster_hp, :monster_mp, :troop_member_id, :actor_experience
+  add_internals :actor_magic, :collide?, :look_at, :look_at?
+
   link_method_documentation "Command.max", 
                         "Renvoie la plus grande des deux valeurs A, B",
                         {
