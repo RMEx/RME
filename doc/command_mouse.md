@@ -8,6 +8,7 @@ Commande relatives à la gestion de la souris
 
 ##Liste des commandes
 *    [click_time(key)](#click_timekey)
+*    [cursor_system(flag)](#cursor_systemflag)
 *    [mouse_all?(method, keys)](#mouse_allmethod-keys)
 *    [mouse_any?(method, keys)](#mouse_anymethod-keys)
 *    [mouse_click?](#mouse_click)
@@ -36,6 +37,16 @@ Commande relatives à la gestion de la souris
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
+
+
+##### cursor_system(flag)
+
+> Affiche ou masque le curseur Windows sur la fenêtre de jeu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`flag`|`Boolean`|true pour visible, false pour invisible  
 
 
 ##### mouse_all?(method, keys)

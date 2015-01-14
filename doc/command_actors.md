@@ -30,7 +30,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_evasion_rate(id)](#actor_evasion_rateid)
 *    [actor_exp(id)](#actor_expid)
 *    [actor_exp_for_next_level(id)](#actor_exp_for_next_levelid)
-*    [actor_experience_rate(id)](#actor_experience_rateid)
+*    [actor_exp_rate(id)](#actor_exp_rateid)
 *    [actor_face_index(id)](#actor_face_indexid)
 *    [actor_face_name(id)](#actor_face_nameid)
 *    [actor_floor_damage_rate(id)](#actor_floor_damage_rateid)
@@ -322,7 +322,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
-##### actor_experience_rate(id)
+##### actor_exp_rate(id)
 
 > renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
 

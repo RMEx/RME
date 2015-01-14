@@ -1,22 +1,8 @@
 Report,
-# Commandes documentées,461/476
+# Commandes documentées,472/474
 ,
 # Commandes non documentées,# Suggestion
-monser_defense,Aucune suggestion
-events_collide?,Aucune suggestion
-actor_exp_rate,Aucune suggestion
-cursor_system,Aucune suggestion
-parallax_autoscroll,Aucune suggestion
-parallax_z,Aucune suggestion
-parallax_scroll,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
-mouse_hover_player?,Aucune suggestion
-mouse_click_player?,Aucune suggestion
-mouse_press_player?,Aucune suggestion
-mouse_trigger_player?,Aucune suggestion
-mouse_repeat_player?,Aucune suggestion
-mouse_release_player?,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion
-event_collide?,Peut-être faudrait-il remplacer [event_collide?] par [events_collide?]... mais je ne suis pas sur du tout...

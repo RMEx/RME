@@ -7,26 +7,33 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives aux évènements
 
 ##Liste des commandes
-*    [event_collide?(idA, idB)](#event_collideida-idb)
 *    [event_direction(id)](#event_directionid)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
+*    [event_name(id)](#event_nameid)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
 *    [event_screen_x(id)](#event_screen_xid)
 *    [event_screen_y(id)](#event_screen_yid)
 *    [event_x(id)](#event_xid)
 *    [event_y(id)](#event_yid)
+*    [events_collide?(idA, idB)](#events_collideida-idb)
 *    [fresh_event_id](#fresh_event_id)
 *    [include_page(map_id, event_id, page_id, *runnable, *context)](#include_pagemap_id-event_id-page_id-runnable-context)
 *    [invoke_event(map_id, event_id, new_id, *x, *y)](#invoke_eventmap_id-event_id-new_id-x-y)
 *    [max_event_id](#max_event_id)
 *    [mouse_click_event?(events)](#mouse_click_eventevents)
+*    [mouse_click_player?](#mouse_click_player)
 *    [mouse_hover_event?(events)](#mouse_hover_eventevents)
+*    [mouse_hover_player?](#mouse_hover_player)
 *    [mouse_press_event?(events, *key)](#mouse_press_eventevents-key)
+*    [mouse_press_player?(*key)](#mouse_press_playerkey)
 *    [mouse_release_event?(events, *key)](#mouse_release_eventevents-key)
+*    [mouse_release_player?(*key)](#mouse_release_playerkey)
 *    [mouse_repeat_event?(events, *key)](#mouse_repeat_eventevents-key)
+*    [mouse_repeat_player?(*key)](#mouse_repeat_playerkey)
 *    [mouse_trigger_event?(events, *key)](#mouse_trigger_eventevents-key)
+*    [mouse_trigger_player?(*key)](#mouse_trigger_playerkey)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_direction](#player_direction)
@@ -41,17 +48,6 @@ Commandes relatives aux évènements
 
 
 ##Description des commandes
-##### event_collide?(idA, idB)
-
-> Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
-`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
-
-
 ##### event_direction(id)
 
 > Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
@@ -83,6 +79,16 @@ Commandes relatives aux évènements
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 `scope`|`Fixnum`|Nombre de case ou de pixels  
 `*metric`|`Fixnum`|par défaut :square, pour en case, :pixels pour en pixels  
+
+
+##### event_name(id)
+
+> Renvoi le nom d'un évènement, renvoi nil s' il s'agit du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
 
 ##### event_pixel_x(id)
@@ -145,6 +151,17 @@ Commandes relatives aux évènements
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
 
+##### events_collide?(idA, idB)
+
+> Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+
+
 ##### fresh_event_id
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
@@ -197,6 +214,13 @@ Commandes relatives aux évènements
 `events`|`Selectors`|Selecteur d'évènements  
 
 
+##### mouse_click_player?
+
+> Renvoie true si la souris clique le joueur
+
+  
+> 
+
 ##### mouse_hover_event?(events)
 
 > Renvoie true si la souris survol un évènement du sélecteur passé en argument
@@ -207,6 +231,13 @@ Commandes relatives aux évènements
 `events`|`Selectors`|Selecteur d'évènements  
 
 
+##### mouse_hover_player?
+
+> Renvoie true si la souris survol le joueur
+
+  
+> 
+
 ##### mouse_press_event?(events, *key)
 
 > Renvoie true si la souris presse un évènement du sélecteur passé en argument
@@ -215,7 +246,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+##### mouse_press_player?(*key)
+
+> Renvoie true si la souris presse en continu la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 ##### mouse_release_event?(events, *key)
@@ -226,7 +267,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+##### mouse_release_player?(*key)
+
+> Renvoie true si la souris relâche la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 ##### mouse_repeat_event?(events, *key)
@@ -237,7 +288,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+##### mouse_repeat_player?(*key)
+
+> Renvoie true si la souris appuye successivement sur la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 ##### mouse_trigger_event?(events, *key)
@@ -248,7 +309,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+##### mouse_trigger_player?(*key)
+
+> Renvoie true si la souris appuie une fois la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 ##### page_runnable?(map_id, event_id, page_id, *context)

@@ -1275,7 +1275,7 @@ module RMECommands
     # Fix for EE4
     alias_method :monster_attack, :monster_attack_power
     alias_method :monster_magic_attack, :monster_magic_attack_power
-    alias_method :monser_defense, :monster_defense_power
+    alias_method :monster_defense, :monster_defense_power
     alias_method :monster_hp, :monster_max_hp
     alias_method :monster_mp, :monster_max_mp
     alias_method :troop_member_id, :troop_member

@@ -30,7 +30,6 @@ actor_exp(id)	-
 actor_exp_for_next_level(id)	-
 actor_exp_rate(id)	-
 actor_experience(id)	actor_experience(id)
-actor_experience_rate(id)	-
 actor_face_index(id)	-
 actor_face_name(id)	-
 actor_floor_damage_rate(id)	-
@@ -259,7 +258,6 @@ max(a,b)	-
 max_event_id	max_event_id
 -	message_height(nombre)
 min(a,b)	-
-monser_defense(id)	-
 monster_agility(id)	monster_agility(id)
 monster_attack(id)	monster_attack(id)
 monster_attack_power(id)	-
@@ -267,7 +265,7 @@ monster_battler_height(i)	-
 monster_battler_hue(id)	-
 monster_battler_name(id)	-
 monster_battler_width(i)	-
--	monster_defense(id)
+monster_defense(id)	monster_defense(id)
 monster_defense_power(id)	-
 monster_description(id)	-
 monster_give_exp(id)	-

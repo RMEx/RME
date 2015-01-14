@@ -35,7 +35,7 @@ Collection des commandes EventExtender
 *    [Command.actor_evasion_rate(id)](#commandactor_evasion_rateid)
 *    [Command.actor_exp(id)](#commandactor_expid)
 *    [Command.actor_exp_for_next_level(id)](#commandactor_exp_for_next_levelid)
-*    [Command.actor_experience_rate(id)](#commandactor_experience_rateid)
+*    [Command.actor_exp_rate(id)](#commandactor_exp_rateid)
 *    [Command.actor_face_index(id)](#commandactor_face_indexid)
 *    [Command.actor_face_name(id)](#commandactor_face_nameid)
 *    [Command.actor_floor_damage_rate(id)](#commandactor_floor_damage_rateid)
@@ -120,6 +120,7 @@ Collection des commandes EventExtender
 *    [Command.currency](#commandcurrency)
 *    [Command.current_enemies](#commandcurrent_enemies)
 *    [Command.current_troop](#commandcurrent_troop)
+*    [Command.cursor_system(flag)](#commandcursor_systemflag)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -153,7 +154,6 @@ Collection des commandes EventExtender
 *    [Command.enemy_tp(position)](#commandenemy_tpposition)
 *    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
 *    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
-*    [Command.event_collide?(idA, idB)](#commandevent_collideida-idb)
 *    [Command.event_direction(id)](#commandevent_directionid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
@@ -164,6 +164,7 @@ Collection des commandes EventExtender
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
+*    [Command.events_collide?(idA, idB)](#commandevents_collideida-idb)
 *    [Command.fadeout(*time)](#commandfadeouttime)
 *    [Command.fresh_event_id](#commandfresh_event_id)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
@@ -265,37 +266,46 @@ Collection des commandes EventExtender
 *    [Command.mouse_any?(method, keys)](#commandmouse_anymethod-keys)
 *    [Command.mouse_click?](#commandmouse_click)
 *    [Command.mouse_click_event?(events)](#commandmouse_click_eventevents)
+*    [Command.mouse_click_player?](#commandmouse_click_player)
 *    [Command.mouse_current_key(method)](#commandmouse_current_keymethod)
 *    [Command.mouse_dragging?](#commandmouse_dragging)
 *    [Command.mouse_hover_event?(events)](#commandmouse_hover_eventevents)
+*    [Command.mouse_hover_player?](#commandmouse_hover_player)
 *    [Command.mouse_in?(rectangle)](#commandmouse_inrectangle)
 *    [Command.mouse_last_rect](#commandmouse_last_rect)
 *    [Command.mouse_point](#commandmouse_point)
 *    [Command.mouse_press?(key)](#commandmouse_presskey)
 *    [Command.mouse_press_event?(events, *key)](#commandmouse_press_eventevents-key)
+*    [Command.mouse_press_player?(*key)](#commandmouse_press_playerkey)
 *    [Command.mouse_rect](#commandmouse_rect)
 *    [Command.mouse_release?(key)](#commandmouse_releasekey)
 *    [Command.mouse_release_event?(events, *key)](#commandmouse_release_eventevents-key)
+*    [Command.mouse_release_player?(*key)](#commandmouse_release_playerkey)
 *    [Command.mouse_repeat?(key)](#commandmouse_repeatkey)
 *    [Command.mouse_repeat_event?(events, *key)](#commandmouse_repeat_eventevents-key)
+*    [Command.mouse_repeat_player?(*key)](#commandmouse_repeat_playerkey)
 *    [Command.mouse_square_x](#commandmouse_square_x)
 *    [Command.mouse_square_y](#commandmouse_square_y)
 *    [Command.mouse_trigger?(key)](#commandmouse_triggerkey)
 *    [Command.mouse_trigger_event?(events, *key)](#commandmouse_trigger_eventevents-key)
+*    [Command.mouse_trigger_player?(*key)](#commandmouse_trigger_playerkey)
 *    [Command.mouse_x](#commandmouse_x)
 *    [Command.mouse_y](#commandmouse_y)
 *    [Command.num_lock?](#commandnum_lock)
 *    [Command.page_runnable?(map_id, event_id, page_id, *context)](#commandpage_runnablemap_id-event_id-page_id-context)
+*    [Command.parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#commandparallax_autoscrollid-speed_x-duration-wait_flag)
 *    [Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag)](#commandparallax_autoscroll_xid-speed-duration-wait_flag)
 *    [Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag)](#commandparallax_autoscroll_yid-speed-duration-wait_flag)
 *    [Command.parallax_blend(id, blend_type)](#commandparallax_blendid-blend_type)
 *    [Command.parallax_erase(id)](#commandparallax_eraseid)
 *    [Command.parallax_opacity(id, opacity, *duration, *wait_flag)](#commandparallax_opacityid-opacity-duration-wait_flag)
+*    [Command.parallax_scroll(id, x, y)](#commandparallax_scrollid-x-y)
 *    [Command.parallax_scroll_x(id, speed)](#commandparallax_scroll_xid-speed)
 *    [Command.parallax_scroll_y(id, speed)](#commandparallax_scroll_yid-speed)
 *    [Command.parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#commandparallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
 *    [Command.parallax_tone(id, tone, *duration, *wait_flag)](#commandparallax_toneid-tone-duration-wait_flag)
 *    [Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#commandparallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
+*    [Command.parallax_z(id, z)](#commandparallax_zid-z)
 *    [Command.parallax_zoom(id, zoom, *duration, *wait_flag)](#commandparallax_zoomid-zoom-duration-wait_flag)
 *    [Command.parallax_zoom_x(id, zoom, *duration, *wait_flag)](#commandparallax_zoom_xid-zoom-duration-wait_flag)
 *    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)](#commandparallax_zoom_yid-zoom-duration-wait_flag)
@@ -863,7 +873,7 @@ Collection des commandes EventExtender
 
 
 
-##### Command.actor_experience_rate(id)
+##### Command.actor_exp_rate(id)
 
 > renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
 
@@ -2051,6 +2061,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.cursor_system(flag)
+
+> Affiche ou masque le curseur Windows sur la fenêtre de jeu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`flag`|`Boolean`|true pour visible, false pour invisible  
+
+
+
+
+
+
 ##### Command.enemy_agility(position)
 
 > renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
@@ -2513,21 +2537,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.event_collide?(idA, idB)
-
-> Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
-`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
-
-
-
-
-
-
 ##### Command.event_direction(id)
 
 > Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
@@ -2665,6 +2674,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.events_collide?(idA, idB)
+
+> Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 
 
 
@@ -4091,6 +4115,17 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_click_player?
+
+> Renvoie true si la souris clique le joueur
+
+  
+> 
+
+
+
+
+
 ##### Command.mouse_current_key(method)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
@@ -4125,6 +4160,17 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 
+
+
+
+
+
+##### Command.mouse_hover_player?
+
+> Renvoie true si la souris survol le joueur
+
+  
+> 
 
 
 
@@ -4188,7 +4234,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+
+
+
+
+##### Command.mouse_press_player?(*key)
+
+> Renvoie true si la souris presse en continu la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 
@@ -4228,7 +4288,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+
+
+
+
+##### Command.mouse_release_player?(*key)
+
+> Renvoie true si la souris relâche la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 
@@ -4257,7 +4331,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+
+
+
+
+##### Command.mouse_repeat_player?(*key)
+
+> Renvoie true si la souris appuye successivement sur la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 
@@ -4308,7 +4396,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Selector`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+
+
+
+
+
+
+##### Command.mouse_trigger_player?(*key)
+
+> Renvoie true si la souris appuie une fois la touche passée en argument sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
 
@@ -4359,6 +4461,23 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à tester  
 `page_id`|`Fixnum`|ID de la page à tester  
 `*context`|`Boolean`|Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.  
+
+
+
+
+
+
+##### Command.parallax_autoscroll(id, speed_x, *duration, *wait_flag)
+
+> Défilement horizontal et vertical automatique d'un panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+`speed_x`|`Fixnum`|Vitesse de défilement vertical  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -4439,6 +4558,22 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
+##### Command.parallax_scroll(id, x, y)
+
+> Change la vitesse de défilement d' un panorama référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du panorama  
+`x`|`Fixnum`|vitesse horizontale  
+`y`|`Fixnum`|vitesse verticale  
 
 
 
@@ -4531,6 +4666,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+
+
+
+
+
+
+##### Command.parallax_z(id, z)
+
+> Change l'axe Z du panorama
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Identifiant du panorama  
+`z`|`Fixnum`|Axe Z  
 
 
 
