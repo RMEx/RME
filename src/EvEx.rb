@@ -531,6 +531,19 @@ module Handler
       e.any?{|i|event(i).release?(k)}
     end
     #--------------------------------------------------------------------------
+    # * API for player
+    #--------------------------------------------------------------------------
+    [:hover, :click].each do |m| 
+      define_method("mouse_#{m}_player?"){$game_player.send("#{m}?")}
+    end
+    [:press, :trigger, :repeat, :release].each do |m|
+      define_method("mouse_#{m}_player?") do |*k|
+        k = (k[0]) ? k[0] : :mouse_left 
+        $game_player.send("{m}?")
+      end
+    end
+
+    #--------------------------------------------------------------------------
     # * Load Commands
     #--------------------------------------------------------------------------
     append_commands

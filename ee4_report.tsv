@@ -249,7 +249,8 @@ keyboard_current_digit	-
 -	last_clicked_event
 length(a)	-
 load_game(index,*time)	load_game(num,*dur)
--	look_at(id,id,portee,unites)
+look_at(ev,to,scope,*metric)	look_at(id,id,portee,unites)
+look_at?(ev,to,scope,*metric)	-
 lose_gold(amount)	-
 -	maj?
 map_id	map_id
@@ -258,6 +259,7 @@ max(a,b)	-
 max_event_id	max_event_id
 -	message_height(nombre)
 min(a,b)	-
+monser_defense(id)	-
 monster_agility(id)	monster_agility(id)
 -	monster_attack(id)
 monster_attack_power(id)	-
@@ -270,7 +272,7 @@ monster_defense_power(id)	-
 monster_description(id)	-
 monster_give_exp(id)	-
 monster_give_gold(id)	-
--	monster_hp(id)
+monster_hp(id)	monster_hp(id)
 monster_icon(id)	-
 monster_luck(id)	monster_luck(id)
 -	monster_magic_attack(id)
@@ -286,6 +288,7 @@ mouse_all?(m,*k)	-
 mouse_any?(m,*k)	-
 mouse_click?	mouse_click?(touche)
 mouse_click_event?(e)	-
+mouse_click_player?	-
 -	mouse_clicked_area?(zone,touche)
 -	mouse_clicked_event?(id)
 -	mouse_clicked_player?
@@ -293,18 +296,21 @@ mouse_current_key(*m)	-
 mouse_dragging?	-
 -	mouse_hover_area?(zone)
 mouse_hover_event?(e)	mouse_hover_event?(id)
--	mouse_hover_player?
+mouse_hover_player?	mouse_hover_player?
 mouse_in?(rect)	-
 mouse_last_rect	-
 mouse_point	-
 mouse_press?(k)	-
 mouse_press_event?(e,*k)	-
+mouse_press_player?(*k)	-
 mouse_rect	mouse_rect
 mouse_release?(k)	mouse_release?(touche)
 mouse_release_event?(e,*k)	-
+mouse_release_player?(*k)	-
 -	mouse_released_area?(zone,touche)
 mouse_repeat?(k)	mouse_repeat?(touche)
 mouse_repeat_event?(e,*k)	-
+mouse_repeat_player?(*k)	-
 -	mouse_repeated_area?(zone,touche)
 -	mouse_square_clicked_area?(zone,touche)
 -	mouse_square_hover_area?(zone)
@@ -315,6 +321,7 @@ mouse_square_x	-
 mouse_square_y	-
 mouse_trigger?(k)	mouse_trigger?(touche)
 mouse_trigger_event?(e,*k)	-
+mouse_trigger_player?(*k)	-
 -	mouse_triggered_area?(zone,touche)
 mouse_x	mouse_x
 -	mouse_x_square

@@ -1044,6 +1044,8 @@ module RMECommands
 
     # Fix for EE4 compatibilities
     alias_method :collide?, :events_collide?
+    alias_method :look_at, :event_look_at?
+    alias_method :look_at?, :look_at
 
     append_commands
   end
@@ -1265,6 +1267,11 @@ module RMECommands
       nil
     end 
     def active_actor?; !!active_actor; end
+
+    # Fix for EE4 compatibilities
+    alias_method :monser_defense, :monster_defense_power
+    alias_method :monster_hp, :monster_max_hp
+    
 
 
     append_commands
