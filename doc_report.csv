@@ -1,7 +1,35 @@
 Report,
-# Commandes documentées,482/484
+# Commandes documentées,482/512
 ,
 # Commandes non documentées,# Suggestion
+create_rect_area,Aucune suggestion
+create_circle_area,Aucune suggestion
+create_ellipse_area,Aucune suggestion
+create_polygon_area,Aucune suggestion
+in_area?,Aucune suggestion
+mouse_hover_area?,Aucune suggestion
+mouse_hover_square_area?,Aucune suggestion
+mouse_click_area?,Aucune suggestion
+mouse_click_square_area?,Aucune suggestion
+mouse_trigger_area?,Aucune suggestion
+mouse_trigger_square_area?,Aucune suggestion
+mouse_press_area?,Aucune suggestion
+mouse_press_square_area?,Aucune suggestion
+mouse_release_area?,Aucune suggestion
+mouse_release_square_area?,Aucune suggestion
+mouse_repeat_area?,Aucune suggestion
+mouse_repeat_square_area?,Aucune suggestion
+mouse_square_hover_area?,Aucune suggestion
+mouse_clicked_area?,Aucune suggestion
+mouse_square_clicked_area?,Aucune suggestion
+mouse_triggered_area?,Aucune suggestion
+mouse_square_triggered_area?,Aucune suggestion
+mouse_pressed_area?,Aucune suggestion
+mouse_square_pressed_area?,Aucune suggestion
+mouse_released_area?,Aucune suggestion
+mouse_square_released_area?,Aucune suggestion
+mouse_repeated_area?,Aucune suggestion
+mouse_square_repeat_area?,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,

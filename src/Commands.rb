@@ -1753,4 +1753,65 @@ module RMECommands
     append_commands
   end
 
+  #==============================================================================
+  # ** Areas
+  #------------------------------------------------------------------------------
+  #  Areas commands
+  #==============================================================================
+
+  module Area
+    def create_rect_area(x, y, width, height); Area::Rect.new(x, y, width, height); end
+    def create_circle_area(x, y, rayon); Area::Circle.new(x, y, rayon); end 
+    def create_ellipse_area(x, y, width, height); Area::Ellipse.new(x, y, width, height); end
+    def create_polygon_area(*points); Area::Polygon.new(*points); end 
+    def in_area?(area, x, y); area.in?(x, y); end 
+    def mouse_hover_area?(area); area.hover?; end 
+    def mouse_hover_square_area?(area); area.square_hover?; end
+    def mouse_click_area?(area, k=nil); area.click?; end 
+    def mouse_click_square_area?(area, k=nil); area.square_click?; end
+    
+    def mouse_trigger_area?(area, k=:mouse_left)
+      area.trigger?(k)
+    end
+    def mouse_trigger_square_area?(area, k=:mouse_left)
+      area.square_trigger?(k)
+    end
+
+    def mouse_press_area?(area, k=:mouse_left)
+      area.press?(k)
+    end
+    def mouse_press_square_area?(area, k=:mouse_left)
+      area.square_press?(k)
+    end
+
+    def mouse_release_area?(area, k=:mouse_left)
+      area.release?(k)
+    end
+    def mouse_release_square_area?(area, k=:mouse_left)
+      area.square_release?(k)
+    end
+
+    def mouse_repeat_area?(area, k=:mouse_left)
+      area.repeat?(k)
+    end
+    def mouse_repeat_square_area?(area, k=:mouse_left)
+      area.square_repeat?(k)
+    end
+
+    # EE4 compatibilities
+    alias_method :mouse_square_hover_area?, :mouse_hover_square_area?
+    alias_method :mouse_clicked_area?, :mouse_click_area?
+    alias_method :mouse_square_clicked_area?, :mouse_click_square_area? 
+    alias_method :mouse_triggered_area?, :mouse_trigger_area?
+    alias_method :mouse_square_triggered_area?, :mouse_trigger_square_area?
+    alias_method :mouse_pressed_area?, :mouse_press_area?
+    alias_method :mouse_square_pressed_area?, :mouse_press_square_area?
+    alias_method :mouse_released_area?, :mouse_release_area?
+    alias_method :mouse_square_released_area?, :mouse_release_square_area? 
+    alias_method :mouse_repeated_area?, :mouse_repeat_area?
+    alias_method :mouse_square_repeat_area?, :mouse_repeat_square_area? 
+
+    append_commands
+  end
+
 end
