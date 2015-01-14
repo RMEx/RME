@@ -428,7 +428,7 @@ module DocGenerator
               ee_call += "(" +k.join(",")+")"
             end
           end
-          if Checker.commands.include?(m)
+          if Command.singleton_methods.include?(m)
             rme_call = "#{m}"
             h = Command.method(m).parameters
             if h.length > 0
