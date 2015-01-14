@@ -1809,7 +1809,7 @@ module RMECommands
     alias_method :mouse_released_area?, :mouse_release_area?
     alias_method :mouse_square_released_area?, :mouse_release_square_area? 
     alias_method :mouse_repeated_area?, :mouse_repeat_area?
-    alias_method :mouse_square_repeat_area?, :mouse_repeat_square_area? 
+    alias_method :mouse_square_repeated_area?, :mouse_repeat_square_area? 
 
     append_commands
   end
