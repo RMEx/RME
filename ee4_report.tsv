@@ -293,8 +293,8 @@ mouse_click?	mouse_click?(touche)
 mouse_click_event?(e)	-
 mouse_click_player?	-
 -	mouse_clicked_area?(zone,touche)
--	mouse_clicked_event?(id)
--	mouse_clicked_player?
+mouse_clicked_event?(e)	mouse_clicked_event?(id)
+mouse_clicked_player?	mouse_clicked_player?
 mouse_current_key(*m)	-
 mouse_dragging?	-
 -	mouse_hover_area?(zone)

@@ -543,6 +543,10 @@ module Handler
       end
     end
 
+    # EE4 compatibilities
+    alias_method :mouse_clicked_event?, :mouse_click_event?
+    alias_method :mouse_clicked_player?, :mouse_click_player?
+
     #--------------------------------------------------------------------------
     # * Load Commands
     #--------------------------------------------------------------------------
