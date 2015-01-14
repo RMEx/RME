@@ -1575,6 +1575,13 @@ module RMECommands
       flag
     end
 
+    ## EE4 fixtures
+    alias_method :server_single_close_connection, :socket_disconnect
+    alias_method :server_single_connect, :socket_connect
+    alias_method :server_single_recv, :socket_recv
+    alias_method :server_single_send, :socket_send
+    alias_method :server_single_wait_recv, :socket_wait_recv
+
     append_commands
 
   end

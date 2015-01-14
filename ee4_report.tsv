@@ -417,11 +417,11 @@ scroll_lock?	scroll_lock?
 -	server_connect(adresse,*port)
 -	server_recv(socket)
 -	server_send(socket,message)
--	server_single_close_connection
--	server_single_connect(adresse,*port)
--	server_single_recv
--	server_single_send(message)
--	server_single_wait_recv
+server_single_close_connection	server_single_close_connection
+server_single_connect(address,port)	server_single_connect(adresse,*port)
+server_single_recv(*len)	server_single_recv
+server_single_send(data)	server_single_send(message)
+server_single_wait_recv(*len)	server_single_wait_recv
 -	server_wait_recv(socket)
 session_username	-
 set_actor_name(id,n)	set_actor_name(id,name)

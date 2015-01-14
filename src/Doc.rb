@@ -665,7 +665,9 @@ module Command
   add_internals :monster_hp, :monster_mp, :troop_member_id, :actor_experience
   add_internals :actor_magic, :collide?, :look_at, :look_at?
   add_internals :actor_experience_rate, :mouse_clicked_event?, :mouse_clicked_player?
-  add_internals :monster_magic_defense
+  add_internals :monster_magic_defense, :server_single_close_connection
+  add_internals :server_single_connect,:server_single_recv,:server_single_send
+  add_internals :server_single_wait_recv
 
   link_method_documentation "Command.max", 
                         "Renvoie la plus grande des deux valeurs A, B",
