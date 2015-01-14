@@ -21,6 +21,17 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Public Commands
   #--------------------------------------------------------------------------
+
+  def fadeout(time = 100)
+    RPG::BGM.fade(time)
+    RPG::BGS.fade(time)
+    RPG::ME.fade(time)
+    Graphics.fadeout(time * Graphics.frame_rate / 1000)
+    RPG::BGM.stop
+    RPG::BGS.stop
+    RPG::ME.stop
+  end
+
   def max(a, b); [a, b].max; end 
   def min(a, b); [a, b].min; end 
   def screen; Game_Screen.get; end
@@ -31,6 +42,7 @@ module RMECommands
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
+  def rm_kill; SceneManager.exit; end
 
   def wait_with(time, &block)
     time.times do 
@@ -39,15 +51,22 @@ module RMECommands
     end
   end
 
-  def qte(key, time)
-    flag = false
+  def qte(key, time, strict = true)
+    i = 0
     wait_with(time) do 
-      if Keyboard.press?(key)
-        flag = true
-        break
+      unless strict
+        return true if Keyboard.trigger?(key) && i > 6
+      else
+        c = Keyboard.rgss_current_key(:trigger?)
+        return c == key if c && i > 6
       end
+      i += 1
     end
-    return flag
+    return false
+  end
+
+  def random_combination(len, *keys)
+    Array.new(len) {keys[Kernel.rand(keys.length)]}
   end
 
   def wait_trigger(key)
@@ -59,6 +78,16 @@ module RMECommands
     wait(1)
     Fiber.yield while(!Keyboard.release?(key))
   end
+
+  def pick_random(*args)
+    if args.length == 1 && args[0].is_a?(Array)
+      return args[0][Kernel.rand(args[0].length)] 
+    end
+    args[Kernel.rand(args.length)]
+  end
+
+  # Fix Username
+  alias_method :windows_username, :session_username
 
   append_commands
   
@@ -620,6 +649,7 @@ module RMECommands
     def key_current_rgss(*m); Keyboard.rgss_current_key(*m);  end
     def keyboard_current_digit; Keyboard.current_digit;         end
     def keyboard_current_char;  Keyboard.current_char;          end
+    alias_method :key_number, :keyboard_current_digit
     #--------------------------------------------------------------------------
     # * Mouse Support
     #--------------------------------------------------------------------------
@@ -927,6 +957,12 @@ module RMECommands
     def actor_skills(id); $game_actors[id].skills.map{|s| s.id}; end
     def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
     def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
+
+    # Fix for the Event Extender 4 compatibilities!
+    alias_method :actor_experience, :actor_exp
+    alias_method :actor_exp_rate, :actor_experience_rate
+    alias_method :actor_magic, :actor_magic_attack
+
     append_commands
   end
 
@@ -938,6 +974,7 @@ module RMECommands
   #==============================================================================
 
   module Events
+    def event_name(id); event(id).name; end
     def event_x(id); event(id).x; end
     def event_y(id); event(id).y; end
     def event_screen_x(id); event(id).screen_x; end
@@ -983,7 +1020,7 @@ module RMECommands
       end
       return x_axis && y_axis && (distance_between(metric, ev, to)<=scope)
     end
-    def event_collide?(ev1, ev2)
+    def events_collide?(ev1, ev2)
       event1 = event(ev1)
       event2 = event(ev2)
       flag = case event1.direction
@@ -1004,6 +1041,9 @@ module RMECommands
     def player_in_screen?
       event_in_screen?(0)
     end
+
+    # Fix for EE4 compatibilities
+    alias_method :collide?, :events_collide?
 
     append_commands
   end
@@ -1470,6 +1510,126 @@ module RMECommands
 
     append_commands
 
+  end
+
+  #==============================================================================
+  # ** Scene
+  #------------------------------------------------------------------------------
+  #  cmd about scene navigation
+  #==============================================================================
+
+  module Scene
+
+    #--------------------------------------------------------------------------
+    # * Go to title Screen
+    #--------------------------------------------------------------------------
+    def call_title_screen
+      SceneManager.call(Scene_Title)
+    end
+    #--------------------------------------------------------------------------
+    # * Go to Load Screen
+    #--------------------------------------------------------------------------
+    def call_load_screen
+      SceneManager.call(Scene_Load)
+    end
+
+    #--------------------------------------------------------------------------
+    # * call scene
+    #--------------------------------------------------------------------------
+    def scene_call(scene)
+      SceneManager.call(scene)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Goto scene
+    #--------------------------------------------------------------------------
+    def scene_goto(scene)
+      SceneManager.goto(scene)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Return scene
+    #--------------------------------------------------------------------------
+    def scene_return
+      SceneManager.return
+    end
+
+    #--------------------------------------------------------------------------
+    # * Clear scene history
+    #--------------------------------------------------------------------------
+    def scene_clear_history
+      SceneManager.clear
+    end
+
+
+    append_commands
+
+  end
+
+  #==============================================================================
+  # ** Save
+  #------------------------------------------------------------------------------
+  #  cmd about saves
+  #==============================================================================
+
+  module Save 
+
+    #--------------------------------------------------------------------------
+    # * Start new Game from the RMVXAce Editor
+    #--------------------------------------------------------------------------
+    def start_new_game
+      DataManager.setup_new_game
+    end
+
+    #--------------------------------------------------------------------------
+    # * Save Game
+    #--------------------------------------------------------------------------
+    def save_game(index)
+      DataManager.save_game(index - 1)
+    end 
+
+    #--------------------------------------------------------------------------
+    # * Load Game
+    #--------------------------------------------------------------------------
+    def load_game(index, time=100)
+      DataManager.load_game(index-1) 
+      fadeout(time)
+      $game_system.on_after_load
+      SceneManager.goto(Scene_Map)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Determine if save exists
+    #--------------------------------------------------------------------------
+    def a_save_exists? 
+      DataManager.save_file_exists?
+    end
+
+    #--------------------------------------------------------------------------
+    # * Determine if save exists
+    #--------------------------------------------------------------------------
+    def save_exists?(index)
+      File.exists?(DataManager.make_filename(index-1))
+    end
+
+    #--------------------------------------------------------------------------
+    # * Delete save
+    #--------------------------------------------------------------------------
+    def save_delete(index)
+      DataManager.delete_save_file(index-1)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Import_data
+    #--------------------------------------------------------------------------
+    def import_variable(ids, idvar); DataManager.export(ids-1)[:variables][idvar]; end
+    def import_switch(ids, idswitch); DataManager.export(ids-1)[:switches][idswitch]; end
+    def import_label(ids, idlabel); DataManager.export(ids-1)[:labels][idlabel]; end
+
+    # Fix for EE4 compatibilities
+    alias_method :delete_save, :save_delete
+
+    append_commands
   end
 
 end

@@ -286,6 +286,12 @@ module Kernel
     result
   end
   alias :e :events
+  def once_event(&block)
+    $game_map.each_events.find(&block)
+  end
+  def once_random_event(&block)
+    $game_map.each_events.dup.shuffle.find(&block)
+  end
 end
 
 #==============================================================================
@@ -741,6 +747,12 @@ class Game_CharacterBase
   def update
     rm_extender_update
     update_eHandler
+  end
+  #--------------------------------------------------------------------------
+  # * Event name
+  #--------------------------------------------------------------------------
+  def name 
+    nil
   end
 end
 
@@ -1773,6 +1785,12 @@ class Game_Event
     end
     return false
   end
+  #--------------------------------------------------------------------------
+  # * Get event name
+  #--------------------------------------------------------------------------
+  def name
+    @event.name
+  end
 end
 
 #==============================================================================
@@ -1840,6 +1858,7 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
+  def me; @event_id; end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
@@ -1944,6 +1963,31 @@ module DataManager
       $game_self_vars = contents[:self_vars]
       $game_labels = contents[:labels]
       $game_self_labels = contents[:self_labels]
+    end
+    #--------------------------------------------------------------------------
+    # * Export Data
+    #--------------------------------------------------------------------------
+    def export(index)
+      datas = Hash.new
+      File.open(make_filename(index), "rb") do |file|
+        Marshal.load(file)
+        contents = Marshal.load(file)
+        game_system             = contents[:system]
+        game_timer              = contents[:timer]
+        game_message            = contents[:message]
+        datas[:switches]        = contents[:switches]
+        datas[:variables]       = contents[:variables]
+        datas[:self_switches]   = contents[:self_switches]
+        game_actors             = contents[:actors]
+        game_party              = contents[:party]
+        game_troop              = contents[:troop]
+        game_map                = contents[:map]
+        game_player             = contents[:player]
+        datas[:self_vars]       = contents[:self_vars]
+        datas[:labels]          = contents[:labels]
+        datas[:self_labels]     = contents[:self_labels]
+      end
+      return datas
     end
   end
 end

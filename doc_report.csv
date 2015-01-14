@@ -1,8 +1,17 @@
 Report,
-# Commandes documentées,442/444
+# Commandes documentées,461/471
 ,
 # Commandes non documentées,# Suggestion
+delete_save,Aucune suggestion
+events_collide?,Aucune suggestion
+collide?,Aucune suggestion
+actor_experience,Aucune suggestion
+actor_exp_rate,Aucune suggestion
+actor_magic,Aucune suggestion
+key_number,Aucune suggestion
+windows_username,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion
+event_collide?,Peut-être faudrait-il remplacer [event_collide?] par [events_collide?]... mais je ne suis pas sur du tout...

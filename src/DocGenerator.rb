@@ -506,7 +506,7 @@ module DocGenerator
           keywords.uniq!
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
-          s = (keywords.length >= 1) ? "Peut-être faudrait-il remplacer [#{c}] par [#{keywords[0]}], mais je ne suis pas sur du tout..." : "Aucune suggestion"
+          s = (keywords.length >= 1) ? "Peut-être faudrait-il remplacer [#{c}] par [#{keywords[0]}]... mais je ne suis pas sur du tout..." : "Aucune suggestion"
           r += "#{c},#{s}\n" 
         end
         FileTools.write(o, r)
