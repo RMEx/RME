@@ -32,6 +32,7 @@ class Viewport
   attr_accessor :elts
   attr_accessor :children
   attr_accessor :parent
+  attr_accessor :definition
   [
     :in?,
     :hover?,
@@ -53,6 +54,7 @@ class Viewport
   #--------------------------------------------------------------------------
   def initialize(*args)
     sdk_initialize(*args)
+    @definition = Rect.new(rect.x,rect.y,rect.width,rect.height)
     @children = []
     @parent = nil
     @elts = []
@@ -86,29 +88,60 @@ class Viewport
   #--------------------------------------------------------------------------
   # * pushes another viewport in self
   #--------------------------------------------------------------------------
-  def push(v)
-    @children << (v)
-    v.parent = self
+  def <<(oth)
+    oth.parent = self
+    @children << oth
+    oth.update_from_definition
+    oth
   end
-  alias :<< :push
 
   #--------------------------------------------------------------------------
   # * pushes self in another viewport
   #--------------------------------------------------------------------------
-  def push_into(v)
-    @parent = v
-    v.children << self
-  end
-  alias :>> :push_into
-
-  def x=(v)
-    rect.x = v
-    update_rect_from_parent if @parent != nil
-    @children.each{|c| c.update_rect_from_parent}
+  def >>(oth)
+    @parent = oth
+    oth.children << self
+    update_from_definition
+    oth
   end
 
-  def update_rect_from_parent
-    p "bilou"
+  def x=(v); @definition.x = v; update_from_definition; end
+  def y=(v); @definition.y = v; update_from_definition; end
+  def width=(v); @definition.width = v; update_from_definition; end
+  def height=(v); @definition.height = v; update_from_definition; end
+
+  def screen_x
+    return @definition.x + @parent.screen_x + @parent.ox if @parent
+    @definition.x
+  end
+  def screen_y
+    return @definition.y + @parent.screen_y + @parent.oy if @parent
+    @definition.y
+  end
+  def screen_x=(v)
+    @definition.x = v
+    @definition.x -= @parent.x + @parent.ox if @parent
+    update_from_definition
+  end
+  def screen_y=(v)
+    @definition.y = v
+    @definition.y -= @parent.y + @parent.oy if @parent
+    update_from_definition
+  end
+
+  def update_from_definition
+    if @parent
+      new_x = @definition.x + @parent.screen_x + @parent.ox
+      new_y = @definition.y + @parent.screen_y + @parent.oy
+      rect.x = [new_x, @parent.x].max
+      rect.y = [new_y, @parent.y].max
+      rect.width = [new_x + @definition.width, @parent.x + @parent.width].min - rect.x
+      rect.height = [new_y + @definition.height, @parent.y + @parent.height].min - rect.y
+    else
+      rect.x = @definition.x
+      rect.y = @definition.y
+    end
+    @children.each{|c| c.update_from_definition}
   end
 end
 
@@ -123,32 +156,51 @@ class Bilou
   attr_accessor :sprite
   attr_accessor :viewport
   attr_accessor :draggable
+  attr_accessor :dragging
+  attr_accessor :children
+  attr_accessor :parent
+  attr_accessor :ancestors
+  @@dragger = nil
 
-  def initialize(x,y,w,h,c,draggable=true)
+  def initialize(x,y,w,h,c,draggable=false)
     @draggable = draggable
-    @dragging = false
     @viewport = Viewport.new(x,y,w,h)
     @sprite = Sprite.new
     @sprite.bitmap = Bitmap.new(w,h)
     @sprite.bitmap.fill_rect(0,0,w,h,c)
     @sprite.viewport = @viewport
+    @children = []
   end
 
   def update
     return unless @draggable
     if Mouse.dragging?
-      if @dragging
-        @viewport.x = @x_start_drag + Mouse.drag.ox
-        @viewport.y = @y_start_drag + Mouse.drag.oy
-      elsif @sprite.in?(Mouse.drag.start)
-        @x_start_drag = @viewport.x
-        @y_start_drag = @viewport.y
-        @dragging = true
+      if @@dragger == object_id
+        @viewport.screen_x = @x_start_drag + Mouse.drag.ox
+        @viewport.screen_y = @y_start_drag + Mouse.drag.oy
+      elsif @@dragger == nil && @viewport.in?(Mouse.drag.start) &&
+          ! @children.any? {|c| c.viewport.in?(Mouse.drag.start)}
+        @x_start_drag = @viewport.screen_x
+        @y_start_drag = @viewport.screen_y
+        @@dragger = object_id
       end
     else
-      @dragging = false
+      @@dragger = nil if @@dragger
     end
   end
+
+  def <<(oth)
+    @viewport << oth.viewport
+    @children << oth
+    oth
+  end
+
+  def >>(oth)
+    @viewport >> oth.viewport
+    oth.children << self
+    oth
+  end
+
 end
 
 #==============================================================================
