@@ -280,7 +280,7 @@ monster_icon(id)	-
 monster_luck(id)	monster_luck(id)
 monster_magic_attack(id)	monster_magic_attack(id)
 monster_magic_attack_power(id)	-
--	monster_magic_defense(id)
+monster_magic_defense(id)	monster_magic_defense(id)
 monster_magic_defense_power(id)	-
 monster_max_hp(id)	-
 monster_max_mp(id)	-
