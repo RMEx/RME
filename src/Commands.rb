@@ -87,6 +87,7 @@ module RMECommands
   end
 
   # Fix Username
+  alias_method :windows_username, :session_username
   
 
   append_commands
@@ -266,6 +267,10 @@ module RMECommands
         $game_map.parallaxes[id].opacity = v
       end
     end
+
+    # fix for EE4
+    alias_method :parallax_scrollspeed, :parallax_scroll
+
     append_commands
   end
 
@@ -515,6 +520,10 @@ module RMECommands
       screen.clear_pictures
     end
 
+    # Fix for EE4
+    alias_method :picture_origine, :picture_origin
+    alias_method :picture_detach, :picture_unpin
+
   append_commands
   end
 
@@ -698,6 +707,15 @@ module RMECommands
       flag = (!!flag) ? 1 : 0
       Externlib.ShowCursor.(flag);
     end
+
+    # Fix for EE4
+    alias_method :key_number, :keyboard_current_digit
+    alias_method :key_char, :keyboard_current_char
+    alias_method :key_char?, :keyboard_current_char
+    alias_method :maj?, :shift?
+    alias_method :mouse_x_square, :mouse_square_x
+    alias_method :mouse_y_square, :mouse_square_y
+    alias_method :show_cursor_system, :cursor_system
     
     append_commands
   end
@@ -986,7 +1004,10 @@ module RMECommands
     def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
     def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
 
-    
+    # Fix for EE4
+    alias_method :actor_experience, :actor_exp
+    alias_method :actor_exp_rate, :actor_experience_rate
+    alias_method :actor_magic, :actor_magic_attack
 
     append_commands
   end
@@ -1067,7 +1088,10 @@ module RMECommands
       event_in_screen?(0)
     end
 
-    
+    # Fix for EE4
+    alias_method :collide?, :events_collide?
+    alias_method :look_at, :event_look_at?
+    alias_method :look_at?, :look_at
 
     append_commands
   end
@@ -1247,6 +1271,14 @@ module RMECommands
     def monster_battler_name(id); enemy(id).battler_name; end 
     def monster_battler_hue(id); enemy(id).battler_hue; end 
     def current_troop; Kernel.current_troop; end
+
+    # Fix for EE4
+    alias_method :monster_attack, :monster_attack_power
+    alias_method :monster_magic_attack, :monster_magic_attack_power
+    alias_method :monser_defense, :monster_defense_power
+    alias_method :monster_hp, :monster_max_hp
+    alias_method :monster_mp, :monster_max_mp
+    alias_method :troop_member_id, :troop_member
 
 
     def enemy_hp(id); $game_troop.members[id].hp; end 
@@ -1649,44 +1681,10 @@ module RMECommands
     def import_switch(ids, idswitch); DataManager.export(ids-1)[:switches][idswitch]; end
     def import_label(ids, idlabel); DataManager.export(ids-1)[:labels][idlabel]; end
 
+    # Fix for EE4
+    alias_method :delete_save, :save_delete
+
     append_commands
   end
 
 end
-
-
-#==============================================================================
-# ** Command
-#------------------------------------------------------------------------------
-#  EE4 Fixer
-#==============================================================================
-
-module Command
-  class << self
-    alias_method :windows_username, :session_username
-    alias_method :parallax_scrollspeed, :parallax_scroll
-    alias_method :picture_origine, :picture_origin
-    alias_method :picture_detach, :picture_unpin
-    alias_method :key_number, :keyboard_current_digit
-    alias_method :key_char, :keyboard_current_char
-    alias_method :key_char?, :keyboard_current_char
-    alias_method :maj?, :shift?
-    alias_method :mouse_x_square, :mouse_square_x
-    alias_method :mouse_y_square, :mouse_square_y
-    alias_method :show_cursor_system, :cursor_system
-    alias_method :delete_save, :save_delete
-    alias_method :monster_attack, :monster_attack_power
-    alias_method :monster_magic_attack, :monster_magic_attack_power
-    alias_method :monser_defense, :monster_defense_power
-    alias_method :monster_hp, :monster_max_hp
-    alias_method :monster_mp, :monster_max_mp
-    alias_method :troop_member_id, :troop_member
-    alias_method :actor_experience, :actor_exp
-    alias_method :actor_exp_rate, :actor_experience_rate
-    alias_method :actor_magic, :actor_magic_attack
-    alias_method :collide?, :events_collide?
-    alias_method :look_at, :event_look_at?
-    alias_method :look_at?, :look_at
-  end
-end
-
