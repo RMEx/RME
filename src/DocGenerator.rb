@@ -414,9 +414,11 @@ module DocGenerator
       # *  Process EE report
       #--------------------------------------------------------------------------
       def ee_report(ee)
-        g = "RM\tEE\n"
+        g = ""
         eecmd = EE4::Command_Description.singleton_methods
         total = eecmd + Checker.commands
+        eev = eecmd.length
+        rmev = Checker.commands.select {|k| eecmd.include?(k)}.length
         total = total.uniq.sort.collect do |m|
           rme_call = "-"
           ee_call = "-"
@@ -439,6 +441,7 @@ module DocGenerator
           "#{rme_call}\t#{ee_call}"
         end
         g += total.join("\n")
+        g = "RME\tEE(#{rmev}/#{eev})\n" + g
         FileTools.write(ee, g)
       end
       #--------------------------------------------------------------------------
