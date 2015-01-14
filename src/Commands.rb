@@ -1099,10 +1099,57 @@ module RMECommands
       end
     end 
 
+    def events_buzzer_properties(e, amplitude, length)
+      es = select_events(e)
+      es.each do |e|
+        event(e).buzz_amplitude = amplitude 
+        event(e).buzz_length = length
+      end
+    end
+
+    def followers_buzzer_properties(*ids, amplitude, length)
+      if ids.length == 0 
+        $game_player.followers.each do |f|
+          f.buzz_amplitude = amplitude
+          f.buzz_length = length
+        end
+        return
+      end 
+      ids.each do |i|
+        e = $game_player.followers[i]
+        if e
+          e.buzz_amplitude = amplitude 
+          e.buzz_length = length
+        end
+      end
+    end
+
+    def events_buzz(e, duration=16)
+      es = select_events(e)
+      es.each do |e|
+        event(e).buzz = duration
+      end
+    end
+
+    def followers_buzz(ids, duration=16)
+      return if !$game_player.followers.visible
+      if ids.length == 0 
+        $game_player.followers.each do |f|
+          f.buzz = duration
+        end
+        return
+      end 
+      ids.each do |i|
+        e = $game_player.followers[i]
+        e.buzz = duration if e
+      end
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
     alias_method :look_at?, :look_at
+    alias_method :buzz, :events_buzz
 
     append_commands
   end

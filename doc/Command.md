@@ -164,8 +164,12 @@ Collection des commandes EventExtender
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
+*    [Command.events_buzz(e, *duration)](#commandevents_buzze-duration)
+*    [Command.events_buzzer_properties(e, amplitude, length)](#commandevents_buzzer_propertiese-amplitude-length)
 *    [Command.events_collide?(idA, idB)](#commandevents_collideida-idb)
 *    [Command.fadeout(*time)](#commandfadeouttime)
+*    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
+*    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
 *    [Command.fresh_event_id](#commandfresh_event_id)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
 *    [Command.game_title](#commandgame_title)
@@ -2686,6 +2690,37 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.events_buzz(e, *duration)
+
+> Fait tressaillir les évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`e`|`Selector`|Selecteur d'évènements  
+`*duration`|`Fixnum`|Durée du dressaillement (en frame), par défaut, 16  
+
+
+
+
+
+
+##### Command.events_buzzer_properties(e, amplitude, length)
+
+> Change les propriétés de tressaillement d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`e`|`Selector`|Selecteurs d'évènements  
+`amplitude`|`ArgType`|Amplitude du tressaillement  
+`length`|`Fixnum`|Taille du tressaiellement  
+
+
+
+
+
+
 ##### Command.events_collide?(idA, idB)
 
 > Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
@@ -2709,6 +2744,37 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `*time`|`Fixnum`|Durée de fondu  
+
+
+
+
+
+
+##### Command.followers_buzz(ids, *duration)
+
+> Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs est vide, ça s'applique à tous les followers)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Tableau des identifiants des suiveurs à faire tressaillir, utiliser [] pour appliquer à tous les suiveurs  
+`*duration`|`Fixnum`|Durée du dressaillement (en frame), par défaut, 16  
+
+
+
+
+
+
+##### Command.followers_buzzer_properties(*ids, amplitude, length)
+
+> Change les propriétés de tressaillement des membre de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*ids`|`ArgsList`|Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.  
+`amplitude`|`ArgType`|Amplitude du tressaillement  
+`length`|`Fixnum`|Taille du tressaiellement  
 
 
 

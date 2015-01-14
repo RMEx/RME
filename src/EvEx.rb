@@ -747,6 +747,17 @@ class Game_CharacterBase
   alias :rm_extender_initialize          :initialize
   alias :rm_extender_init_public_members :init_public_members
   alias :rm_extender_update              :update
+  attr_accessor :buzz
+  attr_accessor :buzz_amplitude
+  attr_accessor :buzz_length
+  #--------------------------------------------------------------------------
+  # * Initialisation du Buzzer
+  #--------------------------------------------------------------------------
+  def  setup_buzzer
+    @buzz           = 0
+    @buzz_amplitude = 0.1
+    @buzz_length    = 16
+  end
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
@@ -809,6 +820,8 @@ class Sprite_Character
   def initialize(viewport, character = nil)
     rm_extender_initialize(viewport, character)
     set_rect
+    self.character.setup_buzzer if self.character
+    @old_buzz = 0
   end
   #--------------------------------------------------------------------------
   # * Set rect to dynamic layer
@@ -826,6 +839,29 @@ class Sprite_Character
   def update
     rm_extender_update
     set_rect
+    update_buzzer
+  end
+  #--------------------------------------------------------------------------
+  # * Update buzzer
+  #--------------------------------------------------------------------------
+  def update_buzzer
+    return if !self.character.buzz || self.character.buzz == 0
+    if @old_buzz == 0
+      @origin_len_x = self.zoom_x 
+      @origin_len_y = self.zoom_y 
+    end
+    @old_buzz             = self.character.buzz
+    len                   = self.character.buzz_length
+    transformation        = Math.sin(@old_buzz*6.283/len)
+    transformation        *= self.character.buzz_amplitude
+    self.zoom_x           = @origin_len_x + transformation
+    self.zoom_y           = @origin_len_y - transformation
+    self.character.buzz   -= 1
+    if self.character.buzz == 0
+      self.zoom_x = @origin_len_x
+      self.zoom_y = @origin_len_y
+      @old_buzz = 0
+    end
   end
 end
 

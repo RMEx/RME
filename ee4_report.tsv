@@ -105,7 +105,7 @@ atan2(x,y)	-
 atanh(x)	-
 battle_count	battle_count
 bind(e,*args,*block)	-
--	buzz(id)
+buzz(e,*duration)	buzz(id)
 call_load_screen	-
 call_title_screen	-
 caps_lock?	caps_lock?
@@ -169,8 +169,12 @@ event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
 event_x(id)	event_x(id)
 event_y(id)	event_y(id)
+events_buzz(e,*duration)	-
+events_buzzer_properties(e,amplitude,length)	-
 events_collide?(ev1,ev2)	-
 fadeout(*time)	-
+followers_buzz(ids,*duration)	-
+followers_buzzer_properties(*ids,amplitude,length)	-
 fresh_event_id	-
 gain_gold(amount)	-
 game_title	-
