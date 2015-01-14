@@ -173,6 +173,19 @@ module RMECommands
       end
     end
     #--------------------------------------------------------------------------
+    # * Change autospeed
+    #--------------------------------------------------------------------------
+    def parallax_autoscroll(id, x, y, d = nil, wf = false)
+      parallax_autoscroll_x(id, x, d)
+      parallax_autoscroll_y(id, y, d, wf)
+    end
+    #--------------------------------------------------------------------------
+    # * Change z
+    #--------------------------------------------------------------------------
+    def parallax_z(id, v)
+      $game_map.parallaxes[id].z = v
+    end
+    #--------------------------------------------------------------------------
     # * Change scroll_x
     #--------------------------------------------------------------------------
     def parallax_scroll_x(id, v)
@@ -184,6 +197,14 @@ module RMECommands
     def parallax_scroll_y(id, v)
       $game_map.parallaxes[id].move_y = v
     end
+    #--------------------------------------------------------------------------
+    # * Change speed
+    #--------------------------------------------------------------------------
+    def parallax_scroll(id, x, y)
+      parallax_scroll_x(id, x)
+      parallax_scroll_y(id, y)
+    end
+    alias_method :parallax_scrollspeed, :parallax_scroll
     #--------------------------------------------------------------------------
     # * Change zoom_x
     #--------------------------------------------------------------------------
@@ -287,6 +308,7 @@ module RMECommands
       origin = origin[0] if origin.length == 1
       pictures[id].origin = origin
     end
+    alias_method :picture_origine, :picture_origin
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
@@ -422,6 +444,7 @@ module RMECommands
     def picture_unpin(id)
       pictures[id].unpin
     end
+    alias_method :picture_detach, :picture_unpin
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
@@ -649,7 +672,11 @@ module RMECommands
     def key_current_rgss(*m); Keyboard.rgss_current_key(*m);  end
     def keyboard_current_digit; Keyboard.current_digit;         end
     def keyboard_current_char;  Keyboard.current_char;          end
+    # Fix for EE4 compatibilities
     alias_method :key_number, :keyboard_current_digit
+    alias_method :key_char, :keyboard_current_char
+    alias_method :key_char?, :keyboard_current_char
+    alias_method :maj?, :shift?
     #--------------------------------------------------------------------------
     # * Mouse Support
     #--------------------------------------------------------------------------
@@ -671,6 +698,14 @@ module RMECommands
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
+    def cursor_system(m)
+      flag = (!!flag) ? 1 : 0
+      Externlib.ShowCursor.(flag);
+    end
+    # Fix for EE4 compatibilities
+    alias_method :mouse_x_square, :mouse_square_x
+    alias_method :mouse_y_square, :mouse_square_y
+    alias_method :show_cursor_system, :cursor_system
     append_commands
   end
 
@@ -1187,6 +1222,7 @@ module RMECommands
     def troop_member(id, pos); troop_members(id)[pos]; end
     def troop_member_x(id, pos); troop(id).members[pos].x; end 
     def troop_member_y(id, pos); troop(id).members[pos].y; end 
+    alias_method :troop_member_id, :troop_member
 
     def picture_show_enemy(id_pic, id, pos)
       x = troop_member_x(id, pos)
@@ -1269,10 +1305,11 @@ module RMECommands
     def active_actor?; !!active_actor; end
 
     # Fix for EE4 compatibilities
+    alias_method :monster_attack, :monster_attack_power
+    alias_method :monster_magic_attack, :monster_magic_attack_power
     alias_method :monser_defense, :monster_defense_power
     alias_method :monster_hp, :monster_max_hp
-    
-
+    alias_method :monster_mp, :monster_max_mp
 
     append_commands
   end
