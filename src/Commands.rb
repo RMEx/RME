@@ -1088,6 +1088,17 @@ module RMECommands
       event_in_screen?(0)
     end
 
+    [:last_clicked,
+    :last_pressed,
+    :last_triggered,
+    :last_released ,
+    :last_repeated,
+    :last_hovered].each do |m|
+      define_method("#{m}_event") do 
+        Game_CharacterBase.send(m)
+      end
+    end 
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?

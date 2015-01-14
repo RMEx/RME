@@ -727,6 +727,17 @@ end
 
 class Game_CharacterBase
   #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self 
+    attr_accessor :last_clicked
+    attr_accessor :last_pressed
+    attr_accessor :last_triggered
+    attr_accessor :last_released 
+    attr_accessor :last_repeated
+    attr_accessor :last_hovered 
+  end
+  #--------------------------------------------------------------------------
   # * alias
   #--------------------------------------------------------------------------
   alias :rm_extender_initialize          :initialize
@@ -760,6 +771,12 @@ class Game_CharacterBase
   def update
     rm_extender_update
     update_eHandler
+    Game_CharacterBase.last_hovered = @id if hover?
+    Game_CharacterBase.last_clicked = @id if click?
+    Game_CharacterBase.last_triggered = @id if trigger?
+    Game_CharacterBase.last_released = @id if release?
+    Game_CharacterBase.last_repeated = @id if repeat?
+    Game_CharacterBase.last_pressed = @id if press?
   end
   #--------------------------------------------------------------------------
   # * Event name

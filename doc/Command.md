@@ -236,6 +236,12 @@ Collection des commandes EventExtender
 *    [Command.keyboard_any?(method, keys)](#commandkeyboard_anymethod-keys)
 *    [Command.keyboard_current_char](#commandkeyboard_current_char)
 *    [Command.keyboard_current_digit](#commandkeyboard_current_digit)
+*    [Command.last_clicked_event](#commandlast_clicked_event)
+*    [Command.last_hovered_event](#commandlast_hovered_event)
+*    [Command.last_pressed_event](#commandlast_pressed_event)
+*    [Command.last_released_event](#commandlast_released_event)
+*    [Command.last_repeated_event](#commandlast_repeated_event)
+*    [Command.last_triggered_event](#commandlast_triggered_event)
 *    [Command.length(array)](#commandlengtharray)
 *    [Command.load_game(index, *time)](#commandload_gameindex-time)
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
@@ -3694,6 +3700,72 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 ##### Command.keyboard_current_digit
 
 > Renvoie le chiffre actuel pressé par le clavier
+
+  
+> 
+
+
+
+
+
+##### Command.last_clicked_event
+
+> Renvoie le dernier event cliqué par la souris, nil si aucun évènement n'a été cliqué
+
+  
+> 
+
+
+
+
+
+##### Command.last_hovered_event
+
+> Renvoie le dernier event survolé par la souris, nil si aucun évènement n'a été survolé
+
+  
+> 
+
+
+
+
+
+##### Command.last_pressed_event
+
+> Renvoie le dernier event pressé (avec :mouse_left) par la souris, nil si aucun évènement n'a été pressé
+
+  
+> 
+
+
+
+
+
+##### Command.last_released_event
+
+> Renvoie le dernier event relaché (avec mouse_left) par la souris, nil si aucun évènement n'a été relaché
+
+  
+> 
+
+
+
+
+
+##### Command.last_repeated_event
+
+> Renvoie le dernier event cliqué en continu (avec :mouse_left) par la souris, nil si aucun évènement n'a été cliqué en continu
+
+  
+> 
+
+
+
+
+
+##### Command.last_triggered_event
+
+> Renvoie le dernier event appuyé une fois (avec :mouse_left) par la souris, nil si aucun évènement n'a été triggeré
 
   
 > 

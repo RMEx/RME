@@ -246,7 +246,12 @@ keyboard_all?(m,*k)	-
 keyboard_any?(m,*k)	-
 keyboard_current_char	-
 keyboard_current_digit	-
--	last_clicked_event
+last_clicked_event	last_clicked_event
+last_hovered_event	-
+last_pressed_event	-
+last_released_event	-
+last_repeated_event	-
+last_triggered_event	-
 length(a)	-
 load_game(index,*time)	load_game(num,*dur)
 look_at(ev,to,scope,*metric)	look_at(id,id,portee,unites)

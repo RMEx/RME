@@ -21,6 +21,12 @@ Commandes relatives aux évènements
 *    [fresh_event_id](#fresh_event_id)
 *    [include_page(map_id, event_id, page_id, *runnable, *context)](#include_pagemap_id-event_id-page_id-runnable-context)
 *    [invoke_event(map_id, event_id, new_id, *x, *y)](#invoke_eventmap_id-event_id-new_id-x-y)
+*    [last_clicked_event](#last_clicked_event)
+*    [last_hovered_event](#last_hovered_event)
+*    [last_pressed_event](#last_pressed_event)
+*    [last_released_event](#last_released_event)
+*    [last_repeated_event](#last_repeated_event)
+*    [last_triggered_event](#last_triggered_event)
 *    [max_event_id](#max_event_id)
 *    [mouse_click_event?(events)](#mouse_click_eventevents)
 *    [mouse_click_player?](#mouse_click_player)
@@ -196,6 +202,48 @@ Commandes relatives aux évènements
 `*x`|`Fixnum`|Position X où placer l'évènement invoqué, par défaut, conserve la valeur de l'évènement invoqué  
 `*y`|`Fixnum`|Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué  
 
+
+##### last_clicked_event
+
+> Renvoie le dernier event cliqué par la souris, nil si aucun évènement n'a été cliqué
+
+  
+> 
+
+##### last_hovered_event
+
+> Renvoie le dernier event survolé par la souris, nil si aucun évènement n'a été survolé
+
+  
+> 
+
+##### last_pressed_event
+
+> Renvoie le dernier event pressé (avec :mouse_left) par la souris, nil si aucun évènement n'a été pressé
+
+  
+> 
+
+##### last_released_event
+
+> Renvoie le dernier event relaché (avec mouse_left) par la souris, nil si aucun évènement n'a été relaché
+
+  
+> 
+
+##### last_repeated_event
+
+> Renvoie le dernier event cliqué en continu (avec :mouse_left) par la souris, nil si aucun évènement n'a été cliqué en continu
+
+  
+> 
+
+##### last_triggered_event
+
+> Renvoie le dernier event appuyé une fois (avec :mouse_left) par la souris, nil si aucun évènement n'a été triggeré
+
+  
+> 
 
 ##### max_event_id
 
