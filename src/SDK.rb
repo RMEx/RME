@@ -1710,7 +1710,7 @@ class Socket
   #--------------------------------------------------------------------------
   def recv(len = 1024)
     return if !@socket || !@connected
-    buf = [].pacj('x'+len.to_s)
+    buf = [].pack('x'+len.to_s)
     v = w32_recv(@socket, buf, len, 0)
     return buf.gsub(/\x00/,"") if v != -1
     false 
