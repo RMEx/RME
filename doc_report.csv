@@ -1,5 +1,5 @@
 Report,
-# Commandes documentées,499/518
+# Commandes documentées,499/519
 ,
 # Commandes non documentées,# Suggestion
 textfield_text_show,Aucune suggestion
@@ -19,6 +19,7 @@ textfield_trigger?,Aucune suggestion
 textfield_repeat?,Aucune suggestion
 textfield_visible,Aucune suggestion
 textfield_opacity,Aucune suggestion
+message_height,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,

@@ -1,4 +1,4 @@
-RME	EE(125/187)
+RME	EE(126/187)
 a_save_exists?	-
 acos(x)	-
 acosh(x)	-
@@ -265,7 +265,7 @@ map_id	map_id
 map_name	-
 max(a,b)	-
 max_event_id	max_event_id
--	message_height(nombre)
+message_height(n)	message_height(nombre)
 min(a,b)	-
 monster_agility(id)	monster_agility(id)
 monster_attack(id)	monster_attack(id)

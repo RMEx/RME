@@ -86,6 +86,15 @@ module RMECommands
     args[Kernel.rand(args.length)]
   end
 
+  #--------------------------------------------------------------------------
+  # * Change Message height
+  #--------------------------------------------------------------------------
+  def message_height(n)
+    Window_Message.line_number = n
+    scene = SceneManager.scene
+    scene.refresh_message if scene.respond_to?(:refresh_message)
+  end
+
   # Fix Username
   alias_method :windows_username, :session_username
   
