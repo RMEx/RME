@@ -1814,4 +1814,92 @@ module RMECommands
     append_commands
   end
 
+  #==============================================================================
+  # ** Textfields
+  #------------------------------------------------------------------------------
+  #  Textfields commands
+  #==============================================================================
+
+  module Textfields 
+
+    def scene; SceneManager.scene; end
+
+    def textfield_text_show(id, text, x, y, w, profile, range = false)
+      scene.add_textfield(id, UI::Window_Textfield.new(x, y, w, text, profile, range))
+    end
+
+    def textfield_int_show(id, number, x, y, w, profile, range = false)
+      scene.add_textfield(id, UI::Window_Intfield.new(x, y, w, text, profile, range))
+    end
+
+    def textfield_float_show(id, number, x, y, w, profile, range = false)
+      scene.add_textfield(id, UI::Window_floatfield.new(x, y, w, text, profile, range))
+    end
+
+    def textfield_erase(id = nil)
+      unless id
+        scene.erase_textfields 
+        return
+      end
+      scene.erase_textfield(id)
+    end
+
+    def textfield_activate(id)
+      scene.unactivate_textfields
+      scene.textfields[id].activate if scene.textfields[id]
+    end
+
+    def textfield_deactivate(id = nil)
+      unless id 
+        scene.unactivate_textfields
+        return 
+      end
+      scene.textfields[id].deactivate if scene.textfields[id]
+    end 
+
+    def textfield_active?(id)
+      return scene.textfields[id].active? if scene.textfields[id]
+      false
+    end
+
+    def textfield_get_value(id)
+      return scene.textfields[id].value if scene.textfields[id]
+      ""
+    end
+
+    def textfield_set_value(id, value)
+      scene.textfields[id].value = value if scene.textfields[id]
+    end
+
+    def textfield_hover?(id)
+      return scene.textfields[id].in?(Mouse.x, Mouse.y) if scene.textfields[id]
+      false
+    end
+
+    def textfield_click?(id)
+      textfield_hover?(id) && Mouse.click?
+    end
+
+    [:press?, :release?, :trigger?, :repeat?].each do |m|
+      define_method("textfield_#{m}") do |id, *key|
+        key = key[0] || :mouse_left
+        textfield_hover?(id) && Mouse.send(m, key)
+      end
+    end
+
+    def textfield_visible(id, flag)
+      scene.textfields[id].visibility = !!flag if scene.textfields[id]
+    end
+
+    def textfield_visible(id, flag)
+      scene.textfields[id].visible = !!flag if scene.textfields[id]
+    end
+
+    def textfield_opacity(id, opacity)
+      scene.textfields[id].opacity = opacity%256 if scene.textfields[id]
+    end
+
+    append_commands
+  end
+
 end

@@ -33,6 +33,26 @@ IColor.insert("blue", 0, 0, 255, 255)
 IColor.insert("gray", 120, 120, 120, 255)
 
 #==============================================================================
+# ** ITone
+#------------------------------------------------------------------------------
+#  Tone registration
+#==============================================================================
+
+class ITone < Static::Table
+  pk string :name
+  integer :red
+  integer :green
+  integer :blue
+  integer :gray
+end
+
+#--------------------------------------------------------------------------
+# * Std Tone
+#--------------------------------------------------------------------------
+ITone.insert("transluent", 0, 0, 0, 0)
+ITone.insert("darkblue", -34, 0, 68, 0)
+
+#==============================================================================
 # ** ITextProfile
 #------------------------------------------------------------------------------
 #  Text Profile Registration
@@ -66,6 +86,7 @@ class ITextProfile < Static::Table
   end
 
 end
+
 #--------------------------------------------------------------------------
 # * Std TextProfiles
 #--------------------------------------------------------------------------
@@ -80,6 +101,34 @@ ITextProfile.insert(
   "black", 
   Font.default_shadow
   )
+
+#==============================================================================
+# ** ITextFieldProfile
+#------------------------------------------------------------------------------
+#  TextField Profile Registration
+#==============================================================================
+
+class ITextFieldProfile < Static::Table
+  pk string :name
+  string :text_profile
+  integer :alignement
+  integer :height
+  integer :padding
+  integer :padding_bottom
+  string :tone_name
+
+  #--------------------------------------------------------------------------
+  # * Get tone
+  #--------------------------------------------------------------------------
+  def get_tone
+    get_toneProfile(tone_name)
+  end
+end
+
+#--------------------------------------------------------------------------
+# * Std TextFieldProfiles
+#--------------------------------------------------------------------------
+ITextFieldProfile.insert("default", "default", 0, 54, 6, 6, "darkblue")
 
 #==============================================================================
 # ** Kernel
@@ -104,6 +153,23 @@ module Kernel
     c = ITextProfile[name]
     return ITextProfile["default"] unless c 
     c
+  end
+  #--------------------------------------------------------------------------
+  # * Get Textfield Profile by name
+  #--------------------------------------------------------------------------
+  def get_fieldProfile(name)
+    c = ITextFieldProfile[name]
+    return ITextFieldProfile["default"] unless c 
+    c
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Tone by name
+  #--------------------------------------------------------------------------
+  def get_toneProfile(name)
+    c = ITone[name]
+    return Tone.new(0,0,0) unless c
+    Tone.new(c.red, c.green, c.blue, c.gray)
   end
 
 end

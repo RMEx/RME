@@ -1086,6 +1086,65 @@ class Scene_Map
   # * Public instance variable
   #--------------------------------------------------------------------------
   attr_reader :spriteset
+  attr_accessor :textfields
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :extender_start, :start
+  alias_method :extender_update_all_windows, :update_all_windows
+  alias_method :extender_dispose_all_windows, :dispose_all_windows
+  alias_method :extender_update, :update
+  #--------------------------------------------------------------------------
+  # * Start
+  #--------------------------------------------------------------------------
+  def start
+    extender_start
+    @textfields = Hash.new
+  end
+  #--------------------------------------------------------------------------
+  # * Update All Windows
+  #--------------------------------------------------------------------------
+  def update_all_windows
+    extender_update_all_windows
+    @textfields.each do |k, f|
+      f.update if f && !f.disposed?
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Free All Windows
+  #--------------------------------------------------------------------------
+  def dispose_all_windows
+    extender_dispose_all_windows
+    @texfields.each do |f|
+     f.dispose if f && !f.disposed?
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Erase a field
+  #--------------------------------------------------------------------------
+  def erase_textfield(i)
+    @textfields[i].dispose if @textfields[i] && !@textfields[i].disposed?
+    @textfields.delete(i)
+  end
+  #--------------------------------------------------------------------------
+  # * Erase all fields
+  #--------------------------------------------------------------------------
+  def erase_textfields
+    @textfields.each {|i,t| erase_textfield(i)}
+  end
+  #--------------------------------------------------------------------------
+  # * Unactivate all textfields
+  #--------------------------------------------------------------------------
+  def unactivate_textfields
+    @textfields.each {|i,t| t.deactivate if t && !t.disposed?}
+  end
+  #--------------------------------------------------------------------------
+  # * add textfield
+  #--------------------------------------------------------------------------
+  def add_textfield(i, tf)
+    erase_textfield(i)
+    @textfields[i] = tf
+  end
   #--------------------------------------------------------------------------
   # * refresh spriteset
   #--------------------------------------------------------------------------
@@ -2162,6 +2221,248 @@ class Game_Interpreter
   # * Get Binding
   #--------------------------------------------------------------------------
   def get_binding; binding; end
+end
+
+#==============================================================================
+# ** UI
+#------------------------------------------------------------------------------
+# Minimalist UI
+#==============================================================================
+
+module UI 
+
+  #==============================================================================
+  # ** Abstract_Textfield
+  #------------------------------------------------------------------------------
+  # Abstract text field representation
+  #==============================================================================
+
+  class Abstract_Textfield < Window_Base 
+
+    #--------------------------------------------------------------------------
+    # * Public instance variables
+    #--------------------------------------------------------------------------
+    attr_accessor :profile
+    alias_method :active?, :active
+    attr_accessor :range
+
+    #--------------------------------------------------------------------------
+    # * Restrict int
+    #--------------------------------------------------------------------------
+    def restrict(x, r, m=:to_i)
+      [[r.min, x.send(m)].max, r.max].min
+    end
+
+    #--------------------------------------------------------------------------
+    # * Constructor
+    #--------------------------------------------------------------------------
+    def initialize(x, y, w, t, profile, range = false)
+      @raw_w = w
+      @profile = get_fieldProfile(profile)
+      @text = t
+      @range = range
+      super(x, y, w, @profile.height)
+      init_basic
+      refresh
+    end
+
+    #--------------------------------------------------------------------------
+    # * Basic initialize
+    #--------------------------------------------------------------------------
+    def init_basic 
+      @old_text = @text.dup
+      self.arrows_visible = false
+      self.padding = @profile.padding
+      self.padding_bottom = @profile.padding_bottom
+      self.active = false
+    end
+
+    #--------------------------------------------------------------------------
+    # * Bitmap initialize
+    #--------------------------------------------------------------------------
+    def init_bitmap 
+      self.contents = Bitmap.new(@raw_w-8, @profile.height-8)
+      @align = @profile.alignement%3
+      self.contents.font = get_profile(@profile.text_profile).to_font
+      self.tone.set(@profile.get_tone)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Refresh bitmap
+    #--------------------------------------------------------------------------
+    def refresh
+      self.contents.clear
+      init_bitmap
+      w, h = self.contents.width, self.contents.height
+      self.contents.draw_text(0, 0, w, h, @text, @align)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Frame update
+    #--------------------------------------------------------------------------
+    def update
+      super
+      self.tone.set(@profile.get_tone)
+      @text = @text[0...@text.length-1] || "" if Keyboard.repeat?(:backspace)
+      if @old_text != @text
+        refresh
+        @old_text = @text.dup
+      end
+    end
+
+    #--------------------------------------------------------------------------
+    # * Set profile
+    #--------------------------------------------------------------------------
+    def profile=(pr)
+      @profile =  get_fieldProfile(pr)
+      refresh
+    end
+
+    #--------------------------------------------------------------------------
+    # * point include in textfield
+    #--------------------------------------------------------------------------
+    def in?(x, y)
+      check_x = x.between?(self.x, self.x+self.width)
+      check_y = y.between?(self.y, self.y+self.height)
+      check_x && check_y
+    end
+
+  end
+
+  #==============================================================================
+  # ** Window_Textfield
+  #------------------------------------------------------------------------------
+  # Text field representation
+  #==============================================================================
+
+  class Window_Textfield < Abstract_Textfield
+
+    #--------------------------------------------------------------------------
+    # * Constructor
+    #--------------------------------------------------------------------------
+    def initialize(x, y, w, t, profile, range = false)
+      range = (range.is_a?(Fixnum) && range > 0) ? range : false
+      t = t[0..range-1] if range
+      super(x, y, w, t, profile, range)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Value
+    #--------------------------------------------------------------------------
+    def value=(t)
+      t = t[0..range-1] if range
+      @text = t
+    end
+
+    #--------------------------------------------------------------------------
+    # * Frame update
+    #--------------------------------------------------------------------------
+    def update
+      return unless active?
+      @text << Keyboard.current_char
+      self.value = @text
+      super
+    end
+
+  end
+
+  #==============================================================================
+  # ** Window_IntField
+  #------------------------------------------------------------------------------
+  # Text field representation
+  #==============================================================================
+
+  class Window_Intfield < Abstract_Textfield
+    #--------------------------------------------------------------------------
+    # * Constructor
+    #--------------------------------------------------------------------------
+    def initialize(x, y, w, t, profile, range = false)
+      range = (range.is_a?(Range)) ? range : false
+      t = restrict(t, range) if range
+      super(x, y, w, t.to_i.to_s, profile, range)
+    end
+    #--------------------------------------------------------------------------
+    # * Get the input value
+    #--------------------------------------------------------------------------
+    def value; super.to_i; end
+    #--------------------------------------------------------------------------
+    # * Set the value
+    #--------------------------------------------------------------------------
+    def value=(text)
+      if text == "+" || text == "-"
+        @text = text
+        return
+      end
+      text = restrict(text, range) if range
+      @text = text.to_i.to_s
+    end
+    #--------------------------------------------------------------------------
+    # * Update
+    #-------------------------------------------------------------------------- 
+    def update
+      return unless active?
+      super
+      letter = Keyboard.current_char
+      return unless (["+","-"] + ("0".."9").to_a).include?(letter)
+      return if @text != "" && ["+","-"].include?(letter)
+      @text << letter
+      self.value = @text
+    end
+  end
+
+  #==============================================================================
+  # ** Window_Floatfield
+  #------------------------------------------------------------------------------
+  # Text field representation
+  #==============================================================================
+
+  class Window_Floatfield < Abstract_Textfield
+    #--------------------------------------------------------------------------
+    # * Constructor
+    #--------------------------------------------------------------------------
+    def initialize(x, y, w, t, profile, range = false)
+      range = (range.is_a?(Range)) ? range : false
+      t = restrict(t, range, :to_f) if range
+      super(x, y, w, t.to_f.to_s, profile, range)
+    end
+    #--------------------------------------------------------------------------
+    # * Get the input value
+    #--------------------------------------------------------------------------
+    def value; super.to_f; end
+    #--------------------------------------------------------------------------
+    # * Set the value
+    #--------------------------------------------------------------------------
+    def value=(text)
+      if text == "+" || text == "-" || text == "."
+        @text = text
+        return
+      end
+      text = restrict(text, range, :to_f) if range && must_restrict?(text)
+      @text = text.to_s
+    end
+    #--------------------------------------------------------------------------
+    # * Must restriction process
+    #--------------------------------------------------------------------------
+    def must_restrict?(text)
+      return true if text == "+" || text == "-" || text == "."
+      return text.to_f < range.min || text.to_f > range.max
+    end
+    #--------------------------------------------------------------------------
+    # * Update
+    #-------------------------------------------------------------------------- 
+    def update
+      return unless active?
+      super
+      letter = Keyboard.current_char
+      return unless (["+","-", "."] + ("0".."9").to_a).include?(letter)
+      return if @text != "" && ["+","-"].include?(letter)
+      return if letter == "." && @text.count(".") == 1
+      @text << letter
+      return if letter == "."
+      self.value = @text
+    end
+  end
+
 end
 
 #==============================================================================

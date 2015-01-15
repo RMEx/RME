@@ -656,7 +656,7 @@ module Command
 
   add_internals :enemy, :troop, :monster_battler_dimension, :distance_between
   add_internals :type_equip, :sys, :spriteset, :sprite_picture, :screen, :picture
-  add_internals :scene, :event, :method_missing, :pictures
+  add_internals :scene, :event, :method_missing, :pictures, :scene
 
   # EE4 Fixture
   add_internals :windows_username, :parallax_scrollspeed, :picture_origine
