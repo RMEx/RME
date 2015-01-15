@@ -4,6 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > **Index des commandes**  
 - - -  
 *    [Commandes des acteurs](command_actors.md)
+*    [Commandes de gestion de zones virtuelles](command_area.md)
 *    [Commandes relatives aux armures](command_armors.md)
 *    [Commandes de temps](command_date.md)
 *    [Commandes relatives aux ennemis (tels que défini dans la base de données)](command_enemy.md)

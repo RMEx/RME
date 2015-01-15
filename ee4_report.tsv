@@ -1,4 +1,4 @@
-RME	EE(132/187)
+RME	EE(123/187)
 a_save_exists?	-
 acos(x)	-
 acosh(x)	-
@@ -315,7 +315,6 @@ mouse_press_area?(area,*k)	-
 mouse_press_event?(e,*k)	-
 mouse_press_player?(*k)	-
 mouse_press_square_area?(area,*k)	-
-mouse_pressed_area?(area,*k)	-
 mouse_rect	mouse_rect
 mouse_release?(k)	mouse_release?(touche)
 mouse_release_area?(area,*k)	-
@@ -331,7 +330,6 @@ mouse_repeat_square_area?(area,*k)	-
 mouse_repeated_area?(area,*k)	mouse_repeated_area?(zone,touche)
 mouse_square_clicked_area?(area,*k)	mouse_square_clicked_area?(zone,touche)
 mouse_square_hover_area?(area)	mouse_square_hover_area?(zone)
-mouse_square_pressed_area?(area,*k)	-
 mouse_square_released_area?(area,*k)	mouse_square_released_area?(zone,touche)
 mouse_square_repeated_area?(area,*k)	mouse_square_repeated_area?(zone,touche)
 mouse_square_triggered_area?(area,*k)	mouse_square_triggered_area?(zone,touche)

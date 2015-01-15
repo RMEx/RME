@@ -116,6 +116,10 @@ Collection des commandes EventExtender
 *    [Command.color(red, green, blue, *alpha)](#commandcolorred-green-blue-alpha)
 *    [Command.cos(x)](#commandcosx)
 *    [Command.cosh(x)](#commandcoshx)
+*    [Command.create_circle_area(x, y, rayon)](#commandcreate_circle_areax-y-rayon)
+*    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
+*    [Command.create_polygon_area(*points)](#commandcreate_polygon_areapoints)
+*    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
 *    [Command.current_enemies](#commandcurrent_enemies)
@@ -186,6 +190,7 @@ Collection des commandes EventExtender
 *    [Command.import_label(index, idlabel)](#commandimport_labelindex-idlabel)
 *    [Command.import_switch(index, idswitch)](#commandimport_switchindex-idswitch)
 *    [Command.import_variable(index, idvar)](#commandimport_variableindex-idvar)
+*    [Command.in_area?(area, x, y)](#commandin_areaarea-x-y)
 *    [Command.include_page(map_id, event_id, page_id, *runnable, *context)](#commandinclude_pagemap_id-event_id-page_id-runnable-context)
 *    [Command.invoke_event(map_id, event_id, new_id, *x, *y)](#commandinvoke_eventmap_id-event_id-new_id-x-y)
 *    [Command.is_key_item?(id)](#commandis_key_itemid)
@@ -275,30 +280,42 @@ Collection des commandes EventExtender
 *    [Command.mouse_all?(method, keys)](#commandmouse_allmethod-keys)
 *    [Command.mouse_any?(method, keys)](#commandmouse_anymethod-keys)
 *    [Command.mouse_click?](#commandmouse_click)
+*    [Command.mouse_click_area?(area)](#commandmouse_click_areaarea)
 *    [Command.mouse_click_event?(events)](#commandmouse_click_eventevents)
 *    [Command.mouse_click_player?](#commandmouse_click_player)
+*    [Command.mouse_click_square_area?(area, *key)](#commandmouse_click_square_areaarea-key)
 *    [Command.mouse_current_key(method)](#commandmouse_current_keymethod)
 *    [Command.mouse_dragging?](#commandmouse_dragging)
+*    [Command.mouse_hover_area?(area)](#commandmouse_hover_areaarea)
 *    [Command.mouse_hover_event?(events)](#commandmouse_hover_eventevents)
 *    [Command.mouse_hover_player?](#commandmouse_hover_player)
+*    [Command.mouse_hover_square_area?(area)](#commandmouse_hover_square_areaarea)
 *    [Command.mouse_in?(rectangle)](#commandmouse_inrectangle)
 *    [Command.mouse_last_rect](#commandmouse_last_rect)
 *    [Command.mouse_point](#commandmouse_point)
 *    [Command.mouse_press?(key)](#commandmouse_presskey)
+*    [Command.mouse_press_area?(area, *key)](#commandmouse_press_areaarea-key)
 *    [Command.mouse_press_event?(events, *key)](#commandmouse_press_eventevents-key)
 *    [Command.mouse_press_player?(*key)](#commandmouse_press_playerkey)
+*    [Command.mouse_press_square_area?(area, *key)](#commandmouse_press_square_areaarea-key)
 *    [Command.mouse_rect](#commandmouse_rect)
 *    [Command.mouse_release?(key)](#commandmouse_releasekey)
+*    [Command.mouse_release_area?(area, *key)](#commandmouse_release_areaarea-key)
 *    [Command.mouse_release_event?(events, *key)](#commandmouse_release_eventevents-key)
 *    [Command.mouse_release_player?(*key)](#commandmouse_release_playerkey)
+*    [Command.mouse_release_square_area?(area, *key)](#commandmouse_release_square_areaarea-key)
 *    [Command.mouse_repeat?(key)](#commandmouse_repeatkey)
+*    [Command.mouse_repeat_area?(area, *key)](#commandmouse_repeat_areaarea-key)
 *    [Command.mouse_repeat_event?(events, *key)](#commandmouse_repeat_eventevents-key)
 *    [Command.mouse_repeat_player?(*key)](#commandmouse_repeat_playerkey)
+*    [Command.mouse_repeat_square_area?(area, *key)](#commandmouse_repeat_square_areaarea-key)
 *    [Command.mouse_square_x](#commandmouse_square_x)
 *    [Command.mouse_square_y](#commandmouse_square_y)
 *    [Command.mouse_trigger?(key)](#commandmouse_triggerkey)
+*    [Command.mouse_trigger_area?(area, *key)](#commandmouse_trigger_areaarea-key)
 *    [Command.mouse_trigger_event?(events, *key)](#commandmouse_trigger_eventevents-key)
 *    [Command.mouse_trigger_player?(*key)](#commandmouse_trigger_playerkey)
+*    [Command.mouse_trigger_square_area?(area, *key)](#commandmouse_trigger_square_areaarea-key)
 *    [Command.mouse_x](#commandmouse_x)
 *    [Command.mouse_y](#commandmouse_y)
 *    [Command.num_lock?](#commandnum_lock)
@@ -2024,6 +2041,70 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.create_circle_area(x, y, rayon)
+
+> Crée et renvoi une zone circulaire
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X de la zone  
+`y`|`Fixnum`|Coordonnées Y de la zone  
+`rayon`|`Fixnum`|Rayon de la zone  
+
+
+
+
+
+
+##### Command.create_ellipse_area(x, y, width, height)
+
+> Crée et renvoi une zone elliptique
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X de la zone  
+`y`|`Fixnum`|Coordonnées Y de la zone  
+`width`|`Fixnum`|Largeur de la zone  
+`height`|`Fixnum`|Hauteur de la zone  
+
+
+
+
+
+
+##### Command.create_polygon_area(*points)
+
+> Crée et renvoi une zone polygonale (le dernier point est relié avec le premier)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*points`|`ArgType`|Liste de points (create_polygon_area([ax, ay], [bx, by], [cx, cy] etc...))  
+
+
+
+
+
+
+##### Command.create_rect_area(x, y, width, height)
+
+> Crée et renvoi une zone rectangulaire
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X de la zone  
+`y`|`Fixnum`|Coordonnées Y de la zone  
+`width`|`Fixnum`|Largeur de la zone  
+`height`|`Fixnum`|Hauteur de la zone  
+
+
+
+
+
+
 ##### Command.ctrl?(key)
 
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
@@ -3008,6 +3089,22 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idvar`|`Fixnum`|Numéro de la variable  
+
+
+
+
+
+
+##### Command.in_area?(area, x, y)
+
+> Vérifie si le point référencé par X, Y est inscrit dans la zone passée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`x`|`Fixnum`|Coordonnée X du point  
+`y`|`ArgType`|Coordonnée Y du point  
 
 
 
@@ -4239,6 +4336,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_click_area?(area)
+
+> Renvoie true si la souris survol et clique sur la zone passée en argument au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+
+
+
+
+
+
 ##### Command.mouse_click_event?(events)
 
 > Renvoie true si la souris clique un évènement du sélecteur passé en argument
@@ -4259,6 +4370,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.mouse_click_square_area?(area, *key)
+
+> Renvoie true si la souris survol et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
+
 
 
 
@@ -4289,6 +4415,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_hover_area?(area)
+
+> Renvoie true si la souris survol la zone passée en argument au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+
+
+
+
+
+
 ##### Command.mouse_hover_event?(events)
 
 > Renvoie true si la souris survol un évènement du sélecteur passé en argument
@@ -4309,6 +4449,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.mouse_hover_square_area?(area)
+
+> Renvoie true si la souris survol la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+
 
 
 
@@ -4364,6 +4518,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_press_area?(area, *key)
+
+> Renvoie true si la souris survol et clique en continu sur la zone passée en argument au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
+
+
+
+
+
+
 ##### Command.mouse_press_event?(events, *key)
 
 > Renvoie true si la souris presse un évènement du sélecteur passé en argument
@@ -4393,6 +4562,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_press_square_area?(area, *key)
+
+> Renvoie true si la souris survol et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
+
+
+
+
+
+
 ##### Command.mouse_rect
 
 > Renvoie le rectangle de sélection de la souris (tracé en cours)
@@ -4412,6 +4596,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+##### Command.mouse_release_area?(area, *key)
+
+> Renvoie true si la souris survol et est relachée sur la zone passée en argument au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
 
 
 
@@ -4447,6 +4646,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_release_square_area?(area, *key)
+
+> Renvoie true si la souris survol et est relachée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
+
+
+
+
+
+
 ##### Command.mouse_repeat?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
@@ -4455,6 +4669,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
+
+
+
+
+
+
+##### Command.mouse_repeat_area?(area, *key)
+
+> Renvoie true si la souris survol et pressée en répétitivement sur la zone passée en argument au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
 
 
 
@@ -4484,6 +4713,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
+
+
+
+
+
+
+##### Command.mouse_repeat_square_area?(area, *key)
+
+> Renvoie true si la souris survol et est pressée en répétitivement sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
 
 
 
@@ -4526,6 +4770,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.mouse_trigger_area?(area, *key)
+
+> Renvoie true si la souris survol et clique une fois sur la zone passée en argument au moment de l'appel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
+
+
+
+
+
+
 ##### Command.mouse_trigger_event?(events, *key)
 
 > Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
@@ -4549,6 +4808,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
+
+
+
+
+
+
+##### Command.mouse_trigger_square_area?(area, *key)
+
+> Renvoie true si la souris survol et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`area`|`Area`|Zone à vérifier  
+`*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
 
 
 
