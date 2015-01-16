@@ -3,17 +3,9 @@
 #
 
 =begin 
-Implémentation des évènements communs dans le système de combat 
-- Solution proposée par <Grim, Nuki>
-  - Special thanks to Zeus81
-- Etat : Incubé
+Implémentation de trucs potentiellement cool pour la future GUI
+état tout à fait incumbatif, bien naturellement : c'est dans l'incubator.
 =end
-
-#==============================================================================
-# ** Viewport
-#------------------------------------------------------------------------------
-#  Used when displaying sprites on one portion of the screen
-#==============================================================================
 
 #==============================================================================
 # ** Viewport
@@ -42,31 +34,94 @@ class Viewport
     :repeat?, 
     :release?, 
     :mouse_x,
-    :mouse_y
+    :mouse_y,
   ].each{|m| delegate :rect, m}
-  delegate_accessor :rect, :x 
-  delegate_accessor :rect, :y
-  delegate_accessor :rect, :width
-  delegate_accessor :rect, :height
-
   #--------------------------------------------------------------------------
   # * Object initialize
   #--------------------------------------------------------------------------
   def initialize(*args)
     sdk_initialize(*args)
-    @definition = Rect.new(rect.x,rect.y,rect.width,rect.height)
+    @definition = rect.clone
     @children = []
     @parent = nil
     @elts = []
   end
-
   #--------------------------------------------------------------------------
-  # * append Sprites
+  # * Gets definition attributes
+  #--------------------------------------------------------------------------
+  def x; @definition.x; end
+  def y; @definition.y; end
+  def width;  @definition.width  end
+  def height; @definition.height end
+  #--------------------------------------------------------------------------
+  # * Sets definition attributes
+  #--------------------------------------------------------------------------
+  def x=(v)
+    @definition.x = v
+    update_from_definition
+  end
+  def y=(v)
+    @definition.y = v
+    update_from_definition
+  end
+  def width=(v)
+    @definition.width = v
+    update_from_definition
+  end
+  def height=(v)
+    @definition.height = v
+    update_from_definition
+  end
+  #--------------------------------------------------------------------------
+  # * Gets coordinates relative to screen
+  #--------------------------------------------------------------------------
+  def screen_x
+     return self.x unless @parent
+     @parent.screen_x + @parent.ox + self.x    
+  end
+  def screen_y
+    return self.y unless @parent
+    @parent.screen_y + @parent.oy + self.y
+  end
+  #--------------------------------------------------------------------------
+  # * Pushes another viewport in self
+  #--------------------------------------------------------------------------
+  def <<(oth)
+    oth.parent = self
+    @children << oth
+    oth.update_from_definition
+    oth
+  end
+  #--------------------------------------------------------------------------
+  # * Pushes self in another viewport
+  #--------------------------------------------------------------------------
+  def >>(oth)
+    @parent = oth
+    oth.children << self
+    update_from_definition
+    oth
+  end
+  #--------------------------------------------------------------------------
+  # * Updates the viewport's visible area from the definition
+  #--------------------------------------------------------------------------
+  def update_from_definition
+    if @parent
+      min_x = [self.screen_x, @parent.rect.x].max
+      min_y = [self.screen_y, @parent.rect.y].max
+      max_x = [self.screen_x + self.width,  @parent.rect.x + @parent.rect.width ].min
+      max_y = [self.screen_y + self.height, @parent.rect.y + @parent.rect.height].min
+      rect.set(min_x, min_y, max_x-min_x, max_y-min_y)
+    else
+      rect.set(@definition)
+    end
+    @children.each{|c| c.update_from_definition}
+  end
+  #--------------------------------------------------------------------------
+  # * Append Sprites
   #--------------------------------------------------------------------------
   def append(s)
     @elts << (s)
   end
-
   #--------------------------------------------------------------------------
   # * Calcul height space
   #--------------------------------------------------------------------------
@@ -75,7 +130,6 @@ class Viewport
     v = @elts.max{|a, b| (a.y + a.rect.height) <=> (b.y + b.rect.height)}
     [(v.y+v.rect.height), rect.height].max
   end
-
   #--------------------------------------------------------------------------
   # * Calcul height space
   #--------------------------------------------------------------------------
@@ -84,124 +138,118 @@ class Viewport
     v = @elts.max{|a, b| (a.x + a.rect.width) <=> (b.x + b.rect.width)}
     [(v.x+v.rect.width), rect.width].max
   end
+end
 
+#==============================================================================
+# ** Draggable
+#------------------------------------------------------------------------------
+#  Any Object responding to ":x, :y, :in?" can be draggable.
+#  Simply by pushing itself into the Draggable.objects array.
+#==============================================================================
+
+module Draggable
   #--------------------------------------------------------------------------
-  # * pushes another viewport in self
+  # * Singleton
   #--------------------------------------------------------------------------
-  def <<(oth)
-    oth.parent = self
-    @children << oth
-    oth.update_from_definition
-    oth
-  end
-
-  #--------------------------------------------------------------------------
-  # * pushes self in another viewport
-  #--------------------------------------------------------------------------
-  def >>(oth)
-    @parent = oth
-    oth.children << self
-    update_from_definition
-    oth
-  end
-
-  def x=(v); @definition.x = v; update_from_definition; end
-  def y=(v); @definition.y = v; update_from_definition; end
-  def width=(v); @definition.width = v; update_from_definition; end
-  def height=(v); @definition.height = v; update_from_definition; end
-
-  def screen_x
-    return @definition.x + @parent.screen_x + @parent.ox if @parent
-    @definition.x
-  end
-  def screen_y
-    return @definition.y + @parent.screen_y + @parent.oy if @parent
-    @definition.y
-  end
-  def screen_x=(v)
-    @definition.x = v
-    @definition.x -= @parent.x + @parent.ox if @parent
-    update_from_definition
-  end
-  def screen_y=(v)
-    @definition.y = v
-    @definition.y -= @parent.y + @parent.oy if @parent
-    update_from_definition
-  end
-
-  def update_from_definition
-    if @parent
-      new_x = @definition.x + @parent.screen_x + @parent.ox
-      new_y = @definition.y + @parent.screen_y + @parent.oy
-      rect.x = [new_x, @parent.x].max
-      rect.y = [new_y, @parent.y].max
-      rect.width = [new_x + @definition.width, @parent.x + @parent.width].min - rect.x
-      rect.height = [new_y + @definition.height, @parent.y + @parent.height].min - rect.y
-    else
-      rect.x = @definition.x
-      rect.y = @definition.y
+  class << self
+    attr_accessor :objects, :picked
+    Draggable.objects = []
+    Draggable.picked  = nil
+    #--------------------------------------------------------------------------
+    # * Finds and pick the first Object clicked
+    #--------------------------------------------------------------------------
+    def find
+      @picked = @objects.compact.find do |o|
+        (o.in?(Mouse.x, Mouse.y) &&
+          !(o.respond_to?(:children) &&
+            o.children.any? {|c| c.in?(Mouse.x, Mouse.y)}
+            )
+          )
+      end
+      return unless @picked
+      @x_init = @picked.x
+      @y_init = @picked.y
     end
-    @children.each{|c| c.update_from_definition}
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def drag
+      return unless @picked
+      @picked.x = @x_init + Mouse.drag.ox
+      @picked.y = @y_init + Mouse.drag.oy
+    end
+    #--------------------------------------------------------------------------
+    # * Drops the last picked Object
+    #--------------------------------------------------------------------------
+    def drop
+      @picked = nil
+    end
   end
 end
 
 #==============================================================================
 # ** Bilou
 #------------------------------------------------------------------------------
-#  Experimental
+#  Bilou is the best example for anything
 #==============================================================================
 
 class Bilou
-
   attr_accessor :sprite
   attr_accessor :viewport
-  attr_accessor :draggable
-  attr_accessor :dragging
-  attr_accessor :children
-  attr_accessor :parent
-  attr_accessor :ancestors
-  @@dragger = nil
+  [ :children,
+    :width,
+    :height,
+    :in?,
+    :hover?,
+    :click?,
+    :press?,
+    :trigger?,
+    :repeat?,
+    :release?, 
+    :mouse_x,
+    :mouse_y
+  ].each{|m| delegate :viewport, m}
+  delegate_accessor   :viewport, :x
+  delegate_accessor   :viewport, :y
 
   def initialize(x,y,w,h,c,draggable=false)
-    @draggable = draggable
-    @viewport = Viewport.new(x,y,w,h)
-    @sprite = Sprite.new
-    @sprite.bitmap = Bitmap.new(w,h)
-    @sprite.bitmap.fill_rect(0,0,w,h,c)
-    @sprite.viewport = @viewport
-    @children = []
+    Draggable.objects << self if draggable
+    @viewport   = Viewport.new(x,y,w,h)
+    s           = Sprite.new
+    s.bitmap    = Bitmap.new(w,h)
+    s.bitmap.fill_rect(0,0,1,1,c)
+    s.zoom_x    = w
+    s.zoom_y    = h
+    s.viewport  = @viewport
+    @sprite     = s
   end
 
-  def update
-    return unless @draggable
-    if Mouse.dragging?
-      if @@dragger == object_id
-        @viewport.screen_x = @x_start_drag + Mouse.drag.ox
-        @viewport.screen_y = @y_start_drag + Mouse.drag.oy
-      elsif @@dragger == nil && @viewport.in?(Mouse.drag.start) &&
-          ! @children.any? {|c| c.viewport.in?(Mouse.drag.start)}
-        @x_start_drag = @viewport.screen_x
-        @y_start_drag = @viewport.screen_y
-        @@dragger = object_id
-      end
-    else
-      @@dragger = nil if @@dragger
-    end
+  def width=(v)
+    @sprite.zoom_x  = v
+    @viewport.width = v
   end
-
+  def height=(v)
+    @sprite.zoom_y   = v
+    @viewport.height = v
+  end
   def <<(oth)
     @viewport << oth.viewport
-    @children << oth
     oth
   end
-
   def >>(oth)
     @viewport >> oth.viewport
-    oth.children << self
     oth
   end
-
 end
+
+
+
+=begin 
+Implémentation des évènements communs dans le système de combat 
+- Solution proposée par <Grim, Nuki>
+  - Special thanks to Zeus81
+- Etat : Incubé
+=end
 
 #==============================================================================
 # ** RPG::CommonEvent

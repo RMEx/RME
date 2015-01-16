@@ -1229,6 +1229,7 @@ module Devices
         @drag.initiated = true
         @drag.start.x = @point.x
         @drag.start.y = @point.y
+        Draggable.find
       elsif @drag.initiated? && Key::Mouse_left.press?
         if dragging? || !(self.x == @drag.start.x && self.y == @drag.start.y)
           @dragging = true
@@ -1237,12 +1238,14 @@ module Devices
           @drag.set(min_x, min_y, max_x-min_x, max_y-min_y)
           @drag.ox = @point.x - @drag.start.x
           @drag.oy = @point.y - @drag.start.y
+          Draggable.drag
         end
       elsif @drag.initiated?
         @last_rect    = rect
         @drag.initiated = false
         @dragging     = false
         @drag.empty
+        Draggable.drop
       end
     end
 
