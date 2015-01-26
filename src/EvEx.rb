@@ -1091,33 +1091,12 @@ class Scene_Map
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :extender_start, :start
-  alias_method :extender_update_all_windows, :update_all_windows
-  alias_method :extender_dispose_all_windows, :dispose_all_windows
-  alias_method :extender_update, :update
   #--------------------------------------------------------------------------
   # * Start
   #--------------------------------------------------------------------------
   def start
     extender_start
     @textfields = Hash.new
-  end
-  #--------------------------------------------------------------------------
-  # * Update All Windows
-  #--------------------------------------------------------------------------
-  def update_all_windows
-    extender_update_all_windows
-    @textfields.each do |k, f|
-      f.update if f && !f.disposed?
-    end
-  end
-  #--------------------------------------------------------------------------
-  # * Free All Windows
-  #--------------------------------------------------------------------------
-  def dispose_all_windows
-    extender_dispose_all_windows
-    @texfields.each do |f|
-     f.dispose if f && !f.disposed?
-    end
   end
   #--------------------------------------------------------------------------
   # * Erase a field
