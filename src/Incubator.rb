@@ -14,17 +14,27 @@ Implémentation de trucs potentiellement cool pour la future GUI
 #==============================================================================
 
 class Viewport
-  #--------------------------------------------------------------------------
-  # * alias
-  #--------------------------------------------------------------------------
-  alias_method :sdk_initialize, :initialize
+
   #--------------------------------------------------------------------------
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :elts
   attr_accessor :children
   attr_accessor :parent
-  attr_accessor :definition
+  attr_accessor :disposed
+  attr_reader   :def_rect
+  #--------------------------------------------------------------------------
+  # * alias
+  #--------------------------------------------------------------------------
+  alias_method :sdk_initialize, :initialize
+  alias_method :sdk_dispose, :dispose
+  alias_method :sdk_update, :update
+  alias_method :disposed?, :disposed
+  alias_method :true_ox=, :ox=
+  alias_method :true_oy=, :oy=
+  alias_method :true_rect, :rect
+  alias_method :rect, :def_rect
+  [:x, :y, :width, :height].each{|m| delegate :rect, m}
   [
     :in?,
     :hover?,
@@ -34,54 +44,50 @@ class Viewport
     :repeat?, 
     :release?, 
     :mouse_x,
-    :mouse_y,
-  ].each{|m| delegate :rect, m}
+    :mouse_y
+  ].each{|m| delegate :true_rect, m}
   #--------------------------------------------------------------------------
   # * Object initialize
   #--------------------------------------------------------------------------
   def initialize(*args)
     sdk_initialize(*args)
-    @definition = rect.clone
+    @disposed = false
+    @def_rect = true_rect.clone
     @children = []
     @parent = nil
     @elts = []
   end
   #--------------------------------------------------------------------------
-  # * Gets definition attributes
+  # * Enterbrain, you forget this
   #--------------------------------------------------------------------------
-  def x; @definition.x; end
-  def y; @definition.y; end
-  def width;  @definition.width  end
-  def height; @definition.height end
+  def dispose
+    @disposed = true
+    sdk_dispose
+  end
   #--------------------------------------------------------------------------
   # * Sets definition attributes
   #--------------------------------------------------------------------------
-  def x=(v)
-    @definition.x = v
-    update_from_definition
-  end
-  def y=(v)
-    @definition.y = v
-    update_from_definition
-  end
-  def width=(v)
-    @definition.width = v
-    update_from_definition
-  end
-  def height=(v)
-    @definition.height = v
-    update_from_definition
-  end
+  def ox=(v);     @def_ox = v;      update_from_definition; end
+  def oy=(v);     @def_oy = v;      update_from_definition; end
+  def x=(v);      rect.x = v;       update_from_definition; end
+  def y=(v);      rect.y = v;       update_from_definition; end
+  def width=(v);  rect.width = v;   update_from_definition; end
+  def height=(v); rect.height = v;  update_from_definition; end
+  #--------------------------------------------------------------------------
+  # * Gets ox, oy
+  #--------------------------------------------------------------------------
+  def ox; @def_ox ||= 0; end
+  def oy; @def_oy ||= 0; end
   #--------------------------------------------------------------------------
   # * Gets coordinates relative to screen
   #--------------------------------------------------------------------------
   def screen_x
      return self.x unless @parent
-     @parent.screen_x + @parent.ox + self.x    
+     @parent.screen_x - @parent.ox + self.x
   end
   def screen_y
     return self.y unless @parent
-    @parent.screen_y + @parent.oy + self.y
+    @parent.screen_y - @parent.oy + self.y
   end
   #--------------------------------------------------------------------------
   # * Pushes another viewport in self
@@ -106,13 +112,18 @@ class Viewport
   #--------------------------------------------------------------------------
   def update_from_definition
     if @parent
-      min_x = [self.screen_x, @parent.rect.x].max
-      min_y = [self.screen_y, @parent.rect.y].max
-      max_x = [self.screen_x + self.width,  @parent.rect.x + @parent.rect.width ].min
-      max_y = [self.screen_y + self.height, @parent.rect.y + @parent.rect.height].min
-      rect.set(min_x, min_y, max_x-min_x, max_y-min_y)
+      a = @parent.true_rect
+      min_x = [self.screen_x, a.x].max
+      min_y = [self.screen_y, a.y].max
+      max_x = [self.screen_x + self.width,  a.x + a.width ].min
+      max_y = [self.screen_y + self.height, a.y + a.height].min
+      true_rect.set(min_x, min_y, max_x-min_x, max_y-min_y)
+      self.true_ox = self.ox + min_x - self.screen_x
+      self.true_oy = self.oy + min_y - self.screen_y
     else
-      rect.set(@definition)
+      true_rect.set(rect)
+      self.true_ox = self.ox
+      self.true_oy = self.oy
     end
     @children.each{|c| c.update_from_definition}
   end
@@ -156,10 +167,21 @@ module Draggable
     Draggable.objects = []
     Draggable.picked  = nil
     #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def <<(*obj)
+      obj.each do |o|
+        @objects << o
+        o.extend(Draggable)
+      end
+    end
+    alias :push :<<
+    #--------------------------------------------------------------------------
     # * Finds and pick the first Object clicked
     #--------------------------------------------------------------------------
     def find
-      @picked = @objects.compact.find do |o|
+      @picked = @objects.find do |o|
+        @checked = o
         (o.in?(Mouse.x, Mouse.y) &&
           !(o.respond_to?(:children) &&
             o.children.any? {|c| c.in?(Mouse.x, Mouse.y)}
@@ -169,14 +191,23 @@ module Draggable
       return unless @picked
       @x_init = @picked.x
       @y_init = @picked.y
+    rescue
+      @objects.delete(@checked)
+      find
     end
     #--------------------------------------------------------------------------
     # * Drags the picked Object
     #--------------------------------------------------------------------------
     def drag
       return unless @picked
-      @picked.x = @x_init + Mouse.drag.ox
-      @picked.y = @y_init + Mouse.drag.oy
+      @picked.drag_viewport_instead ? o = @picked.viewport : o = @picked
+      nx, ny = @x_init + Mouse.drag.ox, @y_init + Mouse.drag.oy
+      if r = @picked.drag_restriction
+        o.x = [[nx, r.x].max, r.x + r.width ].min
+        o.y = [[ny, r.y].max, r.y + r.height].min
+      else
+        o.x, o.y = nx, ny
+      end
     end
     #--------------------------------------------------------------------------
     # * Drops the last picked Object
@@ -185,6 +216,13 @@ module Draggable
       @picked = nil
     end
   end
+
+  #--------------------------------------------------------------------------
+  # * Extend the draggable object's behaviour
+  #--------------------------------------------------------------------------
+  attr_accessor :drag_viewport_instead
+  attr_accessor :drag_restriction
+
 end
 
 #==============================================================================
@@ -193,55 +231,13 @@ end
 #  Bilou is the best example for anything
 #==============================================================================
 
-class Bilou
-  attr_accessor :sprite
-  attr_accessor :viewport
-  [ :children,
-    :width,
-    :height,
-    :in?,
-    :hover?,
-    :click?,
-    :press?,
-    :trigger?,
-    :repeat?,
-    :release?, 
-    :mouse_x,
-    :mouse_y
-  ].each{|m| delegate :viewport, m}
-  delegate_accessor   :viewport, :x
-  delegate_accessor   :viewport, :y
-
+class Bilou < Viewport
   def initialize(x,y,w,h,c,draggable=false)
-    Draggable.objects << self if draggable
-    @viewport   = Viewport.new(x,y,w,h)
-    s           = Sprite.new
-    s.bitmap    = Bitmap.new(w,h)
-    s.bitmap.fill_rect(0,0,1,1,c)
-    s.zoom_x    = w
-    s.zoom_y    = h
-    s.viewport  = @viewport
-    @sprite     = s
-  end
-
-  def width=(v)
-    @sprite.zoom_x  = v
-    @viewport.width = v
-  end
-  def height=(v)
-    @sprite.zoom_y   = v
-    @viewport.height = v
-  end
-  def <<(oth)
-    @viewport << oth.viewport
-    oth
-  end
-  def >>(oth)
-    @viewport >> oth.viewport
-    oth
+    super(x,y,w,h)
+    Draggable << self if draggable
+    self.color = c
   end
 end
-
 
 
 =begin 
