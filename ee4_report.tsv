@@ -379,7 +379,7 @@ picture_move(id,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o)	picture_move(id,*x,*y
 picture_opacity(id,value,*duration,*wf)	picture_opacity(id,valeur)
 picture_origin(id,*origin)	-
 picture_origine(id,*origin)	picture_origine(id,origine)
-picture_pin(id,x,y)	picture_pin(id)
+picture_pin(id,*x,*y)	picture_pin(id)
 picture_position(id,x,y,*duration,*wf)	picture_position(id,x,y)
 picture_rotate(id,speed)	picture_rotate(id,vitesse)
 -	picture_screen(id)

@@ -447,7 +447,13 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Pin picture on the map
     #--------------------------------------------------------------------------
-    def picture_pin(id, x, y)
+    def picture_pin(id, x=nil, y=nil)
+      unless x
+        x_s = 16 * pictures[id].scroll_speed_x
+        y_s = 16 * pictures[id].scroll_speed_y
+        x = picture_x(id) + $game_map.display_x * x_s + pictures[id].shake
+        y = picture_y(id) + $game_map.display_y * y_s
+      end
       picture_x(id, x)
       picture_y(id, y)
       pictures[id].pin

@@ -14,7 +14,7 @@ Commandes relatives à la manipulation des images
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
-*    [picture_pin(id, x, y)](#picture_pinid-x-y)
+*    [picture_pin(id, *x, *y)](#picture_pinid-x-y)
 *    [picture_position(id, x, y, *duration, *wait_flag)](#picture_positionid-x-y-duration-wait_flag)
 *    [picture_rotate(id, speed)](#picture_rotateid-speed)
 *    [picture_scroll(id, vitesse)](#picture_scrollid-vitesse)
@@ -123,7 +123,7 @@ Commandes relatives à la manipulation des images
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
 
 
-##### picture_pin(id, x, y)
+##### picture_pin(id, *x, *y)
 
 > Fait défiler une image avec la carte (la fixe à une position)
 
@@ -131,8 +131,8 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`x`|`Fixnum`|Coordonnées X de la carte en pixel  
-`y`|`Fixnum`|Coordonnées X de la carte en pixel  
+`*x`|`Fixnum`|Coordonnées X de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte  
+`*y`|`Fixnum`|Coordonnées Y de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte  
 
 
 ##### picture_position(id, x, y, *duration, *wait_flag)
