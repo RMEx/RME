@@ -348,7 +348,7 @@ Collection des commandes EventExtender
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
-*    [Command.picture_pin(id, x, y)](#commandpicture_pinid-x-y)
+*    [Command.picture_pin(id, *x, *y)](#commandpicture_pinid-x-y)
 *    [Command.picture_position(id, x, y, *duration, *wait_flag)](#commandpicture_positionid-x-y-duration-wait_flag)
 *    [Command.picture_rotate(id, speed)](#commandpicture_rotateid-speed)
 *    [Command.picture_scroll(id, vitesse)](#commandpicture_scrollid-vitesse)
@@ -5335,7 +5335,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_pin(id, x, y)
+##### Command.picture_pin(id, *x, *y)
 
 > Fait défiler une image avec la carte (la fixe à une position)
 
@@ -5343,8 +5343,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`x`|`Fixnum`|Coordonnées X de la carte en pixel  
-`y`|`Fixnum`|Coordonnées X de la carte en pixel  
+`*x`|`Fixnum`|Coordonnées X de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte  
+`*y`|`Fixnum`|Coordonnées Y de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte  
 
 
 

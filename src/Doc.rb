@@ -1368,8 +1368,8 @@ module Command
                           "Fait défiler une image avec la carte (la fixe à une position)", 
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :x => ["Coordonnées X de la carte en pixel", :Fixnum],
-                            :y => ["Coordonnées X de la carte en pixel", :Fixnum]
+                            :"*x" => ["Coordonnées X de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
+                            :"*y" => ["Coordonnées Y de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
                           }
   register_command :picture, "Command.picture_pin"
   link_method_documentation "Command.picture_erase", 
