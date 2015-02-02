@@ -1056,6 +1056,11 @@ module RMECommands
     end
     def squares_between(ev1, ev2); distance_between(:square, ev1, ev2); end
     def pixels_between(ev1, ev2); distance_between(:pixel, ev1, ev2); end
+    def angle_between(ev1, ev2)
+      ev1, ev2 = event(ev1), event(ev2)
+      args = (ev2.screen_y-ev1.screen_y),(ev2.screen_x-ev1.screen_x)
+      - (Math.atan2(*args)*57.29)%360
+    end
     def event_look_at?(ev, to, scope, metric = :square)
       if event_direction(ev) == 8
         x_axis = event_x(to) == event_x(ev)
@@ -1276,7 +1281,7 @@ module RMECommands
     # * Find angle from a couple of point
     #--------------------------------------------------------------------------
     def angle_xy(xa, ya, xb, yb)
-      Math.atan2(ya-yb,xa-xb)*180.0/Math::PI%360
+      - Math.atan2(yb-ya, xb-xa)*57.29%360
     end
     append_commands
   end

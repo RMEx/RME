@@ -239,7 +239,6 @@ class Bilou < Viewport
   end
 end
 
-
 =begin 
 Implémentation des évènements communs dans le système de combat 
 - Solution proposée par <Grim, Nuki>

@@ -51,15 +51,15 @@ Outils de traitement mathématiques un peu avancé
 
 ##### angle_xy(xa, ya, xb, yb)
 
-> Renvoie l' angle x->y entre deux points, défini entre 0 et 360 degrés
+> Renvoie l' angle entre deux points, dans le sens anti-horaire, défini entre 0 et 360 degrés
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `xa`|`Fixnum`|Coordonnée X du point A  
-`ya`|`Fixnum`|Coordonnées Y du point A  
-`xb`|`Fixnum`|Coordonnées X du point B  
-`yb`|`Fixnum`|Coordonnées Y du point B  
+`ya`|`Fixnum`|Coordonnée Y du point A  
+`xb`|`Fixnum`|Coordonnée X du point B  
+`yb`|`Fixnum`|Coordonnée Y du point B  
 
 
 ##### asin(x)

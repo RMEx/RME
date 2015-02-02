@@ -7,6 +7,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives aux évènements
 
 ##Liste des commandes
+*    [angle_between(idA, idB)](#angle_betweenida-idb)
 *    [event_direction(id)](#event_directionid)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
@@ -58,6 +59,17 @@ Commandes relatives aux évènements
 
 
 ##Description des commandes
+##### angle_between(idA, idB)
+
+> Renvoie l'angle entre deux événements référencés par leurs ID's
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`integer`|Premier événement  
+`idB`|`integer`|Deuxième événement  
+
+
 ##### event_direction(id)
 
 > Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
