@@ -85,6 +85,7 @@ Collection des commandes EventExtender
 *    [Command.actor_weapon(id)](#commandactor_weaponid)
 *    [Command.actor_weapons(id)](#commandactor_weaponsid)
 *    [Command.alt_gr?](#commandalt_gr)
+*    [Command.angle_between(idA, idB)](#commandangle_betweenida-idb)
 *    [Command.angle_xy(xa, ya, xb, yb)](#commandangle_xyxa-ya-xb-yb)
 *    [Command.apply_percent(percent, max)](#commandapply_percentpercent-max)
 *    [Command.armor_agility(id)](#commandarmor_agilityid)
@@ -1605,17 +1606,32 @@ Collection des commandes EventExtender
 
 
 
+##### Command.angle_between(idA, idB)
+
+> Renvoie l'angle entre deux événements référencés par leurs ID's
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+
+
+
+
+
+
 ##### Command.angle_xy(xa, ya, xb, yb)
 
-> Renvoie l' angle x->y entre deux points, défini entre 0 et 360 degrés
+> Renvoie l' angle entre deux points, dans le sens anti-horaire, défini entre 0 et 360 degrés
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `xa`|`Fixnum`|Coordonnée X du point A  
-`ya`|`Fixnum`|Coordonnées Y du point A  
-`xb`|`Fixnum`|Coordonnées X du point B  
-`yb`|`Fixnum`|Coordonnées Y du point B  
+`ya`|`Fixnum`|Coordonnée Y du point A  
+`xb`|`Fixnum`|Coordonnée X du point B  
+`yb`|`Fixnum`|Coordonnée Y du point B  
 
 
 
