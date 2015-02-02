@@ -66,8 +66,8 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`idA`|`integer`|Premier événement  
-`idB`|`integer`|Deuxième événement  
+`idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
+`idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 
 
 ##### event_direction(id)

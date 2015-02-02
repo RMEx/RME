@@ -4241,8 +4241,8 @@ register_command :area, 'Command.mouse_repeat_square_area?'
 link_method_documentation 'Command.angle_between', 
   'Renvoie l\'angle entre deux événements référencés par leurs ID\'s',
   {
-    :idA => ["Premier événement", :integer],
-    :idB => ["Deuxième événement", :integer],
+    :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
+    :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
 
   }, true # Maybe changed
 register_command :event, 'Command.angle_between' 
