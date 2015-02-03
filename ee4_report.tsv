@@ -376,6 +376,7 @@ picture_blend(id,blend)	picture_blend(id,*mode)
 picture_detach(id)	picture_detach(id)
 picture_erase(id)	picture_erase(id)
 picture_flip(id)	picture_flip(id)
+picture_height(id)	-
 picture_move(id,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o)	picture_move(id,*x,*y,*zoom,*zoom,*dur,*opacit,*mode,*origine)
 picture_opacity(id,value,*duration,*wf)	picture_opacity(id,valeur)
 picture_origin(id,*origin)	-
@@ -394,6 +395,7 @@ picture_show_enemy(id_pic,id,pos)	picture_show_enemy(id,id,position)
 picture_tone(id,tone,*d,*wf)	picture_tone(id,*rouge,*vert,*bleu,*gris)
 picture_unpin(id)	-
 picture_wave(id,amp,speed)	picture_wave(id,amplitude,vitesse)
+picture_width(id)	-
 picture_x(id,*x,*duration,*wf)	picture_x(id,x)
 picture_y(id,*y,*duration,*wf)	picture_y(id,y)
 picture_zoom(id,zoom_x,zoom_y,*duration,*wf)	picture_zoom(id,*zoom,*zoom)

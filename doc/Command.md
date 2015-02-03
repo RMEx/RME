@@ -346,6 +346,7 @@ Collection des commandes EventExtender
 *    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
 *    [Command.picture_flip(id)](#commandpicture_flipid)
+*    [Command.picture_height(id)](#commandpicture_heightid)
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
@@ -361,6 +362,7 @@ Collection des commandes EventExtender
 *    [Command.picture_tone(id, tone, *duration, *wait_flag)](#commandpicture_toneid-tone-duration-wait_flag)
 *    [Command.picture_unpin(id)](#commandpicture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
+*    [Command.picture_width(id)](#commandpicture_widthid)
 *    [Command.picture_x(id, x, *duration, *wait_flag)](#commandpicture_xid-x-duration-wait_flag)
 *    [Command.picture_y(id, x, *duration, *wait_flag)](#commandpicture_yid-x-duration-wait_flag)
 *    [Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#commandpicture_zoomid-zoom_x-zoom_y-duration-wait_flag)
@@ -5295,6 +5297,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.picture_height(id)
+
+> Renvoi la hauteur de l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+
+
+
+
+
+
 ##### Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)
 
 > Déplace une image
@@ -5540,6 +5556,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `id`|`Fixnum`|ID de l'image  
 `amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
+
+
+
+
+
+
+##### Command.picture_width(id)
+
+> Renvoi la largeur de l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 

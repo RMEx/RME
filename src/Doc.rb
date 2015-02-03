@@ -1372,6 +1372,22 @@ module Command
                             :"*y" => ["Coordonnées Y de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
                           }
   register_command :picture, "Command.picture_pin"
+
+  link_method_documentation "Command.picture_width", 
+                          "Renvoi la largeur de l'image référencée par son ID", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_width"
+
+  link_method_documentation "Command.picture_height", 
+                          "Renvoi la hauteur de l'image référencée par son ID", 
+                          {
+                            :id => ["ID de l'image", :Fixnum],
+                          }
+  register_command :picture, "Command.picture_height"
+
+
   link_method_documentation "Command.picture_erase", 
                           "Efface l'image", 
                           {

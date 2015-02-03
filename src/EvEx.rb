@@ -1948,6 +1948,7 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_update_origin, :update_origin
+  attr_accessor :bitmap
   #--------------------------------------------------------------------------
   # * Get cache
   #--------------------------------------------------------------------------

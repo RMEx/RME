@@ -535,6 +535,26 @@ module RMECommands
       screen.clear_pictures
     end
 
+    #--------------------------------------------------------------------------
+    # * Get pictures dimension
+    #--------------------------------------------------------------------------
+    def picture_width(id)
+      bmp = sprite_picture(id).bitmap
+      return 0 unless bmp
+      bmp.width
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get pictures dimension
+    #--------------------------------------------------------------------------
+    def picture_height(id)
+      bmp = sprite_picture(id).bitmap
+      return 0 unless bmp
+      bmp.height
+    end
+
+
+
     # Fix for EE4
     alias_method :picture_origine, :picture_origin
     alias_method :picture_detach, :picture_unpin

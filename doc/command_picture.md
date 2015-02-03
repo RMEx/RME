@@ -11,6 +11,7 @@ Commandes relatives à la manipulation des images
 *    [picture_blend(id, mode)](#picture_blendid-mode)
 *    [picture_erase(id)](#picture_eraseid)
 *    [picture_flip(id)](#picture_flipid)
+*    [picture_height(id)](#picture_heightid)
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
@@ -26,6 +27,7 @@ Commandes relatives à la manipulation des images
 *    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
+*    [picture_width(id)](#picture_widthid)
 *    [picture_x(id, x, *duration, *wait_flag)](#picture_xid-x-duration-wait_flag)
 *    [picture_y(id, x, *duration, *wait_flag)](#picture_yid-x-duration-wait_flag)
 *    [picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#picture_zoomid-zoom_x-zoom_y-duration-wait_flag)
@@ -73,6 +75,16 @@ Commandes relatives à la manipulation des images
 ##### picture_flip(id)
 
 > Applique un effet miroir sur l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+
+
+##### picture_height(id)
+
+> Renvoi la hauteur de l'image référencée par son ID
 
   
 > Nom|Type|Description  
@@ -269,6 +281,16 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 `amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
+
+
+##### picture_width(id)
+
+> Renvoi la largeur de l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 ##### picture_x(id, x, *duration, *wait_flag)
