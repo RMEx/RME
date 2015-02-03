@@ -9,6 +9,7 @@ Commandes relatives aux évènements
 ##Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
 *    [event_direction(id)](#event_directionid)
+*    [event_erased?(id)](#event_erasedid)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
 *    [event_name(id)](#event_nameid)
@@ -78,6 +79,16 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+##### event_erased?(id)
+
+> Renvoie true si l'évènement référencé par son ID à été supprimé, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
 
 ##### event_in_screen?(id)

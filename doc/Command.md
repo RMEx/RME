@@ -160,6 +160,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
 *    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
 *    [Command.event_direction(id)](#commandevent_directionid)
+*    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
 *    [Command.event_name(id)](#commandevent_nameid)
@@ -2652,6 +2653,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_erased?(id)
+
+> Renvoie true si l'évènement référencé par son ID à été supprimé, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
 
 

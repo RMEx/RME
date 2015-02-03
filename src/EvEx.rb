@@ -2034,7 +2034,9 @@ class Game_Event
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias :rm_extender_conditions_met?  :conditions_met?
+  alias_method :rm_extender_conditions_met?,  :conditions_met?
+  attr_accessor :erased
+  alias_method :erased?, :erased
   #--------------------------------------------------------------------------
   # * Determine if Event Page Conditions Are Met
   #--------------------------------------------------------------------------

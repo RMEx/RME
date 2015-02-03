@@ -161,6 +161,7 @@ enemy_tp_charge_rate(id)	-
 enemy_tp_regeneration_rate(id)	-
 -	erase_textfield(champ)
 event_direction(id)	event_direction(id)
+event_erased?(id)	-
 event_in_screen?(id)	event_in_screen?(id)
 event_look_at?(ev,to,scope,*metric)	-
 event_name(id)	-

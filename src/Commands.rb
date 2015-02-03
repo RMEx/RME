@@ -1165,6 +1165,8 @@ module RMECommands
       end
     end
 
+    def event_erased?(id); event(id).erased?; end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
