@@ -538,41 +538,38 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_width(id)
-      spr = sprite_picture(id)
-      return 0 unless spr || spr.bitmap
-      spr.bitmap.width
+    def picture_width(id, v = nil, duration = nil, wf = false)
+      pict = pictures[id]
+      unless v 
+        return 0 if !pict || pict.name.empty?
+        bmp = Sprite_Picture.swap_cache(pict.name)
+        return (((bmp.width * pict.zoom_x))/100.0).to_i
+      end
+      zoom = Command.percent(v, picture_width(id))
+      picture_zoom_x(id, zoom, duration, wf)
     end
 
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_height(id)
-      spr = sprite_picture(id)
-      return 0 unless spr || spr.bitmap
-      spr.bitmap.height
+    def picture_height(id, v = nil, duration = nil, wf = false)
+      pict = pictures[id]
+      unless v 
+        return 0 if !pict || pict.name.empty?
+        bmp = Sprite_Picture.swap_cache(pict.name)
+        return (((bmp.height * pict.zoom_y))/100.0).to_i
+      end
+      zoom = Command.percent(v, picture_height(id))
+      picture_zoom_y(id, zoom, duration, wf)
     end
 
     #--------------------------------------------------------------------------
-    # * Get pictures dimension
+    # * set pictures dimension
     #--------------------------------------------------------------------------
-    def picture_set_width(id, width)
-      spr = sprite_picture(id)
-      return unless spr || spr.bitmap
-      zoom = width.to_f/(picture_width(id).to_f)
-      spr.zoom_x = zoom
+    def picture_dimension(id, w, h, duration = nil, wf = false)
+      picture_width(id, w, duration)
+      picture_height(id, h, duration, wf)
     end
-
-    #--------------------------------------------------------------------------
-    # * Get pictures dimension
-    #--------------------------------------------------------------------------
-    def picture_set_height(id, height)
-      spr = sprite_picture(id)
-      return unless spr || spr.bitmap
-      zoom = width.to_f/(picture_height(id).to_f)
-      spr.zoom_y = zoom
-    end
-
 
 
     # Fix for EE4

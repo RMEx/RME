@@ -9,9 +9,10 @@ Commandes relatives à la manipulation des images
 ##Liste des commandes
 *    [picture_angle(id, angle)](#picture_angleid-angle)
 *    [picture_blend(id, mode)](#picture_blendid-mode)
+*    [picture_dimension(id, w, h, *duration, *wait_flag)](#picture_dimensionid-w-h-duration-wait_flag)
 *    [picture_erase(id)](#picture_eraseid)
 *    [picture_flip(id)](#picture_flipid)
-*    [picture_height(id)](#picture_heightid)
+*    [picture_height(id, *v, *duration, *wait_flag)](#picture_heightid-v-duration-wait_flag)
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
@@ -27,7 +28,7 @@ Commandes relatives à la manipulation des images
 *    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
-*    [picture_width(id)](#picture_widthid)
+*    [picture_width(id, *v, *duration, *wait_flag)](#picture_widthid-v-duration-wait_flag)
 *    [picture_x(id, x, *duration, *wait_flag)](#picture_xid-x-duration-wait_flag)
 *    [picture_y(id, x, *duration, *wait_flag)](#picture_yid-x-duration-wait_flag)
 *    [picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#picture_zoomid-zoom_x-zoom_y-duration-wait_flag)
@@ -62,6 +63,20 @@ Commandes relatives à la manipulation des images
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
+##### picture_dimension(id, w, h, *duration, *wait_flag)
+
+> Change la hauteur et la largeur d'une image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`w`|`Fixnum`|Largeur à modifier  
+`h`|`Fixnum`|Hauteur à modifier  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
 ##### picture_erase(id)
 
 > Efface l'image
@@ -82,14 +97,17 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-##### picture_height(id)
+##### picture_height(id, *v, *duration, *wait_flag)
 
-> Renvoi la hauteur de l'image référencée par son ID
+> Change la hauteur d'une image référencée par son ID
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
+`*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)
@@ -283,14 +301,17 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
 
-##### picture_width(id)
+##### picture_width(id, *v, *duration, *wait_flag)
 
-> Renvoi la largeur de l'image référencée par son ID
+> Change la largeur d'une image référencée par son ID
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
+`*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 ##### picture_x(id, x, *duration, *wait_flag)

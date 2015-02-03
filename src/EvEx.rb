@@ -1943,38 +1943,41 @@ end
 #==============================================================================
 
 class Sprite_Picture
+  class << self 
+    #--------------------------------------------------------------------------
+    # * Get cache
+    #--------------------------------------------------------------------------
+    def swap_cache(name)
+      if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+        return Cache.picture($2)
+      end
+      if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+        return Cache.battler($2, 0)
+      end
+      if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+        return Cache.battleback1($2)
+      end
+      if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+        return Cache.battleback2($2)
+      end
+      if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+        return Cache.parallax($2)
+      end
+      if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+        return Cache.title1($2)
+      end
+      if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+        return Cache.title2($2)
+      end
+      return Cache.picture(name)
+    end
+  end
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_update_origin, :update_origin
-  #--------------------------------------------------------------------------
-  # * Get cache
-  #--------------------------------------------------------------------------
-  def swap_cache(name)
-    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
-      return Cache.picture($2)
-    end
-    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
-      return Cache.battler($2, 0)
-    end
-    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
-      return Cache.battleback1($2)
-    end
-    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
-      return Cache.battleback2($2)
-    end
-    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
-      return Cache.parallax($2)
-    end
-    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
-      return Cache.title1($2)
-    end
-    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
-      return Cache.title2($2)
-    end
-    return Cache.picture(name)
-  end
+  
   #--------------------------------------------------------------------------
   # * Update Transfer Origin Bitmap
   #--------------------------------------------------------------------------
@@ -1982,7 +1985,7 @@ class Sprite_Picture
     if @picture.name.empty?
       self.bitmap = nil
     else
-      self.bitmap = swap_cache(@picture.name)
+      self.bitmap = Sprite_Picture.swap_cache(@picture.name)
     end
   end
   #--------------------------------------------------------------------------

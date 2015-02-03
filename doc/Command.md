@@ -344,9 +344,10 @@ Collection des commandes EventExtender
 *    [Command.pick_random(*elts)](#commandpick_randomelts)
 *    [Command.picture_angle(id, angle)](#commandpicture_angleid-angle)
 *    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
+*    [Command.picture_dimension(id, w, h, *duration, *wait_flag)](#commandpicture_dimensionid-w-h-duration-wait_flag)
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
 *    [Command.picture_flip(id)](#commandpicture_flipid)
-*    [Command.picture_height(id)](#commandpicture_heightid)
+*    [Command.picture_height(id, *v, *duration, *wait_flag)](#commandpicture_heightid-v-duration-wait_flag)
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
@@ -362,7 +363,7 @@ Collection des commandes EventExtender
 *    [Command.picture_tone(id, tone, *duration, *wait_flag)](#commandpicture_toneid-tone-duration-wait_flag)
 *    [Command.picture_unpin(id)](#commandpicture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
-*    [Command.picture_width(id)](#commandpicture_widthid)
+*    [Command.picture_width(id, *v, *duration, *wait_flag)](#commandpicture_widthid-v-duration-wait_flag)
 *    [Command.picture_x(id, x, *duration, *wait_flag)](#commandpicture_xid-x-duration-wait_flag)
 *    [Command.picture_y(id, x, *duration, *wait_flag)](#commandpicture_yid-x-duration-wait_flag)
 *    [Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#commandpicture_zoomid-zoom_x-zoom_y-duration-wait_flag)
@@ -5269,6 +5270,24 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.picture_dimension(id, w, h, *duration, *wait_flag)
+
+> Change la hauteur et la largeur d'une image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`w`|`Fixnum`|Largeur à modifier  
+`h`|`Fixnum`|Hauteur à modifier  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+
+
+
+
+
+
 ##### Command.picture_erase(id)
 
 > Efface l'image
@@ -5297,14 +5316,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_height(id)
+##### Command.picture_height(id, *v, *duration, *wait_flag)
 
-> Renvoi la hauteur de l'image référencée par son ID
+> Change la hauteur d'une image référencée par son ID
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
+`*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
@@ -5562,14 +5584,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_width(id)
+##### Command.picture_width(id, *v, *duration, *wait_flag)
 
-> Renvoi la largeur de l'image référencée par son ID
+> Change la largeur d'une image référencée par son ID
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
+`*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
 
