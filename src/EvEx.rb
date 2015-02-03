@@ -1095,15 +1095,15 @@ class Scene_Map
   # * Start
   #--------------------------------------------------------------------------
   def start
-    extender_start
     @textfields = Hash.new
+    extender_start
   end
   #--------------------------------------------------------------------------
   # * Erase a field
   #--------------------------------------------------------------------------
   def erase_textfield(i)
     @textfields[i].dispose if @textfields[i] && !@textfields[i].disposed?
-    @textfields.delete(i)
+    @textfields.delete(i) if @textfields[i]
   end
   #--------------------------------------------------------------------------
   # * Erase all fields
@@ -1145,14 +1145,6 @@ class Scene_Map
   def update_all_windows
     super
     @textfields.values.collect(&:update)
-  end
-
-  #--------------------------------------------------------------------------
-  # * Dispose All Windows
-  #--------------------------------------------------------------------------
-  def dispose_all_windows
-    super 
-    erase_textfields
   end
 
 end
@@ -1231,6 +1223,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   def setup(map_id)
     rm_extender_setup(map_id)
+    SceneManager.scene.erase_textfields if SceneManager.scene.is_a?(Scene_Map)
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
   end
