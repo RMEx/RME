@@ -1138,6 +1138,23 @@ class Scene_Map
     @message_window.dispose
     @message_window = Window_Message.new
   end
+
+  #--------------------------------------------------------------------------
+  # * Update All Windows
+  #--------------------------------------------------------------------------
+  def update_all_windows
+    super
+    @textfields.values.collect(&:update)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Dispose All Windows
+  #--------------------------------------------------------------------------
+  def dispose_all_windows
+    super 
+    erase_textfields
+  end
+
 end
 
 #==============================================================================
@@ -2241,6 +2258,7 @@ module UI
     # * Constructor
     #--------------------------------------------------------------------------
     def initialize(x, y, w, t, profile, range = false)
+      @menu_disabled = $game_system.menu_disabled
       @raw_w = w
       @profile = get_fieldProfile(profile)
       @text = t
@@ -2300,6 +2318,31 @@ module UI
     def profile=(pr)
       @profile =  get_fieldProfile(pr)
       refresh
+    end
+
+    #--------------------------------------------------------------------------
+    # * Activate
+    #--------------------------------------------------------------------------
+    def activate
+      @menu_disabled = $game_system.menu_disabled
+      $game_system.menu_disabled = true
+      return super
+    end
+
+    #--------------------------------------------------------------------------
+    # * unActivate
+    #--------------------------------------------------------------------------
+    def deactivate
+      $game_system.menu_disabled = @menu_disabled
+      return super
+    end
+
+    #--------------------------------------------------------------------------
+    # * Dispose
+    #--------------------------------------------------------------------------
+    def dispose
+      $game_system.menu_disabled = @menu_disabled
+      super 
     end
 
     #--------------------------------------------------------------------------
