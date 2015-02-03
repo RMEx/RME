@@ -539,18 +539,38 @@ module RMECommands
     # * Get pictures dimension
     #--------------------------------------------------------------------------
     def picture_width(id)
-      bmp = sprite_picture(id).bitmap
-      return 0 unless bmp
-      bmp.width
+      spr = sprite_picture(id)
+      return 0 unless spr || spr.bitmap
+      spr.bitmap.width
     end
 
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
     def picture_height(id)
-      bmp = sprite_picture(id).bitmap
-      return 0 unless bmp
-      bmp.height
+      spr = sprite_picture(id)
+      return 0 unless spr || spr.bitmap
+      spr.bitmap.height
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get pictures dimension
+    #--------------------------------------------------------------------------
+    def picture_set_width(id, width)
+      spr = sprite_picture(id)
+      return unless spr || spr.bitmap
+      zoom = width.to_f/(picture_width(id).to_f)
+      spr.zoom_x = zoom
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get pictures dimension
+    #--------------------------------------------------------------------------
+    def picture_set_height(id, height)
+      spr = sprite_picture(id)
+      return unless spr || spr.bitmap
+      zoom = width.to_f/(picture_height(id).to_f)
+      spr.zoom_y = zoom
     end
 
 

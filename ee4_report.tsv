@@ -388,6 +388,8 @@ picture_rotate(id,speed)	picture_rotate(id,vitesse)
 picture_scroll(id,speed)	-
 picture_scroll_x(id,speed)	-
 picture_scroll_y(id,speed)	-
+picture_set_height(id,height)	-
+picture_set_width(id,width)	-
 picture_shake(id,power,speed,duration)	picture_shake(id,force,vitesse,dur)
 picture_show(id,n,*x,*y,*ori,*z_x,*z_y,*op,*bl)	picture_show(id,nom,*x,*y,*origine,*zoom,*zoom,*opacit,*mode)
 picture_show_enemy(id_pic,id,pos)	picture_show_enemy(id,id,position)

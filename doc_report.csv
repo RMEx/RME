@@ -1,5 +1,5 @@
 Report,
-# Commandes documentées,503/523
+# Commandes documentées,503/525
 ,
 # Commandes non documentées,# Suggestion
 textfield_text_show,Aucune suggestion
@@ -19,6 +19,8 @@ textfield_trigger?,Aucune suggestion
 textfield_repeat?,Aucune suggestion
 textfield_visible,Aucune suggestion
 textfield_opacity,Aucune suggestion
+picture_set_width,Aucune suggestion
+picture_set_height,Aucune suggestion
 message_height,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
