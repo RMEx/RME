@@ -490,7 +490,8 @@ Collection des commandes EventExtender
 *    [Command.textfield_set_value(id, value)](#commandtextfield_set_valueid-value)
 *    [Command.textfield_text_show(id, text, x, y, w, profile, *range)](#commandtextfield_text_showid-text-x-y-w-profile-range)
 *    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
-*    [Command.textfield_visible(id)](#commandtextfield_visibleid)
+*    [Command.textfield_visible(id, flag)](#commandtextfield_visibleid-flag)
+*    [Command.textfield_visible?(id)](#commandtextfield_visibleid)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.time_day](#commandtime_day)
 *    [Command.time_hour](#commandtime_hour)
@@ -7414,7 +7415,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_visible(id)
+##### Command.textfield_visible(id, flag)
+
+> Change la visibilité du champ de texte référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`flag`|`Boolean`|True pour visible, false pour invisible  
+
+
+
+
+
+
+##### Command.textfield_visible?(id)
 
 > Renvoi true si le champ de texte référencé par son ID est visible, false sinon
 

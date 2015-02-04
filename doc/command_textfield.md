@@ -24,6 +24,7 @@ Commande pour manipuler des champs de texte saisissable au clavier
 *    [textfield_text_show(id, text, x, y, w, profile, *range)](#textfield_text_showid-text-x-y-w-profile-range)
 *    [textfield_trigger?(id, *key)](#textfield_triggerid-key)
 *    [textfield_visible(id, flag)](#textfield_visibleid-flag)
+*    [textfield_visible?(id)](#textfield_visibleid)
 
 
 ##Description des commandes
@@ -220,5 +221,15 @@ Commande pour manipuler des champs de texte saisissable au clavier
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `flag`|`Boolean`|True pour visible, false pour invisible  
+
+
+##### textfield_visible?(id)
+
+> Renvoi true si le champ de texte référencé par son ID est visible, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
 
 
