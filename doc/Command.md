@@ -110,6 +110,7 @@ Collection des commandes EventExtender
 *    [Command.atan2(x, y)](#commandatan2x-y)
 *    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
+*    [Command.bind(e, *args, &block)](#commandbinde-args-&block)
 *    [Command.call_load_screen](#commandcall_load_screen)
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.caps_lock?](#commandcaps_lock)
@@ -260,6 +261,7 @@ Collection des commandes EventExtender
 *    [Command.map_name](#commandmap_name)
 *    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
+*    [Command.message_height(n)](#commandmessage_heightn)
 *    [Command.min(a, b)](#commandmina-b)
 *    [Command.monster_agility(id)](#commandmonster_agilityid)
 *    [Command.monster_attack_power(id)](#commandmonster_attack_powerid)
@@ -472,6 +474,23 @@ Collection des commandes EventExtender
 *    [Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#commandtext_zoomid-zoom_x-zoom_y-duration-wait_flag)
 *    [Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)](#commandtext_zoom_xid-zoom_x-duration-wait_flag)
 *    [Command.text_zoom_y(id, zoom_y, *duration, *wait_flag)](#commandtext_zoom_yid-zoom_y-duration-wait_flag)
+*    [Command.textfield_activate(id)](#commandtextfield_activateid)
+*    [Command.textfield_active?(id)](#commandtextfield_activeid)
+*    [Command.textfield_click?(id)](#commandtextfield_clickid)
+*    [Command.textfield_deactivate(*id)](#commandtextfield_deactivateid)
+*    [Command.textfield_erase(*id)](#commandtextfield_eraseid)
+*    [Command.textfield_float_show(id, number, x, y, w, profile, *range)](#commandtextfield_float_showid-number-x-y-w-profile-range)
+*    [Command.textfield_get_value(id)](#commandtextfield_get_valueid)
+*    [Command.textfield_hover?(id)](#commandtextfield_hoverid)
+*    [Command.textfield_int_show(id, number, x, y, w, profile, *range)](#commandtextfield_int_showid-number-x-y-w-profile-range)
+*    [Command.textfield_opacity(id, opacity)](#commandtextfield_opacityid-opacity)
+*    [Command.textfield_press?(id, *key)](#commandtextfield_pressid-key)
+*    [Command.textfield_release?(id, *key)](#commandtextfield_releaseid-key)
+*    [Command.textfield_repeat?(id, *key)](#commandtextfield_repeatid-key)
+*    [Command.textfield_set_value(id, value)](#commandtextfield_set_valueid-value)
+*    [Command.textfield_text_show(id, text, x, y, w, profile, *range)](#commandtextfield_text_showid-text-x-y-w-profile-range)
+*    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
+*    [Command.textfield_visible(id)](#commandtextfield_visibleid)
 *    [Command.tile_id(x, y)](#commandtile_idx-y)
 *    [Command.time_day](#commandtime_day)
 *    [Command.time_hour](#commandtime_hour)
@@ -490,6 +509,7 @@ Collection des commandes EventExtender
 *    [Command.troop_members(id)](#commandtroop_membersid)
 *    [Command.troop_name(id)](#commandtroop_nameid)
 *    [Command.troop_size(id)](#commandtroop_sizeid)
+*    [Command.unbind(e, *k)](#commandunbinde-k)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
 *    [Command.wait_release(key)](#commandwait_releasekey)
@@ -1964,6 +1984,22 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.bind(e, *args, &block)
+
+> Associe un micro_event à un sélecteur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`e`|`Selecteur`|Sélecteur d'évènements  
+`*args`|`Args`|Voir l'explication référente aux micro_event dans la documentation  
+`&block`|`Block`|Action a exécuter  
+
 
 
 
@@ -4057,6 +4093,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.message_height(n)
+
+> Change le nombre de ligne affichage dans les messages (Commande Event Afficher message)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`n`|`Fixnum`|Nombre de ligne visibles  
+
 
 
 
@@ -7116,6 +7166,268 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.textfield_activate(id)
+
+> Active la zone de texte référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+
+
+
+
+
+
+##### Command.textfield_active?(id)
+
+> Renvoi true si le champ de texte référencé par son ID est activé
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+
+
+
+
+
+
+##### Command.textfield_click?(id)
+
+> Renvoi true si la souris clique sur le champ de texte référencé par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+
+
+
+
+
+
+##### Command.textfield_deactivate(*id)
+
+> désactive la zone de texte référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|ID du champ de texte, si aucun ID n'est spécifié, toutes les zones de textes seront désactivés  
+
+
+
+
+
+
+##### Command.textfield_erase(*id)
+
+> Supprime le champ de texte référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|ID de la zone de texte, si aucun ID n'est spécifié, toutes les zones de textes seront supprimées  
+
+
+
+
+
+
+##### Command.textfield_float_show(id, number, x, y, w, profile, *range)
+
+> Affiche un champ de texte permettant de saisir des nombres à virgule
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du champ de texte  
+`number`|`Float`|Nombre à afficher par défaut du champ  
+`x`|`Fixnum`|Position X du champ  
+`y`|`Fixnum`|Position Y du champ  
+`w`|`Fixnum`|Largeur du champ de texte  
+`profile`|`Fixnum`|Référence du profile du champ de texte  
+`*range`|`Range`|Interval des nombres autorisés, peut être occulté  
+
+
+
+
+
+
+##### Command.textfield_get_value(id)
+
+> Renvoi la valeur de la zone de texte référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+
+
+
+
+
+
+##### Command.textfield_hover?(id)
+
+> Renvoi true si la souris survol le champ de texte référencé par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+
+
+
+
+
+
+##### Command.textfield_int_show(id, number, x, y, w, profile, *range)
+
+> Affiche un champ de texte permettant de saisir des nombres entiers
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du champ de texte  
+`number`|`Fixnum`|Nombre à afficher par défaut du champ  
+`x`|`Fixnum`|Position X du champ  
+`y`|`Fixnum`|Position Y du champ  
+`w`|`Fixnum`|Largeur du champ de texte  
+`profile`|`Fixnum`|Référence du profile du champ de texte  
+`*range`|`Range`|Interval des nombres autorisés, peut être occulté  
+
+
+
+
+
+
+##### Command.textfield_opacity(id, opacity)
+
+> Change l'opacité du champ de texte référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`opacity`|`Fixnum`|Opacité, si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
+
+
+
+
+
+
+##### Command.textfield_press?(id, *key)
+
+> Renvoi true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+
+
+
+
+
+
+##### Command.textfield_release?(id, *key)
+
+> Renvoi true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+
+
+
+
+
+
+##### Command.textfield_repeat?(id, *key)
+
+> Renvoi true si la souris clique répétitivement sur le champ de texte référencé par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+
+
+
+
+
+
+##### Command.textfield_set_value(id, value)
+
+> Attribue une valeur à un champ de texte référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`value`|`TextfieldType`|Valeur à attribuer  
+
+
+
+
+
+
+##### Command.textfield_text_show(id, text, x, y, w, profile, *range)
+
+> Affiche un champ de texte permettant de saisir du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du champ de texte  
+`text`|`String`|Texte à afficher par défaut du champ  
+`x`|`Fixnum`|Position X du champ  
+`y`|`Fixnum`|Position Y du champ  
+`w`|`Fixnum`|Largeur du champ de texte  
+`profile`|`Fixnum`|Référence du profile du champ de texte  
+`*range`|`Range`|Interval du nombre de caractère autorisé, peut être occulté  
+
+
+
+
+
+
+##### Command.textfield_trigger?(id, *key)
+
+> Renvoi true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+
+
+
+
+
+
+##### Command.textfield_visible(id)
+
+> Renvoi true si le champ de texte référencé par son ID est visible, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la zone de texte  
+
+
+
+
+
+
 ##### Command.tile_id(x, y)
 
 > Renvoie l'ID de la tile pointée par les coordonnées X,Y
@@ -7345,6 +7657,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
+
+
+
+
+
+
+##### Command.unbind(e, *k)
+
+> Désassocie un micro_evenement d'un sélecteur d`'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`e`|`Selecteur`|Sélecteur d'évènements  
+`*k`|`Args`|Voir l'explication référente aux micro_event dans la documentation  
 
 
 

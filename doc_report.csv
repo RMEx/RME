@@ -1,26 +1,7 @@
 Report,
-# Commandes documentées,504/524
+# Commandes documentées,524/525
 ,
 # Commandes non documentées,# Suggestion
-textfield_text_show,Aucune suggestion
-textfield_int_show,Aucune suggestion
-textfield_float_show,Aucune suggestion
-textfield_erase,Aucune suggestion
-textfield_activate,Aucune suggestion
-textfield_deactivate,Aucune suggestion
-textfield_active?,Aucune suggestion
-textfield_get_value,Aucune suggestion
-textfield_set_value,Aucune suggestion
-textfield_hover?,Aucune suggestion
-textfield_click?,Aucune suggestion
-textfield_press?,Aucune suggestion
-textfield_release?,Aucune suggestion
-textfield_trigger?,Aucune suggestion
-textfield_repeat?,Aucune suggestion
-textfield_visible,Aucune suggestion
-textfield_opacity,Aucune suggestion
-message_height,Aucune suggestion
-bind,Aucune suggestion
-unbind,Aucune suggestion
+textfield_visible?,Modifier l'enregistrement [textfield_visible?] par  [textfield_visible?]
 ,
 # Commandes inconnues,# Suggestion

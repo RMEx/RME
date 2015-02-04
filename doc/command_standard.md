@@ -13,6 +13,7 @@ Commandes standards
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
+*    [message_height(n)](#message_heightn)
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
 *    [pick_random(*elts)](#pick_randomelts)
@@ -94,6 +95,16 @@ Commandes standards
 --- | --- | ---  
 `a`|`Object`|Valeur de A  
 `b`|`Object`|Valeur de B  
+
+
+##### message_height(n)
+
+> Change le nombre de ligne affichage dans les messages (Commande Event Afficher message)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`n`|`Fixnum`|Nombre de ligne visibles  
 
 
 ##### min(a, b)

@@ -1950,12 +1950,17 @@ module RMECommands
       scene.textfields[id].visibility = !!flag if scene.textfields[id]
     end
 
-    def textfield_visible(id, flag)
-      scene.textfields[id].visible = !!flag if scene.textfields[id]
+    def textfield_visible?(id)
+      return scene.textfields[id].visible if scene.textfields[id] && !scene.textfields[id].disposed?
+      false
     end
 
-    def textfield_opacity(id, opacity)
-      scene.textfields[id].opacity = opacity%256 if scene.textfields[id]
+    def textfield_opacity(id, opacity = nil)
+      if scene.textfields[id]
+        return scene.textfields[id].opacity unless opacity
+        scene.textfields[id].opacity = opacity%256 
+      end
+      0
     end
 
     append_commands

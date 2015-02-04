@@ -530,7 +530,7 @@ textfield_float_show(id,number,x,y,w,profile,*range)	-
 textfield_get_value(id)	-
 textfield_hover?(id)	textfield_hover?(champ)
 textfield_int_show(id,number,x,y,w,profile,*range)	-
-textfield_opacity(id,opacity)	textfield_opacity(champ,*opacit)
+textfield_opacity(id,*opacity)	textfield_opacity(champ,*opacit)
 textfield_press?(id,*key)	-
 textfield_release?(id,*key)	-
 textfield_repeat?(id,*key)	-
@@ -540,6 +540,7 @@ textfield_text_show(id,text,x,y,w,profile,*range)	-
 textfield_trigger?(id,*key)	-
 -	textfield_visibility(champ,touche)
 textfield_visible(id,flag)	-
+textfield_visible?(id)	-
 tile_id(x,y,layer)	-
 time_day	time_day
 time_hour	time_hour

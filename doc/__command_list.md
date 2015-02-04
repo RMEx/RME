@@ -26,6 +26,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Commandes standards](command_standard.md)
 *    [Commandes systèmes](command_system.md)
 *    [Commandes d'affichage de textes](command_text.md)
+*    [Commandes de gestion des champs de texte](command_textfield.md)
 *    [Commandes relatives aux groupes](command_troop.md)
 *    [Commandes relatives aux armes](command_weapons.md)
 
