@@ -209,23 +209,36 @@ module Externlib
   #--------------------------------------------------------------------------
   # * Library as constants
   #--------------------------------------------------------------------------
-  CloseSocket         = Win32API.new('ws2_32', 'closesocket', 'p', 'l')
-  Connect             = Win32API.new('ws2_32', 'connect', 'ppl', 'l')
-  FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
-  GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
-  GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
-  Htons               = Win32API.new('ws2_32', 'htons', 'l', 'l')
-  Inet_Addr           = Win32API.new('ws2_32', 'inet_addr', 'p', 'l')
-  MultiByteToWideChar = Win32API.new('kernel32', 'MultiByteToWideChar', 'ilpipi', 'i')
-  Recv                = Win32API.new('ws2_32', 'recv', 'ppll', 'l')
-  RtlMoveMemory       = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
-  ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
-  Send                = Win32API.new('ws2_32', 'send', 'ppll', 'l')
-  ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
-  Shutdown            = Win32API.new('ws2_32', 'shutdown', 'pl', 'l')
-  Socket              = Win32API.new('ws2_32', 'socket', 'lll', 'l')
-  ToUnicode           = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
-  WideCharToMultiByte = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
+  CloseClipboard          = Win32API.new('user32', 'CloseClipboard', 'v', 'i')
+  EmptyClipboard          = Win32API.new('user32', 'EmptyClipboard', 'v', 'i')
+  CloseSocket             = Win32API.new('ws2_32', 'closesocket', 'p', 'l')
+  Connect                 = Win32API.new('ws2_32', 'connect', 'ppl', 'l')
+  FindWindow              = Win32API.new('user32', 'FindWindow', 'pp', 'i')
+  GetClipboardData        = Win32API.new('user32', 'GetClipboardData', 'i', 'i')
+  GetCursorPos            = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
+  GetKeyboardState        = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  GlobalAlloc             = Win32API.new('kernel32', 'GlobalAlloc', 'ii', 'i')
+  GlobalFree              = Win32API.new('kernel32', 'GlobalFree', 'i', 'i')
+  GlobalLock              = Win32API.new('kernel32', 'GlobalLock', 'i', 'l')
+  GlobalSize              = Win32API.new('kernel32', 'GlobalSize', 'l', 'l')
+  GlobalUnlock            = Win32API.new('kernel32', 'GlobalUnlock', 'l', 'v')
+  Htons                   = Win32API.new('ws2_32', 'htons', 'l', 'l')
+  Inet_Addr               = Win32API.new('ws2_32', 'inet_addr', 'p', 'l')
+  Memcpy                  = Win32API.new('msvcrt', 'memcpy', 'ppi', 'i')
+  MessageBox              = Win32API.new('user32','MessageBox','lppl','i')
+  MultiByteToWideChar     = Win32API.new('kernel32', 'MultiByteToWideChar', 'ilpipi', 'i')
+  OpenClipboard           = Win32API.new('user32', 'OpenClipboard', 'i', 'i')
+  Recv                    = Win32API.new('ws2_32', 'recv', 'ppll', 'l')
+  RegisterClipboardFormat = Win32API.new('user32', 'RegisterClipboardFormat', 'p', 'i')
+  RtlMoveMemory           = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
+  ScreenToClient          = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
+  Send                    = Win32API.new('ws2_32', 'send', 'ppll', 'l')
+  SetClipboardData        = Win32API.new('user32', 'SetClipboardData', 'ii', 'i')
+  ShowCursor              = Win32API.new('user32', 'ShowCursor','i', 'i')
+  Shutdown                = Win32API.new('ws2_32', 'shutdown', 'pl', 'l')
+  Socket                  = Win32API.new('ws2_32', 'socket', 'lll', 'l')
+  ToUnicode               = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
+  WideCharToMultiByte     = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
 end
 
 #--------------------------------------------------------------------------
@@ -1272,6 +1285,101 @@ module Devices
 
 end
 
+#==============================================================================
+# ** Prompt
+#------------------------------------------------------------------------------
+#  Display prompt
+#==============================================================================
+
+module Prompt
+  #--------------------------------------------------------------------------
+  # * Extend self
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Yes no
+  #--------------------------------------------------------------------------
+  def yes_no?(title, message)
+    k = Externlib::MessageBox.call(HWND, message, title, 305)
+    k == 1
+  end
+  #--------------------------------------------------------------------------
+  # * Yes no cancel
+  #--------------------------------------------------------------------------
+  def yes_no_cancel?(title, message)
+    k = Externlib::MessageBox.call(HWND, message, title, 3)
+    return :yes if k == 6 
+    return :no if k == 7 
+    :cancel
+  end
+end
+
+#==============================================================================
+# ** Clipboard
+#------------------------------------------------------------------------------
+#  Module for clipboard handling
+#==============================================================================
+
+module Clipboard 
+  #--------------------------------------------------------------------------
+  # * Extend self
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Get a clipboard format
+  #--------------------------------------------------------------------------
+  def get_format(key)
+    Externlib::RegisterClipboardFormat.(key)
+  end
+  FORMAT = Clipboard.get_format("VX Ace EVENT_COMMAND")
+  #--------------------------------------------------------------------------
+  # * Copy Text
+  #--------------------------------------------------------------------------
+  def push_text(clip_data)
+    clip_data.to_ascii!.to_utf8!
+    Externlib::OpenClipboard.(0)
+    Externlib::EmptyClipboard.()
+    hmem = Externlib::GlobalAlloc.(0x42, clip_data.length+1)
+    mem = Externlib::GlobalLock.(hmem)
+    Externlib::Memcpy.(mem, clip_data, clip_data.length+1)
+    Externlib::SetClipboardData.(7, hmem)
+    Externlib::GlobalFree.(hmem)
+    Externlib::CloseClipboard.()
+    true
+  end
+  #--------------------------------------------------------------------------
+  # *  Get value from clipboard
+  #--------------------------------------------------------------------------
+  def get_text
+    Externlib::OpenClipboard.(0)
+    data = Externlib::GetClipboardData.(7)
+    Externlib::CloseClipboard.()
+    return "" if data == 0
+    mem = Externlib::GlobalLock.(data)
+    size = Externlib::GlobalSize.(data)
+    final_data = " "*(size-1)
+    Externlib::Memcpy.(final_data, mem, size)
+    Externlib::GlobalUnlock.(data)
+    final_data
+  end
+  #--------------------------------------------------------------------------
+  # *  Push Command in Clipboard
+  #--------------------------------------------------------------------------
+  def push_command(*commands)
+    clip_data = Marshal.dump(commands)
+    clip_data.insert(0, [clip_data.size].pack('L'))
+    Externlib::OpenClipboard.(0)
+    Externlib::EmptyClipboard.()
+    hmem = Externlib::GlobalAlloc.(0x42, clip_data.length)
+    mem = Externlib::GlobalLock.(hmem)
+    Externlib::Memcpy.(mem, clip_data, clip_data.length)
+    Externlib::SetClipboardData.(Clipboard::FORMAT, hmem)
+    Externlib::GlobalFree.(hmem)
+    Externlib::CloseClipboard.()
+    true
+  end
+end
+
 #--------------------------------------------------------------------------
 # * RGSS3 Extension
 #--------------------------------------------------------------------------
@@ -1606,8 +1714,15 @@ module Command
     keywords.collect!{|i|i.to_s}
     keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
     snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
-    msg = "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
-    raise(NoMethodError, msg)
+    msg = "In  [map: #{map_id}, event: #{@event_id}, line: #{@index+1}]\n\n"
+    msg += "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+    msg += "\nDo you want save potential fix in the clipboard?"
+    cp = Prompt.yes_no_cancel?("Error", msg)
+    if cp == :yes
+      res = keywords[0].to_s
+      Clipboard.push_text(res)
+    end
+    exit if cp != :cancel
   end
 end
 
