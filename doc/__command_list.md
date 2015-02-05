@@ -30,5 +30,6 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Commandes de gestion des champs de texte](command_textfield.md)
 *    [Commandes relatives aux groupes](command_troop.md)
 *    [Commandes relatives aux armes](command_weapons.md)
+*    [Commandes de gestion de la vibration des pads Xbox360](command_xbox.md)
 
 

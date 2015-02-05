@@ -239,6 +239,16 @@ module Externlib
   Socket                  = Win32API.new('ws2_32', 'socket', 'lll', 'l')
   ToUnicode               = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
   WideCharToMultiByte     = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
+  #--------------------------------------------------------------------------
+  # * 360 Game Pad WIN32API's
+  #--------------------------------------------------------------------------
+  xinput = ->(dll){ return dll, Win32API.new(dll, 'XInputGetState', 'ip', 'i')}
+  xdll, XInputGetState  =   xinput.('xinput1_3') rescue
+                            xinput.('xinput1_2') rescue
+                            xinput.('xinput1_1') rescue
+                            xinput.('xinput8_1_0') rescue 
+                            [nil, nil]
+  XInputSetState =  Win32API.new(xdll, 'XInputSetState', 'ip', 'i') if xdll
 end
 
 #--------------------------------------------------------------------------
@@ -707,11 +717,66 @@ end
 
 module Devices
 
-#==============================================================================
-# ** Keys
-#------------------------------------------------------------------------------
-# Module relatif aux touches
-#==============================================================================
+  #==============================================================================
+  # ** XBOX360Pad
+  #------------------------------------------------------------------------------
+  # Xbox360Pad vibration
+  #==============================================================================
+
+  module XBOX360Pad
+    class << self
+      #--------------------------------------------------------------------------
+      # * Public instance variables
+      #--------------------------------------------------------------------------
+      attr_accessor :v_state
+      XBOX360Pad.v_state = [0, 0]
+      #--------------------------------------------------------------------------
+      # * Set Vibration
+      #--------------------------------------------------------------------------
+      def set_vibration(id, motor, strength)
+        XBOX360Pad.v_state[motor] = (strength.to_f)/100.0
+        vibration_left = [XBOX360Pad.v_state[0] * 0xFFFF, 0xFFFF].min
+        vibration_right = [XBOX360Pad.v_state[1] * 0xFFFF, 0xFFFF].min
+        Externlib::XInputSetState.(id, [vibration_left, vibration_right].pack('S2'))
+      end
+      #--------------------------------------------------------------------------
+      # * Set Vibration to motor left
+      #--------------------------------------------------------------------------
+      def left_vibration(id, strength)
+        set_vibration(id, 0, strength)
+      end
+      #--------------------------------------------------------------------------
+      # * Stop Vibration to motor left
+      #--------------------------------------------------------------------------
+      def stop_left_vibration(id)
+        set_vibration(id, 0, 0)
+      end
+      #--------------------------------------------------------------------------
+      # * Stop Vibration to motor right
+      #--------------------------------------------------------------------------
+      def stop_right_vibration(id)
+        set_vibration(id, 1, 0)
+      end
+      #--------------------------------------------------------------------------
+      # * Set Vibration to motor right
+      #--------------------------------------------------------------------------
+      def right_vibration(id, strength)
+        set_vibration(id, 1, strength)
+      end
+      #--------------------------------------------------------------------------
+      # * Check if controller 's plugged
+      #--------------------------------------------------------------------------
+      def plugged?(id = 0)
+        Externlib::XInputGetState.(id, [].pack('x16')) == 0
+      end
+    end
+  end
+
+  #==============================================================================
+  # ** Keys
+  #------------------------------------------------------------------------------
+  # Module relatif aux touches
+  #==============================================================================
 
   class Keys
 

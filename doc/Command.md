@@ -326,6 +326,13 @@ Collection des commandes EventExtender
 *    [Command.mouse_x](#commandmouse_x)
 *    [Command.mouse_y](#commandmouse_y)
 *    [Command.num_lock?](#commandnum_lock)
+*    [Command.pad360_plugged?(*id)](#commandpad360_pluggedid)
+*    [Command.pad360_stop_vibration(*id)](#commandpad360_stop_vibrationid)
+*    [Command.pad360_stop_vibration_left(*id)](#commandpad360_stop_vibration_leftid)
+*    [Command.pad360_stop_vibration_right(*id)](#commandpad360_stop_vibration_rightid)
+*    [Command.pad360_vibrate(*id, *left, *right)](#commandpad360_vibrateid-left-right)
+*    [Command.pad360_vibrate_left(*id, *s)](#commandpad360_vibrate_leftid-s)
+*    [Command.pad360_vibrate_right(*id, *s)](#commandpad360_vibrate_rightid-s)
 *    [Command.page_runnable?(map_id, event_id, page_id, *context)](#commandpage_runnablemap_id-event_id-page_id-context)
 *    [Command.parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#commandparallax_autoscrollid-speed_x-duration-wait_flag)
 *    [Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag)](#commandparallax_autoscroll_xid-speed-duration-wait_flag)
@@ -4984,6 +4991,108 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.pad360_plugged?(*id)
+
+> Renvoie true si une manette est branchée dans le port référencée par son ID, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+
+
+
+
+
+
+##### Command.pad360_stop_vibration(*id)
+
+> Arrête la vibration des deux moteurs de la manette référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+
+
+
+
+
+
+##### Command.pad360_stop_vibration_left(*id)
+
+> Arrête la vibration du moteur gauche de la manette référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+
+
+
+
+
+
+##### Command.pad360_stop_vibration_right(*id)
+
+> Arrête la vibration du moteur droit de la manette référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+
+
+
+
+
+
+##### Command.pad360_vibrate(*id, *left, *right)
+
+> Fait vibrer la manette référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+`*left`|`Fixnum`|Force dans le moteur gauche, par défaut, 100  
+`*right`|`Fixnum`|Force dans le moteur droit, par défaut, 100  
+
+
+
+
+
+
+##### Command.pad360_vibrate_left(*id, *s)
+
+> Fait vibrer le moteur gauche de la manette référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+`*s`|`Fixnum`|Force de la vibration, par défaut, 100  
+
+
+
+
+
+
+##### Command.pad360_vibrate_right(*id, *s)
+
+> Fait vibrer le moteur droit de la manette référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
+`*s`|`Fixnum`|Force de la vibration, par défaut, 100  
+
 
 
 

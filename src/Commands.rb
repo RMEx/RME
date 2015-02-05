@@ -1886,6 +1886,37 @@ module RMECommands
   end
 
   #==============================================================================
+  # ** Pad360
+  #------------------------------------------------------------------------------
+  #  Vibration commands
+  #==============================================================================
+
+  module Pad360 
+    def pad360_plugged?(id = 0); Devices::XBOX360Pad.plugged?(id);  end
+    def pad360_stop_vibration_left(id = 0)
+      Devices::XBOX360Pad.stop_left_vibration(id)
+    end
+    def pad360_stop_vibration_right(id = 0)
+      Devices::XBOX360Pad.stop_right_vibration(id)
+    end
+    def pad360_vibrate(id = 0, left = 100, right = 100)
+      Devices::XBOX360Pad.left_vibration(id, left)
+      Devices::XBOX360Pad.right_vibration(id, right)
+    end
+    def pad360_stop_vibration(id = 0)
+      Devices::XBOX360Pad.stop_left_vibration(id)
+      Devices::XBOX360Pad.stop_right_vibration(id)
+    end
+    def pad360_vibrate_left(id = 0, s = 100)
+      Devices::XBOX360Pad.left_vibration(id, s)
+    end
+    def pad360_vibrate_right(id = 0, s = 100)
+      Devices::XBOX360Pad.right_vibration(id, s)
+    end
+    append_commands
+  end
+
+  #==============================================================================
   # ** Textfields
   #------------------------------------------------------------------------------
   #  Textfields commands

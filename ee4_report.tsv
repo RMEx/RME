@@ -352,6 +352,13 @@ mouse_y	mouse_y
 mouse_y_square	mouse_y_square
 -	move_to(id,x,y,attendre)
 num_lock?	num_lock?
+pad360_plugged?(*id)	-
+pad360_stop_vibration(*id)	-
+pad360_stop_vibration_left(*id)	-
+pad360_stop_vibration_right(*id)	-
+pad360_vibrate(*id,*left,*right)	-
+pad360_vibrate_left(*id,*s)	-
+pad360_vibrate_right(*id,*s)	-
 page_runnable?(map_id,ev_id,page,*context)	-
 parallax_autoscroll(id,x,y,*d,*wf)	parallax_autoscroll(id,vitesse,vitesse)
 parallax_autoscroll_x(id,v,*duration,*wf)	-
