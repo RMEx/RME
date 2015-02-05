@@ -632,14 +632,6 @@ module DataManager
     alias :db_make_save_contents    :make_save_contents
     alias :db_extract_save_contents :extract_save_contents
     alias :db_create_game_objects   :create_game_objects
-    alias :db_init                  :init
-    #--------------------------------------------------------------------------
-    # * Init
-    #--------------------------------------------------------------------------
-    def init 
-      init_cst_db
-      db_init
-    end
     #--------------------------------------------------------------------------
     # * Init
     #--------------------------------------------------------------------------

@@ -594,4 +594,5 @@ weapon_name(id)	weapon_name(id)
 weapon_note(id)	-
 weapon_price(id)	-
 weapon_type(id)	-
+website(url)	-
 windows_username	windows_username

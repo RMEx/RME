@@ -43,6 +43,7 @@ module RMECommands
   def get(a, i); a[i]; end
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
   def rm_kill; SceneManager.exit; end
+  def website(url); Thread.new { system("start #{url}") };end
 
   def wait_with(time, &block)
     time.times do 

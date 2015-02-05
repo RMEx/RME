@@ -1,2 +1,3 @@
 {
-:id:integer:activate:boolean:x;:y;:map_id;
+:options:string:activate:boolean:x:integer:y;
+:map_id;

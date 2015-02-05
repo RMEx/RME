@@ -137,13 +137,13 @@ ITextFieldProfile.insert("default", "default", 0, 54, 6, 6, "darkblue")
 #==============================================================================
 
 class ISkipTitle < Static::Table
-  pk integer :id 
+  pk string :options
   boolean :activate
   integer :x
   integer :y
   integer :map_id
 end
-ISkipTitle.insert(0, false, 0, 0, 0)
+ISkipTitle.insert("SkipTitle", false, 0, 0, 0)
 
 #==============================================================================
 # ** Kernel
@@ -182,7 +182,7 @@ module Kernel
   # * Get Skip title
   #--------------------------------------------------------------------------
   def skip_title_data
-    ISkipTitle[0]
+    ISkipTitle["SkipTitle"]
   end
 
   #--------------------------------------------------------------------------

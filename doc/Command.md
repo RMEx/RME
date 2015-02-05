@@ -542,6 +542,7 @@ Collection des commandes EventExtender
 *    [Command.weapon_note(id)](#commandweapon_noteid)
 *    [Command.weapon_price(id)](#commandweapon_priceid)
 *    [Command.weapon_type(id)](#commandweapon_typeid)
+*    [Command.website(url)](#commandwebsiteurl)
 
 
 ##Description des méthodes
@@ -8132,6 +8133,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
+
+
+
+
+
+
+##### Command.website(url)
+
+> Ouvre la page web passée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`url`|`String`|Url à charger  
 
 
 

@@ -28,6 +28,7 @@ Commandes standards
 *    [wait_release(key)](#wait_releasekey)
 *    [wait_trigger(key)](#wait_triggerkey)
 *    [wait_with(time, &block)](#wait_withtime-&block)
+*    [website(url)](#websiteurl)
 
 
 ##Description des commandes
@@ -249,5 +250,15 @@ Commandes standards
 --- | --- | ---  
 `time`|`Fixnum`|Temps d'attente  
 `&block`|`Block`|Action a exécuter ({action})  
+
+
+##### website(url)
+
+> Ouvre la page web passée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`url`|`String`|Url à charger  
 
 
