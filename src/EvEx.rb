@@ -2582,5 +2582,48 @@ module DataManager
       end
       return datas
     end
+    
+  end
+end
+
+#==============================================================================
+# ** SceneManager
+#------------------------------------------------------------------------------
+#  This module manages scene transitions. For example, it can handle
+# hierarchical structures such as calling the item screen from the main menu
+# or returning from the item screen to the main menu.
+#==============================================================================
+
+module SceneManager
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    #--------------------------------------------------------------------------
+    # * Alias
+    #--------------------------------------------------------------------------
+    alias_method :skip_ee_run, :run
+    #--------------------------------------------------------------------------
+    # * Run game
+    #--------------------------------------------------------------------------
+    def run 
+      DataManager.init_cst_db
+      data = skip_title_data
+      p data
+      if !data.activate || !map_exists?(data.map_id)
+        skip_ee_run
+        return
+      end
+      DataManager.init
+      Audio.setup_midi if use_midi?
+      DataManager.create_game_objects
+      $game_party.setup_starting_members
+      $game_map.setup(data.map_id)
+      $game_map.autoplay
+      $game_player.moveto(data.x, data.y)
+      $game_player.refresh
+      @scene = Scene_Map.new
+      @scene.main while @scene
+    end
   end
 end

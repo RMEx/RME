@@ -131,6 +131,21 @@ end
 ITextFieldProfile.insert("default", "default", 0, 54, 6, 6, "darkblue")
 
 #==============================================================================
+# ** ISkipTitle
+#------------------------------------------------------------------------------
+#  Skip title config
+#==============================================================================
+
+class ISkipTitle < Static::Table
+  pk integer :id 
+  boolean :activate
+  integer :x
+  integer :y
+  integer :map_id
+end
+ISkipTitle.insert(0, false, 0, 0, 0)
+
+#==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
 #  Object class methods are defined in this module. 
@@ -161,6 +176,20 @@ module Kernel
     c = ITextFieldProfile[name]
     return ITextFieldProfile["default"] unless c 
     c
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Skip title
+  #--------------------------------------------------------------------------
+  def skip_title_data
+    ISkipTitle[0]
+  end
+
+  #--------------------------------------------------------------------------
+  # * Map exists?
+  #--------------------------------------------------------------------------
+  def map_exists?(id)
+    File.exists?(sprintf("Data/Map%03d.rvdata2", id))
   end
 
   #--------------------------------------------------------------------------
