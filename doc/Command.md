@@ -115,6 +115,9 @@ Collection des commandes EventExtender
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.caps_lock?](#commandcaps_lock)
 *    [Command.click_time(key)](#commandclick_timekey)
+*    [Command.clipboard_get_text](#commandclipboard_get_text)
+*    [Command.clipboard_push_command(cmd)](#commandclipboard_push_commandcmd)
+*    [Command.clipboard_push_text(text)](#commandclipboard_push_texttext)
 *    [Command.color(red, green, blue, *alpha)](#commandcolorred-green-blue-alpha)
 *    [Command.cos(x)](#commandcosx)
 *    [Command.cosh(x)](#commandcoshx)
@@ -2047,6 +2050,45 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
+
+
+
+
+
+
+##### Command.clipboard_get_text
+
+> Renvoi le texte contenu dans le presse-papier
+
+  
+> 
+
+
+
+
+
+##### Command.clipboard_push_command(cmd)
+
+> Place une commande évènement dans le presse-papier
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`cmd`|`RPGCommand`|Commande à placer dans le presse-papier  
+
+
+
+
+
+
+##### Command.clipboard_push_text(text)
+
+> Place un texte dans le presse-papier
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`text`|`String`|Texte à sauvegarder dans le presse-papier  
 
 
 

@@ -1874,6 +1874,18 @@ module RMECommands
   end
 
   #==============================================================================
+  # ** Clipboard
+  #------------------------------------------------------------------------------
+  #  Clipboar commands
+  #==============================================================================
+  module RMEClipboard
+    def clipboard_push_text(text); Clipboard.push_text(text); end
+    def clipboard_get_text; Clipboard.get_text; end 
+    def clipboard_push_command(cmd); Clipboard.push_command(cmd); end
+    append_commands
+  end
+
+  #==============================================================================
   # ** Textfields
   #------------------------------------------------------------------------------
   #  Textfields commands

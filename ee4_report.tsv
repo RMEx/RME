@@ -111,6 +111,9 @@ call_load_screen	-
 call_title_screen	-
 caps_lock?	caps_lock?
 click_time(k)	-
+clipboard_get_text	-
+clipboard_push_command(cmd)	-
+clipboard_push_text(text)	-
 collide?(ev1,ev2)	collide?(id,id)
 color(r,v,b,*a)	color(rouge,vert,bleu,*alpha)
 cos(x)	-
