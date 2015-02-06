@@ -758,7 +758,7 @@ module RMECommands
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
     def cursor_system(m)
       flag = (!!flag) ? 1 : 0
-      Externlib.ShowCursor.(flag);
+      Externlib::ShowCursor.(flag)
     end
 
     # Fix for EE4
