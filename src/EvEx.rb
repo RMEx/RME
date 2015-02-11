@@ -975,22 +975,7 @@ class Game_CharacterBase
     nil
   end
 end
-#==============================================================================
-# ** Game_Actor
-#------------------------------------------------------------------------------
-#  This class handles actors. It is used within the Game_Actors class
-# ($game_actors) and is also referenced from the Game_Party class ($game_party).
-#==============================================================================
 
-class Game_Actor
-  #--------------------------------------------------------------------------
-  # * Public Instance Variables
-  #--------------------------------------------------------------------------
-  attr_accessor   :character_name           # character graphic filename
-  attr_accessor   :character_index          # character graphic index
-  attr_accessor   :face_name                # face graphic filename
-  attr_accessor   :face_index               # face graphic index
-end
 #==============================================================================
 # ** Sprite_Character
 #------------------------------------------------------------------------------
@@ -2071,6 +2056,7 @@ class Sprite_Picture
     end
   end
 end 
+
 #==============================================================================
 # ** Game_Actor
 #------------------------------------------------------------------------------
@@ -2087,6 +2073,7 @@ class Game_Actor
   attr_accessor   :face_name                # face graphic filename
   attr_accessor   :face_index               # face graphic index
 end
+
 #==============================================================================
 # ** Game_Event
 #------------------------------------------------------------------------------
