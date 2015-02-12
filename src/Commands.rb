@@ -1219,8 +1219,10 @@ module RMECommands
 
     def event_erased?(id); event(id).erased?; end
 	
-	def event_erase(id)
-	return if id < 1; event(id).erase; end
+    def event_erase(id)
+      return if id < 1
+      event(id).erase
+    end
 
     # Fix for EE4
     alias_method :collide?, :events_collide?
