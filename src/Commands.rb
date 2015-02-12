@@ -1219,9 +1219,28 @@ module RMECommands
 
     def event_erased?(id); event(id).erased?; end
 	
-    def event_erase(id)
-      return if id < 1
-      event(id).erase
+    def event_erase(ids)
+      select_events(ids).not(0).each do |id_event|
+        event(id_event).erase
+      end
+    end
+	
+    def show_animation(ids, id_animation, wait_flag=false)
+      character = nil
+      select_events(ids).each do |id_event|
+        character = event(id_event)
+        character.animation_id = id_animation
+      end
+      Fiber.yield while character.animation_id > 0 if wait_flag
+    end
+	
+    def show_balloon(ids, id_balloon, wait_flag=false)
+      character = nil
+      select_events(ids).each do |id_event|
+        character = event(id_event)
+        character.balloon_id = id_balloon
+      end
+      Fiber.yield while character.balloon_id > 0 if wait_flag
     end
 
     # Fix for EE4
