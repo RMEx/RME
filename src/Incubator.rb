@@ -456,11 +456,9 @@ if RME.unsafe?
       # * Execute
       #--------------------------------------------------------------------------
       def run
-        if ! Graphics.overlayer || Graphics.overlayer.disposed?
-          Graphics.overlayer = Sprite.new 
-          Graphics.overlayer.z = 2 ** ([42].pack('i').size - 2) -1
-          Graphics.retreive_bitmap
-        end
+        Graphics.overlayer = Sprite.new 
+        Graphics.overlayer.z = 2 ** ([42].pack('i').size - 2) -1
+        Graphics.retreive_bitmap
         incubator_run
       end
     end
