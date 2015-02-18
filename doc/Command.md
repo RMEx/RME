@@ -113,7 +113,6 @@ Collection des commandes EventExtender
 *    [Command.atan2(x, y)](#commandatan2x-y)
 *    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
-*    [Command.bind(e, *args, &block)](#commandbinde-args-&block)
 *    [Command.call_load_screen](#commandcall_load_screen)
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.caps_lock?](#commandcaps_lock)
@@ -526,7 +525,6 @@ Collection des commandes EventExtender
 *    [Command.troop_members(id)](#commandtroop_membersid)
 *    [Command.troop_name(id)](#commandtroop_nameid)
 *    [Command.troop_size(id)](#commandtroop_sizeid)
-*    [Command.unbind(e, *k)](#commandunbinde-k)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
 *    [Command.wait_release(key)](#commandwait_releasekey)
@@ -2052,22 +2050,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
-
-
-
-
-
-##### Command.bind(e, *args, &block)
-
-> Associe un micro_event à un sélecteur
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`e`|`Selecteur`|Sélecteur d'évènements  
-`*args`|`Args`|Voir l'explication référente aux micro_event dans la documentation  
-`&block`|`Block`|Action a exécuter  
-
 
 
 
@@ -7927,21 +7909,6 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
-
-
-
-
-
-
-##### Command.unbind(e, *k)
-
-> Désassocie un micro_evenement d'un sélecteur d`'évènements
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`e`|`Selecteur`|Sélecteur d'évènements  
-`*k`|`Args`|Voir l'explication référente aux micro_event dans la documentation  
 
 
 
