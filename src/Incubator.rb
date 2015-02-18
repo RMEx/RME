@@ -514,7 +514,7 @@ if RME.unsafe?
       #------------------------------------------------------------------------
       # * Performs a fade-in of the screen.
       #------------------------------------------------------------------------
-      def fadeout(frames)
+      def fadein(frames)
         steps = 255.0/frames.to_f 
         frames.times do |k|
           Graphics.brightness = steps * k.to_f
