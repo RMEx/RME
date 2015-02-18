@@ -108,7 +108,7 @@ atan(x)	-
 atan2(x,y)	-
 atanh(x)	-
 battle_count	battle_count
-bind(e,*args,*block)	-
+bind(e,k,*n)	-
 buzz(e,*duration)	buzz(id)
 call_load_screen	-
 call_title_screen	-

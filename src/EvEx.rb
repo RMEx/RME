@@ -234,6 +234,11 @@ module Kernel
   def trigger(&block)
     block
   end
+
+  def store_action(key, t, &a)
+    Handler.store(key, t, a)
+  end
+
   alias_method :listener, :trigger
   alias_method :ignore_left, :trigger 
   #--------------------------------------------------------------------------
@@ -508,14 +513,16 @@ module Handler
     #--------------------------------------------------------------------------
     # * Public instance variable
     #--------------------------------------------------------------------------
-    attr_accessor :std_triggers
-    Handler.std_triggers = [
-      :hover,
-      :click,
-      :trigger,
-      :release,
-      :repeat
-    ] 
+    attr_accessor :triggers 
+    Handler.triggers = {} 
+    #--------------------------------------------------------------------------
+    # * Store a trigger
+    #--------------------------------------------------------------------------
+    def store(key, t, a)
+      tri = Proc.new {|i| $game_map.interpreter.instance_exec i, &t}
+      act = Proc.new {|i| $game_map.interpreter.instance_exec i, &a}
+      Handler.triggers[key.to_sym] = Struct.new(:trigger, :action).new(tri, act)
+    end
   end
   #--------------------------------------------------------------------------
   # * Event behaviour
@@ -525,23 +532,7 @@ module Handler
     # * Setup Event Handler
     #--------------------------------------------------------------------------
     def setup_eHandler
-      @__std_triggers = {
-        press:    nil,
-        hover:    nil,
-        click:    nil,
-        trigger:  nil,
-        release:  nil, 
-        repeat:   nil
-      }
-      @__cst_triggers = {}
-      @table_triggers = {
-        press:    method(:press?),
-        hover:    method(:hover?),
-        click:    method(:click?),
-        trigger:  method(:trigger?),
-        release:  method(:release?),
-        repeat:   method(:repeat?)
-      }
+      @table_triggers = {}
     end
     #--------------------------------------------------------------------------
     # * Unbinding process
@@ -551,51 +542,27 @@ module Handler
         setup_eHandler
         return
       end
-      if(Handler.std_triggers.include?(key))
-        @__std_triggers[key.to_sym] = nil
-        return
-      end
-      @__cst_triggers[key.to_sym] = nil if @__cst_triggers[key.to_sym]
+      @table_triggers.keys.each {|k| @table_triggers[k] = 0}
     end
     #--------------------------------------------------------------------------
     # * Binding event
     #--------------------------------------------------------------------------
-    def bind(key, *args, &block)
-      if(Handler.std_triggers.include?(key))
-        ntriggers = args[0] || -1
-        @__std_triggers[key.to_sym] = {
-          fun:        block,
-          ntriggers:  ntriggers
-        }
-        return
-      end
-      trigger = args[0]
-      ntriggers = args[1] || -1
-      @__cst_triggers[key.to_sym] = {
-        trigger:    trigger,
-        fun:        block,
-        ntriggers:  ntriggers
-      }
+    def bind(key, n = -1)
+      @table_triggers[key.to_sym] = n
     end
     #--------------------------------------------------------------------------
     # * Update events
     #--------------------------------------------------------------------------
     def update_eHandler
-      @__std_triggers.each do |key, event|
-        if event && event[:ntriggers] != 0
-          if @table_triggers[key] && @table_triggers[key].()
-            event[:fun].(self.id)
-            event[:ntriggers] -= 1 if event[:ntriggers] != -1
-          end
-        end
-      end
-      @__cst_triggers.each do |key, event|
-        if event
-          if event[:ntriggers] != 0
-            event[:fun].(self) if event[:trigger].(self.id)
-            event[:ntriggers] -= 1 if event[:ntriggers] != -1
-          else
-            event = nil
+      @table_triggers.keys.each do |k|
+        if @table_triggers[k] != 0 
+          return unless Handler.triggers[k]
+          oth_id = @id
+          b = Handler.triggers[k].trigger
+          if $game_map.interpreter.instance_exec(oth_id, &b)
+            a = Proc.new{Handler.triggers[k].action.(oth_id)}
+            $game_map.interpreter.instance_eval(&a)
+            @table_triggers[k] -= 1 if @table_triggers[k] > 0
           end
         end
       end
@@ -653,9 +620,9 @@ module Handler
     #--------------------------------------------------------------------------
     # * Binding
     #--------------------------------------------------------------------------
-    def bind(e, *args, &block)
+    def bind(e, k, n= -1)
       e = select_events(e)
-      e.each{|i|event(i).bind(*args, &block)}
+      e.each{|i|event(i).bind(k, n)}
     end
     #--------------------------------------------------------------------------
     # * UnBinding
@@ -941,7 +908,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Event Handling
   #--------------------------------------------------------------------------
-  #include Handler::Behaviour
+  include Handler::Behaviour
   #--------------------------------------------------------------------------
   # * Object initialize
   #--------------------------------------------------------------------------
@@ -954,50 +921,14 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def init_public_members
     rm_extender_init_public_members
-    # setup_eHandler
-  end
-  #--------------------------------------------------------------------------
-  # * Hover
-  #--------------------------------------------------------------------------
-  def hover?
-    @rect.hover?
-  end
-  #--------------------------------------------------------------------------
-  # * Click
-  #--------------------------------------------------------------------------
-  def click?
-    @rect.click?
-  end
-  #--------------------------------------------------------------------------
-  # * Press
-  #--------------------------------------------------------------------------
-  def press?(key = :mouse_left)
-    @rect.press?(key)
-  end
-  #--------------------------------------------------------------------------
-  # * Trigger
-  #--------------------------------------------------------------------------
-  def trigger?(key = :mouse_left)
-    @rect.trigger?(key)
-  end
-  #--------------------------------------------------------------------------
-  # * Repeat
-  #--------------------------------------------------------------------------
-  def repeat?(key = :mouse_left)
-    @rect.repeat?(key)
-  end
-  #--------------------------------------------------------------------------
-  # * Release
-  #--------------------------------------------------------------------------
-  def release?(key = :mouse_left)
-    @rect.release?(key)
+    setup_eHandler
   end
   #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
     rm_extender_update
-    #update_eHandler
+    update_eHandler
     Game_CharacterBase.last_hovered = @id if hover?
     Game_CharacterBase.last_clicked = @id if click?
     Game_CharacterBase.last_triggered = @id if trigger?

@@ -3,8 +3,8 @@ link_method_documentation 'Command.bind',
 	'Your description',
  	{
 		:e => ["Args description", :ArgType],
-		:"*args" => ["Args description", :ArgType],
-		:"&block" => ["Args description", :ArgType],
+		:k => ["Args description", :ArgType],
+		:"*n" => ["Args description", :ArgType],
 
 	}, true # Maybe changed
 register_command :standard, 'Command.bind' 
