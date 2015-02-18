@@ -2531,6 +2531,34 @@ module UI
 end
 
 #==============================================================================
+# ** Scene_End
+#------------------------------------------------------------------------------
+#  This class performs game over screen processing.
+#==============================================================================
+
+class Scene_End
+
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :evex_command_to_title, :command_to_title
+  #--------------------------------------------------------------------------
+  # * [Go to Title] Command
+  #--------------------------------------------------------------------------
+  def command_to_title
+    data = skip_title_data
+    if !data.activate || !map_exists?(data.map_id)
+      evex_command_to_title
+      return
+    end
+    close_command_window
+    fadeout_all
+    SceneManager.run
+  end
+
+end
+
+#==============================================================================
 # ** DataManager
 #------------------------------------------------------------------------------
 # Data of save manager
@@ -2627,7 +2655,6 @@ module SceneManager
     def run 
       DataManager.init_cst_db
       data = skip_title_data
-      p data
       if !data.activate || !map_exists?(data.map_id)
         skip_ee_run
         return
