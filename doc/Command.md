@@ -17,7 +17,10 @@ Collection des commandes EventExtender
 *    [Command.actor_armors(id)](#commandactor_armorsid)
 *    [Command.actor_attack(id)](#commandactor_attackid)
 *    [Command.actor_body(id)](#commandactor_bodyid)
+*    [Command.actor_change_appear(id, character_name, character_index, face_name, face_index)](#commandactor_change_appearid-character_name-character_index-face_name-face_index)
+*    [Command.actor_change_character(id, character_name, character_index)](#commandactor_change_characterid-character_name-character_index)
 *    [Command.actor_change_equip(id, slot, object_id)](#commandactor_change_equipid-slot-object_id)
+*    [Command.actor_change_face(id, face_name, face_index)](#commandactor_change_faceid-face_name-face_index)
 *    [Command.actor_character_index(id)](#commandactor_character_indexid)
 *    [Command.actor_character_name(id)](#commandactor_character_nameid)
 *    [Command.actor_class(id)](#commandactor_classid)
@@ -164,6 +167,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
 *    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
 *    [Command.event_direction(id)](#commandevent_directionid)
+*    [Command.event_erase(id)](#commandevent_eraseid)
 *    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
@@ -414,6 +418,8 @@ Collection des commandes EventExtender
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
 *    [Command.set_actor_nickname(id, new_name)](#commandset_actor_nicknameid-new_name)
 *    [Command.shift?](#commandshift)
+*    [Command.show_animation(ids, id_animation, *wait_flag)](#commandshow_animationids-id_animation-wait_flag)
+*    [Command.show_balloon(ids, id_balloon, *wait_flag)](#commandshow_balloonids-id_balloon-wait_flag)
 *    [Command.sin(x)](#commandsinx)
 *    [Command.sinh(x)](#commandsinhx)
 *    [Command.skill_always_usable?(id)](#commandskill_always_usableid)
@@ -677,6 +683,40 @@ Collection des commandes EventExtender
 
 
 
+##### Command.actor_change_appear(id, character_name, character_index, face_name, face_index)
+
+> Change l'apparence et la face du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du héros  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+`face_name`|`String`|Nom du face  
+`face_index`|`Fixnum`|ID du face  
+
+
+
+
+
+
+##### Command.actor_change_character(id, character_name, character_index)
+
+> Change l'aparence du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du héros  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+
+
+
+
+
+
 ##### Command.actor_change_equip(id, slot, object_id)
 
 > Change l'équipement du héros référencé par son ID
@@ -687,6 +727,22 @@ Collection des commandes EventExtender
 `id`|`Fixnum`|ID de l'acteur  
 `slot`|`Symbol`|Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)  
 `object_id`|`Fixnum`|ID de l'Arme ou de l'Armure (La commande déduira s'il doit s'agir d'une arme ou d'une armure)  
+
+
+
+
+
+
+##### Command.actor_change_face(id, face_name, face_index)
+
+> Change la face du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du héros  
+`face_name`|`String`|Nom du face  
+`face_index`|`Fixnum`|ID du face  
 
 
 
@@ -2743,6 +2799,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_erase(id)
+
+> Efface les événements de la map référencer par le sélécteur IDS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Selector`|IDS des événements  
 
 
 
@@ -6309,6 +6379,38 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.show_animation(ids, id_animation, *wait_flag)
+
+> Joue une animation sur les événements référencé par le selecteur IDS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|IDS des événements  
+`id_animation`|`Fixnum`|ID de l'animation  
+`*wait_flag`|`string`|attend la fin si true  
+
+
+
+
+
+
+##### Command.show_balloon(ids, id_balloon, *wait_flag)
+
+> Joue une émoticone sur les événements référencé par le selecteur IDS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|IDS des événements  
+`id_balloon`|`Fixnum`|ID de l'émoticone  
+`*wait_flag`|`String`|attend la fin si true  
+
 
 
 

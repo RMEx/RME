@@ -12,7 +12,10 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_armors(id)](#actor_armorsid)
 *    [actor_attack(id)](#actor_attackid)
 *    [actor_body(id)](#actor_bodyid)
+*    [actor_change_appear(id, character_name, character_index, face_name, face_index)](#actor_change_appearid-character_name-character_index-face_name-face_index)
+*    [actor_change_character(id, character_name, character_index)](#actor_change_characterid-character_name-character_index)
 *    [actor_change_equip(id, slot, object_id)](#actor_change_equipid-slot-object_id)
+*    [actor_change_face(id, face_name, face_index)](#actor_change_faceid-face_name-face_index)
 *    [actor_character_index(id)](#actor_character_indexid)
 *    [actor_character_name(id)](#actor_character_nameid)
 *    [actor_class(id)](#actor_classid)
@@ -134,6 +137,32 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 
 
+##### actor_change_appear(id, character_name, character_index, face_name, face_index)
+
+> Change l'apparence et la face du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du héros  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+`face_name`|`String`|Nom du face  
+`face_index`|`Fixnum`|ID du face  
+
+
+##### actor_change_character(id, character_name, character_index)
+
+> Change l'aparence du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du héros  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+
+
 ##### actor_change_equip(id, slot, object_id)
 
 > Change l'équipement du héros référencé par son ID
@@ -144,6 +173,18 @@ Offre des commandes pour obtenir des informations sur les acteurs
 `id`|`Fixnum`|ID de l'acteur  
 `slot`|`Symbol`|Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)  
 `object_id`|`Fixnum`|ID de l'Arme ou de l'Armure (La commande déduira s'il doit s'agir d'une arme ou d'une armure)  
+
+
+##### actor_change_face(id, face_name, face_index)
+
+> Change la face du héros référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du héros  
+`face_name`|`String`|Nom du face  
+`face_index`|`Fixnum`|ID du face  
 
 
 ##### actor_character_index(id)

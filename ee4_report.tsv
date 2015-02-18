@@ -10,7 +10,10 @@ actor_agility(id)	actor_agility(id)
 actor_armors(id)	-
 actor_attack(id)	-
 actor_body(id)	-
+actor_change_appear(id,character_name,character_index,face_name,face_index)	-
+actor_change_character(id,character_name,character_index)	-
 actor_change_equip(id,slot,wp_id)	-
+actor_change_face(id,face_name,face_index)	-
 actor_character_index(id)	-
 actor_character_name(id)	-
 actor_class(id)	-
@@ -164,6 +167,7 @@ enemy_tp_charge_rate(id)	-
 enemy_tp_regeneration_rate(id)	-
 -	erase_textfield(champ)
 event_direction(id)	event_direction(id)
+event_erase(ids)	-
 event_erased?(id)	-
 event_in_screen?(id)	event_in_screen?(id)
 event_look_at?(ev,to,scope,*metric)	-
@@ -458,6 +462,8 @@ set_actor_name(id,n)	set_actor_name(id,name)
 set_actor_nickname(id,n)	-
 -	set_textfield_value(champ,valeur)
 shift?	-
+show_animation(ids,id_animation,*wait_flag)	-
+show_balloon(ids,id_balloon,*wait_flag)	-
 show_cursor_system(m)	show_cursor_system(activation)
 sin(x)	-
 sinh(x)	-

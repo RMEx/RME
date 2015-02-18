@@ -2639,8 +2639,8 @@ module SceneManager
       $game_map.autoplay
       $game_player.moveto(data.x, data.y)
       $game_player.refresh
-      @scene = Scene_Map.new
-      @scene.main while @scene
+      goto(Scene_Map)
+      scene.main while scene
     end
   end
 end

@@ -9,6 +9,7 @@ Commandes relatives aux évènements
 ##Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
 *    [event_direction(id)](#event_directionid)
+*    [event_erase(id)](#event_eraseid)
 *    [event_erased?(id)](#event_erasedid)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
@@ -56,6 +57,8 @@ Commandes relatives aux évènements
 *    [player_screen_y](#player_screen_y)
 *    [player_x](#player_x)
 *    [player_y](#player_y)
+*    [show_animation(ids, id_animation, *wait_flag)](#show_animationids-id_animation-wait_flag)
+*    [show_balloon(ids, id_balloon, *wait_flag)](#show_balloonids-id_balloon-wait_flag)
 *    [squares_between(idA, idB)](#squares_betweenida-idb)
 
 
@@ -79,6 +82,16 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+##### event_erase(id)
+
+> Efface les événements de la map référencer par le sélécteur IDS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Selector`|IDS des événements  
 
 
 ##### event_erased?(id)
@@ -522,6 +535,30 @@ Commandes relatives aux évènements
 
   
 > 
+
+##### show_animation(ids, id_animation, *wait_flag)
+
+> Joue une animation sur les événements référencé par le selecteur IDS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|IDS des événements  
+`id_animation`|`Fixnum`|ID de l'animation  
+`*wait_flag`|`string`|attend la fin si true  
+
+
+##### show_balloon(ids, id_balloon, *wait_flag)
+
+> Joue une émoticone sur les événements référencé par le selecteur IDS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|IDS des événements  
+`id_balloon`|`Fixnum`|ID de l'émoticone  
+`*wait_flag`|`String`|attend la fin si true  
+
 
 ##### squares_between(idA, idB)
 
