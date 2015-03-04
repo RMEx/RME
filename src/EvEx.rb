@@ -893,6 +893,8 @@ class Game_CharacterBase
   attr_accessor :buzz
   attr_accessor :buzz_amplitude
   attr_accessor :buzz_length
+  attr_accessor   :move_speed               
+  attr_accessor   :move_frequency           
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
