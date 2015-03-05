@@ -1263,6 +1263,13 @@ module RMECommands
       event_move_frequency(0, f)
     end
 
+    def event_move_speed_frequency(ids, v, f)
+      select_events(ids).each do |id_event|
+        event(id_event).move_speed = v
+        event(id_event).move_frequency = f
+      end
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
