@@ -13,6 +13,9 @@ Commandes relatives aux évènements
 *    [event_erased?(id)](#event_erasedid)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
+*    [event_move_frequency(ids, f)](#event_move_frequencyids-f)
+*    [event_move_speed(ids, v)](#event_move_speedids-v)
+*    [event_move_speed_frequency(ids, v, f)](#event_move_speed_frequencyids-v-f)
 *    [event_name(id)](#event_nameid)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
@@ -51,6 +54,8 @@ Commandes relatives aux évènements
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_direction](#player_direction)
 *    [player_in_screen?](#player_in_screen)
+*    [player_move_frequency(f)](#player_move_frequencyf)
+*    [player_move_speed(v)](#player_move_speedv)
 *    [player_pixel_x](#player_pixel_x)
 *    [player_pixel_y](#player_pixel_y)
 *    [player_screen_x](#player_screen_x)
@@ -125,6 +130,40 @@ Commandes relatives aux évènements
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 `scope`|`Fixnum`|Nombre de case ou de pixels  
 `*metric`|`Fixnum`|par défaut :square, pour en case, :pixels pour en pixels  
+
+
+##### event_move_frequency(ids, f)
+
+> Modifie la fréquence des événements référencés par leur Ids
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`f`|`Fixnum`|Fréquence des événements  
+
+
+##### event_move_speed(ids, v)
+
+> Modifie la vitesse des événements référencés par leur Ids
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`v`|`Fixnum`|Vitesse des événements  
+
+
+##### event_move_speed_frequency(ids, v, f)
+
+> Change la vitesse et la fréquence des événements référencer par le ids
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|IDs des événements  
+`v`|`Fixnum`|Vitesse des événements  
+`f`|`Fixnum`|Fréquence des événements  
 
 
 ##### event_name(id)
@@ -493,6 +532,26 @@ Commandes relatives aux évènements
 
   
 > 
+
+##### player_move_frequency(f)
+
+> Modifie la fréquence du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`f`|`Fixnum`|Fréquence du joueur  
+
+
+##### player_move_speed(v)
+
+> Modifie la vitesse du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`v`|`Fixnum`|Vitesses du joueur  
+
 
 ##### player_pixel_x
 

@@ -171,6 +171,9 @@ event_erase(ids)	-
 event_erased?(id)	-
 event_in_screen?(id)	event_in_screen?(id)
 event_look_at?(ev,to,scope,*metric)	-
+event_move_frequency(ids,f)	-
+event_move_speed(ids,v)	-
+event_move_speed_frequency(ids,v,f)	-
 event_name(id)	-
 event_pixel_x(id)	event_pixel_x(id)
 event_pixel_y(id)	event_pixel_y(id)
@@ -424,6 +427,8 @@ pixels_between(ev1,ev2)	pixels_between(id,id)
 play_time	play_time
 player_direction	player_direction
 player_in_screen?	player_in_screen?
+player_move_frequency(f)	-
+player_move_speed(v)	-
 player_pixel_x	player_pixel_x
 player_pixel_y	player_pixel_y
 player_screen_x	player_screen_x

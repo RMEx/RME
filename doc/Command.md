@@ -170,6 +170,9 @@ Collection des commandes EventExtender
 *    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
+*    [Command.event_move_frequency(ids, f)](#commandevent_move_frequencyids-f)
+*    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
+*    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
 *    [Command.event_name(id)](#commandevent_nameid)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
@@ -392,6 +395,8 @@ Collection des commandes EventExtender
 *    [Command.play_time](#commandplay_time)
 *    [Command.player_direction](#commandplayer_direction)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
+*    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
+*    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
 *    [Command.player_screen_x](#commandplayer_screen_x)
@@ -2840,6 +2845,52 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 `scope`|`Fixnum`|Nombre de case ou de pixels  
 `*metric`|`Fixnum`|par défaut :square, pour en case, :pixels pour en pixels  
+
+
+
+
+
+
+##### Command.event_move_frequency(ids, f)
+
+> Modifie la fréquence des événements référencés par leur Ids
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`f`|`Fixnum`|Fréquence des événements  
+
+
+
+
+
+
+##### Command.event_move_speed(ids, v)
+
+> Modifie la vitesse des événements référencés par leur Ids
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`v`|`Fixnum`|Vitesse des événements  
+
+
+
+
+
+
+##### Command.event_move_speed_frequency(ids, v, f)
+
+> Change la vitesse et la fréquence des événements référencer par le ids
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|IDs des événements  
+`v`|`Fixnum`|Vitesse des événements  
+`f`|`Fixnum`|Fréquence des événements  
 
 
 
@@ -6043,6 +6094,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.player_move_frequency(f)
+
+> Modifie la fréquence du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`f`|`Fixnum`|Fréquence du joueur  
+
+
+
+
+
+
+##### Command.player_move_speed(v)
+
+> Modifie la vitesse du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`v`|`Fixnum`|Vitesses du joueur  
+
 
 
 
