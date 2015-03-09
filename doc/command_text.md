@@ -1,7 +1,7 @@
 #RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes d'affichage de textes**  
+[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes d'affichage de textes**  
 - - -  
 #Commandes d'affichage de textes
 Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images.

@@ -1,7 +1,7 @@
 #RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](__class-and-module_list.md) > **Sprite**  
+[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Sprite**  
 - - -  
 #Sprite
 Extension des sprites

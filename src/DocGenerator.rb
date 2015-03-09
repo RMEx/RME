@@ -59,8 +59,8 @@ module DocGenerator
     # * Data Navigation
     #--------------------------------------------------------------------------
     def index; "README"; end
-    def cmdindex; "__command_list"; end
-    def clindex; "__class-and-module_list"; end
+    def cmdindex; "Liste des commandes"; end
+    def clindex; "Classes et modules"; end
     def extension; "md"; end
   end
 
@@ -108,8 +108,8 @@ module DocGenerator
     # * Data Navigation
     #--------------------------------------------------------------------------
     def index; "index"; end
-    def cmdindex; "__command_list"; end
-    def clindex; "__class-and-module_list"; end
+    def cmdindex; "Liste des commandes"; end
+    def clindex; "Classes et modules"; end
     def extension; "html"; end
   end
 

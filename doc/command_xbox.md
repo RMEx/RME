@@ -1,7 +1,7 @@
 #RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes de gestion de la vibration des pads Xbox360**  
+[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes de gestion de la vibration des pads Xbox360**  
 - - -  
 #Commandes de gestion de la vibration des pads Xbox360
 Permet de manipuler la vibration des manettes de la XBOX360

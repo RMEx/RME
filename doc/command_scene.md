@@ -1,7 +1,7 @@
 #RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commande de navigation dans les scenes**  
+[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commande de navigation dans les scenes**  
 - - -  
 #Commande de navigation dans les scenes
 Commandes pour naviguer entre les scenes de jeu (et de systèmes)

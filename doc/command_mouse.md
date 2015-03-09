@@ -1,7 +1,7 @@
 #RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](__command_list.md) > **Commandes de la souris**  
+[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes de la souris**  
 - - -  
 #Commandes de la souris
 Commande relatives à la gestion de la souris

@@ -3,8 +3,8 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 
 **Documentation**  
 - - -  
-*    [Index des commandes](__command_list.md)
-*    [Classes et modules](__class-and-module_list.md)
+*    [Index des commandes](Liste des commandes.md)
+*    [Classes et modules](Classes et modules.md)
 
 
 
