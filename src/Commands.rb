@@ -1270,12 +1270,15 @@ module RMECommands
       end
     end
 
+    def player_move_speed_frequency(v, f)
+      event_move_speed(0, v)
+      event_move_frequency(0, f)
+    end
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
     alias_method :look_at?, :look_at
     alias_method :buzz, :events_buzz
-
     append_commands
   end
 
