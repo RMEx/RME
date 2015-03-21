@@ -2,14 +2,14 @@
 #==============================================================================
 # ** RME V1.0.0 Evex
 #------------------------------------------------------------------------------
-#  With : 
+#  With :
 # Grim (original project)
-# Nuki 
+# Nuki
 # Raho
 #  Help :
 # Fabien
 # Zeus81
-# Joke 
+# Joke
 # Zangther
 #------------------------------------------------------------------------------
 # An RPGMaker's Event extension
@@ -32,7 +32,7 @@ module L
   def [](key)
     $game_labels[key] || 0
   end
-  
+
   #--------------------------------------------------------------------------
   # * Modifies a Game Label
   #--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ module V
   def [](key)
     $game_variables[key] || 0
   end
-  
+
   #--------------------------------------------------------------------------
   # * Modifies a variable
   #--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ module SV
 end
 
 #==============================================================================
-# ** SL 
+# ** SL
 #------------------------------------------------------------------------------
 #  self Labels handling API
 #==============================================================================
@@ -210,7 +210,7 @@ end
 #==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
-#  Object class methods are defined in this module. 
+#  Object class methods are defined in this module.
 #  This ensures compatibility with top-level method redefinition.
 #==============================================================================
 
@@ -227,7 +227,7 @@ module Kernel
   def map_onprogress(*ids, &block)
     Game_Map.onprogress(ids, &block)
   end
-  
+
   #--------------------------------------------------------------------------
   # * Define custom Trigger
   #--------------------------------------------------------------------------
@@ -240,7 +240,7 @@ module Kernel
   end
 
   alias_method :listener, :trigger
-  alias_method :ignore_left, :trigger 
+  alias_method :ignore_left, :trigger
   #--------------------------------------------------------------------------
   # * Trigger true
   #--------------------------------------------------------------------------
@@ -257,11 +257,11 @@ module Kernel
   #--------------------------------------------------------------------------
   # * Current battle troop
   #--------------------------------------------------------------------------
-  def current_troop; Game_Temp.current_troop; end 
+  def current_troop; Game_Temp.current_troop; end
   #--------------------------------------------------------------------------
   # * check if in battle
   #--------------------------------------------------------------------------
-  def in_battle? 
+  def in_battle?
     Game_Temp.in_battle
   end
   #--------------------------------------------------------------------------
@@ -302,7 +302,7 @@ end
 #==============================================================================
 # ** Module
 #------------------------------------------------------------------------------
-#  A Module is a collection of methods and constants. 
+#  A Module is a collection of methods and constants.
 #  The methods in a module may be instance methods or module methods.
 #==============================================================================
 
@@ -338,12 +338,12 @@ module Area
   # Defining Common Area
   #==============================================================================
 
-  class Common 
+  class Common
 
-    def hover?;         in?(Mouse.x, Mouse.y);                end 
-    def square_hover?;  in?(Mouse.square_x, Mouse.square_y);  end 
-    def click?;         hover? && Mouse.click?;               end 
-    def square_click?;  square_hover? && Mouse.click?;        end 
+    def hover?;         in?(Mouse.x, Mouse.y);                end
+    def square_hover?;  in?(Mouse.square_x, Mouse.square_y);  end
+    def click?;         hover? && Mouse.click?;               end
+    def square_click?;  square_hover? && Mouse.click?;        end
 
     [:trigger?, :press?, :release?, :repeat?].each do |m|
 
@@ -378,7 +378,7 @@ module Area
     # * Set values
     #--------------------------------------------------------------------------
     def set(x, y, w, h)
-      @x, @y = x, y 
+      @x, @y = x, y
       @width, @height = w, h
     end
     #--------------------------------------------------------------------------
@@ -513,8 +513,8 @@ module Handler
     #--------------------------------------------------------------------------
     # * Public instance variable
     #--------------------------------------------------------------------------
-    attr_accessor :triggers 
-    Handler.triggers = {} 
+    attr_accessor :triggers
+    Handler.triggers = {}
     #--------------------------------------------------------------------------
     # * Store a trigger
     #--------------------------------------------------------------------------
@@ -555,7 +555,7 @@ module Handler
     #--------------------------------------------------------------------------
     def update_eHandler
       @table_triggers.keys.each do |k|
-        if @table_triggers[k] != 0 
+        if @table_triggers[k] != 0
           return unless Handler.triggers[k]
           oth_id = @id
           b = Handler.triggers[k].trigger
@@ -614,7 +614,7 @@ module Handler
     # * Event
     #--------------------------------------------------------------------------
     def event(i)
-      return $game_player if i == 0 
+      return $game_player if i == 0
       $game_map.events[i]
     end
     #--------------------------------------------------------------------------
@@ -676,12 +676,12 @@ module Handler
     #--------------------------------------------------------------------------
     # * API for player
     #--------------------------------------------------------------------------
-    [:hover, :click].each do |m| 
+    [:hover, :click].each do |m|
       define_method("mouse_#{m}_player?"){$game_player.send("#{m}?")}
     end
     [:press, :trigger, :repeat, :release].each do |m|
       define_method("mouse_#{m}_player?") do |*k|
-        k = (k[0]) ? k[0] : :mouse_left 
+        k = (k[0]) ? k[0] : :mouse_left
         $game_player.send("{m}?")
       end
     end
@@ -703,18 +703,18 @@ end
 #  Dynamic text representation
 #==============================================================================
 
-class Game_Text 
+class Game_Text
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
   attr_reader :number
-  attr_accessor :origin 
-  attr_accessor :x, :y 
+  attr_accessor :origin
+  attr_accessor :x, :y
   attr_accessor :zoom_x, :zoom_y
   attr_accessor :opacity
   attr_reader :angle
   attr_reader :blend_type
-  attr_accessor :text_value 
+  attr_accessor :text_value
   attr_reader :profile
   attr_accessor :target_y, :target_x
   attr_accessor :target_zoom_x, :target_zoom_y
@@ -868,7 +868,7 @@ end
 #==============================================================================
 # ** Game_CharacterBase
 #------------------------------------------------------------------------------
-#  This base class handles characters. It retains basic information, such as 
+#  This base class handles characters. It retains basic information, such as
 # coordinates and graphics, shared by all characters.
 #==============================================================================
 
@@ -876,13 +876,13 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
-  class << self 
+  class << self
     attr_accessor :last_clicked
     attr_accessor :last_pressed
     attr_accessor :last_triggered
-    attr_accessor :last_released 
+    attr_accessor :last_released
     attr_accessor :last_repeated
-    attr_accessor :last_hovered 
+    attr_accessor :last_hovered
   end
   #--------------------------------------------------------------------------
   # * alias
@@ -893,8 +893,8 @@ class Game_CharacterBase
   attr_accessor :buzz
   attr_accessor :buzz_amplitude
   attr_accessor :buzz_length
-  attr_accessor   :move_speed               
-  attr_accessor   :move_frequency           
+  attr_accessor   :move_speed
+  attr_accessor   :move_frequency
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -941,7 +941,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Event name
   #--------------------------------------------------------------------------
-  def name 
+  def name
     nil
   end
 end
@@ -992,8 +992,8 @@ class Sprite_Character
   def update_buzzer
     return if !self.character.buzz || self.character.buzz == 0
     if @old_buzz == 0
-      @origin_len_x = self.zoom_x 
-      @origin_len_y = self.zoom_y 
+      @origin_len_x = self.zoom_x
+      @origin_len_y = self.zoom_y
     end
     @old_buzz             = self.character.buzz
     len                   = self.character.buzz_length
@@ -1016,7 +1016,7 @@ end
 #  This is a super class of all windows within the game.
 #==============================================================================
 
-class Window_Base 
+class Window_Base
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -1164,7 +1164,7 @@ class Game_Map
     #--------------------------------------------------------------------------
     attr_accessor :loaded_proc
     attr_accessor :running_proc
-    Game_Map.loaded_proc ||= Hash.new 
+    Game_Map.loaded_proc ||= Hash.new
     Game_Map.running_proc ||= Hash.new
     #--------------------------------------------------------------------------
     # * Map onload
@@ -1172,7 +1172,7 @@ class Game_Map
     def onload(ids, &block)
       ids.each do |id|
         oth = Game_Map.loaded_proc[id] || Proc.new {}
-        nex = Proc.new do 
+        nex = Proc.new do
           $game_map.interpreter.instance_eval(&oth)
           $game_map.interpreter.instance_eval(&block)
         end
@@ -1185,7 +1185,7 @@ class Game_Map
     def onprogress(ids, &block)
       ids.each do |id|
         oth = Game_Map.running_proc[id] || Proc.new {}
-        nex = Proc.new do 
+        nex = Proc.new do
           $game_map.interpreter.instance_eval(&oth)
           $game_map.interpreter.instance_eval(&block)
         end
@@ -1310,7 +1310,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
-  attr_reader :texts 
+  attr_reader :texts
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -1389,23 +1389,23 @@ class Sprite_Text < Sprite
   #--------------------------------------------------------------------------
   # * Création du bitmap
   #--------------------------------------------------------------------------
-  def create_bitmap 
+  def create_bitmap
     font = @text.profile.to_font
     bmp = Bitmap.new(1, 1)
-    bmp.font = font 
+    bmp.font = font
     lines = @text_value.split("\n")
-    widths = Array.new 
-    heights = Array.new 
+    widths = Array.new
+    heights = Array.new
     lines.each do |line|
-      r = bmp.text_size(line) 
-      widths << r.width 
+      r = bmp.text_size(line)
+      widths << r.width
       heights << r.height
     end
     width, height = widths.max, heights.max
     total_height = height * lines.length
     self.bitmap = Bitmap.new(width+32, total_height)
-    self.bitmap.font = font 
-    iterator = 0 
+    self.bitmap.font = font
+    iterator = 0
     lines.each do |line|
       self.bitmap.draw_text(0, iterator, width+32, height, line, 0)
       iterator += height
@@ -1469,7 +1469,7 @@ end
 #==============================================================================
 # ** Game_Parallax
 #------------------------------------------------------------------------------
-#  This class handles Parallaxes. 
+#  This class handles Parallaxes.
 #==============================================================================
 
 class Game_Parallax
@@ -1518,7 +1518,7 @@ class Game_Parallax
   def start_auto_change(x, y, duration)
     @target_auto_x = x
     @target_auto_y = y
-    @auto_duration = duration 
+    @auto_duration = duration
     if @auto_duration == 0
       @autospeed_x = @target_auto_x
       @autospeed_y = @target_auto_y
@@ -1746,7 +1746,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   def tone_change(*args)
     case args.length
-    when 1; 
+    when 1;
       tone = args[0]
       duration = 0
     else
@@ -1789,7 +1789,7 @@ end
 #  This plane is used to display parallaxes.
 #==============================================================================
 
-class Plane_Parallax < Plane 
+class Plane_Parallax < Plane
   #--------------------------------------------------------------------------
   # * Object initialization
   #--------------------------------------------------------------------------
@@ -1805,7 +1805,7 @@ class Plane_Parallax < Plane
   def update
     if @parallax.name.empty?
       self.bitmap = nil
-    else 
+    else
       self.bitmap = Cache.parallax(@parallax.name)
       update_scroll_dimension
       update_position
@@ -1816,7 +1816,7 @@ class Plane_Parallax < Plane
   #--------------------------------------------------------------------------
   # * update scroll dimension
   #--------------------------------------------------------------------------
-  def update_scroll_dimension 
+  def update_scroll_dimension
     @scroll_width = self.bitmap.width
     @scroll_height = self.bitmap.height
   end
@@ -1826,7 +1826,7 @@ class Plane_Parallax < Plane
   def update_position
     x_s = 16 * @parallax.move_x
     y_s = 16 * @parallax.move_y
-    self.z = @parallax.z 
+    self.z = @parallax.z
     @scroll_x = (@scroll_x + @parallax.autospeed_x) % @scroll_width
     @scroll_y = (@scroll_y + @parallax.autospeed_y) % @scroll_height
     self.ox = @scroll_x + ($game_map.display_x * x_s)
@@ -1945,7 +1945,7 @@ end
 #==============================================================================
 
 class Sprite_Picture
-  class << self 
+  class << self
     #--------------------------------------------------------------------------
     # * Get cache
     #--------------------------------------------------------------------------
@@ -1979,7 +1979,7 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_update_origin, :update_origin
-  
+
   #--------------------------------------------------------------------------
   # * Update Transfer Origin Bitmap
   #--------------------------------------------------------------------------
@@ -2025,7 +2025,7 @@ class Sprite_Picture
       rm_extender_update_origin
     end
   end
-end 
+end
 
 #==============================================================================
 # ** Game_Actor
@@ -2084,9 +2084,11 @@ class Game_Event
       index += 1
     end
     if script =~ /^\s*(trigger|listener)/
+      script = script.gsub(/(S[VS])\[(\d+)\]/, '\1['+@id.to_s+', \2]')
       potential_trigger = eval(script, $game_map.interpreter.get_binding)
       return potential_trigger if potential_trigger.is_a?(Proc)
     elsif script =~ /^\s*(ignore_left)/
+      script = script.gsub(/(S[VS])\[(\d+)\]/, '\1['+@id.to_s+', \2]')
       potential_trigger = eval(script, $game_map.interpreter.get_binding)
       return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
     end
@@ -2169,7 +2171,7 @@ class Game_Interpreter
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
-  alias_method :extender_command_355, :command_355 
+  alias_method :extender_command_355, :command_355
 
   #--------------------------------------------------------------------------
   # * Show Text
@@ -2232,7 +2234,7 @@ end
 # Minimalist UI
 #==============================================================================
 
-module UI 
+module UI
 
   #==============================================================================
   # ** Abstract_Textfield
@@ -2240,7 +2242,7 @@ module UI
   # Abstract text field representation
   #==============================================================================
 
-  class Abstract_Textfield < Window_Base 
+  class Abstract_Textfield < Window_Base
 
     #--------------------------------------------------------------------------
     # * Public instance variables
@@ -2273,7 +2275,7 @@ module UI
     #--------------------------------------------------------------------------
     # * Basic initialize
     #--------------------------------------------------------------------------
-    def init_basic 
+    def init_basic
       @old_text = @text.dup
       self.arrows_visible = false
       self.padding = @profile.padding
@@ -2284,7 +2286,7 @@ module UI
     #--------------------------------------------------------------------------
     # * Bitmap initialize
     #--------------------------------------------------------------------------
-    def init_bitmap 
+    def init_bitmap
       self.contents = Bitmap.new(@raw_w-8, @profile.height-8)
       @align = @profile.alignement%3
       self.contents.font = get_profile(@profile.text_profile).to_font
@@ -2344,7 +2346,7 @@ module UI
     #--------------------------------------------------------------------------
     def dispose
       $game_system.menu_disabled = @menu_disabled
-      super 
+      super
     end
 
     #--------------------------------------------------------------------------
@@ -2432,7 +2434,7 @@ module UI
     end
     #--------------------------------------------------------------------------
     # * Update
-    #-------------------------------------------------------------------------- 
+    #--------------------------------------------------------------------------
     def update
       return unless active?
       super
@@ -2483,7 +2485,7 @@ module UI
     end
     #--------------------------------------------------------------------------
     # * Update
-    #-------------------------------------------------------------------------- 
+    #--------------------------------------------------------------------------
     def update
       return unless active?
       super
@@ -2597,7 +2599,7 @@ module DataManager
       end
       return datas
     end
-    
+
   end
 end
 
@@ -2621,7 +2623,7 @@ module SceneManager
     #--------------------------------------------------------------------------
     # * Run game
     #--------------------------------------------------------------------------
-    def run 
+    def run
       DataManager.init_cst_db
       data = skip_title_data
       if !data.activate || !map_exists?(data.map_id)

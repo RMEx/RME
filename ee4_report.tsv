@@ -429,6 +429,7 @@ player_direction	player_direction
 player_in_screen?	player_in_screen?
 player_move_frequency(f)	-
 player_move_speed(v)	-
+player_move_speed_frequency(v,f)	-
 player_pixel_x	player_pixel_x
 player_pixel_y	player_pixel_y
 player_screen_x	player_screen_x

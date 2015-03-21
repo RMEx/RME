@@ -397,6 +397,7 @@ Collection des commandes EventExtender
 *    [Command.player_in_screen?](#commandplayer_in_screen)
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
+*    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
 *    [Command.player_screen_x](#commandplayer_screen_x)
@@ -6121,6 +6122,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `v`|`Fixnum`|Vitesses du joueur  
+
+
+
+
+
+
+##### Command.player_move_speed_frequency(v, f)
+
+> Change la vitesse et la fréquence de déplacement du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`v`|`Fixnum`|Vitesse du joueur  
+`f`|`Fixnum`|Fréquence du joueur  
 
 
 

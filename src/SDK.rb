@@ -2,7 +2,7 @@
 #==============================================================================
 # ** RME V1.0.0
 #------------------------------------------------------------------------------
-#  With : 
+#  With :
 # Grim (original project)
 # Nuki (a lot of things)
 # Raho (general reformulation)
@@ -13,12 +13,12 @@
 # XHTMLBoy (koffie)
 # Fabien (Buzzer)
 # Kaelar (Improvement)
-# 
+#
 #==============================================================================
 
 =begin
-  
-License coming soon 
+
+License coming soon
 
 =end
 
@@ -50,7 +50,7 @@ module RME
     # * unsafe?
     #--------------------------------------------------------------------------
     def unsafe?
-      true
+      false
     end
   end
 
@@ -191,10 +191,10 @@ module RME
     #--------------------------------------------------------------------------
     # * Operators overloading
     #--------------------------------------------------------------------------
-    def ==(o); self.cmp(o) == 0; end 
+    def ==(o); self.cmp(o) == 0; end
     def >(o);  self.cmp(o) > 0; end
-    def <(o);  self.cmp(o) < 0; end 
-    def >=(o); self.cmp(o) >= 0; end 
+    def <(o);  self.cmp(o) < 0; end
+    def >=(o); self.cmp(o) >= 0; end
     def <=(o); self.cmp(o) <= 0; end
   end
 
@@ -207,11 +207,11 @@ end
 #==============================================================================
 # ** Externlib
 #------------------------------------------------------------------------------
-#  win32/registry is registry accessor library for Win32 platform. 
+#  win32/registry is registry accessor library for Win32 platform.
 #  It uses dl/import to call Win32 Registry APIs.
 #==============================================================================
 
-module Externlib 
+module Externlib
   #--------------------------------------------------------------------------
   # * Library as constants
   #--------------------------------------------------------------------------
@@ -252,7 +252,7 @@ module Externlib
   xdll, XInputGetState  =   xinput.('xinput1_3') rescue
                             xinput.('xinput1_2') rescue
                             xinput.('xinput1_1') rescue
-                            xinput.('xinput8_1_0') rescue 
+                            xinput.('xinput8_1_0') rescue
                             [nil, nil]
   XInputSetState =  Win32API.new(xdll, 'XInputSetState', 'ip', 'i') if xdll
 end
@@ -281,12 +281,12 @@ class Object
     private :dynlink
 
     #--------------------------------------------------------------------------
-    # * Define method as delegator instance method with an optional alias name 
+    # * Define method as delegator instance method with an optional alias name
     # * m_alias. Method calls to alias will be delegated to accessor.method.
     #--------------------------------------------------------------------------
     def delegate(obj, method, m_alias = method)
       dynlink(m_alias) do |*args|
-        instance = (obj[0] == "@") ? 
+        instance = (obj[0] == "@") ?
           instance_variable_get(obj) :
           send(obj)
         instance.send(method, *args)
@@ -322,7 +322,7 @@ class Object
   #--------------------------------------------------------------------------
   # * Returns an Hash of instance variables :name => value
   #--------------------------------------------------------------------------
-  def attr_values 
+  def attr_values
     values = self.instance_variables.collect do |key|
       [key, self.instance_variable_get(key)]
     end
@@ -342,7 +342,7 @@ class Object
   def boolean?
     return false
   end
-  
+
   #--------------------------------------------------------------------------
   # * Convert to Bool
   #--------------------------------------------------------------------------
@@ -376,12 +376,12 @@ end
 #==============================================================================
 
 class FalseClass
-  
+
   #--------------------------------------------------------------------------
   # * Convert to Bool
   #--------------------------------------------------------------------------
   alias_method :to_bool, :identity
-  
+
   #--------------------------------------------------------------------------
   # * Check type: bool
   #--------------------------------------------------------------------------
@@ -399,19 +399,19 @@ end
 #==============================================================================
 
 class TrueClass
-  
+
   #--------------------------------------------------------------------------
   # * Convert to Bool
   #--------------------------------------------------------------------------
   alias_method :to_bool, :identity
-  
+
   #--------------------------------------------------------------------------
   # * Check type: bool
   #--------------------------------------------------------------------------
   def boolean?
     true
   end
-  
+
 end
 
 #==============================================================================
@@ -441,14 +441,14 @@ class Fixnum
   # * Number const
   #--------------------------------------------------------------------------
   NUMBER = [
-    :zero, 
+    :zero,
     :one,
-    :two, 
+    :two,
     :three,
-    :four, 
-    :five, 
+    :four,
+    :five,
     :six,
-    :seven, 
+    :seven,
     :eight,
     :nine
   ]
@@ -513,7 +513,7 @@ class Numeric
    #--------------------------------------------------------------------------
    [:units, :tens, :hundreds, :thousands,
      :tens_thousands, :hundreds_thousands,
-     :millions, :tens_millions, 
+     :millions, :tens_millions,
      :hundreds_millions ].each.with_index{|m, i|define_method(m){isole_int(i+1)}}
    #--------------------------------------------------------------------------
    # * alias
@@ -579,7 +579,7 @@ class String
     scan(/-*\d+/).collect{|n|n.to_i}
   end
   #--------------------------------------------------------------------------
-  # * Calcul the Damerau Levenshtein 's Distance 
+  # * Calcul the Damerau Levenshtein 's Distance
   #--------------------------------------------------------------------------
   def damerau_levenshtein(other)
     n, m = self.length, other.length
@@ -588,7 +588,7 @@ class String
     matrix  = Array.new(n+1) do |i|
       Array.new(m+1) do |j|
         if i == 0 then j
-        elsif j == 0 then i 
+        elsif j == 0 then i
         else 0 end
       end
     end
@@ -792,24 +792,24 @@ module Devices
     n = :none
     All = [
       n, :mouse_left, :mouse_right, :cancel, :mouse_center, :mouse_x1,
-      :mouse_x2, n, :backspace, :tab] + ([n]*2) + [:clear, :enter] + ([n]*2) + 
+      :mouse_x2, n, :backspace, :tab] + ([n]*2) + [:clear, :enter] + ([n]*2) +
       [:shift, :control, :alt, :pause, :caps_lock, :hangul, n,
       :junja, :final, :kanji, n, :esc, :convert, :nonconvert,
       :accept, :modechange, :space, :page_up, :page_down, :end, :home, :left,
-      :up, :right, :down, :select, :print, :execute, :snapshot, :insert, 
+      :up, :right, :down, :select, :print, :execute, :snapshot, :insert,
       :delete, :help] + (0..9).to_a + ([n]*7) + (:a..:z).to_a + [
       :lwindow, :rwindow, :apps, n, :sleep] + (:num_0 .. :num_9).to_a + [
-      :multiply, :add, :separator, :substract, :decimal, :divide] + (:f1..:f9).to_a + 
-      (:f10..:f19).to_a+(:f9..:f19).to_a + (:f20..:f24).to_a + ([n]*8) + 
-      [:num_lock, :scroll_lock] + ([n]*14) + [:lshift, :rshift, :lcontrol, 
-      :rcontrol, :lmenu, :rmenu, :browser_back, :browser_forward, 
-      :browser_refresh, :browser_stop, :browser_search, :browser_favorites, 
-      :browser_home, :volume_mute, :volume_down, :volume_up, :media_next_track, 
-      :media_prev_track, :media_stop, :media_play_pause, :launch_mail, 
+      :multiply, :add, :separator, :substract, :decimal, :divide] + (:f1..:f9).to_a +
+      (:f10..:f19).to_a+(:f9..:f19).to_a + (:f20..:f24).to_a + ([n]*8) +
+      [:num_lock, :scroll_lock] + ([n]*14) + [:lshift, :rshift, :lcontrol,
+      :rcontrol, :lmenu, :rmenu, :browser_back, :browser_forward,
+      :browser_refresh, :browser_stop, :browser_search, :browser_favorites,
+      :browser_home, :volume_mute, :volume_down, :volume_up, :media_next_track,
+      :media_prev_track, :media_stop, :media_play_pause, :launch_mail,
       :launch_media_select, :launch_app1, :launch_app2] + ([n]*2) + [
-      :oem_1, :oem_plus, :oem_comma,:oem_minus, :oem_period, :oem_2, :oem_3] + 
-      ([n]*26) + (:oem_4..:oem_8).to_a + ([n]*2) + [:oem_102] + ([n]*2) + 
-      [:process, n, :packet] + ([n]*14) + [:attn, :crsel, :exsel, :ereof, 
+      :oem_1, :oem_plus, :oem_comma,:oem_minus, :oem_period, :oem_2, :oem_3] +
+      ([n]*26) + (:oem_4..:oem_8).to_a + ([n]*2) + [:oem_102] + ([n]*2) +
+      [:process, n, :packet] + ([n]*14) + [:attn, :crsel, :exsel, :ereof,
       :play, :zoom, :noname, :pa1, :oem_clear, n, :DOWN, :LEFT, :RIGHT, :UP,
       :A, :B, :C, :X, :Y, :Z, :L, :R, :SHIFT, :CTRL, :ALT] + (:F5..:F9).to_a
 
@@ -817,19 +817,19 @@ module Devices
     # * DeadKeys list
     #--------------------------------------------------------------------------
     DEAD_KEYS = {
-      "^"=>{"a" => "â", "A" => "Â", "e" => "ê", "E" => "Ê", 
+      "^"=>{"a" => "â", "A" => "Â", "e" => "ê", "E" => "Ê",
         "i" => "î", "I" => "Î","o" => "ô", "O" => "Ô",
         "u" => "û", "U" => "Û"," " => "^"},
-      "¨"=>{"a" => "ä", "A" => "Ä","e" => "ë", "E" => "Ë", 
+      "¨"=>{"a" => "ä", "A" => "Ä","e" => "ë", "E" => "Ë",
         "i" => "ï", "I" => "Ï","o" => "ö", "O" => "Ö",
         "u" => "ü", "U" => "Ü","y" => "ÿ", " " => "¨"},
-      "´"=>{"a" => "á", "A" => "Á","e" => "é", "E" => "É", 
+      "´"=>{"a" => "á", "A" => "Á","e" => "é", "E" => "É",
         "i" => "í", "I" => "Í","o" => "ó", "O" => "Ó",
         "u" => "ú", "U" => "Ú","y" => "ý", "Y" => "Ý"," " => "´"},
-      "`"=>{"a" => "à", "A" => "Á","e" => "è", "E" => "É", 
+      "`"=>{"a" => "à", "A" => "Á","e" => "è", "E" => "É",
         "i" => "ì", "I" => "Í","o" => "ò", "O" => "Ó",
       "u" => "ù", "U" => "Ú"," " => "`"},
-      "~"=>{"a" => "ã", "A" => "Ã","o" => "õ", "O" => "Õ", 
+      "~"=>{"a" => "ã", "A" => "Ã","o" => "õ", "O" => "Õ",
         "n" => "ñ", "N" => "Ñ"}}
 
     #--------------------------------------------------------------------------
@@ -862,7 +862,7 @@ module Devices
     # * Detection methods
     #--------------------------------------------------------------------------
     [:trigger?, :press?, :repeat?, :release?].each do |m|
-      define_method(m) do 
+      define_method(m) do
         ::Keyboard.send("k#{m}", instance_variable_get(:@id))
       end
     end
@@ -930,7 +930,7 @@ module Devices
       @keys.each_index do |code|
         if key_active?(code)
           @count[code] += 1
-        elsif @count[code] != 0 
+        elsif @count[code] != 0
           @count[code] = 0
           @release << code
         end
@@ -977,7 +977,7 @@ module Devices
     # * Repeat logic
     #--------------------------------------------------------------------------
     def krepeat?(code)
-      (@count[code.to_i] == 1) || 
+      (@count[code.to_i] == 1) ||
         (@count[code.to_i] >= 24 && @count[code.to_i]%6 == 0)
     end
 
@@ -1097,15 +1097,15 @@ module Devices
     # * Get char from a key (lol LISP)
     #--------------------------------------------------------------------------
     def char(key)
-      return "" if [0x0D, 0x1B, 0x08].include?(key) || 
+      return "" if [0x0D, 0x1B, 0x08].include?(key) ||
         to_uc(key, 0, @buffer, chr = buffer(16), 8, 0) == 0
       to_multibyte(65001, 0, chr, 1, output = buffer(4), 4, 0, 0)
       output.delete!("\0")
-      @wait_char, output = 
-        (!@wait_char.empty?) ? 
-          ((dead_chars[@wait_char].has_key?(output)) ? 
+      @wait_char, output =
+        (!@wait_char.empty?) ?
+          ((dead_chars[@wait_char].has_key?(output)) ?
             ["", dead_chars[@wait_char][output]] :
-              ((dead_chars.has_key?(output)) ? 
+              ((dead_chars.has_key?(output)) ?
               [output, @wait_char] : ["", @wait_char + output])) :
             (dead_chars.has_key?(output)) ? [output, ""] : [@wait_char, output]
       output
@@ -1159,7 +1159,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Singleton Keyboard instance
     #--------------------------------------------------------------------------
-    ::Keyboard = self.new 
+    ::Keyboard = self.new
 
   end
 
@@ -1196,7 +1196,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Subtyping
     #--------------------------------------------------------------------------
-    def subtype 
+    def subtype
       Rect.new(self.x, self.y, self.width, self.height)
     end
 
@@ -1223,12 +1223,12 @@ module Devices
     externalize Externlib::GetCursorPos,   :cursor_position
     externalize Externlib::ScreenToClient, :screen_to_client
     [
-      :trigger?, 
-      :press?, 
-      :release?, 
-      :repeat?, 
+      :trigger?,
+      :press?,
+      :release?,
+      :repeat?,
       :time,
-      :all?, 
+      :all?,
       :any?
     ].each { |m| externalize ::Keyboard.method(m), m }
 
@@ -1288,7 +1288,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Position update
     #--------------------------------------------------------------------------
-    def update_position 
+    def update_position
       buffer = [0,0].pack('l2')
       cursor_position(buffer)
       screen_to_client(HWND, buffer)
@@ -1345,12 +1345,12 @@ module Devices
     #--------------------------------------------------------------------------
     def rect
       dragging? && @drag.subtype
-    end 
+    end
 
     #--------------------------------------------------------------------------
     # * Singleton Mouse instance
     #--------------------------------------------------------------------------
-    ::Mouse = self.new 
+    ::Mouse = self.new
 
   end
 
@@ -1379,8 +1379,8 @@ module Prompt
   #--------------------------------------------------------------------------
   def yes_no_cancel?(title, message)
     k = Externlib::MessageBox.call(HWND, message, title, 3)
-    return :yes if k == 6 
-    return :no if k == 7 
+    return :yes if k == 6
+    return :no if k == 7
     :cancel
   end
 end
@@ -1391,7 +1391,7 @@ end
 #  Module for clipboard handling
 #==============================================================================
 
-module Clipboard 
+module Clipboard
   #--------------------------------------------------------------------------
   # * Extend self
   #--------------------------------------------------------------------------
@@ -1497,10 +1497,10 @@ module Generative
 
   module BitmapRect
     #--------------------------------------------------------------------------
-    # * Rect accessor 
+    # * Rect accessor
     #--------------------------------------------------------------------------
     def rect
-      return Rect.new(0,0,0,0) unless self.bitmap 
+      return Rect.new(0,0,0,0) unless self.bitmap
       tx, ty = self.x, self.y
       if viewport
         tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))
@@ -1538,7 +1538,7 @@ end
 #==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
-#  Object class methods are defined in this module. 
+#  Object class methods are defined in this module.
 #  This ensures compatibility with top-level method redefinition.
 #==============================================================================
 
@@ -1559,7 +1559,7 @@ end
 #==============================================================================
 # ** Sprite
 #------------------------------------------------------------------------------
-#  The sprite class. Sprites are the basic concept used to display characters 
+#  The sprite class. Sprites are the basic concept used to display characters
 #  and other objects on the game screen.
 #==============================================================================
 
@@ -1614,18 +1614,18 @@ class Sprite
     raise RuntimeError.new("Not a rect !") unless with_rect.respond_to?(:rect)
     a = self.rect
     b = with_rect.rect
-    return !((b.x >= a.x + a.width) || 
-        (b.x + b.width < a.x)  || 
-        (b.y >= a.y + a.height)|| 
+    return !((b.x >= a.x + a.width) ||
+        (b.x + b.width < a.x)  ||
+        (b.y >= a.y + a.height)||
         (b.y + b.height < a.y)
-      ) 
+      )
   end
   #--------------------------------------------------------------------------
   # * Super precise Collision
   #--------------------------------------------------------------------------
   def pixel_collide_with(with_rect)
     fa = collide_with?(with_rect)
-    return false unless fa 
+    return false unless fa
     min, max = self, with_rect
     max, min = min, max if (min.rect.width * min.rect.height) > (max.rect.width * max.rect.height)
     lines = (0 .. (min.rect.height - 1)).to_a
@@ -1639,8 +1639,8 @@ class Sprite
         if max.rect.in?(min.rect.x + x, min.rect.y + y)
           fa = min.bitmap.pixel_visible?(x, y)
           fb = max.bitmap.pixel_visible?(real_x, real_y)
-          return true if fa && fb 
-        end 
+          return true if fa && fb
+        end
       end
     end
     return false
@@ -1676,7 +1676,7 @@ class Rect
   #--------------------------------------------------------------------------
   # * Mouse accessor
   #--------------------------------------------------------------------------
-  def mouse_x; Mouse.x - self.x;  end 
+  def mouse_x; Mouse.x - self.x;  end
   def mouse_y; Mouse.y - self.y; end
 end
 
@@ -1722,7 +1722,7 @@ class Bitmap
     Externlib::RtlMoveMemory.call(data.__id__*2, [0x6005].pack('L'), 4)
     Externlib::RtlMoveMemory.call(data.__id__*2+8, [bytesize,address].pack('L2'), 8)
     def data.free() Externlib::RtlMoveMemory.call(__id__*2, String.new, 16) end
-    return data 
+    return data
   end
   #--------------------------------------------------------------------------
   # * Set data
@@ -1759,7 +1759,7 @@ class Bitmap
   end
   def pixel_visible?(*p)
     x, y = p.to_xy
-    @pixel_visible ||= Array.new(width) do |ix| 
+    @pixel_visible ||= Array.new(width) do |ix|
       Array.new(height) {|iy| !is_transparent?(ix, iy)}
     end
     @pixel_visible[x][y]
@@ -1803,8 +1803,8 @@ end
 #  Tools for file manipulation
 #==============================================================================
 
-module FileTools 
-  extend self 
+module FileTools
+  extend self
   #--------------------------------------------------------------------------
   # * Write
   #--------------------------------------------------------------------------
@@ -1844,7 +1844,7 @@ class Socket
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
-  attr_reader :address 
+  attr_reader :address
   attr_reader :port
   #--------------------------------------------------------------------------
   # * Externalize
@@ -1902,7 +1902,7 @@ class Socket
     buf = [].pack('x'+len.to_s)
     v = w32_recv(@socket, buf, len, 0)
     return buf.gsub(/\x00/,"") if v != -1
-    false 
+    false
   end
   #--------------------------------------------------------------------------
   # * Shutdown
@@ -1929,7 +1929,7 @@ class Socket
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
-  class << self 
-    attr_accessor :instance 
+  class << self
+    attr_accessor :instance
   end
 end

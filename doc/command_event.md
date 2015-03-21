@@ -56,6 +56,7 @@ Commandes relatives aux évènements
 *    [player_in_screen?](#player_in_screen)
 *    [player_move_frequency(f)](#player_move_frequencyf)
 *    [player_move_speed(v)](#player_move_speedv)
+*    [player_move_speed_frequency(v, f)](#player_move_speed_frequencyv-f)
 *    [player_pixel_x](#player_pixel_x)
 *    [player_pixel_y](#player_pixel_y)
 *    [player_screen_x](#player_screen_x)
@@ -551,6 +552,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `v`|`Fixnum`|Vitesses du joueur  
+
+
+##### player_move_speed_frequency(v, f)
+
+> Change la vitesse et la fréquence de déplacement du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`v`|`Fixnum`|Vitesse du joueur  
+`f`|`Fixnum`|Fréquence du joueur  
 
 
 ##### player_pixel_x
