@@ -11,6 +11,7 @@
 # Zeus81
 # Joke 
 # Zangther
+# Spyrojojo
 #------------------------------------------------------------------------------
 # Commands API
 # Provide all commands of the EvEx
@@ -1274,6 +1275,29 @@ module RMECommands
       event_move_speed(0, v)
       event_move_frequency(0, f)
     end
+
+    def sound_BGM_play(name, volume, tempo); RPG::BGM.new(name, volume, tempo).play; end
+    def sound_BGS_play(name, volume, tempo); RPG::BGS.new(name, volume, tempo).play; end
+    def sound_SE_play(name, volume, tempo); RPG::SE.new(name, volume, tempo).play; end
+    def sound_ME_play(name, volume, tempo); RPG::ME.new(name, volume, tempo).play; end
+    def sound_BGM_volume(volume); RPG::BGM.last.play.volume = volume; end
+    def sound_BGS_volume(volume); RPG::BGS.last.play.volume = volume; end
+    def sound_SE_volume(volume); RPG::SE.last.play.volume = volume; end
+    def sound_ME_volume(volume); RPG::ME.last.play.volume = volume; end
+    def sound_BGM_stop; RPG::BGM.stop; end
+    def sound_BGS_stop; RPG::BGS.stop; end
+    def sound_SE_stop; RPG::SE.stop; end
+    def sound_ME_stop; RPG::ME.stop; end
+
+    def sound_stop
+      RPG::BGM.stop
+      RPG::BGS.stop
+      RPG::SE.stop
+      RPG::ME.stop
+    end
+    def sound_BGM_fade(wait); RPG::BGM.fade(wait * 1000); end
+    def sound_BGS_fade(wait); RPG::BGS.fade(wait * 1000); end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
