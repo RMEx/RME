@@ -470,6 +470,21 @@ Collection des commandes EventExtender
 *    [Command.socket_recv(*len)](#commandsocket_recvlen)
 *    [Command.socket_send(data)](#commandsocket_senddata)
 *    [Command.socket_wait_recv(*len)](#commandsocket_wait_recvlen)
+*    [Command.sound_BGM_fade(wait)](#commandsound_bgm_fadewait)
+*    [Command.sound_BGM_play(name, volume, tempo)](#commandsound_bgm_playname-volume-tempo)
+*    [Command.sound_BGM_stop](#commandsound_bgm_stop)
+*    [Command.sound_BGM_volume(volume)](#commandsound_bgm_volumevolume)
+*    [Command.sound_BGS_fade(wait)](#commandsound_bgs_fadewait)
+*    [Command.sound_BGS_play(name, volume, tempo)](#commandsound_bgs_playname-volume-tempo)
+*    [Command.sound_BGS_stop](#commandsound_bgs_stop)
+*    [Command.sound_BGS_volume(volume)](#commandsound_bgs_volumevolume)
+*    [Command.sound_ME_play(name, volume, tempo)](#commandsound_me_playname-volume-tempo)
+*    [Command.sound_ME_stop](#commandsound_me_stop)
+*    [Command.sound_ME_volume(volume)](#commandsound_me_volumevolume)
+*    [Command.sound_SE_play(name, volume, tempo)](#commandsound_se_playname-volume-tempo)
+*    [Command.sound_SE_stop](#commandsound_se_stop)
+*    [Command.sound_SE_volume(volume)](#commandsound_se_volumevolume)
+*    [Command.sound_stop](#commandsound_stop)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
@@ -7113,6 +7128,209 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
 
+
+
+
+
+
+##### Command.sound_BGM_fade(wait)
+
+> Stop le BGM en cours en fondu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu en seconde  
+
+
+
+
+
+
+##### Command.sound_BGM_play(name, volume, tempo)
+
+> Joue une musique BGM
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du BGM  
+`volume`|`Fixnum`|Volume du BGM  
+`tempo`|`Fixnum`|Tempo du BGM  
+
+
+
+
+
+
+##### Command.sound_BGM_stop
+
+> Stop le BGM en cours
+
+  
+> 
+
+
+
+
+
+##### Command.sound_BGM_volume(volume)
+
+> Change le volume du BGM en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`volume`|`Fixnum`|Volume du BGM  
+
+
+
+
+
+
+##### Command.sound_BGS_fade(wait)
+
+> Stop le BGS en cours en fondu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu en seconde  
+
+
+
+
+
+
+##### Command.sound_BGS_play(name, volume, tempo)
+
+> Joue une musique BGS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du BGS  
+`volume`|`Fixnum`|Volume du BGS  
+`tempo`|`Fixnum`|Tempo du BGS  
+
+
+
+
+
+
+##### Command.sound_BGS_stop
+
+> Stop le BGS en cours
+
+  
+> 
+
+
+
+
+
+##### Command.sound_BGS_volume(volume)
+
+> Change le volume du BGS en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`volume`|`Fixnum`|Volume du BGS  
+
+
+
+
+
+
+##### Command.sound_ME_play(name, volume, tempo)
+
+> Joue un ME
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du ME  
+`volume`|`Fixnum`|Volume du ME  
+`tempo`|`Fixnum`|Tempo du ME  
+
+
+
+
+
+
+##### Command.sound_ME_stop
+
+> Stop le ME en cours
+
+  
+> 
+
+
+
+
+
+##### Command.sound_ME_volume(volume)
+
+> Change le volume du ME en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`volume`|`Fixnum`|Volume du ME  
+
+
+
+
+
+
+##### Command.sound_SE_play(name, volume, tempo)
+
+> Joue un SE
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du SE  
+`volume`|`Fixnum`|Volume du SE  
+`tempo`|`Fixnum`|Tempo du SE  
+
+
+
+
+
+
+##### Command.sound_SE_stop
+
+> Stop le SE en cours
+
+  
+> 
+
+
+
+
+
+##### Command.sound_SE_volume(volume)
+
+> Change le volume du SE en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`volume`|`Fixnum`|Volume du SE  
+
+
+
+
+
+
+##### Command.sound_stop
+
+> Stop tout les sons en cours
+
+  
+> 
 
 
 
