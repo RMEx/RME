@@ -1288,6 +1288,10 @@ module RMECommands
     def sound_BGS_stop; RPG::BGS.stop; end
     def sound_SE_stop; RPG::SE.stop; end
     def sound_ME_stop; RPG::ME.stop; end
+    def sound_BGM_tempo(tempo); RPG::BGM.last.play.pitch = tempo; end
+    def sound_BGS_tempo(tempo); RPG::BGS.last.play.pitch = tempo; end
+    def sound_SE_tempo(tempo); RPG::SE.last.play.pitch = tempo; end
+    def sound_ME_tempo(tempo); RPG::ME.last.play.pitch = tempo; end
 
     def sound_stop
       RPG::BGM.stop
@@ -1295,8 +1299,33 @@ module RMECommands
       RPG::SE.stop
       RPG::ME.stop
     end
-    def sound_BGM_fade(wait); RPG::BGM.fade(wait * 1000); end
-    def sound_BGS_fade(wait); RPG::BGS.fade(wait * 1000); end
+
+    def sound_BGM_fade(wait, frame)
+      frame ? RPG::BGM.fade(wait * 17) : RPG::BGM.fade(wait * 1000)
+    end
+
+    def sound_BGS_fade(wait, frame)
+      frame ? RPG::BGS.fade(wait * 17) : RPG::BGS.fade(wait * 1000)
+    end
+
+    def sound_volume(volume)
+      RPG::BGM.last.play.volume = volume
+      RPG::BGS.last.play.volume = volume
+      RPG::SE.last.play.volume = volume
+      RPG::ME.last.play.volume = volume
+    end
+
+    def sound_tempo(tempo)
+      RPG::BGM.last.play.pitch = tempo
+      RPG::BGS.last.play.pitch = tempo
+      RPG::SE.last.play.pitch = tempo
+      RPG::ME.last.play.pitch = tempo
+    end
+
+    def sound_fade(wait, frame)
+      frame ? RPG::BGM.fade(wait * 17) : RPG::BGM.fade(wait * 1000)
+      frame ? RPG::BGS.fade(wait * 17) : RPG::BGS.fade(wait * 1000)
+    end
 
     # Fix for EE4
     alias_method :collide?, :events_collide?
