@@ -1276,10 +1276,10 @@ module RMECommands
       event_move_frequency(0, f)
     end
 
-    def sound_BGM_play(name, volume, tempo); RPG::BGM.new(name, volume, tempo).play; end
-    def sound_BGS_play(name, volume, tempo); RPG::BGS.new(name, volume, tempo).play; end
-    def sound_SE_play(name, volume, tempo); RPG::SE.new(name, volume, tempo).play; end
-    def sound_ME_play(name, volume, tempo); RPG::ME.new(name, volume, tempo).play; end
+    def sound_BGM_play(name, volume, pitch); RPG::BGM.new(name, volume, pitch).play; end
+    def sound_BGS_play(name, volume, pitch); RPG::BGS.new(name, volume, pitch).play; end
+    def sound_SE_play(name, volume, pitch); RPG::SE.new(name, volume, pitch).play; end
+    def sound_ME_play(name, volume, pitch); RPG::ME.new(name, volume, pitch).play; end
     def sound_BGM_volume(volume); RPG::BGM.last.play.volume = volume; end
     def sound_BGS_volume(volume); RPG::BGS.last.play.volume = volume; end
     def sound_SE_volume(volume); RPG::SE.last.play.volume = volume; end
@@ -1288,10 +1288,10 @@ module RMECommands
     def sound_BGS_stop; RPG::BGS.stop; end
     def sound_SE_stop; RPG::SE.stop; end
     def sound_ME_stop; RPG::ME.stop; end
-    def sound_BGM_tempo(tempo); RPG::BGM.last.play.pitch = tempo; end
-    def sound_BGS_tempo(tempo); RPG::BGS.last.play.pitch = tempo; end
-    def sound_SE_tempo(tempo); RPG::SE.last.play.pitch = tempo; end
-    def sound_ME_tempo(tempo); RPG::ME.last.play.pitch = tempo; end
+    def sound_BGM_pitch(pitch); RPG::BGM.last.play.pitch = pitch; end
+    def sound_BGS_pitch(pitch); RPG::BGS.last.play.pitch = pitch; end
+    def sound_SE_pitch(pitch); RPG::SE.last.play.pitch = pitch; end
+    def sound_ME_pitch(pitch); RPG::ME.last.play.pitch = pitch; end
 
     def sound_stop
       RPG::BGM.stop
@@ -1306,20 +1306,6 @@ module RMECommands
 
     def sound_BGS_fade(wait, frame)
       frame ? RPG::BGS.fade(wait * 17) : RPG::BGS.fade(wait * 1000)
-    end
-
-    def sound_volume(volume)
-      RPG::BGM.last.play.volume = volume
-      RPG::BGS.last.play.volume = volume
-      RPG::SE.last.play.volume = volume
-      RPG::ME.last.play.volume = volume
-    end
-
-    def sound_tempo(tempo)
-      RPG::BGM.last.play.pitch = tempo
-      RPG::BGS.last.play.pitch = tempo
-      RPG::SE.last.play.pitch = tempo
-      RPG::ME.last.play.pitch = tempo
     end
 
     def sound_fade(wait, frame)
