@@ -1072,12 +1072,9 @@ module RMECommands
     def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
     def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
     def actor_slot(id)
-		  if $game_party.members[(id - 1)] == nil
-	      return 0
-		  else
-			  $game_party.members[(id - 1)].id
-	  	end
-	  end
+      return 0 unless $game_party.members[id - 1]
+      $game_party.members[id - 1].id
+    end
 
     # Fix for EE4
     alias_method :actor_experience, :actor_exp
