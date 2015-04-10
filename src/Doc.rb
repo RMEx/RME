@@ -5011,7 +5011,7 @@ register_command :items, 'Command.item_element_rate'
 end
 
 ## Documentation generator
-if $TEST
+if $TEST && Dir.exist?("../doc")
   DocGenerator.markdown("../doc")
   DocGenerator.html("../doc/HTML")
   DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb", "../ee4_report.tsv")
