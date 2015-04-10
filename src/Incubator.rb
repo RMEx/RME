@@ -2,7 +2,7 @@
 # Cette partie concerne les scripts expérimentaux
 #
 
-=begin 
+=begin
 Implémentation de trucs potentiellement cool pour la future GUI
 état tout à fait incumbatif, bien naturellement : c'est dans l'incubator.
 =end
@@ -38,11 +38,11 @@ class Viewport
   [
     :in?,
     :hover?,
-    :click?, 
-    :press?, 
-    :trigger?, 
-    :repeat?, 
-    :release?, 
+    :click?,
+    :press?,
+    :trigger?,
+    :repeat?,
+    :release?,
     :mouse_x,
     :mouse_y
   ].each{|m| delegate :true_rect, m}
@@ -239,8 +239,8 @@ class Bilou < Viewport
   end
 end
 
-=begin 
-Implémentation des évènements communs dans le système de combat 
+=begin
+Implémentation des évènements communs dans le système de combat
 - Solution proposée par <Grim, Nuki>
   - Special thanks to Zeus81
 - Etat : Incubé
@@ -256,10 +256,10 @@ class RPG::CommonEvent
   #--------------------------------------------------------------------------
   # * Define battle trigger
   #--------------------------------------------------------------------------
-  def def_battle_trigger 
+  def def_battle_trigger
     return false if !@list[0] || @list[0].code != 355
     script = @list[0].parameters[0] + "\n"
-    index = 1 
+    index = 1
     while @list[index].code == 655
       script += @list[index].parameters[0] + "\n"
       index += 1
@@ -349,7 +349,7 @@ end
 
 module BattleManager
   class << self
-    alias_method :incubator_setup, :setup 
+    alias_method :incubator_setup, :setup
     alias_method :incubator_end, :battle_end
     #--------------------------------------------------------------------------
     # * Setup
@@ -382,7 +382,7 @@ class Game_CommonEvent
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias_method :incubator_active?, :active? 
+  alias_method :incubator_active?, :active?
   #--------------------------------------------------------------------------
   # * Determine if Active State
   #--------------------------------------------------------------------------
@@ -434,12 +434,12 @@ class Game_Troop
   end
 end
 
-=begin 
+=begin
 Implémentation du mode large (actuellement bloqué dans l'incubator, en mode Unsafe)
 Code chelou par raho, reste par Grim
 =end
 
-if RME.unsafe? 
+if RME.unsafe?
 
   #==============================================================================
   # ** SceneManager
@@ -456,7 +456,7 @@ if RME.unsafe?
       # * Execute
       #--------------------------------------------------------------------------
       def run
-        Graphics.overlayer = Sprite.new 
+        Graphics.overlayer = Sprite.new
         Graphics.overlayer.z = 2 ** ([42].pack('i').size - 2) -1
         Graphics.retreive_bitmap
         incubator_run
@@ -469,12 +469,12 @@ if RME.unsafe?
   #------------------------------------------------------------------------------
   #  Ugly Graphics Monkeypatch
   #==============================================================================
-  module Graphics 
+  module Graphics
 
     #------------------------------------------------------------------------
     # * Singleton
     #------------------------------------------------------------------------
-    class << self 
+    class << self
 
       #------------------------------------------------------------------------
       # * Public instance variables
@@ -484,7 +484,7 @@ if RME.unsafe?
       #------------------------------------------------------------------------
       # * Retreive bitmap
       #------------------------------------------------------------------------
-      def retreive_bitmap 
+      def retreive_bitmap
         black = Color.new(0,0,0,255)
         Graphics.overlayer.bitmap = Bitmap.new(Graphics.width, Graphics.height)
         r = Rect.new(0,0,Graphics.width, Graphics.height)
@@ -502,7 +502,7 @@ if RME.unsafe?
       # * Performs a fade-out of the screen.
       #------------------------------------------------------------------------
       def fadeout(frames)
-        steps = 255.0/frames.to_f 
+        steps = 255.0/frames.to_f
         1.upto(frames) do |k|
           Graphics.brightness = 255.0 - (steps * k)
           Graphics.wait(1)
@@ -513,7 +513,7 @@ if RME.unsafe?
       # * Performs a fade-in of the screen.
       #------------------------------------------------------------------------
       def fadein(frames)
-        steps = 255.0/frames.to_f 
+        steps = 255.0/frames.to_f
         frames.times do |k|
           Graphics.brightness = steps * k.to_f
           Graphics.wait(1)
@@ -534,7 +534,7 @@ if RME.unsafe?
       end
 
       #------------------------------------------------------------------------
-      # * Carries out a transition from the screen frozen by Graphics.freeze 
+      # * Carries out a transition from the screen frozen by Graphics.freeze
       #   to the current screen.
       #------------------------------------------------------------------------
       def transition(duration = 10, filename=nil, wave=nil)
@@ -556,12 +556,12 @@ if RME.unsafe?
   #==============================================================================
   # ** Resolution
   #------------------------------------------------------------------------------
-  #  Hack in the matrice :'( :'( 
+  #  Hack in the matrice :'( :'(
   #==============================================================================
-  module Resolution 
-    extend self 
+  module Resolution
+    extend self
     #------------------------------------------------------------------------
-    # * ... no idea 
+    # * ... no idea
     #------------------------------------------------------------------------
     def fresh_pointer(reg, v)
       ptr = DL::CPtr.new(268435456 + reg)
@@ -577,7 +577,7 @@ if RME.unsafe?
       ].collect{|elt| elt.pack('ll').scan(/..../)}
     end
     #------------------------------------------------------------------------
-    # * ... Oh yeah, i'm currently listening a nice song ! 
+    # * ... Oh yeah, i'm currently listening a nice song !
     #------------------------------------------------------------------------
     def map_reg(width, height)
       empty_buff = [].pack('x4')
@@ -624,7 +624,7 @@ if RME.unsafe?
     # * Z modifier
     #------------------------------------------------------------------------
     def z=(z); super(z * 1000);end
-    
+
     #------------------------------------------------------------------------
     # * Oz modifier
     #------------------------------------------------------------------------
@@ -632,7 +632,7 @@ if RME.unsafe?
       return if @bitmap == nil
       super(ox % @bitmap.width)
     end
-    
+
     #------------------------------------------------------------------------
     # * Oy modifier
     #------------------------------------------------------------------------
@@ -640,7 +640,7 @@ if RME.unsafe?
       return if @bitmap == nil
       super(oy % @bitmap.height)
     end
-    
+
     #------------------------------------------------------------------------
     # * Bitmap accessor
     #------------------------------------------------------------------------
@@ -656,11 +656,11 @@ if RME.unsafe?
       xx = 1 + (Graphics.width.to_f / tile.width).ceil
       yy = 1 + (Graphics.height.to_f / tile.height).ceil
       plane = Bitmap.new(@bitmap.width * xx, @bitmap.height * yy)
-      (0..xx).each do|x| 
+      (0..xx).each do|x|
         (0..yy).each do |y|
           plane.blt(x * @bitmap.width, y * @bitmap.height, @bitmap, @bitmap.rect)
-        end  
-      end 
+        end
+      end
       super(plane)
     end
 
@@ -712,7 +712,7 @@ if RME.unsafe?
     #--------------------------------------------------------------------------
     # * Create Viewport
     #--------------------------------------------------------------------------
-    def create_viewports 
+    def create_viewports
       r = correct_rect
       @viewport1 = Viewport.new(r)
       @viewport2 = Viewport.new(r)
@@ -724,7 +724,7 @@ if RME.unsafe?
     # * Refresh viewports
     #--------------------------------------------------------------------------
     def incubator_refresh_viewports
-      r = correct_rect 
+      r = correct_rect
       [@viewport1, @viewport2, @viewport3].each do |vp|
         vp.rect.set(r)
       end

@@ -7,25 +7,30 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relative à la manipulation des sons
 
 ##Liste des commandes
-*    [sound_BGM_fade(wait)](#sound_bgm_fadewait)
+*    [sound_BGM_fade(wait, frame)](#sound_bgm_fadewait-frame)
+*    [sound_BGM_pitch(pitch)](#sound_bgm_pitchpitch)
 *    [sound_BGM_play(name, volume, tempo)](#sound_bgm_playname-volume-tempo)
 *    [sound_BGM_stop](#sound_bgm_stop)
 *    [sound_BGM_volume(volume)](#sound_bgm_volumevolume)
-*    [sound_BGS_fade(wait)](#sound_bgs_fadewait)
+*    [sound_BGS_fade(wait, frame)](#sound_bgs_fadewait-frame)
+*    [sound_BGS_pitch(pitch)](#sound_bgs_pitchpitch)
 *    [sound_BGS_play(name, volume, tempo)](#sound_bgs_playname-volume-tempo)
 *    [sound_BGS_stop](#sound_bgs_stop)
 *    [sound_BGS_volume(volume)](#sound_bgs_volumevolume)
+*    [sound_ME_pitch(pitch)](#sound_me_pitchpitch)
 *    [sound_ME_play(name, volume, tempo)](#sound_me_playname-volume-tempo)
 *    [sound_ME_stop](#sound_me_stop)
 *    [sound_ME_volume(volume)](#sound_me_volumevolume)
+*    [sound_SE_pitch(pitch)](#sound_se_pitchpitch)
 *    [sound_SE_play(name, volume, tempo)](#sound_se_playname-volume-tempo)
 *    [sound_SE_stop](#sound_se_stop)
 *    [sound_SE_volume(volume)](#sound_se_volumevolume)
+*    [sound_fade(wait, frame)](#sound_fadewait-frame)
 *    [sound_stop](#sound_stop)
 
 
 ##Description des commandes
-##### sound_BGM_fade(wait)
+##### sound_BGM_fade(wait, frame)
 
 > Stop le BGM en cours en fondu
 
@@ -33,6 +38,17 @@ Commandes relative à la manipulation des sons
 > Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu en seconde  
+`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
+
+
+##### sound_BGM_pitch(pitch)
+
+> Change la vitesse du BGM en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du BGM  
 
 
 ##### sound_BGM_play(name, volume, tempo)
@@ -64,7 +80,7 @@ Commandes relative à la manipulation des sons
 `volume`|`Fixnum`|Volume du BGM  
 
 
-##### sound_BGS_fade(wait)
+##### sound_BGS_fade(wait, frame)
 
 > Stop le BGS en cours en fondu
 
@@ -72,6 +88,17 @@ Commandes relative à la manipulation des sons
 > Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu en seconde  
+`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
+
+
+##### sound_BGS_pitch(pitch)
+
+> Change la vitesse du BGS en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du BGS  
 
 
 ##### sound_BGS_play(name, volume, tempo)
@@ -103,6 +130,16 @@ Commandes relative à la manipulation des sons
 `volume`|`Fixnum`|Volume du BGS  
 
 
+##### sound_ME_pitch(pitch)
+
+> Change la vitesse du ME en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du ME  
+
+
 ##### sound_ME_play(name, volume, tempo)
 
 > Joue un ME
@@ -132,6 +169,16 @@ Commandes relative à la manipulation des sons
 `volume`|`Fixnum`|Volume du ME  
 
 
+##### sound_SE_pitch(pitch)
+
+> Change la vitesse du SE en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du SE  
+
+
 ##### sound_SE_play(name, volume, tempo)
 
 > Joue un SE
@@ -159,6 +206,17 @@ Commandes relative à la manipulation des sons
 > Nom|Type|Description  
 --- | --- | ---  
 `volume`|`Fixnum`|Volume du SE  
+
+
+##### sound_fade(wait, frame)
+
+> Stop les BGM et BGS en fondu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu  
+`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
 
 
 ##### sound_stop

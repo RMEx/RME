@@ -76,6 +76,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_set_graphic(id, character_name, character_index, face_name, face_index)](#actor_set_graphicid-character_name-character_index-face_name-face_index)
 *    [actor_shield(id)](#actor_shieldid)
 *    [actor_skills(id)](#actor_skillsid)
+*    [actor_slot(id)](#actor_slotid)
 *    [actor_target_rate(id)](#actor_target_rateid)
 *    [actor_tp(id)](#actor_tpid)
 *    [actor_tp_charge_rate(id)](#actor_tp_charge_rateid)
@@ -799,6 +800,16 @@ Offre des commandes pour obtenir des informations sur les acteurs
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_slot(id)
+
+> Renvoie l'ID d'un acteur en fonction de sa position dans l'équipe. Renvoie 0 si le slot est vide.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Position de l'acteur dans l'équipe  
 
 
 ##### actor_target_rate(id)

@@ -31,6 +31,7 @@ Commandes relatives aux évènements
 *    [fresh_event_id](#fresh_event_id)
 *    [include_page(map_id, event_id, page_id, *runnable, *context)](#include_pagemap_id-event_id-page_id-runnable-context)
 *    [invoke_event(map_id, event_id, new_id, *x, *y)](#invoke_eventmap_id-event_id-new_id-x-y)
+*    [jump_to(id, x, y, *wait_flag)](#jump_toid-x-y-wait_flag)
 *    [last_clicked_event](#last_clicked_event)
 *    [last_hovered_event](#last_hovered_event)
 *    [last_pressed_event](#last_pressed_event)
@@ -50,6 +51,7 @@ Commandes relatives aux évènements
 *    [mouse_repeat_player?(*key)](#mouse_repeat_playerkey)
 *    [mouse_trigger_event?(events, *key)](#mouse_trigger_eventevents-key)
 *    [mouse_trigger_player?(*key)](#mouse_trigger_playerkey)
+*    [move_to(id, x, y, *wait_flag)](#move_toid-x-y-wait_flag)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_direction](#player_direction)
@@ -329,6 +331,19 @@ Commandes relatives aux évènements
 `*y`|`Fixnum`|Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué  
 
 
+##### jump_to(id, x, y, *wait_flag)
+
+> Déplace l'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héro)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non  
+
+
 ##### last_clicked_event
 
 > Renvoie le dernier event cliqué par la souris, nil si aucun évènement n'a été cliqué
@@ -494,6 +509,19 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
+
+
+##### move_to(id, x, y, *wait_flag)
+
+> Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héro)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non  
 
 
 ##### page_runnable?(map_id, event_id, page_id, *context)

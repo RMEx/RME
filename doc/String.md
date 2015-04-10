@@ -15,7 +15,7 @@ Extension des chaines de caractère
 ##Description des méthodes
 ##### self.damerau_levenshtein(oth)
 
-> Renvoie la distance de Damerau–Levenshtein avec 
+> Renvoie la distance de Damerau–Levenshtein avec
                             une autre chaîne
 
   

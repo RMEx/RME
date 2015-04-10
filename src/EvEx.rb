@@ -939,6 +939,31 @@ class Game_CharacterBase
     Game_CharacterBase.last_pressed = @id if press?
   end
   #--------------------------------------------------------------------------
+  # * Move to x y coord
+  #--------------------------------------------------------------------------
+  def move_to_position(x, y, wait=false)
+    return unless passable?(x,y,0)
+    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self)
+    self.force_move_route(route)
+    Fiber.yield while self.move_route_forcing if wait
+  end
+  #--------------------------------------------------------------------------
+  # * Jump to coord
+  #--------------------------------------------------------------------------
+  def jump_to(x, y, wait=true)
+    t_w = @wait_jump
+    @wait_jump = wait
+    return false if t_w && jumping?
+    x_plus, y_plus = x-@x, y-@y
+    if x_plus.abs > y_plus.abs
+      set_direction(x_plus < 0 ? 4 : 6) if x_plus != 0
+    else
+      set_direction(y_plus < 0 ? 8 : 2) if y_plus != 0
+    end
+    return unless passable?(x,y,8)
+    jump(x_plus, y_plus)
+  end
+  #--------------------------------------------------------------------------
   # * Event name
   #--------------------------------------------------------------------------
   def name
@@ -2525,6 +2550,148 @@ class Scene_End
     close_command_window
     fadeout_all
     SceneManager.run
+  end
+
+end
+
+#==============================================================================
+# ** Pathfinder
+#------------------------------------------------------------------------------
+#  Pathfinder Astar
+#==============================================================================
+
+module Pathfinder
+
+  #--------------------------------------------------------------------------
+  # * Constants
+  #--------------------------------------------------------------------------
+  Goal = Struct.new(:x, :y)
+  ROUTE_MOVE_DOWN = 1
+  ROUTE_MOVE_LEFT = 2
+  ROUTE_MOVE_RIGHT = 3
+  ROUTE_MOVE_UP = 4
+
+
+  #--------------------------------------------------------------------------
+  # * Definition of a point
+  #--------------------------------------------------------------------------
+  class Point
+    #--------------------------------------------------------------------------
+    # * Public Instance Variables
+    #--------------------------------------------------------------------------
+    attr_accessor :x, :y, :g, :h, :f, :parent, :goal
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    #--------------------------------------------------------------------------
+    def initialize(x, y, p, goal = Goal.new(0,0))
+      @goal = goal
+      @x, @y, @parent = x, y, p
+      self.score(@parent)
+    end
+    #--------------------------------------------------------------------------
+    # * get an Id from the X and Y coord
+    #--------------------------------------------------------------------------
+    def id; "#{@x}-#{@y}"; end
+    #--------------------------------------------------------------------------
+    # * Calculate score
+    #--------------------------------------------------------------------------
+    def score(parent)
+      if !parent
+      @g = 0
+      elsif !@g || @g > parent.g + 1
+      @g = parent.g + 1
+      @parent = parent
+      end
+      @h = (@x - @goal.x).abs + (@y - @goal.y).abs
+      @f = @g + @h
+    end
+    #--------------------------------------------------------------------------
+    # * Cast to move_command
+    #--------------------------------------------------------------------------
+    def to_move
+      return nil unless @parent
+      return RPG::MoveCommand.new(2) if @x < @parent.x
+      return RPG::MoveCommand.new(3) if @x > @parent.x
+      return RPG::MoveCommand.new(4) if @y < @parent.y
+      return RPG::MoveCommand.new(1) if @y > @parent.y
+      return nil
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * singleton
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Id Generation
+  #--------------------------------------------------------------------------
+  def id(x, y); "#{x}-#{y}"; end
+  #--------------------------------------------------------------------------
+  # * Check the passability
+  #--------------------------------------------------------------------------
+  def passable?(ev, x, y, dir); ev.passable?(x, y, dir); end
+  #--------------------------------------------------------------------------
+  # * Check closed_list
+  #--------------------------------------------------------------------------
+  def has_key?(x, y, l)
+    l.has_key?(id(x, y))
+  end
+  #--------------------------------------------------------------------------
+  # * Create a path
+  #--------------------------------------------------------------------------
+  def create_path(goal, event)
+    open_list, closed_list = Hash.new, Hash.new
+    current = Point.new(event.x, event.y, nil, goal)
+    open_list[current.id] = current
+    while !has_key?(goal.x, goal.y, closed_list)&& !open_list.empty?
+      current = open_list.values.min{|point1, point2|point1.f <=> point2.f}
+      open_list.delete(current.id)
+      closed_list[current.id] = current
+      args = current.x, current.y+1
+      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
+        if !has_key?(*args, open_list)
+          open_list[id(*args)] = Point.new(*args, current, goal)
+        else
+          open_list[id(*args)].score(current)
+        end
+      end
+      args = current.x-1, current.y
+      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
+        if !has_key?(*args, open_list)
+          open_list[id(*args)] = Point.new(*args, current, goal)
+        else
+          open_list[id(*args)].score(current)
+        end
+      end
+      args = current.x+1, current.y
+      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
+        if !has_key?(*args, open_list)
+          open_list[id(*args)] = Point.new(*args, current, goal)
+        else
+          open_list[id(*args)].score(current)
+        end
+      end
+      args = current.x, current.y-1
+      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
+        if !has_key?(*args, open_list)
+          open_list[id(*args)] = Point.new(*args, current, goal)
+        else
+          open_list[id(*args)].score(current)
+        end
+      end
+    end
+    move_route = RPG::MoveRoute.new
+    if has_key?(goal.x, goal.y, closed_list)
+      current = closed_list[id(goal.x, goal.y)]
+      while current
+        move_command = current.to_move
+        move_route.list = [move_command] + move_route.list if move_command
+        current = current.parent
+      end
+    end
+    move_route.skippable = true
+    move_route.repeat = false
+    return move_route
   end
 
 end

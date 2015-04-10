@@ -81,6 +81,7 @@ Collection des commandes EventExtender
 *    [Command.actor_set_graphic(id, character_name, character_index, face_name, face_index)](#commandactor_set_graphicid-character_name-character_index-face_name-face_index)
 *    [Command.actor_shield(id)](#commandactor_shieldid)
 *    [Command.actor_skills(id)](#commandactor_skillsid)
+*    [Command.actor_slot(id)](#commandactor_slotid)
 *    [Command.actor_target_rate(id)](#commandactor_target_rateid)
 *    [Command.actor_tp(id)](#commandactor_tpid)
 *    [Command.actor_tp_charge_rate(id)](#commandactor_tp_charge_rateid)
@@ -246,6 +247,7 @@ Collection des commandes EventExtender
 *    [Command.item_speed(id)](#commanditem_speedid)
 *    [Command.item_success_rate(id)](#commanditem_success_rateid)
 *    [Command.item_tp_gain(id)](#commanditem_tp_gainid)
+*    [Command.jump_to(id, x, y, *wait_flag)](#commandjump_toid-x-y-wait_flag)
 *    [Command.key_current(method)](#commandkey_currentmethod)
 *    [Command.key_current_rgss(method)](#commandkey_current_rgssmethod)
 *    [Command.key_press?(key)](#commandkey_presskey)
@@ -331,6 +333,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_trigger_square_area?(area, *key)](#commandmouse_trigger_square_areaarea-key)
 *    [Command.mouse_x](#commandmouse_x)
 *    [Command.mouse_y](#commandmouse_y)
+*    [Command.move_to(id, x, y, *wait_flag)](#commandmove_toid-x-y-wait_flag)
 *    [Command.num_lock?](#commandnum_lock)
 *    [Command.pad360_plugged?(*id)](#commandpad360_pluggedid)
 *    [Command.pad360_stop_vibration(*id)](#commandpad360_stop_vibrationid)
@@ -470,20 +473,25 @@ Collection des commandes EventExtender
 *    [Command.socket_recv(*len)](#commandsocket_recvlen)
 *    [Command.socket_send(data)](#commandsocket_senddata)
 *    [Command.socket_wait_recv(*len)](#commandsocket_wait_recvlen)
-*    [Command.sound_BGM_fade(wait)](#commandsound_bgm_fadewait)
+*    [Command.sound_BGM_fade(wait, frame)](#commandsound_bgm_fadewait-frame)
+*    [Command.sound_BGM_pitch(pitch)](#commandsound_bgm_pitchpitch)
 *    [Command.sound_BGM_play(name, volume, tempo)](#commandsound_bgm_playname-volume-tempo)
 *    [Command.sound_BGM_stop](#commandsound_bgm_stop)
 *    [Command.sound_BGM_volume(volume)](#commandsound_bgm_volumevolume)
-*    [Command.sound_BGS_fade(wait)](#commandsound_bgs_fadewait)
+*    [Command.sound_BGS_fade(wait, frame)](#commandsound_bgs_fadewait-frame)
+*    [Command.sound_BGS_pitch(pitch)](#commandsound_bgs_pitchpitch)
 *    [Command.sound_BGS_play(name, volume, tempo)](#commandsound_bgs_playname-volume-tempo)
 *    [Command.sound_BGS_stop](#commandsound_bgs_stop)
 *    [Command.sound_BGS_volume(volume)](#commandsound_bgs_volumevolume)
+*    [Command.sound_ME_pitch(pitch)](#commandsound_me_pitchpitch)
 *    [Command.sound_ME_play(name, volume, tempo)](#commandsound_me_playname-volume-tempo)
 *    [Command.sound_ME_stop](#commandsound_me_stop)
 *    [Command.sound_ME_volume(volume)](#commandsound_me_volumevolume)
+*    [Command.sound_SE_pitch(pitch)](#commandsound_se_pitchpitch)
 *    [Command.sound_SE_play(name, volume, tempo)](#commandsound_se_playname-volume-tempo)
 *    [Command.sound_SE_stop](#commandsound_se_stop)
 *    [Command.sound_SE_volume(volume)](#commandsound_se_volumevolume)
+*    [Command.sound_fade(wait, frame)](#commandsound_fadewait-frame)
 *    [Command.sound_stop](#commandsound_stop)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
@@ -1616,6 +1624,20 @@ Collection des commandes EventExtender
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
+
+
+
+
+
+
+##### Command.actor_slot(id)
+
+> Renvoie l'ID d'un acteur en fonction de sa position dans l'équipe. Renvoie 0 si le slot est vide.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Position de l'acteur dans l'équipe  
 
 
 
@@ -3961,6 +3983,23 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.jump_to(id, x, y, *wait_flag)
+
+> Déplace l'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héro)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non  
+
+
+
+
+
+
 ##### Command.key_current(method)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
@@ -5100,6 +5139,23 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.move_to(id, x, y, *wait_flag)
+
+> Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héro)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non  
+
 
 
 
@@ -7133,7 +7189,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.sound_BGM_fade(wait)
+##### Command.sound_BGM_fade(wait, frame)
 
 > Stop le BGM en cours en fondu
 
@@ -7141,6 +7197,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu en seconde  
+`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
+
+
+
+
+
+
+##### Command.sound_BGM_pitch(pitch)
+
+> Change la vitesse du BGM en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du BGM  
 
 
 
@@ -7188,7 +7259,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.sound_BGS_fade(wait)
+##### Command.sound_BGS_fade(wait, frame)
 
 > Stop le BGS en cours en fondu
 
@@ -7196,6 +7267,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu en seconde  
+`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
+
+
+
+
+
+
+##### Command.sound_BGS_pitch(pitch)
+
+> Change la vitesse du BGS en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du BGS  
 
 
 
@@ -7243,6 +7329,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.sound_ME_pitch(pitch)
+
+> Change la vitesse du ME en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du ME  
+
+
+
+
+
+
 ##### Command.sound_ME_play(name, volume, tempo)
 
 > Joue un ME
@@ -7284,6 +7384,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.sound_SE_pitch(pitch)
+
+> Change la vitesse du SE en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du SE  
+
+
+
+
+
+
 ##### Command.sound_SE_play(name, volume, tempo)
 
 > Joue un SE
@@ -7319,6 +7433,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `volume`|`Fixnum`|Volume du SE  
+
+
+
+
+
+
+##### Command.sound_fade(wait, frame)
+
+> Stop les BGM et BGS en fondu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu  
+`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
 
 
 
