@@ -13,6 +13,7 @@ Informations sur les monstres rencontrables tels que défini dans la base de don
 *    [monster_battler_name(id)](#monster_battler_nameid)
 *    [monster_defense_power(id)](#monster_defense_powerid)
 *    [monster_description(id)](#monster_descriptionid)
+*    [monster_element_rate(id, element_id)](#monster_element_rateid-element_id)
 *    [monster_give_exp(id)](#monster_give_expid)
 *    [monster_give_gold(id)](#monster_give_goldid)
 *    [monster_icon(id)](#monster_iconid)
@@ -84,6 +85,17 @@ Informations sur les monstres rencontrables tels que défini dans la base de don
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
+
+
+##### monster_element_rate(id, element_id)
+
+> Renvoi la résistance élémentaire (par son ID d'élement) d'un monstre référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id du monstre  
+`element_id`|`Fixnum`|Id de l'élément  
 
 
 ##### monster_give_exp(id)

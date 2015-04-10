@@ -12,6 +12,7 @@ Commandes permettant de manipuler les armures
 *    [armor_count(id)](#armor_countid)
 *    [armor_defense_power(id)](#armor_defense_powerid)
 *    [armor_description(id)](#armor_descriptionid)
+*    [armor_element_rate(i, actor_id, element_id)](#armor_element_ratei-actor_id-element_id)
 *    [armor_equiped?(id, *member_id)](#armor_equipedid-member_id)
 *    [armor_icon(id)](#armor_iconid)
 *    [armor_luck(id)](#armor_luckid)
@@ -76,6 +77,18 @@ Commandes permettant de manipuler les armures
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
+
+
+##### armor_element_rate(i, actor_id, element_id)
+
+> Renvoi la résistance élémentaire (par son ID d'élement) d'une armure référencé par son ID par rapport à un acteur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`i`|`Fixnum`|Id de l'armure  
+`actor_id`|`Fixnum`|Id de l'acteur  
+`element_id`|`Fixnum`|Id de l'élément  
 
 
 ##### armor_equiped?(id, *member_id)

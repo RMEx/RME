@@ -22,6 +22,7 @@ actor_critical_evasion_rate(id)	-
 actor_critical_rate(id)	-
 actor_defense(id)	actor_defense(id)
 actor_description(id)	-
+actor_element_rate(id,element_id)	-
 actor_equip(id,t)	-
 actor_equip_accessory(id,wp)	-
 actor_equip_body(id,wp)	-
@@ -92,6 +93,7 @@ armor_attack_power(id)	-
 armor_count(id)	armor_count(id)
 armor_defense_power(id)	-
 armor_description(id)	-
+armor_element_rate(i,actor_id,element_id)	-
 armor_equiped?(id,*member)	-
 armor_icon(id)	-
 armor_luck(id)	-
@@ -215,6 +217,7 @@ item_certain?(i)	-
 item_consumable?(id)	-
 item_count(id)	item_count(id)
 item_description(id)	-
+item_element_rate(i,actor_id,element_id)	-
 item_for_all?(i)	-
 item_for_all_allies?(id)	-
 item_for_all_dead_allies?(id)	-
@@ -290,6 +293,7 @@ monster_battler_width(i)	-
 monster_defense(id)	monster_defense(id)
 monster_defense_power(id)	-
 monster_description(id)	-
+monster_element_rate(id,element_id)	-
 monster_give_exp(id)	-
 monster_give_gold(id)	-
 monster_hp(id)	monster_hp(id)
@@ -616,6 +620,7 @@ weapon_attack_power(id)	-
 weapon_count(id)	weapon_count(id)
 weapon_defense_power(id)	-
 weapon_description(id)	-
+weapon_element_rate(i,actor_id,element_id)	-
 weapon_equiped?(id,*member)	-
 weapon_icon(id)	-
 weapon_luck(id)	-

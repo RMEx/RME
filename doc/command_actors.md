@@ -24,6 +24,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 *    [actor_critical_rate(id)](#actor_critical_rateid)
 *    [actor_defense(id)](#actor_defenseid)
 *    [actor_description(id)](#actor_descriptionid)
+*    [actor_element_rate(id, element_id)](#actor_element_rateid-element_id)
 *    [actor_equip(id, slot)](#actor_equipid-slot)
 *    [actor_equip_accessory(id, object_id)](#actor_equip_accessoryid-object_id)
 *    [actor_equip_body(id, object_id)](#actor_equip_bodyid-object_id)
@@ -266,6 +267,17 @@ Offre des commandes pour obtenir des informations sur les acteurs
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
+
+
+##### actor_element_rate(id, element_id)
+
+> Renvoi la résistance élémentaire (par son ID d'élement) d'un acteur référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'acteur  
+`element_id`|`Fixnum`|Id de l'élément  
 
 
 ##### actor_equip(id, slot)

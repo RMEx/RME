@@ -833,6 +833,26 @@ module RMECommands
     def armor_agility(id); $data_armors[id].params[6]; end
     def armor_luck(id); $data_armors[id].params[7]; end
 
+    def armor_element_rate(i, actor_id, element_id)
+      item = $data_armors[i]
+      user = $game_actors[i]
+      if item.damage.element_id < 0
+        user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
+      else
+        element_rate(item.damage.element_id)
+      end
+    end
+
+    def weapon_element_rate(i, actor_id, element_id)
+      item = $data_weapons[i]
+      user = $game_actors[i]
+      if item.damage.element_id < 0
+        user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
+      else
+        element_rate(item.damage.element_id)
+      end
+    end
+
     def give_item(id, amount)
       item = $data_items[id];
       $game_party.gain_item(item, amount)
@@ -945,6 +965,15 @@ module RMECommands
     def item_nb_hits(i); $data_items[i].repeats; end
     def item_success_rate(i); $data_items[i].success_rate; end
     def item_tp_gain(i); $data_items[i].tp_gain; end
+    def item_element_rate(i, actor_id, element_id)
+      item = $data_items[i]
+      user = $game_actors[i]
+      if item.damage.element_id < 0
+        user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
+      else
+        element_rate(item.damage.element_id)
+      end
+    end
 
     append_commands
   end
@@ -1071,6 +1100,9 @@ module RMECommands
     def actor_skills(id); $game_actors[id].skills.map{|s| s.id}; end
     def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
     def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
+    def actor_element_rate(id, element_id)
+      $game_actors[id].element_rate(element_id)
+    end
     def actor_slot(id)
       return 0 unless $game_party.members[id - 1]
       $game_party.members[id - 1].id
@@ -1279,7 +1311,7 @@ module RMECommands
       event_move_speed(0, v)
       event_move_frequency(0, f)
     end
-    
+
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
@@ -1472,6 +1504,9 @@ module RMECommands
     def monster_battler_name(id); enemy(id).battler_name; end
     def monster_battler_hue(id); enemy(id).battler_hue; end
     def current_troop; Kernel.current_troop; end
+    def monster_element_rate(id, element_id)
+      enemy(id).element_rate(element_id)
+    end
 
     # Fix for EE4
     alias_method :monster_attack, :monster_attack_power

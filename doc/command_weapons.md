@@ -14,6 +14,7 @@ Commandes permettant de manipuler les armes
 *    [weapon_count(id)](#weapon_countid)
 *    [weapon_defense_power(id)](#weapon_defense_powerid)
 *    [weapon_description(id)](#weapon_descriptionid)
+*    [weapon_element_rate(i, actor_id, element_id)](#weapon_element_ratei-actor_id-element_id)
 *    [weapon_equiped?(id, *member_id)](#weapon_equipedid-member_id)
 *    [weapon_icon(id)](#weapon_iconid)
 *    [weapon_luck(id)](#weapon_luckid)
@@ -99,6 +100,18 @@ Commandes permettant de manipuler les armes
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
+
+
+##### weapon_element_rate(i, actor_id, element_id)
+
+> Renvoi la résistance élémentaire (par son ID d'élement) d'une arme référencé par son ID par rapport à un acteur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`i`|`Fixnum`|Id de l'arme  
+`actor_id`|`Fixnum`|Id de l'acteur  
+`element_id`|`Fixnum`|Id de l'élément  
 
 
 ##### weapon_equiped?(id, *member_id)
