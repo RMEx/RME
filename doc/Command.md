@@ -128,7 +128,7 @@ Collection des commandes EventExtender
 *    [Command.cosh(x)](#commandcoshx)
 *    [Command.create_circle_area(x, y, rayon)](#commandcreate_circle_areax-y-rayon)
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
-*    [Command.create_polygon_area(*points)](#commandcreate_polygon_areapoints)
+*    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
@@ -2298,14 +2298,14 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.create_polygon_area(*points)
+##### Command.create_polygon_area(points)
 
 > Crée et renvoi une zone polygonale (le dernier point est relié avec le premier)
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*points`|`ArgType`|Liste de points (create_polygon_area([ax, ay], [bx, by], [cx, cy] etc...))  
+`points`|`ArgType`|Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])  
 
 
 

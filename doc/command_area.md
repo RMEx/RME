@@ -9,7 +9,7 @@ Commandes pour créer et manipuler des zones virtuelles
 ##Liste des commandes
 *    [create_circle_area(x, y, rayon)](#create_circle_areax-y-rayon)
 *    [create_ellipse_area(x, y, width, height)](#create_ellipse_areax-y-width-height)
-*    [create_polygon_area(*points)](#create_polygon_areapoints)
+*    [create_polygon_area(points)](#create_polygon_areapoints)
 *    [create_rect_area(x, y, width, height)](#create_rect_areax-y-width-height)
 *    [in_area?(area, x, y)](#in_areaarea-x-y)
 *    [mouse_click_area?(area)](#mouse_click_areaarea)
@@ -52,14 +52,14 @@ Commandes pour créer et manipuler des zones virtuelles
 `height`|`Fixnum`|Hauteur de la zone  
 
 
-##### create_polygon_area(*points)
+##### create_polygon_area(points)
 
 > Crée et renvoi une zone polygonale (le dernier point est relié avec le premier)
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*points`|`ArgType`|Liste de points (create_polygon_area([ax, ay], [bx, by], [cx, cy] etc...))  
+`points`|`ArgType`|Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])  
 
 
 ##### create_rect_area(x, y, width, height)

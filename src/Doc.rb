@@ -4158,7 +4158,7 @@ register_command :area, 'Command.create_ellipse_area'
 link_method_documentation 'Command.create_polygon_area',
   'Crée et renvoi une zone polygonale (le dernier point est relié avec le premier)',
   {
-    :"*points" => ["Liste de points (create_polygon_area([ax, ay], [bx, by], [cx, cy] etc...))", :ArgType],
+    :"points" => ["Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])", :ArgType],
 
   }, true # Maybe changed
 register_command :area, 'Command.create_polygon_area'

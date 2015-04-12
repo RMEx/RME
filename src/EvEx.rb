@@ -428,14 +428,15 @@ module Area
     #--------------------------------------------------------------------------
     # * Constructor
     #--------------------------------------------------------------------------
-    def initialize(*points)
+    def initialize(points)
       set(points)
     end
     #--------------------------------------------------------------------------
     # * Edits the coordinates
     #--------------------------------------------------------------------------
-    def set(*points)
+    def set(points)
       @points = points
+      @max = points.flatten.max
     end
     #--------------------------------------------------------------------------
     # * Finds the segment intersection function
@@ -446,16 +447,16 @@ module Area
       denominator = (d_x * e_y) - (d_y * e_x)
       return -1 if denominator == 0
       t = (i_x*e_y+e_x*a_y-a_x*e_y-e_x*i_y) / denominator
-      return 0 if t < 0 || t >= 1
+      return 0 if t != 0
       u = (d_x*a_y-d_x*i_y-d_y*a_x+d_y*i_x) / denominator
-      return 0 if u < 0 || u >= 1
+      return 0 if u != 0
       return 1
     end
     #--------------------------------------------------------------------------
     # * check if point 's include in the rect
     #--------------------------------------------------------------------------
     def in?(p_x, p_y)
-      i_x, i_y = 10000 + rand(100), 10000 + rand(100)
+      i_x, i_y = @max+100, @max+100
       nb_intersections = 0
       @points.each_index do |index|
         a_x, a_y = *@points[index]
