@@ -9,20 +9,20 @@ Commandes relative à la manipulation des sons
 ##Liste des commandes
 *    [bgm_fade(wait, *frame)](#bgm_fadewait-frame)
 *    [bgm_pitch(pitch)](#bgm_pitchpitch)
-*    [bgm_play(name, *volume, *tempo)](#bgm_playname-volume-tempo)
+*    [bgm_play(name, *volume, *pitch)](#bgm_playname-volume-pitch)
 *    [bgm_stop](#bgm_stop)
 *    [bgm_volume(volume)](#bgm_volumevolume)
 *    [bgs_fade(wait, *frame)](#bgs_fadewait-frame)
 *    [bgs_pitch(pitch)](#bgs_pitchpitch)
-*    [bgs_play(name, volume, tempo)](#bgs_playname-volume-tempo)
+*    [bgs_play(name, *volume, *pitch)](#bgs_playname-volume-pitch)
 *    [bgs_stop](#bgs_stop)
 *    [bgs_volume(volume)](#bgs_volumevolume)
 *    [me_fade(wait, *frame)](#me_fadewait-frame)
-*    [me_play(name, volume, tempo)](#me_playname-volume-tempo)
+*    [me_play(name, *volume, *pitch)](#me_playname-volume-pitch)
 *    [me_stop](#me_stop)
 *    [replay_bgm](#replay_bgm)
 *    [save_bgm](#save_bgm)
-*    [se_play(name, volume, tempo)](#se_playname-volume-tempo)
+*    [se_play(name, *volume, *pitch)](#se_playname-volume-pitch)
 *    [se_stop](#se_stop)
 *    [sound_fade(wait, *frame)](#sound_fadewait-frame)
 *    [sound_stop](#sound_stop)
@@ -50,7 +50,7 @@ Commandes relative à la manipulation des sons
 `pitch`|`Fixnum`|Vitesse du BGM. Pourcentage entre 1 et 453  
 
 
-##### bgm_play(name, *volume, *tempo)
+##### bgm_play(name, *volume, *pitch)
 
 > Joue un BGM
 
@@ -59,7 +59,7 @@ Commandes relative à la manipulation des sons
 --- | --- | ---  
 `name`|`String`|Nom du BGM  
 `*volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
-`*tempo`|`Fixnum`|Tempo du BGM  
+`*pitch`|`Fixnum`|Vitesse du BGM. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 ##### bgm_stop
@@ -76,7 +76,7 @@ Commandes relative à la manipulation des sons
   
 > Nom|Type|Description  
 --- | --- | ---  
-`volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
+`volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100  
 
 
 ##### bgs_fade(wait, *frame)
@@ -100,7 +100,7 @@ Commandes relative à la manipulation des sons
 `pitch`|`Fixnum`|Vitesse du BGS. Pourcentage entre 1 et 453  
 
 
-##### bgs_play(name, volume, tempo)
+##### bgs_play(name, *volume, *pitch)
 
 > Joue un BGS
 
@@ -108,8 +108,8 @@ Commandes relative à la manipulation des sons
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du BGS  
-`volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80  
-`tempo`|`Fixnum`|Tempo du BGS  
+`*volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80  
+`*pitch`|`Fixnum`|Vitesse du BGS. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 ##### bgs_stop
@@ -140,7 +140,7 @@ Commandes relative à la manipulation des sons
 `*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
 
 
-##### me_play(name, volume, tempo)
+##### me_play(name, *volume, *pitch)
 
 > Joue un ME
 
@@ -148,8 +148,8 @@ Commandes relative à la manipulation des sons
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du ME  
-`volume`|`Fixnum`|Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100  
-`tempo`|`Fixnum`|Tempo du ME  
+`*volume`|`Fixnum`|Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100  
+`*pitch`|`Fixnum`|Vitesse du ME. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 ##### me_stop
@@ -173,7 +173,7 @@ Commandes relative à la manipulation des sons
   
 > 
 
-##### se_play(name, volume, tempo)
+##### se_play(name, *volume, *pitch)
 
 > Joue un SE
 
@@ -181,8 +181,8 @@ Commandes relative à la manipulation des sons
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du SE  
-`volume`|`Fixnum`|Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80  
-`tempo`|`Fixnum`|Tempo du SE  
+`*volume`|`Fixnum`|Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80  
+`*pitch`|`Fixnum`|Vitesse du SE. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 ##### se_stop

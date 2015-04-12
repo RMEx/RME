@@ -2155,10 +2155,10 @@ module RMECommands
     end
 
     def bgm_volume(volume)
-      RPG::BGM.last.play.volume = volume
+      RPG::BGM.last.replay.volume = volume
     end
     def bgs_volume(volume)
-      RPG::BGS.last.play.volume = volume
+      RPG::BGS.last.replay.volume = volume
     end
 
     def bgm_pitch(pitch)

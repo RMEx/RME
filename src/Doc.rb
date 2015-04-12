@@ -4751,8 +4751,7 @@ link_method_documentation 'Command.bgm_play',
   {
     :name => ["Nom du BGM", :String],
     :"*volume" => ["Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100", :Fixnum],
-    :"*tempo" => ["Tempo du BGM", :Fixnum],
-
+    :"*pitch" => ["Vitesse du BGM. Pourcentage entre 1 et 453. Par défaut : 100", :Fixnum],
   }
 register_command :sound, 'Command.bgm_play'
 
@@ -4761,9 +4760,8 @@ link_method_documentation 'Command.bgs_play',
   'Joue un BGS',
   {
     :name => ["Nom du BGS", :String],
-    :volume => ["Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80", :Fixnum],
-    :tempo => ["Tempo du BGS", :Fixnum],
-
+    :"*volume" => ["Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80", :Fixnum],
+    :"*pitch" => ["Vitesse du BGS. Pourcentage entre 1 et 453. Par défaut : 100", :Fixnum],
   }
 register_command :sound, 'Command.bgs_play'
 
@@ -4772,9 +4770,8 @@ link_method_documentation 'Command.se_play',
   'Joue un SE',
   {
     :name => ["Nom du SE", :String],
-    :volume => ["Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80", :Fixnum],
-    :tempo => ["Tempo du SE", :Fixnum],
-
+    :"*volume" => ["Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80", :Fixnum],
+    :"*pitch" => ["Vitesse du SE. Pourcentage entre 1 et 453. Par défaut : 100", :Fixnum],
   }
 register_command :sound, 'Command.se_play'
 
@@ -4783,9 +4780,8 @@ link_method_documentation 'Command.me_play',
   'Joue un ME',
   {
     :name => ["Nom du ME", :String],
-    :volume => ["Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100", :Fixnum],
-    :tempo => ["Tempo du ME", :Fixnum],
-
+    :"*volume" => ["Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100", :Fixnum],
+    :"*pitch" => ["Vitesse du ME. Pourcentage entre 1 et 453. Par défaut : 100", :Fixnum],
   }
 register_command :sound, 'Command.me_play'
 
@@ -4793,7 +4789,7 @@ register_command :sound, 'Command.me_play'
 link_method_documentation 'Command.bgm_volume',
   'Change le volume du BGM en cours',
   {
-    :volume => ["Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100", :Fixnum],
+    :volume => ["Volume du BGM. Pourcentage entre 0 et 100", :Fixnum],
 
   }
 register_command :sound, 'Command.bgm_volume'

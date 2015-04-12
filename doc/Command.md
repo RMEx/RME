@@ -118,12 +118,12 @@ Collection des commandes EventExtender
 *    [Command.battle_count](#commandbattle_count)
 *    [Command.bgm_fade(wait, *frame)](#commandbgm_fadewait-frame)
 *    [Command.bgm_pitch(pitch)](#commandbgm_pitchpitch)
-*    [Command.bgm_play(name, *volume, *tempo)](#commandbgm_playname-volume-tempo)
+*    [Command.bgm_play(name, *volume, *pitch)](#commandbgm_playname-volume-pitch)
 *    [Command.bgm_stop](#commandbgm_stop)
 *    [Command.bgm_volume(volume)](#commandbgm_volumevolume)
 *    [Command.bgs_fade(wait, *frame)](#commandbgs_fadewait-frame)
 *    [Command.bgs_pitch(pitch)](#commandbgs_pitchpitch)
-*    [Command.bgs_play(name, volume, tempo)](#commandbgs_playname-volume-tempo)
+*    [Command.bgs_play(name, *volume, *pitch)](#commandbgs_playname-volume-pitch)
 *    [Command.bgs_stop](#commandbgs_stop)
 *    [Command.bgs_volume(volume)](#commandbgs_volumevolume)
 *    [Command.call_load_screen](#commandcall_load_screen)
@@ -286,7 +286,7 @@ Collection des commandes EventExtender
 *    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
 *    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
-*    [Command.me_play(name, volume, tempo)](#commandme_playname-volume-tempo)
+*    [Command.me_play(name, *volume, *pitch)](#commandme_playname-volume-pitch)
 *    [Command.me_stop](#commandme_stop)
 *    [Command.message_height(n)](#commandmessage_heightn)
 *    [Command.min(a, b)](#commandmina-b)
@@ -441,7 +441,7 @@ Collection des commandes EventExtender
 *    [Command.scene_goto(scene)](#commandscene_gotoscene)
 *    [Command.scene_return](#commandscene_return)
 *    [Command.scroll_lock?](#commandscroll_lock)
-*    [Command.se_play(name, volume, tempo)](#commandse_playname-volume-tempo)
+*    [Command.se_play(name, *volume, *pitch)](#commandse_playname-volume-pitch)
 *    [Command.se_stop](#commandse_stop)
 *    [Command.session_username](#commandsession_username)
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
@@ -2162,7 +2162,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.bgm_play(name, *volume, *tempo)
+##### Command.bgm_play(name, *volume, *pitch)
 
 > Joue un BGM
 
@@ -2171,7 +2171,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `name`|`String`|Nom du BGM  
 `*volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
-`*tempo`|`Fixnum`|Tempo du BGM  
+`*pitch`|`Fixnum`|Vitesse du BGM. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 
@@ -2196,7 +2196,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
+`volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100  
 
 
 
@@ -2232,7 +2232,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.bgs_play(name, volume, tempo)
+##### Command.bgs_play(name, *volume, *pitch)
 
 > Joue un BGS
 
@@ -2240,8 +2240,8 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du BGS  
-`volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80  
-`tempo`|`Fixnum`|Tempo du BGS  
+`*volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80  
+`*pitch`|`Fixnum`|Vitesse du BGS. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 
@@ -4513,7 +4513,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.me_play(name, volume, tempo)
+##### Command.me_play(name, *volume, *pitch)
 
 > Joue un ME
 
@@ -4521,8 +4521,8 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du ME  
-`volume`|`Fixnum`|Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100  
-`tempo`|`Fixnum`|Tempo du ME  
+`*volume`|`Fixnum`|Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100  
+`*pitch`|`Fixnum`|Vitesse du ME. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 
@@ -6750,7 +6750,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.se_play(name, volume, tempo)
+##### Command.se_play(name, *volume, *pitch)
 
 > Joue un SE
 
@@ -6758,8 +6758,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du SE  
-`volume`|`Fixnum`|Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80  
-`tempo`|`Fixnum`|Tempo du SE  
+`*volume`|`Fixnum`|Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80  
+`*pitch`|`Fixnum`|Vitesse du SE. Pourcentage entre 1 et 453. Par défaut : 100  
 
 
 
