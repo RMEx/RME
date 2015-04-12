@@ -2135,38 +2135,62 @@ module RMECommands
   #  Command for Sound manipulation
   #==============================================================================
 
+  class RPG::BGM
+    attr_accessor :name
+  end
+
   module CmdSounds
-    def sound_BGM_play(name, volume, pitch)
+
+    def bgm_play(name, volume=100, pitch=100)
       RPG::BGM.new(name, volume, pitch).play
     end
-    def sound_BGS_play(name, volume, pitch)
+    def bgs_play(name, volume=80, pitch=100)
       RPG::BGS.new(name, volume, pitch).play
     end
-    def sound_SE_play(name, volume, pitch)
+    def se_play(name, volume=80, pitch=100)
       RPG::SE.new(name, volume, pitch).play
     end
-    def sound_ME_play(name, volume, pitch)
+    def me_play(name, volume=100, pitch=100)
       RPG::ME.new(name, volume, pitch).play
     end
-    def sound_BGM_volume(volume)
+
+    def bgm_volume(volume)
       RPG::BGM.last.play.volume = volume
     end
-    def sound_BGS_volume(volume)
+    def bgs_volume(volume)
       RPG::BGS.last.play.volume = volume
     end
-    def sound_SE_volume(volume)
-      RPG::SE.last.play.volume = volume
-    end
-    def sound_ME_volume(volume); RPG::ME.last.play.volume = volume; end
-    def sound_BGM_stop; RPG::BGM.stop; end
-    def sound_BGS_stop; RPG::BGS.stop; end
-    def sound_SE_stop; RPG::SE.stop; end
-    def sound_ME_stop; RPG::ME.stop; end
-    def sound_BGM_pitch(pitch); RPG::BGM.last.play.pitch = pitch; end
-    def sound_BGS_pitch(pitch); RPG::BGS.last.play.pitch = pitch; end
-    def sound_SE_pitch(pitch); RPG::SE.last.play.pitch = pitch; end
-    def sound_ME_pitch(pitch); RPG::ME.last.play.pitch = pitch; end
 
+    def bgm_pitch(pitch)
+      RPG::BGM.last.replay.pitch = pitch
+    end
+    def bgs_pitch(pitch)
+      RPG::BGS.last.replay.pitch = pitch
+    end
+
+    def bgm_fade(wait, frame=false)
+      wait *= frame ? 17 : 1000
+      RPG::BGM.fade(wait)
+    end
+    def bgs_fade(wait, frame=false)
+      wait *= frame ? 17 : 1000
+      RPG::BGS.fade(wait)
+    end
+    def me_fade(wait, frame=false)
+      wait *= frame ? 17 : 1000
+      RPG::ME.fade(wait)
+    end
+    def sound_fade(wait, frame=false)
+      wait *= frame ? 17 : 1000
+      RPG::BGM.fade(wait)
+      RPG::BGS.fade(wait)
+      RPG::ME.fade(wait)
+    end
+
+    def bgm_stop; RPG::BGM.stop; end
+    def bgs_stop; RPG::BGS.stop; end
+    def se_stop; RPG::SE.stop; end
+    def me_stop; RPG::ME.stop; end
     def sound_stop
       RPG::BGM.stop
       RPG::BGS.stop
@@ -2174,18 +2198,8 @@ module RMECommands
       RPG::ME.stop
     end
 
-    def sound_BGM_fade(wait, frame)
-      frame ? RPG::BGM.fade(wait * 17) : RPG::BGM.fade(wait * 1000)
-    end
-
-    def sound_BGS_fade(wait, frame)
-      frame ? RPG::BGS.fade(wait * 17) : RPG::BGS.fade(wait * 1000)
-    end
-
-    def sound_fade(wait, frame)
-      frame ? RPG::BGM.fade(wait * 17) : RPG::BGM.fade(wait * 1000)
-      frame ? RPG::BGS.fade(wait * 17) : RPG::BGS.fade(wait * 1000)
-    end
+    def save_bgm; $game_system.save_bgm; end
+    def replay_bgm; $game_system.replay_bgm; end
 
     append_commands
   end

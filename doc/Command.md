@@ -116,6 +116,16 @@ Collection des commandes EventExtender
 *    [Command.atan2(x, y)](#commandatan2x-y)
 *    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
+*    [Command.bgm_fade(wait, *frame)](#commandbgm_fadewait-frame)
+*    [Command.bgm_pitch(pitch)](#commandbgm_pitchpitch)
+*    [Command.bgm_play(name, *volume, *tempo)](#commandbgm_playname-volume-tempo)
+*    [Command.bgm_stop](#commandbgm_stop)
+*    [Command.bgm_volume(volume)](#commandbgm_volumevolume)
+*    [Command.bgs_fade(wait, *frame)](#commandbgs_fadewait-frame)
+*    [Command.bgs_pitch(pitch)](#commandbgs_pitchpitch)
+*    [Command.bgs_play(name, volume, tempo)](#commandbgs_playname-volume-tempo)
+*    [Command.bgs_stop](#commandbgs_stop)
+*    [Command.bgs_volume(volume)](#commandbgs_volumevolume)
 *    [Command.call_load_screen](#commandcall_load_screen)
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.caps_lock?](#commandcaps_lock)
@@ -275,6 +285,9 @@ Collection des commandes EventExtender
 *    [Command.map_name](#commandmap_name)
 *    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
+*    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
+*    [Command.me_play(name, volume, tempo)](#commandme_playname-volume-tempo)
+*    [Command.me_stop](#commandme_stop)
 *    [Command.message_height(n)](#commandmessage_heightn)
 *    [Command.min(a, b)](#commandmina-b)
 *    [Command.monster_agility(id)](#commandmonster_agilityid)
@@ -416,7 +429,9 @@ Collection des commandes EventExtender
 *    [Command.random_combination(len, *keys)](#commandrandom_combinationlen-keys)
 *    [Command.random_figures(x)](#commandrandom_figuresx)
 *    [Command.region_id(x, y)](#commandregion_idx-y)
+*    [Command.replay_bgm](#commandreplay_bgm)
 *    [Command.rm_kill](#commandrm_kill)
+*    [Command.save_bgm](#commandsave_bgm)
 *    [Command.save_count](#commandsave_count)
 *    [Command.save_delete(index)](#commandsave_deleteindex)
 *    [Command.save_exists?(index)](#commandsave_existsindex)
@@ -426,6 +441,8 @@ Collection des commandes EventExtender
 *    [Command.scene_goto(scene)](#commandscene_gotoscene)
 *    [Command.scene_return](#commandscene_return)
 *    [Command.scroll_lock?](#commandscroll_lock)
+*    [Command.se_play(name, volume, tempo)](#commandse_playname-volume-tempo)
+*    [Command.se_stop](#commandse_stop)
 *    [Command.session_username](#commandsession_username)
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
 *    [Command.set_actor_nickname(id, new_name)](#commandset_actor_nicknameid-new_name)
@@ -477,25 +494,7 @@ Collection des commandes EventExtender
 *    [Command.socket_recv(*len)](#commandsocket_recvlen)
 *    [Command.socket_send(data)](#commandsocket_senddata)
 *    [Command.socket_wait_recv(*len)](#commandsocket_wait_recvlen)
-*    [Command.sound_BGM_fade(wait, frame)](#commandsound_bgm_fadewait-frame)
-*    [Command.sound_BGM_pitch(pitch)](#commandsound_bgm_pitchpitch)
-*    [Command.sound_BGM_play(name, volume, tempo)](#commandsound_bgm_playname-volume-tempo)
-*    [Command.sound_BGM_stop](#commandsound_bgm_stop)
-*    [Command.sound_BGM_volume(volume)](#commandsound_bgm_volumevolume)
-*    [Command.sound_BGS_fade(wait, frame)](#commandsound_bgs_fadewait-frame)
-*    [Command.sound_BGS_pitch(pitch)](#commandsound_bgs_pitchpitch)
-*    [Command.sound_BGS_play(name, volume, tempo)](#commandsound_bgs_playname-volume-tempo)
-*    [Command.sound_BGS_stop](#commandsound_bgs_stop)
-*    [Command.sound_BGS_volume(volume)](#commandsound_bgs_volumevolume)
-*    [Command.sound_ME_pitch(pitch)](#commandsound_me_pitchpitch)
-*    [Command.sound_ME_play(name, volume, tempo)](#commandsound_me_playname-volume-tempo)
-*    [Command.sound_ME_stop](#commandsound_me_stop)
-*    [Command.sound_ME_volume(volume)](#commandsound_me_volumevolume)
-*    [Command.sound_SE_pitch(pitch)](#commandsound_se_pitchpitch)
-*    [Command.sound_SE_play(name, volume, tempo)](#commandsound_se_playname-volume-tempo)
-*    [Command.sound_SE_stop](#commandsound_se_stop)
-*    [Command.sound_SE_volume(volume)](#commandsound_se_volumevolume)
-*    [Command.sound_fade(wait, frame)](#commandsound_fadewait-frame)
+*    [Command.sound_fade(wait, *frame)](#commandsound_fadewait-frame)
 *    [Command.sound_stop](#commandsound_stop)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
@@ -2129,6 +2128,146 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.bgm_fade(wait, *frame)
+
+> Arrêt en fondu du BGM en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu, par défaut en secondes  
+`*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
+
+
+
+
+
+
+##### Command.bgm_pitch(pitch)
+
+> Change la vitesse du BGM en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du BGM. Pourcentage entre 1 et 453  
+
+
+
+
+
+
+##### Command.bgm_play(name, *volume, *tempo)
+
+> Joue un BGM
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du BGM  
+`*volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
+`*tempo`|`Fixnum`|Tempo du BGM  
+
+
+
+
+
+
+##### Command.bgm_stop
+
+> Stoppe le BGM en cours
+
+  
+> 
+
+
+
+
+
+##### Command.bgm_volume(volume)
+
+> Change le volume du BGM en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
+
+
+
+
+
+
+##### Command.bgs_fade(wait, *frame)
+
+> Arrêt en fondu du BGS en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu en seconde  
+`*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
+
+
+
+
+
+
+##### Command.bgs_pitch(pitch)
+
+> Change la vitesse du BGS en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pitch`|`Fixnum`|Vitesse du BGS. Pourcentage entre 1 et 453  
+
+
+
+
+
+
+##### Command.bgs_play(name, volume, tempo)
+
+> Joue un BGS
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du BGS  
+`volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80  
+`tempo`|`Fixnum`|Tempo du BGS  
+
+
+
+
+
+
+##### Command.bgs_stop
+
+> Stoppe le BGS en cours
+
+  
+> 
+
+
+
+
+
+##### Command.bgs_volume(volume)
+
+> Change le volume du BGS en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100  
+
 
 
 
@@ -4359,6 +4498,48 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.me_fade(wait, *frame)
+
+> Arrêt en fondu du ME en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`wait`|`Fixnum`|Temps du fondu, par défaut en secondes  
+`*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
+
+
+
+
+
+
+##### Command.me_play(name, volume, tempo)
+
+> Joue un ME
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du ME  
+`volume`|`Fixnum`|Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100  
+`tempo`|`Fixnum`|Tempo du ME  
+
+
+
+
+
+
+##### Command.me_stop
+
+> Stoppe le ME en cours
+
+  
+> 
+
+
+
+
+
 ##### Command.message_height(n)
 
 > Change le nombre de ligne affichage dans les messages (Commande Event Afficher message)
@@ -6422,9 +6603,31 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.replay_bgm
+
+> Reprend le BGM mémorisé
+
+  
+> 
+
+
+
+
+
 ##### Command.rm_kill
 
 > Quitte le jeu... d'un coup sec... TCHAK
+
+  
+> 
+
+
+
+
+
+##### Command.save_bgm
+
+> Mémorise le BGM en cours
 
   
 > 
@@ -6539,6 +6742,33 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.scroll_lock?
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+
+  
+> 
+
+
+
+
+
+##### Command.se_play(name, volume, tempo)
+
+> Joue un SE
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`name`|`String`|Nom du SE  
+`volume`|`Fixnum`|Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80  
+`tempo`|`Fixnum`|Tempo du SE  
+
+
+
+
+
+
+##### Command.se_stop
+
+> Stoppe le SE en cours
 
   
 > 
@@ -7256,265 +7486,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.sound_BGM_fade(wait, frame)
-
-> Stop le BGM en cours en fondu
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`wait`|`Fixnum`|Temps du fondu en seconde  
-`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
-
-
-
-
-
-
-##### Command.sound_BGM_pitch(pitch)
-
-> Change la vitesse du BGM en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`pitch`|`Fixnum`|Vitesse du BGM  
-
-
-
-
-
-
-##### Command.sound_BGM_play(name, volume, tempo)
-
-> Joue une musique BGM
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`name`|`String`|Nom du BGM  
-`volume`|`Fixnum`|Volume du BGM  
-`tempo`|`Fixnum`|Tempo du BGM  
-
-
-
-
-
-
-##### Command.sound_BGM_stop
-
-> Stop le BGM en cours
-
-  
-> 
-
-
-
-
-
-##### Command.sound_BGM_volume(volume)
-
-> Change le volume du BGM en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`volume`|`Fixnum`|Volume du BGM  
-
-
-
-
-
-
-##### Command.sound_BGS_fade(wait, frame)
-
-> Stop le BGS en cours en fondu
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`wait`|`Fixnum`|Temps du fondu en seconde  
-`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
-
-
-
-
-
-
-##### Command.sound_BGS_pitch(pitch)
-
-> Change la vitesse du BGS en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`pitch`|`Fixnum`|Vitesse du BGS  
-
-
-
-
-
-
-##### Command.sound_BGS_play(name, volume, tempo)
-
-> Joue une musique BGS
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`name`|`String`|Nom du BGS  
-`volume`|`Fixnum`|Volume du BGS  
-`tempo`|`Fixnum`|Tempo du BGS  
-
-
-
-
-
-
-##### Command.sound_BGS_stop
-
-> Stop le BGS en cours
-
-  
-> 
-
-
-
-
-
-##### Command.sound_BGS_volume(volume)
-
-> Change le volume du BGS en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`volume`|`Fixnum`|Volume du BGS  
-
-
-
-
-
-
-##### Command.sound_ME_pitch(pitch)
-
-> Change la vitesse du ME en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`pitch`|`Fixnum`|Vitesse du ME  
-
-
-
-
-
-
-##### Command.sound_ME_play(name, volume, tempo)
-
-> Joue un ME
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`name`|`String`|Nom du ME  
-`volume`|`Fixnum`|Volume du ME  
-`tempo`|`Fixnum`|Tempo du ME  
-
-
-
-
-
-
-##### Command.sound_ME_stop
-
-> Stop le ME en cours
-
-  
-> 
-
-
-
-
-
-##### Command.sound_ME_volume(volume)
-
-> Change le volume du ME en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`volume`|`Fixnum`|Volume du ME  
-
-
-
-
-
-
-##### Command.sound_SE_pitch(pitch)
-
-> Change la vitesse du SE en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`pitch`|`Fixnum`|Vitesse du SE  
-
-
-
-
-
-
-##### Command.sound_SE_play(name, volume, tempo)
-
-> Joue un SE
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`name`|`String`|Nom du SE  
-`volume`|`Fixnum`|Volume du SE  
-`tempo`|`Fixnum`|Tempo du SE  
-
-
-
-
-
-
-##### Command.sound_SE_stop
-
-> Stop le SE en cours
-
-  
-> 
-
-
-
-
-
-##### Command.sound_SE_volume(volume)
-
-> Change le volume du SE en cours
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`volume`|`Fixnum`|Volume du SE  
-
-
-
-
-
-
-##### Command.sound_fade(wait, frame)
+##### Command.sound_fade(wait, *frame)
 
 > Stop les BGM et BGS en fondu
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`wait`|`Fixnum`|Temps du fondu  
-`frame`|`Boolean`|si true le fondu ce fait par frame sinon par seconde  
+`wait`|`Fixnum`|Temps du fondu, par défaut en secondes  
+`*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
 
 
 
@@ -7523,7 +7503,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.sound_stop
 
-> Stop tout les sons en cours
+> Stoppe tous les sons en cours
 
   
 > 
