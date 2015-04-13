@@ -1313,13 +1313,13 @@ module RMECommands
     end
 
     def event_priority(ids, priority)
-      select_events(ids).each do |id_event|
+      select_events(ids).not(0).each do |id_event|
        event(id_event).priority_type = priority
      end
     end
 
     def event_trigger(ids, trigger)
-      select_events(ids).each do |id_event|
+      select_events(ids).not(0).each do |id_event|
         event(id_event).trigger = trigger 
       end
     end 
