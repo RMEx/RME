@@ -941,7 +941,7 @@ class Game_CharacterBase
   # * Move to x y coord
   #--------------------------------------------------------------------------
   def move_to_position(x, y, wait=false)
-    return unless passable?(x,y,0)
+    return unless $game_map.passable?(x,y,0)
     route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
@@ -2556,11 +2556,10 @@ end
 #==============================================================================
 # ** Pathfinder
 #------------------------------------------------------------------------------
-#  Pathfinder Astar
+#  Path finder module. A* Algorithm
 #==============================================================================
 
 module Pathfinder
-
   #--------------------------------------------------------------------------
   # * Constants
   #--------------------------------------------------------------------------
@@ -2569,8 +2568,6 @@ module Pathfinder
   ROUTE_MOVE_LEFT = 2
   ROUTE_MOVE_RIGHT = 3
   ROUTE_MOVE_UP = 4
-
-
   #--------------------------------------------------------------------------
   # * Definition of a point
   #--------------------------------------------------------------------------
@@ -2596,10 +2593,10 @@ module Pathfinder
     #--------------------------------------------------------------------------
     def score(parent)
       if !parent
-      @g = 0
+        @g = 0
       elsif !@g || @g > parent.g + 1
-      @g = parent.g + 1
-      @parent = parent
+        @g = parent.g + 1
+        @parent = parent
       end
       @h = (@x - @goal.x).abs + (@y - @goal.y).abs
       @f = @g + @h
@@ -2616,7 +2613,6 @@ module Pathfinder
       return nil
     end
   end
-
   #--------------------------------------------------------------------------
   # * singleton
   #--------------------------------------------------------------------------
@@ -2628,7 +2624,7 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check the passability
   #--------------------------------------------------------------------------
-  def passable?(ev, x, y, dir); ev.passable?(x, y, dir); end
+  def passable?(x, y, dir); $game_map.passable?(x, y, dir); end
   #--------------------------------------------------------------------------
   # * Check closed_list
   #--------------------------------------------------------------------------
@@ -2647,7 +2643,7 @@ module Pathfinder
       open_list.delete(current.id)
       closed_list[current.id] = current
       args = current.x, current.y+1
-      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
+      if passable?(current.x, current.y, 2) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -2655,7 +2651,7 @@ module Pathfinder
         end
       end
       args = current.x-1, current.y
-      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
+      if passable?(current.x, current.y, 4) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -2663,7 +2659,7 @@ module Pathfinder
         end
       end
       args = current.x+1, current.y
-      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
+      if passable?(current.x, current.y, 4) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -2671,7 +2667,7 @@ module Pathfinder
         end
       end
       args = current.x, current.y-1
-      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
+      if passable?(current.x, current.y, 2) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -2692,7 +2688,6 @@ module Pathfinder
     move_route.repeat = false
     return move_route
   end
-
 end
 
 #==============================================================================
