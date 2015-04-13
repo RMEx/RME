@@ -441,31 +441,29 @@ module Area
     #--------------------------------------------------------------------------
     # * Finds the segment intersection function
     #--------------------------------------------------------------------------
-    def intersectsegment(a_x, a_y, b_x, b_y, i_x, i_y, p_x, p_y)
-      d_x, d_y = b_x - a_x, b_y - a_y
-      e_x, e_y = p_x - i_x, p_y - i_y
-      denominator = (d_x * e_y) - (d_y * e_x)
-      return -1 if denominator == 0
-      t = (i_x*e_y+e_x*a_y-a_x*e_y-e_x*i_y) / denominator
-      return 0 if t != 0
-      u = (d_x*a_y-d_x*i_y-d_y*a_x+d_y*i_x) / denominator
-      return 0 if u != 0
+    def intersectsegment(ax, ay, bx, by, ix, iy, px, py)
+      dx, dy = bx - ax, by - ay
+      ex, ey = px - ix, py - iy
+      denominator = (dx*ey) - (dy*ex)
+      return 0 if denominator == 0
+      t = (ix*ey + ex*ay - ax*ey - ex*iy) / denominator
+      return 0 if t < 0 || t >= 1
+      u = (dx*ay - dx*iy - dy*ax + dy*ix) / denominator
+      return 0 if u < 0 || u >= 1
       return 1
     end
     #--------------------------------------------------------------------------
     # * check if point 's include in the rect
     #--------------------------------------------------------------------------
-    def in?(p_x, p_y)
-      i_x, i_y = @max+100, @max+100
-      nb_intersections = 0
+    def in?(px, py)
+      ix, iy = @max+100, @max+100
+      nbintersections = 0
       @points.each_index do |index|
-        a_x, a_y = *@points[index]
-        b_x, b_y = *@points[(index + 1) % @points.length]
-        intersection = intersectsegment(a_x, a_y, b_x, b_y, i_x, i_y, p_x, p_y)
-        return in?(p_x, p_y) if intersection == -1
-        nb_intersections += intersection
+        ax, ay = *@points[index]
+        bx, by = *@points[(index + 1) % @points.length]
+        nbintersections += intersectsegment(ax, ay, bx, by, ix, iy, px, py)
       end
-      return (nb_intersections%2 == 1)
+      return (nbintersections%2 == 1)
     end
   end
 
