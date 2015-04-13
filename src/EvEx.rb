@@ -1044,6 +1044,7 @@ class Game_CharacterBase
   attr_accessor :buzz_length
   attr_accessor   :move_speed
   attr_accessor   :move_frequency
+  attr_accessor :priority_type
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -2239,6 +2240,7 @@ class Game_Event
   #--------------------------------------------------------------------------
   alias_method :rm_extender_conditions_met?,  :conditions_met?
   attr_accessor :erased
+  attr_accessor :trigger
   alias_method :erased?, :erased
   #--------------------------------------------------------------------------
   # * Determine if Event Page Conditions Are Met
@@ -2281,6 +2283,7 @@ class Game_Event
   def name
     @event.name
   end
+
 end
 
 #==============================================================================
