@@ -207,6 +207,156 @@ module SS
   end
 end
 
+
+#==============================================================================
+# ** RPG::CommonEvent
+#------------------------------------------------------------------------------
+#  The data class for common events.
+#==============================================================================
+
+class RPG::CommonEvent
+  #--------------------------------------------------------------------------
+  # * Define battle trigger
+  #--------------------------------------------------------------------------
+  def def_battle_trigger
+    return false if !@list[0] || @list[0].code != 355
+    script = @list[0].parameters[0] + "\n"
+    index = 1
+    while @list[index].code == 655
+      script += @list[index].parameters[0] + "\n"
+      index += 1
+    end
+    if script =~ /^\s*(in_battle)/
+      potential_trigger = eval(script)
+      return potential_trigger if potential_trigger.is_a?(Proc)
+    end
+    return false
+  end
+  #--------------------------------------------------------------------------
+  # * get battle trigger
+  #--------------------------------------------------------------------------
+  def battle_trigger
+    @battle_trigger ||= def_battle_trigger
+  end
+  #--------------------------------------------------------------------------
+  # * Is for battle
+  #--------------------------------------------------------------------------
+  def for_battle?
+    !!battle_trigger
+  end
+end
+
+#==============================================================================
+# ** Game_Temp
+#------------------------------------------------------------------------------
+#  This class handles temporary data that is not included with save data.
+# The instance of this class is referenced by $game_temp.
+#==============================================================================
+
+class Game_Temp
+  class << self
+    attr_accessor :in_battle
+    attr_accessor :current_troop
+    Game_Temp.in_battle = false
+    Game_Temp.current_troop = 0
+  end
+end
+
+
+#==============================================================================
+# ** BattleManager
+#------------------------------------------------------------------------------
+#  This module manages battle progress.
+#==============================================================================
+
+module BattleManager
+  class << self
+    alias_method :extender_setup, :setup
+    alias_method :extender_end, :battle_end
+    #--------------------------------------------------------------------------
+    # * Setup
+    #--------------------------------------------------------------------------
+    def setup(*a)
+      Game_Temp.in_battle = true
+      Game_Temp.current_troop = a[0]
+      extender_setup(*a)
+    end
+    #--------------------------------------------------------------------------
+    # * End Battle
+    #     result : Result (0: Win 1: Escape 2: Lose)
+    #--------------------------------------------------------------------------
+    def battle_end(result)
+      Game_Temp.in_battle = false
+      Game_Temp.current_troop = -1
+      extender_end(result)
+    end
+  end
+end
+
+#==============================================================================
+# ** Game_CommonEvent
+#------------------------------------------------------------------------------
+#  This class handles common events. It includes functionality for execution of
+# parallel process events. It's used within the Game_Map class ($game_map).
+#==============================================================================
+
+class Game_CommonEvent
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :extender_active?, :active?
+  #--------------------------------------------------------------------------
+  # * Determine if Active State
+  #--------------------------------------------------------------------------
+  def active?
+    return extender_active? if not in_battle?
+    @event.for_battle? && @event.battle_trigger.call()
+  end
+end
+
+#==============================================================================
+# ** Game_Troop
+#------------------------------------------------------------------------------
+#  This class handles enemy groups and battle-related data. Also performs
+# battle events. The instance of this class is referenced by $game_troop.
+#==============================================================================
+
+class Game_Troop
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :extender_setup, :setup
+  alias_method :extender_update, :update
+  #--------------------------------------------------------------------------
+  # * Setup
+  #--------------------------------------------------------------------------
+  def setup(troop_id)
+    extender_setup(troop_id)
+    init_common_events
+  end
+  #--------------------------------------------------------------------------
+  # * Initialize common events
+  #--------------------------------------------------------------------------
+  def init_common_events
+    events = $data_common_events.select {|event| event && event.for_battle? }
+    @common_events = events.map {|e| Game_CommonEvent.new(e.id)}
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    extender_update
+    event_update
+  end
+  #--------------------------------------------------------------------------
+  # * Event Update
+  #--------------------------------------------------------------------------
+  def event_update
+    @common_events.each {|e| e.update}
+  end
+end
+
+
 #==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
@@ -1179,6 +1329,7 @@ class Game_Map
   alias_method :rm_extender_setup, :setup
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_setup_events, :setup_events
+  alias_method :rm_extender_pc, :parallel_common_events
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -1294,6 +1445,12 @@ class Game_Map
   def setup_events
     rm_extender_setup_events
     @common_events.each {|event| event.refresh }
+  end
+  #--------------------------------------------------------------------------
+  # * Get Array of Parallel Common Events
+  #--------------------------------------------------------------------------
+  def parallel_common_events
+    rm_extender_pc.select {|e| e && !e.for_battle?}
   end
 end
 
@@ -2196,6 +2353,7 @@ class Game_Interpreter
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
   alias_method :extender_command_355, :command_355
+  alias_method :extender_command_117, :command_117
 
   #--------------------------------------------------------------------------
   # * Show Text
@@ -2235,6 +2393,13 @@ class Game_Interpreter
     Game_Interpreter.current_id = @event_id
     Game_Interpreter.current_map_id = @map_id
     extender_command_355
+  end
+  #--------------------------------------------------------------------------
+  # * Common Event
+  #--------------------------------------------------------------------------
+  def command_117
+    return if $data_common_events[@params[0]].for_battle?
+    extender_command_117
   end
   #--------------------------------------------------------------------------
   # * Execute code
