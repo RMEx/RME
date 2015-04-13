@@ -461,6 +461,14 @@ class Fixnum
     NUMBER[0]
   end
 
+  #--------------------------------------------------------------------------
+  # * Bound value
+  #--------------------------------------------------------------------------
+  def bound(min, max)
+    b_min = min - ((min-self) & (min-self)>>31)
+    b_min + ((max-b_min) & (max-b_min)>>31)
+  end
+
 end
 
 #==============================================================================
@@ -605,6 +613,14 @@ class String
       end
     end
     return matrix.last.last
+  end
+  #--------------------------------------------------------------------------
+  # * Delete at
+  #--------------------------------------------------------------------------
+  def delete_at(pos)
+    a = slice(0, pos) || ""
+    b = slice(pos+1, length) || ""
+    a + b
   end
   #--------------------------------------------------------------------------
   # * Format a string
@@ -1097,7 +1113,8 @@ module Devices
     # * Get char from a key (lol LISP)
     #--------------------------------------------------------------------------
     def char(key)
-      return "" if [0x0D, 0x1B, 0x08].include?(key) ||
+      return "\n" if key == 0x0D
+      return "" if [0x1B, 0x08].include?(key) ||
         to_uc(key, 0, @buffer, chr = buffer(16), 8, 0) == 0
       to_multibyte(65001, 0, chr, 1, output = buffer(4), 4, 0, 0)
       output.delete!("\0")
@@ -1449,6 +1466,155 @@ module Clipboard
     Externlib::CloseClipboard.()
     true
   end
+end
+
+#==============================================================================
+# ** GUI
+#------------------------------------------------------------------------------
+#  Graphical User interface
+#==============================================================================
+
+module Gui
+
+  #==============================================================================
+  # ** GUI::Tools
+  #------------------------------------------------------------------------------
+  #  Graphical User interface helpers
+  #==============================================================================
+
+  module Tools
+
+  end
+
+  #==============================================================================
+  # ** GUI::Components
+  #------------------------------------------------------------------------------
+  #  Graphical User interface components
+  #==============================================================================
+
+  module Components
+
+    #==============================================================================
+    # ** TextRecorder
+    #------------------------------------------------------------------------------
+    #  Record text state
+    #==============================================================================
+
+    class Text_Recorder
+      #--------------------------------------------------------------------------
+      # * Public instance variables
+      #--------------------------------------------------------------------------
+      attr_accessor :value
+      attr_accessor :exit_keys
+      attr_accessor :stopped
+      attr_accessor :transformed
+      alias_method :stopped?, :stopped
+      #--------------------------------------------------------------------------
+      # * Object initialize
+      #--------------------------------------------------------------------------
+      def initialize(init = "", exit_keys = [])
+        @transformed = true
+        @stopped = true
+        @value = init
+        @exit_keys = exit_keys
+        @virtual_position = init.length
+      end
+      #--------------------------------------------------------------------------
+      # * Has a transformation
+      #--------------------------------------------------------------------------
+      def has_transformation?
+        result = @transformed
+        @transformed = false
+        result
+      end
+      #--------------------------------------------------------------------------
+      # * Start capture
+      #--------------------------------------------------------------------------
+      def start_capture
+        @stopped = false
+        update
+      end
+      #--------------------------------------------------------------------------
+      # * Sop capture
+      #--------------------------------------------------------------------------
+      def stop_capture
+        @stopped = true
+      end
+      #--------------------------------------------------------------------------
+      # * Bound cursor position
+      #--------------------------------------------------------------------------
+      def bound_cursor
+        @virtual_position = @virtual_position.bound(0, @value.length)
+      end
+      #--------------------------------------------------------------------------
+      # * go left
+      #--------------------------------------------------------------------------
+      def go_left
+        @virtual_position -= 1
+        bound_cursor
+      end
+      #--------------------------------------------------------------------------
+      # * go Right
+      #--------------------------------------------------------------------------
+      def go_right
+        @virtual_position += 1
+        bound_cursor
+      end
+      #--------------------------------------------------------------------------
+      # * Update key capture
+      #--------------------------------------------------------------------------
+      def update
+        return if stopped?
+        return stop_capture if @exit_keys.any?{|key| Keyboard.repeat?(key)}
+        update_virtual_cursor
+        update_value_modification
+        update_value
+      end
+      #--------------------------------------------------------------------------
+      # * Running
+      #--------------------------------------------------------------------------
+      def recording?
+        !stopped?
+      end
+      #--------------------------------------------------------------------------
+      # * Update text content
+      #--------------------------------------------------------------------------
+      def update_value
+        c = Keyboard.current_char
+        unless [nil, ''].include?(c)
+          @transformed = true
+          @value += c
+          go_right
+        end
+      end
+      #--------------------------------------------------------------------------
+      # * Update text content (bcps and del)
+      #--------------------------------------------------------------------------
+      def update_value_modification
+        if Keyboard.krepeat?(0x08)
+          go_left
+          @value = @value.delete_at(@virtual_position)
+          @transformed = true
+          bound_cursor
+        end
+        if Keyboard.krepeat?(0x2E)
+          @value = @value.delete_at(@virtual_position)
+          @transformed = true
+          bound_cursor
+        end
+      end
+      #--------------------------------------------------------------------------
+      # * Update cursor position
+      #--------------------------------------------------------------------------
+      def update_virtual_cursor
+        go_left if Keyboard.krepeat?(0x25)
+        go_right if Keyboard.krepeat?(0x27)
+      end
+    end
+
+  end
+
+
 end
 
 #--------------------------------------------------------------------------
