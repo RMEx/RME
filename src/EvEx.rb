@@ -983,9 +983,13 @@ class Game_Text
   #--------------------------------------------------------------------------
   def update_opacity
     return if @opacity_duration == 0
+    p :a
     d = @opacity_duration
+    p :b
     @opacity = (@opacity * (d - 1) + @target_opacity) / d
+    p :c
     @opacity_duration -= 1
+    p :d
   end
   #--------------------------------------------------------------------------
   # * Update rotate
