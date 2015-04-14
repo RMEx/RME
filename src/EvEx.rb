@@ -905,7 +905,7 @@ class Game_Text
     @target_zoom_x = @zoom_x
     @target_zoom_y = @zoom_y
     @target_opacity = @opacity
-    @duration = 0
+    @duration = @opacity_duration = 0
   end
   #--------------------------------------------------------------------------
   # * Init rotate
