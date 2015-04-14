@@ -189,8 +189,10 @@ Collection des commandes EventExtender
 *    [Command.event_name(id)](#commandevent_nameid)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
+*    [Command.event_priority(ids, priority)](#commandevent_priorityids-priority)
 *    [Command.event_screen_x(id)](#commandevent_screen_xid)
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
+*    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
 *    [Command.events_buzz(e, *duration)](#commandevents_buzze-duration)
@@ -3152,6 +3154,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_priority(ids, priority)
+
+> Change la priorité d'affichage des événements référencés par leur IDS (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`priority`|`Fixnum`|Priorité d'affichage  
+
+
+
+
+
+
 ##### Command.event_screen_x(id)
 
 > Renvoie la coordonnées X de l'évènement référencé par son ID par rapport à l'écran
@@ -3174,6 +3191,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_trigger(ids, trigger)
+
+> Change le type de déclenchement des événements référencés par leur IDS (0: touche action, 1: contact du héros, 2: contact de l'event, 3: automatique, 4: processus paralléle).
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`trigger`|`Fixnum`|Type de déclenchement  
 
 
 

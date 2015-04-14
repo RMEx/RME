@@ -19,8 +19,10 @@ Commandes relatives aux évènements
 *    [event_name(id)](#event_nameid)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
+*    [event_priority(ids, priority)](#event_priorityids-priority)
 *    [event_screen_x(id)](#event_screen_xid)
 *    [event_screen_y(id)](#event_screen_yid)
+*    [event_trigger(ids, trigger)](#event_triggerids-trigger)
 *    [event_x(id)](#event_xid)
 *    [event_y(id)](#event_yid)
 *    [events_buzz(e, *duration)](#events_buzze-duration)
@@ -199,6 +201,17 @@ Commandes relatives aux évènements
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
 
+##### event_priority(ids, priority)
+
+> Change la priorité d'affichage des événements référencés par leur IDS (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`priority`|`Fixnum`|Priorité d'affichage  
+
+
 ##### event_screen_x(id)
 
 > Renvoie la coordonnées X de l'évènement référencé par son ID par rapport à l'écran
@@ -217,6 +230,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+##### event_trigger(ids, trigger)
+
+> Change le type de déclenchement des événements référencés par leur IDS (0: touche action, 1: contact du héros, 2: contact de l'event, 3: automatique, 4: processus paralléle).
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|ID des événements  
+`trigger`|`Fixnum`|Type de déclenchement  
 
 
 ##### event_x(id)
