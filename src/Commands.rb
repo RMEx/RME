@@ -1889,9 +1889,8 @@ module RMECommands
     # * Start new Game from the RMVXAce Editor
     #--------------------------------------------------------------------------
     def start_new_game
-      $game_screen.clear_pictures
-      $game_screen.clear_texts
       DataManager.setup_new_game
+      SceneManager.goto(Scene_Map)
       $game_map.autoplay
     end
 
