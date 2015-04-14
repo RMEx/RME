@@ -631,6 +631,14 @@ class String
     a + b
   end
   #--------------------------------------------------------------------------
+  # * Delete between
+  #--------------------------------------------------------------------------
+  def delete_between(a, b)
+    a = slice(0, a) || ""
+    b = slice(b, length) || ""
+    a + b
+  end
+  #--------------------------------------------------------------------------
   # * Split each
   #--------------------------------------------------------------------------
   def split_each(len)
@@ -1617,7 +1625,16 @@ module Gui
 
   module Components
 
+    #==============================================================================
+    # ** Text_Field
+    #------------------------------------------------------------------------------
+    #  IZI Things
+    #==============================================================================
+
     class Text_Field
+      #--------------------------------------------------------------------------
+      # * IZI Public instance variables
+      #--------------------------------------------------------------------------
       [
         :in?,
         :hover?,
@@ -1629,99 +1646,146 @@ module Gui
         :mouse_x,
         :mouse_y
       ].each{|m| delegate :@viewport, m}
+      delegate_accessor :@text, :value
       [:x, :y].each{|m| delegate_accessor :@viewport, m}
 
       include Tools::Activable
-
+      #--------------------------------------------------------------------------
+      # * IZI Object initialize
+      #--------------------------------------------------------------------------
       def initialize(text,x,y,w,font="Standard",active=false,&block)
         @active = active
         @text = Text_Recorder.new(text)
         @x,@y,@w = x,y,w
         @font = get_profile(font).to_font
-        create_sprite
-        text_data
-        create_viewport
-        create_cursor
         @text.start_capture
         @cursor_timer = 0
+        create_sprite
+        create_viewport
+        create_selection_rect
+        create_cursor
         set_activation_callback(&block)
         update_bitmap
+        update_cursor_pos
       end
-
+      #--------------------------------------------------------------------------
+      # * IZI Update
+      #--------------------------------------------------------------------------
       def update
         unless actived?
           @cursor.opacity = 0
           check_callback
         else
+          locate if press?(:mouse_left) || Mouse.dragging? && in?(Mouse.drag.start)
           @text.update
-          if @text.has_transformation?
-            update_bitmap
+          update_bitmap if @text.has_transformation?
+          if @text.cursor_has_moved?
             update_cursor_pos
+            update_selection_rect
             update_viewport
           end
           update_cursor_blink
         end
       end
-
+      #--------------------------------------------------------------------------
+      # * IZI Sprite creation
+      #--------------------------------------------------------------------------
       def create_sprite
         @sprite = Sprite.new
         @sprite.bitmap = Bitmap.new(1,1)
         @sprite.bitmap.font = @font
+        @split_format = 640 / @sprite.bitmap.text_size("W").width
       end
-
-      def text_data
-        @char_rect = @sprite.bitmap.text_size("W")
-      end
-
+      #--------------------------------------------------------------------------
+      # * IZI Viewport creation
+      #--------------------------------------------------------------------------
       def create_viewport
-        @h = @char_rect.height
+        @h = @sprite.bitmap.text_size("W").height
         @viewport = Viewport.new(@x,@y,@w,@h)
         @sprite.viewport = @viewport
       end
-
+      #--------------------------------------------------------------------------
+      # * IZI Cursor creation
+      #--------------------------------------------------------------------------
       def create_cursor
         @cursor = Sprite.new(@viewport)
         @cursor.bitmap = Bitmap.new(1,@h)
         @cursor.bitmap.fill_rect(0,0,1,@h,Color.new(0,0,0))
         @cursor.ox = 1
       end
-
+      def create_selection_rect
+        @selection_rect = Sprite.new(@viewport)
+        @selection_rect.bitmap = Bitmap.new(1,1)
+        @selection_rect.bitmap.fill_rect(0,0,1,1,Color.new(51,153,255))
+        @selection_rect.zoom_x = 0
+        @selection_rect.zoom_y = @h
+        @selection_rect.z = -1
+      end
+      #--------------------------------------------------------------------------
+      # * IZI Bitmap update
+      #--------------------------------------------------------------------------
       def update_bitmap
-        text = @text.value
+        text = value
         text = " " if text.empty?
         rect = @sprite.bitmap.text_size(text)
         @sprite.bitmap.dispose
         @sprite.bitmap = Bitmap.new(rect.width, rect.height)
         @sprite.bitmap.font = @font
         last_x = 0
-        text.split_each(64).each do |a_text|
+        text.split_each(@split_format).each do |a_text|
           rect = @sprite.bitmap.text_size(a_text)
           rect.x = last_x
           @sprite.bitmap.draw_text(rect, a_text)
           last_x += rect.width
         end
       end
-
+      #--------------------------------------------------------------------------
+      # * IZI Cursor blink
+      #--------------------------------------------------------------------------
       def update_cursor_blink
         @cursor_timer = (@cursor_timer + 1/20.0)%2
         @cursor.opacity = @cursor_timer < 1 ? 255 : 0
       end
-
+      #--------------------------------------------------------------------------
+      # * IZI Cursor position update
+      #--------------------------------------------------------------------------
       def update_cursor_pos
         @cursor_timer = 0
-        @text.value
         pos = @text.virtual_position
         if pos == 0
           @cursor.x = 1
         else
-          @cursor.x = @sprite.bitmap.text_size(@text.value[0..pos-1]).width
+          @cursor.x = @sprite.bitmap.text_size(value[0..pos-1]).width
         end
       end
-
+      def update_selection_rect
+        pos = @text.selection_start
+        if pos == 0
+          @selection_rect.x = 1
+        else
+          @selection_rect.x = @sprite.bitmap.text_size(value[0..pos-1]).width
+        end
+        delta = @cursor.x - @selection_rect.x
+        @selection_rect.zoom_x = delta.abs
+        @selection_rect.x += delta if delta < 0
+      end
+      #--------------------------------------------------------------------------
+      # * IZI Viewport update
+      #--------------------------------------------------------------------------
       def update_viewport
         a = @cursor.x - @w
         b = @sprite.bitmap.width - @w
         @viewport.ox = @viewport.ox.bound(a, b).bound(0, @cursor.x-1)
+      end
+      #--------------------------------------------------------------------------
+      # * IZI Cursor location on click
+      #--------------------------------------------------------------------------
+      def locate
+        x = mouse_x + @viewport.ox
+        aproxim = x / (@sprite.bitmap.width / value.length)
+        @text.cursor_jump(aproxim)
+        @viewport.ox -= 10 if mouse_x < 20
+        @viewport.ox += 10 if (@w - mouse_x) < 20
       end
 
     end
@@ -1740,7 +1804,9 @@ module Gui
       attr_accessor :exit_keys
       attr_accessor :stopped
       attr_accessor :transformed
+      attr_accessor :cursor_moved
       attr_accessor :virtual_position
+      attr_accessor :selection_start
       alias_method :stopped?, :stopped
       #--------------------------------------------------------------------------
       # * Object initialize
@@ -1750,7 +1816,7 @@ module Gui
         @stopped = true
         @value = init
         @exit_keys = exit_keys
-        @virtual_position = init.length
+        @virtual_position = @selection_start = init.length
       end
       #--------------------------------------------------------------------------
       # * Has a transformation
@@ -1759,6 +1825,21 @@ module Gui
         result = @transformed
         @transformed = false
         result
+      end
+      #--------------------------------------------------------------------------
+      # * Cursor has moved
+      #--------------------------------------------------------------------------
+      def cursor_has_moved?
+        result = @cursor_moved
+        @cursor_moved = false
+        result
+      end
+      #--------------------------------------------------------------------------
+      # * Cursor jump
+      #--------------------------------------------------------------------------
+      def cursor_jump(v)
+        @virtual_position = v
+        bound_cursor
       end
       #--------------------------------------------------------------------------
       # * Start capture
@@ -1778,7 +1859,9 @@ module Gui
       #--------------------------------------------------------------------------
       def bound_cursor
         @virtual_position = @virtual_position.bound(0, @value.length)
-        @transformed = true
+        @cursor_moved = true
+        c = [nil, ''].include?(Keyboard.current_char)
+        @selection_start = @virtual_position unless (Keyboard.shift && c || Mouse.dragging?)
       end
       #--------------------------------------------------------------------------
       # * go left
@@ -1803,6 +1886,7 @@ module Gui
         update_virtual_cursor
         update_value_modification
         update_value
+        update_clipboard
       end
       #--------------------------------------------------------------------------
       # * Running
@@ -1818,23 +1902,33 @@ module Gui
         unless [nil, ''].include?(c)
           @transformed = true
           @value = @value.insert_at(@virtual_position, c)
+          delete(0)
           go_right
         end
+      end
+      #--------------------------------------------------------------------------
+      # * Delete between
+      #--------------------------------------------------------------------------
+      def delete(dir=-1)
+        range = [@virtual_position, @selection_start].sort
+        if range[0] == range[1]
+          return if @virtual_position == 0
+          range[0] -= 1 if dir == -1
+          range[1] += 1 if dir == 1
+        end
+        @value = @value.delete_between(*range)
+        @virtual_position = @selection_start = range[0]
+        @cursor_moved = @transformed = true
       end
       #--------------------------------------------------------------------------
       # * Update text content (bcps and del)
       #--------------------------------------------------------------------------
       def update_value_modification
-        if Keyboard.krepeat?(0x08) && @virtual_position != 0
-          go_left
-          @value = @value.delete_at(@virtual_position)
-          @transformed = true
-          bound_cursor
+        if Keyboard.krepeat?(0x08)
+          delete
         end
         if Keyboard.krepeat?(0x2E)
-          @value = @value.delete_at(@virtual_position)
-          @transformed = true
-          bound_cursor
+          delete(1)
         end
       end
       #--------------------------------------------------------------------------
@@ -1843,6 +1937,27 @@ module Gui
       def update_virtual_cursor
         go_left if Keyboard.krepeat?(0x25)
         go_right if Keyboard.krepeat?(0x27)
+      end
+      #--------------------------------------------------------------------------
+      # * Update clipboard
+      #--------------------------------------------------------------------------
+      def update_clipboard
+        if Keyboard.ctrl?(:c)
+          c = value[Range.new(*[@selection_start, @virtual_position].sort,true)]
+          Clipboard.push_text(c) unless c.empty?
+        end
+        if Keyboard.ctrl?(:x)
+          c = value[Range.new(*[@selection_start, @virtual_position].sort,true)]
+          Clipboard.push_text(c) unless c.empty?
+          delete(0)
+        end
+        if Keyboard.ctrl?(:v)
+          delete(0)
+          c = Clipboard.get_text
+          @value = @value.insert_at(@virtual_position, c)
+          @virtual_position += c.length
+          bound_cursor
+        end
       end
     end
 

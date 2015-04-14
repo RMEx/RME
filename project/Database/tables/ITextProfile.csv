@@ -1,3 +1,4 @@
 name;size;font;color_name;italic;bold;outline;outline_color_name;shadow
 default;24;VL Gothic;white;false;false;true;black;false
 standard;24;VL Gothic;black;false;false;false;black;false
+impact;60;Impact;pink;false;true;false;black;false
