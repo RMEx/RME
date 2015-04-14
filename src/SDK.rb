@@ -631,6 +631,12 @@ class String
     a + b
   end
   #--------------------------------------------------------------------------
+  # * Split each
+  #--------------------------------------------------------------------------
+  def split_each(len)
+    self.scan(Regexp.new(".{1,#{len}}"))
+  end
+  #--------------------------------------------------------------------------
   # * Format a string
   #--------------------------------------------------------------------------
   def stretch(len_line)
@@ -1566,6 +1572,12 @@ module Gui
 
   module Tools
 
+    class << self
+      def random_color
+        Color.new(rand(255), rand(255), rand(255))
+      end
+    end
+
     module Activable
       def actived?
         @active
@@ -1680,8 +1692,15 @@ module Gui
         rect = @sprite.bitmap.text_size(text)
         @sprite.bitmap.dispose
         @sprite.bitmap = Bitmap.new(rect.width, rect.height)
+        @sprite.bitmap.fill_rect(rect, Tools.random_color)
         @sprite.bitmap.font = @font
-        @sprite.bitmap.draw_text(rect, text)
+        last_x = 0
+        text.split_each(64).each do |a_text|
+          rect = @sprite.bitmap.text_size(a_text)
+          rect.x = last_x
+          @sprite.bitmap.draw_text(rect, a_text)
+          last_x += rect.width
+        end
       end
 
       def update_cursor_blink
