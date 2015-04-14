@@ -1692,7 +1692,6 @@ module Gui
         rect = @sprite.bitmap.text_size(text)
         @sprite.bitmap.dispose
         @sprite.bitmap = Bitmap.new(rect.width, rect.height)
-        @sprite.bitmap.fill_rect(rect, Tools.random_color)
         @sprite.bitmap.font = @font
         last_x = 0
         text.split_each(64).each do |a_text|
@@ -1720,7 +1719,9 @@ module Gui
       end
 
       def update_viewport
-        @viewport.ox = (@sprite.bitmap.width - @w).bound(0, @cursor.x-1)
+        a = @cursor.x - @w
+        b = @sprite.bitmap.width - @w
+        @viewport.ox = @viewport.ox.bound(a, b).bound(0, @cursor.x-1)
       end
 
     end

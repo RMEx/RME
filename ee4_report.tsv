@@ -190,8 +190,10 @@ event_move_speed_frequency(ids,v,f)	-
 event_name(id)	-
 event_pixel_x(id)	event_pixel_x(id)
 event_pixel_y(id)	event_pixel_y(id)
+event_priority(ids,priority)	-
 event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
+event_trigger(ids,trigger)	-
 event_x(id)	event_x(id)
 event_y(id)	event_y(id)
 events_buzz(e,*duration)	-
