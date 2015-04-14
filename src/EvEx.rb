@@ -869,6 +869,7 @@ class Game_Text
   attr_accessor :target_zoom_x, :target_zoom_y
   attr_accessor :target_opacity
   attr_accessor :duration
+  attr_accessor :opacity_duration
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
@@ -941,6 +942,7 @@ class Game_Text
     @target_opacity = opacity.to_f unless opacity == -1
     @blend_type = blend_type unless blend_type == -1
     @duration = duration
+    @opacity_duration = duration
   end
   #--------------------------------------------------------------------------
   # * Change rotate
@@ -961,6 +963,7 @@ class Game_Text
   #--------------------------------------------------------------------------
   def update
     update_move
+    update_opacity
     update_rotate
   end
   #--------------------------------------------------------------------------
@@ -973,8 +976,15 @@ class Game_Text
     @y = (@y * (d - 1) + @target_y) / d
     @zoom_x  = (@zoom_x  * (d - 1) + @target_zoom_x)  / d
     @zoom_y  = (@zoom_y  * (d - 1) + @target_zoom_y)  / d
-    @opacity = (@opacity * (d - 1) + @target_opacity) / d
     @duration -= 1
+  end
+  #--------------------------------------------------------------------------
+  # * Update opacity
+  #--------------------------------------------------------------------------
+  def update_opacity
+    return if @opacity_duration == 0
+    @opacity = (@opacity * (@opacity_duration - 1) + @target_opacity) / d
+    @opacity_duration -= 1
   end
   #--------------------------------------------------------------------------
   # * Update rotate

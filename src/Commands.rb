@@ -1692,7 +1692,7 @@ module RMECommands
     def text_opacity(id, value, duration = nil, wf = false)
       if duration.is_a?(Fixnum)
         Game_Screen.get.texts[id].target_opacity = value
-        Game_Screen.get.texts[id].duration = duration
+        Game_Screen.get.texts[id].opacity_duration = duration
         wait(duration) if wf
       else
         Game_Screen.get.texts[id].opacity = value
