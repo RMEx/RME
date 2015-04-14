@@ -2,7 +2,7 @@
 #==============================================================================
 # ** RME V1.0.0 Internal
 #------------------------------------------------------------------------------
-#  With : 
+#  With :
 # Nuki
 #------------------------------------------------------------------------------
 # Internals DataStructures
@@ -60,29 +60,29 @@ ITone.insert("darkblue", -34, 0, 68, 0)
 
 class ITextProfile < Static::Table
   pk string :name
-  integer :size 
-  string :font 
-  string :color_name 
-  boolean :italic 
-  boolean :bold 
-  boolean :outline 
-  string :outline_color_name 
+  integer :size
+  string :font
+  string :color_name
+  boolean :italic
+  boolean :bold
+  boolean :outline
+  string :outline_color_name
   boolean :shadow
 
   #--------------------------------------------------------------------------
   # * Convert to font
   #--------------------------------------------------------------------------
-  def to_font 
+  def to_font
     f = Font.new
     f.name = font
-    f.size = size 
+    f.size = size
     f.color = get_color(color_name)
-    f.italic = italic 
+    f.italic = italic
     f.bold = bold
-    f.outline = outline 
+    f.outline = outline
     f.out_color = get_color(outline_color_name)
     f.shadow = shadow
-    f 
+    f
   end
 
 end
@@ -91,15 +91,27 @@ end
 # * Std TextProfiles
 #--------------------------------------------------------------------------
 ITextProfile.insert(
-  "default", 
-  Font.default_size, 
-  Font.default_name, 
-  "white", 
-  Font.default_italic, 
-  Font.default_bold, 
-  Font.default_outline, 
-  "black", 
+  "default",
+  Font.default_size,
+  Font.default_name,
+  "white",
+  Font.default_italic,
+  Font.default_bold,
+  Font.default_outline,
+  "black",
   Font.default_shadow
+  )
+
+ITextProfile.insert(
+  "standard",
+  Font.default_size,
+  Font.default_name,
+  "black",
+  Font.default_italic,
+  Font.default_bold,
+  false,
+  "black",
+  false
   )
 
 #==============================================================================
@@ -148,7 +160,7 @@ ISkipTitle.insert("SkipTitle", false, 0, 0, 0)
 #==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
-#  Object class methods are defined in this module. 
+#  Object class methods are defined in this module.
 #  This ensures compatibility with top-level method redefinition.
 #==============================================================================
 
@@ -166,7 +178,7 @@ module Kernel
   #--------------------------------------------------------------------------
   def get_profile(name)
     c = ITextProfile[name]
-    return ITextProfile["default"] unless c 
+    return ITextProfile["default"] unless c
     c
   end
   #--------------------------------------------------------------------------
@@ -174,7 +186,7 @@ module Kernel
   #--------------------------------------------------------------------------
   def get_fieldProfile(name)
     c = ITextFieldProfile[name]
-    return ITextFieldProfile["default"] unless c 
+    return ITextFieldProfile["default"] unless c
     c
   end
 
