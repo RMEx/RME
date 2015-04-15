@@ -41,7 +41,8 @@ class Graphical_eval
   def create_textfield
     @textfield = Gui::Components::Text_Field.new(
                   "Test", 8, 7, @width - 164,
-                  "small_standard", true, @viewport)
+                  "small_standard", true)
+    @textfield >> @viewport
   end
 
   def create_background

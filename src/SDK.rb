@@ -1644,7 +1644,9 @@ module Gui
         :repeat?,
         :release?,
         :mouse_x,
-        :mouse_y
+        :mouse_y,
+        :>>,
+        :<<
       ].each{|m| delegate :@viewport, m}
       delegate_accessor :@text, :value
       [:x, :y].each{|m| delegate_accessor :@viewport, m}
@@ -1653,7 +1655,7 @@ module Gui
       #--------------------------------------------------------------------------
       # * IZI Object initialize
       #--------------------------------------------------------------------------
-      def initialize(text,x,y,w,font="Standard",active=false, pvp= nil, &block)
+      def initialize(text,x,y,w,font="Standard",active=false, &block)
         @active = active
         @text = Text_Recorder.new(text)
         @x,@y,@w = x,y,w
@@ -1661,7 +1663,7 @@ module Gui
         @text.start_capture
         @cursor_timer = 0
         create_sprite
-        create_viewport(pvp)
+        create_viewport
         create_selection_rect
         create_cursor
         set_activation_callback(&block)
@@ -1699,11 +1701,10 @@ module Gui
       #--------------------------------------------------------------------------
       # * IZI Viewport creation
       #--------------------------------------------------------------------------
-      def create_viewport(pvp)
+      def create_viewport
         @h = @sprite.bitmap.text_size("W").height
         @viewport = Viewport.new(@x,@y,@w,@h)
         @sprite.viewport = @viewport
-        pvp << @viewport if pvp
       end
       #--------------------------------------------------------------------------
       # * IZI Cursor creation
@@ -1786,19 +1787,18 @@ module Gui
         approx = x * value.length / @sprite.bitmap.width
         match = approach(approx, x)
         @text.cursor_jump(match)
-        @viewport.ox -= 10 if mouse_x < 20
-        @viewport.ox += 10 if (@w - mouse_x) < 20
+        @viewport.ox -= 10 if mouse_x < 0
+        @viewport.ox += 10 if (@w - mouse_x) < 0
       end
       #--------------------------------------------------------------------------
       # * IZI Approach
       #--------------------------------------------------------------------------
       def approach(a, x, memoa=a, memob=0)
-        return a
-        return value.length if a > value.length
+        return bound = a.bound(0,value.length) if bound != a
         b = @sprite.bitmap.text_size(value[0...a]).width
         return a if (b-x) == 0 || (b-x)==(x-memob)
         return memoa if (b-x).abs > (memob-x).abs
-        return approach(a + (0 <=> (b-x)), x, a, b)
+        approach(a + (0 <=> (b-x)), x, a, b)
       end
 
     end
