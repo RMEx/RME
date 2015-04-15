@@ -1755,7 +1755,7 @@ module Gui
         if pos == 0
           @cursor.x = 1
         else
-          @cursor.x = @sprite.bitmap.text_size(value[0..pos-1]).width
+          @cursor.x = @sprite.bitmap.text_size(value[0...pos]).width
         end
       end
       def update_selection_rect
@@ -1763,7 +1763,7 @@ module Gui
         if pos == 0
           @selection_rect.x = 1
         else
-          @selection_rect.x = @sprite.bitmap.text_size(value[0..pos-1]).width
+          @selection_rect.x = @sprite.bitmap.text_size(value[0...pos]).width
         end
         delta = @cursor.x - @selection_rect.x
         @selection_rect.zoom_x = delta.abs
@@ -1791,12 +1791,12 @@ module Gui
       #--------------------------------------------------------------------------
       # * IZI Approach
       #--------------------------------------------------------------------------
-      def approach(a,x,memoa=a,memob=0)
+      def approach(a, x, memoa=a, memob=0)
         return value.length if a > value.length
-        b = @sprite.bitmap.text_size(value[0..a-1]).width
+        b = @sprite.bitmap.text_size(value[0...a]).width
         return a if (b-x) == 0 || (b-x)==(x-memob)
         return memoa if (b-x).abs > (memob-x).abs
-        (b-x) < 0 ? approach(a+1,x,a,b) : approach(a-1,x,a,b)
+        approach(a + (0 <=> (b-x)), x, a, b)
       end
 
     end
@@ -1911,9 +1911,9 @@ module Gui
       def update_value
         c = Keyboard.current_char
         unless [nil, ''].include?(c)
-          @transformed = true
-          @value = @value.insert_at(@virtual_position, c)
           delete(0)
+          @value = @value.insert_at(@virtual_position, c)
+          @transformed = true
           go_right
         end
       end
