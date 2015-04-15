@@ -58,6 +58,16 @@ class Graphical_eval
 
   def update
     @textfield.update
+    execute_command if Devices::Keys::Enter.trigger?
+  end
+
+  def execute_command
+    begin
+      eval(@textfield.value, $game_map.interpreter.get_binding)
+      $game_map.need_refresh = true
+    rescue Exception => exc
+      msgbox("This line is invalid")
+    end
   end
 
 end

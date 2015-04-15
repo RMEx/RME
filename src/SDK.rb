@@ -1677,7 +1677,7 @@ module Gui
           check_callback
         else
           locate if press?(:mouse_left) || Mouse.dragging? && in?(Mouse.drag.start)
-          @text.update
+          @text.update unless Devices::Keys::Enter.press? || Devices::Keys::Tab.press?
           update_bitmap if @text.has_transformation?
           if @text.cursor_has_moved?
             update_cursor_pos
@@ -1793,11 +1793,12 @@ module Gui
       # * IZI Approach
       #--------------------------------------------------------------------------
       def approach(a, x, memoa=a, memob=0)
+        return a
         return value.length if a > value.length
         b = @sprite.bitmap.text_size(value[0...a]).width
         return a if (b-x) == 0 || (b-x)==(x-memob)
         return memoa if (b-x).abs > (memob-x).abs
-        approach(a + (0 <=> (b-x)), x, a, b)
+        return approach(a + (0 <=> (b-x)), x, a, b)
       end
 
     end
