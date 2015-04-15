@@ -1794,7 +1794,8 @@ module Gui
       # * IZI Approach
       #--------------------------------------------------------------------------
       def approach(a, x, memoa=a, memob=0)
-        return bound = a.bound(0,value.length) if bound != a
+        bound = a.bound(0,value.length)
+        return bound if bound != a
         b = @sprite.bitmap.text_size(value[0...a]).width
         return a if (b-x) == 0 || (b-x)==(x-memob)
         return memoa if (b-x).abs > (memob-x).abs
