@@ -114,6 +114,18 @@ ITextProfile.insert(
   false
   )
 
+  ITextProfile.insert(
+    "small_standard",
+    18,
+    Font.default_name,
+    "black",
+    Font.default_italic,
+    Font.default_bold,
+    false,
+    "black",
+    false
+    )
+
 #==============================================================================
 # ** ITextFieldProfile
 #------------------------------------------------------------------------------

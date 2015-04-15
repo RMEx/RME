@@ -1653,7 +1653,7 @@ module Gui
       #--------------------------------------------------------------------------
       # * IZI Object initialize
       #--------------------------------------------------------------------------
-      def initialize(text,x,y,w,font="Standard",active=false,&block)
+      def initialize(text,x,y,w,font="Standard",active=false, pvp= nil, &block)
         @active = active
         @text = Text_Recorder.new(text)
         @x,@y,@w = x,y,w
@@ -1661,7 +1661,7 @@ module Gui
         @text.start_capture
         @cursor_timer = 0
         create_sprite
-        create_viewport
+        create_viewport(pvp)
         create_selection_rect
         create_cursor
         set_activation_callback(&block)
@@ -1699,10 +1699,11 @@ module Gui
       #--------------------------------------------------------------------------
       # * IZI Viewport creation
       #--------------------------------------------------------------------------
-      def create_viewport
+      def create_viewport(pvp)
         @h = @sprite.bitmap.text_size("W").height
         @viewport = Viewport.new(@x,@y,@w,@h)
         @sprite.viewport = @viewport
+        pvp << @viewport if pvp
       end
       #--------------------------------------------------------------------------
       # * IZI Cursor creation
