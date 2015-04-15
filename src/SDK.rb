@@ -1782,10 +1782,21 @@ module Gui
       #--------------------------------------------------------------------------
       def locate
         x = mouse_x + @viewport.ox
-        aproxim = x / (@sprite.bitmap.width / value.length)
-        @text.cursor_jump(aproxim)
+        approx = x * value.length / @sprite.bitmap.width
+        match = approach(approx, x)
+        @text.cursor_jump(match)
         @viewport.ox -= 10 if mouse_x < 20
         @viewport.ox += 10 if (@w - mouse_x) < 20
+      end
+      #--------------------------------------------------------------------------
+      # * IZI Approach
+      #--------------------------------------------------------------------------
+      def approach(a,x,memoa=a,memob=0)
+        return value.length if a > value.length
+        b = @sprite.bitmap.text_size(value[0..a-1]).width
+        return a if (b-x) == 0 || (b-x)==(x-memob)
+        return memoa if (b-x).abs > (memob-x).abs
+        (b-x) < 0 ? approach(a+1,x,a,b) : approach(a-1,x,a,b)
       end
 
     end
@@ -1956,6 +1967,7 @@ module Gui
           c = Clipboard.get_text
           @value = @value.insert_at(@virtual_position, c)
           @virtual_position += c.length
+          @transformed = true
           bound_cursor
         end
       end
