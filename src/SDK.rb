@@ -616,6 +616,15 @@ class String
     return matrix.last.last
   end
   #--------------------------------------------------------------------------
+  # * Autocomplete
+  #--------------------------------------------------------------------------
+  def auto_complete(words)
+    words.sort_by do |wordA|
+      placeholder = wordA[0..length]
+      self.damerau_levenshtein(placeholder)
+    end
+  end
+  #--------------------------------------------------------------------------
   # * Delete at
   #--------------------------------------------------------------------------
   def insert_at(pos, char)
@@ -1650,7 +1659,8 @@ module Gui
         :<<
       ].each{|m| delegate :@viewport, m}
       delegate_accessor :@text, :value
-      delegate_accessor :@text, :formatted_value
+      delegate :@text, :formatted_value
+      delegate :@text, :has_transformation?
       [:x, :y].each{|m| delegate_accessor :@viewport, m}
 
       include Tools::Activable
@@ -1812,11 +1822,10 @@ module Gui
     #  Record text state
     #==============================================================================
 
-    class Text_Recorder
+    class Abstract_Recorder
       #--------------------------------------------------------------------------
       # * Public instance variables
       #--------------------------------------------------------------------------
-      attr_accessor :value
       attr_accessor :exit_keys
       attr_accessor :stopped
       attr_accessor :transformed
@@ -1824,18 +1833,10 @@ module Gui
       attr_accessor :virtual_position
       attr_accessor :selection_start
       alias_method :stopped?, :stopped
-      alias_method :formatted_value, :value
-      #--------------------------------------------------------------------------
-      # * Object initialize
-      #--------------------------------------------------------------------------
-      def initialize(init = "", limit = nil , exit_keys = [])
-        @transformed = true
-        @stopped = true
-        @exit_keys = exit_keys
-        @limit = limit
-        @value = init[0...@limit] if @limit
-        @virtual_position = @selection_start = init.length
-      end
+      def value=(v); @value = v; end
+      def value; @value; end
+      def formatted_value; @value; end
+
       #--------------------------------------------------------------------------
       # * Has a transformation
       #--------------------------------------------------------------------------
@@ -1982,12 +1983,33 @@ module Gui
     end
 
     #==============================================================================
+    # ** TextRecorder
+    #------------------------------------------------------------------------------
+    #  Record text state
+    #==============================================================================
+
+    class Text_Recorder < Abstract_Recorder
+      #--------------------------------------------------------------------------
+      # * Object initialize
+      #--------------------------------------------------------------------------
+      def initialize(init = "", limit = nil , exit_keys = [])
+        @transformed = true
+        @stopped = true
+        @exit_keys = exit_keys
+        @limit = limit
+        @value = init
+        @value = init[0...@limit] if @limit
+        @virtual_position = @selection_start = init.length
+      end
+    end
+
+    #==============================================================================
     # ** Int_Recorder
     #------------------------------------------------------------------------------
     #  Record int state
     #==============================================================================
 
-    class Int_Recorder < Text_Recorder
+    class Int_Recorder < Abstract_Recorder
       #--------------------------------------------------------------------------
       # * Object initialize
       #--------------------------------------------------------------------------
@@ -2038,7 +2060,7 @@ module Gui
     #  Record int state
     #==============================================================================
 
-    class Float_Recorder < Text_Recorder
+    class Float_Recorder < Abstract_Recorder
       #--------------------------------------------------------------------------
       # * Object initialize
       #--------------------------------------------------------------------------

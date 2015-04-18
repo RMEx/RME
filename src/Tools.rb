@@ -29,6 +29,7 @@ class Graphical_eval
     @height = 32
     @x = 6
     @y = Graphics.height - @height - 6
+    @list = RME::Doc.commands.keys.map{|k|k.to_s}
     create_viewport
     create_background
     create_textfield
@@ -40,7 +41,7 @@ class Graphical_eval
 
   def create_textfield
     @textfield = Gui::Components::Text_Field.new(
-                  Gui::Components::Float_Recorder.new(100, (-8.0 ... 1000)), 8, 7, @width - 164,
+                  Gui::Components::Text_Recorder.new("lol"), 8, 7, @width - 164,
                   "small_standard", true)
     @textfield >> @viewport
   end
@@ -58,8 +59,8 @@ class Graphical_eval
   end
 
   def update
-    @textfield.update
     execute_command if Devices::Keys::Enter.trigger?
+    @textfield.update
   end
 
   def execute_command
