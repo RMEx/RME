@@ -481,6 +481,11 @@ scene_call(scene)	-
 scene_clear_history	-
 scene_goto(scene)	-
 scene_return	-
+screen_fadein(duration)	-
+screen_fadeout(duration)	-
+screen_flash(color,duration,*wait_flag)	-
+screen_shake(power,speed,duration,*wait_flag)	-
+screen_tone(tone,duration,*wait_flag)	-
 scroll_lock?	scroll_lock?
 se_play(name,*volume,*pitch)	-
 se_stop	-

@@ -23,6 +23,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Commandes de manipulation des images](command_picture.md)
 *    [Commande de manipulation des sauvegardes](command_save.md)
 *    [Commande de navigation dans les scenes](command_scene.md)
+*    [Commandes de manipulation de l'écran](command_screen.md)
 *    [Commandes des techniques](command_skills.md)
 *    [Commandes de communication client-serveur](command_socket.md)
 *    [Commandes de manipulation des sons](command_sound.md)

@@ -34,7 +34,7 @@ module RMECommands
   end
 
   def fadein(time = 100)
-    Graphics.fadein(time * Graphics.frame_rate / 1000) 
+    Graphics.fadein(time * Graphics.frame_rate / 1000)
   end
 
   def max(a, b); [a, b].max; end
@@ -2221,42 +2221,79 @@ module RMECommands
     append_commands
   end
 
-end
 
-#==============================================================================
-# ** Camera
-#------------------------------------------------------------------------------
-#  Command for Camera manipulation
-#==============================================================================
-module Camera
+  #==============================================================================
+  # ** Camera
+  #------------------------------------------------------------------------------
+  #  Command for Camera manipulation
+  #==============================================================================
+  module Camera
 
-  CENTER_X = (Graphics.width / 32 - 1) / 2.0
-  CENTER_Y = (Graphics.height / 32 - 1) / 2.0
+    CENTER_X = (Graphics.width / 32 - 1) / 2.0
+    CENTER_Y = (Graphics.height / 32 - 1) / 2.0
 
-  def camera_scroll(direction, distance, speed)
-    Fiber.yield while $game_map.scrolling?
-    $game_map.start_scroll(direction, distance, speed)
+    def camera_scroll(direction, distance, speed)
+      Fiber.yield while $game_map.scrolling?
+      $game_map.start_scroll(direction, distance, speed)
+    end
+
+    def camera_move_on(x, y)
+      $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
+    end
+
+    def camera_scroll_on(x, y, speed)
+      Fiber.yield while $game_map.scrolling?
+      camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
+      Fiber.yield while $game_map.scrolling?
+      camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
+    end
+
+    def camera_lock; $game_map.target_camera = nil; end
+    def camera_unlock; $game_map.target_camera = $game_player; end
+
+    def camera_change_focus(event_id)
+      e = event(event_id)
+      camera_focus_on(e.x, e.y)
+      $game_map.target_camera = e
+    end
+
+    append_commands
   end
 
-  def camera_move_on(x, y)
-    $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
+  #==============================================================================
+  # ** Screen
+  #------------------------------------------------------------------------------
+  #  Change screen data
+  #==============================================================================
+  module Screen
+
+    def screen_fadeout(duration)
+      Fiber.yield while $game_message.visible
+      screen.start_fadeout(duration)
+      wait(duration)
+    end
+
+    def screen_fadein(duration)
+      Fiber.yield while $game_message.visible
+      screen.start_fadein(duration)
+      wait(duration)
+    end
+
+    def screen_tone(tone, duration, wait_flag = false)
+      $game_map.screen.start_tone_change(tone, duration)
+      wait(duration) if wait_flag
+    end
+
+    def screen_flash(color, duration, wait_flag = false)
+      screen.start_flash(color, duration)
+      wait(duration) if wait_flag
+    end
+
+    def screen_shake(power, speed, duration, wait_flag = false)
+      $game_map.screen.start_shake(power, speed, duration)
+      wait(duration) if wait_flag
+    end
+
+    append_commands
   end
-
-  def camera_scroll_on(x, y, speed)
-    Fiber.yield while $game_map.scrolling?
-    camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
-    Fiber.yield while $game_map.scrolling?
-    camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
-  end
-
-  def camera_lock; $game_map.target_camera = nil; end
-  def camera_unlock; $game_map.target_camera = $game_player; end
-
-  def camera_change_focus(event_id)
-    e = event(event_id)
-    camera_focus_on(e.x, e.y)
-    $game_map.target_camera = e
-  end
-
-  append_commands
 end
