@@ -1328,6 +1328,24 @@ module RMECommands
       end
     end
 
+    def event_transparent?(id)
+      event(id).transparent
+    end
+
+    def player_transparent?(id)
+      event_transparent(0)
+    end
+
+    def event_transparent(id)
+      event(id).transparent = true
+    end
+    def player_transparent; event_transparent(0); end
+
+    def event_opaque(id)
+      event(id).transparent = false
+    end
+    def player_opaque; event_opaque(0); end
+
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
