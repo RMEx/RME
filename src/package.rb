@@ -1,7 +1,7 @@
 # Package description
 Package.new(
 	name: 'RME',
-	version: vsn(1, 0, 0),
+	version: vsn(0, 0, 5),
 	authors: {
     'Nuki' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
@@ -18,6 +18,7 @@ Package.new(
     'Commands.rb',
     'Incubator.rb',
     'EE4Cmds.rb',
+		'Tools.rb'
     'DocGenerator.rb',
     'Doc.rb'
   ],
