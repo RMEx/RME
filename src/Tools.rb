@@ -40,7 +40,7 @@ class Graphical_eval
 
   def create_textfield
     @textfield = Gui::Components::Text_Field.new(
-                  "Test", 8, 7, @width - 164,
+                  Gui::Components::Float_Recorder.new(100, (-8.0 ... 1000)), 8, 7, @width - 164,
                   "small_standard", true)
     @textfield >> @viewport
   end
@@ -63,12 +63,7 @@ class Graphical_eval
   end
 
   def execute_command
-    begin
-      eval(@textfield.value, $game_map.interpreter.get_binding)
-      $game_map.need_refresh = true
-    rescue Exception => exc
-      msgbox("This line is invalid")
-    end
+    p @textfield.formatted_value
   end
 
 end

@@ -429,6 +429,7 @@ class Module
   extend RME::Doc
 end
 
+
 #==============================================================================
 # ** Fixnum
 #------------------------------------------------------------------------------
@@ -1649,15 +1650,16 @@ module Gui
         :<<
       ].each{|m| delegate :@viewport, m}
       delegate_accessor :@text, :value
+      delegate_accessor :@text, :formatted_value
       [:x, :y].each{|m| delegate_accessor :@viewport, m}
 
       include Tools::Activable
       #--------------------------------------------------------------------------
       # * IZI Object initialize
       #--------------------------------------------------------------------------
-      def initialize(text,x,y,w,font="Standard",active=false, &block)
+      def initialize(textrecorder,x,y,w,font="Standard",active=false,&block)
         @active = active
-        @text = Text_Recorder.new(text)
+        @text = textrecorder
         @x,@y,@w = x,y,w
         @font = get_profile(font).to_font
         @text.start_capture
@@ -1822,14 +1824,16 @@ module Gui
       attr_accessor :virtual_position
       attr_accessor :selection_start
       alias_method :stopped?, :stopped
+      alias_method :formatted_value, :value
       #--------------------------------------------------------------------------
       # * Object initialize
       #--------------------------------------------------------------------------
-      def initialize(init = "", exit_keys = [])
+      def initialize(init = "", limit = nil , exit_keys = [])
         @transformed = true
         @stopped = true
-        @value = init
         @exit_keys = exit_keys
+        @limit = limit
+        @value = init[0...@limit] if @limit
         @virtual_position = @selection_start = init.length
       end
       #--------------------------------------------------------------------------
@@ -1912,6 +1916,7 @@ module Gui
       # * Update text content
       #--------------------------------------------------------------------------
       def update_value
+        return if @limit && @value.length >= @limit
         c = Keyboard.current_char
         unless [nil, ''].include?(c)
           delete(0)
@@ -1972,6 +1977,113 @@ module Gui
           @virtual_position += c.length
           @transformed = true
           bound_cursor
+        end
+      end
+    end
+
+    #==============================================================================
+    # ** Int_Recorder
+    #------------------------------------------------------------------------------
+    #  Record int state
+    #==============================================================================
+
+    class Int_Recorder < Text_Recorder
+      #--------------------------------------------------------------------------
+      # * Object initialize
+      #--------------------------------------------------------------------------
+      def initialize(init = 0, limit = nil , exit_keys = [])
+        @transformed = true
+        @stopped = true
+        @exit_keys = exit_keys
+        @limit = limit
+        @value = init
+        @value = init.bound(@limit.min, @limit.max) if @limit
+        @value = @value.to_s
+        @virtual_position = @selection_start = @value.length
+      end
+      #--------------------------------------------------------------------------
+      # * Value accessor
+      #--------------------------------------------------------------------------
+      def formatted_value;
+        self.value=@value
+        @value.to_i
+      end
+      def value; @value; end
+      def value=(v)
+        return @value = v if v == '+' || v == '-'
+        @value = v.to_i
+        @value = @value.bound(@limit.min, @limit.max) if @limit
+        @value = @value.to_s
+        @virtual_position = @selection_start = @value.length
+      end
+      #--------------------------------------------------------------------------
+      # * Update text content
+      #--------------------------------------------------------------------------
+      def update_value
+        c = Keyboard.current_char
+        unless [nil, ''].include?(c)
+          delete(0)
+          return unless (["+","-"] + ("0".."9").to_a).include?(c)
+          return if @value != "" && ["+","-"].include?(c)
+          self.value = @value.insert_at(@virtual_position, c)
+          @transformed = true
+          go_right
+        end
+      end
+    end
+
+    #==============================================================================
+    # ** Int_Recorder
+    #------------------------------------------------------------------------------
+    #  Record int state
+    #==============================================================================
+
+    class Float_Recorder < Text_Recorder
+      #--------------------------------------------------------------------------
+      # * Object initialize
+      #--------------------------------------------------------------------------
+      def initialize(init = 0.0, limit = nil , exit_keys = [])
+        @transformed = true
+        @stopped = true
+        @exit_keys = exit_keys
+        @limit = limit
+        @value = init
+        @value = [[@limit.min,init].max, @limit.max].min  if @limit
+        @value = @value.to_s
+        @virtual_position = @selection_start = @value.length
+      end
+      #--------------------------------------------------------------------------
+      # * Value accessor
+      #--------------------------------------------------------------------------
+      def formatted_value;
+        self.value=@value
+        @value.to_f
+      end
+      def value; @value; end
+      def value=(v)
+        return @value = v if v == '+' || v == '-' || v == '.'
+        @value = v.to_s
+        if @limit
+          result = @value.to_f
+          unless @limit.member?(result)
+            @value = [[@limit.min,result].max, @limit.max].min.to_s
+          end
+        end
+        @virtual_position = @selection_start = @value.to_s.length
+      end
+      #--------------------------------------------------------------------------
+      # * Update text content
+      #--------------------------------------------------------------------------
+      def update_value
+        c = Keyboard.current_char
+        unless [nil, ''].include?(c)
+          delete(0)
+          return unless (["+","-",'.'] + ("0".."9").to_a).include?(c)
+          return if @value != "" && ["+","-"].include?(c)
+          return if c == "." && @value.count(".") == 1
+          self.value = @value.insert_at(@virtual_position, c)
+          @transformed = true
+          go_right
         end
       end
     end
