@@ -125,6 +125,12 @@ bind(e,k,*n)	-
 buzz(e,*duration)	buzz(id)
 call_load_screen	-
 call_title_screen	-
+camera_change_focus(event_id)	-
+camera_lock	-
+camera_move_on(x,y)	-
+camera_scroll(direction,distance,speed)	-
+camera_scroll_on(x,y,speed)	-
+camera_unlock	-
 caps_lock?	caps_lock?
 click_time(k)	-
 clipboard_get_text	-

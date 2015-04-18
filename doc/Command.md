@@ -128,6 +128,12 @@ Collection des commandes EventExtender
 *    [Command.bgs_volume(volume)](#commandbgs_volumevolume)
 *    [Command.call_load_screen](#commandcall_load_screen)
 *    [Command.call_title_screen](#commandcall_title_screen)
+*    [Command.camera_change_focus(event_id)](#commandcamera_change_focusevent_id)
+*    [Command.camera_lock](#commandcamera_lock)
+*    [Command.camera_move_on(x, y)](#commandcamera_move_onx-y)
+*    [Command.camera_scroll(direction, distance, speed)](#commandcamera_scrolldirection-distance-speed)
+*    [Command.camera_scroll_on(x, y, speed)](#commandcamera_scroll_onx-y-speed)
+*    [Command.camera_unlock](#commandcamera_unlock)
 *    [Command.caps_lock?](#commandcaps_lock)
 *    [Command.click_time(key)](#commandclick_timekey)
 *    [Command.clipboard_get_text](#commandclipboard_get_text)
@@ -2289,6 +2295,89 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.call_title_screen
 
 > Renvoi à l'écran titre
+
+  
+> 
+
+
+
+
+
+##### Command.camera_change_focus(event_id)
+
+> Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre évènement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`event_id`|`Fixnum`|ID de l'évènement à suivre par la caméra  
+
+
+
+
+
+
+##### Command.camera_lock
+
+> Verrouille la position de la caméra
+
+  
+> 
+
+
+
+
+
+##### Command.camera_move_on(x, y)
+
+> Place la caméra sur un point de la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+
+
+##### Command.camera_scroll(direction, distance, speed)
+
+> Fait défiler la carte dans une direction sur une distance (en case) à une certaine vitesse
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`direction`|`Fixnum`|Direction (2=bas, 4=gauche, 6=droite, 8=haut)  
+`distance`|`Fixnum`|Nombre de case à défiler  
+`speed`|`Fixnum`|Vitesse du défilement  
+
+
+
+
+
+
+##### Command.camera_scroll_on(x, y, speed)
+
+> Fait défiler la carte vers un point donné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`speed`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+##### Command.camera_unlock
+
+> Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
 
   
 > 

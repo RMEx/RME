@@ -1053,8 +1053,8 @@ class Game_CharacterBase
   attr_accessor :buzz
   attr_accessor :buzz_amplitude
   attr_accessor :buzz_length
-  attr_accessor   :move_speed
-  attr_accessor   :move_frequency
+  attr_accessor  :move_speed
+  attr_accessor  :move_frequency
   attr_accessor :priority_type
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
@@ -1090,7 +1090,10 @@ class Game_CharacterBase
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
+    last_real_x = @real_x
+    last_real_y = @real_y
     rm_extender_update
+    update_scroll(last_real_x, last_real_y)
     update_eHandler
     Game_CharacterBase.last_hovered = @id if hover?
     Game_CharacterBase.last_clicked = @id if click?
@@ -1098,6 +1101,38 @@ class Game_CharacterBase
     Game_CharacterBase.last_released = @id if release?
     Game_CharacterBase.last_repeated = @id if repeat?
     Game_CharacterBase.last_pressed = @id if press?
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Processing
+  #--------------------------------------------------------------------------
+  def update_scroll(last_real_x, last_real_y)
+    return if $game_map.target_camera != self
+    ax1 = $game_map.adjust_x(last_real_x)
+    ay1 = $game_map.adjust_y(last_real_y)
+    ax2 = $game_map.adjust_x(@real_x)
+    ay2 = $game_map.adjust_y(@real_y)
+    $game_map.scroll_down (ay2 - ay1) if ay2 > ay1 && ay2 > center_y
+    $game_map.scroll_left (ax1 - ax2) if ax2 < ax1 && ax2 < center_x
+    $game_map.scroll_right(ax2 - ax1) if ax2 > ax1 && ax2 > center_x
+    $game_map.scroll_up   (ay1 - ay2) if ay2 < ay1 && ay2 < center_y
+  end
+  #--------------------------------------------------------------------------
+  # * X Coordinate of Screen Center
+  #--------------------------------------------------------------------------
+  def center_x
+    (Graphics.width / 32 - 1) / 2.0
+  end
+  #--------------------------------------------------------------------------
+  # * Y Coordinate of Screen Center
+  #--------------------------------------------------------------------------
+  def center_y
+    (Graphics.height / 32 - 1) / 2.0
+  end
+  #--------------------------------------------------------------------------
+  # * Set Map Display Position to Center of Screen
+  #--------------------------------------------------------------------------
+  def center(x, y)
+    $game_map.set_display_pos(x - center_x, y - center_y)
   end
   #--------------------------------------------------------------------------
   # * Move to x y coord
@@ -1130,6 +1165,26 @@ class Game_CharacterBase
   def name
     nil
   end
+end
+
+#==============================================================================
+# ** Game_Player
+#------------------------------------------------------------------------------
+#  This class handles the player. It includes event starting determinants and
+# map scrolling functions. The instance of this class is referenced by
+# $game_player.
+#==============================================================================
+
+class Game_Player
+  #--------------------------------------------------------------------------
+  # * Scroll Processing
+  #--------------------------------------------------------------------------
+  alias_method :rme_update_scroll, :update_scroll
+  def update_scroll(last_real_x, last_real_y)
+    return if $game_map.target_camera != self
+    rme_update_scroll(last_real_x, last_real_y)
+  end
+
 end
 
 #==============================================================================
@@ -1390,6 +1445,8 @@ class Game_Map
   # * Public instance variables
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
+  attr_accessor :target_camera
+  alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -1405,6 +1462,14 @@ class Game_Map
     SceneManager.scene.erase_textfields if SceneManager.scene.is_a?(Scene_Map)
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
+    @target_camera = $game_player
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Processing
+  #--------------------------------------------------------------------------
+  def update_scroll
+    return if @fixed
+    rme_update_scroll
   end
   #--------------------------------------------------------------------------
   # * Get each events
