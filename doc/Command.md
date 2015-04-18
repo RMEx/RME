@@ -204,6 +204,7 @@ Collection des commandes EventExtender
 *    [Command.events_buzz(e, *duration)](#commandevents_buzze-duration)
 *    [Command.events_buzzer_properties(e, amplitude, length)](#commandevents_buzzer_propertiese-amplitude-length)
 *    [Command.events_collide?(idA, idB)](#commandevents_collideida-idb)
+*    [Command.fadein(*time)](#commandfadeintime)
 *    [Command.fadeout(*time)](#commandfadeouttime)
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
@@ -3369,6 +3370,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+
+
+
+
+
+
+##### Command.fadein(*time)
+
+> Affiche l'écran en fondu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*time`|`Fixnum`|Durée de la transition  
 
 
 

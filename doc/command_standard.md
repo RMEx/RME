@@ -9,6 +9,7 @@ Commandes standards
 ##Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
+*    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
@@ -54,6 +55,16 @@ Commandes standards
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+
+
+##### fadein(*time)
+
+> Affiche l'écran en fondu
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*time`|`Fixnum`|Durée de la transition  
 
 
 ##### fadeout(*time)

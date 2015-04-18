@@ -205,6 +205,7 @@ event_y(id)	event_y(id)
 events_buzz(e,*duration)	-
 events_buzzer_properties(e,amplitude,length)	-
 events_collide?(ev1,ev2)	-
+fadein(*time)	-
 fadeout(*time)	-
 followers_buzz(ids,*duration)	-
 followers_buzzer_properties(*ids,amplitude,length)	-

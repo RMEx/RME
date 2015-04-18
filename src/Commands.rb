@@ -33,6 +33,10 @@ module RMECommands
     RPG::ME.stop
   end
 
+  def fadein(time = 100)
+    Graphics.fadein(time * Graphics.frame_rate / 1000) 
+  end
+
   def max(a, b); [a, b].max; end
   def min(a, b); [a, b].min; end
   def screen; Game_Screen.get; end
