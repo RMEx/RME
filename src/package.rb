@@ -12,6 +12,7 @@ Package.new(
   },
 	components: [
     'SDK.rb',
+		'SDK.Gui.rb',
     'Database.rb',
     'Internal.rb',
     'EvEx.rb',

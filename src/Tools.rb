@@ -250,7 +250,7 @@ class Graphical_eval
         if Devices::Keys::Enter.trigger?
           before = before + @current_t
           @textfield.value = before + after
-          @textfield.virtual_position = before.length
+          @textfield.selection_start = @textfield.virtual_position = before.length
           @textfield.refresh
           break
         end
