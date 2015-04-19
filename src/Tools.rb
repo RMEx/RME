@@ -70,10 +70,10 @@ class Graphical_eval
   def initialize
     Game_Temp.in_game = false
     @width = Graphics.width - 12
-    @height = 42
+    @height = 58
+    @text_h = @height - 16
     @x = 6
     @y = Graphics.height - @height - 6
-    @list = RME::Doc.commands.keys.map{|k|k.to_s}
     create_viewport
     create_background
     create_textfield
@@ -90,16 +90,16 @@ class Graphical_eval
     font.color = Color.new(255, 255, 255)
 
     @copy = Sprite.new(@viewport)
-    @copy.bitmap = Bitmap.new(button_width, @height - 20)
+    @copy.bitmap = Bitmap.new(button_width, @text_h - 20)
     @copy.bitmap.font = font
-    @copy.bitmap.fill_rect(0, 0, button_width, @height-20, Color.new(0,0,0,180))
+    @copy.bitmap.fill_rect(0, 0, button_width, @text_h-20, Color.new(0,0,0,180))
     @copy.x = start_x
     @copy.y = 15
     @copy.bitmap.draw_text(@copy.bitmap.rect, "As TXT", 1)
     start_x += button_width + 4
 
     @copy_ev = Sprite.new(@viewport)
-    @copy_ev.bitmap = Bitmap.new(button_width, @height - 20)
+    @copy_ev.bitmap = Bitmap.new(button_width, @text_h - 20)
     @copy_ev.bitmap.font = font
     @copy_ev.bitmap.fill_rect(0, 0, button_width, @height-20, Color.new(0,0,0,180))
     @copy_ev.x = start_x
@@ -108,11 +108,11 @@ class Graphical_eval
     start_x += button_width + 4
 
     @run = Sprite.new(@viewport)
-    @run.bitmap = Bitmap.new(@width-start_x-4, @height - 20)
+    @run.bitmap = Bitmap.new(@width-start_x-4, @text_h - 20)
     @run.bitmap.font = font
     @run.bitmap.font.size = 20
     @run.bitmap.font.color = Color.new(0, 255, 0)
-    @run.bitmap.fill_rect(0, 0, @width-start_x-4, @height-20, Color.new(0,0,0,180))
+    @run.bitmap.fill_rect(0, 0, @width-start_x-4, @text_h-20, Color.new(0,0,0,180))
     @run.x = start_x
     @run.bitmap.draw_text(@run.bitmap.rect, "►", 1)
     @run.y = 15
@@ -140,21 +140,22 @@ class Graphical_eval
     colorA = Color.new(83, 83, 83, 130)
     colorB = Color.new(36, 36, 36, 130)
     @background.bitmap.gradient_fill_rect(rect, colorA, colorB, true)
-    @text_rect = Rect.new(6, 15, @width - 160, @height - 20)
+    @text_rect = Rect.new(6, 15, @width - 160, @text_h - 20)
     @background.bitmap.fill_rect(@text_rect, Color.new(255, 255, 255, 200))
     @background.bitmap.fill_rect(0, 0, @width, 12, Color.new(0, 0, 0, 200))
     @background.bitmap.font = get_profile("small_standard_title").to_font
     @background.bitmap.font.name = "Arial"
     @background.bitmap.font.size = 13
     @background.bitmap.draw_text(2, 0, @width, 10, "SCRIPT LINE")
+    @background.bitmap.fill_rect(0, @text_h+2, @width, 14, Color.new(0, 0, 0, 140))
   end
 
   def create_marker
     @marker = Sprite.new(@viewport)
-    @marker.bitmap = Bitmap.new(8,  @height - 20)
+    @marker.bitmap = Bitmap.new(8,  @text_h - 20)
     @marker.x = @width - 160 + 6
     @marker.y = 15
-    @marker.bitmap.fill_rect(0, 0, 8, @height-20, Color.new(50, 50, 50))
+    @marker.bitmap.fill_rect(0, 0, 8, @text_h-20, Color.new(50, 50, 50))
     valid_marker
   end
 
@@ -167,9 +168,77 @@ class Graphical_eval
   end
 
   def update
-    execute_command if Devices::Keys::Enter.trigger?
+    execute_command if Devices::Keys::Enter.trigger? && !@tabulate
     update_buttons
+    update_tabulation if Devices::Keys::Tab.trigger?
     @textfield.update
+  end
+
+  def join_candidates
+    (' '*4) + @stack.join(' '*4)
+  end
+
+  def join_current
+    (' '*4) + @current_t
+  end
+
+  def create_tab_candidates
+    @current_t = @stack.shift
+    temp = Bitmap.new(1, 1)
+    rect_tab = temp.text_size(join_current + join_candidates)
+    temp.font = @background.bitmap.font.clone
+    @candidates = Sprite.new(@viewport)
+    @candidates.bitmap = Bitmap.new(rect_tab.width, rect_tab.height)
+    @candidates.bitmap.font = temp.font.clone
+    @candidates.x = 0
+    @candidates.y = @text_h - 3
+    update_tab_bitmap
+  end
+
+  def  update_tab_bitmap
+    @candidates.bitmap.clear
+    oth_rect = @candidates.bitmap.text_size(join_current)
+    nve_rect = @candidates.bitmap.text_size(join_candidates)
+    @candidates.bitmap.font.color = Color.new(0, 255, 0)
+    @candidates.bitmap.draw_text(oth_rect, join_current)
+    @candidates.bitmap.font.color = Color.new(255, 255, 255)
+    @candidates.bitmap.draw_text(oth_rect.width, 0, nve_rect.width, nve_rect.height, join_candidates)
+  end
+
+  def remove_tab_candidates
+    @candidates.dispose
+  end
+
+  def update_tabulation
+    i = @textfield.virtual_position
+    token = @textfield.formatted_value.extract_tokens(i-1)[-1]
+    if token
+      token_len = token.length
+      index = i-token_len
+      before = index == 0 ? "" : @textfield.formatted_value[0..index-1]
+      after = @textfield.formatted_value[i..-1]
+      cmds = Command.singleton_methods.map(&:to_s)
+      @stack = token.auto_complete(cmds)[0..3]
+      create_tab_candidates
+      loop do
+        Graphics.update
+        Input.update
+        if Devices::Keys::Tab.trigger?
+          @stack << @current_t
+          @current_t = @stack.shift
+          update_tab_bitmap
+        end
+        break if Devices::Keys::Esc.trigger?
+        if Devices::Keys::Enter.trigger?
+          before = before + @current_t
+          @textfield.value = before + after
+          @textfield.virtual_position = before.length
+          @textfield.refresh
+          break
+        end
+      end
+      remove_tab_candidates
+    end
   end
 
   def update_buttons

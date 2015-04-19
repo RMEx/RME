@@ -627,7 +627,7 @@ class String
   #--------------------------------------------------------------------------
   def auto_complete(words)
     words.sort_by do |wordA|
-      placeholder = wordA[0..length]
+      placeholder = wordA[0..length-1]
       self.damerau_levenshtein(placeholder)
     end
   end
@@ -684,6 +684,16 @@ class String
     end
     n_s = n_s.join('\n').split('\n')
     n_s.compact.collect(&:strip)
+  end
+  #--------------------------------------------------------------------------
+  # * Extract_tokens
+  #--------------------------------------------------------------------------
+  def extract_tokens(position=nil)
+    position ||= length - 1
+    substring = self[0..position].gsub(/\s+|;|\(|\)|,|\{|\}|\"|\'/, "\0")
+    substring.split(/(\0)/).map do |elt|
+      (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
+    end
   end
 end
 
@@ -1669,6 +1679,8 @@ module Gui
       delegate :@text, :formatted_value
       delegate :@text, :has_transformation?
       delegate :@viewport, :dispose
+      delegate :@text, :delete
+      delegate_accessor :@text, :virtual_position
       [:x, :y].each{|m| delegate_accessor :@viewport, m}
 
       include Tools::Activable
@@ -1689,6 +1701,15 @@ module Gui
         set_activation_callback(&block)
         update_bitmap
         update_cursor_pos
+      end
+      #--------------------------------------------------------------------------
+      # * Refresh
+      #--------------------------------------------------------------------------
+      def refresh
+        update_bitmap
+        update_cursor_pos
+        update_selection_rect
+        update_viewport
       end
       #--------------------------------------------------------------------------
       # * IZI Update
