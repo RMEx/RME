@@ -116,11 +116,23 @@ ITextProfile.insert(
 
   ITextProfile.insert(
     "small_standard",
-    18,
+    15,
     Font.default_name,
     "black",
     Font.default_italic,
     Font.default_bold,
+    false,
+    "black",
+    false
+    )
+
+  ITextProfile.insert(
+    "small_standard_title",
+    12,
+    Font.default_name,
+    "white",
+    Font.default_italic,
+    true,
     false,
     "black",
     false

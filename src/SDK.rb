@@ -29,6 +29,13 @@ License coming soon
 #==============================================================================
 
 module RME
+
+  module Config
+
+    KEY_EVAL = :f3
+
+  end
+
   class << self
     #--------------------------------------------------------------------------
     # * Version
@@ -1661,6 +1668,7 @@ module Gui
       delegate_accessor :@text, :value
       delegate :@text, :formatted_value
       delegate :@text, :has_transformation?
+      delegate :@viewport, :dispose
       [:x, :y].each{|m| delegate_accessor :@viewport, m}
 
       include Tools::Activable
@@ -2574,6 +2582,20 @@ class Bitmap
   end
 end
 
+#==============================================================================
+# ** Game_Temp
+#------------------------------------------------------------------------------
+#  This class handles temporary data that is not included with save data.
+# The instance of this class is referenced by $game_temp.
+#==============================================================================
+
+class Game_Temp
+  class << self
+    attr_accessor :in_game
+    Game_Temp.in_game = true
+  end
+end
+
 
 #==============================================================================
 # ** Command
@@ -2587,6 +2609,7 @@ module Command
   # * Method suggestions
   #--------------------------------------------------------------------------
   def method_missing(*args)
+    super(*args) unless Game_Temp.in_game
     keywords = Command.singleton_methods
     keywords.uniq!
     keywords.delete(:method_missing)
