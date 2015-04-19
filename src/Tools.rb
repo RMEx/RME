@@ -44,25 +44,25 @@ class Scene_Map
   # * Update eval
   #--------------------------------------------------------------------------
   def update_eval
-    unless @box
-      if Keyboard.trigger?(RME::Config::KEY_EVAL)
-        @old_call_menu = $game_system.menu_disabled
-        $game_system.menu_disabled = true
-        @box = Graphical_eval.new
-      end
+
+    if !@box && Keyboard.trigger?(RME::Config::KEY_EVAL)
+      @old_call_menu = $game_system.menu_disabled
+      $game_system.menu_disabled = true
+      @box = Graphical_eval.new
     else
-      if Keyboard.any?(:trigger?, RME::Config::KEY_EVAL, :esc)
-        $game_system.menu_disabled = @old_call_menu
+      if @box && Keyboard.any?(:trigger?, RME::Config::KEY_EVAL, :esc)
         @box.dispose
         Game_Temp.in_game = true
         @box = nil
+        sleep(0.5)
+        $game_system.menu_disabled = @old_call_menu
         return
       end
-      @box.update
+      @box.update if @box
     end
+
   end
 end
-
 
 
 class Graphical_eval
@@ -78,6 +78,48 @@ class Graphical_eval
     create_background
     create_textfield
     create_marker
+    create_buttons
+  end
+
+  def create_buttons
+    start_x = @width - 140
+    margin = 4
+    button_width = (130 + 2*margin)/3
+    font = get_profile("small_standard").to_font
+    font.name = "Arial"
+    font.color = Color.new(255, 255, 255)
+
+    @copy = Sprite.new(@viewport)
+    @copy.bitmap = Bitmap.new(button_width, @height - 20)
+    @copy.bitmap.font = font
+    @copy.bitmap.fill_rect(0, 0, button_width, @height-20, Color.new(0,0,0,180))
+    @copy.x = start_x
+    @copy.y = 15
+    @copy.bitmap.draw_text(@copy.bitmap.rect, "As TXT", 1)
+    start_x += button_width + 4
+
+    @copy_ev = Sprite.new(@viewport)
+    @copy_ev.bitmap = Bitmap.new(button_width, @height - 20)
+    @copy_ev.bitmap.font = font
+    @copy_ev.bitmap.fill_rect(0, 0, button_width, @height-20, Color.new(0,0,0,180))
+    @copy_ev.x = start_x
+    @copy_ev.y = 15
+    @copy_ev.bitmap.draw_text(@copy_ev.bitmap.rect, "As EV", 1)
+    start_x += button_width + 4
+
+    @run = Sprite.new(@viewport)
+    @run.bitmap = Bitmap.new(@width-start_x-4, @height - 20)
+    @run.bitmap.font = font
+    @run.bitmap.font.size = 20
+    @run.bitmap.font.color = Color.new(0, 255, 0)
+    @run.bitmap.fill_rect(0, 0, @width-start_x-4, @height-20, Color.new(0,0,0,180))
+    @run.x = start_x
+    @run.bitmap.draw_text(@run.bitmap.rect, "►", 1)
+    @run.y = 15
+
+    @background.bitmap.draw_text(@width - 142, 0, button_width, 10, "COPY")
+    @background.bitmap.draw_text(start_x, 0,  @width-start_x-4, 10, "RUN")
+
   end
 
   def create_viewport
@@ -102,7 +144,9 @@ class Graphical_eval
     @background.bitmap.fill_rect(@text_rect, Color.new(255, 255, 255, 200))
     @background.bitmap.fill_rect(0, 0, @width, 12, Color.new(0, 0, 0, 200))
     @background.bitmap.font = get_profile("small_standard_title").to_font
-    @background.bitmap.draw_text(2, 0, @width, 10, "Test script line")
+    @background.bitmap.font.name = "Arial"
+    @background.bitmap.font.size = 13
+    @background.bitmap.draw_text(2, 0, @width, 10, "SCRIPT LINE")
   end
 
   def create_marker
@@ -110,7 +154,7 @@ class Graphical_eval
     @marker.bitmap = Bitmap.new(8,  @height - 20)
     @marker.x = @width - 160 + 6
     @marker.y = 15
-    @marker.bitmap.fill_rect(0, 0, 8, @height-20, Color.new(100, 100, 100))
+    @marker.bitmap.fill_rect(0, 0, 8, @height-20, Color.new(50, 50, 50))
     valid_marker
   end
 
@@ -124,7 +168,21 @@ class Graphical_eval
 
   def update
     execute_command if Devices::Keys::Enter.trigger?
+    update_buttons
     @textfield.update
+  end
+
+  def update_buttons
+    if @copy.trigger?(:mouse_left)
+      Clipboard.push_text(@textfield.formatted_value)
+      msgbox("Script line pushed in the clipboard (as a text)")
+    end
+    if @copy_ev.trigger?(:mouse_left)
+      rpg_command = RPG::EventCommand.new(355, 0, [@textfield.formatted_value])
+      Clipboard.push_command(rpg_command)
+      msgbox("Script line pushed in the clipboard (as an event's command)")
+    end
+    execute_command if @run.trigger?(:mouse_left)
   end
 
   def execute_command
@@ -135,8 +193,6 @@ class Graphical_eval
       valid_marker
     rescue Exception => exc
       invalid_marker
-      p exc
-      p exc.class
       result = exc.message
       if exc.is_a?(NameError)
         keywords = Command.singleton_methods

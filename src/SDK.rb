@@ -2148,7 +2148,7 @@ module Input
     def update
       Keyboard.update
       Mouse.update
-      sdk_update
+      sdk_update if Game_Temp.in_game
     end
   end
 end
