@@ -471,6 +471,7 @@ Collection des commandes EventExtender
 *    [Command.session_username](#commandsession_username)
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
 *    [Command.set_actor_nickname(id, new_name)](#commandset_actor_nicknameid-new_name)
+*    [Command.set_tile(value, x, y, layer)](#commandset_tilevalue-x-y-layer)
 *    [Command.shift?](#commandshift)
 *    [Command.show_animation(ids, id_animation, *wait_flag)](#commandshow_animationids-id_animation-wait_flag)
 *    [Command.show_balloon(ids, id_balloon, *wait_flag)](#commandshow_balloonids-id_balloon-wait_flag)
@@ -7184,6 +7185,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `new_name`|`String`|Nouveau surnom  
+
+
+
+
+
+
+##### Command.set_tile(value, x, y, layer)
+
+> Change une case de tile
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`value`|`Fixnum`|Valeur du tile (utilisez éventuellement la commande tile_id)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`layer`|`Fixnum`|Couche de la carte (1,2 ou 3)  
 
 
 

@@ -12,6 +12,7 @@ Commandes relatives aux informations des cartes
 *    [map_id](#map_id)
 *    [map_name](#map_name)
 *    [region_id(x, y)](#region_idx-y)
+*    [set_tile(value, x, y, layer)](#set_tilevalue-x-y-layer)
 *    [square_passable?(x, y, direction)](#square_passablex-y-direction)
 *    [switch_tileset(tileset_id)](#switch_tilesettileset_id)
 *    [terrain_tag(x, y)](#terrain_tagx-y)
@@ -60,6 +61,19 @@ Commandes relatives aux informations des cartes
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+##### set_tile(value, x, y, layer)
+
+> Change une case de tile
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`value`|`Fixnum`|Valeur du tile (utilisez éventuellement la commande tile_id)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`layer`|`Fixnum`|Couche de la carte (1,2 ou 3)  
 
 
 ##### square_passable?(x, y, direction)
