@@ -627,8 +627,8 @@ class String
   #--------------------------------------------------------------------------
   def auto_complete(words)
     words.sort_by do |wordA|
-      placeholder = wordA[0..length-1]
-      self.damerau_levenshtein(placeholder)
+      placeholder = wordA[0...length]
+      (placeholder == self) ? 0 : damerau_levenshtein(placeholder)+1
     end
   end
   #--------------------------------------------------------------------------
