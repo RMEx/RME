@@ -2090,7 +2090,7 @@ module RMECommands
     end
 
     def textfield_float_show(id, number, x, y, w, profile, range = false)
-      scene.add_textfield(id, UI::Window_floatfield.new(x, y, w, text, profile, range))
+      scene.add_textfield(id, UI::Window_Floatfield.new(x, y, w, text, profile, range))
     end
 
     def textfield_erase(id = nil)

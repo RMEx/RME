@@ -213,6 +213,24 @@ class Graphical_eval
     i = @textfield.virtual_position
     token = @textfield.formatted_value.extract_tokens(i-1)[-1]
     if token
+      v = @textfield.formatted_value[i..-1]
+      before = v[0...i] || ""
+      after = v[i..-1] || ""
+      if Command.singleton_methods.include?(token.to_sym)
+        args = Command.method(token.to_sym).parameters.map  do |u|
+          if u[0] == :rest then "*#{u[1]}"
+          elsif u[0] == :opt then "?#{u[1]}"
+          else
+            u[1]
+          end
+        end
+        res = (args.length == 0) ? "" : "(#{args.join(',')})"
+        before += token + res
+        @textfield.value = before + after
+        @textfield.virtual_position = before.length
+        @textfield.refresh
+        return
+      end
       token_len = token.length
       index = i-token_len
       before = index == 0 ? "" : @textfield.formatted_value[0..index-1]
