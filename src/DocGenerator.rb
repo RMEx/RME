@@ -2,11 +2,11 @@
 #==============================================================================
 # ** RME V1.0.0 DocGenerator
 #------------------------------------------------------------------------------
-# With: 
+# With:
 #  Nuki
 #  Grim
 #  Joke (useless stuff)
-# 
+#
 #==============================================================================
 
 #==============================================================================
@@ -39,7 +39,7 @@ module DocGenerator
     def title(size, value); ("#"*size) + value.to_s + "\n"; end
     def strong(value); "**#{value}**"; end
     def strong_t(value, n=""); '##### '+value.to_s; end
-    def italic(value); "*#{value}*"; end 
+    def italic(value); "*#{value}*"; end
     def ul; ""; end
     def end_ul; np; end
     def li(item); "*    #{item}"+"\n"; end
@@ -88,7 +88,7 @@ module DocGenerator
     def title(size, value); ("<h#{size}>") + value.to_s + "</h#{size}>\n"; end
     def strong(value); "<strong>#{value}</strong>"; end
     def strong_t(value, n=""); "<strong name='#{n}' id='#{n}'>#{value}</strong>"; end
-    def italic(value); "<i>#{value}</i>"; end 
+    def italic(value); "<i>#{value}</i>"; end
     def ul; "<ul>"; end
     def end_ul; "</ul>"; end
     def li(item); "<li>#{item}</li>"+"\n"; end
@@ -119,7 +119,7 @@ module DocGenerator
   #  Make the documentation of RME
   #==============================================================================
 
-  module Do 
+  module Do
     #--------------------------------------------------------------------------
     # * Singleton
     #--------------------------------------------------------------------------
@@ -128,21 +128,21 @@ module DocGenerator
     #--------------------------------------------------------------------------
     # * Index
     #--------------------------------------------------------------------------
-    def index(mdl) 
+    def index(mdl)
       mdl.index + "." + mdl.extension
     end
 
     #--------------------------------------------------------------------------
     # * Command Index
     #--------------------------------------------------------------------------
-    def cmdindex(mdl) 
+    def cmdindex(mdl)
       mdl.cmdindex + "." + mdl.extension
     end
 
     #--------------------------------------------------------------------------
     # * Class Index
     #--------------------------------------------------------------------------
-    def clindex(mdl) 
+    def clindex(mdl)
       mdl.clindex + "." + mdl.extension
     end
 
@@ -194,7 +194,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_class_attributes(mdl, classname)
       k = RME::Doc.schema[classname][:attributes]
-      if k.length > 0 
+      if k.length > 0
         t = mdl.title 2, RME::Doc.vocab[:l_attr]
         t += mdl.table(RME::Doc.vocab[:l_name], RME::Doc.vocab[:l_desc])
         k.each do |atr, desc|
@@ -210,7 +210,7 @@ module DocGenerator
     #--------------------------------------------------------------------------
     def make_class_methods(mdl, c, title_i = RME::Doc.vocab[:m_desc], title_c = RME::Doc.vocab[:m_list], proc = IDENTITY, snip = true)
       k = Hash[c.sort]
-      if k.length > 0 
+      if k.length > 0
         ls = mdl.title 2, title_c + mdl.ul
         t = mdl.title 2, title_i
         k.each do |name, data|
@@ -386,13 +386,13 @@ module DocGenerator
   #  Provide documentation fixer (for commands)
   #==============================================================================
 
-  module Checker 
+  module Checker
     #--------------------------------------------------------------------------
     # *  Singleton
     #--------------------------------------------------------------------------
-    class << self 
+    class << self
       attr_accessor :documented_methods
-      attr_accessor :undocumented_methods 
+      attr_accessor :undocumented_methods
       attr_accessor :orphans
       attr_accessor :raw_methods
       attr_accessor :commands
@@ -402,7 +402,7 @@ module DocGenerator
       def run(output, out_gen, ee=nil)
         get_raw_methods
         Checker.documented_methods = Array.new
-        Checker.undocumented_methods = Array.new 
+        Checker.undocumented_methods = Array.new
         Checker.orphans = Array.new
         Checker.commands = Command.singleton_methods - RME::Doc.internals
         get_raw_methods
@@ -423,9 +423,9 @@ module DocGenerator
           rme_call = "-"
           ee_call = "-"
           if eecmd.include?(m)
-            ee_call = "#{m}" 
+            ee_call = "#{m}"
             h = EE4::Command_Description.send(m)
-            if h[:args] && h[:args].length > 0 
+            if h[:args] && h[:args].length > 0
               k = h[:args].collect{|a| ((a[:default]) ? "*" : "") + a[:name].downcase[/^\w*/]}
               ee_call += "(" +k.join(",")+")"
             end
@@ -457,12 +457,12 @@ module DocGenerator
       #--------------------------------------------------------------------------
       # *  Iteration on each methods
       #--------------------------------------------------------------------------
-      def each_commands_methods 
-        Checker.documented_methods = 
+      def each_commands_methods
+        Checker.documented_methods =
          Checker.commands.select {|i| raw_methods.include?(i)}
         Checker.undocumented_methods = Checker.commands - Checker.raw_methods
         Checker.undocumented_methods.delete(:method_missing)
-        Checker.orphans = 
+        Checker.orphans =
           Checker.raw_methods - Checker.documented_methods - Checker.undocumented_methods
       end
       #--------------------------------------------------------------------------
@@ -474,21 +474,21 @@ module DocGenerator
         r += "\# #{RME::Doc.vocab[:documented]},"
         r += "#{Checker.documented_methods.length}/#{Checker.commands.length}\n,\n"
         r += "\# #{RME::Doc.vocab[:undocumented]},\# #{RME::Doc.vocab[:suggest]}\n"
-        Checker.undocumented_methods.each do |c| 
+        Checker.undocumented_methods.each do |c|
           m = RME::Doc.schema[:Command][:methods]["Command.#{c}".to_sym]
-          t = "Commande documentée mais non enregistrée" if m 
+          t = "Commande documentée mais non enregistrée" if m
           n = RME::Doc.to_fix.collect {|i| (i.to_s =~ /.+\.(.+)/) && $1}
           n = n.collect(&:to_s).sort_by{|o| o.damerau_levenshtein(c.to_s)}
           t = "Modifier l'enregistrement [#{n[0]}] par  [#{c}]"  if n.length >= 1  && (n[0].damerau_levenshtein(c.to_s)) < 3
           t ||= "Aucune suggestion"
-          r += "#{c},#{t}\n" 
+          r += "#{c},#{t}\n"
           if t == "Aucune suggestion"
             g += "\# AUTOGenerated for #{c}\n"
             g += "link_method_documentation 'Command.#{c}', \n"
             params = Command.method(c).parameters
             g += "\t'Your description',\n \t{"
             g += "\n" if params.length > 0
-            # Get args 
+            # Get args
             args = Hash.new
             params.each do |p|
               g += "\t\t"
@@ -504,19 +504,18 @@ module DocGenerator
           FileTools.write(b, g)
         end
         r += ",\n\# #{RME::Doc.vocab[:orphans]},\# #{RME::Doc.vocab[:suggest]}\n"
-        Checker.orphans.each do |c| 
+        Checker.orphans.each do |c|
           keywords = Checker.undocumented_methods
           keywords.uniq!
           keywords.collect!{|i|i.to_s}
           keywords.sort_by!{|o| o.damerau_levenshtein(c.to_s)}
           s = (keywords.length >= 1) ? "Peut-être faudrait-il remplacer [#{c}] par [#{keywords[0]}]... mais je ne suis pas sur du tout..." : "Aucune suggestion"
-          r += "#{c},#{s}\n" 
+          r += "#{c},#{s}\n"
         end
         FileTools.write(o, r)
       end
-      
-    end 
-  end 
+
+    end
+  end
 
 end
-

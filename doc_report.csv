@@ -1,7 +1,9 @@
 Report,
-# Commandes documentées,593/595
+# Commandes documentées,599/603
 ,
 # Commandes non documentées,# Suggestion
+get_tileset_id,Aucune suggestion
+switch_tileset,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,

@@ -15,6 +15,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [text_profile(id, profile)](#text_profileid-profile)
 *    [text_rotate(id, speed)](#text_rotateid-speed)
 *    [text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#text_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [text_value(id)](#text_valueid)
 *    [text_x(id, x, *duration, *wait_flag)](#text_xid-x-duration-wait_flag)
 *    [text_y(id, y, *duration, *wait_flag)](#text_yid-y-duration-wait_flag)
 *    [text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#text_zoomid-zoom_x-zoom_y-duration-wait_flag)
@@ -129,6 +130,16 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 `*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro  
+
+
+##### text_value(id)
+
+> Renvoi la valeur d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
 
 
 ##### text_x(id, x, *duration, *wait_flag)

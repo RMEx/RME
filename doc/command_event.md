@@ -23,6 +23,8 @@ Commandes relatives aux évènements
 *    [event_priority(ids, priority)](#event_priorityids-priority)
 *    [event_screen_x(id)](#event_screen_xid)
 *    [event_screen_y(id)](#event_screen_yid)
+*    [event_through(id, *flag)](#event_throughid-flag)
+*    [event_through?(id)](#event_throughid)
 *    [event_transparent(id)](#event_transparentid)
 *    [event_transparent?(id)](#event_transparentid)
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
@@ -69,6 +71,8 @@ Commandes relatives aux évènements
 *    [player_pixel_y](#player_pixel_y)
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
+*    [player_through(*flag)](#player_throughflag)
+*    [player_through?](#player_through)
 *    [player_transparent](#player_transparent)
 *    [player_transparent?](#player_transparent)
 *    [player_x](#player_x)
@@ -246,6 +250,27 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+##### event_through(id, *flag)
+
+> Change le mode de traversée de l'évènement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+`*flag`|`Boolean`|true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true   
+
+
+##### event_through?(id)
+
+> Renvoi true si l'évènement est en mode 'traverse tout', false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
 
 
 ##### event_transparent(id)
@@ -684,6 +709,23 @@ Commandes relatives aux évènements
 ##### player_screen_y
 
 > Renvoie la coordonnées Y du joueur par rapport à l'écran
+
+  
+> 
+
+##### player_through(*flag)
+
+> Change le mode de traversée du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*flag`|`Boolean`|true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true   
+
+
+##### player_through?
+
+> Renvoi true si le joueur est en mode 'traverse tout', false sinon
 
   
 > 

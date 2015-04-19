@@ -24,6 +24,7 @@ Commandes standards
 *    [random_figures(x)](#random_figuresx)
 *    [rm_kill](#rm_kill)
 *    [session_username](#session_username)
+*    [split_each_char(str)](#split_each_charstr)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [wait(duration)](#waitduration)
 *    [wait_release(key)](#wait_releasekey)
@@ -208,6 +209,16 @@ Commandes standards
 
   
 > 
+
+##### split_each_char(str)
+
+> Transforme une chaine de caractère en un tableau de caractères
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`str`|`String`|Chaine a transformer  
+
 
 ##### tone(red, green, blue, *gray)
 

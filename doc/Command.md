@@ -199,6 +199,8 @@ Collection des commandes EventExtender
 *    [Command.event_priority(ids, priority)](#commandevent_priorityids-priority)
 *    [Command.event_screen_x(id)](#commandevent_screen_xid)
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
+*    [Command.event_through(id, *flag)](#commandevent_throughid-flag)
+*    [Command.event_through?(id)](#commandevent_throughid)
 *    [Command.event_transparent(id)](#commandevent_transparentid)
 *    [Command.event_transparent?(id)](#commandevent_transparentid)
 *    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
@@ -435,6 +437,8 @@ Collection des commandes EventExtender
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
+*    [Command.player_through(*flag)](#commandplayer_throughflag)
+*    [Command.player_through?](#commandplayer_through)
 *    [Command.player_transparent](#commandplayer_transparent)
 *    [Command.player_transparent?](#commandplayer_transparent)
 *    [Command.player_x](#commandplayer_x)
@@ -516,6 +520,7 @@ Collection des commandes EventExtender
 *    [Command.socket_wait_recv(*len)](#commandsocket_wait_recvlen)
 *    [Command.sound_fade(wait, *frame)](#commandsound_fadewait-frame)
 *    [Command.sound_stop](#commandsound_stop)
+*    [Command.split_each_char(str)](#commandsplit_each_charstr)
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
@@ -536,6 +541,7 @@ Collection des commandes EventExtender
 *    [Command.text_profile(id, profile)](#commandtext_profileid-profile)
 *    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
 *    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [Command.text_value(id)](#commandtext_valueid)
 *    [Command.text_x(id, x, *duration, *wait_flag)](#commandtext_xid-x-duration-wait_flag)
 *    [Command.text_y(id, y, *duration, *wait_flag)](#commandtext_yid-y-duration-wait_flag)
 *    [Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#commandtext_zoomid-zoom_x-zoom_y-duration-wait_flag)
@@ -559,7 +565,7 @@ Collection des commandes EventExtender
 *    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
 *    [Command.textfield_visible(id, flag)](#commandtextfield_visibleid-flag)
 *    [Command.textfield_visible?(id)](#commandtextfield_visibleid)
-*    [Command.tile_id(x, y)](#commandtile_idx-y)
+*    [Command.tile_id(x, y, layer)](#commandtile_idx-y-layer)
 *    [Command.time_day](#commandtime_day)
 *    [Command.time_hour](#commandtime_hour)
 *    [Command.time_min](#commandtime_min)
@@ -3306,6 +3312,35 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_through(id, *flag)
+
+> Change le mode de traversée de l'évènement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+`*flag`|`Boolean`|true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true   
+
+
+
+
+
+
+##### Command.event_through?(id)
+
+> Renvoi true si l'évènement est en mode 'traverse tout', false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
 
 
 
@@ -6706,6 +6741,31 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_through(*flag)
+
+> Change le mode de traversée du joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*flag`|`Boolean`|true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true   
+
+
+
+
+
+
+##### Command.player_through?
+
+> Renvoi true si le joueur est en mode 'traverse tout', false sinon
+
+  
+> 
+
+
+
+
+
 ##### Command.player_transparent
 
 > Rend le joueur transparent
@@ -7811,6 +7871,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.split_each_char(str)
+
+> Transforme une chaine de caractère en un tableau de caractères
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`str`|`String`|Chaine a transformer  
+
+
+
+
+
+
 ##### Command.sqrt(x)
 
 > Renvoie la racine carrée de x
@@ -8099,6 +8173,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 `*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro  
+
+
+
+
+
+
+##### Command.text_value(id)
+
+> Renvoi la valeur d'un texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
 
 
 
@@ -8468,7 +8556,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.tile_id(x, y)
+##### Command.tile_id(x, y, layer)
 
 > Renvoie l'ID de la tile pointée par les coordonnées X,Y
 
@@ -8477,6 +8565,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+`layer`|`Fixnum`|Numéro de la couche  
 
 
 

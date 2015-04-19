@@ -200,6 +200,8 @@ event_pixel_y(id)	event_pixel_y(id)
 event_priority(ids,priority)	-
 event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
+event_through(id,*flag)	-
+event_through?(id)	-
 event_transparent(id)	-
 event_transparent?(id)	-
 event_trigger(ids,trigger)	-
@@ -217,6 +219,7 @@ gain_gold(amount)	-
 game_title	-
 get(a,i)	-
 -	get_textfield_value(champ)
+get_tileset_id	-
 give_armor(id,amount,*include_equip)	-
 give_item(id,amount)	-
 give_weapon(id,amount,*include_equip)	-
@@ -465,6 +468,8 @@ player_pixel_x	player_pixel_x
 player_pixel_y	player_pixel_y
 player_screen_x	player_screen_x
 player_screen_y	player_screen_y
+player_through(*flag)	-
+player_through?	-
 player_transparent	-
 player_transparent?	-
 player_x	player_x
@@ -560,6 +565,7 @@ socket_send(data)	-
 socket_wait_recv(*len)	-
 sound_fade(wait,*frame)	-
 sound_stop	-
+split_each_char(str)	-
 sqrt(x)	-
 square_passable?(x,y,*d)	square_passable?(x,y,*direction)
 squares_between(ev1,ev2)	squares_between(id,id)
@@ -568,6 +574,7 @@ start_new_game	-
 start_x	-
 start_y	-
 steps	steps
+switch_tileset(tileset_id)	-
 tan(x)	-
 tanh(x)	-
 team_size	team_size
@@ -580,6 +587,7 @@ text_position(id,x,y,*duration,*wf)	-
 text_profile(id,profile)	-
 text_rotate(id,speed)	-
 text_show(id,*args)	-
+text_value(id)	-
 text_x(id,*x,*duration,*wf)	-
 text_y(id,*y,*duration,*wf)	-
 text_zoom(id,x,y,*duration,*wf)	-

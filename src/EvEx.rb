@@ -1056,6 +1056,7 @@ class Game_CharacterBase
   attr_accessor  :move_speed
   attr_accessor  :move_frequency
   attr_accessor :priority_type
+  attr_accessor :through
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1446,6 +1447,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
   attr_accessor :target_camera
+  attr_accessor :tileset_id
   alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization

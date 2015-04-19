@@ -49,6 +49,7 @@ module RMECommands
   def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
   def rm_kill; SceneManager.exit; end
   def website(url); Thread.new { system("start #{url}") };end
+  def split_each_char(str); str.scan(/./); end
 
   def wait_with(time, &block)
     time.times do
@@ -90,6 +91,14 @@ module RMECommands
       return args[0][Kernel.rand(args[0].length)]
     end
     args[Kernel.rand(args.length)]
+  end
+
+  def get_tileset_id
+    $game_map.tileset_id
+  end
+
+  def switch_tileset(tileset_id)
+    $game_map.tileset_id = tileset_id
   end
 
   #--------------------------------------------------------------------------
@@ -1346,6 +1355,12 @@ module RMECommands
     end
     def player_opaque; event_opaque(0); end
 
+    def event_through?(id); event(id).through; end
+    def player_through?; event_through?(0); end
+
+    def event_through(id, flag = true); event(id).through = flag; end
+    def player_through(flag = true); event_through(flag); end
+
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
@@ -1731,6 +1746,10 @@ module RMECommands
       else
         Game_Screen.get.texts[id].opacity = value
       end
+    end
+
+    def text_value(id)
+      Game_Screen.get.texts[id].text_value
     end
 
     append_commands
