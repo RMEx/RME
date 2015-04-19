@@ -7,16 +7,25 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives aux informations des cartes
 
 ##Liste des commandes
+*    [get_tileset_id](#get_tileset_id)
 *    [id_at(x, y)](#id_atx-y)
 *    [map_id](#map_id)
 *    [map_name](#map_name)
 *    [region_id(x, y)](#region_idx-y)
 *    [square_passable?(x, y, direction)](#square_passablex-y-direction)
+*    [switch_tileset(tileset_id)](#switch_tilesettileset_id)
 *    [terrain_tag(x, y)](#terrain_tagx-y)
 *    [tile_id(x, y, layer)](#tile_idx-y-layer)
 
 
 ##Description des commandes
+##### get_tileset_id
+
+> Renvoi l' ID du tileset de la carte en cours
+
+  
+> 
+
 ##### id_at(x, y)
 
 > Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)
@@ -63,6 +72,16 @@ Commandes relatives aux informations des cartes
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 `direction`|`Fixnum`|Direction (2,4,6,8)  
+
+
+##### switch_tileset(tileset_id)
+
+> Change le tileset de la carte en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`tileset_id`|`Fixnum`|ID du nouveau tileset  
 
 
 ##### terrain_tag(x, y)

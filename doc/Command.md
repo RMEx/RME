@@ -217,6 +217,7 @@ Collection des commandes EventExtender
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
 *    [Command.game_title](#commandgame_title)
 *    [Command.get(array, index)](#commandgetarray-index)
+*    [Command.get_tileset_id](#commandget_tileset_id)
 *    [Command.give_armor(id, amount, *include_equipement)](#commandgive_armorid-amount-include_equipement)
 *    [Command.give_item(id, amount)](#commandgive_itemid-amount)
 *    [Command.give_weapon(id, amount, *include_equipement)](#commandgive_weaponid-amount-include_equipement)
@@ -529,6 +530,7 @@ Collection des commandes EventExtender
 *    [Command.start_x](#commandstart_x)
 *    [Command.start_y](#commandstart_y)
 *    [Command.steps](#commandsteps)
+*    [Command.switch_tileset(tileset_id)](#commandswitch_tilesettileset_id)
 *    [Command.tan(x)](#commandtanx)
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
@@ -3576,6 +3578,17 @@ Exemple
 ```ruby  
 Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule et que l'indexation des tableaux commence à 0)  
 ```
+
+
+
+##### Command.get_tileset_id
+
+> Renvoi l' ID du tileset de la carte en cours
+
+  
+> 
+
+
 
 
 
@@ -7980,6 +7993,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.switch_tileset(tileset_id)
+
+> Change le tileset de la carte en cours
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`tileset_id`|`Fixnum`|ID du nouveau tileset  
+
 
 
 
