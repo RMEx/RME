@@ -466,7 +466,7 @@ player_pixel_y	player_pixel_y
 player_screen_x	player_screen_x
 player_screen_y	player_screen_y
 player_transparent	-
-player_transparent?(id)	-
+player_transparent?	-
 player_x	player_x
 player_y	player_y
 -	point_in_mouse_rect?(x,y)

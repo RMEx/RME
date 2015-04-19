@@ -17,11 +17,14 @@ Commandes relatives aux évènements
 *    [event_move_speed(ids, v)](#event_move_speedids-v)
 *    [event_move_speed_frequency(ids, v, f)](#event_move_speed_frequencyids-v-f)
 *    [event_name(id)](#event_nameid)
+*    [event_opaque(id)](#event_opaqueid)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
 *    [event_priority(ids, priority)](#event_priorityids-priority)
 *    [event_screen_x(id)](#event_screen_xid)
 *    [event_screen_y(id)](#event_screen_yid)
+*    [event_transparent(id)](#event_transparentid)
+*    [event_transparent?(id)](#event_transparentid)
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
 *    [event_x(id)](#event_xid)
 *    [event_y(id)](#event_yid)
@@ -61,10 +64,13 @@ Commandes relatives aux évènements
 *    [player_move_frequency(f)](#player_move_frequencyf)
 *    [player_move_speed(v)](#player_move_speedv)
 *    [player_move_speed_frequency(v, f)](#player_move_speed_frequencyv-f)
+*    [player_opaque](#player_opaque)
 *    [player_pixel_x](#player_pixel_x)
 *    [player_pixel_y](#player_pixel_y)
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
+*    [player_transparent](#player_transparent)
+*    [player_transparent?](#player_transparent)
 *    [player_x](#player_x)
 *    [player_y](#player_y)
 *    [show_animation(ids, id_animation, *wait_flag)](#show_animationids-id_animation-wait_flag)
@@ -181,6 +187,16 @@ Commandes relatives aux évènements
 `id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
 
+##### event_opaque(id)
+
+> Rend l'évènement référencé par son ID opaque
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+
+
 ##### event_pixel_x(id)
 
 > Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte
@@ -230,6 +246,26 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+##### event_transparent(id)
+
+> Rend l'évènement référencé par son ID transparent
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+
+
+##### event_transparent?(id)
+
+> Renvoi true si l'évènement est transparent (false sinon)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
 
 
 ##### event_trigger(ids, trigger)
@@ -617,6 +653,13 @@ Commandes relatives aux évènements
 `f`|`Fixnum`|Fréquence du joueur  
 
 
+##### player_opaque
+
+> Rend le joueur opaque
+
+  
+> 
+
 ##### player_pixel_x
 
 > Renvoie la coordonnées X du joueur en pixel sur la carte
@@ -641,6 +684,20 @@ Commandes relatives aux évènements
 ##### player_screen_y
 
 > Renvoie la coordonnées Y du joueur par rapport à l'écran
+
+  
+> 
+
+##### player_transparent
+
+> Rend le joueur transparent
+
+  
+> 
+
+##### player_transparent?
+
+> Renvoi true si le joueur est transparent (false sinon)
 
   
 > 

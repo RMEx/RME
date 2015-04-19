@@ -193,11 +193,14 @@ Collection des commandes EventExtender
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
 *    [Command.event_name(id)](#commandevent_nameid)
+*    [Command.event_opaque(id)](#commandevent_opaqueid)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
 *    [Command.event_priority(ids, priority)](#commandevent_priorityids-priority)
 *    [Command.event_screen_x(id)](#commandevent_screen_xid)
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
+*    [Command.event_transparent(id)](#commandevent_transparentid)
+*    [Command.event_transparent?(id)](#commandevent_transparentid)
 *    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
@@ -427,10 +430,13 @@ Collection des commandes EventExtender
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
+*    [Command.player_opaque](#commandplayer_opaque)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
+*    [Command.player_transparent](#commandplayer_transparent)
+*    [Command.player_transparent?](#commandplayer_transparent)
 *    [Command.player_x](#commandplayer_x)
 *    [Command.player_y](#commandplayer_y)
 *    [Command.qte(key, time, *strict)](#commandqtekey-time-strict)
@@ -3221,6 +3227,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_opaque(id)
+
+> Rend l'évènement référencé par son ID opaque
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+
+
+
+
+
+
 ##### Command.event_pixel_x(id)
 
 > Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte
@@ -3286,6 +3306,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_transparent(id)
+
+> Rend l'évènement référencé par son ID transparent
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+
+
+
+
+
+
+##### Command.event_transparent?(id)
+
+> Renvoi true si l'évènement est transparent (false sinon)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
 
 
 
@@ -6603,6 +6651,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_opaque
+
+> Rend le joueur opaque
+
+  
+> 
+
+
+
+
+
 ##### Command.player_pixel_x
 
 > Renvoie la coordonnées X du joueur en pixel sur la carte
@@ -6639,6 +6698,28 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.player_screen_y
 
 > Renvoie la coordonnées Y du joueur par rapport à l'écran
+
+  
+> 
+
+
+
+
+
+##### Command.player_transparent
+
+> Rend le joueur transparent
+
+  
+> 
+
+
+
+
+
+##### Command.player_transparent?
+
+> Renvoi true si le joueur est transparent (false sinon)
 
   
 > 
