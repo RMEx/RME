@@ -1332,7 +1332,7 @@ module RMECommands
       event(id).transparent
     end
 
-    def player_transparent?(id)
+    def player_transparent?
       event_transparent(0)
     end
 
