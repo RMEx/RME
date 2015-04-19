@@ -18,7 +18,7 @@ Package.new(
     'Commands.rb',
     'Incubator.rb',
     'EE4Cmds.rb',
-		'Tools.rb'
+		'Tools.rb',
     'DocGenerator.rb',
     'Doc.rb'
   ],
