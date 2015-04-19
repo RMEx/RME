@@ -690,7 +690,7 @@ class String
   #--------------------------------------------------------------------------
   def extract_tokens(position=nil)
     position ||= length - 1
-    substring = self[0..position].gsub(/\s+|;|\(|\)|,|\{|\}|\"|\'/, "\0")
+    substring = self[0..position].gsub(/\s+|;|\(|\)|,|\{|\}|\"|\'|\[|\]/, "\0")
     substring.split(/(\0)/).map do |elt|
       (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
     end
