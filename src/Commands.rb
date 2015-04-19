@@ -648,8 +648,13 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get Tile ID from coords and layer (0,1,2)
     #--------------------------------------------------------------------------
-    def tile_id(x, y, layer)
-      $game_map.tile_id(x, y, layer)
+    def tile_id(x, y, layer, map_id = nil)
+      return $game_map.tile_id(x, y, layer) unless map_id
+      if !Game_Temp.cached_map || Game_Temp.cached_map[0] != map_id
+        Game_Temp.cached_map =
+          [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
+      end
+      Game_Temp.cached_map[1].data[x, y, layer]
     end
     #--------------------------------------------------------------------------
     # * Get Region ID from coords

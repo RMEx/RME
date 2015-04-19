@@ -257,6 +257,7 @@ class Game_Temp
   class << self
     attr_accessor :in_battle
     attr_accessor :current_troop
+    attr_accessor :cached_map
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end

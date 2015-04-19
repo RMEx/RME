@@ -15,7 +15,7 @@ Commandes relatives aux informations des cartes
 *    [square_passable?(x, y, direction)](#square_passablex-y-direction)
 *    [switch_tileset(tileset_id)](#switch_tilesettileset_id)
 *    [terrain_tag(x, y)](#terrain_tagx-y)
-*    [tile_id(x, y, layer)](#tile_idx-y-layer)
+*    [tile_id(x, y, layer, *map_id)](#tile_idx-y-layer-map_id)
 
 
 ##Description des commandes
@@ -95,7 +95,7 @@ Commandes relatives aux informations des cartes
 `y`|`Fixnum`|Coordonnées Y de la case  
 
 
-##### tile_id(x, y, layer)
+##### tile_id(x, y, layer, *map_id)
 
 > Renvoie l'ID de la tile pointée par les coordonnées X,Y
 
@@ -105,5 +105,6 @@ Commandes relatives aux informations des cartes
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 `layer`|`Fixnum`|Numéro de la couche  
+`*map_id`|`Fixnum`|ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante  
 
 

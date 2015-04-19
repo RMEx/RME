@@ -567,7 +567,7 @@ Collection des commandes EventExtender
 *    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
 *    [Command.textfield_visible(id, flag)](#commandtextfield_visibleid-flag)
 *    [Command.textfield_visible?(id)](#commandtextfield_visibleid)
-*    [Command.tile_id(x, y, layer)](#commandtile_idx-y-layer)
+*    [Command.tile_id(x, y, layer, *map_id)](#commandtile_idx-y-layer-map_id)
 *    [Command.time_day](#commandtime_day)
 *    [Command.time_hour](#commandtime_hour)
 *    [Command.time_min](#commandtime_min)
@@ -8583,7 +8583,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.tile_id(x, y, layer)
+##### Command.tile_id(x, y, layer, *map_id)
 
 > Renvoie l'ID de la tile pointée par les coordonnées X,Y
 
@@ -8593,6 +8593,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
 `layer`|`Fixnum`|Numéro de la couche  
+`*map_id`|`Fixnum`|ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante  
 
 
 
