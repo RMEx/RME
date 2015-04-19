@@ -101,6 +101,10 @@ module RMECommands
     $game_map.tileset_id = tileset_id
   end
 
+  def set_tile(value, x, y, layer)
+    $game_map.instance_variable_get(:@map).data[x, y, layer] = value
+  end
+
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------

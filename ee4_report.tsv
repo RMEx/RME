@@ -514,6 +514,7 @@ session_username	-
 set_actor_name(id,n)	set_actor_name(id,name)
 set_actor_nickname(id,n)	-
 -	set_textfield_value(champ,valeur)
+set_tile(value,x,y,layer)	-
 shift?	-
 show_animation(ids,id_animation,*wait_flag)	-
 show_balloon(ids,id_balloon,*wait_flag)	-

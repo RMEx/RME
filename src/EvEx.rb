@@ -1343,12 +1343,14 @@ class Scene_Map
   # * Erase all fields
   #--------------------------------------------------------------------------
   def erase_textfields
+    return unless @textfields
     @textfields.each {|i,t| erase_textfield(i)}
   end
   #--------------------------------------------------------------------------
   # * Unactivate all textfields
   #--------------------------------------------------------------------------
   def unactivate_textfields
+    return unless @textfields
     @textfields.each {|i,t| t.deactivate if t && !t.disposed?}
   end
   #--------------------------------------------------------------------------
