@@ -1058,6 +1058,9 @@ class Game_CharacterBase
   attr_accessor  :move_frequency
   attr_accessor :priority_type
   attr_accessor :through
+  attr_accessor :trails
+  attr_accessor :trails_prop
+  attr_accessor :trails_signal
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1087,6 +1090,8 @@ class Game_CharacterBase
   def init_public_members
     rm_extender_init_public_members
     setup_eHandler
+    @trails = 0
+    @trails_signal = false
   end
   #--------------------------------------------------------------------------
   # * Frame Update
@@ -1200,16 +1205,26 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias :rm_extender_update      :update
-  alias :rm_extender_initialize  :initialize
+  alias_method :rm_extender_update,      :update
+  alias_method :rm_extender_initialize,  :initialize
+  alias_method :rm_extender_dispose,     :dispose
   #--------------------------------------------------------------------------
   # * Object initialization
   #--------------------------------------------------------------------------
   def initialize(viewport, character = nil)
+    @trails = []
     rm_extender_initialize(viewport, character)
     set_rect
     self.character.setup_buzzer if self.character
     @old_buzz = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Dispose trails
+  #--------------------------------------------------------------------------
+  def dispose_trails
+    @trails.each {|trail| trail.dispose unless trail.disposed?}
+    self.character.trails = 0 if self.character.trails_signal
+    self.character.trails_signal = false
   end
   #--------------------------------------------------------------------------
   # * Set rect to dynamic layer
@@ -1228,6 +1243,35 @@ class Sprite_Character
     rm_extender_update
     set_rect
     update_buzzer
+    update_trails
+  end
+  #--------------------------------------------------------------------------
+  # * Update trails
+  #--------------------------------------------------------------------------
+  def update_trails
+    if @trails.length != character.trails
+      dispose_trails
+      @trails = Array.new(character.trails) do |i|
+        k = Sprite_Trail.new(viewport, character)
+        k.opacity = (k.base_opacity+1) / character.trails * i
+        k
+      end
+    end
+    @trails.each do |trail|
+      trail.update
+      if self.character.trails_signal
+        trail.dispose if !trail.disposed? && trail.opacity == 0
+      end
+    end
+    f = self.character.trails_signal && @trails.all? {|tr| tr.disposed?}
+    dispose_trails if f
+  end
+  #--------------------------------------------------------------------------
+  # * Dispose
+  #--------------------------------------------------------------------------
+  def dispose
+    dispose_trails
+    rm_extender_dispose
   end
   #--------------------------------------------------------------------------
   # * Update buzzer
@@ -1251,6 +1295,126 @@ class Sprite_Character
       @old_buzz = 0
     end
   end
+end
+
+#==============================================================================
+# ** Sprite_Trail
+#------------------------------------------------------------------------------
+#  Character trail
+#==============================================================================
+
+class Sprite_Trail < Sprite_Base
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #     viewport  : viewport
+  #     character : character (Game_Character)
+  #--------------------------------------------------------------------------
+  def initialize(viewport, chara)
+    super(viewport)
+    @timer = 0
+    @character = chara
+    self.opacity = 0
+    process_prop
+    self.z = @prop[:z]
+    self.tone = @prop[:tone] if @prop[:tone]
+    self.blend_type = @prop[:blend_type]
+    update
+  end
+
+  #--------------------------------------------------------------------------
+  # * Base opacity
+  #--------------------------------------------------------------------------
+  def base_opacity
+    @prop[:opacity]
+  end
+
+  #--------------------------------------------------------------------------
+  # * Process prop
+  #--------------------------------------------------------------------------
+  def process_prop
+    if @character && @character.trails_prop
+      @prop = Hash.new
+      @prop[:opacity]     = @character.trails_prop[:opacity]    || 255
+      @prop[:blend_type]  = @character.trails_prop[:blend_type] || 1
+      @prop[:step]        = @character.trails_prop[:step]       || 1
+      @prop[:z]           = @character.trails_prop[:z]          || 99
+    else
+      @prop = {
+        opacity: 255,
+        blend_type: 1,
+        tone: Tone.new(200, 0, 0),
+        step: 1,
+        z: 99
+      }
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update
+  #--------------------------------------------------------------------------
+  def update
+    return if disposed?
+    if self.opacity <= 0
+      super
+      self.blend_type = @prop[:blend_type]
+      update_bitmap
+      update_src_rect
+      update_position
+      update
+    end
+    fact = (@prop[:opacity]+1.0) / (@character.trails - 1.0)
+    self.opacity -= fact
+    @prop[:udpate_callback].call(self) if @prop[:udpate_callback]
+    @timer +=1
+    @timer %= @prop[:step]
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update position
+  #--------------------------------------------------------------------------
+  def update_position
+    if @timer == 0
+      self.x = ((@real_x - $game_map.display_x))*32 + 16 - 1
+      self.y = ((@real_y - $game_map.display_y))*32 + 32 + 1
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update bitmap
+  #--------------------------------------------------------------------------
+  def update_bitmap
+    @character_name = @character.character_name
+    @character_index = @character.character_index
+    self.bitmap = Cache.character(@character_name)
+    sign = @character_name[/^[\!\$]./]
+    if sign && sign.include?('$')
+      @cw = bitmap.width / 3
+      @ch = bitmap.height / 4
+    else
+      @cw = bitmap.width / 12
+      @ch = bitmap.height / 8
+    end
+    self.ox = @cw / 2
+    self.oy = @ch
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update Transfer Origin Rectangle
+  #--------------------------------------------------------------------------
+  def update_src_rect
+    self.visible =
+      (not @character.transparent and @character.trails > 0 and @character.moving?)
+    self.opacity = 0 unless @character.moving?
+    index = @character.character_index
+    pattern = @character.pattern < 3 ? @character.pattern : 1
+    sx = (index % 4 * 3 + pattern) * @cw
+    sy = (index / 4 * 4 + (@character.direction - 2) / 2) * @ch
+    self.opacity = @prop[:opacity]
+    self.src_rect.set(sx, sy, @cw, @ch)
+    @real_x = @character.real_x
+    @real_y = @character.real_y
+  end
+
 end
 
 #==============================================================================

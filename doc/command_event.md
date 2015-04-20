@@ -8,6 +8,7 @@ Commandes relatives aux évènements
 
 ##Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
+*    [event_brutal_stop_trail(ids)](#event_brutal_stop_trailids)
 *    [event_direction(id)](#event_directionid)
 *    [event_erase(id)](#event_eraseid)
 *    [event_erased?(id)](#event_erasedid)
@@ -23,8 +24,10 @@ Commandes relatives aux évènements
 *    [event_priority(ids, priority)](#event_priorityids-priority)
 *    [event_screen_x(id)](#event_screen_xid)
 *    [event_screen_y(id)](#event_screen_yid)
+*    [event_stop_trail(ids)](#event_stop_trailids)
 *    [event_through(id, *flag)](#event_throughid-flag)
 *    [event_through?(id)](#event_throughid)
+*    [event_trail(ids, len, *mode)](#event_trailids-len-mode)
 *    [event_transparent(id)](#event_transparentid)
 *    [event_transparent?(id)](#event_transparentid)
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
@@ -61,6 +64,7 @@ Commandes relatives aux évènements
 *    [move_to(id, x, y, *wait_flag)](#move_toid-x-y-wait_flag)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
+*    [player_brutal_stop_trail](#player_brutal_stop_trail)
 *    [player_direction](#player_direction)
 *    [player_in_screen?](#player_in_screen)
 *    [player_move_frequency(f)](#player_move_frequencyf)
@@ -71,8 +75,10 @@ Commandes relatives aux évènements
 *    [player_pixel_y](#player_pixel_y)
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
+*    [player_stop_trail](#player_stop_trail)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
+*    [player_trail(len, *mode)](#player_traillen-mode)
 *    [player_transparent](#player_transparent)
 *    [player_transparent?](#player_transparent)
 *    [player_x](#player_x)
@@ -92,6 +98,16 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+
+
+##### event_brutal_stop_trail(ids)
+
+> Arrête brutalement la trainée sur un sélecteur d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
 
 
 ##### event_direction(id)
@@ -252,6 +268,16 @@ Commandes relatives aux évènements
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
 
+##### event_stop_trail(ids)
+
+> Arrête la trainée sur un sélecteur d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+
+
 ##### event_through(id, *flag)
 
 > Change le mode de traversée de l'évènement
@@ -271,6 +297,18 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
+
+
+##### event_trail(ids, len, *mode)
+
+> Applique une trainée sur un sélecteur d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+`len`|`Fixnum`|Taille de la trainée  
+`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
 
 
 ##### event_transparent(id)
@@ -633,6 +671,13 @@ Commandes relatives aux évènements
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 
 
+##### player_brutal_stop_trail
+
+> Arrête brutalement la trainée sur le joueur
+
+  
+> 
+
 ##### player_direction
 
 > Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
@@ -713,6 +758,13 @@ Commandes relatives aux évènements
   
 > 
 
+##### player_stop_trail
+
+> Arrête la trainée sur le joueur
+
+  
+> 
+
 ##### player_through(*flag)
 
 > Change le mode de traversée du joueur
@@ -729,6 +781,17 @@ Commandes relatives aux évènements
 
   
 > 
+
+##### player_trail(len, *mode)
+
+> Applique une trainée sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`len`|`Fixnum`|Taille de la trainée  
+`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+
 
 ##### player_transparent
 

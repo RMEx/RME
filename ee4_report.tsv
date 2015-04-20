@@ -185,6 +185,7 @@ enemy_tp(id)	-
 enemy_tp_charge_rate(id)	-
 enemy_tp_regeneration_rate(id)	-
 -	erase_textfield(champ)
+event_brutal_stop_trail(ids)	-
 event_direction(id)	event_direction(id)
 event_erase(ids)	-
 event_erased?(id)	-
@@ -200,8 +201,10 @@ event_pixel_y(id)	event_pixel_y(id)
 event_priority(ids,priority)	-
 event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
+event_stop_trail(ids)	-
 event_through(id,*flag)	-
 event_through?(id)	-
+event_trail(ids,len,*mode,*tone)	-
 event_transparent(id)	-
 event_transparent?(id)	-
 event_trigger(ids,trigger)	-
@@ -458,6 +461,7 @@ pictures_perfect_collide?(a,b)	-
 pixel_in_picture?(id,x,y,*precise)	-
 pixels_between(ev1,ev2)	pixels_between(id,id)
 play_time	play_time
+player_brutal_stop_trail	-
 player_direction	player_direction
 player_in_screen?	player_in_screen?
 player_move_frequency(f)	-
@@ -468,8 +472,10 @@ player_pixel_x	player_pixel_x
 player_pixel_y	player_pixel_y
 player_screen_x	player_screen_x
 player_screen_y	player_screen_y
+player_stop_trail	-
 player_through(*flag)	-
 player_through?	-
+player_trail(len,*mode,*tone)	-
 player_transparent	-
 player_transparent?	-
 player_x	player_x

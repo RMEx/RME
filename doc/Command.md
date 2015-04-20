@@ -184,6 +184,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_tp(position)](#commandenemy_tpposition)
 *    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
 *    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
+*    [Command.event_brutal_stop_trail(ids)](#commandevent_brutal_stop_trailids)
 *    [Command.event_direction(id)](#commandevent_directionid)
 *    [Command.event_erase(id)](#commandevent_eraseid)
 *    [Command.event_erased?(id)](#commandevent_erasedid)
@@ -199,8 +200,10 @@ Collection des commandes EventExtender
 *    [Command.event_priority(ids, priority)](#commandevent_priorityids-priority)
 *    [Command.event_screen_x(id)](#commandevent_screen_xid)
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
+*    [Command.event_stop_trail(ids)](#commandevent_stop_trailids)
 *    [Command.event_through(id, *flag)](#commandevent_throughid-flag)
 *    [Command.event_through?(id)](#commandevent_throughid)
+*    [Command.event_trail(ids, len, *mode)](#commandevent_trailids-len-mode)
 *    [Command.event_transparent(id)](#commandevent_transparentid)
 *    [Command.event_transparent?(id)](#commandevent_transparentid)
 *    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
@@ -428,6 +431,7 @@ Collection des commandes EventExtender
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#commandpixel_in_pictureid-x-y-precise)
 *    [Command.pixels_between(idA, idB)](#commandpixels_betweenida-idb)
 *    [Command.play_time](#commandplay_time)
+*    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
 *    [Command.player_direction](#commandplayer_direction)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
@@ -438,8 +442,10 @@ Collection des commandes EventExtender
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
+*    [Command.player_stop_trail](#commandplayer_stop_trail)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
+*    [Command.player_trail(len, *mode)](#commandplayer_traillen-mode)
 *    [Command.player_transparent](#commandplayer_transparent)
 *    [Command.player_transparent?](#commandplayer_transparent)
 *    [Command.player_x](#commandplayer_x)
@@ -3103,6 +3109,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_brutal_stop_trail(ids)
+
+> Arrête brutalement la trainée sur un sélecteur d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+
+
+
+
+
+
 ##### Command.event_direction(id)
 
 > Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
@@ -3321,6 +3341,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_stop_trail(ids)
+
+> Arrête la trainée sur un sélecteur d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+
+
+
+
+
+
 ##### Command.event_through(id, *flag)
 
 > Change le mode de traversée de l'évènement
@@ -3344,6 +3378,22 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
+
+
+
+
+
+
+##### Command.event_trail(ids, len, *mode)
+
+> Applique une trainée sur un sélecteur d'évènements
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+`len`|`Fixnum`|Taille de la trainée  
+`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
 
 
 
@@ -6635,6 +6685,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_brutal_stop_trail
+
+> Arrête brutalement la trainée sur le joueur
+
+  
+> 
+
+
+
+
+
 ##### Command.player_direction
 
 > Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
@@ -6755,6 +6816,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_stop_trail
+
+> Arrête la trainée sur le joueur
+
+  
+> 
+
+
+
+
+
 ##### Command.player_through(*flag)
 
 > Change le mode de traversée du joueur
@@ -6775,6 +6847,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.player_trail(len, *mode)
+
+> Applique une trainée sur le joueur
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`len`|`Fixnum`|Taille de la trainée  
+`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+
 
 
 
