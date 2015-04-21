@@ -23,6 +23,280 @@ License coming soon
 =end
 
 #==============================================================================
+# ** Generative
+#------------------------------------------------------------------------------
+#  Mixins collection
+#==============================================================================
+
+module Generative
+
+  #==============================================================================
+  # ** Stackable
+  #------------------------------------------------------------------------------
+  #  Dad in Mom
+  #==============================================================================
+
+  module Stackable
+
+    #--------------------------------------------------------------------------
+    # * Pushes other in self
+    #--------------------------------------------------------------------------
+    def <<(oth)
+      oth.parent = self
+      self.children ||= []
+      self.children << oth
+      compute
+      oth
+    end
+
+    #--------------------------------------------------------------------------
+    # * Pushes self in other
+    #--------------------------------------------------------------------------
+    def >>(oth)
+      self.parent = oth
+      oth.children ||= []
+      oth.children << self
+      compute
+      oth
+    end
+
+  end
+
+  #==============================================================================
+  # ** RectComputing
+  #------------------------------------------------------------------------------
+  #  Baby's shape
+  #==============================================================================
+
+  module RectComputing
+
+    #--------------------------------------------------------------------------
+    # * Computing rules
+    #--------------------------------------------------------------------------
+    module Rules
+
+      class << self
+        attr_accessor :values
+        Rules.values = Hash.new
+        delegate_accessor :values, :[]
+      end
+
+      self[:none] = proc do |r|
+        r.true_x      = r.abs_x  = r.x
+        r.true_y      = r.abs_y  = r.y
+        r.true_width  = r.width
+        r.true_height = r.height
+      end
+
+      self[:relative] = proc do |r|
+        pa = r.parent.inner
+        r.true_x      = r.abs_x  = r.x + pa.abs_x
+        r.true_y      = r.abs_y  = r.y + pa.abs_y
+        r.true_width  = r.width
+        r.true_height = r.height
+      end
+
+      self[:enclosed] = proc do |r|
+        pa = r.parent.inner
+        ax = r.abs_x  = r.x + pa.abs_x
+        ay = r.abs_y  = r.y + pa.abs_y
+        mx = ax + r.width
+        my = ay + r.height
+        lx = pa.true_x + pa.true_width
+        ly = pa.true_y + pa.true_height
+        r.true_x      = ax.bound(pa.true_x, lx)
+        r.true_y      = ay.bound(pa.true_y, ly)
+        r.true_width  = mx.bound(pa.true_x, lx) - r.true_x
+        r.true_height = my.bound(pa.true_y, ly) - r.true_y
+      end
+
+    end
+    #--------------------------------------------------------------------------
+    # * Legacy of Rect
+    #--------------------------------------------------------------------------
+    attr_accessor :legacy_rule
+    #--------------------------------------------------------------------------
+    # * Computes real Rect from legacy rules
+    #--------------------------------------------------------------------------
+    def compute
+      if self.parent
+        @legacy_rule ||= :enclosed
+        Generative::RectComputing::Rules[@legacy_rule][self]
+      else
+        Generative::RectComputing::Rules[:none][self]
+      end
+      children.each{|c| c.compute} if self.children
+    end
+
+  end
+
+end
+
+#==============================================================================
+# ** Rect
+#------------------------------------------------------------------------------
+#  The rectangle class.
+#==============================================================================
+
+class Rect
+
+  #--------------------------------------------------------------------------
+  # * Import Imbrication API
+  #--------------------------------------------------------------------------
+  include Generative::Stackable
+  include Generative::RectComputing
+  #--------------------------------------------------------------------------
+  # * Public instances variables
+  #--------------------------------------------------------------------------
+  attr_accessor :children, :parent, :abs_x, :abs_y
+  #--------------------------------------------------------------------------
+  # * alias
+  #--------------------------------------------------------------------------
+  alias_method :true_x,  :x
+  alias_method :true_y,  :y
+  alias_method :true_x=, :x=
+  alias_method :true_y=, :y=
+  alias_method :true_width,   :width
+  alias_method :true_height,  :height
+  alias_method :true_width=,  :width=
+  alias_method :true_height=, :height=
+  #--------------------------------------------------------------------------
+  # * Gets properties
+  #--------------------------------------------------------------------------
+  def abs_x;      @abs_x  ||= true_x; end
+  def abs_y;      @abs_y  ||= true_y; end
+  def x;          @x      ||= true_x; end
+  def y;          @y      ||= true_y; end
+  def width;      @width  ||= true_width;  end
+  def height;     @height ||= true_height; end
+  #--------------------------------------------------------------------------
+  # * Sets properties
+  #--------------------------------------------------------------------------
+  def x=(v);      @x      = v; compute; end
+  def y=(v);      @y      = v; compute; end
+  def width=(v);  @width  = v; compute; end
+  def height=(v); @height = v; compute; end
+  #--------------------------------------------------------------------------
+  # * Sets all parameters at once
+  #--------------------------------------------------------------------------
+  def set(*args)
+    if (a = args[0]).is_a? Rect
+      @x, @y, @width, @height = a.x, a.y, a.width, a.height
+    else
+      @x, @y, @width, @height = *args
+    end
+    compute
+  end
+  #--------------------------------------------------------------------------
+  # * Sets all components to 0.
+  #--------------------------------------------------------------------------
+  def empty
+    @x = @y = @width = @height = self.true_x = self.true_y =
+    self.true_width = self.true_height = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Gets real Rect computed from legacy rules
+  #--------------------------------------------------------------------------
+  def computed
+    Rect.new(true_x, true_y, true_width, true_height)
+  end
+  #--------------------------------------------------------------------------
+  # * check if point 's include in the rect
+  #--------------------------------------------------------------------------
+  def in?(*p)
+    point = p.to_point
+    point.in?(self.computed)
+  end
+  #--------------------------------------------------------------------------
+  # * check if the mouse 's hover
+  #--------------------------------------------------------------------------
+  def hover?; in?(Mouse.point); end
+  #--------------------------------------------------------------------------
+  # * check Mouse Interaction
+  #--------------------------------------------------------------------------
+  def click?;         hover? && Mouse.click?;         end
+  def press?(key);    hover? && Mouse.press?(key);    end
+  def trigger?(key);  hover? && Mouse.trigger?(key);  end
+  def repeat?(key);   hover? && Mouse.repeat?(key);   end
+  def release?(key);  hover? && Mouse.release?(key);  end
+  #--------------------------------------------------------------------------
+  # * Mouse accessor
+  #--------------------------------------------------------------------------
+  def mouse_x; Mouse.x - self.abs_x; end
+  def mouse_y; Mouse.y - self.abs_y; end
+  #--------------------------------------------------------------------------
+  # * Inception
+  #--------------------------------------------------------------------------
+  def inner
+    self
+  end
+
+end
+
+#==============================================================================
+# ** Viewport
+#------------------------------------------------------------------------------
+#  Used when displaying sprites on one portion of the true
+#==============================================================================
+
+class Viewport
+
+  #--------------------------------------------------------------------------
+  # * Import Imbrication API
+  #--------------------------------------------------------------------------
+  include Generative::Stackable
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :true_z,  :z
+  alias_method :true_z=, :z=
+  alias_method :inner, :rect
+  #--------------------------------------------------------------------------
+  # * Delegation
+  #--------------------------------------------------------------------------
+  [
+    :in?,
+    :hover?,
+    :click?,
+    :press?,
+    :trigger?,
+    :repeat?,
+    :release?,
+    :mouse_x,
+    :mouse_y,
+    :compute
+  ].each{|m| delegate :rect, m}
+  [
+    :x, :y, :width, :height,
+    :children, :parent
+  ].each{|m| delegate_accessor :rect, m}
+  #--------------------------------------------------------------------------
+  # * Viewport's z-coordinate.
+  #--------------------------------------------------------------------------
+  def z
+    @z ||= true_z
+  end
+  def z=(v)
+    @z = v
+    compute_z
+  end
+  #--------------------------------------------------------------------------
+  # * Computes real z-coordinate from legacy rule
+  #--------------------------------------------------------------------------
+  def compute_z
+    if self.parent && self.parent.respond_to?(:z)
+      self.true_z = self.z + self.parent.true_z + 1
+    else
+      self.true_z = self.z
+    end
+    if self.children
+      self.children.each{|c| c.respond_to?(:compute_z) && c.compute_z}
+    end
+  end
+
+end
+
+#==============================================================================
 # ** GUI
 #------------------------------------------------------------------------------
 #  Graphical User interface

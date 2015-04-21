@@ -1451,13 +1451,16 @@ module Draggable
     # * Finds and pick the first Object clicked
     #--------------------------------------------------------------------------
     def find
-      @picked = @objects.find do |o|
-        @checked = o
-        (o.in?(Mouse.x, Mouse.y) &&
-          !(o.respond_to?(:children) &&
-            o.children.any? {|c| c.in?(Mouse.x, Mouse.y)}
-            )
-          )
+      obj = @objects.sort do |a, b|
+        if b.true_z == a.true_z
+          a.object_id <=> b.object_id
+        else
+          b.true_z <=> a.true_z
+        end
+      end
+      @picked = obj.find do |o|
+          @checked = o
+          o.in?(Mouse.x, Mouse.y)
       end
       return unless @picked
       @x_init = @picked.x
@@ -1697,150 +1700,6 @@ module Kernel
 end
 
 #==============================================================================
-# ** Viewport
-#------------------------------------------------------------------------------
-#  Used when displaying sprites on one portion of the screen
-#==============================================================================
-
-class Viewport
-
-  #--------------------------------------------------------------------------
-  # * Public instances variables
-  #--------------------------------------------------------------------------
-  attr_accessor :elts
-  attr_accessor :children
-  attr_accessor :parent
-  attr_accessor :disposed
-  attr_reader   :def_rect
-  #--------------------------------------------------------------------------
-  # * alias
-  #--------------------------------------------------------------------------
-  alias_method :sdk_initialize, :initialize
-  alias_method :sdk_dispose, :dispose
-  alias_method :sdk_update, :update
-  alias_method :disposed?, :disposed
-  alias_method :true_ox=, :ox=
-  alias_method :true_oy=, :oy=
-  alias_method :true_rect, :rect
-  alias_method :rect, :def_rect
-  [:x, :y, :width, :height].each{|m| delegate :rect, m}
-  [
-    :in?,
-    :hover?,
-    :click?,
-    :press?,
-    :trigger?,
-    :repeat?,
-    :release?,
-    :mouse_x,
-    :mouse_y
-  ].each{|m| delegate :true_rect, m}
-  #--------------------------------------------------------------------------
-  # * Object initialize
-  #--------------------------------------------------------------------------
-  def initialize(*args)
-    sdk_initialize(*args)
-    @disposed = false
-    @def_rect = true_rect.clone
-    @children = []
-    @parent = nil
-    @elts = []
-  end
-  #--------------------------------------------------------------------------
-  # * Enterbrain, you forget this
-  #--------------------------------------------------------------------------
-  def dispose
-    @disposed = true
-    sdk_dispose
-  end
-  #--------------------------------------------------------------------------
-  # * Sets definition attributes
-  #--------------------------------------------------------------------------
-  def ox=(v);     @def_ox = v;      update_from_definition; end
-  def oy=(v);     @def_oy = v;      update_from_definition; end
-  def x=(v);      rect.x = v;       update_from_definition; end
-  def y=(v);      rect.y = v;       update_from_definition; end
-  def width=(v);  rect.width = v;   update_from_definition; end
-  def height=(v); rect.height = v;  update_from_definition; end
-  #--------------------------------------------------------------------------
-  # * Gets ox, oy
-  #--------------------------------------------------------------------------
-  def ox; @def_ox ||= 0; end
-  def oy; @def_oy ||= 0; end
-  #--------------------------------------------------------------------------
-  # * Gets coordinates relative to screen
-  #--------------------------------------------------------------------------
-  def screen_x
-     return self.x unless @parent
-     @parent.screen_x - @parent.ox + self.x
-  end
-  def screen_y
-    return self.y unless @parent
-    @parent.screen_y - @parent.oy + self.y
-  end
-  #--------------------------------------------------------------------------
-  # * Pushes another viewport in self
-  #--------------------------------------------------------------------------
-  def <<(oth)
-    oth.parent = self
-    @children << oth
-    oth.update_from_definition
-    oth
-  end
-  #--------------------------------------------------------------------------
-  # * Pushes self in another viewport
-  #--------------------------------------------------------------------------
-  def >>(oth)
-    @parent = oth
-    oth.children << self
-    update_from_definition
-    oth
-  end
-  #--------------------------------------------------------------------------
-  # * Updates the viewport's visible area from the definition
-  #--------------------------------------------------------------------------
-  def update_from_definition
-    if @parent
-      a = @parent.true_rect
-      min_x = [self.screen_x, a.x].max
-      min_y = [self.screen_y, a.y].max
-      max_x = [self.screen_x + self.width,  a.x + a.width ].min
-      max_y = [self.screen_y + self.height, a.y + a.height].min
-      true_rect.set(min_x, min_y, max_x-min_x, max_y-min_y)
-      self.true_ox = self.ox + min_x - self.screen_x
-      self.true_oy = self.oy + min_y - self.screen_y
-    else
-      true_rect.set(rect)
-      self.true_ox = self.ox
-      self.true_oy = self.oy
-    end
-    @children.each{|c| c.update_from_definition}
-  end
-  #--------------------------------------------------------------------------
-  # * Append Sprites
-  #--------------------------------------------------------------------------
-  def append(s)
-    @elts << (s)
-  end
-  #--------------------------------------------------------------------------
-  # * Calcul height space
-  #--------------------------------------------------------------------------
-  def calc_height
-    return rect.height if @elts.empty?
-    v = @elts.max{|a, b| (a.y + a.rect.height) <=> (b.y + b.rect.height)}
-    [(v.y+v.rect.height), rect.height].max
-  end
-  #--------------------------------------------------------------------------
-  # * Calcul height space
-  #--------------------------------------------------------------------------
-  def calc_width
-    return rect.width if @elts.empty?
-    v = @elts.max{|a, b| (a.x + a.rect.width) <=> (b.x + b.rect.width)}
-    [(v.x+v.rect.width), rect.width].max
-  end
-end
-
-#==============================================================================
 # ** Sprite
 #------------------------------------------------------------------------------
 #  The sprite class. Sprites are the basic concept used to display characters
@@ -1929,39 +1788,6 @@ class Sprite
     end
     return false
   end
-end
-
-#==============================================================================
-# ** Rect
-#------------------------------------------------------------------------------
-#  The rectangle class.
-#==============================================================================
-
-class Rect
-  #--------------------------------------------------------------------------
-  # * check if point 's include in the rect
-  #--------------------------------------------------------------------------
-  def in?(*p)
-    point = p.to_point
-    point.in?(self)
-  end
-  #--------------------------------------------------------------------------
-  # * check if the mouse 's hover
-  #--------------------------------------------------------------------------
-  def hover?; in?(Mouse.point); end
-  #--------------------------------------------------------------------------
-  # * check Mouse Interaction
-  #--------------------------------------------------------------------------
-  def click?;         hover? && Mouse.click?;         end
-  def press?(key);    hover? && Mouse.press?(key);    end
-  def trigger?(key);  hover? && Mouse.trigger?(key);  end
-  def repeat?(key);   hover? && Mouse.repeat?(key);   end
-  def release?(key);  hover? && Mouse.release?(key);  end
-  #--------------------------------------------------------------------------
-  # * Mouse accessor
-  #--------------------------------------------------------------------------
-  def mouse_x; Mouse.x - self.x;  end
-  def mouse_y; Mouse.y - self.y; end
 end
 
 #==============================================================================
