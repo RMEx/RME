@@ -316,6 +316,9 @@ module Gui
       def random_color
         Color.new(rand(255), rand(255), rand(255))
       end
+      def password_char
+        '•'
+      end
     end
 
     module Activable
