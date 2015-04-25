@@ -1318,6 +1318,7 @@ class Sprite_Trail < Sprite_Base
     self.z = @prop[:z]
     self.tone = @prop[:tone] if @prop[:tone]
     self.blend_type = @prop[:blend_type]
+    @real_x = @real_y = 0
     update
   end
 
@@ -1336,7 +1337,7 @@ class Sprite_Trail < Sprite_Base
       @prop = Hash.new
       @prop[:opacity]     = @character.trails_prop[:opacity]    || 255
       @prop[:blend_type]  = @character.trails_prop[:blend_type] || 1
-      @prop[:step]        = @character.trails_prop[:step]       || 1
+      @prop[:step]        = @character.trails_prop[:step]       || 0.5
       @prop[:z]           = @character.trails_prop[:z]          || 99
     else
       @prop = {
@@ -1367,6 +1368,8 @@ class Sprite_Trail < Sprite_Base
     @prop[:udpate_callback].call(self) if @prop[:udpate_callback]
     @timer +=1
     @timer %= @prop[:step]
+    self.x = $game_map.adjust_x(@real_x) * 32 + 16
+    self.y = $game_map.adjust_y(@real_y) * 32 + 32 - 4 - @character.jump_height
   end
 
   #--------------------------------------------------------------------------
@@ -1374,8 +1377,8 @@ class Sprite_Trail < Sprite_Base
   #--------------------------------------------------------------------------
   def update_position
     if @timer == 0
-      self.x = ((@real_x - $game_map.display_x))*32 + 16 - 1
-      self.y = ((@real_y - $game_map.display_y))*32 + 32 + 1
+      @real_x = @character.real_x
+      @real_y = @character.real_y
     end
   end
 
@@ -1411,8 +1414,6 @@ class Sprite_Trail < Sprite_Base
     sy = (index / 4 * 4 + (@character.direction - 2) / 2) * @ch
     self.opacity = @prop[:opacity]
     self.src_rect.set(sx, sy, @cw, @ch)
-    @real_x = @character.real_x
-    @real_y = @character.real_y
   end
 
 end
