@@ -21,6 +21,34 @@ class Bilou < Viewport
   end
 end
 
+class SuperBilou < Viewport
+  attr_accessor :inner
+  def initialize(x,y,w,h)
+    super(x,y,w,h)
+    @x,@y,@width,@height = x,y,w,h
+    @style = Gui::Style.new
+    @background = Sprite.new(self)
+    @inner = Rect.new
+    @inner >> rect
+    update_background
+    Draggable << self
+  end
+  def update_background
+    @background.bitmap = Bitmap.new(self.width, self.height)
+    r = Rect.new(0, 0, self.width, self.height)
+    @style.contract_with_margin(r)
+    @background.bitmap.fill_rect(r, @style[:border_color])
+    @style.contract_with_border(r)
+    @background.bitmap.fill_rect(r, @style[:background_color])
+    @style.contract_with_padding(r)
+    @inner.set(r)
+  end
+  def compute_self
+    super
+    update_background
+  end
+end
+
 =begin
 Implémentation du mode large (actuellement bloqué dans l'incubator, en mode Unsafe)
 Code chelou par raho, reste par Grim

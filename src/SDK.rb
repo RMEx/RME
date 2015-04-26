@@ -317,6 +317,18 @@ class Object
       end
     end
 
+    #--------------------------------------------------------------------------
+    # * Calls another method when the instance variable is changing
+    #--------------------------------------------------------------------------
+    def attr_accessor_callback(to_call, m)
+      define_method("#{m}=") do |v|
+        if instance_variable_get("@#{m}") != v
+          instance_variable_set("@#{m}", v)
+          method(to_call).call
+        end
+      end
+    end
+
   end # End of Object.self
 
   #--------------------------------------------------------------------------

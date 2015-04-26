@@ -59,6 +59,24 @@ module Generative
       compute
       oth
     end
+    #--------------------------------------------------------------------------
+    # * Computing
+    #--------------------------------------------------------------------------
+    def compute
+      compute_self
+      recompute_children
+    end
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
+    def compute_self
+    end
+    #--------------------------------------------------------------------------
+    # * Children recomputing
+    #--------------------------------------------------------------------------
+    def recompute_children
+      children.each{|c| c.compute} if self.children
+    end
 
   end
 
@@ -118,18 +136,32 @@ module Generative
     #--------------------------------------------------------------------------
     # * Computes real Rect from legacy rules
     #--------------------------------------------------------------------------
-    def compute
+    def compute_self
       if self.parent
         @legacy_rule ||= :enclosed
         Generative::RectComputing::Rules[@legacy_rule][self]
       else
         Generative::RectComputing::Rules[:none][self]
       end
-      children.each{|c| c.compute} if self.children
     end
 
   end
 
+end
+
+#==============================================================================
+# ** Numeric
+#------------------------------------------------------------------------------
+# Managing digits separately
+#==============================================================================
+
+class Numeric
+   def percent
+     @percent = true
+   end
+   def percent?
+     @percent
+   end
 end
 
 #==============================================================================
@@ -150,7 +182,7 @@ class Rect
   #--------------------------------------------------------------------------
   attr_accessor :children, :parent, :abs_x, :abs_y
   #--------------------------------------------------------------------------
-  # * alias
+  # * Alias
   #--------------------------------------------------------------------------
   alias_method :true_x,  :x
   alias_method :true_y,  :y
@@ -161,21 +193,29 @@ class Rect
   alias_method :true_width=,  :width=
   alias_method :true_height=, :height=
   #--------------------------------------------------------------------------
+  # * Auto-computing
+  #--------------------------------------------------------------------------
+  [
+    :x,
+    :y,
+    :width,
+    :height
+  ].each{|m| attr_accessor_callback :compute, m}
+  #--------------------------------------------------------------------------
+  # * Style
+  #--------------------------------------------------------------------------
+  def style
+    @style ||= Gui::Style.new
+  end
+  #--------------------------------------------------------------------------
   # * Gets properties
   #--------------------------------------------------------------------------
-  def abs_x;      @abs_x  ||= true_x; end
-  def abs_y;      @abs_y  ||= true_y; end
-  def x;          @x      ||= true_x; end
-  def y;          @y      ||= true_y; end
-  def width;      @width  ||= true_width;  end
-  def height;     @height ||= true_height; end
-  #--------------------------------------------------------------------------
-  # * Sets properties
-  #--------------------------------------------------------------------------
-  def x=(v);      @x      = v; compute; end
-  def y=(v);      @y      = v; compute; end
-  def width=(v);  @width  = v; compute; end
-  def height=(v); @height = v; compute; end
+  def abs_x;  @abs_x  ||= true_x; end
+  def abs_y;  @abs_y  ||= true_y; end
+  def x;      @x      ||= true_x; end
+  def y;      @y      ||= true_y; end
+  def width;  @width  ||= true_width;  end
+  def height; @height ||= true_height; end
   #--------------------------------------------------------------------------
   # * Sets all parameters at once
   #--------------------------------------------------------------------------
@@ -199,6 +239,28 @@ class Rect
   #--------------------------------------------------------------------------
   def computed
     Rect.new(true_x, true_y, true_width, true_height)
+  end
+  #--------------------------------------------------------------------------
+  # * Clone
+  #--------------------------------------------------------------------------
+  def clone
+    Rect.new(*parameters)
+  end
+  alias :dup :clone
+  #--------------------------------------------------------------------------
+  # * Returns parameters into Array format
+  #--------------------------------------------------------------------------
+  def parameters
+    [self.x, self.y, self.width, self.height]
+  end
+  #--------------------------------------------------------------------------
+  # * Sets parameters without auto-computing
+  #--------------------------------------------------------------------------
+  def set_parameters(x, y, w, h)
+    @x = x
+    @y = y
+    @width = w
+    @height = h
   end
   #--------------------------------------------------------------------------
   # * check if point 's include in the rect
@@ -250,6 +312,10 @@ class Viewport
   #--------------------------------------------------------------------------
   alias_method :true_z,  :z
   alias_method :true_z=, :z=
+  alias_method :true_ox,  :ox
+  alias_method :true_ox=, :ox=
+  alias_method :true_oy,  :oy
+  alias_method :true_oy=, :oy=
   alias_method :inner, :rect
   #--------------------------------------------------------------------------
   # * Delegation
@@ -263,22 +329,49 @@ class Viewport
     :repeat?,
     :release?,
     :mouse_x,
-    :mouse_y,
-    :compute
+    :mouse_y
   ].each{|m| delegate :rect, m}
   [
-    :x, :y, :width, :height,
-    :children, :parent
+    :children,
+    :parent
   ].each{|m| delegate_accessor :rect, m}
   #--------------------------------------------------------------------------
-  # * Viewport's z-coordinate.
+  # * Auto-computing when changing parameters
   #--------------------------------------------------------------------------
-  def z
-    @z ||= true_z
-  end
+  [
+    :ox,
+    :oy,
+    :x,
+    :y,
+    :width,
+    :height
+  ].each{|m| attr_accessor_callback :compute, m}
+  #--------------------------------------------------------------------------
+  # * Gets properties
+  #--------------------------------------------------------------------------
+  def ox;         @ox     ||= true_ox; end
+  def oy;         @oy     ||= true_oy; end
+  def x;          @x      ||= rect.x;  end
+  def y;          @y      ||= rect.y;  end
+  def z;          @z      ||= true_z;  end
+  def width;      @width  ||= rect.width;  end
+  def height;     @height ||= rect.height; end
+  #--------------------------------------------------------------------------
+  # * The viewport's z-coordinate.
+  #--------------------------------------------------------------------------
   def z=(v)
-    @z = v
-    compute_z
+    if @z != v
+      @z = v
+      compute_z
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Computes real Rect from legacy rules
+  #--------------------------------------------------------------------------
+  def compute_self
+    rect.set(self.x, self.y, self.width, self.height)
+    self.true_ox = rect.true_x - rect.abs_x + self.ox
+    self.true_oy = rect.true_y - rect.abs_y + self.oy
   end
   #--------------------------------------------------------------------------
   # * Computes real z-coordinate from legacy rule
@@ -303,6 +396,84 @@ end
 #==============================================================================
 
 module Gui
+
+  class Style
+
+    delegate_accessor :@values, :[]
+
+    def initialize
+      @values = {
+        background_color: Color.new(*[255]*3),
+        border_color:     Color.new(*[0]*3),
+        border_width:     1,
+        border_radius:    0,
+        display:          :block,
+        float:            nil,
+        font:             'Standard',
+        height:           :auto,
+        max_height:       nil,
+        min_height:       0,
+        width:            :auto,
+        max_width:        nil,
+        min_width:        0,
+      }
+      set_padding(8)
+      set_margin(0)
+    end
+
+    def set_margin(*args)
+      set_param('margin', *args)
+    end
+
+    def set_padding(*args)
+      set_param('padding', *args)
+    end
+
+    def set_param(param, *args)
+      param = ['bottom', 'top', 'left', 'right'].map do |s|
+        s = (param + '_' + s).to_sym
+      end
+      case args.length
+      when 1
+        self[param[0]] = self[param[1]] =
+        self[param[2]] = self[param[3]] = args[0]
+      when 2
+        self[param[0]] = self[param[1]] = args[0]
+        self[param[2]] = self[param[3]] = args[1]
+      when 3
+        self[param[0]] = args[0]
+        self[param[1]] = args[2]
+        self[param[2]] = self[param[3]] = args[1]
+      else
+        self[param[0]], self[param[1]],
+        self[param[2]], self[param[3]]  = *args
+      end
+    end
+
+    def contract_with_margin(r)
+      s = self
+      x = r.x + s[:margin_left]
+      y = r.y + s[:margin_top ]
+      w = r.width  - s[:margin_left] - s[:margin_right ]
+      h = r.height - s[:margin_top ] - s[:margin_bottom]
+      r.set x, y, w, h
+    end
+
+    def contract_with_padding(r)
+      s = self
+      x = r.x + s[:padding_left]
+      y = r.y + s[:padding_top ]
+      w = r.width  - s[:padding_left] - s[:padding_right ]
+      h = r.height - s[:padding_top ] - s[:padding_bottom]
+      r.set x, y, w, h
+    end
+
+    def contract_with_border(r)
+      b = self[:border_width]
+      r.set r.x + b, r.y + b, r.width - 2*b, r.height - 2*b
+    end
+
+  end
 
   #==============================================================================
   # ** GUI::Tools
