@@ -260,7 +260,7 @@ module CSS
   set 'SuperBilou Gui::Box',
     border: 10
 
-  set 'Gui::Box.bernard', 'SuperBilou.lol'
+  set 'Gui::Box.bernard', 'SuperBilou.lol',
     background_color: get_color('green'),
     border: [2,4,6,8],
     border_left: 20
