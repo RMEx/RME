@@ -1463,9 +1463,11 @@ module Draggable
     # * Finds and pick the first Object clicked
     #--------------------------------------------------------------------------
     def find
+      return if @picked
       obj = @objects.sort do |a, b|
+        @checked = a
         if b.true_z == a.true_z
-          a.object_id <=> b.object_id
+          b.object_id <=> a.object_id
         else
           b.true_z <=> a.true_z
         end

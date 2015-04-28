@@ -8,7 +8,6 @@
 # Internals DataStructures
 #==============================================================================
 
-
 #==============================================================================
 # ** IColor
 #------------------------------------------------------------------------------
@@ -114,29 +113,29 @@ ITextProfile.insert(
   false
   )
 
-  ITextProfile.insert(
-    "small_standard",
-    15,
-    Font.default_name,
-    "black",
-    Font.default_italic,
-    Font.default_bold,
-    false,
-    "black",
-    false
-    )
+ITextProfile.insert(
+  "small_standard",
+  15,
+  Font.default_name,
+  "black",
+  Font.default_italic,
+  Font.default_bold,
+  false,
+  "black",
+  false
+  )
 
-  ITextProfile.insert(
-    "small_standard_title",
-    12,
-    Font.default_name,
-    "white",
-    Font.default_italic,
-    true,
-    false,
-    "black",
-    false
-    )
+ITextProfile.insert(
+  "small_standard_title",
+  12,
+  Font.default_name,
+  "white",
+  Font.default_italic,
+  true,
+  false,
+  "black",
+  false
+  )
 
 #==============================================================================
 # ** ITextFieldProfile
@@ -236,5 +235,34 @@ module Kernel
     return Tone.new(0,0,0) unless c
     Tone.new(c.red, c.green, c.blue, c.gray)
   end
+
+end
+
+#==============================================================================
+# ** CSS
+#------------------------------------------------------------------------------
+#  Telling what the things looks like
+#==============================================================================
+
+module CSS
+
+  set 'Gui::Box',
+    padding: 5,
+    background_color: get_color('gray'),
+    border_color: get_color('blue')
+
+  set 'SuperBilou',
+    padding: 10,
+    background_color: Gui::Tools.random_color,
+    border_color: get_color('red'),
+    border_top: 30
+
+  set 'SuperBilou Gui::Box',
+    border: 10
+
+  set 'Gui::Box.bernard', 'SuperBilou.lol'
+    background_color: get_color('green'),
+    border: [2,4,6,8],
+    border_left: 20
 
 end

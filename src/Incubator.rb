@@ -22,11 +22,12 @@ class Bilou < Viewport
 end
 
 class SuperBilou < Viewport
-  attr_accessor :inner
+  attr_accessor :inner, :style
   def initialize(x,y,w,h)
     super(x,y,w,h)
     @x,@y,@width,@height = x,y,w,h
     @style = Gui::Style.new
+    Gui::CSS.apply_to(self)
     @background = Sprite.new(self)
     @inner = Rect.new
     @inner >> rect
@@ -36,16 +37,22 @@ class SuperBilou < Viewport
   def update_background
     @background.bitmap = Bitmap.new(self.width, self.height)
     r = Rect.new(0, 0, self.width, self.height)
-    @style.contract_with_margin(r)
+    @style.contract_with(:margin, r)
     @background.bitmap.fill_rect(r, @style[:border_color])
-    @style.contract_with_border(r)
+    @style.contract_with(:border, r)
     @background.bitmap.fill_rect(r, @style[:background_color])
-    @style.contract_with_padding(r)
+    @style.contract_with(:padding, r)
     @inner.set(r)
   end
   def compute_self
     super
     update_background
+  end
+end
+
+class GrosTest
+  def initialize
+    @viewport = Viewport.new(50,50,300,300)
   end
 end
 

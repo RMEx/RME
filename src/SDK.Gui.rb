@@ -1,19 +1,14 @@
 # -*- coding: utf-8 -*-
 #==============================================================================
-# ** RME V1.0.0
+# ** RME V1.0.0 Gui
 #------------------------------------------------------------------------------
 #  With :
-# Grim (original project)
-# Nuki (a lot of things)
-# Raho (general reformulation)
-# Zeus81 (a lot of help)
-# Hiino (some help and GUI Components)
-# Joke (some help)
-# Zangther (some help)
-# XHTMLBoy (koffie)
-# Fabien (Buzzer)
-# Kaelar (Improvement)
+# Joke
+# Grim
+# Nuki
 #
+#------------------------------------------------------------------------------
+# Graphical User Interface SDK for RME's tools
 #==============================================================================
 
 =begin
@@ -58,6 +53,15 @@ module Generative
       oth.children << self
       compute
       oth
+    end
+    #--------------------------------------------------------------------------
+    # * Parents
+    #--------------------------------------------------------------------------
+    def parents
+      return [] unless parent
+      parents = [parent]
+      parents << parents[-1].parent while parents[-1].parent
+      parents
     end
     #--------------------------------------------------------------------------
     # * Computing
@@ -139,9 +143,9 @@ module Generative
     def compute_self
       if self.parent
         @legacy_rule ||= :enclosed
-        Generative::RectComputing::Rules[@legacy_rule][self]
+        Rules[@legacy_rule][self]
       else
-        Generative::RectComputing::Rules[:none][self]
+        Rules[:none][self]
       end
     end
 
@@ -202,12 +206,6 @@ class Rect
     :height
   ].each{|m| attr_accessor_callback :compute, m}
   #--------------------------------------------------------------------------
-  # * Style
-  #--------------------------------------------------------------------------
-  def style
-    @style ||= Gui::Style.new
-  end
-  #--------------------------------------------------------------------------
   # * Gets properties
   #--------------------------------------------------------------------------
   def abs_x;  @abs_x  ||= true_x; end
@@ -220,6 +218,7 @@ class Rect
   # * Sets all parameters at once
   #--------------------------------------------------------------------------
   def set(*args)
+    return if parameters == args || clone == args[0]
     if (a = args[0]).is_a? Rect
       @x, @y, @width, @height = a.x, a.y, a.width, a.height
     else
@@ -317,6 +316,7 @@ class Viewport
   alias_method :true_oy,  :oy
   alias_method :true_oy=, :oy=
   alias_method :inner, :rect
+  alias_method :sdk_dispose, :dispose
   #--------------------------------------------------------------------------
   # * Delegation
   #--------------------------------------------------------------------------
@@ -370,8 +370,10 @@ class Viewport
   #--------------------------------------------------------------------------
   def compute_self
     rect.set(self.x, self.y, self.width, self.height)
+    rect.compute_self
     self.true_ox = rect.true_x - rect.abs_x + self.ox
     self.true_oy = rect.true_y - rect.abs_y + self.oy
+    compute_z
   end
   #--------------------------------------------------------------------------
   # * Computes real z-coordinate from legacy rule
@@ -386,7 +388,17 @@ class Viewport
       self.children.each{|c| c.respond_to?(:compute_z) && c.compute_z}
     end
   end
-
+  #--------------------------------------------------------------------------
+  # * Dispose
+  #--------------------------------------------------------------------------
+  def dispose
+    @disposed = true
+    self.parent.children.delete(self) if self.parent
+    self.children.each{|c| c.dispose} if self.children
+    sdk_dispose
+  end
+  attr_reader :disposed
+  alias_method :disposed?, :disposed
 end
 
 #==============================================================================
@@ -397,80 +409,114 @@ end
 
 module Gui
 
+  #==============================================================================
+  # ** Style
+  #------------------------------------------------------------------------------
+  #  Telling what the things looks like
+  #==============================================================================
+
   class Style
 
-    delegate_accessor :@values, :[]
-
     def initialize
-      @values = {
-        background_color: Color.new(*[255]*3),
-        border_color:     Color.new(*[0]*3),
-        border_width:     1,
-        border_radius:    0,
-        display:          :block,
-        float:            nil,
-        font:             'Standard',
-        height:           :auto,
-        max_height:       nil,
-        min_height:       0,
-        width:            :auto,
-        max_width:        nil,
-        min_width:        0,
-      }
-      set_padding(8)
-      set_margin(0)
+      @values = Hash.new
+      set background_color: Color.new(*[255]*3),
+          border_color:     Color.new(*[0]*3),
+          border:           1,
+          border_width:     1,
+          border_radius:    0,
+          font:             'Standard',
+          height:           :auto,
+          max_height:       nil,
+          min_height:       0,
+          width:            :auto,
+          max_width:        nil,
+          min_width:        0,
+          padding:          8,
+          margin:           0
     end
 
-    def set_margin(*args)
-      set_param('margin', *args)
+    def [](k)
+      @values[k.to_sym]
     end
 
-    def set_padding(*args)
-      set_param('padding', *args)
+    def []=(k,v)
+      @values[k.to_sym] = v
     end
 
-    def set_param(param, *args)
-      param = ['bottom', 'top', 'left', 'right'].map do |s|
-        s = (param + '_' + s).to_sym
+    def set(args)
+      args.each do |k,v|
+        if [:margin, :padding, :border].include?(k)
+          set_param(k, *v)
+        else
+          self[k] = v
+        end
       end
+    end
+
+    def set_param(m, *args)
+      m = m.to_s
       case args.length
       when 1
-        self[param[0]] = self[param[1]] =
-        self[param[2]] = self[param[3]] = args[0]
+        self["#{m}_bottom"] = self["#{m}_top"]   =
+        self["#{m}_left"]   = self["#{m}_right"] = args[0]
       when 2
-        self[param[0]] = self[param[1]] = args[0]
-        self[param[2]] = self[param[3]] = args[1]
+        self["#{m}_bottom"] = self["#{m}_top"]   = args[0]
+        self["#{m}_left"]   = self["#{m}_right"] = args[1]
       when 3
-        self[param[0]] = args[0]
-        self[param[1]] = args[2]
-        self[param[2]] = self[param[3]] = args[1]
+        self["#{m}_bottom"] = args[0]
+        self["#{m}_top"]    = args[2]
+        self["#{m}_left"]   = self["#{m}_right"] = args[1]
       else
-        self[param[0]], self[param[1]],
-        self[param[2]], self[param[3]]  = *args
+        self["#{m}_bottom"], self["#{m}_top"],
+        self["#{m}_left"],   self["#{m}_right"]  = *args
       end
     end
 
-    def contract_with_margin(r)
-      s = self
-      x = r.x + s[:margin_left]
-      y = r.y + s[:margin_top ]
-      w = r.width  - s[:margin_left] - s[:margin_right ]
-      h = r.height - s[:margin_top ] - s[:margin_bottom]
+    def contract_with(m, r)
+      m = m.to_s
+      x = r.x + self["#{m}_left"]
+      y = r.y + self["#{m}_top" ]
+      w = r.width  - self["#{m}_left"] - self["#{m}_right" ]
+      h = r.height - self["#{m}_top" ] - self["#{m}_bottom"]
       r.set x, y, w, h
     end
 
-    def contract_with_padding(r)
-      s = self
-      x = r.x + s[:padding_left]
-      y = r.y + s[:padding_top ]
-      w = r.width  - s[:padding_left] - s[:padding_right ]
-      h = r.height - s[:padding_top ] - s[:padding_bottom]
-      r.set x, y, w, h
+    def css_match(obj)
+      Gui::CSS.apply_to(obj)
+    end
+  end
+
+  #==============================================================================
+  # ** CSS
+  #------------------------------------------------------------------------------
+  #  Telling what the things looks like LEVEL 2
+  #==============================================================================
+
+  module CSS
+    class << self
+      attr_accessor :entries
+      delegate_accessor :entries, :[]
+      CSS.entries = Hash.new
+      def apply_to(obj)
+        entries.each do |selector, style|
+          obj.style.set(style) if selector[obj]
+        end
+      end
     end
 
-    def contract_with_border(r)
-      b = self[:border_width]
-      r.set r.x + b, r.y + b, r.width - 2*b, r.height - 2*b
+    def set(*selectors, style)
+      selectors.each do |s|
+        s = s+'._' unless s.include?('.')
+        s = '_ '+s unless s.include?(' ')
+        s = s.split(/\ |\./)
+        sl = proc do |obj|
+          c1 = s[0] == "_" || obj.parents.any?{|pa| pa.class.to_s == s[0]}
+          c2 = obj.class.to_s == s[1]
+          c3 = s[2] == "_" || obj.respond_to?(:name) && obj.name.to_s == s[2]
+          c1 && c2 && c3
+        end
+        CSS[sl] = style
+      end
     end
 
   end
@@ -1024,5 +1070,95 @@ module Gui
 
   end
 
+  #==============================================================================
+  # ** Gui::Box
+  #------------------------------------------------------------------------------
+  #  Simple box
+  #==============================================================================
 
+  class Box
+    #--------------------------------------------------------------------------
+    # * Import Stackable API
+    #--------------------------------------------------------------------------
+    include Generative::Stackable
+
+    attr_accessor :inner, :style, :viewport, :name
+    [
+      :in?,
+      :hover?,
+      :click?,
+      :press?,
+      :trigger?,
+      :repeat?,
+      :release?,
+      :mouse_x,
+      :mouse_y,
+      :x,
+      :y,
+      :width,
+      :height,
+      :true_z
+    ].each{|m| delegate :viewport, m}
+    [
+      :children,
+      :parent,
+      :z
+    ].each{|m| delegate_accessor :viewport, m}
+    [
+      :x,
+      :y,
+      :width,
+      :height
+    ].each{|m| attr_accessor_callback :compute, m}
+
+    def initialize(args=nil)
+      @name = args[:name] if args && args[:name]
+      @viewport = Viewport.new(50, 50, 200, 300)
+      if args && args[:parent]
+        pa = args[:parent]
+        self.parent = pa
+        pa.children ||= []
+        pa.children << self
+      end
+      @style = Gui::Style.new
+      @style.css_match(self)
+      @style.set args[:style] if args && args[:style]
+      @background = Sprite.new(@viewport)
+      @inner = Rect.new
+      @inner >> @viewport
+      compute_self
+    end
+
+    def update_background
+      @background.bitmap = Bitmap.new(self.width, self.height)
+      r = Rect.new(0, 0, self.width, self.height)
+      @style.contract_with(:margin, r)
+      @background.bitmap.fill_rect(r, @style[:border_color])
+      @style.contract_with(:border, r)
+      @background.bitmap.fill_rect(r, @style[:background_color])
+      @style.contract_with(:padding, r)
+      @inner.set(r)
+    end
+
+    def compute_self
+      viewport.x = @x
+      viewport.y = @y
+      viewport.width = @width
+      viewport.height = @height
+      viewport.compute_self
+      update_background
+    end
+  end
+
+end
+
+#==============================================================================
+# ** Module
+#------------------------------------------------------------------------------
+#  Link CSS
+#==============================================================================
+
+class Module
+  include Gui::CSS
+  extend Gui::CSS
 end
