@@ -30,7 +30,8 @@ module L
   # * Returns a Game Label
   #--------------------------------------------------------------------------
   def [](key)
-    $game_labels[key] || 0
+    return 0 if $game_labels[key].nil?
+    $game_labels[key]
   end
 
   #--------------------------------------------------------------------------
@@ -38,6 +39,24 @@ module L
   #--------------------------------------------------------------------------
   def []=(key, value)
     $game_labels[key] = value
+  end
+end
+
+#==============================================================================
+# ** Game_Variables
+#------------------------------------------------------------------------------
+#  This class handles variables. It's a wrapper for the built-in class "Array."
+# The instance of this class is referenced by $game_variables.
+#==============================================================================
+
+class Game_Variables
+  #--------------------------------------------------------------------------
+  # * Get Variable
+  #--------------------------------------------------------------------------
+  def [](variable_id)
+    # Hack for retreive false values
+    return 0 if @data[variable_id].nil?
+    @data[variable_id]
   end
 end
 
@@ -57,7 +76,7 @@ module V
   # * Returns a Game Variable
   #--------------------------------------------------------------------------
   def [](key)
-    $game_variables[key] || 0
+    $game_variables[key]
   end
 
   #--------------------------------------------------------------------------
