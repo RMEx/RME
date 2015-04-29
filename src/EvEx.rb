@@ -495,6 +495,86 @@ end
 
 
 #==============================================================================
+# ** Window movement
+#------------------------------------------------------------------------------
+#  Window handler
+#==============================================================================
+
+module Window_Movement
+
+  #--------------------------------------------------------------------------
+  # * Init public member
+  #--------------------------------------------------------------------------
+  def init_target
+    @target_opacity = self.opacity
+    @target_x = self.x
+    @target_y = self.y
+    @target_tone = self.tone
+    @target_width = self.width
+    @target_height = self.height
+    @opacity_duration = @pos_duration = 0
+    @size_duration = @tone_duration = 0
+  end
+
+  #--------------------------------------------------------------------------
+  # * module update
+  #--------------------------------------------------------------------------
+  def mod_update
+    mod_update_opacity
+    mod_update_pos
+    mod_update_size
+    mod_update_tone
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update opacity
+  #--------------------------------------------------------------------------
+  def mod_update_opacity
+    return if @opacity_duration <= 0
+    d = @opacity_duration
+    self.opacity = (self.opacity * (d - 1) + @target_opacity) / d
+    @opacity_duration -= 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update position
+  #--------------------------------------------------------------------------
+  def mod_update_pos
+    return if @pos_duration <= 0
+    d = @pos_duration
+    self.x = (self.x * (d - 1) + @target_x) / d
+    self.y = (self.y * (d - 1) + @target_y) / d
+    @pos_duration -= 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update Size
+  #--------------------------------------------------------------------------
+  def mod_update_size
+    return if @size_duration <= 0
+    d = @size_duration
+    self.width  = (self.width   * (d - 1) + @target_width)  / d
+    self.height = (self.height  * (d - 1) + @target_height)  / d
+    @size_duration -= 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update Tone
+  #--------------------------------------------------------------------------
+  def mod_update_tone
+    return if @tone_duration <= 0
+    d = @tone_duration
+    self.tone.red   = (self.tone.red   * (d - 1) + @tone_target.red)   / d
+    self.tone.green = (self.tone.green * (d - 1) + @tone_target.green) / d
+    self.tone.blue  = (self.tone.blue  * (d - 1) + @tone_target.blue)  / d
+    self.tone.gray  = (self.tone.gray  * (d - 1) + @tone_target.gray)  / d
+    @tone_duration -= 1
+  end
+
+
+end
+
+#==============================================================================
 # ** Area
 #------------------------------------------------------------------------------
 #  Area definition
@@ -1470,6 +1550,10 @@ class Window_Base
     end
     return result
   end
+  #--------------------------------------------------------------------------
+  # * Include Window movement
+  #--------------------------------------------------------------------------
+  include Window_Movement
 end
 
 #==============================================================================
