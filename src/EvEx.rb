@@ -199,9 +199,9 @@ module SS
   # * map key
   #--------------------------------------------------------------------------
   def map_id_s(id)
-    auth = ["A","B","C","D"]
+    auth = ["A".."Z"]
     return id if auth.include?(id)
-    return auth[id-1] if id.to_i.between?(1, 4)
+    return auth[id-1] if id.to_i.between?(1, 26)
     return "A"
   end
   private :map_id_s
