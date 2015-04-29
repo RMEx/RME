@@ -199,7 +199,7 @@ module SS
   # * map key
   #--------------------------------------------------------------------------
   def map_id_s(id)
-    auth = ["A".."Z"]
+    auth = ("A".."Z").to_a
     return id if auth.include?(id)
     return auth[id-1] if id.to_i.between?(1, 26)
     return "A"
