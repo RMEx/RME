@@ -503,6 +503,13 @@ end
 module Window_Movement
 
   #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_accessor :target_opacity, :target_x, :target_y, :target_tone
+  attr_accessor :target_width, :target_height, :opacity_duration
+  attr_accessor :pos_duration, :size_duration, :tone_duration
+
+  #--------------------------------------------------------------------------
   # * Init public member
   #--------------------------------------------------------------------------
   def init_target
@@ -1599,6 +1606,7 @@ class Scene_Map
   #--------------------------------------------------------------------------
   def start
     @textfields = Hash.new
+    @windows = Hash.new
     extender_start
   end
   #--------------------------------------------------------------------------
@@ -1649,6 +1657,7 @@ class Scene_Map
   #--------------------------------------------------------------------------
   def update_all_windows
     super
+    @windows.values.collect(&:update)
     @textfields.values.collect(&:update)
   end
 
