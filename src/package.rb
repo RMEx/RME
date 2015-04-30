@@ -1,7 +1,7 @@
 # Package description
 Package.new(
 	name: 'RME',
-	version: vsn(0, 0, 5),
+	version: vsn(0, 0, 6),
 	authors: {
     'Nuki' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
@@ -12,7 +12,6 @@ Package.new(
   },
 	components: [
     'SDK.rb',
-		'SDK.Gui.rb',
     'Database.rb',
     'Internal.rb',
     'EvEx.rb',

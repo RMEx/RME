@@ -269,23 +269,6 @@ class Rect
     point.in?(self.computed)
   end
   #--------------------------------------------------------------------------
-  # * check if the mouse 's hover
-  #--------------------------------------------------------------------------
-  def hover?; in?(Mouse.point); end
-  #--------------------------------------------------------------------------
-  # * check Mouse Interaction
-  #--------------------------------------------------------------------------
-  def click?;         hover? && Mouse.click?;         end
-  def press?(key);    hover? && Mouse.press?(key);    end
-  def trigger?(key);  hover? && Mouse.trigger?(key);  end
-  def repeat?(key);   hover? && Mouse.repeat?(key);   end
-  def release?(key);  hover? && Mouse.release?(key);  end
-  #--------------------------------------------------------------------------
-  # * Mouse accessor
-  #--------------------------------------------------------------------------
-  def mouse_x; Mouse.x - self.abs_x; end
-  def mouse_y; Mouse.y - self.abs_y; end
-  #--------------------------------------------------------------------------
   # * Inception
   #--------------------------------------------------------------------------
   def inner
@@ -320,17 +303,6 @@ class Viewport
   #--------------------------------------------------------------------------
   # * Delegation
   #--------------------------------------------------------------------------
-  [
-    :in?,
-    :hover?,
-    :click?,
-    :press?,
-    :trigger?,
-    :repeat?,
-    :release?,
-    :mouse_x,
-    :mouse_y
-  ].each{|m| delegate :rect, m}
   [
     :children,
     :parent
@@ -511,7 +483,7 @@ module Gui
         s = s.split(/\ |\./)
         sl = proc do |obj|
           c1 = s[0] == "_" || obj.parents.any?{|pa| pa.class.to_s == s[0]}
-          c2 = obj.class.to_s == s[1]
+          c2 = s[1] == ""  || obj.class.to_s == s[1]
           c3 = s[2] == "_" || obj.respond_to?(:name) && obj.name.to_s == s[2]
           c1 && c2 && c3
         end
@@ -1161,4 +1133,33 @@ end
 class Module
   include Gui::CSS
   extend Gui::CSS
+end
+
+#==============================================================================
+# ** CSS
+#------------------------------------------------------------------------------
+#  Telling what the things looks like
+#==============================================================================
+
+module CSS
+
+  set 'Gui::Box',
+    padding: 5,
+    background_color: get_color('gray'),
+    border_color: get_color('blue')
+
+  set 'SuperBilou',
+    padding: 10,
+    background_color: Gui::Tools.random_color,
+    border_color: get_color('red'),
+    border_top: 30
+
+  set 'SuperBilou Gui::Box',
+    border: 10
+
+  set 'Gui::Box.bernard', 'SuperBilou.lol',
+    background_color: get_color('green'),
+    border: [2,4,6,8],
+    border_left: 20
+
 end
