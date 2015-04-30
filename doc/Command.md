@@ -445,7 +445,7 @@ Collection des commandes EventExtender
 *    [Command.player_stop_trail](#commandplayer_stop_trail)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
-*    [Command.player_trail(len, *mode)](#commandplayer_traillen-mode)
+*    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
 *    [Command.player_transparent](#commandplayer_transparent)
 *    [Command.player_transparent?](#commandplayer_transparent)
 *    [Command.player_x](#commandplayer_x)
@@ -6852,7 +6852,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.player_trail(len, *mode)
+##### Command.player_trail(len, *mode, *tone)
 
 > Applique une trainée sur le joueur
 
@@ -6860,7 +6860,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `len`|`Fixnum`|Taille de la trainée  
-`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+`*mode`|`Fixnum`|Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0  
+`*tone`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
 
 
 

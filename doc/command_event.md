@@ -78,7 +78,7 @@ Commandes relatives aux évènements
 *    [player_stop_trail](#player_stop_trail)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
-*    [player_trail(len, *mode)](#player_traillen-mode)
+*    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
 *    [player_transparent](#player_transparent)
 *    [player_transparent?](#player_transparent)
 *    [player_x](#player_x)
@@ -782,7 +782,7 @@ Commandes relatives aux évènements
   
 > 
 
-##### player_trail(len, *mode)
+##### player_trail(len, *mode, *tone)
 
 > Applique une trainée sur le joueur
 
@@ -790,7 +790,8 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `len`|`Fixnum`|Taille de la trainée  
-`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+`*mode`|`Fixnum`|Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0  
+`*tone`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
 
 
 ##### player_transparent

@@ -72,7 +72,7 @@ Commandes relatives aux évènements<br /><br /><h2>Liste des commandes<ul></h2>
 <li><a href='#player_stop_trail'>player_stop_trail</a></li>
 <li><a href='#player_throughflag'>player_through(*flag)</a></li>
 <li><a href='#player_through'>player_through?</a></li>
-<li><a href='#player_traillen-mode'>player_trail(len, *mode)</a></li>
+<li><a href='#player_traillen-mode-tone'>player_trail(len, *mode, *tone)</a></li>
 <li><a href='#player_transparent'>player_transparent</a></li>
 <li><a href='#player_transparent'>player_transparent?</a></li>
 <li><a href='#player_x'>player_x</a></li>
@@ -152,8 +152,8 @@ Commandes relatives aux évènements<br /><br /><h2>Liste des commandes<ul></h2>
 <blockquote></table></blockquote><strong name='player_stop_trail' id='player_stop_trail'>player_stop_trail</strong><br /><br /><blockquote>Arrête la trainée sur le joueur</blockquote>  
 <blockquote></table></blockquote><strong name='player_throughflag' id='player_throughflag'>player_through(*flag)</strong><br /><br /><blockquote>Change le mode de traversée du joueur</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>*flag</code></td><td><code>Boolean</code></td><td>true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true </td></tr></table></blockquote><strong name='player_through' id='player_through'>player_through?</strong><br /><br /><blockquote>Renvoi true si le joueur est en mode 'traverse tout', false sinon</blockquote>  
-<blockquote></table></blockquote><strong name='player_traillen-mode' id='player_traillen-mode'>player_trail(len, *mode)</strong><br /><br /><blockquote>Applique une trainée sur le joueur</blockquote>  
-<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>len</code></td><td><code>Fixnum</code></td><td>Taille de la trainée</td></tr><tr><td><code>*mode</code></td><td><code>Tone</code></td><td>Teinte de la trainée (n'hésitez pas à utiliser la commande tone)</td></tr></table></blockquote><strong name='player_transparent' id='player_transparent'>player_transparent</strong><br /><br /><blockquote>Rend le joueur transparent</blockquote>  
+<blockquote></table></blockquote><strong name='player_traillen-mode-tone' id='player_traillen-mode-tone'>player_trail(len, *mode, *tone)</strong><br /><br /><blockquote>Applique une trainée sur le joueur</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>len</code></td><td><code>Fixnum</code></td><td>Taille de la trainée</td></tr><tr><td><code>*mode</code></td><td><code>Fixnum</code></td><td>Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0</td></tr><tr><td><code>*tone</code></td><td><code>Tone</code></td><td>Teinte de la trainée (n'hésitez pas à utiliser la commande tone)</td></tr></table></blockquote><strong name='player_transparent' id='player_transparent'>player_transparent</strong><br /><br /><blockquote>Rend le joueur transparent</blockquote>  
 <blockquote></table></blockquote><strong name='player_transparent' id='player_transparent'>player_transparent?</strong><br /><br /><blockquote>Renvoi true si le joueur est transparent (false sinon)</blockquote>  
 <blockquote></table></blockquote><strong name='player_x' id='player_x'>player_x</strong><br /><br /><blockquote>Renvoie la coordonnées X de la case sur laquelle est le joueur</blockquote>  
 <blockquote></table></blockquote><strong name='player_y' id='player_y'>player_y</strong><br /><br /><blockquote>Renvoie la coordonnées Y de la case sur laquelle est le joueur</blockquote>  

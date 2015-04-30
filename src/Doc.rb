@@ -868,7 +868,7 @@ module Command
    	{
   		:len => ["Taille de la trainée", :Fixnum],
   		:"*mode" => ["Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0", :Fixnum],
-  		:"*mode" => ["Teinte de la trainée (n'hésitez pas à utiliser la commande tone)", :Tone],
+  		:"*tone" => ["Teinte de la trainée (n'hésitez pas à utiliser la commande tone)", :Tone],
 
   	}
   register_command :event, 'Command.player_trail'
