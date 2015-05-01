@@ -2378,8 +2378,25 @@ module RMECommands
 
   module CmdWindow
 
-    def create_window(id, content, profile, x, y, w=nil, h=nil)
+    def create_text_window(id, content, profile, x, y, w=nil, h=nil)
+      f = Window_Text.new(x, y, content, profile, w, h)
+      SceneManager.scene.add_window(id, f)
+    end
 
+    def remove_window(id)
+      SceneManager.scene.erase_window(id)
+    end
+
+    def remove_all_windows
+      SceneManager.scene.erase_windows
+    end
+
+    def close_window(id)
+      SceneManager.scene.windows[id].close if SceneManager.scene.windows[id]
+    end
+
+    def open_window(id)
+      SceneManager.scene.windows[id].open if SceneManager.scene.windows[id]
     end
 
     append_commands

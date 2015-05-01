@@ -1,8 +1,11 @@
 Report,
-# Commandes documentées,610/613
+# Commandes documentées,611/617
 ,
 # Commandes non documentées,# Suggestion
-create_window,Aucune suggestion
+remove_window,Aucune suggestion
+remove_all_windows,Aucune suggestion
+close_window,Aucune suggestion
+open_window,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,

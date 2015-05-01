@@ -146,6 +146,7 @@ Collection des commandes EventExtender
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
+*    [Command.create_text_window(id, content, profile, x, y, *w, *h)](#commandcreate_text_windowid-content-profile-x-y-w-h)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
 *    [Command.current_enemies](#commandcurrent_enemies)
@@ -2582,6 +2583,26 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `y`|`Fixnum`|Coordonnées Y de la zone  
 `width`|`Fixnum`|Largeur de la zone  
 `height`|`Fixnum`|Hauteur de la zone  
+
+
+
+
+
+
+##### Command.create_text_window(id, content, profile, x, y, *w, *h)
+
+> Crée une fenêtre pouvant contenir du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Numéro de la fenêtre  
+`content`|`String`|Texte (ou tableau séparé par des virgules) à afficher  
+`profile`|`String`|Profile de la fenêtre (IWindowProfile)  
+`x`|`Fixnum`|Position X de la fenêtre  
+`y`|`Fixnum`|Position Y de la fenêtre  
+`*w`|`Fixnum`|Largeur de la fenêtre, utilisez 'nil' pour que la largeur de la fenêtre soit calculée  
+`*h`|`Fixnum`|Hauteur de la fenêtre, utilisez 'nil' pour que la hauteur de la fenêtre soit calculée  
 
 
 

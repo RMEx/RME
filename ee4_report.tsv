@@ -136,6 +136,7 @@ click_time(k)	-
 clipboard_get_text	-
 clipboard_push_command(cmd)	-
 clipboard_push_text(text)	-
+close_window(id)	-
 collide?(ev1,ev2)	collide?(id,id)
 color(r,v,b,*a)	color(rouge,vert,bleu,*alpha)
 cos(x)	-
@@ -144,8 +145,8 @@ create_circle_area(x,y,rayon)	create_circle_area(point,point,rayon)
 create_ellipse_area(x,y,width,height)	create_ellipse_area(point,point,largeur,hauteur)
 create_polygon_area(*points)	create_polygon_area(points)
 create_rect_area(x,y,width,height)	create_rect_area(point,point,point,point)
+create_text_window(id,content,profile,x,y,*w,*h)	-
 -	create_textfield(type,x,y,*largeur,texte,alignement)
-create_window(id,content,profile,x,y,*w,*h)	-
 ctrl?(*k)	-
 currency	-
 current_enemies	-
@@ -396,6 +397,7 @@ mouse_y	mouse_y
 mouse_y_square	mouse_y_square
 move_to(id,x,y,*w)	move_to(id,x,y,attendre)
 num_lock?	num_lock?
+open_window(id)	-
 pad360_plugged?(*id)	-
 pad360_stop_vibration(*id)	-
 pad360_stop_vibration_left(*id)	-
@@ -487,6 +489,8 @@ random(*min,max)	random(minimum,maximum)
 random_combination(len,*keys)	-
 random_figures(*x)	-
 region_id(x,y)	region_id(x,y)
+remove_all_windows	-
+remove_window(id)	-
 replay_bgm	-
 rm_kill	-
 -	rtp_path
