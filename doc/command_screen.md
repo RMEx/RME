@@ -10,8 +10,10 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 *    [screen_fadein(duration)](#screen_fadeinduration)
 *    [screen_fadeout(duration)](#screen_fadeoutduration)
 *    [screen_flash(color, duration, *wait_flag)](#screen_flashcolor-duration-wait_flag)
+*    [screen_height](#screen_height)
 *    [screen_shake(power, speed, duration, *wait_flag)](#screen_shakepower-speed-duration-wait_flag)
 *    [screen_tone(tone, duration, *wait_flag)](#screen_tonetone-duration-wait_flag)
+*    [screen_width](#screen_width)
 
 
 ##Description des commandes
@@ -47,6 +49,13 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 `*wait_flag`|`Boolean`|Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false  
 
 
+##### screen_height
+
+> Renvoi la hauteur de l'écran (en pixel)
+
+  
+> 
+
 ##### screen_shake(power, speed, duration, *wait_flag)
 
 > Fait trembler l'écran pendant une durée déterminée
@@ -71,4 +80,11 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 `duration`|`Fixnum`|Durée en frame  
 `*wait_flag`|`Boolean`|Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false  
 
+
+##### screen_width
+
+> Renvoi la largeur de l'écran (en pixel)
+
+  
+> 
 

@@ -469,8 +469,10 @@ Collection des commandes EventExtender
 *    [Command.screen_fadein(duration)](#commandscreen_fadeinduration)
 *    [Command.screen_fadeout(duration)](#commandscreen_fadeoutduration)
 *    [Command.screen_flash(color, duration, *wait_flag)](#commandscreen_flashcolor-duration-wait_flag)
+*    [Command.screen_height](#commandscreen_height)
 *    [Command.screen_shake(power, speed, duration, *wait_flag)](#commandscreen_shakepower-speed-duration-wait_flag)
 *    [Command.screen_tone(tone, duration, *wait_flag)](#commandscreen_tonetone-duration-wait_flag)
+*    [Command.screen_width](#commandscreen_width)
 *    [Command.scroll_lock?](#commandscroll_lock)
 *    [Command.se_play(name, *volume, *pitch)](#commandse_playname-volume-pitch)
 *    [Command.se_stop](#commandse_stop)
@@ -7167,6 +7169,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.screen_height
+
+> Renvoi la hauteur de l'écran (en pixel)
+
+  
+> 
+
+
+
+
+
 ##### Command.screen_shake(power, speed, duration, *wait_flag)
 
 > Fait trembler l'écran pendant une durée déterminée
@@ -7195,6 +7208,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `duration`|`Fixnum`|Durée en frame  
 `*wait_flag`|`Boolean`|Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false  
 
+
+
+
+
+
+##### Command.screen_width
+
+> Renvoi la largeur de l'écran (en pixel)
+
+  
+> 
 
 
 
