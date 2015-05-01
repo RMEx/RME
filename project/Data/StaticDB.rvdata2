@@ -1,5 +1,4 @@
-{
-:IColor[[
+{:IColor[[
 "
 black"0"0"0"	255[
 "
@@ -30,6 +29,6 @@ white"
 false"	true"
 false"
 black"
-false:ITextFieldProfile[["default"default"0"54"6"6"darkblue:ISkipTitle[[
+false:ITextFieldProfile[["default"default"0"54"6"6"darkblue:IWindowProfile[[	"default"default"0"darkblue:ISkipTitle[[
 "SkipTitle"
 false"0"0"0

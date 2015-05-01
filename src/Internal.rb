@@ -166,6 +166,31 @@ end
 ITextFieldProfile.insert("default", "default", 0, 54, 6, 6, "darkblue")
 
 #==============================================================================
+# ** ITextFieldProfile
+#------------------------------------------------------------------------------
+#  TextField Profile Registration
+#==============================================================================
+
+class IWindowProfile < Static::Table
+  pk string :name
+  string :text_profile
+  integer :alignement
+  string :tone_name
+
+  #--------------------------------------------------------------------------
+  # * Get tone
+  #--------------------------------------------------------------------------
+  def get_tone
+    get_toneProfile(tone_name)
+  end
+end
+
+#--------------------------------------------------------------------------
+# * Std WindowProfiles
+#--------------------------------------------------------------------------
+IWindowProfile.insert("default", "default", 0, "darkblue")
+
+#==============================================================================
 # ** ISkipTitle
 #------------------------------------------------------------------------------
 #  Skip title config
@@ -210,6 +235,15 @@ module Kernel
   def get_fieldProfile(name)
     c = ITextFieldProfile[name]
     return ITextFieldProfile["default"] unless c
+    c
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Window Profile by name
+  #--------------------------------------------------------------------------
+  def get_windowProfile(name)
+    c = IWindowProfile[name]
+    ITextFieldProfile["default"] unless c
     c
   end
 

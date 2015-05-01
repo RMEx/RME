@@ -533,6 +533,35 @@ module Window_Movement
     mod_update_tone
   end
 
+  def move_position(x, y, duration)
+    @target_x = x
+    @target_y = y
+    @pos_duration = duration
+  end
+
+  def move_opacity(op, duration)
+    @target_opacity = op
+    @opacity_duration = duration
+  end
+
+  def move_size(w, h, duration)
+    @target_width = w
+    @target_height = h
+    @size_duration = duration
+  end
+
+  def move_tone(t, duration)
+    @target_tone = t
+    @tone_duration = duration
+  end
+
+  def extra_move(x, y, w, h, op, duration, tone = nil)
+    move_position(x, y, duration)
+    move_opacity(op, duration)
+    move_size(w, h, duration)
+    move_tone(tone, duration) if tone
+  end
+
   #--------------------------------------------------------------------------
   # * Update opacity
   #--------------------------------------------------------------------------
@@ -540,6 +569,7 @@ module Window_Movement
     return if @opacity_duration <= 0
     d = @opacity_duration
     self.opacity = (self.opacity * (d - 1) + @target_opacity) / d
+    self.contents_opacity = self.opacity
     @opacity_duration -= 1
   end
 
@@ -1535,6 +1565,22 @@ class Window_Base
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rm_extender_convert_escape_characters, :convert_escape_characters
+  alias_method :rm_extender_initialize, :initialize
+  alias_method :rm_extender_update, :update
+  #--------------------------------------------------------------------------
+  # * Object Initialize
+  #--------------------------------------------------------------------------
+  def initialize(*args)
+    rm_extender_initialize(*args)
+    init_target
+  end
+  #--------------------------------------------------------------------------
+  # * Frame update
+  #--------------------------------------------------------------------------
+  def update
+    rm_extender_update
+    mod_update
+  end
   #--------------------------------------------------------------------------
   # * Preconvert Control Characters
   #    As a rule, replace only what will be changed into text strings before
@@ -1561,6 +1607,74 @@ class Window_Base
   # * Include Window movement
   #--------------------------------------------------------------------------
   include Window_Movement
+end
+
+#==============================================================================
+# ** Window_Text
+#------------------------------------------------------------------------------
+#  This message window is used to display text.
+#==============================================================================
+
+class Window_Text < Window_Base
+  #--------------------------------------------------------------------------
+  # * Public instances variables
+  #--------------------------------------------------------------------------
+  attr_accessor :profile
+  attr_accessor :content
+  #--------------------------------------------------------------------------
+  # * Get Text box
+  #--------------------------------------------------------------------------
+  def textbox
+    bmp = Bitmap.new(1, 1)
+    bmp.font = get_profile(@profile.text_profile).to_font
+    widths = Array.new
+    heights = Array.new
+    lines = @content.split("\n")
+    lines.each do |line|
+      r = bmp.text_size(line)
+      widths << r.width
+      heights << r.height
+    end
+    width, height = widths.max, heights.max
+    total_height = height * lines.length
+    [width, total_height, height]
+  end
+  #--------------------------------------------------------------------------
+  # * Object Initialize
+  #--------------------------------------------------------------------------
+  def initialize(x, y, content, profile, width, height)
+    @profile = get_windowProfile(profile)
+    @content = content
+    @w, @th, @h = *textbox
+    width = @w + 2*standard_padding if width == -1
+    height = @th + 2*standard_padding if height == -1
+    super(x, y, width, height)
+    refresh
+  end
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh
+    init_bitmap
+  end
+  #--------------------------------------------------------------------------
+  # * Init Bitmap
+  #--------------------------------------------------------------------------
+  def init_bitmap
+    create_contents
+    self.contents.font = get_profile(@profile.text_profile).to_font
+    draw_text_content
+  end
+  #--------------------------------------------------------------------------
+  # * Draw text content
+  #--------------------------------------------------------------------------
+  def draw_text_content
+    i = 0
+    @content.split("\n").each do |l|
+      draw_text(0, i, contents_width, @h, l, @profile.alignement)
+      i+=@h
+    end
+  end
 end
 
 #==============================================================================
@@ -1597,6 +1711,7 @@ class Scene_Map
   #--------------------------------------------------------------------------
   attr_reader :spriteset
   attr_accessor :textfields
+  attr_accessor :windows
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -1608,6 +1723,33 @@ class Scene_Map
     @textfields = Hash.new
     @windows = Hash.new
     extender_start
+  end
+  #--------------------------------------------------------------------------
+  # * Erase a Window
+  #--------------------------------------------------------------------------
+  def erase_window(i)
+    @windows[i].dispose if @windows[i] &&  !@windows[i].disposed?
+    @windows.delete(i) if @windows[i]
+  end
+  #--------------------------------------------------------------------------
+  # * Erase all Windows
+  #--------------------------------------------------------------------------
+  def erase_windows
+    return unless @windows
+    @windows.each {|i,t| erase_window(i)}
+  end
+  #--------------------------------------------------------------------------
+  # * unActivate all Windows
+  #--------------------------------------------------------------------------
+  def unactivate_windows
+    @windows.each {|i,t| t.deactivate if t && !t.disposed?}
+  end
+  #--------------------------------------------------------------------------
+  # * add Window
+  #--------------------------------------------------------------------------
+  def add_window(i, window)
+    erase_window(i)
+    @windows[i] = window
   end
   #--------------------------------------------------------------------------
   # * Erase a field

@@ -2364,6 +2364,25 @@ module RMECommands
       wait(duration) if wait_flag
     end
 
+    def screen_width; Graphics.width; end
+    def screen_height; Graphics.height; end
+
     append_commands
   end
+
+  #==============================================================================
+  # ** Window
+  #------------------------------------------------------------------------------
+  #  uhu
+  #==============================================================================
+
+  module CmdWindow
+
+    def create_window(id, content, profile, x, y, w=nil, h=nil)
+
+    end
+
+    append_commands
+  end
+
 end

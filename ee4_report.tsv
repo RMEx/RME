@@ -145,6 +145,7 @@ create_ellipse_area(x,y,width,height)	create_ellipse_area(point,point,largeur,ha
 create_polygon_area(*points)	create_polygon_area(points)
 create_rect_area(x,y,width,height)	create_rect_area(point,point,point,point)
 -	create_textfield(type,x,y,*largeur,texte,alignement)
+create_window(id,content,profile,x,y,*w,*h)	-
 ctrl?(*k)	-
 currency	-
 current_enemies	-
@@ -501,8 +502,10 @@ scene_return	-
 screen_fadein(duration)	-
 screen_fadeout(duration)	-
 screen_flash(color,duration,*wait_flag)	-
+screen_height	-
 screen_shake(power,speed,duration,*wait_flag)	-
 screen_tone(tone,duration,*wait_flag)	-
+screen_width	-
 scroll_lock?	scroll_lock?
 se_play(name,*volume,*pitch)	-
 se_stop	-

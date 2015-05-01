@@ -1,7 +1,10 @@
 Report,
-# Commandes documentées,608/610
+# Commandes documentées,608/613
 ,
 # Commandes non documentées,# Suggestion
+create_window,Aucune suggestion
+screen_width,Aucune suggestion
+screen_height,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,
