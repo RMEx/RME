@@ -1,4 +1,4 @@
-#RME : RPG Maker Extender
+# [![RMEx](http://rmex.github.io/images/rmex-shortcut.png)](http://rmex.github.io) [RME : RPG Maker Extender](https://github.com/RMEx/RME/wiki)
 
 **RME** est le successeur de l'**[Event Extender](http://funkywork.github.io/EE)**.
 Il propose une collection d'outil pour favoriser la personnalisation d'un projet RPG Maker.
