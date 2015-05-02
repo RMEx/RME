@@ -1328,6 +1328,10 @@ class Game_Player
     rme_update_scroll(last_real_x, last_real_y)
   end
 
+  def erased?
+    false
+  end
+
 end
 
 #==============================================================================
