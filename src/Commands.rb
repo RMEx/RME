@@ -2399,6 +2399,41 @@ module RMECommands
       SceneManager.scene.windows[id].open if SceneManager.scene.windows[id]
     end
 
+    def window_closed?(id); SceneManager.scene.windows[id].close?; end
+    def window_opened?(id); SceneManager.scene.windows[id].open?; end
+
+    def window_content(id, content, resize = false)
+      SceneManager.scene.windows[id].content = content
+      SceneManager.scene.windows[id].refresh(resize)
+    end
+
+    def window_moveto(id, x, y, duration = 0, wf = false)
+      SceneManager.scene.windows[id].move_position(x, y, duration)
+      wait(duration) if wf
+    end
+
+    def window_dimension(id, width, height, duration = 0, wf = false)
+      SceneManager.scene.windows[id].move_size(x, y, duration)
+      wait(duration) if wf
+    end
+
+    def window_opacity(id, value = nil, duration = 0, wf = false)
+      return SceneManager.scene.windows[id].opacity unless value
+      SceneManager.scene.windows[id].move_opacity(value, duration)
+      wait(duration) if wf
+    end
+
+    def window_tone(id, tone = nil, duration = 0, wf = false)
+      return SceneManager.scene.windows[id].tone unless tone
+      SceneManager.scene.windows[id].move_tone(tone, duration)
+      wait(duration) if wf
+    end
+
+    def window_move(id, x, y, w, h, opacity, tone, duration = 0, wf = false)
+      SceneManager.scene.windows[id].extra_move(x, y, w, h, opacity, duration, tone)
+      wait(duration) if wf
+    end
+
     append_commands
   end
 

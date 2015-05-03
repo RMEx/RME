@@ -1633,7 +1633,8 @@ class Window_Text < Window_Base
     bmp.font = get_profile(@profile.text_profile).to_font
     widths = Array.new
     heights = Array.new
-    lines = @content.split("\n")
+    lines = @content
+    lines = @content.split("\n") if @content.is_a?(String)
     lines.each do |line|
       r = bmp.text_size(line)
       widths << r.width
@@ -1656,9 +1657,21 @@ class Window_Text < Window_Base
     refresh
   end
   #--------------------------------------------------------------------------
+  # * Profile accessor
+  #--------------------------------------------------------------------------
+  def profile=(k)
+    @profile = get_windowProfile(k)
+  end
+  #--------------------------------------------------------------------------
   # * Refresh
   #--------------------------------------------------------------------------
-  def refresh
+  def refresh(flag = false)
+    if flag
+      @w, @th, @h = *textbox
+      width = @w + 2*standard_padding
+      height = @th + 2*standard_padding
+      move(self.x, self.y, width, height)
+    end
     init_bitmap
   end
   #--------------------------------------------------------------------------
@@ -1674,7 +1687,9 @@ class Window_Text < Window_Base
   #--------------------------------------------------------------------------
   def draw_text_content
     i = 0
-    @content.split("\n").each do |l|
+    lines = @content
+    lines = @content.split("\n") if @content.is_a?(String)
+    lines.each do |l|
       draw_text(0, i, contents_width, @h, l, @profile.alignement)
       i+=@h
     end

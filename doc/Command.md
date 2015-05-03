@@ -139,6 +139,7 @@ Collection des commandes EventExtender
 *    [Command.clipboard_get_text](#commandclipboard_get_text)
 *    [Command.clipboard_push_command(cmd)](#commandclipboard_push_commandcmd)
 *    [Command.clipboard_push_text(text)](#commandclipboard_push_texttext)
+*    [Command.close_window(id)](#commandclose_windowid)
 *    [Command.color(red, green, blue, *alpha)](#commandcolorred-green-blue-alpha)
 *    [Command.cos(x)](#commandcosx)
 *    [Command.cosh(x)](#commandcoshx)
@@ -371,6 +372,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_y](#commandmouse_y)
 *    [Command.move_to(id, x, y, *wait_flag)](#commandmove_toid-x-y-wait_flag)
 *    [Command.num_lock?](#commandnum_lock)
+*    [Command.open_window(id)](#commandopen_windowid)
 *    [Command.pad360_plugged?(*id)](#commandpad360_pluggedid)
 *    [Command.pad360_stop_vibration(*id)](#commandpad360_stop_vibrationid)
 *    [Command.pad360_stop_vibration_left(*id)](#commandpad360_stop_vibration_leftid)
@@ -456,6 +458,8 @@ Collection des commandes EventExtender
 *    [Command.random_combination(len, *keys)](#commandrandom_combinationlen-keys)
 *    [Command.random_figures(x)](#commandrandom_figuresx)
 *    [Command.region_id(x, y)](#commandregion_idx-y)
+*    [Command.remove_all_windows](#commandremove_all_windows)
+*    [Command.remove_window(id)](#commandremove_windowid)
 *    [Command.replay_bgm](#commandreplay_bgm)
 *    [Command.rm_kill](#commandrm_kill)
 *    [Command.save_bgm](#commandsave_bgm)
@@ -618,6 +622,14 @@ Collection des commandes EventExtender
 *    [Command.weapon_price(id)](#commandweapon_priceid)
 *    [Command.weapon_type(id)](#commandweapon_typeid)
 *    [Command.website(url)](#commandwebsiteurl)
+*    [Command.window_closed?(id)](#commandwindow_closedid)
+*    [Command.window_content(id, content, *resize)](#commandwindow_contentid-content-resize)
+*    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
+*    [Command.window_move(id, x, y, w, h, opacity, tone, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-tone-duration-wait_flag)
+*    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
+*    [Command.window_opacity(id, *value, *duration, *wait_flag)](#commandwindow_opacityid-value-duration-wait_flag)
+*    [Command.window_opened?(id)](#commandwindow_openedid)
+*    [Command.window_tone(id, *tone, *duration, *wait_flag)](#commandwindow_toneid-tone-duration-wait_flag)
 
 
 ##Description des méthodes
@@ -2474,6 +2486,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `text`|`String`|Texte à sauvegarder dans le presse-papier  
+
+
+
+
+
+
+##### Command.close_window(id)
+
+> Ferme la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 
@@ -5731,6 +5757,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.open_window(id)
+
+> Ouvre la commande référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
 ##### Command.pad360_plugged?(*id)
 
 > Renvoie true si une manette est branchée dans le port référencée par son ID, false sinon
@@ -7004,6 +7044,31 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
+##### Command.remove_all_windows
+
+> Supprime toutes les fenêtres
+
+  
+> 
+
+
+
+
+
+##### Command.remove_window(id)
+
+> Supprime la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 
@@ -9288,6 +9353,142 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `url`|`String`|Url à charger  
+
+
+
+
+
+
+##### Command.window_closed?(id)
+
+> Renvoi true si la fenêtre référencée par son ID est fermée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
+##### Command.window_content(id, content, *resize)
+
+> Change le contenu de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`content`|`Object`|Valeur affichée de la fenêtre  
+`*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
+
+
+
+
+
+
+##### Command.window_dimension(id, width, height, *duration, *wait_flag)
+
+> Change la dimension de la fenêtre
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`width`|`Fixnum`|Largeur de la fenêtre  
+`height`|`Fixnum`|Hauteur de la fenêtre  
+`*duration`|`Fixnum`|Durée du déplacement  
+`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+
+
+##### Command.window_move(id, x, y, w, h, opacity, tone, *duration, *wait_flag)
+
+> Déplacement sur tous les paramètres
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`w`|`Fixnum`|Largeur  
+`h`|`Fixnum`|Hauteur  
+`opacity`|`Fixnum`|Opacité  
+`tone`|`Tone`|Teinte  
+`*duration`|`Fixnum`|Durée du déplacement  
+`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+
+
+##### Command.window_moveto(id, x, y, *duration, *wait_flag)
+
+> Change les coordonées X et Y de la fenêtre
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnée X  
+`y`|`Fixnum`|Coordonnée Y  
+`*duration`|`Fixnum`|Durée du déplacement  
+`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+
+
+##### Command.window_opacity(id, *value, *duration, *wait_flag)
+
+> Change l'opacité de la fenêtre, si aucune valeur n'est spécifié, la commande renvoi la valeur de l'opacité
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`*value`|`Fixnum`|Valeur de l'opacité à changer  
+`*duration`|`Fixnum`|Durée du déplacement  
+`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+
+
+##### Command.window_opened?(id)
+
+> Renvoi true si la fenêtre référencée par son ID est ouverte, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
+##### Command.window_tone(id, *tone, *duration, *wait_flag)
+
+> Modifie la teinte de la fenêtre. Si aucune teinte n'est passée en argument, la commande renvoi sa teinte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`*tone`|`Tone`|Nouvelle teinte  
+`*duration`|`Fixnum`|Durée du déplacement  
+`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 
 
 
