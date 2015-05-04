@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes de manipulation de fenêtre**  
 - - -  
 #Commandes de manipulation de fenêtre
-Commandes pour créer/modifier des fenêtres
+Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez du texte, utilisez de préférence les apostrophes comme séparateur. Cette collection de commande est documentée dans le Wiki!
 
 ##Liste des commandes
 *    [close_window(id)](#close_windowid)

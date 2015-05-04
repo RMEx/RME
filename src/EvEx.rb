@@ -1689,12 +1689,13 @@ class Window_Text < Window_Base
   def draw_text_content
     i = 0
     lines = @content
-    lines = @content.split("\n") if @content.is_a?(String)
-    lines = lines.collect{|k| convert_escape_characters(k)}
-    lines.each do |l|
-      draw_text(0, i, contents_width, @h, l, @profile.alignement)
-      i+=@h
-    end
+    lines = lines.join("\n") if @content.is_a?(Array)
+    draw_text_ex(0, i, lines)
+    #lines = @content.split("\n") if @content.is_a?(String)
+    #lines.each do |l|
+    #  draw_text_ex(0, i, l)
+    #  i+=@h
+    #end
   end
 end
 

@@ -658,7 +658,7 @@ module Command
   register_command_category :sound, "Commandes de manipulation des sons", "Commandes relative à la manipulation des sons"
   register_command_category :camera, "Commandes de manipulation de la caméra", "Commandes relative à la manipulation de la caméra (scrolling de la carte)"
   register_command_category :screen, "Commandes de manipulation de l'écran", "Commandes pour manipuler l'écran (teintes, vibrations etc)"
-  register_command_category :window, "Commandes de manipulation de fenêtre", "Commandes pour créer/modifier des fenêtres"
+  register_command_category :window, "Commandes de manipulation de fenêtre", "Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez du texte, utilisez de préférence les apostrophes comme séparateur. Cette collection de commande est documentée dans le Wiki!"
 
   link_class_documentation "Collection des commandes EventExtender"
 
