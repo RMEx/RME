@@ -2383,6 +2383,11 @@ module RMECommands
       SceneManager.scene.add_window(id, f)
     end
 
+    def create_commands_window(id, x, y, w, hash, h = hash.size)
+      f = Window_EvCommand.new(x, y, w, h, hash)
+      SceneManager.scene.add_window(id, f)
+    end
+
     def remove_window(id)
       SceneManager.scene.erase_window(id)
     end
@@ -2426,6 +2431,10 @@ module RMECommands
     def window_move(id, x, y, w, h, opacity, duration = 0, wf = false)
       SceneManager.scene.windows[id].extra_move(x, y, w, h, opacity, duration)
       wait(duration) if wf
+    end
+
+    def window_current_symbol(id)
+      SceneManager.scene.windows[id].current_symbol
     end
 
     append_commands

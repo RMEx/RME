@@ -410,6 +410,7 @@ module Kernel
   end
 
   alias_method :listener, :trigger
+  alias_method :action, :trigger
   alias_method :ignore_left, :trigger
   #--------------------------------------------------------------------------
   # * Trigger true
@@ -1691,11 +1692,77 @@ class Window_Text < Window_Base
     lines = @content
     lines = lines.join("\n") if @content.is_a?(Array)
     draw_text_ex(0, i, lines)
-    #lines = @content.split("\n") if @content.is_a?(String)
-    #lines.each do |l|
-    #  draw_text_ex(0, i, l)
-    #  i+=@h
-    #end
+  end
+end
+
+#==============================================================================
+# ** Window_EvCommand
+#------------------------------------------------------------------------------
+#  This window deals with general command choices.
+#==============================================================================
+
+class Window_EvCommand < Window_Command
+  #--------------------------------------------------------------------------
+  # * Public instances variables
+  #--------------------------------------------------------------------------
+  attr_accessor :content
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(x, y, w, h, hash)
+    @content = hash
+    @ev_width, @ev_height = w, h
+    super(x, y)
+    define_handlers
+  end
+  #--------------------------------------------------------------------------
+  # * Define handlers
+  #--------------------------------------------------------------------------
+  def define_handlers
+    @content.each do |key, value|
+      action = value.respond_to?(:call) ? value : value[:action]
+      actionProc = Proc.new{
+        action.call
+        self.activate
+      }
+      set_handler(key.to_sym, actionProc)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Get Window Width
+  #--------------------------------------------------------------------------
+  def window_width
+    return @ev_width
+  end
+  #--------------------------------------------------------------------------
+  # * Get Number of Lines to Show
+  #--------------------------------------------------------------------------
+  def visible_line_number
+    @ev_height
+  end
+  #--------------------------------------------------------------------------
+  # * Create Command List
+  #--------------------------------------------------------------------------
+  def make_command_list
+    @content.each do |key, value|
+      if value.respond_to?(:call)
+        e = true
+      else
+        e = value.has_key?(:enabled?) ? value[:enabled?] : true
+      end
+      self.add_command(key, key.to_sym, e)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh(resize = false)
+    if resize
+      @ev_height = @content.size
+      self.height = window_height
+    end
+    super()
+    define_handlers
   end
 end
 

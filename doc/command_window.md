@@ -8,12 +8,14 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##Liste des commandes
 *    [close_window(id)](#close_windowid)
+*    [create_commands_window(id, x, y, w, hash, *h)](#create_commands_windowid-x-y-w-hash-h)
 *    [create_text_window(id, content, profile, x, y, *w, *h)](#create_text_windowid-content-profile-x-y-w-h)
 *    [open_window(id)](#open_windowid)
 *    [remove_all_windows](#remove_all_windows)
 *    [remove_window(id)](#remove_windowid)
 *    [window_closed?(id)](#window_closedid)
 *    [window_content(id, content, *resize)](#window_contentid-content-resize)
+*    [window_current_symbol(id)](#window_current_symbolid)
 *    [window_dimension(id, width, height, *duration, *wait_flag)](#window_dimensionid-width-height-duration-wait_flag)
 *    [window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#window_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [window_moveto(id, x, y, *duration, *wait_flag)](#window_movetoid-x-y-duration-wait_flag)
@@ -31,6 +33,21 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
+
+
+##### create_commands_window(id, x, y, w, hash, *h)
+
+> Crée une fenêtre de sélection verticale
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnées X de la fenêtre  
+`y`|`Fixnum`|Coordonnées Y de la fenêtre  
+`w`|`Fixnum`|Largeur de la fenêtre  
+`hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
+`*h`|`Fixnum`|Hauteur de la fenêtre, si aucun argument n'est donné, la hauteur sera calculée  
 
 
 ##### create_text_window(id, content, profile, x, y, *w, *h)
@@ -96,6 +113,16 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `id`|`Fixnum`|ID de la fenêtre  
 `content`|`Object`|Valeur affichée de la fenêtre  
 `*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
+
+
+##### window_current_symbol(id)
+
+> Renvoi, pour une fenêtre de sélection, le symbole sélectionné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_dimension(id, width, height, *duration, *wait_flag)

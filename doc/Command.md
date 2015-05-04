@@ -144,6 +144,7 @@ Collection des commandes EventExtender
 *    [Command.cos(x)](#commandcosx)
 *    [Command.cosh(x)](#commandcoshx)
 *    [Command.create_circle_area(x, y, rayon)](#commandcreate_circle_areax-y-rayon)
+*    [Command.create_commands_window(id, x, y, w, hash, *h)](#commandcreate_commands_windowid-x-y-w-hash-h)
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
@@ -624,6 +625,7 @@ Collection des commandes EventExtender
 *    [Command.website(url)](#commandwebsiteurl)
 *    [Command.window_closed?(id)](#commandwindow_closedid)
 *    [Command.window_content(id, content, *resize)](#commandwindow_contentid-content-resize)
+*    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
 *    [Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
@@ -2561,6 +2563,25 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `x`|`Fixnum`|Coordonnées X de la zone  
 `y`|`Fixnum`|Coordonnées Y de la zone  
 `rayon`|`Fixnum`|Rayon de la zone  
+
+
+
+
+
+
+##### Command.create_commands_window(id, x, y, w, hash, *h)
+
+> Crée une fenêtre de sélection verticale
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnées X de la fenêtre  
+`y`|`Fixnum`|Coordonnées Y de la fenêtre  
+`w`|`Fixnum`|Largeur de la fenêtre  
+`hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
+`*h`|`Fixnum`|Hauteur de la fenêtre, si aucun argument n'est donné, la hauteur sera calculée  
 
 
 
@@ -9383,6 +9404,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `id`|`Fixnum`|ID de la fenêtre  
 `content`|`Object`|Valeur affichée de la fenêtre  
 `*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
+
+
+
+
+
+
+##### Command.window_current_symbol(id)
+
+> Renvoi, pour une fenêtre de sélection, le symbole sélectionné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 
