@@ -15,7 +15,7 @@ Commandes pour créer/modifier des fenêtres
 *    [window_closed?(id)](#window_closedid)
 *    [window_content(id, content, *resize)](#window_contentid-content-resize)
 *    [window_dimension(id, width, height, *duration, *wait_flag)](#window_dimensionid-width-height-duration-wait_flag)
-*    [window_move(id, x, y, w, h, opacity, tone, *duration, *wait_flag)](#window_moveid-x-y-w-h-opacity-tone-duration-wait_flag)
+*    [window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#window_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [window_moveto(id, x, y, *duration, *wait_flag)](#window_movetoid-x-y-duration-wait_flag)
 *    [window_opacity(id, *value, *duration, *wait_flag)](#window_opacityid-value-duration-wait_flag)
 *    [window_opened?(id)](#window_openedid)
@@ -112,7 +112,7 @@ Commandes pour créer/modifier des fenêtres
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 
 
-##### window_move(id, x, y, w, h, opacity, tone, *duration, *wait_flag)
+##### window_move(id, x, y, w, h, opacity, *duration, *wait_flag)
 
 > Déplacement sur tous les paramètres
 
@@ -125,7 +125,6 @@ Commandes pour créer/modifier des fenêtres
 `w`|`Fixnum`|Largeur  
 `h`|`Fixnum`|Hauteur  
 `opacity`|`Fixnum`|Opacité  
-`tone`|`Tone`|Teinte  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 

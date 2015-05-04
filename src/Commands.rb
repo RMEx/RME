@@ -2423,14 +2423,8 @@ module RMECommands
       wait(duration) if wf
     end
 
-    def window_tone(id, tone = nil, duration = 0, wf = false)
-      return SceneManager.scene.windows[id].tone unless tone
-      SceneManager.scene.windows[id].move_tone(tone, duration)
-      wait(duration) if wf
-    end
-
-    def window_move(id, x, y, w, h, opacity, tone, duration = 0, wf = false)
-      SceneManager.scene.windows[id].extra_move(x, y, w, h, opacity, duration, tone)
+    def window_move(id, x, y, w, h, opacity, duration = 0, wf = false)
+      SceneManager.scene.windows[id].extra_move(x, y, w, h, opacity, duration)
       wait(duration) if wf
     end
 

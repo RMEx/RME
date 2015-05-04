@@ -625,7 +625,7 @@ Collection des commandes EventExtender
 *    [Command.window_closed?(id)](#commandwindow_closedid)
 *    [Command.window_content(id, content, *resize)](#commandwindow_contentid-content-resize)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
-*    [Command.window_move(id, x, y, w, h, opacity, tone, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-tone-duration-wait_flag)
+*    [Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
 *    [Command.window_opacity(id, *value, *duration, *wait_flag)](#commandwindow_opacityid-value-duration-wait_flag)
 *    [Command.window_opened?(id)](#commandwindow_openedid)
@@ -9407,7 +9407,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.window_move(id, x, y, w, h, opacity, tone, *duration, *wait_flag)
+##### Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)
 
 > Déplacement sur tous les paramètres
 
@@ -9420,7 +9420,6 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur  
 `h`|`Fixnum`|Hauteur  
 `opacity`|`Fixnum`|Opacité  
-`tone`|`Tone`|Teinte  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 

@@ -677,9 +677,8 @@ website(url)	-
 window_closed?(id)	-
 window_content(id,content,*resize)	-
 window_dimension(id,width,height,*duration,*wf)	-
-window_move(id,x,y,w,h,opacity,tone,*duration,*wf)	-
+window_move(id,x,y,w,h,opacity,*duration,*wf)	-
 window_moveto(id,x,y,*duration,*wf)	-
 window_opacity(id,*value,*duration,*wf)	-
 window_opened?(id)	-
-window_tone(id,*tone,*duration,*wf)	-
 windows_username	windows_username

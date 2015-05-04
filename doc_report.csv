@@ -1,8 +1,9 @@
 Report,
-# Commandes documentées,623/625
+# Commandes documentées,622/624
 ,
 # Commandes non documentées,# Suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion
+window_tone,Peut-être faudrait-il remplacer [window_tone] par [bind]... mais je ne suis pas sur du tout...

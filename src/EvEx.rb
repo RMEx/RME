@@ -601,10 +601,10 @@ module Window_Movement
   def mod_update_tone
     return if @tone_duration <= 0
     d = @tone_duration
-    self.tone.red   = (self.tone.red   * (d - 1) + @tone_target.red)   / d
-    self.tone.green = (self.tone.green * (d - 1) + @tone_target.green) / d
-    self.tone.blue  = (self.tone.blue  * (d - 1) + @tone_target.blue)  / d
-    self.tone.gray  = (self.tone.gray  * (d - 1) + @tone_target.gray)  / d
+    self.tone.red   = (self.tone.red   * (d - 1) + @target_tone.red)   / d
+    self.tone.green = (self.tone.green * (d - 1) + @target_tone.green) / d
+    self.tone.blue  = (self.tone.blue  * (d - 1) + @target_tone.blue)  / d
+    self.tone.gray  = (self.tone.gray  * (d - 1) + @target_tone.gray)  / d
     @tone_duration -= 1
   end
 
@@ -1635,6 +1635,7 @@ class Window_Text < Window_Base
     heights = Array.new
     lines = @content
     lines = @content.split("\n") if @content.is_a?(String)
+    lines = lines.collect{|k| convert_escape_characters(k)}
     lines.each do |line|
       r = bmp.text_size(line)
       widths << r.width
@@ -1689,6 +1690,7 @@ class Window_Text < Window_Base
     i = 0
     lines = @content
     lines = @content.split("\n") if @content.is_a?(String)
+    lines = lines.collect{|k| convert_escape_characters(k)}
     lines.each do |l|
       draw_text(0, i, contents_width, @h, l, @profile.alignement)
       i+=@h
