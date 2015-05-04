@@ -2388,6 +2388,11 @@ module RMECommands
       SceneManager.scene.add_window(id, f)
     end
 
+    def create_horizontal_commands_window(id, x, y, hash)
+      f = Window_EvHorzCommand.new(x, y, Graphics.width, 1, hash)
+      SceneManager.scene.add_window(id, f)
+    end
+
     def remove_window(id)
       SceneManager.scene.erase_window(id)
     end

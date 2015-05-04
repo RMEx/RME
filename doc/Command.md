@@ -146,6 +146,7 @@ Collection des commandes EventExtender
 *    [Command.create_circle_area(x, y, rayon)](#commandcreate_circle_areax-y-rayon)
 *    [Command.create_commands_window(id, x, y, w, hash, *h)](#commandcreate_commands_windowid-x-y-w-hash-h)
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
+*    [Command.create_horizontal_commands_window(id, x, y, hash)](#commandcreate_horizontal_commands_windowid-x-y-hash)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.create_text_window(id, content, profile, x, y, *w, *h)](#commandcreate_text_windowid-content-profile-x-y-w-h)
@@ -2581,7 +2582,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `y`|`Fixnum`|Coordonnées Y de la fenêtre  
 `w`|`Fixnum`|Largeur de la fenêtre  
 `hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
-`*h`|`Fixnum`|Hauteur de la fenêtre, si aucun argument n'est donné, la hauteur sera calculée  
+`*h`|`Fixnum`|Hauteur de la fenêtre (en nombre de ligne), si aucun argument n'est donné, la hauteur sera calculée  
 
 
 
@@ -2599,6 +2600,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `y`|`Fixnum`|Coordonnées Y de la zone  
 `width`|`Fixnum`|Largeur de la zone  
 `height`|`Fixnum`|Hauteur de la zone  
+
+
+
+
+
+
+##### Command.create_horizontal_commands_window(id, x, y, hash)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnées X de la fenêtre  
+`y`|`Fixnum`|Coordonnées Y de la fenêtre  
+`hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
 
 
 
