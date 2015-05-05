@@ -10,6 +10,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [close_window(id)](#close_windowid)
 *    [create_commands_window(id, x, y, w, hash, *h)](#create_commands_windowid-x-y-w-hash-h)
 *    [create_horizontal_commands_window(id, x, y, hash, row)](#create_horizontal_commands_windowid-x-y-hash-row)
+*    [create_selectable_window(id, x, y, width, height, hash)](#create_selectable_windowid-x-y-width-height-hash)
 *    [create_text_window(id, content, profile, x, y, *w, *h)](#create_text_windowid-content-profile-x-y-w-h)
 *    [open_window(id)](#open_windowid)
 *    [remove_all_windows](#remove_all_windows)
@@ -20,11 +21,15 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [window_current_symbol(id)](#window_current_symbolid)
 *    [window_deactivate(id)](#window_deactivateid)
 *    [window_dimension(id, width, height, *duration, *wait_flag)](#window_dimensionid-width-height-duration-wait_flag)
+*    [window_height(id)](#window_heightid)
 *    [window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#window_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [window_moveto(id, x, y, *duration, *wait_flag)](#window_movetoid-x-y-duration-wait_flag)
 *    [window_opacity(id, *value, *duration, *wait_flag)](#window_opacityid-value-duration-wait_flag)
 *    [window_opened?(id)](#window_openedid)
 *    [window_tone(id, *tone, *duration, *wait_flag)](#window_toneid-tone-duration-wait_flag)
+*    [window_width(id)](#window_widthid)
+*    [window_x(id)](#window_xid)
+*    [window_y(id)](#window_yid)
 
 
 ##Description des commandes
@@ -65,6 +70,21 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `y`|`Fixnum`|Coordonnées Y de la fenêtre  
 `hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
 `row`|`Fixnum`|Nombre de colonne. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonne  
+
+
+##### create_selectable_window(id, x, y, width, height, hash)
+
+> Crée une fenêtre de sélection complexe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnée X  
+`y`|`Fixnum`|Coordonnée Y  
+`width`|`Fixnum`|Largeur de la fenêtre  
+`height`|`Fixnum`|Hauteur de la fenêtre  
+`hash`|`Hash`|Description des callbacks de la fenêtre (CF Wiki)  
 
 
 ##### create_text_window(id, content, profile, x, y, *w, *h)
@@ -176,6 +196,16 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 
 
+##### window_height(id)
+
+> Renvoi la hauteur de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
 ##### window_move(id, x, y, w, h, opacity, *duration, *wait_flag)
 
 > Déplacement sur tous les paramètres
@@ -241,5 +271,35 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `*tone`|`Tone`|Nouvelle teinte  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+##### window_width(id)
+
+> Renvoi la largeur de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+##### window_x(id)
+
+> Renvoi la coordonnée X de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+##### window_y(id)
+
+> Renvoi la coordonnée Y de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 

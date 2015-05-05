@@ -147,6 +147,7 @@ create_ellipse_area(x,y,width,height)	create_ellipse_area(point,point,largeur,ha
 create_horizontal_commands_window(id,x,y,hash,*rows)	-
 create_polygon_area(*points)	create_polygon_area(points)
 create_rect_area(x,y,width,height)	create_rect_area(point,point,point,point)
+create_selectable_window(id,x,y,width,height,hash)	-
 create_text_window(id,content,profile,x,y,*w,*h)	-
 -	create_textfield(type,x,y,*largeur,texte,alignement)
 ctrl?(*k)	-
@@ -682,8 +683,12 @@ window_content(id,content,*resize)	-
 window_current_symbol(id)	-
 window_deactivate(id)	-
 window_dimension(id,width,height,*duration,*wf)	-
+window_height(id)	-
 window_move(id,x,y,w,h,opacity,*duration,*wf)	-
 window_moveto(id,x,y,*duration,*wf)	-
 window_opacity(id,*value,*duration,*wf)	-
 window_opened?(id)	-
+window_width(id)	-
+window_x(id)	-
+window_y(id)	-
 windows_username	windows_username

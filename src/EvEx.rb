@@ -1881,6 +1881,118 @@ class Window_EvHorzCommand < Window_EvCommand
   end
 end
 
+#==============================================================================
+# ** Window_EvSelect
+#------------------------------------------------------------------------------
+#  This window deals with general command choices.
+#==============================================================================
+
+class Window_EvSelectable < Window_Selectable
+
+  include_commands
+
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(x, y, width, height, hash)
+    @raw_hash = hash
+    @enabled_callback = hash[:enabled] || Proc.new{ |i| true }
+    @enumeration = hash[:data]
+    @action_callback = Proc.new do
+      return if disposed?
+      hash[:action].call(self.current_item) if hash[:action]
+      activate
+    end
+    @cancel_callback = Proc.new do
+      return if disposed?
+      hash[:cancel].call(self.current_item) if hash[:cancel]
+      activate
+    end
+    @draw_callback = hash[:draw] || Proc.new {|i| write_text(i, @enumeration[i])}
+    @column = hash[:column] || 1
+    @activation = hash[:activate] || true
+    @move_callback = hash[:change]
+    super(x, y, width, height)
+    refresh
+    set_handler(:ok, @action_callback)
+    set_handler(:cancel, @cancel_callback)
+    select(0)
+    activate if @activation
+  end
+
+  def item(id)
+    @enumeration[id] || nil
+  end
+
+  #--------------------------------------------------------------------------
+  # * current item
+  #--------------------------------------------------------------------------
+  def current_item
+    item(index)
+  end
+
+  #--------------------------------------------------------------------------
+  # * enabled?
+  #--------------------------------------------------------------------------
+  def enabled?(index)
+    instance_exec(index, &@enabled_callback)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Select Item
+  #--------------------------------------------------------------------------
+  def select(index)
+    super(index)
+    instance_exec(index, &@move_callback) if @move_callback
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create data list
+  #--------------------------------------------------------------------------
+  def make_item_list
+    @data = []
+    @enumeration.each do |value|
+      p value
+      @data.push(value)
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Draw text
+  #--------------------------------------------------------------------------
+  def write_text(index, s, align = 0)
+    change_color(normal_color, enabled?(index))
+    draw_text(item_rect_for_text(s), s.to_s, align)
+  end
+  def write_with_number(index, s, n)
+    write_text(index, s)
+    write_text(index, n, 2)
+  end
+  def write_with_icon(index, s, icon, n = nil)
+    rect = item_rect_for_text(index)
+    rect.width -= 20
+    rect.x += 22
+    change_color(normal_color, enabled?(index))
+    draw_text(rect, s.to_s)
+    draw_icon(icon, rect.x-22, rect.y, enabled?(index))
+    draw_text(rect, n, 2) if n
+  end
+
+  #--------------------------------------------------------------------------
+  # * Draw Item
+  #--------------------------------------------------------------------------
+  def draw_item(index)
+    instance_exec(index, &@draw_callback)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Number of Items
+  #--------------------------------------------------------------------------
+  def item_max
+    return @enumeration.length
+  end
+
+end
 
 #==============================================================================
 # ** Window_Message

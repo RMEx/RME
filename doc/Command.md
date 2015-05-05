@@ -149,6 +149,7 @@ Collection des commandes EventExtender
 *    [Command.create_horizontal_commands_window(id, x, y, hash, row)](#commandcreate_horizontal_commands_windowid-x-y-hash-row)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
+*    [Command.create_selectable_window(id, x, y, width, height, hash)](#commandcreate_selectable_windowid-x-y-width-height-hash)
 *    [Command.create_text_window(id, content, profile, x, y, *w, *h)](#commandcreate_text_windowid-content-profile-x-y-w-h)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
@@ -630,11 +631,15 @@ Collection des commandes EventExtender
 *    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
 *    [Command.window_deactivate(id)](#commandwindow_deactivateid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
+*    [Command.window_height(id)](#commandwindow_heightid)
 *    [Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
 *    [Command.window_opacity(id, *value, *duration, *wait_flag)](#commandwindow_opacityid-value-duration-wait_flag)
 *    [Command.window_opened?(id)](#commandwindow_openedid)
 *    [Command.window_tone(id, *tone, *duration, *wait_flag)](#commandwindow_toneid-tone-duration-wait_flag)
+*    [Command.window_width(id)](#commandwindow_widthid)
+*    [Command.window_x(id)](#commandwindow_xid)
+*    [Command.window_y(id)](#commandwindow_yid)
 
 
 ##Description des méthodes
@@ -2651,6 +2656,25 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `y`|`Fixnum`|Coordonnées Y de la zone  
 `width`|`Fixnum`|Largeur de la zone  
 `height`|`Fixnum`|Hauteur de la zone  
+
+
+
+
+
+
+##### Command.create_selectable_window(id, x, y, width, height, hash)
+
+> Crée une fenêtre de sélection complexe
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`x`|`Fixnum`|Coordonnée X  
+`y`|`Fixnum`|Coordonnée Y  
+`width`|`Fixnum`|Largeur de la fenêtre  
+`height`|`Fixnum`|Hauteur de la fenêtre  
+`hash`|`Hash`|Description des callbacks de la fenêtre (CF Wiki)  
 
 
 
@@ -9491,6 +9515,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.window_height(id)
+
+> Renvoi la hauteur de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
 ##### Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)
 
 > Déplacement sur tous les paramètres
@@ -9572,6 +9610,48 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*tone`|`Tone`|Nouvelle teinte  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+
+
+##### Command.window_width(id)
+
+> Renvoi la largeur de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
+##### Command.window_x(id)
+
+> Renvoi la coordonnée X de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
+##### Command.window_y(id)
+
+> Renvoi la coordonnée Y de la fenêtre référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 

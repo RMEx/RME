@@ -2393,6 +2393,11 @@ module RMECommands
       SceneManager.scene.add_window(id, f)
     end
 
+    def create_selectable_window(id, x, y, width, height, hash)
+      f = Window_EvSelectable.new(x, y, width, height, hash)
+      SceneManager.scene.add_window(id, f)
+    end
+
     def remove_window(id)
       SceneManager.scene.erase_window(id)
     end
@@ -2448,6 +2453,22 @@ module RMECommands
 
     def window_deactivate(id)
       SceneManager.scene.windows[id].deactivate
+    end
+
+    def window_width(id)
+      SceneManager.scene.windows[id].width
+    end
+
+    def window_height(id)
+      SceneManager.scene.windows[id].height
+    end
+
+    def window_x(id)
+      SceneManager.scene.windows[id].x
+    end
+
+    def window_y(id)
+      SceneManager.scene.windows[id].y
     end
 
     append_commands
