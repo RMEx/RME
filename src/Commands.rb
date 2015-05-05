@@ -2388,8 +2388,8 @@ module RMECommands
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_horizontal_commands_window(id, x, y, hash)
-      f = Window_EvHorzCommand.new(x, y, Graphics.width, 1, hash)
+    def create_horizontal_commands_window(id, x, y, hash, rows = hash.length)
+      f = Window_EvHorzCommand.new(x, y, rows, hash)
       SceneManager.scene.add_window(id, f)
     end
 
@@ -2440,6 +2440,14 @@ module RMECommands
 
     def window_current_symbol(id)
       SceneManager.scene.windows[id].current_symbol
+    end
+
+    def window_activate(id)
+      SceneManager.scene.windows[id].activate
+    end
+
+    def window_deactivate(id)
+      SceneManager.scene.windows[id].deactivate
     end
 
     append_commands

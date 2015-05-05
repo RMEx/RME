@@ -146,7 +146,7 @@ Collection des commandes EventExtender
 *    [Command.create_circle_area(x, y, rayon)](#commandcreate_circle_areax-y-rayon)
 *    [Command.create_commands_window(id, x, y, w, hash, *h)](#commandcreate_commands_windowid-x-y-w-hash-h)
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
-*    [Command.create_horizontal_commands_window(id, x, y, hash)](#commandcreate_horizontal_commands_windowid-x-y-hash)
+*    [Command.create_horizontal_commands_window(id, x, y, hash, row)](#commandcreate_horizontal_commands_windowid-x-y-hash-row)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.create_text_window(id, content, profile, x, y, *w, *h)](#commandcreate_text_windowid-content-profile-x-y-w-h)
@@ -624,9 +624,11 @@ Collection des commandes EventExtender
 *    [Command.weapon_price(id)](#commandweapon_priceid)
 *    [Command.weapon_type(id)](#commandweapon_typeid)
 *    [Command.website(url)](#commandwebsiteurl)
+*    [Command.window_activate(id)](#commandwindow_activateid)
 *    [Command.window_closed?(id)](#commandwindow_closedid)
 *    [Command.window_content(id, content, *resize)](#commandwindow_contentid-content-resize)
 *    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
+*    [Command.window_deactivate(id)](#commandwindow_deactivateid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
 *    [Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
@@ -2606,7 +2608,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.create_horizontal_commands_window(id, x, y, hash)
+##### Command.create_horizontal_commands_window(id, x, y, hash, row)
 
 > Your description
 
@@ -2617,6 +2619,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
 `y`|`Fixnum`|Coordonnées Y de la fenêtre  
 `hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
+`row`|`Fixnum`|Nombre de colonne. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonne  
 
 
 
@@ -9398,6 +9401,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.window_activate(id)
+
+> Rend la fenêtre référencée par son ID active
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
 ##### Command.window_closed?(id)
 
 > Renvoi true si la fenêtre référencée par son ID est fermée, false sinon
@@ -9431,6 +9448,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.window_current_symbol(id)
 
 > Renvoi, pour une fenêtre de sélection, le symbole sélectionné
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+
+
+
+
+
+
+##### Command.window_deactivate(id)
+
+> Rend la fenêtre référencée par son ID inactive
 
   
 > Nom|Type|Description  

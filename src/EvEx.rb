@@ -1763,6 +1763,7 @@ class Window_EvCommand < Window_Command
     end
     super()
     define_handlers
+    select(0)
   end
 end
 
@@ -1774,6 +1775,13 @@ end
 
 class Window_EvHorzCommand < Window_EvCommand
   #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(x, y, w, hash)
+    @col = w
+    super(x, y, Graphics.width, 1, hash)
+  end
+  #--------------------------------------------------------------------------
   # * Get Number of Lines to Show
   #--------------------------------------------------------------------------
   def visible_line_number
@@ -1783,7 +1791,7 @@ class Window_EvHorzCommand < Window_EvCommand
   # * Get Digit Count
   #--------------------------------------------------------------------------
   def col_max
-    return 4
+    return @col
   end
   #--------------------------------------------------------------------------
   # * Get Spacing for Items Arranged Side by Side
