@@ -14,6 +14,7 @@ Commandes relatives à la manipulation des images
 *    [picture_flip(id)](#picture_flipid)
 *    [picture_height(id, *v, *duration, *wait_flag)](#picture_heightid-v-duration-wait_flag)
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
+*    [picture_move?(id)](#picture_moveid)
 *    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
 *    [picture_pin(id, *x, *y)](#picture_pinid-x-y)
@@ -127,6 +128,16 @@ Commandes relatives à la manipulation des images
 `*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+
+
+##### picture_move?(id)
+
+> Renvoi true si l'image référencée par son ID est en mouvement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 ##### picture_opacity(id, opacity, *duration, *wait_flag)

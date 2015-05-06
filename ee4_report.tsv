@@ -438,6 +438,7 @@ picture_erase(id)	picture_erase(id)
 picture_flip(id)	picture_flip(id)
 picture_height(id,*v,*duration,*wf)	-
 picture_move(id,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o)	picture_move(id,*x,*y,*zoom,*zoom,*dur,*opacit,*mode,*origine)
+picture_move?(id)	-
 picture_opacity(id,value,*duration,*wf)	picture_opacity(id,valeur)
 picture_origin(id,*origin)	-
 picture_origine(id,*origin)	picture_origine(id,origine)

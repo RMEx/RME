@@ -56,6 +56,7 @@ class GrosTest
   end
 end
 
+
 =begin
 Implémentation du mode large (actuellement bloqué dans l'incubator, en mode Unsafe)
 Code chelou par raho, reste par Grim

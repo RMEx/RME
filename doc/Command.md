@@ -411,6 +411,7 @@ Collection des commandes EventExtender
 *    [Command.picture_flip(id)](#commandpicture_flipid)
 *    [Command.picture_height(id, *v, *duration, *wait_flag)](#commandpicture_heightid-v-duration-wait_flag)
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
+*    [Command.picture_move?(id)](#commandpicture_moveid)
 *    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
 *    [Command.picture_pin(id, *x, *y)](#commandpicture_pinid-x-y)
@@ -6393,6 +6394,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+
+
+
+
+
+
+##### Command.picture_move?(id)
+
+> Renvoi true si l'image référencée par son ID est en mouvement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 
