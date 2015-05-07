@@ -45,8 +45,8 @@ module Doc
     :orphans      => "Commandes inconnues",
     :suggest      => "Suggestion",
   }
-  documentation_add_link "GitHub", "https://github.com/funkywork/RME"
-  documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/funkywork/RME/wiki"
+  documentation_add_link "GitHub", "https://github.com/RMEx/RME"
+  documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/RMEx/RME/wiki"
 end
 
 

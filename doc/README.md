@@ -11,7 +11,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 
 **Liens utiles**  
 - - -  
-*    [GitHub](https://github.com/funkywork/RME)
-*    [Manuel d'utilisation (Wiki)](https://github.com/funkywork/RME/wiki)
+*    [GitHub](https://github.com/RMEx/RME)
+*    [Manuel d'utilisation (Wiki)](https://github.com/RMEx/RME/wiki)
 
 
