@@ -2232,9 +2232,11 @@ class Game_Map
     event = map.events[event_id]
     return unless event
     event.id = new_id
-    @events.store(new_id, Game_Event.new(@map_id, event))
+    clone_events = @events.clone
+    clone_events.store(new_id, Game_Event.new(@map_id, event))
     x ||= event.x
     y ||= event.y
+    @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
     SceneManager.scene.refresh_spriteset
