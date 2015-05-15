@@ -637,7 +637,6 @@ Collection des commandes EventExtender
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
 *    [Command.window_opacity(id, *value, *duration, *wait_flag)](#commandwindow_opacityid-value-duration-wait_flag)
 *    [Command.window_opened?(id)](#commandwindow_openedid)
-*    [Command.window_tone(id, *tone, *duration, *wait_flag)](#commandwindow_toneid-tone-duration-wait_flag)
 *    [Command.window_width(id)](#commandwindow_widthid)
 *    [Command.window_x(id)](#commandwindow_xid)
 *    [Command.window_y(id)](#commandwindow_yid)
@@ -9607,23 +9606,6 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-
-
-
-
-
-
-##### Command.window_tone(id, *tone, *duration, *wait_flag)
-
-> Modifie la teinte de la fenêtre. Si aucune teinte n'est passée en argument, la commande renvoi sa teinte
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de la fenêtre  
-`*tone`|`Tone`|Nouvelle teinte  
-`*duration`|`Fixnum`|Durée du déplacement  
-`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 
 
 

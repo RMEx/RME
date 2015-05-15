@@ -142,13 +142,13 @@ color(r,v,b,*a)	color(rouge,vert,bleu,*alpha)
 cos(x)	-
 cosh(x)	-
 create_circle_area(x,y,rayon)	create_circle_area(point,point,rayon)
-create_commands_window(id,x,y,w,hash,*h)	-
+create_commands_window(id,x,y,w,hash,*closed,*h)	-
 create_ellipse_area(x,y,width,height)	create_ellipse_area(point,point,largeur,hauteur)
-create_horizontal_commands_window(id,x,y,hash,*rows)	-
+create_horizontal_commands_window(id,x,y,hash,*closed,*rows)	-
 create_polygon_area(*points)	create_polygon_area(points)
 create_rect_area(x,y,width,height)	create_rect_area(point,point,point,point)
-create_selectable_window(id,x,y,width,height,hash)	-
-create_text_window(id,content,x,y,*w,*h)	-
+create_selectable_window(id,x,y,width,height,hash,*closed)	-
+create_text_window(id,content,x,y,*w,*h,*closed)	-
 -	create_textfield(type,x,y,*largeur,texte,alignement)
 ctrl?(*k)	-
 currency	-

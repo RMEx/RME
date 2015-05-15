@@ -1649,7 +1649,7 @@ class Window_Text < Window_Base
   #--------------------------------------------------------------------------
   # * Object Initialize
   #--------------------------------------------------------------------------
-  def initialize(x, y, content, width, height)
+  def initialize(x, y, content, width, height, closed = nil)
     @profile = get_windowProfile("default")
     @content = content
     @w, @th, @h = *textbox
@@ -1657,6 +1657,7 @@ class Window_Text < Window_Base
     height = @th + 2*standard_padding if height == -1
     super(x, y, width, height)
     refresh
+    self.openness = 0 if closed
   end
   #--------------------------------------------------------------------------
   # * Profile accessor
@@ -1709,10 +1710,11 @@ class Window_EvCommand < Window_Command
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
-  def initialize(x, y, w, h, hash)
+  def initialize(x, y, w, h, hash, closed = nil)
     @content = hash
     @ev_width, @ev_height = w, h
     super(x, y)
+    self.openness = 0 if closed
     define_handlers
   end
   #--------------------------------------------------------------------------
@@ -1777,9 +1779,10 @@ class Window_EvHorzCommand < Window_EvCommand
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
-  def initialize(x, y, w, hash)
+  def initialize(x, y, w, hash, closed = nil)
     @col = w
     super(x, y, Graphics.width, 1, hash)
+    self.openness = 0 if closed
   end
   #--------------------------------------------------------------------------
   # * Get Number of Lines to Show
@@ -1892,7 +1895,7 @@ class Window_EvSelectable < Window_Selectable
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
-  def initialize(x, y, width, height, hash)
+  def initialize(x, y, width, height, hash, closed = nil)
     @raw_hash = hash
     @enabled_callback = hash[:enabled] || Proc.new{ |i| true }
     @enumeration = hash[:data]
@@ -1911,6 +1914,7 @@ class Window_EvSelectable < Window_Selectable
     @activation = hash[:activate] || true
     @move_callback = hash[:change]
     super(x, y, width, height)
+    self.openness = 0 if closed
     refresh
     set_handler(:ok, @action_callback)
     set_handler(:cancel, @cancel_callback)

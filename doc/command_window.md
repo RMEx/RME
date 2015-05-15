@@ -26,7 +26,6 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [window_moveto(id, x, y, *duration, *wait_flag)](#window_movetoid-x-y-duration-wait_flag)
 *    [window_opacity(id, *value, *duration, *wait_flag)](#window_opacityid-value-duration-wait_flag)
 *    [window_opened?(id)](#window_openedid)
-*    [window_tone(id, *tone, *duration, *wait_flag)](#window_toneid-tone-duration-wait_flag)
 *    [window_width(id)](#window_widthid)
 *    [window_x(id)](#window_xid)
 *    [window_y(id)](#window_yid)
@@ -257,19 +256,6 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-
-
-##### window_tone(id, *tone, *duration, *wait_flag)
-
-> Modifie la teinte de la fenêtre. Si aucune teinte n'est passée en argument, la commande renvoi sa teinte
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de la fenêtre  
-`*tone`|`Tone`|Nouvelle teinte  
-`*duration`|`Fixnum`|Durée du déplacement  
-`*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 
 
 ##### window_width(id)

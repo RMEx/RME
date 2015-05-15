@@ -2385,23 +2385,23 @@ module RMECommands
 
   module CmdWindow
 
-    def create_text_window(id, content, x, y, w=nil, h=nil)
-      f = Window_Text.new(x, y, content, w, h)
+    def create_text_window(id, content, x, y, w=nil, h=nil, closed=nil)
+      f = Window_Text.new(x, y, content, w, h, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_commands_window(id, x, y, w, hash, h = hash.size)
-      f = Window_EvCommand.new(x, y, w, h, hash)
+    def create_commands_window(id, x, y, w, hash, closed =nil, h = hash.size)
+      f = Window_EvCommand.new(x, y, w, h, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_horizontal_commands_window(id, x, y, hash, rows = hash.length)
-      f = Window_EvHorzCommand.new(x, y, rows, hash)
+    def create_horizontal_commands_window(id, x, y, hash, closed = nil, rows = hash.length)
+      f = Window_EvHorzCommand.new(x, y, rows, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_selectable_window(id, x, y, width, height, hash)
-      f = Window_EvSelectable.new(x, y, width, height, hash)
+    def create_selectable_window(id, x, y, width, height, hash, closed = nil)
+      f = Window_EvSelectable.new(x, y, width, height, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
