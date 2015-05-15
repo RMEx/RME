@@ -2385,8 +2385,8 @@ module RMECommands
 
   module CmdWindow
 
-    def create_text_window(id, content, profile, x, y, w=nil, h=nil)
-      f = Window_Text.new(x, y, content, profile, w, h)
+    def create_text_window(id, content, x, y, w=nil, h=nil)
+      f = Window_Text.new(x, y, content, w, h)
       SceneManager.scene.add_window(id, f)
     end
 

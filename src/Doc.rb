@@ -5326,7 +5326,6 @@ link_method_documentation 'Command.create_text_window',
  	{
 		:id => ["Numéro de la fenêtre", :Fixnum],
 		:content => ["Texte (ou tableau séparé par des virgules) à afficher", :String],
-		:profile => ["Profile de la fenêtre (IWindowProfile)", :String],
 		:x => ["Position X de la fenêtre", :Fixnum],
 		:y => ["Position Y de la fenêtre", :Fixnum],
 		:"*w" => ["Largeur de la fenêtre, utilisez 'nil' pour que la largeur de la fenêtre soit calculée", :Fixnum],

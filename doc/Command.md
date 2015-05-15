@@ -150,7 +150,7 @@ Collection des commandes EventExtender
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.create_selectable_window(id, x, y, width, height, hash)](#commandcreate_selectable_windowid-x-y-width-height-hash)
-*    [Command.create_text_window(id, content, profile, x, y, *w, *h)](#commandcreate_text_windowid-content-profile-x-y-w-h)
+*    [Command.create_text_window(id, content, x, y, *w, *h)](#commandcreate_text_windowid-content-x-y-w-h)
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
 *    [Command.current_enemies](#commandcurrent_enemies)
@@ -2682,7 +2682,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.create_text_window(id, content, profile, x, y, *w, *h)
+##### Command.create_text_window(id, content, x, y, *w, *h)
 
 > Crée une fenêtre pouvant contenir du texte
 
@@ -2691,7 +2691,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|Numéro de la fenêtre  
 `content`|`String`|Texte (ou tableau séparé par des virgules) à afficher  
-`profile`|`String`|Profile de la fenêtre (IWindowProfile)  
 `x`|`Fixnum`|Position X de la fenêtre  
 `y`|`Fixnum`|Position Y de la fenêtre  
 `*w`|`Fixnum`|Largeur de la fenêtre, utilisez 'nil' pour que la largeur de la fenêtre soit calculée  

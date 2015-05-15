@@ -148,7 +148,7 @@ create_horizontal_commands_window(id,x,y,hash,*rows)	-
 create_polygon_area(*points)	create_polygon_area(points)
 create_rect_area(x,y,width,height)	create_rect_area(point,point,point,point)
 create_selectable_window(id,x,y,width,height,hash)	-
-create_text_window(id,content,profile,x,y,*w,*h)	-
+create_text_window(id,content,x,y,*w,*h)	-
 -	create_textfield(type,x,y,*largeur,texte,alignement)
 ctrl?(*k)	-
 currency	-

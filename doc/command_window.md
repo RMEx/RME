@@ -11,7 +11,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [create_commands_window(id, x, y, w, hash, *h)](#create_commands_windowid-x-y-w-hash-h)
 *    [create_horizontal_commands_window(id, x, y, hash, row)](#create_horizontal_commands_windowid-x-y-hash-row)
 *    [create_selectable_window(id, x, y, width, height, hash)](#create_selectable_windowid-x-y-width-height-hash)
-*    [create_text_window(id, content, profile, x, y, *w, *h)](#create_text_windowid-content-profile-x-y-w-h)
+*    [create_text_window(id, content, x, y, *w, *h)](#create_text_windowid-content-x-y-w-h)
 *    [open_window(id)](#open_windowid)
 *    [remove_all_windows](#remove_all_windows)
 *    [remove_window(id)](#remove_windowid)
@@ -87,7 +87,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `hash`|`Hash`|Description des callbacks de la fenêtre (CF Wiki)  
 
 
-##### create_text_window(id, content, profile, x, y, *w, *h)
+##### create_text_window(id, content, x, y, *w, *h)
 
 > Crée une fenêtre pouvant contenir du texte
 
@@ -96,7 +96,6 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 --- | --- | ---  
 `id`|`Fixnum`|Numéro de la fenêtre  
 `content`|`String`|Texte (ou tableau séparé par des virgules) à afficher  
-`profile`|`String`|Profile de la fenêtre (IWindowProfile)  
 `x`|`Fixnum`|Position X de la fenêtre  
 `y`|`Fixnum`|Position Y de la fenêtre  
 `*w`|`Fixnum`|Largeur de la fenêtre, utilisez 'nil' pour que la largeur de la fenêtre soit calculée  

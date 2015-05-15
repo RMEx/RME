@@ -1649,8 +1649,8 @@ class Window_Text < Window_Base
   #--------------------------------------------------------------------------
   # * Object Initialize
   #--------------------------------------------------------------------------
-  def initialize(x, y, content, profile, width, height)
-    @profile = get_windowProfile(profile)
+  def initialize(x, y, content, width, height)
+    @profile = get_windowProfile("default")
     @content = content
     @w, @th, @h = *textbox
     width = @w + 2*standard_padding if width == -1
