@@ -51,6 +51,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_speed(id)](#item_speedid)
 *    [item_success_rate(id)](#item_success_rateid)
 *    [item_tp_gain(id)](#item_tp_gainid)
+*    [items_possessed](#items_possessed)
 
 
 ##Description des commandes
@@ -496,4 +497,11 @@ Commandes permettant d'obtenir ou de manipuler les objets
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
+
+##### items_possessed
+
+> Renvoi la liste des objets possédés
+
+  
+> 
 

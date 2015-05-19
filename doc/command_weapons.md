@@ -26,6 +26,7 @@ Commandes permettant de manipuler les armes
 *    [weapon_note(id)](#weapon_noteid)
 *    [weapon_price(id)](#weapon_priceid)
 *    [weapon_type(id)](#weapon_typeid)
+*    [weapons_possessed](#weapons_possessed)
 
 
 ##Description des commandes
@@ -224,4 +225,11 @@ Commandes permettant de manipuler les armes
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
+
+##### weapons_possessed
+
+> Renvoi la liste des armes possédées
+
+  
+> 
 

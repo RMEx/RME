@@ -24,6 +24,7 @@ Commandes permettant de manipuler les armures
 *    [armor_note(id)](#armor_noteid)
 *    [armor_price(id)](#armor_priceid)
 *    [armor_type(id)](#armor_typeid)
+*    [armors_possessed](#armors_possessed)
 *    [give_armor(id, amount, *include_equipement)](#give_armorid-amount-include_equipement)
 *    [has_armor?(id, *include_equipement)](#has_armorid-include_equipement)
 
@@ -201,6 +202,13 @@ Commandes permettant de manipuler les armures
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
+
+##### armors_possessed
+
+> Renvoi la liste des armures possédées
+
+  
+> 
 
 ##### give_armor(id, amount, *include_equipement)
 

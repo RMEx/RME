@@ -110,6 +110,7 @@ Collection des commandes EventExtender
 *    [Command.armor_note(id)](#commandarmor_noteid)
 *    [Command.armor_price(id)](#commandarmor_priceid)
 *    [Command.armor_type(id)](#commandarmor_typeid)
+*    [Command.armors_possessed](#commandarmors_possessed)
 *    [Command.asin(x)](#commandasinx)
 *    [Command.asinh(x)](#commandasinhx)
 *    [Command.atan(x)](#commandatanx)
@@ -283,6 +284,7 @@ Collection des commandes EventExtender
 *    [Command.item_speed(id)](#commanditem_speedid)
 *    [Command.item_success_rate(id)](#commanditem_success_rateid)
 *    [Command.item_tp_gain(id)](#commanditem_tp_gainid)
+*    [Command.items_possessed](#commanditems_possessed)
 *    [Command.jump_to(id, x, y, *wait_flag)](#commandjump_toid-x-y-wait_flag)
 *    [Command.key_current(method)](#commandkey_currentmethod)
 *    [Command.key_current_rgss(method)](#commandkey_current_rgssmethod)
@@ -625,6 +627,7 @@ Collection des commandes EventExtender
 *    [Command.weapon_note(id)](#commandweapon_noteid)
 *    [Command.weapon_price(id)](#commandweapon_priceid)
 *    [Command.weapon_type(id)](#commandweapon_typeid)
+*    [Command.weapons_possessed](#commandweapons_possessed)
 *    [Command.website(url)](#commandwebsiteurl)
 *    [Command.window_activate(id)](#commandwindow_activateid)
 *    [Command.window_closed?(id)](#commandwindow_closedid)
@@ -2106,6 +2109,17 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
+
+
+
+
+
+##### Command.armors_possessed
+
+> Renvoi la liste des armures possédées
+
+  
+> 
 
 
 
@@ -4571,6 +4585,17 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
+
+
+
+
+
+##### Command.items_possessed
+
+> Renvoi la liste des objets possédés
+
+  
+> 
 
 
 
@@ -9419,6 +9444,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
+
+
+
+
+
+##### Command.weapons_possessed
+
+> Renvoi la liste des armes possédées
+
+  
+> 
 
 
 

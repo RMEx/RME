@@ -825,6 +825,9 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Items
     #--------------------------------------------------------------------------
+    def items_possessed; $game_party.items.map {|i| [i.id] * $game_party.item_number(i)} end
+    def armors_possessed; $game_party.weapons.map {|i| [i.id] * $game_party.item_number(i)} end
+    def weapons_possessed; $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)} end
     def item_count(id); $game_party.item_number($data_items[id]); end
     def weapon_count(id); $game_party.item_number($data_weapons[id]); end
     def armor_count(id); $game_party.item_number($data_armors[id]); end

@@ -105,6 +105,7 @@ armor_name(id)	armor_name(id)
 armor_note(id)	-
 armor_price(id)	-
 armor_type(id)	-
+armors_possessed	-
 asin(x)	-
 asinh(x)	-
 atan(x)	-
@@ -285,6 +286,7 @@ item_scope(id)	-
 item_speed(i)	-
 item_success_rate(i)	-
 item_tp_gain(i)	-
+items_possessed	-
 jump_to(id,x,y,*w)	jump_to(id,x,y,attendre)
 key_char?	key_char?
 key_current(*m)	-
@@ -677,6 +679,7 @@ weapon_name(id)	weapon_name(id)
 weapon_note(id)	-
 weapon_price(id)	-
 weapon_type(id)	-
+weapons_possessed	-
 website(url)	-
 window_activate(id)	-
 window_closed?(id)	-
