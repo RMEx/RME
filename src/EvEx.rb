@@ -438,7 +438,7 @@ module Kernel
   # * Cast Events args
   #--------------------------------------------------------------------------
   def select_events(e)
-    e = events(e) if e.is_a?(Fixnum)
+    return [e] if e.is_a?(Fixnum)
     e
   end
   #--------------------------------------------------------------------------
