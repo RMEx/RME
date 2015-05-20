@@ -210,7 +210,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
-`code`|`Fixnum`|Code de déplacement  
+`code`|`Fixnum`|Liste des codes de déplacement  
 
 
 ##### event_name(id)
@@ -760,7 +760,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`code`|`Fixnum`|Code de déplacement  
+`code`|`Fixnum`|Liste des codes de déplacement  
 
 
 ##### player_opacity(*value)

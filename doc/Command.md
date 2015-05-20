@@ -3383,7 +3383,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
-`code`|`Fixnum`|Code de déplacement  
+`code`|`Fixnum`|Liste des codes de déplacement  
 
 
 
@@ -6973,7 +6973,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`code`|`Fixnum`|Code de déplacement  
+`code`|`Fixnum`|Liste des codes de déplacement  
 
 
 

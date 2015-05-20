@@ -1117,7 +1117,7 @@ module Command
   	'Applique un déplacement (selon un code) à un événement',
    	{
   		:id => ["Id de l'événement", :Fixnum],
-  		:code => ["Code de déplacement", :Fixnum],
+  		:code => ["Liste des codes de déplacement", :Fixnum],
 
   	}
   register_command :event, 'Command.event_move_with'
@@ -1126,10 +1126,10 @@ module Command
   link_method_documentation 'Command.player_move_with',
   	'Applique un déplacement (selon un code) au héros',
    	{
-  		:code => ["Code de déplacement", :Fixnum],
+  		:code => ["Liste des codes de déplacement", :Fixnum],
 
   	}
-  register_command :event, 'Command.player_move_with' 
+  register_command :event, 'Command.player_move_with'
 
   link_method_documentation "Command.events_collide?",
                         "Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon",
