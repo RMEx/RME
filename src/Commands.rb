@@ -1424,6 +1424,14 @@ module RMECommands
       event_opacity(0, value)
     end
 
+    def event_move_with(id, code)
+      event(id).force_move_route(code)
+    end
+
+    def player_move_with(code)
+      event_mode_with(0, code)
+    end
+
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------

@@ -17,6 +17,7 @@ Commandes relatives aux évènements
 *    [event_move_frequency(ids, f)](#event_move_frequencyids-f)
 *    [event_move_speed(ids, v)](#event_move_speedids-v)
 *    [event_move_speed_frequency(ids, v, f)](#event_move_speed_frequencyids-v-f)
+*    [event_move_with(id, code)](#event_move_withid-code)
 *    [event_name(id)](#event_nameid)
 *    [event_opacity(ids, *value)](#event_opacityids-value)
 *    [event_opaque(id)](#event_opaqueid)
@@ -71,6 +72,7 @@ Commandes relatives aux évènements
 *    [player_move_frequency(f)](#player_move_frequencyf)
 *    [player_move_speed(v)](#player_move_speedv)
 *    [player_move_speed_frequency(v, f)](#player_move_speed_frequencyv-f)
+*    [player_move_with(code)](#player_move_withcode)
 *    [player_opacity(*value)](#player_opacityvalue)
 *    [player_opaque](#player_opaque)
 *    [player_pixel_x](#player_pixel_x)
@@ -198,6 +200,17 @@ Commandes relatives aux évènements
 `ids`|`Selector`|IDs des événements  
 `v`|`Fixnum`|Vitesse des événements  
 `f`|`Fixnum`|Fréquence des événements  
+
+
+##### event_move_with(id, code)
+
+> Applique un déplacement (selon un code) à un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+`code`|`Fixnum`|Code de déplacement  
 
 
 ##### event_name(id)
@@ -738,6 +751,16 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `v`|`Fixnum`|Vitesse du joueur  
 `f`|`Fixnum`|Fréquence du joueur  
+
+
+##### player_move_with(code)
+
+> Applique un déplacement (selon un code) au héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`code`|`Fixnum`|Code de déplacement  
 
 
 ##### player_opacity(*value)

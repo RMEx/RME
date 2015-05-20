@@ -199,6 +199,7 @@ Collection des commandes EventExtender
 *    [Command.event_move_frequency(ids, f)](#commandevent_move_frequencyids-f)
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
+*    [Command.event_move_with(id, code)](#commandevent_move_withid-code)
 *    [Command.event_name(id)](#commandevent_nameid)
 *    [Command.event_opacity(ids, *value)](#commandevent_opacityids-value)
 *    [Command.event_opaque(id)](#commandevent_opaqueid)
@@ -447,6 +448,7 @@ Collection des commandes EventExtender
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
+*    [Command.player_move_with(code)](#commandplayer_move_withcode)
 *    [Command.player_opacity(*value)](#commandplayer_opacityvalue)
 *    [Command.player_opaque](#commandplayer_opaque)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
@@ -3367,6 +3369,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `ids`|`Selector`|IDs des événements  
 `v`|`Fixnum`|Vitesse des événements  
 `f`|`Fixnum`|Fréquence des événements  
+
+
+
+
+
+
+##### Command.event_move_with(id, code)
+
+> Applique un déplacement (selon un code) à un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+`code`|`Fixnum`|Code de déplacement  
 
 
 
@@ -6943,6 +6960,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `v`|`Fixnum`|Vitesse du joueur  
 `f`|`Fixnum`|Fréquence du joueur  
+
+
+
+
+
+
+##### Command.player_move_with(code)
+
+> Applique un déplacement (selon un code) au héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`code`|`Fixnum`|Code de déplacement  
 
 
 

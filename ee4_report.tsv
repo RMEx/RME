@@ -200,6 +200,7 @@ event_look_at?(ev,to,scope,*metric)	-
 event_move_frequency(ids,f)	-
 event_move_speed(ids,v)	-
 event_move_speed_frequency(ids,v,f)	-
+event_move_with(id,code)	-
 event_name(id)	-
 event_opacity(ids,*value)	-
 event_opaque(id)	-
@@ -477,6 +478,7 @@ player_in_screen?	player_in_screen?
 player_move_frequency(f)	-
 player_move_speed(v)	-
 player_move_speed_frequency(v,f)	-
+player_move_with(code)	-
 player_opacity(*value)	-
 player_opaque	-
 player_pixel_x	player_pixel_x
