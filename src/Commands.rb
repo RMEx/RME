@@ -1175,7 +1175,7 @@ module RMECommands
     end
     def event_direction(id, value = nil)
       return event(id).direction unless value
-      event(id).direction = value
+      event(id).set_direction(value)
     end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
