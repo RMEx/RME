@@ -1198,6 +1198,7 @@ class Game_CharacterBase
   attr_accessor :trails
   attr_accessor :trails_prop
   attr_accessor :trails_signal
+  attr_accessor :opacity
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------

@@ -1367,7 +1367,7 @@ module RMECommands
     end
 
     def player_transparent?
-      event_transparent(0)
+      event_transparent?(0)
     end
 
     def event_transparent(id)
@@ -1409,6 +1409,17 @@ module RMECommands
       end
     end
     def player_brutal_stop_trail; event_brutal_stop_trail(0); end
+
+    def event_opacity(ids, value = nil)
+      return event(ids).opacity unless value
+      select_events(ids).each do |id_event|
+        event(id_event).opacity = value
+      end
+    end
+
+    def player_opacity(value = nil)
+      event_opacity(0, value)
+    end
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
