@@ -1351,7 +1351,7 @@ module RMECommands
         character = event(id_event)
         character.animation_id = id_animation
       end
-      Fiber.yield while character.animation_id > 0 if wait_flag
+      Fiber.yield while character.animation_id > 0 if wait_flag && character
     end
 
     def show_balloon(ids, id_balloon, wait_flag=false)
