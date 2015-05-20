@@ -233,6 +233,7 @@ Collection des commandes EventExtender
 *    [Command.give_item(id, amount)](#commandgive_itemid-amount)
 *    [Command.give_weapon(id, amount, *include_equipement)](#commandgive_weaponid-amount-include_equipement)
 *    [Command.gold](#commandgold)
+*    [Command.ground?(x, y)](#commandgroundx-y)
 *    [Command.has_armor?(id, *include_equipement)](#commandhas_armorid-include_equipement)
 *    [Command.has_item?(id)](#commandhas_itemid)
 *    [Command.has_weapon?(id, *include_equipement)](#commandhas_weaponid-include_equipement)
@@ -472,6 +473,7 @@ Collection des commandes EventExtender
 *    [Command.remove_window(id)](#commandremove_windowid)
 *    [Command.replay_bgm](#commandreplay_bgm)
 *    [Command.rm_kill](#commandrm_kill)
+*    [Command.roof?(x, y)](#commandroofx-y)
 *    [Command.save_bgm](#commandsave_bgm)
 *    [Command.save_count](#commandsave_count)
 *    [Command.save_delete(index)](#commandsave_deleteindex)
@@ -549,12 +551,14 @@ Collection des commandes EventExtender
 *    [Command.sqrt(x)](#commandsqrtx)
 *    [Command.square_passable?(x, y, direction)](#commandsquare_passablex-y-direction)
 *    [Command.squares_between(idA, idB)](#commandsquares_betweenida-idb)
+*    [Command.stair?(x, y)](#commandstairx-y)
 *    [Command.start_map_id](#commandstart_map_id)
 *    [Command.start_new_game](#commandstart_new_game)
 *    [Command.start_x](#commandstart_x)
 *    [Command.start_y](#commandstart_y)
 *    [Command.steps](#commandsteps)
 *    [Command.switch_tileset(tileset_id)](#commandswitch_tilesettileset_id)
+*    [Command.table?(x, y)](#commandtablex-y)
 *    [Command.tan(x)](#commandtanx)
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
@@ -614,6 +618,7 @@ Collection des commandes EventExtender
 *    [Command.wait_release(key)](#commandwait_releasekey)
 *    [Command.wait_trigger(key)](#commandwait_triggerkey)
 *    [Command.wait_with(time, &block)](#commandwait_withtime-&block)
+*    [Command.wall?(x, y)](#commandwallx-y)
 *    [Command.weapon_agility(id)](#commandweapon_agilityid)
 *    [Command.weapon_attack_power(id)](#commandweapon_attack_powerid)
 *    [Command.weapon_count(id)](#commandweapon_countid)
@@ -3859,6 +3864,21 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.ground?(x, y)
+
+> Renvoie true si les coordonnées sont sur le sol ,false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
 
 
 
@@ -7267,6 +7287,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.roof?(x, y)
+
+> Renvoie true si les coordonnées sont sur un toit,false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+
+
 ##### Command.save_bgm
 
 > Mémorise le BGM en cours
@@ -8329,6 +8364,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.stair?(x, y)
+
+> Renvoie true si les coordonnées sont sur une marche,false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+
+
 ##### Command.start_map_id
 
 > Renvoie l'ID de la map de départ
@@ -8392,6 +8442,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `tileset_id`|`Fixnum`|ID du nouveau tileset  
+
+
+
+
+
+
+##### Command.table?(x, y)
+
+> Renvoie true si les coordonnées sont sur une table ,false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 
@@ -9268,6 +9333,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `time`|`Fixnum`|Temps d'attente  
 `&block`|`Block`|Action a exécuter ({action})  
+
+
+
+
+
+
+##### Command.wall?(x, y)
+
+> Renvoie true si les coordonées sont sur un mur,false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 

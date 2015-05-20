@@ -235,6 +235,7 @@ give_armor(id,amount,*include_equip)	-
 give_item(id,amount)	-
 give_weapon(id,amount,*include_equip)	-
 gold	gold
+ground?(x,y)	-
 has_armor?(id,*include_equip)	-
 has_item?(id)	-
 has_weapon?(id,*include_equip)	-
@@ -503,6 +504,7 @@ remove_all_windows	-
 remove_window(id)	-
 replay_bgm	-
 rm_kill	-
+roof?(x,y)	-
 -	rtp_path
 save_bgm	-
 save_count	save_count
@@ -593,12 +595,14 @@ split_each_char(str)	-
 sqrt(x)	-
 square_passable?(x,y,*d)	square_passable?(x,y,*direction)
 squares_between(ev1,ev2)	squares_between(id,id)
+stair?(x,y)	-
 start_map_id	-
 start_new_game	-
 start_x	-
 start_y	-
 steps	steps
 switch_tileset(tileset_id)	-
+table?(x,y)	-
 tan(x)	-
 tanh(x)	-
 team_size	team_size
@@ -666,6 +670,7 @@ wait(d)	-
 wait_release(key)	-
 wait_trigger(key)	-
 wait_with(time,*block)	-
+wall?(x,y)	-
 weapon_agility(id)	-
 weapon_attack_power(id)	-
 weapon_count(id)	weapon_count(id)
