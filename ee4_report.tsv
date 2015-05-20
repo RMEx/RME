@@ -192,7 +192,7 @@ enemy_tp_charge_rate(id)	-
 enemy_tp_regeneration_rate(id)	-
 -	erase_textfield(champ)
 event_brutal_stop_trail(ids)	-
-event_direction(id)	event_direction(id)
+event_direction(id,*value)	event_direction(id)
 event_erase(ids)	-
 event_erased?(id)	-
 event_in_screen?(id)	event_in_screen?(id)
@@ -472,7 +472,7 @@ pixel_in_picture?(id,x,y,*precise)	-
 pixels_between(ev1,ev2)	pixels_between(id,id)
 play_time	play_time
 player_brutal_stop_trail	-
-player_direction	player_direction
+player_direction(*value)	player_direction
 player_in_screen?	player_in_screen?
 player_move_frequency(f)	-
 player_move_speed(v)	-

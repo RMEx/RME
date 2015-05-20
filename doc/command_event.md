@@ -9,7 +9,7 @@ Commandes relatives aux évènements
 ##Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
 *    [event_brutal_stop_trail(ids)](#event_brutal_stop_trailids)
-*    [event_direction(id)](#event_directionid)
+*    [event_direction(id, *value)](#event_directionid-value)
 *    [event_erase(id)](#event_eraseid)
 *    [event_erased?(id)](#event_erasedid)
 *    [event_in_screen?(id)](#event_in_screenid)
@@ -66,7 +66,7 @@ Commandes relatives aux évènements
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_brutal_stop_trail](#player_brutal_stop_trail)
-*    [player_direction](#player_direction)
+*    [player_direction(*value)](#player_directionvalue)
 *    [player_in_screen?](#player_in_screen)
 *    [player_move_frequency(f)](#player_move_frequencyf)
 *    [player_move_speed(v)](#player_move_speedv)
@@ -112,14 +112,15 @@ Commandes relatives aux évènements
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
 
 
-##### event_direction(id)
+##### event_direction(id, *value)
 
-> Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
+> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.  
 
 
 ##### event_erase(id)
@@ -691,12 +692,15 @@ Commandes relatives aux évènements
   
 > 
 
-##### player_direction
+##### player_direction(*value)
 
-> Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
+> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
 
   
-> 
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros  
+
 
 ##### player_in_screen?
 

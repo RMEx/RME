@@ -1173,14 +1173,17 @@ module RMECommands
     def event_pixel_x(id)
       ($game_map.display_x * 32) + event_screen_x(id)
     end
-    def event_direction(id); event(id).direction; end
+    def event_direction(id, value = nil)
+      return event(id).direction unless value
+      event(id).direction = value
+    end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
     def player_screen_y; event(0).screen_y; end
     def player_pixel_x; event_pixel_x(0); end
     def player_pixel_y; event_pixel_y(0); end
-    def player_direction; event(0).direction; end
+    def player_direction(value = nil) ; event_direction(0, value) end
     def distance_between(flag, ev1, ev2)
       ev1, ev2 = event(ev1), event(ev2)
       args = (ev1.screen_x-ev2.screen_x),(ev1.screen_y-ev2.screen_y)

@@ -191,7 +191,7 @@ Collection des commandes EventExtender
 *    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
 *    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
 *    [Command.event_brutal_stop_trail(ids)](#commandevent_brutal_stop_trailids)
-*    [Command.event_direction(id)](#commandevent_directionid)
+*    [Command.event_direction(id, *value)](#commandevent_directionid-value)
 *    [Command.event_erase(id)](#commandevent_eraseid)
 *    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
@@ -442,7 +442,7 @@ Collection des commandes EventExtender
 *    [Command.pixels_between(idA, idB)](#commandpixels_betweenida-idb)
 *    [Command.play_time](#commandplay_time)
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
-*    [Command.player_direction](#commandplayer_direction)
+*    [Command.player_direction(*value)](#commandplayer_directionvalue)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
@@ -3253,14 +3253,15 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.event_direction(id)
+##### Command.event_direction(id, *value)
 
-> Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
+> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.  
 
 
 
@@ -6880,12 +6881,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.player_direction
+##### Command.player_direction(*value)
 
-> Renvoie la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
+> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
 
   
-> 
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros  
+
 
 
 
