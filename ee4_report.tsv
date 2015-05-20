@@ -315,8 +315,10 @@ load_game(index,*time)	load_game(num,*dur)
 look_at(ev,to,scope,*metric)	look_at(id,id,portee,unites)
 lose_gold(amount)	-
 maj?	maj?
+map_height	-
 map_id	map_id
 map_name	-
+map_width	-
 max(a,b)	-
 max_event_id	max_event_id
 me_fade(wait,*frame)	-

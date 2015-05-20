@@ -10,8 +10,10 @@ Commandes relatives aux informations des cartes
 *    [get_tileset_id](#get_tileset_id)
 *    [ground?(x, y)](#groundx-y)
 *    [id_at(x, y)](#id_atx-y)
+*    [map_height](#map_height)
 *    [map_id](#map_id)
 *    [map_name](#map_name)
+*    [map_width](#map_width)
 *    [region_id(x, y)](#region_idx-y)
 *    [roof?(x, y)](#roofx-y)
 *    [set_tile(value, x, y, layer)](#set_tilevalue-x-y-layer)
@@ -54,6 +56,13 @@ Commandes relatives aux informations des cartes
 `y`|`Fixnum`|Coordonnées Y de la case  
 
 
+##### map_height
+
+> Retourne la hauteur de la carte
+
+  
+> 
+
 ##### map_id
 
 > Renvoie l'ID de la map en cours
@@ -64,6 +73,13 @@ Commandes relatives aux informations des cartes
 ##### map_name
 
 > Renvoie le nom de la map en cours
+
+  
+> 
+
+##### map_width
+
+> Retourne la largeur de la carte
 
   
 > 

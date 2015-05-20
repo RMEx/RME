@@ -309,8 +309,10 @@ Collection des commandes EventExtender
 *    [Command.length(array)](#commandlengtharray)
 *    [Command.load_game(index, *time)](#commandload_gameindex-time)
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
+*    [Command.map_height](#commandmap_height)
 *    [Command.map_id](#commandmap_id)
 *    [Command.map_name](#commandmap_name)
+*    [Command.map_width](#commandmap_width)
 *    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
 *    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
@@ -4932,6 +4934,17 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
+##### Command.map_height
+
+> Retourne la hauteur de la carte
+
+  
+> 
+
+
+
+
+
 ##### Command.map_id
 
 > Renvoie l'ID de la map en cours
@@ -4946,6 +4959,17 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 ##### Command.map_name
 
 > Renvoie le nom de la map en cours
+
+  
+> 
+
+
+
+
+
+##### Command.map_width
+
+> Retourne la largeur de la carte
 
   
 > 
