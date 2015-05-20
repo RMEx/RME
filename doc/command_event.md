@@ -18,6 +18,7 @@ Commandes relatives aux évènements
 *    [event_move_speed(ids, v)](#event_move_speedids-v)
 *    [event_move_speed_frequency(ids, v, f)](#event_move_speed_frequencyids-v-f)
 *    [event_name(id)](#event_nameid)
+*    [event_opacity(ids, *value)](#event_opacityids-value)
 *    [event_opaque(id)](#event_opaqueid)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
@@ -70,6 +71,7 @@ Commandes relatives aux évènements
 *    [player_move_frequency(f)](#player_move_frequencyf)
 *    [player_move_speed(v)](#player_move_speedv)
 *    [player_move_speed_frequency(v, f)](#player_move_speed_frequencyv-f)
+*    [player_opacity(*value)](#player_opacityvalue)
 *    [player_opaque](#player_opaque)
 *    [player_pixel_x](#player_pixel_x)
 *    [player_pixel_y](#player_pixel_y)
@@ -205,6 +207,17 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
+
+
+##### event_opacity(ids, *value)
+
+> Modifie (ou retourne) l' opacité d'un évènement 
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Id de l'évènement (ne pas utiliser de selecteur pour revoyer l'opacité)  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
 
 
 ##### event_opaque(id)
@@ -721,6 +734,16 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `v`|`Fixnum`|Vitesse du joueur  
 `f`|`Fixnum`|Fréquence du joueur  
+
+
+##### player_opacity(*value)
+
+> Modifie (ou retourne) l'opacité du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de l'opacité. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
 
 
 ##### player_opaque

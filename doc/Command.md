@@ -200,6 +200,7 @@ Collection des commandes EventExtender
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
 *    [Command.event_name(id)](#commandevent_nameid)
+*    [Command.event_opacity(ids, *value)](#commandevent_opacityids-value)
 *    [Command.event_opaque(id)](#commandevent_opaqueid)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
@@ -446,6 +447,7 @@ Collection des commandes EventExtender
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
+*    [Command.player_opacity(*value)](#commandplayer_opacityvalue)
 *    [Command.player_opaque](#commandplayer_opaque)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
@@ -3378,6 +3380,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
+
+
+
+
+
+
+##### Command.event_opacity(ids, *value)
+
+> Modifie (ou retourne) l' opacité d'un évènement 
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Id de l'évènement (ne pas utiliser de selecteur pour revoyer l'opacité)  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
 
 
 
@@ -6922,6 +6939,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `v`|`Fixnum`|Vitesse du joueur  
 `f`|`Fixnum`|Fréquence du joueur  
+
+
+
+
+
+
+##### Command.player_opacity(*value)
+
+> Modifie (ou retourne) l'opacité du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de l'opacité. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
 
 
 
