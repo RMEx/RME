@@ -1204,6 +1204,8 @@ module RMECommands
   #==============================================================================
 
   module Events
+    def event_moving?(id); event(id).moving?; end
+    def player_moving?; event_moving?(0); end 
     def event_name(id); event(id).name; end
     def event_x(id); event(id).x; end
     def event_y(id); event(id).y; end

@@ -200,6 +200,7 @@ Collection des commandes EventExtender
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
 *    [Command.event_move_with(id, code)](#commandevent_move_withid-code)
+*    [Command.event_moving?(id)](#commandevent_movingid)
 *    [Command.event_name(id)](#commandevent_nameid)
 *    [Command.event_opacity(ids, *value)](#commandevent_opacityids-value)
 *    [Command.event_opaque(id)](#commandevent_opaqueid)
@@ -452,6 +453,7 @@ Collection des commandes EventExtender
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
 *    [Command.player_move_with(code)](#commandplayer_move_withcode)
+*    [Command.player_moving?](#commandplayer_moving)
 *    [Command.player_opacity(*value)](#commandplayer_opacityvalue)
 *    [Command.player_opaque](#commandplayer_opaque)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
@@ -3391,6 +3393,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 `code`|`Fixnum`|Liste des codes de déplacement  
+
+
+
+
+
+
+##### Command.event_moving?(id)
+
+> Renvoie true si l'évènement est en mouvement, false sinon.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
 
 
 
@@ -7019,6 +7035,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `code`|`Fixnum`|Liste des codes de déplacement  
 
+
+
+
+
+
+##### Command.player_moving?
+
+> Renvoie true si le héros est en mouvement, false sinon
+
+  
+> 
 
 
 

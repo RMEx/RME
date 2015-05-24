@@ -18,6 +18,7 @@ Commandes relatives aux évènements
 *    [event_move_speed(ids, v)](#event_move_speedids-v)
 *    [event_move_speed_frequency(ids, v, f)](#event_move_speed_frequencyids-v-f)
 *    [event_move_with(id, code)](#event_move_withid-code)
+*    [event_moving?(id)](#event_movingid)
 *    [event_name(id)](#event_nameid)
 *    [event_opacity(ids, *value)](#event_opacityids-value)
 *    [event_opaque(id)](#event_opaqueid)
@@ -73,6 +74,7 @@ Commandes relatives aux évènements
 *    [player_move_speed(v)](#player_move_speedv)
 *    [player_move_speed_frequency(v, f)](#player_move_speed_frequencyv-f)
 *    [player_move_with(code)](#player_move_withcode)
+*    [player_moving?](#player_moving)
 *    [player_opacity(*value)](#player_opacityvalue)
 *    [player_opaque](#player_opaque)
 *    [player_pixel_x](#player_pixel_x)
@@ -211,6 +213,16 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 `code`|`Fixnum`|Liste des codes de déplacement  
+
+
+##### event_moving?(id)
+
+> Renvoie true si l'évènement est en mouvement, false sinon.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
 
 
 ##### event_name(id)
@@ -762,6 +774,13 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `code`|`Fixnum`|Liste des codes de déplacement  
 
+
+##### player_moving?
+
+> Renvoie true si le héros est en mouvement, false sinon
+
+  
+> 
 
 ##### player_opacity(*value)
 

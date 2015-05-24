@@ -201,6 +201,7 @@ event_move_frequency(ids,f)	-
 event_move_speed(ids,v)	-
 event_move_speed_frequency(ids,v,f)	-
 event_move_with(id,code)	-
+event_moving?(id)	-
 event_name(id)	-
 event_opacity(ids,*value)	-
 event_opaque(id)	-
@@ -482,6 +483,7 @@ player_move_frequency(f)	-
 player_move_speed(v)	-
 player_move_speed_frequency(v,f)	-
 player_move_with(code)	-
+player_moving?	-
 player_opacity(*value)	-
 player_opaque	-
 player_pixel_x	player_pixel_x
