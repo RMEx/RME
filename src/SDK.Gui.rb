@@ -218,7 +218,7 @@ class Rect
   # * Sets all parameters at once
   #--------------------------------------------------------------------------
   def set(*args)
-    return if parameters == args || (args.size == 1 && clone == args[0])
+    return self if parameters == args || (args.size == 1 && clone == args[0])
     if (a = args[0]).is_a? Rect
       @x, @y, @width, @height = a.x, a.y, a.width, a.height
     else
