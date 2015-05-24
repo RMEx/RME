@@ -225,6 +225,7 @@ class Rect
       @x, @y, @width, @height = *args
     end
     compute
+    self
   end
   #--------------------------------------------------------------------------
   # * Sets all components to 0.
@@ -232,6 +233,7 @@ class Rect
   def empty
     @x = @y = @width = @height = self.true_x = self.true_y =
     self.true_width = self.true_height = 0
+    self
   end
   #--------------------------------------------------------------------------
   # * Gets real Rect computed from legacy rules
