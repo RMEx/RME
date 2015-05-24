@@ -258,7 +258,7 @@ module Kernel
   # * Map exists?
   #--------------------------------------------------------------------------
   def map_exists?(id)
-    File.exists?(sprintf("Data/Map%03d.rvdata2", id))
+    load_data(sprintf("Data/Map%03d.rvdata2", id)).to_bool rescue false
   end
 
   #--------------------------------------------------------------------------
