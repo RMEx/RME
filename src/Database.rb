@@ -2,7 +2,7 @@
 #==============================================================================
 # ** RME V1.0.0 Database
 #------------------------------------------------------------------------------
-#  With : 
+#  With :
 # Nuki
 #------------------------------------------------------------------------------
 # Provide two customs databases
@@ -93,7 +93,7 @@ module Types
       return :boolean   if value.is_a?(FalseClass) || value.is_a?(TrueClass)
       if value.is_a?(Array)
         v = value.compact
-        return [:list, :poly] if v.length == 0 
+        return [:list, :poly] if v.length == 0
         t = inference(v.first)
         return [:list, t] if v.all?{|x| inference(x) == t}
         return [:list, :poly]
@@ -107,7 +107,7 @@ module Types
   #------------------------------------------------------------------------------
   #  Abstract type representation
   #==============================================================================
-  
+
   class Abstract
     #--------------------------------------------------------------------------
     # * Public instance variable
@@ -120,7 +120,7 @@ module Types
     #--------------------------------------------------------------------------
     def initialize(name, names, coer)
       @name     = name
-      @names    = names 
+      @names    = names
       coersion  = coer
       if coer.is_a?(Symbol)
         coersion = Proc.new {|x| x.send(coer)}
@@ -184,7 +184,7 @@ module Types
     end
   end
 
-end 
+end
 
 #==============================================================================
 # ** CommonDB
@@ -341,7 +341,7 @@ module CommonDB
         if !@fields.has_key?(key)
           raise(ArgumentError, "Unknown field")
         elsif RGSS_TYPES.include?(@fields[key])
-          raise(ArgumentError, "RGSS fields couldnt be Primary Key") 
+          raise(ArgumentError, "RGSS fields couldnt be Primary Key")
         else
           @primary_key = key
         end
@@ -366,8 +366,8 @@ module CommonDB
         type.names.select{|u|u != type.name}.each do |name|
           self.send(:alias_method, name, type.name)
         end
-      end 
-    end 
+      end
+    end
     #--------------------------------------------------------------------------
     # * Initialize a data
     #--------------------------------------------------------------------------
@@ -376,20 +376,21 @@ module CommonDB
       if args.length != self.class.fields.length
         msg = "#{self.class.classname}:
           #{args.length} donnés, #{self.class.fields.length} requis"
-        raise(ArgumentError, msg) 
+        raise(ArgumentError, msg)
       end
       arr_fields = self.class.fields.to_a
       (0...args.length).each do |i|
         current     = args[i]
         name, typen = *arr_fields[i]
         type        = Types.make(typen)
+        current     = eval(current) if type.is_a?(Types::Complex) && current.is_a?(String)
         value       = type.cast(current)
         self.instance_variable_set("@#{name}".to_sym, value)
         index = self.send(self.class.primary_key)
         self.class.records[index] = self
       end
     end
-  end 
+  end
 end
 
 #==============================================================================
@@ -398,7 +399,7 @@ end
 #  Static Database
 #==============================================================================
 
-module Static 
+module Static
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -415,7 +416,7 @@ module Static
       name = args[0]
       return Static.tables[name] if Static.tables[name]
       super(*args)
-    end 
+    end
     #--------------------------------------------------------------------------
     # * Get user tables
     #--------------------------------------------------------------------------
@@ -424,7 +425,7 @@ module Static
         !(k.to_s =~ /^VXACE_/)
       end
     end
-  end 
+  end
 
   #==============================================================================
   # ** Table
@@ -443,7 +444,7 @@ module Static
         sym_name = name[1 .. -1].to_sym
         subtype = Types.inference(value)
         return handle_field(subtype, sym_name) if subtype.is_a?(Symbol)
-        return list(subtype, sym_name) if subtype.is_a?(Array) && subtype.length == 2 
+        return list(subtype, sym_name) if subtype.is_a?(Array) && subtype.length == 2
         return (poly sym_name)
       end
       #--------------------------------------------------------------------------
@@ -470,9 +471,9 @@ module Static
     datas   ||= []
     prefix  = CommonDB::RGSS_PREFIX
     name  = "#{prefix}#{rgss_struct.name.upcase}".to_sym
-    if datas.length > 0 
+    if datas.length > 0
       elt = datas.max{|e| e.instance_variables.length}
-      temp_class = Class.new(Static::Table) do 
+      temp_class = Class.new(Static::Table) do
         @classname = name
         elt.instance_variables.each do |value|
           ivar = elt.instance_variable_get(value)
@@ -482,7 +483,7 @@ module Static
       end
       storage = Object.const_set(name, temp_class)
       # remplissage
-      datas.each do |r| 
+      datas.each do |r|
         entries = Array.new
         storage.fields.each do |iv, t|
           val = r.instance_variable_get("@#{iv}")
@@ -490,7 +491,7 @@ module Static
         end
         storage.insert(*entries)
       end
-    end 
+    end
   end
   #--------------------------------------------------------------------------
   # * Map case
@@ -507,7 +508,7 @@ module Static
         dynamic_from_ivar(value, ivar)
       end
     end
-  end 
+  end
   storage = Object.const_set(name, temp_class)
   # Fill
   mapinfos = CommonDB::RGSS_EMBEDABLE.find{|d|d.name == :mapinfo}
@@ -560,7 +561,7 @@ module Dynamic
       name = args[0]
       return Dynamic.tables[name] if Dynamic.tables[name]
       super(*args)
-    end 
+    end
   end
 
   #==============================================================================
@@ -613,7 +614,7 @@ module Dynamic
     end
   end
 
-end 
+end
 
 #==============================================================================
 # ** DataManager
@@ -683,8 +684,8 @@ module DataManager
           clone_table_to_backup(table_sym)
         end
         unless File.exists?(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
-          create_table_layout(table_sym, schema, const) 
-        else 
+          create_table_layout(table_sym, schema, const)
+        else
           # retreive datas
           content = FileTools.read(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
           content = content.split("\n")[1..-1]
@@ -694,7 +695,7 @@ module DataManager
           end
         end
       end
-      save_data(hashed, "Data/StaticDB.rvdata2") 
+      save_data(hashed, "Data/StaticDB.rvdata2")
     end
     #--------------------------------------------------------------------------
     # * Create table layout
@@ -703,7 +704,7 @@ module DataManager
       return unless $TEST
       fname = CommonDB.path+"/tables/#{t.to_s}.csv"
       contn = schema.keys.join(";")
-      if const.count > 0 
+      if const.count > 0
         const.each do |pk, r|
           ll = schema.keys.collect {|mth| r.send(mth)}
           contn += "\n" + ll.join(";")
@@ -758,13 +759,10 @@ end
 #  Create folders
 #==============================================================================
 
-if $TEST 
+if $TEST
   path = CommonDB.path
   Dir.mkdir(path, 0777) unless Dir.exists?(path+"/")
   Dir.mkdir(path+"/views/", 0777) unless Dir.exists?(path+"/views/")
   Dir.mkdir(path+"/backups/", 0777) unless Dir.exists?(path+"/backups/")
   Dir.mkdir(path+"/tables/", 0777) unless Dir.exists?(path+"/tables/")
 end
-
-
-
