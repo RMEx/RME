@@ -189,7 +189,7 @@ Commandes relatives aux informations des cartes
 
 ##### wall?(x, y)
 
-> Renvoie true si les coordonées sont sur un mur,false sinon
+> Renvoie true si les coordonnées sont sur un mur,false sinon
 
   
 > Nom|Type|Description  

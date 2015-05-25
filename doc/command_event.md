@@ -270,7 +270,7 @@ Commandes relatives aux évènements
 
 ##### event_ox(id, *value)
 
-> Modifie (ou retourne) la coordonée X du point de départ d'un événement (le point d'accroche)
+> Modifie (ou retourne) la coordonnée X du point de départ d'un événement (le point d'accroche)
 
   
 > Nom|Type|Description  
@@ -281,7 +281,7 @@ Commandes relatives aux évènements
 
 ##### event_oy(id, *value)
 
-> Modifie (ou retourne) la coordonée y du point de départ d'un événement (le point d'accroche)
+> Modifie (ou retourne) la coordonnée y du point de départ d'un événement (le point d'accroche)
 
   
 > Nom|Type|Description  
@@ -878,7 +878,7 @@ Commandes relatives aux évènements
 
 ##### player_ox(*value)
 
-> Modifie (ou retourne) la coordonée X du point de départ du héros (le point d'accroche)
+> Modifie (ou retourne) la coordonnée X du point de départ du héros (le point d'accroche)
 
   
 > Nom|Type|Description  
@@ -888,7 +888,7 @@ Commandes relatives aux évènements
 
 ##### player_oy(*value)
 
-> Modifie (ou retourne) la coordonée Y du point de départ du héros (le point d'accroche)
+> Modifie (ou retourne) la coordonnée Y du point de départ du héros (le point d'accroche)
 
   
 > Nom|Type|Description  

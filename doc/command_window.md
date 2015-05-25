@@ -223,7 +223,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_moveto(id, x, y, *duration, *wait_flag)
 
-> Change les coordonées X et Y de la fenêtre
+> Change les coordonnées X et Y de la fenêtre
 
   
 > Nom|Type|Description  
