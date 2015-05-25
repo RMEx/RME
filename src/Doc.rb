@@ -148,19 +148,19 @@ class Sprite
                             "Vérifie si la souris passe au dessus du rectangle du sprite",
                             {}, true
   link_method_documentation :"self.click?",
-                            "Vérifie si le rectangle du sprite est cliqué",
+                            "Vérifie si la souris clique sur le rectangle du sprite",
                             {}, true
   link_method_documentation :"self.press?",
-                            "Vérifie si le rectangle du sprite est enfoncé par la touche passée en argument",
+                            "Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle du sprite",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.trigger?",
-                            "Vérifie si le rectangle du sprite est clické une fois par la touche passée en argument",
+                            "Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle du sprite",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.repeat?",
-                            "Vérifie si le rectangle du sprite est clické de manière répétée par la touche passée en argument",
+                            "Vérifie si l'utilisateur a cliqué de manière répétée la touche de la souris passée en argument au-dessus du rectangle du sprite",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.release?",
-                            "Vérifie si le rectangle du sprite est relaché par la touche passée en argument",
+                            "Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle du sprite",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.mouse_x",
                             "Retourne la position x de la souris relative au rectangle du sprite",
@@ -192,19 +192,19 @@ class Rect
                             "Vérifie si la souris passe au dessus du rectangle",
                             {}, true
   link_method_documentation :"self.click?",
-                            "Vérifie si le rectangle est cliqué",
+                            "Vérifie si l'utilisateur a cliqué sur le rectangle",
                             {}, true
   link_method_documentation :"self.press?",
-                            "Vérifie si le rectangle est enfoncé par la touche passée en argument",
+                            "Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.trigger?",
-                            "Vérifie si le rectangle est clické une fois par la touche passée en argument",
+                            "Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.repeat?",
-                            "Vérifie si le rectangle est clické de manière répétée par la touche passée en argument",
+                            "Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.release?",
-                            "Vérifie si le rectangle est relaché par la touche passée en argument",
+                            "Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle",
                             {:key => ["Touche d'activation", :Symbol]}, true
   link_method_documentation :"self.mouse_x",
                             "Retourne la position x de la souris relative au rectangle",
@@ -269,7 +269,7 @@ class String
   #--------------------------------------------------------------------------
   # * Documentation
   #--------------------------------------------------------------------------
-  link_class_documentation "Extension des chaines de caractère"
+  link_class_documentation "Extension des chaînes de caractères"
   link_method_documentation :"self.extract_numbers",
                             "Renvoie tous les entiers d'une chaîne de caractères",
                             {}, true
@@ -359,7 +359,7 @@ class Devices::Keys
                           "Renvoie true si la touche vient d'être relâchée, false sinon",
                           {}, true
   link_method_documentation "self.repeat?",
-                          "Renvoie true si la touche est pressée successivement, false sinon",
+                          "Renvoie true si la touche est pressée de manière répétée, false sinon",
                           {}, true
 
   link_snippet("self.trigger?",
@@ -395,7 +395,7 @@ class Devices::Keyboard
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Keyboard.repeat?",
-                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Keyboard.release?",
@@ -403,24 +403,24 @@ class Devices::Keyboard
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Keyboard.all?",
-                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method",
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activées selon la méthode", :Argslist]
                           }, true
   link_snippet "Keyboard.all?", "p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)"
   link_method_documentation "Keyboard.any?",
-                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method",
+                          "Renvoie true si au moins une touche passée à keys est activée selon la méthode passées à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
                           }, true
   link_snippet "Keyboard.all?", "p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)"
   link_method_documentation "Keyboard.current_char",
-                          "Renvoie le caractère actuel pressé par le clavier",
+                          "Renvoie le caractère pressé sur clavier au moment de l'appel",
                           {}, true
   link_method_documentation "Keyboard.current_digit",
-                          "Renvoie le chiffre actuel pressé par le clavier",
+                          "Renvoie le chiffre pressé sur le clavier au moment de l'appel",
                           {}, true
   link_method_documentation "Keyboard.shift?",
                           "Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon",
@@ -448,7 +448,7 @@ class Devices::Keyboard
                           "Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée",
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
   link_method_documentation "Keyboard.time",
-                          "Renvoie le nombre de frame pressée d'une touche en cours",
+                          "Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie, au moment de l'appel",
                           {:key => ["Touche à vérifier",:Symbol]}, true
 
 end
@@ -484,7 +484,7 @@ class Devices::Mouse
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Mouse.repeat?",
-                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   link_method_documentation "Mouse.release?",
@@ -521,21 +521,21 @@ class Devices::Mouse
   link_method_documentation "Mouse.all?",
                           "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
                           }, true
   link_snippet "Mouse.all?", "p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_left, :mouse_right)"
   link_method_documentation "Mouse.any?",
-                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method",
+                          "Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                            :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activées selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
                           }, true
   link_method_documentation "Mouse.current_key",
                           "Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée",
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
   link_method_documentation "Mouse.time",
-                          "Renvoie le nombre de frame pressée d'une touche en cours",
+                          "Renvoie, en nombre de frames, le temps de pression de la touche de la souris choisie, au moment de l'appel",
                           {:key => ["Touche à vérifier",:Symbol]}, true
 
 end
@@ -644,19 +644,19 @@ module Command
   register_command_category :skills, "Commandes des techniques", "Offre des commandes pour obtenir des informations sur les techniques"
   register_command_category :math, "Commandes mathématiques et arithmétiques", "Outils de traitement mathématiques un peu avancé"
   register_command_category :troop, "Commandes relatives aux groupes", "Informations sur les groupes de monstres"
-  register_command_category :enemy, "Commandes relatives aux ennemis (tels que défini dans la base de données)", "Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout."
+  register_command_category :enemy, "Commandes relatives aux ennemis (tels que définis dans la base de données)", "Informations sur les monstres rencontrables tels que définis dans la base de données, donc utilisables partout."
   register_command_category :in_battle, "Commandes en combat", "Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat"
-  register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images."
+  register_command_category :text, "Commandes d'affichage de textes", "Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID, comme les images."
   register_command_category :date, "Commandes de temps", "Commandes pour récupérer des informations sur la date et l'heure"
   register_command_category :socket, "Commandes de communication client-serveur", "Commandes pour communiquer avec un serveur TCP/IP"
   register_command_category :scene, "Commande de navigation dans les scenes", "Commandes pour naviguer entre les scenes de jeu (et de systèmes)"
-  register_command_category :save, "Commande de manipulation des sauvegardes", "Commandes pour gerer et naviguer entre les sauvegardes"
+  register_command_category :save, "Commande de manipulation des sauvegardes", "Commandes pour gérer et naviguer entre les sauvegardes"
   register_command_category :area, "Commandes de gestion de zones virtuelles", "Commandes pour créer et manipuler des zones virtuelles"
-  register_command_category :textfield, "Commandes de gestion des champs de texte", "Commande pour manipuler des champs de texte saisissable au clavier"
-  register_command_category :clipboard, "Commandes de gestion du presse-papier", "Permet d'envoyer des données dans le presse-papier ou de récupérer le texte stocké dans le presse papier"
+  register_command_category :textfield, "Commandes de gestion des champs de texte", "Commande pour manipuler des champs de texte saisissables au clavier"
+  register_command_category :clipboard, "Commandes de gestion du presse-papier", "Permet d'envoyer des données dans le presse-papier ou de récupérer le texte stocké dans le presse-papier"
   register_command_category :xbox, "Commandes de gestion de la vibration des pads Xbox360", "Permet de manipuler la vibration des manettes de la XBOX360"
-  register_command_category :sound, "Commandes de manipulation des sons", "Commandes relative à la manipulation des sons"
-  register_command_category :camera, "Commandes de manipulation de la caméra", "Commandes relative à la manipulation de la caméra (scrolling de la carte)"
+  register_command_category :sound, "Commandes de manipulation des sons", "Commandes relatives à la manipulation des sons"
+  register_command_category :camera, "Commandes de manipulation de la caméra", "Commandes relatives à la manipulation de la caméra (scrolling de la carte)"
   register_command_category :screen, "Commandes de manipulation de l'écran", "Commandes pour manipuler l'écran (teintes, vibrations etc)"
   register_command_category :window, "Commandes de manipulation de fenêtre", "Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez du texte, utilisez de préférence les apostrophes comme séparateur. Cette collection de commande est documentée dans le Wiki!"
 
@@ -710,8 +710,8 @@ module Command
   register_command :standard, "Command.tone"
 
   link_method_documentation "Command.get",
-                        "Renvoie la cellule à la valeur donné d'un tableau",
-                        {:array =>["Tableau dont il faut renvoyer la taille", :Array], :index => ["Index à trouver", :Fixnum]}, true
+                        "Renvoie la cellule à la valeur donnée d'un tableau",
+                        {:array =>["Tableau", :Array], :index => ["Index à trouver", :Fixnum]}, true
   register_command :standard, "Command.get"
   link_snippet("Command.get", "Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule et que l'indexation des tableaux commence à 0)")
 
@@ -745,7 +745,7 @@ module Command
   link_method_documentation "Command.wait",
                         "Attend un nombre de frames donné",
                         {
-                          :duration => ["Nombre de frames a attendre", :Fixnum],
+                          :duration => ["Nombre de frames à attendre", :Fixnum],
                         }
   register_command :standard, "Command.wait"
 
@@ -853,7 +853,7 @@ module Command
 
   # AUTOGenerated for event_moving?
   link_method_documentation 'Command.event_moving?',
-  	'Renvoie true si l\'évènement est en mouvement, false sinon.',
+  	'Renvoie true si l'évènement est en mouvement, false sinon.',
    	{
   		:id => ["Id de l'événement", :Fixnum],
 
@@ -868,11 +868,11 @@ module Command
 
   # AUTOGenerated for event_trail
   link_method_documentation 'Command.event_trail',
-  	'Applique une trainée sur un sélecteur d\'évènements',
+  	'Applique une traînée sur un sélecteur d'évènements',
    	{
-  		:ids => ["Sélecteur d'évènements à qui attribuer une trainée", :Selector],
+  		:ids => ["Sélecteur d'évènements à qui attribuer une traînée", :Selector],
   		:len => ["Taille de la trainée", :Fixnum],
-  		:"*mode" => ["Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0", :Fixnum],
+  		:"*mode" => ["Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0", :Fixnum],
   		:"*mode" => ["Teinte de la trainée (n'hésitez pas à utiliser la commande tone)", :Tone],
 
   	}
@@ -880,9 +880,9 @@ module Command
 
   # AUTOGenerated for event_opacity
   link_method_documentation 'Command.event_opacity',
-  	'Modifie (ou retourne) l\' opacité d\'un évènement ',
+  	'Modifie (ou retourne) l'opacité d'un évènement ',
    	{
-  		:ids => ["Id de l'évènement (ne pas utiliser de selecteur pour revoyer l'opacité)", :Selector],
+  		:ids => ["Id de l'évènement (ne pas utiliser de selecteur pour renvoyer l'opacité)", :Selector],
   		:"*value" => ["Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.", :Fixnum],
 
   	}, true # Maybe changed
@@ -890,7 +890,7 @@ module Command
 
   # AUTOGenerated for player_opacity
   link_method_documentation 'Command.player_opacity',
-  	'Modifie (ou retourne) l\'opacité du héros',
+  	'Modifie (ou retourne) l'opacité du héros',
    	{
   		:"*value" => ["Valeur de l'opacité. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.", :Fixnum],
 
@@ -899,7 +899,7 @@ module Command
 
   # AUTOGenerated for event_ox
   link_method_documentation 'Command.event_ox',
-  	'Modifie (ou retourne) la coordonnée X du point de départ d\'un événement (le point d\'accroche)',
+  	'Modifie (ou retourne) la coordonnée X du point de départ d'un événement (le point d'accroche)',
    	{
   		:id => ["ID de l'événement", :Fixnum],
   		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
@@ -909,7 +909,7 @@ module Command
 
   # AUTOGenerated for event_oy
   link_method_documentation 'Command.event_oy',
-  'Modifie (ou retourne) la coordonnée y du point de départ d\'un événement (le point d\'accroche)',
+  'Modifie (ou retourne) la coordonnée y du point de départ d'un événement (le point d'accroche)',
    	{
   		:id => ["ID de l'événement", :Fixnum],
   		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
@@ -919,7 +919,7 @@ module Command
 
   # AUTOGenerated for player_ox
   link_method_documentation 'Command.player_ox',
-  'Modifie (ou retourne) la coordonnée X du point de départ du héros (le point d\'accroche)',
+  'Modifie (ou retourne) la coordonnée X du point de départ du héros (le point d'accroche)',
    	{
   		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
 
@@ -928,7 +928,7 @@ module Command
 
   # AUTOGenerated for player_oy
   link_method_documentation 'Command.player_oy',
-  'Modifie (ou retourne) la coordonnée Y du point de départ du héros (le point d\'accroche)',
+  'Modifie (ou retourne) la coordonnée Y du point de départ du héros (le point d'accroche)',
    	{
   		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
 
@@ -937,7 +937,7 @@ module Command
 
   # AUTOGenerated for event_zoom_x
   link_method_documentation 'Command.event_zoom_x',
-  'Modifie (ou retourne) la valeur du zoom horizontal d\'un événement',
+  'Modifie (ou retourne) la valeur du zoom horizontal d'un événement',
    	{
   		:id => ["ID de l'événement", :Fixnum],
   		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
@@ -947,7 +947,7 @@ module Command
 
   # AUTOGenerated for event_zoom_y
   link_method_documentation 'Command.event_zoom_y',
-  'Modifie (ou retourne) la valeur du zoom vertical d\'un événement',
+  'Modifie (ou retourne) la valeur du zoom vertical d'un événement',
    	{
   		:id => ["ID de l'événement", :Fixnum],
   		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
@@ -957,7 +957,7 @@ module Command
 
   # AUTOGenerated for event_zoom
   link_method_documentation 'Command.event_zoom',
-  'Modifie le zoom d\'un événement',
+  'Modifie le zoom d'un événement',
    	{
   		:id => ["ID de l'événement", :Fixnum],
   		:value => ["Valeur du zoom", :Fixnum],
@@ -967,7 +967,7 @@ module Command
 
   # AUTOGenerated for event_restore_origin
   link_method_documentation 'Command.event_restore_origin',
-  	'Restore l\'origine de l\'événement référencé par son ID',
+  	'Restore l'origine de l'événement référencé par son ID',
    	{
   		:id => ["ID de l'événement", :Fixnum],
 
@@ -976,7 +976,7 @@ module Command
 
   # AUTOGenerated for player_restore_origin
   link_method_documentation 'Command.player_restore_origin',
-  	'Restore l\'origine du héros',
+  	'Restore l'origine du héros',
    	{}
   register_command :event, 'Command.player_restore_origin'
 
@@ -1011,11 +1011,11 @@ module Command
 
   # AUTOGenerated for player_trail
   link_method_documentation 'Command.player_trail',
-  	'Applique une trainée sur le joueur',
+  	'Applique une traînée sur le joueur',
    	{
-  		:len => ["Taille de la trainée", :Fixnum],
-  		:"*mode" => ["Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0", :Fixnum],
-  		:"*tone" => ["Teinte de la trainée (n'hésitez pas à utiliser la commande tone)", :Tone],
+  		:len => ["Taille de la traînée", :Fixnum],
+  		:"*mode" => ["Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0", :Fixnum],
+  		:"*tone" => ["Teinte de la traînée (n'hésitez pas à utiliser la commande tone)", :Tone],
 
   	}
   register_command :event, 'Command.player_trail'
@@ -1024,29 +1024,29 @@ module Command
   link_method_documentation 'Command.event_stop_trail',
   	'Arrête la trainée sur un sélecteur d\'évènements',
    	{
-  		:ids => ["Sélecteur d'évènements à qui attribuer une trainée", :Selector],
+  		:ids => ["Sélecteur d'évènements à qui attribuer une traînée", :Selector],
 
   	}
   register_command :event, 'Command.event_stop_trail'
 
   # AUTOGenerated for player_stop_trail
   link_method_documentation 'Command.player_stop_trail',
-  	'Arrête la trainée sur le joueur',
+  	'Arrête la traînée sur le joueur',
    	{}
   register_command :event, 'Command.player_stop_trail'
 
   # AUTOGenerated for event_brutal_stop_trail
   link_method_documentation 'Command.event_brutal_stop_trail',
-  	'Arrête brutalement la trainée sur un sélecteur d\'évènements',
+  	'Arrête brutalement la traînée sur un sélecteur d'évènements',
    	{
-  		:ids => ["Sélecteur d'évènements à qui attribuer une trainée", :Selector],
+  		:ids => ["Sélecteur d'évènements à qui attribuer une traînée", :Selector],
 
   	}
   register_command :event, 'Command.event_brutal_stop_trail'
 
   # AUTOGenerated for player_brutal_stop_trail
   link_method_documentation 'Command.player_brutal_stop_trail',
-  	'Arrête brutalement la trainée sur le joueur',
+  	'Arrête brutalement la traînée sur le joueur',
    	{}
   register_command :event, 'Command.player_brutal_stop_trail'
 
@@ -1083,17 +1083,17 @@ module Command
   register_command :event, "Command.fresh_event_id"
 
   link_method_documentation "Command.mouse_hover_event?",
-                        "Renvoie true si la souris survol un évènement du sélecteur passé en argument",
+                        "Renvoie true si la souris survole un évènement du sélecteur passé en argument",
                         {:events => ["Selecteur d'évènements", :Selectors]}, true
   register_command :event, "Command.mouse_hover_event?"
 
   link_method_documentation "Command.mouse_click_event?",
-                        "Renvoie true si la souris clique un évènement du sélecteur passé en argument",
+                        "Renvoie true si la souris clique sur un évènement du sélecteur passé en argument",
                         {:events => ["Selecteur d'évènements", :Selectors]}, true
   register_command :event, "Command.mouse_click_event?"
 
   link_method_documentation "Command.mouse_press_event?",
-                        "Renvoie true si la souris presse un évènement du sélecteur passé en argument",
+                        "Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument",
                         {
                           :events => ["Selecteur d'évènements", :Selectors],
                           :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left", :Symbol]
@@ -1125,7 +1125,7 @@ module Command
   register_command :event, "Command.mouse_release_event?"
 
   link_method_documentation "Command.event_x",
-                        "Renvoie la coordonnées X de la case sur laquelle est l'évènement référencé par son ID",
+                        "Renvoie la coordonnées X de la case sur laquelle se trouve l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_x"
 
@@ -1141,53 +1141,53 @@ module Command
 
 
   link_method_documentation "Command.event_y",
-                        "Renvoie la coordonnées Y de la case sur laquelle est l'évènement référencé par son ID",
+                        "Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_y"
 
   link_method_documentation "Command.event_screen_x",
-                        "Renvoie la coordonnées X de l'évènement référencé par son ID par rapport à l'écran",
+                        "Renvoie la coordonnée X de l'évènement référencé par son ID par rapport à l'écran",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_screen_x"
 
   link_method_documentation "Command.event_screen_y",
-                        "Renvoie la coordonnées Y de l'évènement référencé par son ID par rapport à l'écran",
+                        "Renvoie la coordonnée Y de l'évènement référencé par son ID par rapport à l'écran",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_screen_y"
 
   link_method_documentation "Command.event_pixel_x",
-                        "Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte",
+                        "Renvoie la coordonnée X de l'évènement référencé par son ID en pixel sur la carte",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_pixel_x"
 
   link_method_documentation "Command.event_pixel_y",
-                        "Renvoie la coordonnées Y de l'évènement référencé par son ID en pixel sur la carte",
+                        "Renvoie la coordonnée Y de l'évènement référencé par son ID en pixel sur la carte",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_pixel_y"
 
   link_method_documentation "Command.event_direction",
-                        "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte",
+                        "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
                           :"*value" => ["Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.", :Fixnum]}, true
   register_command :event, "Command.event_direction"
 
   link_method_documentation "Command.player_x",
-                        "Renvoie la coordonnées X de la case sur laquelle est le joueur",
+                        "Renvoie la coordonnée X de la case sur laquelle est le joueur",
                          {}, true
   register_command :event, "Command.player_x"
 
   link_method_documentation "Command.player_y",
-                        "Renvoie la coordonnées Y de la case sur laquelle est le joueur",
+                        "Renvoie la coordonnée Y de la case sur laquelle est le joueur",
                        {}, true
   register_command :event, "Command.player_y"
 
   link_method_documentation "Command.player_screen_x",
-                        "Renvoie la coordonnées X du joueur par rapport à l'écran",
+                        "Renvoie la coordonnée X du joueur par rapport à l'écran",
                         {}, true
   register_command :event, "Command.player_screen_x"
 
   link_method_documentation "Command.player_screen_y",
-                        "Renvoie la coordonnées Y du joueur par rapport à l'écran",
+                        "Renvoie la coordonnée Y du joueur par rapport à l'écran",
                         {}, true
   register_command :event, "Command.player_screen_y"
 
@@ -1202,12 +1202,12 @@ module Command
   register_command :event, "Command.player_pixel_y"
 
   link_method_documentation "Command.player_direction",
-                        "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte",
+                        "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur",
                         {:"*value" => ["Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros", :Fixnum]}, true
   register_command :event, "Command.player_direction"
 
   link_method_documentation "Command.squares_between",
-                        "Renvoie le nombre de cases entre deux évènements référencés par leurs ID's",
+                        "Renvoie le nombre de cases entre deux évènements référencés par leurs ID",
                         {
                           :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
                           :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
@@ -1227,12 +1227,12 @@ module Command
   register_command :event, "Command.pixels_between"
 
   link_method_documentation "Command.event_look_at?",
-                        "Renvoie true si l'evenement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon",
+                        "Renvoie true si l'évènement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon",
                         {
                           :idA => ["ID de l'évènement A (0 pour héros)", :Fixnum],
                           :idB => ["ID de l'évènement B (0 pour héros)", :Fixnum],
-                          :scope => ["Nombre de case ou de pixels", :Fixnum],
-                          :"*metric" => ["par défaut :square, pour en case, :pixels pour en pixels", :Fixnum],
+                          :scope => ["Nombre de cases ou de pixels", :Fixnum],
+                          :"*metric" => ["par défaut :square pour en cases, mettre :pixels pour en pixels", :Fixnum],
 
                         },
                         true
@@ -1282,7 +1282,7 @@ module Command
   register_command :keyboard, "Command.key_press?"
 
   link_method_documentation "Command.key_repeat?",
-                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   register_command :keyboard, "Command.key_repeat?"
