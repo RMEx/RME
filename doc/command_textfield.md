@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes de gestion des champs de texte**  
 - - -  
 #Commandes de gestion des champs de texte
-Commande pour manipuler des champs de texte saisissable au clavier
+Commande pour manipuler des champs de texte saisissables au clavier
 
 ##Liste des commandes
 *    [textfield_activate(id)](#textfield_activateid)

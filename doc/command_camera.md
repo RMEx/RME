@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes de manipulation de la caméra**  
 - - -  
 #Commandes de manipulation de la caméra
-Commandes relative à la manipulation de la caméra (scrolling de la carte)
+Commandes relatives à la manipulation de la caméra (scrolling de la carte)
 
 ##Liste des commandes
 *    [camera_change_focus(event_id)](#camera_change_focusevent_id)

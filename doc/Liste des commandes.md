@@ -9,7 +9,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Commandes de manipulation de la caméra](command_camera.md)
 *    [Commandes de gestion du presse-papier](command_clipboard.md)
 *    [Commandes de temps](command_date.md)
-*    [Commandes relatives aux ennemis (tels que défini dans la base de données)](command_enemy.md)
+*    [Commandes relatives aux ennemis (tels que définis dans la base de données)](command_enemy.md)
 *    [Commandes évènements](command_event.md)
 *    [Commandes en combat](command_in_battle.md)
 *    [Commandes relatives aux objets](command_items.md)

@@ -93,7 +93,7 @@ Commandes relatives au clavier
 
 ##### key_repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 > Nom|Type|Description  

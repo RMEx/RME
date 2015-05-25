@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commande de manipulation des sauvegardes**  
 - - -  
 #Commande de manipulation des sauvegardes
-Commandes pour gerer et naviguer entre les sauvegardes
+Commandes pour gérer et naviguer entre les sauvegardes
 
 ##Liste des commandes
 *    [a_save_exists?](#a_save_exists)

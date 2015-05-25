@@ -21,7 +21,7 @@ Extension des rectangles
 ##Description des méthodes
 ##### self.click?
 
-> Vérifie si le rectangle est cliqué
+> Vérifie si l'utilisateur a cliqué sur le rectangle
 
   
 > 
@@ -80,7 +80,7 @@ Extension des rectangles
 
 ##### self.press?(key)
 
-> Vérifie si le rectangle est enfoncé par la touche passée en argument
+> Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle
 
   
 > Nom|Type|Description  
@@ -94,7 +94,7 @@ Extension des rectangles
 
 ##### self.release?(key)
 
-> Vérifie si le rectangle est relaché par la touche passée en argument
+> Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle
 
   
 > Nom|Type|Description  
@@ -108,7 +108,7 @@ Extension des rectangles
 
 ##### self.repeat?(key)
 
-> Vérifie si le rectangle est clické de manière répétée par la touche passée en argument
+> Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle
 
   
 > Nom|Type|Description  
@@ -122,7 +122,7 @@ Extension des rectangles
 
 ##### self.trigger?(key)
 
-> Vérifie si le rectangle est clické une fois par la touche passée en argument
+> Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle
 
   
 > Nom|Type|Description  

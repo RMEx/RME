@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes de manipulation des sons**  
 - - -  
 #Commandes de manipulation des sons
-Commandes relative à la manipulation des sons
+Commandes relatives à la manipulation des sons
 
 ##Liste des commandes
 *    [bgm_fade(wait, *frame)](#bgm_fadewait-frame)

@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Classes et modules](Classes et modules.md) > **String**  
 - - -  
 #String
-Extension des chaines de caractère
+Extension des chaînes de caractères
 
 ##Liste des méthodes
 *    [self.damerau_levenshtein(oth)](#selfdamerau_levenshteinoth)

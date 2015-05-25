@@ -4,7 +4,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 [Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes d'affichage de textes**  
 - - -  
 #Commandes d'affichage de textes
-Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID's, comme les images.
+Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID, comme les images.
 
 ##Liste des commandes
 *    [text_change(id, text)](#text_changeid-text)

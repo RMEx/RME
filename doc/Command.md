@@ -3264,12 +3264,12 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_brutal_stop_trail(ids)
 
-> Arrête brutalement la trainée sur un sélecteur d'évènements
+> Arrête brutalement la traînée sur un sélecteur d'évènements
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 
 
 
@@ -3278,7 +3278,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_direction(id, *value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID en pixel sur la carte
+> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
 
   
 > Nom|Type|Description  
@@ -3335,15 +3335,15 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_look_at?(idA, idB, scope, *metric)
 
-> Renvoie true si l'evenement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon
+> Renvoie true si l'évènement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
-`scope`|`Fixnum`|Nombre de case ou de pixels  
-`*metric`|`Fixnum`|par défaut :square, pour en case, :pixels pour en pixels  
+`scope`|`Fixnum`|Nombre de cases ou de pixels  
+`*metric`|`Fixnum`|par défaut :square pour en cases, mettre :pixels pour en pixels  
 
 
 
@@ -3441,12 +3441,12 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_opacity(ids, *value)
 
-> Modifie (ou retourne) l' opacité d'un évènement 
+> Modifie (ou retourne) l'opacité d'un évènement 
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`ids`|`Selector`|Id de l'évènement (ne pas utiliser de selecteur pour revoyer l'opacité)  
+`ids`|`Selector`|Id de l'évènement (ne pas utiliser de selecteur pour renvoyer l'opacité)  
 `*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
 
 
@@ -3500,7 +3500,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_pixel_x(id)
 
-> Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte
+> Renvoie la coordonnée X de l'évènement référencé par son ID en pixel sur la carte
 
   
 > Nom|Type|Description  
@@ -3514,7 +3514,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_pixel_y(id)
 
-> Renvoie la coordonnées Y de l'évènement référencé par son ID en pixel sur la carte
+> Renvoie la coordonnée Y de l'évènement référencé par son ID en pixel sur la carte
 
   
 > Nom|Type|Description  
@@ -3557,7 +3557,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_screen_x(id)
 
-> Renvoie la coordonnées X de l'évènement référencé par son ID par rapport à l'écran
+> Renvoie la coordonnée X de l'évènement référencé par son ID par rapport à l'écran
 
   
 > Nom|Type|Description  
@@ -3571,7 +3571,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_screen_y(id)
 
-> Renvoie la coordonnées Y de l'évènement référencé par son ID par rapport à l'écran
+> Renvoie la coordonnée Y de l'évènement référencé par son ID par rapport à l'écran
 
   
 > Nom|Type|Description  
@@ -3590,7 +3590,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 
 
 
@@ -3628,12 +3628,12 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_trail(ids, len, *mode)
 
-> Applique une trainée sur un sélecteur d'évènements
+> Applique une traînée sur un sélecteur d'évènements
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une trainée  
+`ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 `len`|`Fixnum`|Taille de la trainée  
 `*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
 
@@ -3687,7 +3687,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_x(id)
 
-> Renvoie la coordonnées X de la case sur laquelle est l'évènement référencé par son ID
+> Renvoie la coordonnées X de la case sur laquelle se trouve l'évènement référencé par son ID
 
   
 > Nom|Type|Description  
@@ -3701,7 +3701,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_y(id)
 
-> Renvoie la coordonnées Y de la case sur laquelle est l'évènement référencé par son ID
+> Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID
 
   
 > Nom|Type|Description  
@@ -3901,12 +3901,12 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.get(array, index)
 
-> Renvoie la cellule à la valeur donné d'un tableau
+> Renvoie la cellule à la valeur donnée d'un tableau
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`array`|`Array`|Tableau dont il faut renvoyer la taille  
+`array`|`Array`|Tableau  
 `index`|`Fixnum`|Index à trouver  
 
 
@@ -4850,7 +4850,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 > Nom|Type|Description  
@@ -5516,7 +5516,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_click_event?(events)
 
-> Renvoie true si la souris clique un évènement du sélecteur passé en argument
+> Renvoie true si la souris clique sur un évènement du sélecteur passé en argument
 
   
 > Nom|Type|Description  
@@ -5595,7 +5595,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_hover_event?(events)
 
-> Renvoie true si la souris survol un évènement du sélecteur passé en argument
+> Renvoie true si la souris survole un évènement du sélecteur passé en argument
 
   
 > Nom|Type|Description  
@@ -5699,7 +5699,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_press_event?(events, *key)
 
-> Renvoie true si la souris presse un évènement du sélecteur passé en argument
+> Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument
 
   
 > Nom|Type|Description  
@@ -7050,7 +7050,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_brutal_stop_trail
 
-> Arrête brutalement la trainée sur le joueur
+> Arrête brutalement la traînée sur le joueur
 
   
 > 
@@ -7061,7 +7061,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_direction(*value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur en pixel sur la carte
+> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur
 
   
 > Nom|Type|Description  
@@ -7240,7 +7240,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_screen_x
 
-> Renvoie la coordonnées X du joueur par rapport à l'écran
+> Renvoie la coordonnée X du joueur par rapport à l'écran
 
   
 > 
@@ -7251,7 +7251,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_screen_y
 
-> Renvoie la coordonnées Y du joueur par rapport à l'écran
+> Renvoie la coordonnée Y du joueur par rapport à l'écran
 
   
 > 
@@ -7262,7 +7262,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_stop_trail
 
-> Arrête la trainée sur le joueur
+> Arrête la traînée sur le joueur
 
   
 > 
@@ -7298,14 +7298,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_trail(len, *mode, *tone)
 
-> Applique une trainée sur le joueur
+> Applique une traînée sur le joueur
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`len`|`Fixnum`|Taille de la trainée  
-`*mode`|`Fixnum`|Mode de fusion de la trainée (0, 1 ou 2), par défaut: 0  
-`*tone`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+`len`|`Fixnum`|Taille de la traînée  
+`*mode`|`Fixnum`|Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0  
+`*tone`|`Tone`|Teinte de la traînée (n'hésitez pas à utiliser la commande tone)  
 
 
 
@@ -7336,7 +7336,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_x
 
-> Renvoie la coordonnées X de la case sur laquelle est le joueur
+> Renvoie la coordonnée X de la case sur laquelle est le joueur
 
   
 > 
@@ -7347,7 +7347,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_y
 
-> Renvoie la coordonnées Y de la case sur laquelle est le joueur
+> Renvoie la coordonnée Y de la case sur laquelle est le joueur
 
   
 > 
@@ -8584,7 +8584,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.squares_between(idA, idB)
 
-> Renvoie le nombre de cases entre deux évènements référencés par leurs ID's
+> Renvoie le nombre de cases entre deux évènements référencés par leurs ID
 
   
 > Nom|Type|Description  
@@ -9522,7 +9522,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`duration`|`Fixnum`|Nombre de frames a attendre  
+`duration`|`Fixnum`|Nombre de frames à attendre  
 
 
 

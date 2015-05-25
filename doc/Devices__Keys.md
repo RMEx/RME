@@ -212,7 +212,7 @@ Nom|Description
 
 ##### self.repeat?
 
-> Renvoie true si la touche est pressée successivement, false sinon
+> Renvoie true si la touche est pressée de manière répétée, false sinon
 
   
 > 

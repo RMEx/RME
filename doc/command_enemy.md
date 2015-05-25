@@ -1,10 +1,10 @@
 #RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes relatives aux ennemis (tels que défini dans la base de données)**  
+[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Commandes relatives aux ennemis (tels que définis dans la base de données)**  
 - - -  
-#Commandes relatives aux ennemis (tels que défini dans la base de données)
-Informations sur les monstres rencontrables tels que défini dans la base de données, donc utilisable partout.
+#Commandes relatives aux ennemis (tels que définis dans la base de données)
+Informations sur les monstres rencontrables tels que définis dans la base de données, donc utilisables partout.
 
 ##Liste des commandes
 *    [monster_agility(id)](#monster_agilityid)

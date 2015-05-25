@@ -43,7 +43,7 @@ Nom|Description
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
 
 
@@ -58,13 +58,13 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 
 ##### Mouse.any?(method, keys)
 
-> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+> Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
-`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
 
@@ -187,7 +187,7 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 
 ##### Mouse.repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 > Nom|Type|Description  
@@ -223,7 +223,7 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 
 ##### Mouse.time(key)
 
-> Renvoie le nombre de frame pressée d'une touche en cours
+> Renvoie, en nombre de frames, le temps de pression de la touche de la souris choisie, au moment de l'appel
 
   
 > Nom|Type|Description  

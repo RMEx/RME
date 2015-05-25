@@ -222,13 +222,13 @@ Nom|Description
 ##Description des méthodes
 ##### Keyboard.all?(method, keys)
 
-> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
-`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
 
 
 
@@ -253,12 +253,12 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 ##### Keyboard.any?(method, keys)
 
-> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+> Renvoie true si au moins une touche passée à keys est activée selon la méthode passées à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
@@ -293,7 +293,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 ##### Keyboard.current_char
 
-> Renvoie le caractère actuel pressé par le clavier
+> Renvoie le caractère pressé sur clavier au moment de l'appel
 
   
 > 
@@ -304,7 +304,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 ##### Keyboard.current_digit
 
-> Renvoie le chiffre actuel pressé par le clavier
+> Renvoie le chiffre pressé sur le clavier au moment de l'appel
 
   
 > 
@@ -368,7 +368,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 ##### Keyboard.repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 > Nom|Type|Description  
@@ -418,7 +418,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 ##### Keyboard.time(key)
 
-> Renvoie le nombre de frame pressée d'une touche en cours
+> Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie, au moment de l'appel
 
   
 > Nom|Type|Description  

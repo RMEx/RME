@@ -80,12 +80,12 @@ Commandes standards
 
 ##### get(array, index)
 
-> Renvoie la cellule à la valeur donné d'un tableau
+> Renvoie la cellule à la valeur donnée d'un tableau
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`array`|`Array`|Tableau dont il faut renvoyer la taille  
+`array`|`Array`|Tableau  
 `index`|`Fixnum`|Index à trouver  
 
 
@@ -240,7 +240,7 @@ Commandes standards
   
 > Nom|Type|Description  
 --- | --- | ---  
-`duration`|`Fixnum`|Nombre de frames a attendre  
+`duration`|`Fixnum`|Nombre de frames à attendre  
 
 
 ##### wait_release(key)

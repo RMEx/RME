@@ -23,7 +23,7 @@ Extension des sprites
 ##Description des méthodes
 ##### self.click?
 
-> Vérifie si le rectangle du sprite est cliqué
+> Vérifie si la souris clique sur le rectangle du sprite
 
   
 > 
@@ -97,7 +97,7 @@ Extension des sprites
 
 ##### self.press?(key)
 
-> Vérifie si le rectangle du sprite est enfoncé par la touche passée en argument
+> Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 > Nom|Type|Description  
@@ -122,7 +122,7 @@ Extension des sprites
 
 ##### self.release?(key)
 
-> Vérifie si le rectangle du sprite est relaché par la touche passée en argument
+> Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 > Nom|Type|Description  
@@ -136,7 +136,7 @@ Extension des sprites
 
 ##### self.repeat?(key)
 
-> Vérifie si le rectangle du sprite est clické de manière répétée par la touche passée en argument
+> Vérifie si l'utilisateur a cliqué de manière répétée la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 > Nom|Type|Description  
@@ -150,7 +150,7 @@ Extension des sprites
 
 ##### self.trigger?(key)
 
-> Vérifie si le rectangle du sprite est clické une fois par la touche passée en argument
+> Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 > Nom|Type|Description  
