@@ -1406,6 +1406,7 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   def update
     rm_extender_update
+    return if disposed?
     set_rect
     update_buzzer
     update_trails
