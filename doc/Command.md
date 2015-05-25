@@ -204,9 +204,12 @@ Collection des commandes EventExtender
 *    [Command.event_name(id)](#commandevent_nameid)
 *    [Command.event_opacity(ids, *value)](#commandevent_opacityids-value)
 *    [Command.event_opaque(id)](#commandevent_opaqueid)
+*    [Command.event_ox(id, *value)](#commandevent_oxid-value)
+*    [Command.event_oy(id, *value)](#commandevent_oyid-value)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
 *    [Command.event_priority(ids, priority)](#commandevent_priorityids-priority)
+*    [Command.event_restore_origin(id)](#commandevent_restore_originid)
 *    [Command.event_screen_x(id)](#commandevent_screen_xid)
 *    [Command.event_screen_y(id)](#commandevent_screen_yid)
 *    [Command.event_stop_trail(ids)](#commandevent_stop_trailids)
@@ -218,6 +221,9 @@ Collection des commandes EventExtender
 *    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
+*    [Command.event_zoom(id, value)](#commandevent_zoomid-value)
+*    [Command.event_zoom_x(id, *value)](#commandevent_zoom_xid-value)
+*    [Command.event_zoom_y(id, *value)](#commandevent_zoom_yid-value)
 *    [Command.events_buzz(e, *duration)](#commandevents_buzze-duration)
 *    [Command.events_buzzer_properties(e, amplitude, length)](#commandevents_buzzer_propertiese-amplitude-length)
 *    [Command.events_collide?(idA, idB)](#commandevents_collideida-idb)
@@ -456,8 +462,11 @@ Collection des commandes EventExtender
 *    [Command.player_moving?](#commandplayer_moving)
 *    [Command.player_opacity(*value)](#commandplayer_opacityvalue)
 *    [Command.player_opaque](#commandplayer_opaque)
+*    [Command.player_ox(*value)](#commandplayer_oxvalue)
+*    [Command.player_oy(*value)](#commandplayer_oyvalue)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
+*    [Command.player_restore_origin](#commandplayer_restore_origin)
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_stop_trail](#commandplayer_stop_trail)
@@ -468,6 +477,9 @@ Collection des commandes EventExtender
 *    [Command.player_transparent?](#commandplayer_transparent)
 *    [Command.player_x](#commandplayer_x)
 *    [Command.player_y](#commandplayer_y)
+*    [Command.player_zoom(value)](#commandplayer_zoomvalue)
+*    [Command.player_zoom_x(*value)](#commandplayer_zoom_xvalue)
+*    [Command.player_zoom_y(*value)](#commandplayer_zoom_yvalue)
 *    [Command.qte(key, time, *strict)](#commandqtekey-time-strict)
 *    [Command.random(min, max)](#commandrandommin-max)
 *    [Command.random_combination(len, *keys)](#commandrandom_combinationlen-keys)
@@ -3456,6 +3468,36 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_ox(id, *value)
+
+> Modifie (ou retourne) la coordonée X du point de départ d'un événement (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
+##### Command.event_oy(id, *value)
+
+> Modifie (ou retourne) la coordonée y du point de départ d'un événement (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
 ##### Command.event_pixel_x(id)
 
 > Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte
@@ -3493,6 +3535,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `priority`|`Fixnum`|Priorité d'affichage  
+
+
+
+
+
+
+##### Command.event_restore_origin(id)
+
+> Restore l'origine de l'événement référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
 
 
 
@@ -3651,6 +3707,51 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+
+
+##### Command.event_zoom(id, value)
+
+> Modifie le zoom d'un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`value`|`Fixnum`|Valeur du zoom  
+
+
+
+
+
+
+##### Command.event_zoom_x(id, *value)
+
+> Modifie (ou retourne) la valeur du zoom horizontal d'un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
+##### Command.event_zoom_y(id, *value)
+
+> Modifie (ou retourne) la valeur du zoom vertical d'un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 
@@ -7076,6 +7177,34 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_ox(*value)
+
+> Modifie (ou retourne) la coordonée X du point de départ du héros (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
+##### Command.player_oy(*value)
+
+> Modifie (ou retourne) la coordonée Y du point de départ du héros (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
 ##### Command.player_pixel_x
 
 > Renvoie la coordonnées X du joueur en pixel sur la carte
@@ -7090,6 +7219,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 ##### Command.player_pixel_y
 
 > Renvoie la coordonnées Y du joueur en pixel sur la carte
+
+  
+> 
+
+
+
+
+
+##### Command.player_restore_origin
+
+> Restore l'origine du héros
 
   
 > 
@@ -7211,6 +7351,48 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.player_zoom(value)
+
+> Modifie le zoom du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`value`|`Fixnum`|Valeur du zoom  
+
+
+
+
+
+
+##### Command.player_zoom_x(*value)
+
+> Modifie (ou retourne) la valeur du zoom horizontal du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
+##### Command.player_zoom_y(*value)
+
+> Modifie (ou retourne) la valeur du zoom vertical du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
 
 
 

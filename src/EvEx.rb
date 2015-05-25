@@ -1198,6 +1198,7 @@ class Game_CharacterBase
   attr_accessor :trails_prop
   attr_accessor :trails_signal
   attr_accessor :opacity
+  attr_accessor :ox, :oy, :zoom_x, :zoom_y
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1219,7 +1220,30 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
+    restore_oxy
+    @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
+  end
+  #--------------------------------------------------------------------------
+  # * restore ox oy
+  #--------------------------------------------------------------------------
+  def restore_oxy
+    if tile_id > 0
+      @ox = 16
+      @oy = 32
+    else
+      bitmap = Cache.character(@character_name)
+      sign = @character_name[/^[\!\$]./]
+      if sign && sign.include?('$')
+        cw = bitmap.width / 3
+        ch = bitmap.height / 4
+      else
+        cw = bitmap.width / 12
+        ch = bitmap.height / 8
+      end
+      @ox = cw / 2
+      @oy = ch
+    end
   end
   #--------------------------------------------------------------------------
   # * Initialize Public Member Variables
@@ -1385,6 +1409,17 @@ class Sprite_Character
     set_rect
     update_buzzer
     update_trails
+    update_zooms
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update zoom
+  #--------------------------------------------------------------------------
+  def update_zooms
+    return unless character
+    self.zoom_x = character.zoom_x / 100.0
+    self.zoom_y = character.zoom_y / 100.0
+    self.ox = character.ox
+    self.oy = character.oy
   end
   #--------------------------------------------------------------------------
   # * Update trails

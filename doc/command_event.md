@@ -22,9 +22,12 @@ Commandes relatives aux évènements
 *    [event_name(id)](#event_nameid)
 *    [event_opacity(ids, *value)](#event_opacityids-value)
 *    [event_opaque(id)](#event_opaqueid)
+*    [event_ox(id, *value)](#event_oxid-value)
+*    [event_oy(id, *value)](#event_oyid-value)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
 *    [event_priority(ids, priority)](#event_priorityids-priority)
+*    [event_restore_origin(id)](#event_restore_originid)
 *    [event_screen_x(id)](#event_screen_xid)
 *    [event_screen_y(id)](#event_screen_yid)
 *    [event_stop_trail(ids)](#event_stop_trailids)
@@ -36,6 +39,9 @@ Commandes relatives aux évènements
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
 *    [event_x(id)](#event_xid)
 *    [event_y(id)](#event_yid)
+*    [event_zoom(id, value)](#event_zoomid-value)
+*    [event_zoom_x(id, *value)](#event_zoom_xid-value)
+*    [event_zoom_y(id, *value)](#event_zoom_yid-value)
 *    [events_buzz(e, *duration)](#events_buzze-duration)
 *    [events_buzzer_properties(e, amplitude, length)](#events_buzzer_propertiese-amplitude-length)
 *    [events_collide?(idA, idB)](#events_collideida-idb)
@@ -77,8 +83,11 @@ Commandes relatives aux évènements
 *    [player_moving?](#player_moving)
 *    [player_opacity(*value)](#player_opacityvalue)
 *    [player_opaque](#player_opaque)
+*    [player_ox(*value)](#player_oxvalue)
+*    [player_oy(*value)](#player_oyvalue)
 *    [player_pixel_x](#player_pixel_x)
 *    [player_pixel_y](#player_pixel_y)
+*    [player_restore_origin](#player_restore_origin)
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
 *    [player_stop_trail](#player_stop_trail)
@@ -89,6 +98,9 @@ Commandes relatives aux évènements
 *    [player_transparent?](#player_transparent)
 *    [player_x](#player_x)
 *    [player_y](#player_y)
+*    [player_zoom(value)](#player_zoomvalue)
+*    [player_zoom_x(*value)](#player_zoom_xvalue)
+*    [player_zoom_y(*value)](#player_zoom_yvalue)
 *    [show_animation(ids, id_animation, *wait_flag)](#show_animationids-id_animation-wait_flag)
 *    [show_balloon(ids, id_balloon, *wait_flag)](#show_balloonids-id_balloon-wait_flag)
 *    [squares_between(idA, idB)](#squares_betweenida-idb)
@@ -256,6 +268,28 @@ Commandes relatives aux évènements
 `id`|`Fixnum`|ID de l'évènement  
 
 
+##### event_ox(id, *value)
+
+> Modifie (ou retourne) la coordonée X du point de départ d'un événement (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+##### event_oy(id, *value)
+
+> Modifie (ou retourne) la coordonée y du point de départ d'un événement (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
 ##### event_pixel_x(id)
 
 > Renvoie la coordonnées X de l'évènement référencé par son ID en pixel sur la carte
@@ -285,6 +319,16 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `priority`|`Fixnum`|Priorité d'affichage  
+
+
+##### event_restore_origin(id)
+
+> Restore l'origine de l'événement référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
 
 
 ##### event_screen_x(id)
@@ -399,6 +443,39 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+##### event_zoom(id, value)
+
+> Modifie le zoom d'un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`value`|`Fixnum`|Valeur du zoom  
+
+
+##### event_zoom_x(id, *value)
+
+> Modifie (ou retourne) la valeur du zoom horizontal d'un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+##### event_zoom_y(id, *value)
+
+> Modifie (ou retourne) la valeur du zoom vertical d'un événement
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### events_buzz(e, *duration)
@@ -799,6 +876,26 @@ Commandes relatives aux évènements
   
 > 
 
+##### player_ox(*value)
+
+> Modifie (ou retourne) la coordonée X du point de départ du héros (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+##### player_oy(*value)
+
+> Modifie (ou retourne) la coordonée Y du point de départ du héros (le point d'accroche)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
 ##### player_pixel_x
 
 > Renvoie la coordonnées X du joueur en pixel sur la carte
@@ -809,6 +906,13 @@ Commandes relatives aux évènements
 ##### player_pixel_y
 
 > Renvoie la coordonnées Y du joueur en pixel sur la carte
+
+  
+> 
+
+##### player_restore_origin
+
+> Restore l'origine du héros
 
   
 > 
@@ -890,6 +994,36 @@ Commandes relatives aux évènements
 
   
 > 
+
+##### player_zoom(value)
+
+> Modifie le zoom du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`value`|`Fixnum`|Valeur du zoom  
+
+
+##### player_zoom_x(*value)
+
+> Modifie (ou retourne) la valeur du zoom horizontal du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+##### player_zoom_y(*value)
+
+> Modifie (ou retourne) la valeur du zoom vertical du héros
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
 
 ##### show_animation(ids, id_animation, *wait_flag)
 

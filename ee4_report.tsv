@@ -205,9 +205,12 @@ event_moving?(id)	-
 event_name(id)	-
 event_opacity(ids,*value)	-
 event_opaque(id)	-
+event_ox(id,*value)	-
+event_oy(id,*value)	-
 event_pixel_x(id)	event_pixel_x(id)
 event_pixel_y(id)	event_pixel_y(id)
 event_priority(ids,priority)	-
+event_restore_origin(id)	-
 event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
 event_stop_trail(ids)	-
@@ -219,6 +222,9 @@ event_transparent?(id)	-
 event_trigger(ids,trigger)	-
 event_x(id)	event_x(id)
 event_y(id)	event_y(id)
+event_zoom(id,value)	-
+event_zoom_x(id,*value)	-
+event_zoom_y(id,*value)	-
 events_buzz(e,*duration)	-
 events_buzzer_properties(e,amplitude,length)	-
 events_collide?(ev1,ev2)	-
@@ -486,8 +492,11 @@ player_move_with(code)	-
 player_moving?	-
 player_opacity(*value)	-
 player_opaque	-
+player_ox(*value)	-
+player_oy(*value)	-
 player_pixel_x	player_pixel_x
 player_pixel_y	player_pixel_y
+player_restore_origin	-
 player_screen_x	player_screen_x
 player_screen_y	player_screen_y
 player_stop_trail	-
@@ -498,6 +507,9 @@ player_transparent	-
 player_transparent?	-
 player_x	player_x
 player_y	player_y
+player_zoom(value)	-
+player_zoom_x(*value)	-
+player_zoom_y(*value)	-
 -	point_in_mouse_rect?(x,y)
 qte(key,time,*strict)	-
 random(*min,max)	random(minimum,maximum)

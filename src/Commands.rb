@@ -1205,7 +1205,7 @@ module RMECommands
 
   module Events
     def event_moving?(id); event(id).moving?; end
-    def player_moving?; event_moving?(0); end 
+    def player_moving?; event_moving?(0); end
     def event_name(id); event(id).name; end
     def event_x(id); event(id).x; end
     def event_y(id); event(id).y; end
@@ -1281,6 +1281,43 @@ module RMECommands
     def player_in_screen?
       event_in_screen?(0)
     end
+
+    def event_ox(id, value = nil)
+       return event(id).ox unless nil
+       event(id).ox = value
+     end
+
+     def event_oy(id, value = nil)
+        return event(id).oy unless nil
+        event(id).oy = value
+      end
+
+      def player_ox(value = nil); event_ox(0, value); end
+      def player_oy(value = nil); event_oy(0, value); end
+
+      def event_zoom_x(id, value = nil)
+        return event(id).zoom_x unless value
+        event(id).zoom_x = value
+      end
+
+      def event_zoom_y(id, value = nil)
+        return event(id).zoom_y unless value
+        event(id).zoom_y = value
+      end
+
+      def event_zoom(id, value)
+        event_zoom_x(id, value)
+        event_zoom_y(id, value)
+      end
+
+      def player_zoom_x(value = nil); event_zoom_x(value); end
+      def player_zoom_y(value = nil); event_zoom_y(value); end
+      def player_zoom(value); event_zoom(value); end
+
+      def event_restore_origin(id)
+        event(id).restore_oxy
+      end
+      def player_restore_origin; event_restore_origin(0); end
 
     [:last_clicked,
     :last_pressed,
