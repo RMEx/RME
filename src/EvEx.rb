@@ -901,7 +901,8 @@ module Handler
     #--------------------------------------------------------------------------
     def event(i)
       return $game_player if i == 0
-      $game_map.events[i]
+      return $game_map.events[i] if $game_map.events[i]
+      raise sprintf("Event %d doesn't exist", i)
     end
     #--------------------------------------------------------------------------
     # * Binding
@@ -1190,8 +1191,8 @@ class Game_CharacterBase
   attr_accessor :buzz
   attr_accessor :buzz_amplitude
   attr_accessor :buzz_length
-  attr_accessor  :move_speed
-  attr_accessor  :move_frequency
+  attr_accessor :move_speed
+  attr_accessor :move_frequency
   attr_accessor :priority_type
   attr_accessor :through
   attr_accessor :trails
@@ -1220,7 +1221,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
-    restore_oxy
+    #restore_oxy
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
   end
@@ -1348,15 +1349,24 @@ class Game_Player
   # * Scroll Processing
   #--------------------------------------------------------------------------
   alias_method :rme_update_scroll, :update_scroll
+  alias_method :rme_refresh, :refresh
   def update_scroll(last_real_x, last_real_y)
     return if $game_map.target_camera != self
     rme_update_scroll(last_real_x, last_real_y)
   end
-
+  #--------------------------------------------------------------------------
+  # * Checks if the player is erased.
+  #--------------------------------------------------------------------------
   def erased?
     false
   end
-
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh
+    rme_refresh
+    restore_oxy
+  end
 end
 
 #==============================================================================
@@ -1396,8 +1406,8 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   def set_rect
     if character
-      x_rect, y_rect = self.x-self.ox, self.y-self.oy
-      w_rect, h_rect = self.src_rect.width, self.src_rect.height
+      x_rect, y_rect = self.x-self.ox*self.zoom_x, self.y-self.oy*self.zoom_y
+      w_rect, h_rect = self.src_rect.width*self.zoom_x, self.src_rect.height*self.zoom_y
       character.rect.set(x_rect, y_rect, w_rect, h_rect)
     end
   end
@@ -1419,8 +1429,8 @@ class Sprite_Character
     return unless character
     self.zoom_x = character.zoom_x / 100.0
     self.zoom_y = character.zoom_y / 100.0
-    self.ox = character.ox
-    self.oy = character.oy
+    self.ox = character.ox if character.ox
+    self.oy = character.oy if character.oy
   end
   #--------------------------------------------------------------------------
   # * Update trails
@@ -3106,6 +3116,15 @@ class Game_Event
   attr_accessor :erased
   attr_accessor :trigger
   alias_method :erased?, :erased
+  alias_method :rme_initialize, :initialize
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #     event:  RPG::Event
+  #--------------------------------------------------------------------------
+  def initialize(*args)
+    rme_initialize(*args)
+    restore_oxy
+  end
   #--------------------------------------------------------------------------
   # * Determine if Event Page Conditions Are Met
   #--------------------------------------------------------------------------

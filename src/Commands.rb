@@ -46,7 +46,11 @@ module RMECommands
   def session_username; USERNAME; end
   def length(a); a.length; end
   def get(a, i); a[i]; end
-  def event(id);(id < 1) ? $game_player : $game_map.events[id]; end
+  def event(id)
+    return $game_player if id == 0
+    return $game_map.events[id] if $game_map.events[id]
+    raise sprintf("Event %d doesn't exist", id)
+  end
   def rm_kill; SceneManager.exit; end
   def website(url); Thread.new { system("start #{url}") };end
   def split_each_char(str); str.scan(/./); end
@@ -1283,12 +1287,12 @@ module RMECommands
     end
 
     def event_ox(id, value = nil)
-       return event(id).ox unless nil
+       return event(id).ox unless value
        event(id).ox = value
      end
 
      def event_oy(id, value = nil)
-        return event(id).oy unless nil
+        return event(id).oy unless value
         event(id).oy = value
       end
 
