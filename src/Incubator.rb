@@ -24,7 +24,7 @@ class Screen < Sprite
     @zoom = 100
     @pixelation  = 1
     @motion_blur = 0
-    @focused_event = 0
+    @focus_event = true
     @recorded_rect = Rect.new
     @display_rect  = Rect.new
   end
@@ -41,9 +41,9 @@ class Screen < Sprite
   end
 
   def update_zoom_target
-    if @focused_event
-      @zoom_target_x = Command.event(@focused_event).screen_x
-      @zoom_target_y = Command.event(@focused_event).screen_y
+    if @focus_event
+      @zoom_target_x = $game_map.target_camera.screen_x
+      @zoom_target_y = $game_map.target_camera.screen_y
     end
   end
 

@@ -2448,7 +2448,7 @@ module RMECommands
 
     def camera_change_focus(event_id)
       e = event(event_id)
-      camera_focus_on(e.x, e.y)
+      camera_move_on(e.x, e.y)
       $game_map.target_camera = e
     end
 
