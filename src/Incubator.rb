@@ -8,6 +8,71 @@ Implémentation de trucs potentiellement cool pour la future GUI
 =end
 
 #==============================================================================
+# ** SCREEN EFFECT
+#------------------------------------------------------------------------------
+#  Lul
+#==============================================================================
+
+class Screen < Sprite
+  attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y
+
+  def initialize
+    super
+    self.viewport = Viewport.new
+    self.viewport.z = 500
+    @pixelation = 1
+    @zoom = 100
+    @zoom_target_x = @zoom_target_y = 0
+  end
+
+  def update
+    return self.visible = false if (@pixelisation == 1 && @zoom = 100)
+    update_recorded_rect
+    update_pixelation
+    update_bitmap
+  end
+
+  def update_recorded_rect
+    @recorded_rect ||= Rect.new
+    f, tx, ty = @zoom / 100.0, @zoom_target_x, @zoom_target_y
+    w = (Graphics.width / f).to_i
+    h = (Graphics.height / f).to_i
+    x = (tx - w / 2.0).to_i.bound(0, Graphics.width  - w)
+    y = (ty - h / 2.0).to_i.bound(0, Graphics.height - h)
+    @recorded_rect.set(x, y, w, h)
+  end
+
+  def update_pixelation
+    self.zoom_x = @pixelation
+    self.zoom_y = @pixelation
+    w = Graphics.width  / @pixelation
+    h = Graphics.height / @pixelation
+    @display_rect = Rect.new(0, 0, w, h)
+  end
+
+  def update_bitmap
+    self.visible = false
+    self.bitmap.dispose if self.bitmap
+    self.bitmap = Bitmap.new(@display_rect.width, @display_rect.height)
+    self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect)
+    self.visible = true
+  end
+end
+
+module Graphics
+  class << self
+    alias_method :rme_screen_effect_update, :update
+    attr_accessor :screen
+
+    def update
+      @screen ||= Screen.new
+      @screen.update
+      rme_screen_effect_update
+    end
+  end
+end
+
+#==============================================================================
 # ** Bilou
 #------------------------------------------------------------------------------
 #  Bilou is the best example for anything

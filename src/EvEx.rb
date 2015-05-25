@@ -1221,7 +1221,6 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
-    #restore_oxy
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
   end
