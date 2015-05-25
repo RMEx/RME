@@ -1310,9 +1310,9 @@ module RMECommands
         event_zoom_y(id, value)
       end
 
-      def player_zoom_x(value = nil); event_zoom_x(value); end
-      def player_zoom_y(value = nil); event_zoom_y(value); end
-      def player_zoom(value); event_zoom(value); end
+      def player_zoom_x(value = nil); event_zoom_x(0, value); end
+      def player_zoom_y(value = nil); event_zoom_y(0, value); end
+      def player_zoom(value); event_zoom(0, value); end
 
       def event_restore_origin(id)
         event(id).restore_oxy
