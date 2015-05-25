@@ -13,40 +13,44 @@ Implémentation de trucs potentiellement cool pour la future GUI
 #  Lul
 #==============================================================================
 
-class Window
-  alias_method :rme_screen_effect_initialize, :initialize
-  def initialize(*args)
-    rme_screen_effect_initialize(*args)
-    self.viewport = Graphics.windows_viewport
-  end
-end
-
 class Screen < Sprite
-  attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y, :motion_blur
+  attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y,
+  :motion_blur, :focused_event
 
   def initialize
     super
     self.viewport = Viewport.new
-    self.viewport.z = 500
-    @pixelation  = 1
+    self.viewport.z = 200
     @zoom = 100
-    @motion_blur = @zoom_target_x = @zoom_target_y = 0
+    @pixelation  = 1
+    @motion_blur = 0
+    @focused_event = 0
     @recorded_rect = Rect.new
     @display_rect  = Rect.new
   end
 
   def update
-    if [@motion_blur, @pixelisation, @zoom] == [0, 1, 100]
+    return if disposed?
+    if !SceneManager.scene_is?(Scene_Map) || [@motion_blur, @pixelisation, @zoom] == [0, 1, 100]
       return self.visible = false
     end
+    update_zoom_target
     update_recorded_rect
     update_pixelation
     update_bitmap
   end
 
+  def update_zoom_target
+    if @focused_event
+      @zoom_target_x = Command.event(@focused_event).screen_x
+      @zoom_target_y = Command.event(@focused_event).screen_y
+    end
+  end
+
   def update_recorded_rect
     @zoom = [100, @zoom].max
-    f, tx, ty = @zoom / 100.0, @zoom_target_x, @zoom_target_y
+    tx, ty = @zoom_target_x, @zoom_target_y
+    f = @zoom / 100.0
     w = (Graphics.width / f).to_i
     h = (Graphics.height / f).to_i
     x = (tx - w / 2.0).to_i.bound(0, Graphics.width  - w)
@@ -68,10 +72,20 @@ class Screen < Sprite
   end
 
   def update_bitmap
-    self.visible = Graphics.windows_viewport.visible = false
+    self.visible = false
+    display_windows(false)
     o = 255 - @motion_blur.bound(0, 255)
     self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect, o)
-    self.visible = Graphics.windows_viewport.visible = true
+    self.visible = true
+    display_windows(true)
+  end
+
+  def display_windows(bool)
+    scene = SceneManager.scene
+    scene.instance_variables.each do |varname|
+      ivar = scene.instance_variable_get(varname)
+      ivar.visible = bool if ivar.is_a?(Window)
+    end
   end
 end
 
@@ -81,15 +95,9 @@ module Graphics
     attr_accessor :screen
 
     def update
-      @screen ||= Screen.new
+      @screen = Screen.new if @screen.nil? || @screen.disposed?
       @screen.update
       rme_screen_effect_update
-    end
-
-    def windows_viewport
-      @windows_viewport ||= Viewport.new
-      @windows_viewport.z = 600
-      @windows_viewport
     end
   end
 end
