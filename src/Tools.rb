@@ -124,6 +124,7 @@ class Graphical_eval
 
   def create_viewport
     @viewport = Viewport.new(@x, @y, @width, @height)
+    @viewport.z = 1000
   end
 
   def create_textfield

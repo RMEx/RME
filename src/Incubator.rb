@@ -13,27 +13,39 @@ Implémentation de trucs potentiellement cool pour la future GUI
 #  Lul
 #==============================================================================
 
+class Window
+  alias_method :rme_screen_effect_initialize, :initialize
+  def initialize(*args)
+    rme_screen_effect_initialize(*args)
+    self.viewport = Graphics.windows_viewport
+  end
+end
+
 class Screen < Sprite
-  attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y
+  attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y, :motion_blur
 
   def initialize
     super
     self.viewport = Viewport.new
     self.viewport.z = 500
-    @pixelation = 1
+    @pixelation  = 1
     @zoom = 100
-    @zoom_target_x = @zoom_target_y = 0
+    @motion_blur = @zoom_target_x = @zoom_target_y = 0
+    @recorded_rect = Rect.new
+    @display_rect  = Rect.new
   end
 
   def update
-    return self.visible = false if (@pixelisation == 1 && @zoom = 100)
+    if [@motion_blur, @pixelisation, @zoom] == [0, 1, 100]
+      return self.visible = false
+    end
     update_recorded_rect
     update_pixelation
     update_bitmap
   end
 
   def update_recorded_rect
-    @recorded_rect ||= Rect.new
+    @zoom = [100, @zoom].max
     f, tx, ty = @zoom / 100.0, @zoom_target_x, @zoom_target_y
     w = (Graphics.width / f).to_i
     h = (Graphics.height / f).to_i
@@ -43,19 +55,23 @@ class Screen < Sprite
   end
 
   def update_pixelation
-    self.zoom_x = @pixelation
-    self.zoom_y = @pixelation
-    w = Graphics.width  / @pixelation
-    h = Graphics.height / @pixelation
-    @display_rect = Rect.new(0, 0, w, h)
+    pix = @pixelation = [1, @pixelation].max
+    if pix != @pixelation_old
+      @pixelation_old = pix
+      self.zoom_x = pix
+      self.zoom_y = pix
+      w = Graphics.width  / pix
+      h = Graphics.height / pix
+      @display_rect.set(0, 0, w, h)
+      self.bitmap = Bitmap.new(w, h)
+    end
   end
 
   def update_bitmap
-    self.visible = false
-    self.bitmap.dispose if self.bitmap
-    self.bitmap = Bitmap.new(@display_rect.width, @display_rect.height)
-    self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect)
-    self.visible = true
+    self.visible = Graphics.windows_viewport.visible = false
+    o = 255 - @motion_blur.bound(0, 255)
+    self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect, o)
+    self.visible = Graphics.windows_viewport.visible = true
   end
 end
 
@@ -68,6 +84,12 @@ module Graphics
       @screen ||= Screen.new
       @screen.update
       rme_screen_effect_update
+    end
+
+    def windows_viewport
+      @windows_viewport ||= Viewport.new
+      @windows_viewport.z = 600
+      @windows_viewport
     end
   end
 end
