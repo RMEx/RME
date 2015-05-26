@@ -299,7 +299,7 @@ class Graphical_eval
 
   def dispose
     @textfield.dispose
-    @viewport.dispose
+    self.instance_variables.each{|i| self.instance_variable_set(i, nil) }
   end
 
 end

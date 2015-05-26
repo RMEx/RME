@@ -15,7 +15,7 @@ Implémentation de trucs potentiellement cool pour la future GUI
 
 class Screen < Sprite
   attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y,
-  :motion_blur, :focused_event
+  :motion_blur, :focus_event, :blur
 
   def initialize
     super
@@ -24,6 +24,8 @@ class Screen < Sprite
     @zoom = 100
     @pixelation  = 1
     @motion_blur = 0
+    @blur = 0
+    @gaussian_curve = Hash.new
     @focus_event = true
     @recorded_rect = Rect.new
     @display_rect  = Rect.new
@@ -31,7 +33,7 @@ class Screen < Sprite
 
   def update
     return if disposed?
-    if !SceneManager.scene_is?(Scene_Map) || [@motion_blur, @pixelisation, @zoom] == [0, 1, 100]
+    if !SceneManager.scene_is?(Scene_Map) || [@blur, @motion_blur, @pixelisation, @zoom] == [0, 0, 1, 100]
       return self.visible = false
     end
     update_zoom_target
@@ -60,33 +62,65 @@ class Screen < Sprite
 
   def update_pixelation
     pix = @pixelation = [1, @pixelation].max
-    if pix != @pixelation_old
-      @pixelation_old = pix
-      self.zoom_x = pix
-      self.zoom_y = pix
+    if @transformed = (pix != @pixelation_old)
       w = Graphics.width  / pix
       h = Graphics.height / pix
-      @display_rect.set(0, 0, w, h)
+      self.zoom_x = Graphics.width.to_f  / w
+      self.zoom_y = Graphics.height.to_f / h
+      self.bitmap.dispose if bitmap
       self.bitmap = Bitmap.new(w, h)
+      @pixelation_old = pix
+      @display_rect.set(0, 0, w, h)
     end
   end
 
   def update_bitmap
+    visible_windows = collect_visible_windows
+    visible_windows.each {|w| w.visible = false}
+    o = @transformed ? 255 : 255 - @motion_blur.bound(0, 255)
     self.visible = false
-    display_windows(false)
-    o = 255 - @motion_blur.bound(0, 255)
     self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect, o)
+    perform_blur
     self.visible = true
-    display_windows(true)
+    visible_windows.each {|w| w.visible = true }
   end
 
-  def display_windows(bool)
+  def collect_visible_windows
     scene = SceneManager.scene
-    scene.instance_variables.each do |varname|
-      ivar = scene.instance_variable_get(varname)
-      ivar.visible = bool if ivar.is_a?(Window)
+    scene.instance_variables.collect do |varname|
+      scene.instance_variable_get(varname)
+    end.select do |ivar|
+      ivar.is_a?(Window) && !ivar.disposed? && ivar.visible
     end
   end
+
+  def gaussian_curve(rad)
+    sum, sqsigma = 0.0, rad**2
+    Array.new(2*rad + 1) do |i|
+      val = Math.exp( -((i - rad)**2.0)/(2.0*sqsigma) ) / Math.sqrt(2.0*Math::PI*sqsigma)
+      sum += val
+      val
+    end.map{ |i| i / sum }
+  end
+
+  def perform_blur
+    if (rad = @blur) > 0
+      cur = @gaussian_curve[rad] ||= gaussian_curve(rad)
+      ["x", "y"].each do |param|
+        original = bitmap.clone
+        rec = @display_rect.clone
+        cur.length.times do |i|
+          next if i == rad
+          o = (cur[i]*255).to_i
+          next if o == 0
+          rec.method(param +"=").call(i - rad)
+          self.bitmap.blt(0, 0, original, rec, o)
+        end
+        original.dispose
+      end
+    end
+  end
+
 end
 
 module Graphics

@@ -572,8 +572,7 @@ module Gui
         :mouse_x,
         :mouse_y,
         :>>,
-        :<<,
-        :dispose
+        :<<
       ].each{|m| delegate :@viewport, m}
       delegate_accessor :@text, :value
       delegate_accessor :@text, :virtual_position
@@ -744,6 +743,12 @@ module Gui
         return a if (b-x) == 0 || (b-x)==(x-memob)
         return memoa if (b-x).abs > (memob-x).abs
         approach(a + (0 <=> (b-x)), x, a, b)
+      end
+      #--------------------------------------------------------------------------
+      # * IZI Dispose
+      #--------------------------------------------------------------------------
+      def dispose
+        self.instance_variables.each{|i| self.instance_variable_set(i, nil) }
       end
 
     end
