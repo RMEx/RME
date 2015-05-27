@@ -78,7 +78,7 @@ class Screen < Sprite
   def update_bitmap
     visible_windows = collect_visible_windows
     visible_windows.each {|w| w.visible = false}
-    motion_blur = [@motion_blur, @blur*@forced_pixelation/2].max.to_i
+    motion_blur = [@motion_blur, @blur*2].max.to_i
     o = @transformed ? 255 : 255 - motion_blur.bound(0, 255)
     self.visible = false
     self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect, o)
