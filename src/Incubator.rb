@@ -61,10 +61,11 @@ class Screen < Sprite
   end
 
   def update_pixelation
-    pix = @pixelation = [1, @pixelation].max
+    @blur = [0, @blur].max
+    pix = @forced_pixelation = [1, @pixelation, (1+Math.log10(1+@blur)*1.5).to_i].max
     if @transformed = (pix != @pixelation_old)
-      w = Graphics.width  / pix
-      h = Graphics.height / pix
+      w = Graphics.width  / pix.to_i
+      h = Graphics.height / pix.to_i
       self.zoom_x = Graphics.width.to_f  / w
       self.zoom_y = Graphics.height.to_f / h
       self.bitmap.dispose if bitmap
@@ -77,7 +78,8 @@ class Screen < Sprite
   def update_bitmap
     visible_windows = collect_visible_windows
     visible_windows.each {|w| w.visible = false}
-    o = @transformed ? 255 : 255 - @motion_blur.bound(0, 255)
+    motion_blur = [@motion_blur, @blur*@forced_pixelation/2].max.to_i
+    o = @transformed ? 255 : 255 - motion_blur.bound(0, 255)
     self.visible = false
     self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect, o)
     perform_blur
@@ -95,7 +97,7 @@ class Screen < Sprite
   end
 
   def gaussian_curve(rad)
-    sum, sqsigma = 0.0, rad**2
+    sum, sqsigma = 0.0, (rad/2.0)**2
     Array.new(2*rad + 1) do |i|
       val = Math.exp( -((i - rad)**2.0)/(2.0*sqsigma) ) / Math.sqrt(2.0*Math::PI*sqsigma)
       sum += val
@@ -104,7 +106,7 @@ class Screen < Sprite
   end
 
   def perform_blur
-    if (rad = @blur) > 0
+    if (rad = @blur/@forced_pixelation) > 0
       cur = @gaussian_curve[rad] ||= gaussian_curve(rad)
       ["x", "y"].each do |param|
         original = bitmap.clone
