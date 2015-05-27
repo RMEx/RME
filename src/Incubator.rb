@@ -13,9 +13,40 @@ Implémentation de trucs potentiellement cool pour la future GUI
 #  Lul
 #==============================================================================
 
+class Bitmap
+
+  def self.gaussian_filter(radius)
+    dbpwsigma = 0.4155 * (radius + 1)**2
+              # 0.4155 ~= 2*(1/sqrt(2*log(255)))**2
+    @gaussian_filter ||= Hash.new
+    @gaussian_filter[radius] ||= Array.new(2*radius + 1) do |i|
+      val = Math.exp(-((i-radius)**2)/dbpwsigma) / Math.sqrt(3.14*dbpwsigma)
+    end
+  end
+
+  def gaussian_blur(radius = 3, step = 1)
+    return self if (rad = radius.to_i) <= 0
+    step = [1, step].max.to_i
+    f = Bitmap.gaussian_filter(rad)
+    ['x=', 'y='].each do |m|
+      ori = clone
+      rec = rect.clone
+      f.length.times do |i|
+        next if i == rad
+        opa = (f[i]*255).to_i
+        next if opa == 0
+        rec.method(m).call((i - rad)*step)
+        blt(0, 0, ori, rec, opa)
+      end
+    end
+    self
+  end
+
+end
+
 class Screen < Sprite
   attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y,
-  :motion_blur, :focus_event, :blur
+  :motion_blur, :focus_event, :blur, :blur_step
 
   def initialize
     super
@@ -25,6 +56,7 @@ class Screen < Sprite
     @pixelation  = 1
     @motion_blur = 0
     @blur = 0
+    @blur_step = 1
     @gaussian_curve = Hash.new
     @focus_event = true
     @recorded_rect = Rect.new
@@ -62,27 +94,27 @@ class Screen < Sprite
 
   def update_pixelation
     @blur = [0, @blur].max
-    pix = @forced_pixelation = [1, @pixelation, (1+Math.log10(1+@blur)*1.5).to_i].max
-    if @transformed = (pix != @pixelation_old)
+    pix = @forced_pixelation = [@pixelation, @blur>5?2:1, @blur>25?3:1].max
+    if pix != @pixelation_old
       w = Graphics.width  / pix.to_i
       h = Graphics.height / pix.to_i
       self.zoom_x = Graphics.width.to_f  / w
       self.zoom_y = Graphics.height.to_f / h
-      self.bitmap.dispose if bitmap
+      current = bitmap.clone if bitmap
       self.bitmap = Bitmap.new(w, h)
       @pixelation_old = pix
       @display_rect.set(0, 0, w, h)
+      self.bitmap.stretch_blt(@display_rect, current, current.rect) if current
     end
   end
 
   def update_bitmap
     visible_windows = collect_visible_windows
     visible_windows.each {|w| w.visible = false}
-    motion_blur = [@motion_blur, @blur*2].max.to_i
-    o = @transformed ? 255 : 255 - motion_blur.bound(0, 255)
+    o = 255 - [@motion_blur, @blur*3].max.to_i.bound(0, 255)
     self.visible = false
     self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @recorded_rect, o)
-    perform_blur
+    self.bitmap.gaussian_blur(@blur/@forced_pixelation, @blur_step/@forced_pixelation)
     self.visible = true
     visible_windows.each {|w| w.visible = true }
   end
@@ -93,33 +125,6 @@ class Screen < Sprite
       scene.instance_variable_get(varname)
     end.select do |ivar|
       ivar.is_a?(Window) && !ivar.disposed? && ivar.visible
-    end
-  end
-
-  def gaussian_curve(rad)
-    sum, sqsigma = 0.0, (rad/2.0)**2
-    Array.new(2*rad + 1) do |i|
-      val = Math.exp( -((i - rad)**2.0)/(2.0*sqsigma) ) / Math.sqrt(2.0*Math::PI*sqsigma)
-      sum += val
-      val
-    end.map{ |i| i / sum }
-  end
-
-  def perform_blur
-    if (rad = @blur/@forced_pixelation) > 0
-      cur = @gaussian_curve[rad] ||= gaussian_curve(rad)
-      ["x", "y"].each do |param|
-        original = bitmap.clone
-        rec = @display_rect.clone
-        cur.length.times do |i|
-          next if i == rad
-          o = (cur[i]*255).to_i
-          next if o == 0
-          rec.method(param +"=").call(i - rad)
-          self.bitmap.blt(0, 0, original, rec, o)
-        end
-        original.dispose
-      end
     end
   end
 
