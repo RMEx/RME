@@ -17,6 +17,37 @@
 
 module DocGenerator
 
+  class << self
+    #--------------------------------------------------------------------------
+    # *  Create Json file
+    #--------------------------------------------------------------------------
+    def to_json
+      result = Array.new
+      RME::Doc.commands.each do |category, data|
+        json_data =
+          "{'name':'#{data[:name]}','desc':'#{data[:desc]}', 'commands':'[#{rdoc(data[:commands])}]'}"
+        result << json_data
+      end
+      return '[' + result.join(',') + ']'
+    end
+
+    # A continuer ! Gestion des paramètres et tout :D
+    def rdoc(commands)
+      result = Array.new
+      kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
+      cmd = lambda{|x| RME::Doc.schema[:Command][:methods][x]}
+      Hash[commands].sort.each do |command|
+        c = cmd.call(command)
+        json_data = "{'title':'#{command}', 'desc':'#{c[:description]}', 'returnable':#{c[:returnable]}}"
+        result << json_data
+      end
+    end
+
+    def params(parameters)
+
+    end
+  end
+
   #==============================================================================
   # ** Doc Generator in Markdown
   #------------------------------------------------------------------------------
@@ -465,6 +496,7 @@ module DocGenerator
         Checker.orphans =
           Checker.raw_methods - Checker.documented_methods - Checker.undocumented_methods
       end
+
       #--------------------------------------------------------------------------
       # *  Save report
       #--------------------------------------------------------------------------
