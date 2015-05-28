@@ -3277,7 +3277,13 @@ class Game_Interpreter
   def command_355
     Game_Interpreter.current_id = @event_id
     Game_Interpreter.current_map_id = @map_id
-    extender_command_355
+    script = @list[@index].parameters[0] + "\n"
+    while next_event_code == 655
+      @index += 1
+      script += @list[@index].parameters[0] + "\n"
+    end
+    script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@event_id}, #{$2}]" }
+    eval(script)
   end
   #--------------------------------------------------------------------------
   # * Common Event
@@ -3674,7 +3680,9 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check the passability
   #--------------------------------------------------------------------------
-  def passable?(x, y, dir); $game_map.passable?(x, y, dir); end
+  def passable?(e, x, y, dir);
+    e.passable?(x, y, dir)
+  end
   #--------------------------------------------------------------------------
   # * Check closed_list
   #--------------------------------------------------------------------------
@@ -3693,7 +3701,7 @@ module Pathfinder
       open_list.delete(current.id)
       closed_list[current.id] = current
       args = current.x, current.y+1
-      if passable?(current.x, current.y, 2) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -3701,7 +3709,7 @@ module Pathfinder
         end
       end
       args = current.x-1, current.y
-      if passable?(current.x, current.y, 4) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -3709,7 +3717,7 @@ module Pathfinder
         end
       end
       args = current.x+1, current.y
-      if passable?(current.x, current.y, 4) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -3717,7 +3725,7 @@ module Pathfinder
         end
       end
       args = current.x, current.y-1
-      if passable?(current.x, current.y, 2) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
