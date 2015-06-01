@@ -448,7 +448,7 @@ class Devices::Keyboard
                           "Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée",
                           {:method => ["Méthode d'activation (:press?, :release?, :trigger? etc.)", :Symbol]}, true
   link_method_documentation "Keyboard.time",
-                          "Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie, au moment de l'appel",
+                          "Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie",
                           {:key => ["Touche à vérifier",:Symbol]}, true
 
 end
@@ -1294,17 +1294,17 @@ module Command
   register_command :keyboard, "Command.key_release?"
 
   link_method_documentation "Command.keyboard_all?",
-                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method",
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :keys => ["Liste des touches qui doivent être activées selon la méthode", :Argslist]
                           }, true
   register_command :keyboard, "Command.keyboard_all?"
 
   link_method_documentation "Command.keyboard_any?",
-                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method",
+                          "Renvoie true si  au moins une touche passée à keys est activée selon la méthode passée à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
                           }, true
   register_command :keyboard, "Command.keyboard_any?"
@@ -1361,7 +1361,7 @@ module Command
   register_command :keyboard, "Command.key_current_rgss"
 
   link_method_documentation "Command.key_time",
-                          "Renvoie le nombre de frame pressée d'une touche en cours",
+                          "Renvoie, en nombre de frames, le temps de pression d'une touche de clavier choisie",
                           {:key => ["Touche à vérifier",:Symbol]}, true
   register_command :keyboard, "Command.key_time"
 
@@ -1384,7 +1384,7 @@ module Command
   register_command :mouse, "Command.mouse_click?"
 
   link_method_documentation "Command.mouse_repeat?",
-                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon",
+                          "Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon",
                           {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
                           true
   register_command :mouse, "Command.mouse_repeat?"
@@ -1441,17 +1441,17 @@ module Command
   register_command :mouse, "Command.mouse_in?"
 
   link_method_documentation "Command.mouse_all?",
-                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method",
+                          "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method",
                           {
                             :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                            :keys => ["Liste des touches qui doivent être activée selon la méthode", :Argslist]
+                            :keys => ["Liste des touches qui doivent être activées selon la méthode", :Argslist]
                           }, true
   register_command :mouse, "Command.mouse_all?"
 
   link_method_documentation "Command.mouse_any?",
-                          "Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method",
+                          "Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method",
                           {
-                            :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
+                            :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
                             :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
                           }, true
   register_command :mouse, "Command.mouse_any?"
@@ -1462,7 +1462,7 @@ module Command
   register_command :mouse, "Command.mouse_current_key"
 
   link_method_documentation "Command.click_time",
-                          "Renvoie le nombre de frame pressée d'une touche en cours",
+                          "Renvoie, en nombre de frames, la durée de pression d'une touche de souris choisie",
                           {:key => ["Touche à vérifier",:Symbol]}, true
   register_command :mouse, "Command.click_time"
 
@@ -1470,9 +1470,9 @@ module Command
                           "Affiche une image à l'écran",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :name => ["Nom de l'image (sans l'extension)", :String],
+                            :name => ["Nom de l'image (sans l'extension, entre guillemets anglais)", :String],
                             :"*x" => ["Position en X de l'image (par défaut 0)", :Fixnum],
-                            :"*y" => ["Position en X de l'image (par défaut 0)", :Fixnum],
+                            :"*y" => ["Position en Y de l'image (par défaut 0)", :Fixnum],
                             :"*origin" => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
                             :"*zoom_x" => ["Zoom sur la largeur de l'image par défaut 100 (pour 100%)", :Fixnum],
                             :"*zoom_y" => ["Zoom sur la hauteur de l'image par défaut 100 (pour 100%)", :Fixnum],
@@ -1483,7 +1483,7 @@ module Command
 
   # AUTOGenerated for picture_move?
   link_method_documentation 'Command.picture_move?',
-  	'Renvoi true si l\'image référencée par son ID est en mouvement, false sinon',
+  	'Renvoie true si l\'image référencée par son ID est en mouvement, false sinon',
    	{
   		:id => ["ID de l'image", :Fixnum],
   	}, true # Maybe changed
@@ -1493,7 +1493,7 @@ module Command
                           "Change l'origine d'une image",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :origin => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                            :origin => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X,Y, par défaut, zéro, zéro", :Fixnum],
                           }
   register_command :picture, "Command.picture_origin"
 
@@ -1536,9 +1536,9 @@ module Command
                             :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
                             :duration => ["Durée du déplacement en frames", :Fixnum],
                             :"*wait_flag" => ["Attendre la fin du déplacement, par défaut, true", :Boolean],
-                            :"*opacity" => ["Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
-                            :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel", :Fixnum],
-                            :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle", :Fixnum],
+                            :"*opacity" => ["Opacité (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion du moment", :Fixnum],
+                            :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine du moment", :Fixnum],
 
                           }
   register_command :picture, "Command.picture_move"
@@ -1551,7 +1551,7 @@ module Command
                           }
   register_command :picture, "Command.picture_wave"
   link_method_documentation "Command.picture_flip",
-                          "Applique un effet miroir sur l'image",
+                          "Applique un effet miroir (axe vertical) sur l'image ",
                           {
                             :id => ["ID de l'image", :Fixnum],
                           }
@@ -1574,7 +1574,7 @@ module Command
                           "Change la largeur d'une image",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.", :Fixnum],
+                            :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
@@ -1583,7 +1583,7 @@ module Command
                           "Change la hauteur d'une image",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.", :Fixnum],
+                            :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
@@ -1593,7 +1593,7 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :zoom_x => ["Pourcentage d'agrandissement de la largeur de l'image", :Fixnum],
-                            :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.", :Fixnum],
+                            :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
@@ -1619,8 +1619,8 @@ module Command
                           "Fait défiler une image avec la carte (la fixe à une position)",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :"*x" => ["Coordonnées X de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
-                            :"*y" => ["Coordonnées Y de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
+                            :"*x" => ["Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
+                            :"*y" => ["Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
                           }
   register_command :picture, "Command.picture_pin"
 
@@ -1657,22 +1657,22 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :power => ["La puissance du tremblement", :Fixnum],
                             :speed => ["La vitesse du tremblement", :Fixnum],
-                            :duration => ["La durée en frame du tremblement", :Fixnum],
+                            :duration => ["La durée en frames du tremblement", :Fixnum],
                           }
   register_command :picture, "Command.picture_shake"
 
   link_method_documentation "Command.pixel_in_picture?",
-                          "Vérifie que le x, y sont inscrit dans l'image",
+                          "Vérifie que le x, y sont inscrits dans l'image",
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :x => ["Coordonnées X", :Fixnum],
                             :y => ["Coordonnées Y", :Fixnum],
-                            :"*precise" => ["Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparent seront prit en compte", :Boolean]
+                            :"*precise" => ["Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparents seront pris en compte", :Boolean]
                           }, true
   register_command :picture, "Command.pixel_in_picture?"
 
   link_method_documentation "Command.pictures_collide?",
-                          "Vérifie que deux images sont en collisions",
+                          "Vérifie que deux images sont en collision",
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :id2 => ["ID de l'autre image", :Fixnum],
@@ -1752,7 +1752,7 @@ module Command
                             :"*blend_type" => ["Mode de fusion (par défaut 0), mode normal", :Fixnum],
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
                             :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
-                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale", :Tone]
+                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone]
                           }
   register_command :parallax, "Command.parallax_show"
   link_method_documentation "Command.parallax_transform",
@@ -1847,7 +1847,7 @@ module Command
                           "Change la teinte d'un panorama",
                           {
                             :id => ["ID du panorama", :Fixnum],
-                            :tone => ["teinte du panorama (utilisez la commande tone des commandes standars)", :Tone],
+                            :tone => ["teinte du panorama (utilisez la commande tone des commandes standards)", :Tone],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
@@ -1886,7 +1886,7 @@ link_method_documentation "Command.gold",
 register_command :party, "Command.gold"
 
 link_method_documentation "Command.steps",
-                        "Renvoie le nombre de pas effectué par l'équipe",
+                        "Renvoie le nombre de pas effectués par l'équipe",
                         {}, true
 register_command :party, "Command.steps"
 
@@ -1901,46 +1901,46 @@ link_method_documentation "Command.timer",
 register_command :party, "Command.timer"
 
 link_method_documentation "Command.save_count",
-                        "Renvoie le nombre de sauvegarde effectuées par partie",
+                        "Renvoie le nombre de sauvegardes effectuées par partie",
                         {}, true
 register_command :party, "Command.save_count"
 
 link_method_documentation "Command.battle_count",
-                        "Renvoie le nombre de combat effectués par partie",
+                        "Renvoie le nombre de combats effectués par partie",
                         {}, true
 register_command :party, "Command.battle_count"
 
 # AUTOGenerated for items_possessed
 link_method_documentation 'Command.items_possessed',
-	'Renvoi la liste des objets possédés',
+	'Renvoie la liste des objets possédés',
  	{}, true # Maybe changed
 register_command :items, 'Command.items_possessed'
 
 # AUTOGenerated for armors_possessed
 link_method_documentation 'Command.armors_possessed',
-'Renvoi la liste des armures possédées',
+'Renvoie la liste des armures possédées',
  	{}, true # Maybe changed
 register_command :armors, 'Command.armors_possessed'
 
 # AUTOGenerated for weapons_possessed
 link_method_documentation 'Command.weapons_possessed',
-'Renvoi la liste des armes possédées',
+'Renvoie la liste des armes possédées',
  	{}, true # Maybe changed
 register_command :weapons, 'Command.weapons_possessed'
 
 
 link_method_documentation "Command.item_count",
-                        "Renvoie le nombre d'objet référencé par son ID possédés par l'équipe",
+                        "Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe",
                         {:id => ["Id de l'objet à compter", :Fixnum]}, true
 register_command :items, "Command.item_count"
 
 link_method_documentation "Command.weapon_count",
-                        "Renvoie le nombre d'armes référencées par son ID possédées par l'équipe",
+                        "Renvoie le nombre d'armes (référencées par un ID) possédées par l'équipe",
                         {:id => ["Id de l'arme à compter", :Fixnum]}, true
 register_command :weapons, "Command.weapon_count"
 
 link_method_documentation "Command.armor_count",
-                        "Renvoie le nombre d'armures référencées par son ID possédées par l'équipe",
+                        "Renvoie le nombre d'armures (référencées par un ID) possédées par l'équipe",
                         {:id => ["Id de l'armure à compter", :Fixnum]}, true
 register_command :armors, "Command.armor_count"
 
@@ -1955,7 +1955,7 @@ link_method_documentation "Command.weapon_name",
 register_command :weapons, "Command.weapon_name"
 
 link_method_documentation "Command.armor_name",
-                        "Renvoie le nom de l'armure référencé par son ID",
+                        "Renvoie le nom de l'armure référencée par son ID",
                         {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :armors, "Command.armor_name"
 
@@ -1970,7 +1970,7 @@ link_method_documentation "Command.weapon_note",
 register_command :weapons, "Command.weapon_note"
 
 link_method_documentation "Command.armor_note",
-                        "Renvoie le commentaire de l'armure référencé par son ID",
+                        "Renvoie le commentaire de l'armure référencée par son ID",
                         {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :armors, "Command.armor_note"
 
@@ -2000,7 +2000,7 @@ link_method_documentation "Command.weapon_icon",
 register_command :weapons, "Command.weapon_icon"
 
 link_method_documentation "Command.armor_icon",
-                        "Renvoie l'index de l'icone  de l'armure référencé par son ID",
+                        "Renvoie l'index de l'icone de l'armure référencée par son ID",
                         {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :armors, "Command.armor_icon"
 
@@ -2015,7 +2015,7 @@ link_method_documentation "Command.weapon_price",
 register_command :weapons, "Command.weapon_price"
 
 link_method_documentation "Command.armor_price",
-                        "Renvoie le prix  de l'armure référencé par son ID",
+                        "Renvoie le prix  de l'armure référencée par son ID",
                         {:id => ["Id de l'armure", :Fixnum]}, true
 register_command :armors, "Command.armor_price"
 
@@ -2129,7 +2129,7 @@ link_method_documentation "Command.give_weapon",
 register_command :weapons, "Command.give_weapon"
 
 link_method_documentation "Command.give_armor",
-                        "Fait gagner à l'équipe l'armure référencé par son ID",
+                        "Fait gagner à l'équipe l'armure référencée par son ID",
                         {
                           :id => ["Id de l'armure", :Fixnum],
                           :amount => ["Nombre à donner. Si le nombre est négatif, l'objet sera retiré", :Fixnum],
@@ -2147,7 +2147,7 @@ link_method_documentation "Command.has_item?",
 register_command :items, "Command.has_item?"
 
 link_method_documentation "Command.has_weapon?",
-                        "Renvoie true si l'arme référencé par son ID est possédée par l'équipe, false sinon",
+                        "Renvoie true si l'arme référencée par son ID est possédée par l'équipe, false sinon",
                         {
                           :id => ["Id de l'arme", :Fixnum],
                            :"*include_equipement" => ["Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)", :Boolean]
@@ -2156,7 +2156,7 @@ link_method_documentation "Command.has_weapon?",
 register_command :weapons, "Command.has_weapon?"
 
 link_method_documentation "Command.has_armor?",
-                        "Renvoie true si l'armure référencé par son ID est possédée par l'équipe, false sinon",
+                        "Renvoie true si l'armure référencée par son ID est possédée par l'équipe, false sinon",
                         {
                           :id => ["Id de l'armure", :Fixnum],
                            :"*include_equipement" => ["Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)", :Boolean]
@@ -2164,14 +2164,14 @@ link_method_documentation "Command.has_armor?",
                         }, true
 register_command :armors, "Command.has_armor?"
 link_method_documentation "Command.weapon_equiped?",
-                        "Renvoie true si l'arme référencé par son ID est équipée par un des membres de l'équipe, false sinon",
+                        "Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon",
                         {
                           :id => ["Id de l'arme", :Fixnum],
                           :"*member_id" => ["Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe ", :Fixnum],
                         }, true
 register_command :weapons, "Command.weapon_equiped?"
 link_method_documentation "Command.armor_equiped?",
-                        "Renvoie true si l'armure référencé par son ID est équipée par un des membres de l'équipe, false sinon",
+                        "Renvoie true si l'armure référencée par son ID est équipée par un des membres de l'équipe, false sinon",
                         {
                           :id => ["Id de l'armure", :Fixnum],
                           :"*member_id" => ["Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe ", :Fixnum],
@@ -2193,140 +2193,140 @@ link_method_documentation "Command.armor_type",
 register_command :armors, "Command.armor_type"
 
 link_method_documentation "Command.item_scope",
-                        "Renvoie la portée (en Entier) d'un objet référencée par son ID",
+                        "Renvoie la portée (en Entier) d'un objet référencé par son ID",
                         {
                           :id => ["Id de l'armure", :Fixnum],
                         }, true
 register_command :items, "Command.item_scope"
 
 link_method_documentation "Command.item_has_no_scope?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise personne, false sinon",
+                        "Renvoie true si l'objet référencé par son ID ne cible personne, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_has_no_scope?"
 
 link_method_documentation "Command.item_for_one_enemy?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise un ennemi, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible un ennemi, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_one_enemy?"
 
 link_method_documentation "Command.item_for_all_enemies?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise tous les ennemis, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible tous les ennemis, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_all_enemies?"
 
 link_method_documentation "Command.item_for_one_random_enemy?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise un ennemi au hasard, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible un ennemi au hasard, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_one_random_enemy?"
 
 link_method_documentation "Command.item_for_two_random_enemies?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise deux ennemis au hasard, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible deux ennemis au hasard, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_two_random_enemies?"
 
 link_method_documentation "Command.item_for_three_random_enemies?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise trois ennemis au hasard, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible trois ennemis au hasard, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_three_random_enemies?"
 
 link_method_documentation "Command.item_for_four_random_enemies?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise quatre ennemis au hasard, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible quatre ennemis au hasard, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_four_random_enemies?"
 
 link_method_documentation "Command.item_for_one_ally?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise un allié, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible un allié vivant, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_one_ally?"
 
 link_method_documentation "Command.item_for_all_allies?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible tous les alliés vivants, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_all_allies?"
 
 link_method_documentation "Command.item_for_one_dead_ally?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise un allié mort, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible un allié mort, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_one_dead_ally?"
 
 link_method_documentation "Command.item_for_all_dead_allies?",
-                        "Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés morts, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible tous les alliés morts, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_all_dead_allies?"
 
 link_method_documentation "Command.item_for_caller?",
-                        "Renvoie true si la cible d'un objet référencée par son ID , false sinon",
+                        "Renvoie true si l'objet référencé par son ID est utilisable sur le personnage du moment, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_caller?"
 
 link_method_documentation "Command.item_for_opponent?",
-                        "Renvoie true si un objet référencée par son ID cible les ennemis, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible les ennemis, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_opponent?"
 
 link_method_documentation "Command.item_for_friend?",
-                        "Renvoie true si un objet référencée par son ID cible (un ou) les alliés, false sinon",
+                        "Renvoie true si la cible de l'objet référencé par son ID est du côté allié, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_friend?"
 
 link_method_documentation "Command.item_for_dead_friend?",
-                        "Renvoie true si un objet référencée par son ID cible (un ou) les alliés morts, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible un (ou les) allié(s) mort(s), false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_dead_friend?"
 
 link_method_documentation "Command.item_for_one?",
-                        "Renvoie true si un objet référencée par son ID cible une cible, false sinon",
+                        "Renvoie true si l'objet référencé par son ID a une seule cible, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_one?"
 
 link_method_documentation "Command.item_for_random?",
-                        "Renvoie true si un objet référencée par son ID cible aléatoirement, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible aléatoirement, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_random?"
 
 link_method_documentation "Command.item_for_all?",
-                        "Renvoie true si un objet référencée par son ID cible tout le groupe, false sinon",
+                        "Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_for_all?"
 
 link_method_documentation "Command.item_need_selection?",
-                        "Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon",
+                        "Renvoie true si un objet référencé par son ID requiert la sélection d'une cible, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
@@ -2334,28 +2334,28 @@ register_command :items, "Command.item_need_selection?"
 
 
 link_method_documentation "Command.item_certain?",
-                        "Renvoie true si un objet référencée par son ID a une garantie de réussite total, false sinon",
+                        "Renvoie true si un objet référencé par son ID a une garantie de réussite totale, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_certain?"
 
 link_method_documentation "Command.item_physical?",
-                        "Renvoie true si un objet référencée par son ID produit un dommage physique, false sinon",
+                        "Renvoie true si un objet référencé par son ID endommage les PV, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_physical?"
 
 link_method_documentation "Command.item_magical?",
-                        "Renvoie true si un objet référencée par son ID produit un dommage magique, false sinon",
+                        "Renvoie true si un objet référencé par son ID endommage les PM, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_magical?"
 
 link_method_documentation "Command.item_number_of_targets",
-                        "Renvoie le nombre de cibles d'un objet référencée par son ID produit un dommage magique, false sinon",
+                        "Renvoie le nombre de cibles d'un objet référencée par son ID, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
@@ -2378,14 +2378,14 @@ link_method_documentation "Command.item_always_usable?",
 register_command :items, "Command.item_always_usable?"
 
 link_method_documentation "Command.item_battle_usable?",
-                        "Renvoie true si l'objet référencé par son ID est utilisable en combat",
+                        "Renvoie true si l'objet référencé par son ID est utilisable en combat seulement ",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_battle_usable?"
 
 link_method_documentation "Command.item_menu_usable?",
-                        "Renvoie true si l'objet référencé par son ID est utilisable dans le menu",
+                        "Renvoie true si l'objet référencé par son ID est utilisable dans le menu seulement",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
@@ -2406,7 +2406,7 @@ link_method_documentation "Command.item_speed",
 register_command :items, "Command.item_speed"
 
 link_method_documentation "Command.item_nb_hits",
-                        "Renvoie le nombre de coup porté par l'objet référencé par son ID",
+                        "Renvoie le nombre de coups portés par l'objet référencé par son ID",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
@@ -2459,12 +2459,12 @@ register_command :system, "Command.start_y"
 
 link_method_documentation "Command.gain_gold",
                         "Fait gagner de l'argent à l'équipe",
-                        {:amount => "Total d'argent a faire gagner"}
+                        {:amount => "Total d'argent à faire gagner"}
 register_command :party, "Command.gain_gold"
 
 link_method_documentation "Command.lose_gold",
                         "Fait perdre de l'argent à l'équipe",
-                        {:amount => "Total d'argent a faire perdre"}
+                        {:amount => "Total d'argent à faire perdre"}
 register_command :party, "Command.lose_gold"
 =begin
 link_method_documentation "Command.actor_",
@@ -2476,7 +2476,7 @@ register_command :actors, "Command.actor_"
 =end
 
 link_method_documentation "Command.actor_equip",
-                        "Renvoie l'id de l'équipement du héros référencé par son ID",
+                        "Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                           :slot => ["Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory", :Symbol]
@@ -2484,42 +2484,42 @@ link_method_documentation "Command.actor_equip",
 register_command :actors, "Command.actor_equip"
 
 link_method_documentation "Command.actor_weapon",
-                        "renvoie l'id de l'arme équipée du héros référencé par son ID",
+                        "renvoie l'id de l'arme équipée par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
 register_command :actors, "Command.actor_weapon"
 
 link_method_documentation "Command.actor_shield",
-                        "renvoie l'id du bouclier équipé du héros référencé par son ID",
+                        "renvoie l'id du bouclier équipé par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
 register_command :actors, "Command.actor_shield"
 
 link_method_documentation "Command.actor_head",
-                        "renvoie l'id du casque équipée du héros référencé par son ID",
+                        "renvoie l'id du casque équipé par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
 register_command :actors, "Command.actor_head"
 
 link_method_documentation "Command.actor_body",
-                        "renvoie l'id de l'armure équipée du héros référencé par son ID",
+                        "renvoie l'id de l'armure équipée par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
 register_command :actors, "Command.actor_body"
 
 link_method_documentation "Command.actor_description",
-                        "renvoie la déscription du héros référencé par son ID",
+                        "renvoie la description du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
 register_command :actors, "Command.actor_description"
 
 link_method_documentation "Command.actor_accessory",
-                        "renvoie l'id l' accessoire équipé du héros référencé par son ID",
+                        "renvoie l'id l'accessoire équipé par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
@@ -2575,7 +2575,7 @@ link_method_documentation "Command.actor_level_max",
 register_command :actors, "Command.actor_level_max"
 
 link_method_documentation "Command.actor_exp",
-                        "renvoie les points d'expériences du héros référencé par son ID",
+                        "renvoie les points d'expérience du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                         }, true
@@ -2617,7 +2617,7 @@ link_method_documentation "Command.actor_max_hp",
 register_command :actors, "Command.actor_max_hp"
 
 link_method_documentation "Command.actor_max_mp",
-                        "renvoie le nombre de points de magie du héros référencé par son ID",
+                        "renvoie le nombre de points de magie maximum du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
@@ -2715,14 +2715,14 @@ link_method_documentation "Command.actor_counter_attack_rate",
 register_command :actors, "Command.actor_counter_attack_rate"
 
 link_method_documentation "Command.actor_hp_regeneration_rate",
-                        "renvoie le pourcentage de régénration de HP à chaque tour du héros référencé par son ID",
+                        "renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_hp_regeneration_rate"
 
 link_method_documentation "Command.actor_mp_regeneration_rate",
-                        "renvoie le pourcentage de régénration MP à chaque tour du héros référencé par son ID",
+                        "renvoie le pourcentage de régénration de MP à chaque tour du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
@@ -2750,49 +2750,49 @@ link_method_documentation "Command.actor_guard_effect_rate",
 register_command :actors, "Command.actor_guard_effect_rate"
 
 link_method_documentation "Command.actor_recovery_effect_rate",
-                        "renvoie le pourcentage de MP/HP recu, du héros référencé par son ID",
+                        "renvoie le pourcentage de PV/PM reçu, du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_recovery_effect_rate"
 
 link_method_documentation "Command.actor_pharmacology",
-                        "renvoie le pourcentage de HP/MP récupéré via un objet du héros référencé par son ID",
+                        "renvoie le pourcentage de PV/PM récupéré via un objet du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_pharmacology"
 
 link_method_documentation "Command.actor_mp_cost_rate",
-                        "renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID",
+                        "renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_mp_cost_rate"
 
 link_method_documentation "Command.actor_tp_charge_rate",
-                        "renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID",
+                        "renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_tp_charge_rate"
 
 link_method_documentation "Command.actor_physical_damage_rate",
-                        "renvoie le pourcentage de dommage physique reçu du héros référencé par son ID",
+                        "renvoie le pourcentage de dommage physique reçu par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_physical_damage_rate"
 
 link_method_documentation "Command.actor_magical_damage_rate",
-                        "renvoie le pourcentage de dommage magique reçu du héros référencé par son ID",
+                        "renvoie le pourcentage de dommage magique reçu par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
 register_command :actors, "Command.actor_magical_damage_rate"
 
 link_method_documentation "Command.actor_floor_damage_rate",
-                        "renvoie le pourcentage de dommage des terrains reçu du héros référencé par son ID",
+                        "renvoie le pourcentage de dommage des terrains reçu par le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
@@ -2871,7 +2871,7 @@ link_method_documentation "Command.actor_class",
 register_command :actors, "Command.actor_class"
 
 link_method_documentation "Command.actor_exp_for_next_level",
-                        "renvoie le nombre d'expérience nécéssaire pour passer au niveau suivant du héros référencé par son ID",
+                        "renvoie le nombre de points d'expérience nécéssaires pour passer au niveau suivant pour le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
@@ -2882,7 +2882,7 @@ link_method_documentation "Command.actor_change_equip",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                           :slot => ["Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)", :Symbol],
-                          :object_id => ["ID de l'Arme ou de l'Armure (La commande déduira s'il doit s'agir d'une arme ou d'une armure)", :Fixnum]
+                          :object_id => ["ID de l'Arme ou de l'Armure à mettre (La commande déduira s'il doit s'agir d'une arme ou d'une armure)", :Fixnum]
                         }
 register_command :actors, "Command.actor_change_equip"
 
