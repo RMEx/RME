@@ -21,7 +21,7 @@ Commande associées à la gestion de la partie
 ##Description des commandes
 ##### battle_count
 
-> Renvoie le nombre de combat effectués par partie
+> Renvoie le nombre de combats effectués par partie
 
   
 > 
@@ -62,14 +62,14 @@ Commande associées à la gestion de la partie
 
 ##### save_count
 
-> Renvoie le nombre de sauvegarde effectuées par partie
+> Renvoie le nombre de sauvegardes effectuées par partie
 
   
 > 
 
 ##### steps
 
-> Renvoie le nombre de pas effectué par l'équipe
+> Renvoie le nombre de pas effectués par l'équipe
 
   
 > 

@@ -91,7 +91,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 ##Description des commandes
 ##### actor_accessory(id)
 
-> renvoie l'id l' accessoire équipé du héros référencé par son ID
+> renvoie l'id l'accessoire équipé par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -131,7 +131,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_body(id)
 
-> renvoie l'id de l'armure équipée du héros référencé par son ID
+> renvoie l'id de l'armure équipée par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -174,7 +174,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `slot`|`Symbol`|Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)  
-`object_id`|`Fixnum`|ID de l'Arme ou de l'Armure (La commande déduira s'il doit s'agir d'une arme ou d'une armure)  
+`object_id`|`Fixnum`|ID de l'Arme ou de l'Armure à mettre (La commande déduira s'il doit s'agir d'une arme ou d'une armure)  
 
 
 ##### actor_change_face(id, face_name, face_index)
@@ -261,7 +261,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_description(id)
 
-> renvoie la déscription du héros référencé par son ID
+> renvoie la description du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -282,7 +282,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_equip(id, slot)
 
-> Renvoie l'id de l'équipement du héros référencé par son ID
+> Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)
 
   
 > Nom|Type|Description  
@@ -358,7 +358,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_exp(id)
 
-> renvoie les points d'expériences du héros référencé par son ID
+> renvoie les points d'expérience du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -368,7 +368,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_exp_for_next_level(id)
 
-> renvoie le nombre d'expérience nécéssaire pour passer au niveau suivant du héros référencé par son ID
+> renvoie le nombre de points d'expérience nécéssaires pour passer au niveau suivant pour le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -408,7 +408,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_floor_damage_rate(id)
 
-> renvoie le pourcentage de dommage des terrains reçu du héros référencé par son ID
+> renvoie le pourcentage de dommage des terrains reçu par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -500,7 +500,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_head(id)
 
-> renvoie l'id du casque équipée du héros référencé par son ID
+> renvoie l'id du casque équipé par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -530,7 +530,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_hp_regeneration_rate(id)
 
-> renvoie le pourcentage de régénration de HP à chaque tour du héros référencé par son ID
+> renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -632,7 +632,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_magical_damage_rate(id)
 
-> renvoie le pourcentage de dommage magique reçu du héros référencé par son ID
+> renvoie le pourcentage de dommage magique reçu par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -672,7 +672,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_max_mp(id)
 
-> renvoie le nombre de points de magie du héros référencé par son ID
+> renvoie le nombre de points de magie maximum du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -692,7 +692,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_mp_cost_rate(id)
 
-> renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID
+> renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -702,7 +702,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_mp_regeneration_rate(id)
 
-> renvoie le pourcentage de régénration MP à chaque tour du héros référencé par son ID
+> renvoie le pourcentage de régénration de MP à chaque tour du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -752,7 +752,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_pharmacology(id)
 
-> renvoie le pourcentage de HP/MP récupéré via un objet du héros référencé par son ID
+> renvoie le pourcentage de PV/PM récupéré via un objet du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -762,7 +762,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_physical_damage_rate(id)
 
-> renvoie le pourcentage de dommage physique reçu du héros référencé par son ID
+> renvoie le pourcentage de dommage physique reçu par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -772,7 +772,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_recovery_effect_rate(id)
 
-> renvoie le pourcentage de MP/HP recu, du héros référencé par son ID
+> renvoie le pourcentage de PV/PM reçu, du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -796,7 +796,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_shield(id)
 
-> renvoie l'id du bouclier équipé du héros référencé par son ID
+> renvoie l'id du bouclier équipé par le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -846,7 +846,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_tp_charge_rate(id)
 
-> renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID
+> renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -866,7 +866,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_weapon(id)
 
-> renvoie l'id de l'arme équipée du héros référencé par son ID
+> renvoie l'id de l'arme équipée par le héros référencé par son ID
 
   
 > Nom|Type|Description  

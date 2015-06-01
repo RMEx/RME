@@ -418,7 +418,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 ##### Keyboard.time(key)
 
-> Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie, au moment de l'appel
+> Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie
 
   
 > Nom|Type|Description  

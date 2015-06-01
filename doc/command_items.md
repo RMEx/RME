@@ -98,7 +98,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_battle_usable?(id)
 
-> Renvoie true si l'objet référencé par son ID est utilisable en combat
+> Renvoie true si l'objet référencé par son ID est utilisable en combat seulement 
 
   
 > Nom|Type|Description  
@@ -108,7 +108,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_certain?(id)
 
-> Renvoie true si un objet référencée par son ID a une garantie de réussite total, false sinon
+> Renvoie true si un objet référencé par son ID a une garantie de réussite totale, false sinon
 
   
 > Nom|Type|Description  
@@ -128,7 +128,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_count(id)
 
-> Renvoie le nombre d'objet référencé par son ID possédés par l'équipe
+> Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe
 
   
 > Nom|Type|Description  
@@ -160,7 +160,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_all?(id)
 
-> Renvoie true si un objet référencée par son ID cible tout le groupe, false sinon
+> Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon
 
   
 > Nom|Type|Description  
@@ -170,7 +170,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_all_allies?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés, false sinon
+> Renvoie true si l'objet référencé par son ID cible tous les alliés vivants, false sinon
 
   
 > Nom|Type|Description  
@@ -180,7 +180,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_all_dead_allies?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise tous les alliés morts, false sinon
+> Renvoie true si l'objet référencé par son ID cible tous les alliés morts, false sinon
 
   
 > Nom|Type|Description  
@@ -190,7 +190,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_all_enemies?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise tous les ennemis, false sinon
+> Renvoie true si l'objet référencé par son ID cible tous les ennemis, false sinon
 
   
 > Nom|Type|Description  
@@ -200,7 +200,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_caller?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID , false sinon
+> Renvoie true si l'objet référencé par son ID est utilisable sur le personnage du moment, false sinon
 
   
 > Nom|Type|Description  
@@ -210,7 +210,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_dead_friend?(id)
 
-> Renvoie true si un objet référencée par son ID cible (un ou) les alliés morts, false sinon
+> Renvoie true si l'objet référencé par son ID cible un (ou les) allié(s) mort(s), false sinon
 
   
 > Nom|Type|Description  
@@ -220,7 +220,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_four_random_enemies?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise quatre ennemis au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible quatre ennemis au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -230,7 +230,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_friend?(id)
 
-> Renvoie true si un objet référencée par son ID cible (un ou) les alliés, false sinon
+> Renvoie true si la cible de l'objet référencé par son ID est du côté allié, false sinon
 
   
 > Nom|Type|Description  
@@ -240,7 +240,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_one?(id)
 
-> Renvoie true si un objet référencée par son ID cible une cible, false sinon
+> Renvoie true si l'objet référencé par son ID a une seule cible, false sinon
 
   
 > Nom|Type|Description  
@@ -250,7 +250,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_one_ally?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise un allié, false sinon
+> Renvoie true si l'objet référencé par son ID cible un allié vivant, false sinon
 
   
 > Nom|Type|Description  
@@ -260,7 +260,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_one_dead_ally?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise un allié mort, false sinon
+> Renvoie true si l'objet référencé par son ID cible un allié mort, false sinon
 
   
 > Nom|Type|Description  
@@ -270,7 +270,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_one_enemy?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise un ennemi, false sinon
+> Renvoie true si l'objet référencé par son ID cible un ennemi, false sinon
 
   
 > Nom|Type|Description  
@@ -280,7 +280,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_one_random_enemy?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise un ennemi au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible un ennemi au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -290,7 +290,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_opponent?(id)
 
-> Renvoie true si un objet référencée par son ID cible les ennemis, false sinon
+> Renvoie true si l'objet référencé par son ID cible les ennemis, false sinon
 
   
 > Nom|Type|Description  
@@ -300,7 +300,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_random?(id)
 
-> Renvoie true si un objet référencée par son ID cible aléatoirement, false sinon
+> Renvoie true si l'objet référencé par son ID cible aléatoirement, false sinon
 
   
 > Nom|Type|Description  
@@ -310,7 +310,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_three_random_enemies?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise trois ennemis au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible trois ennemis au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -320,7 +320,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_for_two_random_enemies?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise deux ennemis au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible deux ennemis au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -330,7 +330,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_has_no_scope?(id)
 
-> Renvoie true si la cible d'un objet référencée par son ID vise personne, false sinon
+> Renvoie true si l'objet référencé par son ID ne cible personne, false sinon
 
   
 > Nom|Type|Description  
@@ -350,7 +350,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_magical?(id)
 
-> Renvoie true si un objet référencée par son ID produit un dommage magique, false sinon
+> Renvoie true si un objet référencé par son ID endommage les PM, false sinon
 
   
 > Nom|Type|Description  
@@ -360,7 +360,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_menu_usable?(id)
 
-> Renvoie true si l'objet référencé par son ID est utilisable dans le menu
+> Renvoie true si l'objet référencé par son ID est utilisable dans le menu seulement
 
   
 > Nom|Type|Description  
@@ -380,7 +380,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_nb_hits(id)
 
-> Renvoie le nombre de coup porté par l'objet référencé par son ID
+> Renvoie le nombre de coups portés par l'objet référencé par son ID
 
   
 > Nom|Type|Description  
@@ -390,7 +390,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_need_selection?(id)
 
-> Renvoie true si un objet référencée par son ID requiert la sélection de l'ennemi, false sinon
+> Renvoie true si un objet référencé par son ID requiert la sélection d'une cible, false sinon
 
   
 > Nom|Type|Description  
@@ -420,7 +420,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_number_of_targets(id)
 
-> Renvoie le nombre de cibles d'un objet référencée par son ID produit un dommage magique, false sinon
+> Renvoie le nombre de cibles d'un objet référencée par son ID, false sinon
 
   
 > Nom|Type|Description  
@@ -440,7 +440,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_physical?(id)
 
-> Renvoie true si un objet référencée par son ID produit un dommage physique, false sinon
+> Renvoie true si un objet référencé par son ID endommage les PV, false sinon
 
   
 > Nom|Type|Description  
@@ -460,7 +460,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_scope(id)
 
-> Renvoie la portée (en Entier) d'un objet référencée par son ID
+> Renvoie la portée (en Entier) d'un objet référencé par son ID
 
   
 > Nom|Type|Description  
@@ -500,7 +500,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### items_possessed
 
-> Renvoi la liste des objets possédés
+> Renvoie la liste des objets possédés
 
   
 > 

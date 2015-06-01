@@ -52,7 +52,7 @@ Commandes permettant de manipuler les armures
 
 ##### armor_count(id)
 
-> Renvoie le nombre d'armures référencées par son ID possédées par l'équipe
+> Renvoie le nombre d'armures (référencées par un ID) possédées par l'équipe
 
   
 > Nom|Type|Description  
@@ -94,7 +94,7 @@ Commandes permettant de manipuler les armures
 
 ##### armor_equiped?(id, *member_id)
 
-> Renvoie true si l'armure référencé par son ID est équipée par un des membres de l'équipe, false sinon
+> Renvoie true si l'armure référencée par son ID est équipée par un des membres de l'équipe, false sinon
 
   
 > Nom|Type|Description  
@@ -105,7 +105,7 @@ Commandes permettant de manipuler les armures
 
 ##### armor_icon(id)
 
-> Renvoie l'index de l'icone  de l'armure référencé par son ID
+> Renvoie l'index de l'icone de l'armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -165,7 +165,7 @@ Commandes permettant de manipuler les armures
 
 ##### armor_name(id)
 
-> Renvoie le nom de l'armure référencé par son ID
+> Renvoie le nom de l'armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -175,7 +175,7 @@ Commandes permettant de manipuler les armures
 
 ##### armor_note(id)
 
-> Renvoie le commentaire de l'armure référencé par son ID
+> Renvoie le commentaire de l'armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -185,7 +185,7 @@ Commandes permettant de manipuler les armures
 
 ##### armor_price(id)
 
-> Renvoie le prix  de l'armure référencé par son ID
+> Renvoie le prix  de l'armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -205,14 +205,14 @@ Commandes permettant de manipuler les armures
 
 ##### armors_possessed
 
-> Renvoi la liste des armures possédées
+> Renvoie la liste des armures possédées
 
   
 > 
 
 ##### give_armor(id, amount, *include_equipement)
 
-> Fait gagner à l'équipe l'armure référencé par son ID
+> Fait gagner à l'équipe l'armure référencée par son ID
 
   
 > Nom|Type|Description  
@@ -224,7 +224,7 @@ Commandes permettant de manipuler les armures
 
 ##### has_armor?(id, *include_equipement)
 
-> Renvoie true si l'armure référencé par son ID est possédée par l'équipe, false sinon
+> Renvoie true si l'armure référencée par son ID est possédée par l'équipe, false sinon
 
   
 > Nom|Type|Description  

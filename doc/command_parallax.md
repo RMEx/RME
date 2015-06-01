@@ -152,7 +152,7 @@ Commandes relatives à la manipulation des panoramas
 `*blend_type`|`Fixnum`|Mode de fusion (par défaut 0), mode normal  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
-`*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut teinte normale  
+`*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
 
 
 ##### parallax_tone(id, tone, *duration, *wait_flag)
@@ -163,7 +163,7 @@ Commandes relatives à la manipulation des panoramas
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
-`tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standars)  
+`tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 

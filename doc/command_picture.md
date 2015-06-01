@@ -90,7 +90,7 @@ Commandes relatives à la manipulation des images
 
 ##### picture_flip(id)
 
-> Applique un effet miroir sur l'image
+> Applique un effet miroir (axe vertical) sur l'image 
 
   
 > Nom|Type|Description  
@@ -125,14 +125,14 @@ Commandes relatives à la manipulation des images
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
 `duration`|`Fixnum`|Durée du déplacement en frames  
 `*wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
-`*opacity`|`Fixnum`|Opacitée (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
-`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion actuel  
-`*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine actuelle  
+`*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
+`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion du moment  
+`*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine du moment  
 
 
 ##### picture_move?(id)
 
-> Renvoi true si l'image référencée par son ID est en mouvement, false sinon
+> Renvoie true si l'image référencée par son ID est en mouvement, false sinon
 
   
 > Nom|Type|Description  
@@ -161,7 +161,7 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
+`origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X,Y, par défaut, zéro, zéro  
 
 
 ##### picture_pin(id, *x, *y)
@@ -172,8 +172,8 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`*x`|`Fixnum`|Coordonnées X de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte  
-`*y`|`Fixnum`|Coordonnées Y de la carte en pixel, par défaut la coordonnée convertie de l'écran vers la carte  
+`*x`|`Fixnum`|Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
+`*y`|`Fixnum`|Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
 
 
 ##### picture_position(id, x, y, *duration, *wait_flag)
@@ -244,7 +244,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 `power`|`Fixnum`|La puissance du tremblement  
 `speed`|`Fixnum`|La vitesse du tremblement  
-`duration`|`Fixnum`|La durée en frame du tremblement  
+`duration`|`Fixnum`|La durée en frames du tremblement  
 
 
 ##### picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)
@@ -255,9 +255,9 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`name`|`String`|Nom de l'image (sans l'extension)  
+`name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais)  
 `*x`|`Fixnum`|Position en X de l'image (par défaut 0)  
-`*y`|`Fixnum`|Position en X de l'image (par défaut 0)  
+`*y`|`Fixnum`|Position en Y de l'image (par défaut 0)  
 `*origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
 `*zoom_x`|`Fixnum`|Zoom sur la largeur de l'image par défaut 100 (pour 100%)  
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
@@ -360,7 +360,7 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
-`*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égal à la hauteur.  
+`*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -373,7 +373,7 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_x de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -386,7 +386,7 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donné, la commande renverra le zoom_y de l'image.  
+`zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -400,7 +400,7 @@ Commandes relatives à la manipulation des images
 
 ##### pictures_collide?(id, id2)
 
-> Vérifie que deux images sont en collisions
+> Vérifie que deux images sont en collision
 
   
 > Nom|Type|Description  
@@ -422,7 +422,7 @@ Commandes relatives à la manipulation des images
 
 ##### pixel_in_picture?(id, x, y, *precise)
 
-> Vérifie que le x, y sont inscrit dans l'image
+> Vérifie que le x, y sont inscrits dans l'image
 
   
 > Nom|Type|Description  
@@ -430,6 +430,6 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
-`*precise`|`Boolean`|Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparent seront prit en compte  
+`*precise`|`Boolean`|Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparents seront pris en compte  
 
 

@@ -31,7 +31,7 @@ Commande relatives à la gestion de la souris
 ##Description des commandes
 ##### click_time(key)
 
-> Renvoie le nombre de frame pressée d'une touche en cours
+> Renvoie, en nombre de frames, la durée de pression d'une touche de souris choisie
 
   
 > Nom|Type|Description  
@@ -51,23 +51,23 @@ Commande relatives à la gestion de la souris
 
 ##### mouse_all?(method, keys)
 
-> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
-`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+`keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
 
 
 ##### mouse_any?(method, keys)
 
-> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+> Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
@@ -148,7 +148,7 @@ Commande relatives à la gestion de la souris
 
 ##### mouse_repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 > Nom|Type|Description  

@@ -44,7 +44,7 @@ Commandes permettant de manipuler les armes
 
 ##### has_weapon?(id, *include_equipement)
 
-> Renvoie true si l'arme référencé par son ID est possédée par l'équipe, false sinon
+> Renvoie true si l'arme référencée par son ID est possédée par l'équipe, false sinon
 
   
 > Nom|Type|Description  
@@ -75,7 +75,7 @@ Commandes permettant de manipuler les armes
 
 ##### weapon_count(id)
 
-> Renvoie le nombre d'armes référencées par son ID possédées par l'équipe
+> Renvoie le nombre d'armes (référencées par un ID) possédées par l'équipe
 
   
 > Nom|Type|Description  
@@ -117,7 +117,7 @@ Commandes permettant de manipuler les armes
 
 ##### weapon_equiped?(id, *member_id)
 
-> Renvoie true si l'arme référencé par son ID est équipée par un des membres de l'équipe, false sinon
+> Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon
 
   
 > Nom|Type|Description  
@@ -228,7 +228,7 @@ Commandes permettant de manipuler les armes
 
 ##### weapons_possessed
 
-> Renvoi la liste des armes possédées
+> Renvoie la liste des armes possédées
 
   
 > 
