@@ -2355,7 +2355,7 @@ link_method_documentation "Command.item_magical?",
 register_command :items, "Command.item_magical?"
 
 link_method_documentation "Command.item_number_of_targets",
-                        "Renvoie le nombre de cibles d'un objet référencée par son ID, false sinon",
+                        "Renvoie le nombre de cibles d'un objet référencé par son ID, false sinon",
                         {
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
@@ -2666,7 +2666,7 @@ link_method_documentation "Command.actor_luck",
 register_command :actors, "Command.actor_luck"
 
 link_method_documentation "Command.actor_hit_rate",
-                        "renvoie la probabilité de toucher du héros référencé par son ID sur un ennemi",
+                        "renvoie la probabilité de toucher un ennemi pour le héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
@@ -2694,7 +2694,7 @@ link_method_documentation "Command.actor_critical_evasion_rate",
 register_command :actors, "Command.actor_critical_evasion_rate"
 
 link_method_documentation "Command.actor_magical_evasion_rate",
-                        "renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi",
+                        "renvoie la probabilité d'une esquiver une attaque magique d'un ennemi pour le héros référencé par son ID ",
                         {
                           :id => ["ID de l'acteur", :Fixnum]
                         }, true
@@ -2980,7 +2980,7 @@ link_method_documentation "Command.actor_knowns?",
 register_command :actors, "Command.actor_knowns?"
 
 link_method_documentation "Command.actor_set_graphic",
-                        "Change les graphisme du héros référencé par son ID",
+                        "Change les graphismes du héros référencé par son ID",
                         {
                           :id => ["ID de l'acteur", :Fixnum],
                           :character_name => ["Charset", :String],
@@ -3020,84 +3020,84 @@ link_method_documentation "Command.skill_scope",
 register_command :skills, "Command.skill_scope"
 
 link_method_documentation "Command.skill_has_no_scope?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise personne, false sinon",
+                        "Renvoie true si la technique référencée par son ID ne cible personne, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_has_no_scope?"
 
 link_method_documentation "Command.skill_for_one_enemy?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise un ennemi, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible un ennemi, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_one_enemy?"
 
 link_method_documentation "Command.skill_for_all_enemies?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise tous les ennemis, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible tous les ennemis, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_all_enemies?"
 
 link_method_documentation "Command.skill_for_one_random_enemy?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise un ennemi au hasard, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible un ennemi au hasard, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_one_random_enemy?"
 
 link_method_documentation "Command.skill_for_two_random_enemies?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise deux ennemis au hasard, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible deux ennemis au hasard, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_two_random_enemies?"
 
 link_method_documentation "Command.skill_for_three_random_enemies?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise trois ennemis au hasard, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible trois ennemis au hasard, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_three_random_enemies?"
 
 link_method_documentation "Command.skill_for_four_random_enemies?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise quatre ennemis au hasard, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible quatre ennemis au hasard, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_four_random_enemies?"
 
 link_method_documentation "Command.skill_for_one_ally?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise un allié, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible un allié, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_one_ally?"
 
 link_method_documentation "Command.skill_for_all_allies?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible tous les alliés, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_all_allies?"
 
 link_method_documentation "Command.skill_for_one_dead_ally?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise un allié mort, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible un allié mort, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_one_dead_ally?"
 
 link_method_documentation "Command.skill_for_all_dead_allies?",
-                        "Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés morts, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible tous les alliés morts, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_all_dead_allies?"
 
 link_method_documentation "Command.skill_for_caller?",
-                        "Renvoie true si la cible d'une technique référencée par son ID l'utilisateur, false sinon",
+                        "Renvoie true si la technique référencée par son ID cible l'utilisateur, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
@@ -3118,14 +3118,14 @@ link_method_documentation "Command.skill_always_usable?",
 register_command :skills, "Command.skill_always_usable?"
 
 link_method_documentation "Command.skill_battle_usable?",
-                        "Renvoie true si la technique référencé par son ID est utilisable en combat",
+                        "Renvoie true si la technique référencé par son ID est utilisable en combat seulement",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_battle_usable?"
 
 link_method_documentation "Command.skill_menu_usable?",
-                        "Renvoie true si la technique référencé par son ID est utilisable dans le menu",
+                        "Renvoie true si la technique référencé par son ID est utilisable dans le menu seulement",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
@@ -3146,21 +3146,21 @@ link_method_documentation "Command.skill_for_opponent?",
 register_command :skills, "Command.skill_for_opponent?"
 
 link_method_documentation "Command.skill_for_friend?",
-                        "Renvoie true si une technique référencée par son ID cible (un ou) les alliés, false sinon",
+                        "Renvoie true si une technique référencée par son ID cible un (ou les) allié(s), false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_friend?"
 
 link_method_documentation "Command.skill_for_dead_friend?",
-                        "Renvoie true si une technique référencée par son ID cible (un ou) les alliés morts, false sinon",
+                        "Renvoie true si une technique référencée par son ID cible un (ou les) allié(s) mort(s), false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_for_dead_friend?"
 
 link_method_documentation "Command.skill_for_one?",
-                        "Renvoie true si une technique référencée par son ID cible une cible, false sinon",
+                        "Renvoie true si une technique référencée par son ID a une cible unique, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
@@ -3174,7 +3174,7 @@ link_method_documentation "Command.skill_for_random?",
 register_command :skills, "Command.skill_for_random?"
 
 link_method_documentation "Command.skill_for_all?",
-                        "Renvoie true si une technique référencée par son ID cible tout le groupe, false sinon",
+                        "Renvoie true si une technique référencée par son ID cible tout le groupe allié, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
@@ -3189,84 +3189,84 @@ register_command :skills, "Command.skill_need_selection?"
 
 
 link_method_documentation "Command.skill_certain?",
-                        "Renvoie true si une technique référencée par son ID a une garantie de réussite total, false sinon",
+                        "Renvoie true si une technique référencée par son ID a une garantie de réussite totale, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_certain?"
 
 link_method_documentation "Command.skill_physical?",
-                        "Renvoie true si une technique référencée par son ID produit un dommage physique, false sinon",
+                        "Renvoie true si une technique référencée par son ID endommage les PV, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_physical?"
 
 link_method_documentation "Command.skill_magical?",
-                        "Renvoie true si une technique référencée par son ID produit un dommage magique, false sinon",
+                        "Renvoie true si une technique référencée par son ID endommage les PM, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_magical?"
 
 link_method_documentation "Command.skill_number_of_targets",
-                        "Renvoie le nombre de cibles d'une technique référencée par son ID produit un dommage magique, false sinon",
+                        "Renvoie le nombre de cibles d'une technique référencée par son ID, false sinon",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_number_of_targets"
 
 link_method_documentation "Command.skill_speed",
-                        "Renvoie l'apport de vitesse de la technique référencé par son ID",
+                        "Renvoie l'apport de vitesse de la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_speed"
 
 link_method_documentation "Command.skill_nb_hits",
-                        "Renvoie le nombre de coup porté par la technique référencé par son ID",
+                        "Renvoie le nombre de coups portés par la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_nb_hits"
 
 link_method_documentation "Command.skill_success_rate",
-                        "Renvoie la probabilité de succès de la technique référencé par son ID",
+                        "Renvoie la probabilité de succès de la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_success_rate"
 
 link_method_documentation "Command.skill_tp_gain",
-                        "Renvoie le gain de TP que la technique référencé par son ID apporte une fois utilisé en combat",
+                        "Renvoie le gain de TP que la technique référencée par son ID apporte une fois utilisée en combat",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_tp_gain"
 
 link_method_documentation "Command.skill_name",
-                        "Renvoie le nom de la technique référencé par son ID",
+                        "Renvoie le nom de la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_name"
 
 link_method_documentation "Command.skill_note",
-                        "Renvoie le commentaire de la base de données de la technique référencé par son ID",
+                        "Renvoie le commentaire de la base de données de la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_note"
 
 link_method_documentation "Command.skill_description",
-                        "Renvoie la description la technique référencé par son ID",
+                        "Renvoie la description la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
 register_command :skills, "Command.skill_description"
 
 link_method_documentation "Command.skill_icon",
-                        "Renvoie l'index de l'icone de la technique référencé par son ID",
+                        "Renvoie l'index de l'icone de la technique référencée par son ID",
                         {
                           :id => ["Id de la technique", :Fixnum],
                         }, true
@@ -3299,17 +3299,17 @@ link_method_documentation "Command.asinh",
 register_command :math, "Command.asinh"
 
 link_method_documentation "Command.atan",
-                        "Renvoie l'arc tangeant de x",
+                        "Renvoie l'arc tangent de x",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.atan"
 
 link_method_documentation "Command.atan2",
-                        "Renvoie l'arc tangeant pour x et y",
+                        "Renvoie l'arc tangent pour x et y",
                         { :x => ["Valeur numérique", :Numeric],  :y => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.atan2"
 
 link_method_documentation "Command.atanh",
-                        "Renvoie l'inverse hyperbolique tangeant de x",
+                        "Renvoie l'inverse hyperbolique tangent de x",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.atanh"
 
@@ -3345,22 +3345,22 @@ link_method_documentation "Command.sqrt",
 register_command :math, "Command.sqrt"
 
 link_method_documentation "Command.tan",
-                        "Renvoie la tangeante de x",
+                        "Renvoie la tangente de x",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.tan"
 
 link_method_documentation "Command.tanh",
-                        "Renvoie la tangeante hyperbolique de x",
+                        "Renvoie la tangente hyperbolique de x",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.tanh"
 
 link_method_documentation "Command.to_deg",
-                        "Renvoie x (supposé radian) convertit en degré",
+                        "Renvoie x (supposé radian) converti en degrés",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.to_deg"
 
 link_method_documentation "Command.to_rad",
-                        "Renvoie x (supposé degré) convertit en radian",
+                        "Renvoie x (supposé degré) converti en radians",
                         { :x => ["Valeur numérique", :Numeric] }, true
 register_command :math, "Command.to_rad"
 
@@ -3375,22 +3375,22 @@ link_method_documentation "Command.troop_name",
 register_command :troop, "Command.troop_name"
 
 link_method_documentation "Command.troop_members",
-                        "Renvoie un tableau des enemy_id  d'un groupe de monstres référencé par son ID.",
+                        "Renvoie un tableau des enemy_id d'un groupe de monstres référencé par son ID.",
                         { :id => ["ID du groupe de monstre", :Fixnum] }, true
 register_command :troop, "Command.troop_members"
 
 link_method_documentation "Command.troop_member",
-                        "Renvoie l'id d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier).",
+                        "Renvoie l'id d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier).",
                         { :id => ["ID du groupe de monstre", :Fixnum], :position => ["Position du monstre", :Fixnum]  }, true
 register_command :troop, "Command.troop_member"
 
 link_method_documentation "Command.troop_member_x",
-                        "Renvoie la position X d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.",
+                        "Renvoie la position X d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.",
                         { :id => ["ID du groupe de monstre", :Fixnum], :position => ["Position du monstre", :Fixnum]  }, true
 register_command :troop, "Command.troop_member_x"
 
 link_method_documentation "Command.troop_member_y",
-                        "Renvoie la position Y d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.",
+                        "Renvoie la position Y d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.",
                         { :id => ["ID du groupe de monstre", :Fixnum], :position => ["Position du monstre", :Fixnum]  }, true
 register_command :troop, "Command.troop_member_y"
 
@@ -3440,7 +3440,7 @@ link_method_documentation "Command.monster_max_hp",
 register_command :enemy, "Command.monster_max_hp"
 
 link_method_documentation "Command.monster_max_mp",
-                        "renvoie le maximum de point de magie d'un ennemi référencé par son ID",
+                        "renvoie le maximum de points de magie d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
 register_command :enemy, "Command.monster_max_mp"
 
@@ -3480,7 +3480,7 @@ link_method_documentation "Command.monster_give_exp",
 register_command :enemy, "Command.monster_give_exp"
 
 link_method_documentation "Command.monster_give_gold",
-                        "renvoie l'or donnée par un ennemi référencé par son ID",
+                        "renvoie l'or donné par un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
 register_command :enemy, "Command.monster_give_gold"
 
@@ -3491,7 +3491,7 @@ link_method_documentation "Command.current_troop",
 register_command :in_battle, "Command.current_troop"
 
 link_method_documentation "Command.current_enemies",
-                        "Renvoie un tableau contenant les ennemis en cours de combat",
+                        "Renvoie un tableau contenant les ID des ennemis en cours de combat",
                         {}, true
 register_command :in_battle, "Command.current_enemies"
 
@@ -3628,21 +3628,21 @@ link_method_documentation "Command.enemy_counter_attack_rate",
 register_command :in_battle, "Command.enemy_counter_attack_rate"
 
 link_method_documentation "Command.enemy_hp_regeneration_rate",
-                        "renvoie le pourcentage de régénration de HP à chaque tour de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de régénération de PV à chaque tour de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_hp_regeneration_rate"
 
 link_method_documentation "Command.enemy_mp_regeneration_rate",
-                        "renvoie le pourcentage de régénration MP à chaque tour de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de régénération PM à chaque tour de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_mp_regeneration_rate"
 
 link_method_documentation "Command.enemy_tp_regeneration_rate",
-                        "renvoie le pourcentage de régénration de TP par tour de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de régénération de TP par tour de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
@@ -3679,42 +3679,42 @@ link_method_documentation "Command.enemy_guard_effect_rate",
 register_command :in_battle, "Command.enemy_guard_effect_rate"
 
 link_method_documentation "Command.enemy_recovery_effect_rate",
-                        "renvoie le pourcentage de MP/HP recu, de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de PV/PM reçus, de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_recovery_effect_rate"
 
 link_method_documentation "Command.enemy_pharmacology",
-                        "renvoie le pourcentage de HP/MP récupéré via un objet de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de PV/PM récupéré via un objet de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_pharmacology"
 
 link_method_documentation "Command.enemy_mp_cost_rate",
-                        "renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_mp_cost_rate"
 
 link_method_documentation "Command.enemy_tp_charge_rate",
-                        "renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_tp_charge_rate"
 
 link_method_documentation "Command.enemy_physical_damage_rate",
-                        "renvoie le pourcentage de dommage physique reçu de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de dommage physique reçu par l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
 register_command :in_battle, "Command.enemy_physical_damage_rate"
 
 link_method_documentation "Command.enemy_magical_damage_rate",
-                        "renvoie le pourcentage de dommage magique reçu de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de dommage magique reçu par l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
@@ -3728,7 +3728,7 @@ link_method_documentation "Command.enemy_hidden?",
 register_command :in_battle, "Command.enemy_hidden?"
 
 link_method_documentation "Command.enemy_floor_damage_rate",
-                        "renvoie le pourcentage de dommage des terrains reçu de l'ennemi en combat référencé par sa position en combat",
+                        "renvoie le pourcentage de dommage des terrains reçu par l'ennemi en combat référencé par sa position en combat",
                         {
                           :position => ["Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)", :Fixnum]
                         }, true
@@ -3749,14 +3749,14 @@ link_method_documentation "Command.enemy_die?",
 register_command :in_battle, "Command.enemy_die?"
 
 link_method_documentation "Command.active_actor?",
-                        "renvoie true si un acteur est entrain de choisir une action, false sinon",
+                        "renvoie true si un acteur est en train de choisir une action, false sinon",
                         {
 
                         }, true
 register_command :in_battle, "Command.active_actor?"
 
 link_method_documentation "Command.active_actor",
-                        "renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon",
+                        "renvoie l'identifiant d'un acteur si il est en train de sélectionner une action, nil sinon",
                         {
 
                         }, true
@@ -3775,13 +3775,13 @@ link_method_documentation "Command.text_show",
                             :"*zoom_y" => ["Zoom sur la hauteur du text par défaut 100 (pour 100%)", :Fixnum],
                             :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
                             :"*blend_type" => ["Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction", :Fixnum],
-                            :"*origin" => ["Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro", :Fixnum],
+                            :"*origin" => ["Origine du texte, 0 = Haut gauche, 1 = centré, par défaut, zéro", :Fixnum],
                           }
 register_command :text, "Command.text_show"
 
 # AUTOGenerated for text_value
 link_method_documentation 'Command.text_value',
-	'Renvoi la valeur d\'un texte',
+	'Renvoie la valeur d\'un texte',
  	{
 		:id => ["ID du texte", :Fixnum],
 
@@ -3919,49 +3919,49 @@ register_command :picture, 'Command.pictures_perfect_collide?'
 
 # AUTOGenerated for time_year
 link_method_documentation 'Command.time_year',
-  'Renvoi l\'année actuelle',
+  'Renvoie l\'année actuelle',
   {}, true # Maybe changed
 register_command :date, 'Command.time_year'
 
 # AUTOGenerated for time_month
 link_method_documentation 'Command.time_month',
-  'Renvoi le mois actuel',
+  'Renvoie le mois actuel',
   {}, true # Maybe changed
 register_command :date, 'Command.time_month'
 
 # AUTOGenerated for time_day
 link_method_documentation 'Command.time_day',
-  'Renvoi le jour actuel',
+  'Renvoie le jour actuel',
   {}, true # Maybe changed
 register_command :date, 'Command.time_day'
 
 # AUTOGenerated for time_hour
 link_method_documentation 'Command.time_hour',
-  'Renvoi l\' heure actuelle',
+  'Renvoie l\' heure actuelle',
   {}, true # Maybe changed
 register_command :date, 'Command.time_hour'
 
 # AUTOGenerated for time_min
 link_method_documentation 'Command.time_min',
-  'Renvoi la minute actuelle',
+  'Renvoie la minute actuelle',
   {}, true # Maybe changed
 register_command :date, 'Command.time_min'
 
 # AUTOGenerated for time_sec
 link_method_documentation 'Command.time_sec',
-  'Renvoi la seconde actuelle',
+  'Renvoie la seconde actuelle',
   {}, true # Maybe changed
 register_command :date, 'Command.time_sec'
 
 # AUTOGenerated for socket_connected?
 link_method_documentation 'Command.socket_connected?',
-  'Renvoi true si la connexion est en cours, false, sinon',
+  'Renvoie true si la connexion est en cours, false, sinon',
   {}, true # Maybe changed
 register_command :socket, 'Command.socket_connected?'
 
 # AUTOGenerated for socket_connect
 link_method_documentation 'Command.socket_connect',
-  'Se connecte à un serveur, renvoie true si la connexion à réussie, false sinon.',
+  'Se connecte à un serveur, renvoie true si la connexion a réussi, false sinon.',
   {
     :address => ["Adresse du serveur", :String],
     :port => ["Port d'écoute", :Fixnum],
@@ -3971,13 +3971,13 @@ register_command :socket, 'Command.socket_connect'
 
 # AUTOGenerated for socket_disconnect
 link_method_documentation 'Command.socket_disconnect',
-  'Déconnecte la connexion courrante',
+  'Déconnecte la connexion courante',
   {}
 register_command :socket, 'Command.socket_disconnect'
 
 # AUTOGenerated for socket_send
 link_method_documentation 'Command.socket_send',
-  'Envoi un message au serveur connecté, renvoie true en cas de réussite, false en cas d\'échec',
+  'Envoie un message au serveur connecté, renvoie true en cas de réussite, false en cas d\'échec',
   {
     :data => ["Message à envoyer", :String],
 
@@ -3986,7 +3986,7 @@ register_command :socket, 'Command.socket_send'
 
 # AUTOGenerated for socket_recv
 link_method_documentation 'Command.socket_recv',
-  'Renvoi le message envoyé par le serveur au client, false si aucun message n\' est reçu',
+  'Renvoie le message envoyé par le serveur au client, false si aucun message n\' est reçu',
   {
     :"*len" => ["Taille maximale du message à recevoir, par défaut 1024", :Fixnum],
 
@@ -3995,7 +3995,7 @@ register_command :socket, 'Command.socket_recv'
 
 # AUTOGenerated for socket_wait_recv
 link_method_documentation 'Command.socket_wait_recv',
-  'Attend une réponse du serveur, se termine quand une réponse a été reçue (et l\'a renvoi)',
+  'Attend une réponse du serveur, se termine quand une réponse a été reçue (et la renvoie)',
   {
     :"*len" => ["Taille maximale du message à recevoir, par défaut 1024", :Fixnum],
 
@@ -4018,14 +4018,14 @@ link_method_documentation 'Command.wait_with',
   'Attend en exécutant une action',
   {
     :time => ["Temps d'attente", :Fixnum],
-    :"&block" => ["Action a exécuter ({action})", :Block],
+    :"&block" => ["Action à exécuter ({action})", :Block],
 
   }
 register_command :standard, 'Command.wait_with'
 
 # AUTOGenerated for split_each_char
 link_method_documentation 'Command.split_each_char',
-	'Transforme une chaine de caractère en un tableau de caractères',
+	'Transforme une chaîne de caractères en un tableau de caractères',
  	{
 		:str => ["Chaine a transformer", :String],
 
@@ -4038,7 +4038,7 @@ link_method_documentation 'Command.qte',
   {
     :key => ["Touche qu'il faut presser avant la fin", :Symbol],
     :time => ["Durée", :Fixnum],
-    :"*strict" => ["Difficulté, si elle vaut true, aucune erreur admise, sinon erreur admises. Par défaut vaut true", :Boolean]
+    :"*strict" => ["Difficulté, si elle vaut true, aucune erreur admise, sinon erreurs admises. Par défaut vaut true", :Boolean]
 
   }, true # Maybe changed
 register_command :standard, 'Command.qte'
@@ -4064,19 +4064,19 @@ register_command :standard, 'Command.wait_release'
 
 # AUTOGenerated for call_title_screen
 link_method_documentation 'Command.call_title_screen',
-  'Renvoi à l\'écran titre',
+  'Renvoie à l\'écran titre',
   {}
 register_command :scene, 'Command.call_title_screen'
 
 # AUTOGenerated for call_load_screen
 link_method_documentation 'Command.call_load_screen',
-  'Renvoi à la scene de chargement de partie',
+  'Renvoie à la scene de chargement de partie',
   {}
 register_command :scene, 'Command.call_load_screen'
 
 # AUTOGenerated for scene_call
 link_method_documentation 'Command.scene_call',
-  'Appel une scene (et la place dans la pile de scene)',
+  'Appelle une scene (et la place dans la pile de scene)',
   {
     :scene => ["Scene à appeler", :Scene],
 
@@ -4085,7 +4085,7 @@ register_command :scene, 'Command.scene_call'
 
 # AUTOGenerated for scene_goto
 link_method_documentation 'Command.scene_goto',
-  'Appel une scene (sans la placer dans la pile de scene)',
+  'Appelle une scene (sans la placer dans la pile de scene)',
   {
     :scene => ["Scene à appeler", :Scene],
 
@@ -4094,7 +4094,7 @@ register_command :scene, 'Command.scene_goto'
 
 # AUTOGenerated for scene_return
 link_method_documentation 'Command.scene_return',
-  'Renvoi à la dernière scene dans la pile d\'appel',
+  'Renvoie à la dernière scene dans la pile d\'appel',
   {}
 register_command :scene, 'Command.scene_return'
 
@@ -4170,7 +4170,7 @@ register_command :save, 'Command.save_delete'
 
 # AUTOGenerated for import_variable
 link_method_documentation 'Command.import_variable',
-  'Renvoi la valeur d\'une variable issue d\'une autre sauvegarde',
+  'Renvoie la valeur d\'une variable issue d\'une autre sauvegarde',
   {
     :index => ["Numéro de la sauvegarde", :Fixnum],
     :idvar => ["Numéro de la variable", :Fixnum],
@@ -4180,7 +4180,7 @@ register_command :save, 'Command.import_variable'
 
 # AUTOGenerated for import_switch
 link_method_documentation 'Command.import_switch',
-  'Renvoi la valeur d\'un interrupteur issu d\'une autre sauvegarde',
+  'Renvoie la valeur d\'un interrupteur issu d\'une autre sauvegarde',
   {
     :index => ["Numéro de la sauvegarde", :Fixnum],
     :idswitch => ["Numéro de l'interrupteur", :Fixnum],
@@ -4190,7 +4190,7 @@ register_command :save, 'Command.import_switch'
 
 # AUTOGenerated for import_label
 link_method_documentation 'Command.import_label',
-  'Renvoi la valeur d\'un label issu d\'une autre sauvegarde',
+  'Renvoie la valeur d\'un label issu d\'une autre sauvegarde',
   {
     :index => ["Numéro de la sauvegarde", :Fixnum],
     :idlabel => ["Identifiant du label", :Fixnum],
@@ -4200,7 +4200,7 @@ register_command :save, 'Command.import_label'
 
 # AUTOGenerated for random_combination
 link_method_documentation 'Command.random_combination',
-  'Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )',
+  'Renvoie une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composée des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )',
   {
     :len => ["Args description", :Fixnum],
     :"*keys" => ["Liste des touches pouvant constituer la combinaison", :Argslist],
@@ -4210,24 +4210,24 @@ register_command :standard, 'Command.random_combination'
 
 # AUTOGenerated for pick_random
 link_method_documentation 'Command.pick_random',
-  'Renvoi un élément au hasard du tableau (ou de la liste d\'argument)',
+  'Renvoie un élément au hasard du tableau (ou de la liste d\'arguments)',
   {
-    :"*elts" => ["éléments dans lequel piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])", :ArgsList],
+    :"*elts" => ["éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])", :ArgsList],
   }, true # Maybe changed
 register_command :standard, 'Command.pick_random'
 
 # AUTOGenerated for event_name
 link_method_documentation 'Command.event_name',
-  'Renvoi le nom d\'un évènement, renvoi nil s\' il s\'agit du héros',
+  'Renvoie le nom d\'un évènement, renvoie nil s\' il s\'agit du héros',
   {
-    :id => ["ID de l'évènement (0 pour le héro)", :Fixnum],
+    :id => ["ID de l'évènement (0 pour le héros)", :Fixnum],
 
   }, true # Maybe changed
 register_command :event, 'Command.event_name'
 
 # AUTOGenerated for event_through?
 link_method_documentation 'Command.event_through?',
-	"Renvoi true si l'évènement est en mode 'traverse tout', false sinon",
+	"Renvoie true si l'évènement est en mode 'traverse tout', false sinon",
  	{
 		:id => ["ID de l'évènement", :Fixnum],
 
@@ -4236,7 +4236,7 @@ register_command :event, 'Command.event_through?'
 
 # AUTOGenerated for player_through?
 link_method_documentation 'Command.player_through?',
-	"Renvoi true si le joueur est en mode 'traverse tout', false sinon",
+	"Renvoie true si le joueur est en mode 'traverse tout', false sinon",
  	{}, true # Maybe changed
 register_command :event, 'Command.player_through?'
 
@@ -4311,13 +4311,13 @@ register_command :parallax, 'Command.parallax_scroll'
 
 # AUTOGenerated for mouse_hover_player?
 link_method_documentation 'Command.mouse_hover_player?',
-  'Renvoie true si la souris survol le joueur',
+  'Renvoie true si la souris survole l\'image du joueur',
   {}, true # Maybe changed
 register_command :event, 'Command.mouse_hover_player?'
 
 # AUTOGenerated for mouse_click_player?
 link_method_documentation 'Command.mouse_click_player?',
-  'Renvoie true si la souris clique le joueur',
+  'Renvoie true si la souris clique sur l\'image du joueur',
   {}, true # Maybe changed
 register_command :event, 'Command.mouse_click_player?'
 
@@ -4341,7 +4341,7 @@ register_command :event, 'Command.mouse_trigger_player?'
 
 # AUTOGenerated for mouse_repeat_player?
 link_method_documentation 'Command.mouse_repeat_player?',
-  'Renvoie true si la souris appuye successivement sur la touche passée en argument sur le joueur',
+  'Renvoie true si la souris appuie de manière répétée sur la touche passée en argument sur l\'image du joueur',
   {
     :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :ArgType],
 
@@ -4377,7 +4377,7 @@ register_command :event, 'Command.last_triggered_event'
 
 # AUTOGenerated for last_released_event
 link_method_documentation 'Command.last_released_event',
-  "Renvoie le dernier event relaché (avec mouse_left) par la souris, nil si aucun évènement n'a été relaché",
+  "Renvoie le dernier event relâché (avec mouse_left) par la souris, nil si aucun évènement n'a été relâché",
   {}, true # Maybe changed
 register_command :event, 'Command.last_released_event'
 
@@ -4399,18 +4399,18 @@ link_method_documentation 'Command.events_buzzer_properties',
   {
     :e => ["Selecteurs d'évènements", :Selector],
     :amplitude => ["Amplitude du tressaillement", :ArgType],
-    :length => ["Taille du tressaiellement", :Fixnum],
+    :length => ["Taille du tressaillement", :Fixnum],
 
   }
 register_command :event, 'Command.events_buzzer_properties'
 
 # AUTOGenerated for followers_buzzer_properties
 link_method_documentation 'Command.followers_buzzer_properties',
-  "Change les propriétés de tressaillement des membre de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))",
+  "Change les propriétés de tressaillement des membres de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))",
   {
     :"*ids" => ["Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.", :ArgsList],
     :amplitude => ["Amplitude du tressaillement", :ArgType],
-    :length => ["Taille du tressaiellement", :Fixnum],
+    :length => ["Taille du tressaillement", :Fixnum],
 
   }
 register_command :event, 'Command.followers_buzzer_properties'
@@ -4420,14 +4420,14 @@ link_method_documentation 'Command.events_buzz',
   'Fait tressaillir les évènements',
   {
     :e => ["Selecteur d'évènements", :Selector],
-    :"*duration" => ["Durée du dressaillement (en frame), par défaut, 16", :Fixnum],
+    :"*duration" => ["Durée du dressaillement (en frames), par défaut, 16", :Fixnum],
 
   }
 register_command :event, 'Command.events_buzz'
 
 # AUTOGenerated for followers_buzz
 link_method_documentation 'Command.followers_buzz',
-  'Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs est vide, ça s\'applique à tous les followers)',
+  'Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs n\'est pas renseignée, ça s\'applique à tous les followers)',
   {
     :ids => ["Tableau des identifiants des suiveurs à faire tressaillir, utiliser [] pour appliquer à tous les suiveurs", :Selector],
     :"*duration" => ["Durée du dressaillement (en frame), par défaut, 16", :Fixnum]
@@ -4437,7 +4437,7 @@ register_command :event, 'Command.followers_buzz'
 
 # AUTOGenerated for create_rect_area
 link_method_documentation 'Command.create_rect_area',
-  "Crée et renvoi une zone rectangulaire",
+  "Crée et renvoie une zone rectangulaire",
   {
     :x => ["Coordonnées X de la zone", :Fixnum],
     :y => ["Coordonnées Y de la zone", :Fixnum],
@@ -4449,7 +4449,7 @@ register_command :area, 'Command.create_rect_area'
 
 # AUTOGenerated for create_circle_area
 link_method_documentation 'Command.create_circle_area',
-  'Crée et renvoi une zone circulaire',
+  'Crée et renvoie une zone circulaire',
   {
     :x => ["Coordonnées X de la zone", :Fixnum],
     :y => ["Coordonnées Y de la zone", :Fixnum],
@@ -4460,7 +4460,7 @@ register_command :area, 'Command.create_circle_area'
 
 # AUTOGenerated for create_ellipse_area
 link_method_documentation 'Command.create_ellipse_area',
-  'Crée et renvoi une zone elliptique',
+  'Crée et renvoie une zone elliptique',
   {
     :x => ["Coordonnées X de la zone", :Fixnum],
     :y => ["Coordonnées Y de la zone", :Fixnum],
@@ -4472,7 +4472,7 @@ register_command :area, 'Command.create_ellipse_area'
 
 # AUTOGenerated for create_polygon_area
 link_method_documentation 'Command.create_polygon_area',
-  'Crée et renvoi une zone polygonale (le dernier point est relié avec le premier)',
+  'Crée et renvoie une zone polygonale (le dernier point est relié avec le premier)',
   {
     :"points" => ["Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])", :ArgType],
 
@@ -4492,7 +4492,7 @@ register_command :area, 'Command.in_area?'
 
 # AUTOGenerated for mouse_hover_area?
 link_method_documentation 'Command.mouse_hover_area?',
-  "Renvoie true si la souris survol la zone passée en argument au moment de l'appel, false sinon",
+  "Renvoie true si la souris survole la zone passée en argument au moment de l'appel, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
 
@@ -4501,7 +4501,7 @@ register_command :area, 'Command.mouse_hover_area?'
 
 # AUTOGenerated for mouse_hover_square_area?
 link_method_documentation 'Command.mouse_hover_square_area?',
-  "Renvoie true si la souris survol la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon",
+  "Renvoie true si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
 
@@ -4510,7 +4510,7 @@ register_command :area, 'Command.mouse_hover_square_area?'
 
 # AUTOGenerated for mouse_click_area?
 link_method_documentation 'Command.mouse_click_area?',
-  "Renvoie true si la souris survol et clique sur la zone passée en argument au moment de l'appel, false sinon",
+  "Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
 
@@ -4519,7 +4519,7 @@ register_command :area, 'Command.mouse_click_area?'
 
 # AUTOGenerated for mouse_click_square_area?
 link_method_documentation 'Command.mouse_click_square_area?',
-  "Renvoie true si la souris survol et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon",
+  "Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4529,7 +4529,7 @@ register_command :area, 'Command.mouse_click_square_area?'
 
 # AUTOGenerated for mouse_trigger_area?
 link_method_documentation 'Command.mouse_trigger_area?',
-  "Renvoie true si la souris survol et clique une fois sur la zone passée en argument au moment de l'appel, false sinon",
+  "Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4539,7 +4539,7 @@ register_command :area, 'Command.mouse_trigger_area?'
 
 # AUTOGenerated for mouse_trigger_square_area?
 link_method_documentation 'Command.mouse_trigger_square_area?',
-  "Renvoie true si la souris survol et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon",
+  "Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4549,7 +4549,7 @@ register_command :area, 'Command.mouse_trigger_square_area?'
 
 # AUTOGenerated for mouse_press_area?
 link_method_documentation 'Command.mouse_press_area?',
-  "Renvoie true si la souris survol et clique en continu sur la zone passée en argument au moment de l'appel, false sinon",
+  "Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4559,7 +4559,7 @@ register_command :area, 'Command.mouse_press_area?'
 
 # AUTOGenerated for mouse_press_square_area?
 link_method_documentation 'Command.mouse_press_square_area?',
-  "Renvoie true si la souris survol et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon",
+  "Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4569,7 +4569,7 @@ register_command :area, 'Command.mouse_press_square_area?'
 
 # AUTOGenerated for mouse_release_area?
 link_method_documentation 'Command.mouse_release_area?',
-  "Renvoie true si la souris survol et est relachée sur la zone passée en argument au moment de l'appel, false sinon",
+  "Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4579,7 +4579,7 @@ register_command :area, 'Command.mouse_release_area?'
 
 # AUTOGenerated for mouse_release_square_area?
 link_method_documentation 'Command.mouse_release_square_area?',
-  "Renvoie true si la souris survol et est relachée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon",
+  "Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4589,7 +4589,7 @@ register_command :area, 'Command.mouse_release_square_area?'
 
 # AUTOGenerated for mouse_repeat_area?
 link_method_documentation 'Command.mouse_repeat_area?',
-  "Renvoie true si la souris survol et pressée en répétitivement sur la zone passée en argument au moment de l'appel, false sinon",
+  "Renvoie true si la souris survole et pressée de manière répétée sur la zone passée en argument au moment de l'appel, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4599,7 +4599,7 @@ register_command :area, 'Command.mouse_repeat_area?'
 
 # AUTOGenerated for mouse_repeat_square_area?
 link_method_documentation 'Command.mouse_repeat_square_area?',
-  "Renvoie true si la souris survol et est pressée en répétitivement sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon",
+  "Renvoie true si la souris survole et est pressée de manière répétée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
   {
     :area => ["Zone à vérifier", :Area],
     :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
@@ -4622,12 +4622,12 @@ link_method_documentation 'Command.textfield_text_show',
   'Affiche un champ de texte permettant de saisir du texte',
   {
     :id => ["ID du champ de texte", :Fixnum],
-    :text => ["Texte à afficher par défaut du champ", :String],
+    :text => ["Texte du champ à afficher par défaut", :String],
     :x => ["Position X du champ", :Fixnum],
     :y => ["Position Y du champ", :Fixnum],
     :w => ["Largeur du champ de texte", :Fixnum],
     :profile => ["Référence du profile du champ de texte", :Fixnum],
-    :"*range" => ["Interval du nombre de caractère autorisé, peut être occulté", :Range],
+    :"*range" => ["Intervalle du nombre de caractères autorisés, peut être occulté", :Range],
 
   }
 register_command :textfield, 'Command.textfield_text_show'
@@ -4637,12 +4637,12 @@ link_method_documentation 'Command.textfield_int_show',
   'Affiche un champ de texte permettant de saisir des nombres entiers',
   {
     :id => ["ID du champ de texte", :Fixnum],
-    :number => ["Nombre à afficher par défaut du champ", :Fixnum],
+    :number => ["Nombre à afficher par défaut", :Fixnum],
     :x => ["Position X du champ", :Fixnum],
     :y => ["Position Y du champ", :Fixnum],
     :w => ["Largeur du champ de texte", :Fixnum],
     :profile => ["Référence du profile du champ de texte", :Fixnum],
-    :"*range" => ["Interval des nombres autorisés, peut être occulté", :Range],
+    :"*range" => ["Intervalle des nombres autorisés, peut être occulté", :Range],
 
   }
 register_command :textfield, 'Command.textfield_int_show'
@@ -4657,7 +4657,7 @@ link_method_documentation 'Command.textfield_float_show',
     :y => ["Position Y du champ", :Fixnum],
     :w => ["Largeur du champ de texte", :Fixnum],
     :profile => ["Référence du profile du champ de texte", :Fixnum],
-    :"*range" => ["Interval des nombres autorisés, peut être occulté", :Range],
+    :"*range" => ["Intervalle des nombres autorisés, peut être occulté", :Range],
 
   }
 register_command :textfield, 'Command.textfield_float_show'
@@ -4691,7 +4691,7 @@ register_command :textfield, 'Command.textfield_deactivate'
 
 # AUTOGenerated for textfield_active?
 link_method_documentation 'Command.textfield_active?',
-  'Renvoi true si le champ de texte référencé par son ID est activé',
+  'Renvoie true si le champ de texte référencé par son ID est activé',
   {
     :id => ["ID de la zone de texte", :Fixnum],
 
@@ -4700,7 +4700,7 @@ register_command :textfield, 'Command.textfield_active?'
 
 # AUTOGenerated for textfield_get_value
 link_method_documentation 'Command.textfield_get_value',
-  'Renvoi la valeur de la zone de texte référencé par son ID',
+  'Renvoie la valeur de la zone de texte référencé par son ID',
   {
     :id => ["ID de la zone de texte", :Fixnum],
 
@@ -4719,7 +4719,7 @@ register_command :textfield, 'Command.textfield_set_value'
 
 # AUTOGenerated for textfield_hover?
 link_method_documentation 'Command.textfield_hover?',
-  'Renvoi true si la souris survol le champ de texte référencé par son ID, false sinon',
+  'Renvoie true si la souris survole le champ de texte référencé par son ID, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
 
@@ -4728,7 +4728,7 @@ register_command :textfield, 'Command.textfield_hover?'
 
 # AUTOGenerated for textfield_click?
 link_method_documentation 'Command.textfield_click?',
-  'Renvoi true si la souris clique sur le champ de texte référencé par son ID, false sinon',
+  'Renvoie true si la souris clique sur le champ de texte référencé par son ID, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
 
@@ -4737,40 +4737,40 @@ register_command :textfield, 'Command.textfield_click?'
 
 # AUTOGenerated for textfield_press?
 link_method_documentation 'Command.textfield_press?',
-  'Renvoi true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon',
+  'Renvoie true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
-    :"*key" => ["Boutton de la souris, par défaut :mouse_left", :Key],
+    :"*key" => ["Bouton de la souris, par défaut :mouse_left", :Key],
 
   }, true # Maybe changed
 register_command :textfield, 'Command.textfield_press?'
 
 # AUTOGenerated for textfield_release?
 link_method_documentation 'Command.textfield_release?',
-  'Renvoi true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon',
+  'Renvoie true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
-    :"*key" => ["Boutton de la souris, par défaut :mouse_left", :Key],
+    :"*key" => ["Bouton de la souris, par défaut :mouse_left", :Key],
 
   }, true # Maybe changed
 register_command :textfield, 'Command.textfield_release?'
 
 # AUTOGenerated for textfield_trigger?
 link_method_documentation 'Command.textfield_trigger?',
-  'Renvoi true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon',
+  'Renvoie true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
-    :"*key" => ["Boutton de la souris, par défaut :mouse_left", :Key],
+    :"*key" => ["Bouton de la souris, par défaut :mouse_left", :Key],
 
   }, true # Maybe changed
 register_command :textfield, 'Command.textfield_trigger?'
 
 # AUTOGenerated for textfield_repeat?
 link_method_documentation 'Command.textfield_repeat?',
-  'Renvoi true si la souris clique répétitivement sur le champ de texte référencé par son ID, false sinon',
+  'Renvoie true si la souris clique de manière répétée sur le champ de texte référencé par son ID, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
-    :"*key" => ["Boutton de la souris, par défaut :mouse_left", :Key],
+    :"*key" => ["Bouton de la souris, par défaut :mouse_left", :Key],
 
   }, true # Maybe changed
 register_command :textfield, 'Command.textfield_repeat?'
@@ -4787,7 +4787,7 @@ register_command :textfield, 'Command.textfield_visible'
 
 # AUTOGenerated for textfield_visible
 link_method_documentation 'Command.textfield_visible?',
-  'Renvoi true si le champ de texte référencé par son ID est visible, false sinon',
+  'Renvoie true si le champ de texte référencé par son ID est visible, false sinon',
   {
     :id => ["ID de la zone de texte", :Fixnum],
 
@@ -4806,9 +4806,9 @@ register_command :textfield, 'Command.textfield_opacity'
 
 # AUTOGenerated for message_height
 link_method_documentation 'Command.message_height',
-  'Change le nombre de ligne affichage dans les messages (Commande Event Afficher message)',
+  'Change le nombre de lignes affichées dans les messages (Commande Event Afficher message)',
   {
-    :n => ["Nombre de ligne visibles", :Fixnum],
+    :n => ["Nombre de lignes visibles", :Fixnum],
 
   }
 register_command :standard, 'Command.message_height'
@@ -4819,14 +4819,14 @@ register_command :standard, 'Command.message_height'
 #   {
 #     :e => ["Sélecteur d'évènements", :Selecteur],
 #     :"*args" => ["Voir l'explication référente aux micro_event dans la documentation", :Args],
-#     :"&block" => ["Action a exécuter", :Block],
+#     :"&block" => ["Action à exécuter", :Block],
 
 #   }
 # register_command :micro, 'Command.bind'
 
 # # AUTOGenerated for unbind
 # link_method_documentation 'Command.unbind',
-#   'Désassocie un micro_evenement d\'un sélecteur d`\'évènements',
+#   'Dissocie un micro_evenement d\'un sélecteur d`\'évènements',
 #   {
 #     :e => ["Sélecteur d'évènements", :Selecteur],
 #     :"*k" => ["Voir l'explication référente aux micro_event dans la documentation", :Args],
@@ -4846,7 +4846,7 @@ register_command :clipboard, 'Command.clipboard_push_text'
 
 # AUTOGenerated for clipboard_get_text
 link_method_documentation 'Command.clipboard_get_text',
-  'Renvoi le texte contenu dans le presse-papier',
+  'Renvoie le texte contenu dans le presse-papier',
   {}, true # Maybe changed
 register_command :clipboard, 'Command.clipboard_get_text'
 
@@ -4861,7 +4861,7 @@ register_command :clipboard, 'Command.clipboard_push_command'
 
 # AUTOGenerated for pad360_plugged?
 link_method_documentation 'Command.pad360_plugged?',
-  'Renvoie true si une manette est branchée dans le port référencée par son ID, false sinon',
+  'Renvoie true si une manette est branchée dans le port référencé par son ID, false sinon',
   {
     :"*id" => ["Port de la manette, par défaut 0, soit la première manette branchée", :Fixnum],
 
@@ -4941,7 +4941,7 @@ register_command :actors, 'Command.actor_change_appear'
 
 # AUTOGenerated for actor_change_character
 link_method_documentation 'Command.actor_change_character',
-	'Change l\'aparence du héros référencé par son ID',
+	'Change l\'apparence du héros référencé par son ID',
  	{
 		:id => ["ID du héros", :Fixnum],
 		:character_name => ["Nom du caractère", :String],
@@ -4963,16 +4963,16 @@ register_command :actors, 'Command.actor_change_face'
 
  # AUTOGenerated for event_erase
 link_method_documentation 'Command.event_erase',
-	'Efface les événements de la map référencer par le sélécteur IDS',
+	'Efface de la map les événements référencés par le sélécteur ID',
  	{
-		:id => ["IDS des événements", :Selector],
+		:id => ["ID des événements", :Selector],
 
 	}
 register_command :event, 'Command.event_erase'
 
 # AUTOGenerated for show_animation
 link_method_documentation 'Command.show_animation',
-	'Joue une animation sur les événements référencé par le selecteur IDS',
+	'Joue une animation sur les événements référencés par le selecteur ID',
  	{
 		:ids => ["IDS des événements", :Selector],
 		:id_animation => ["ID de l'animation", :Fixnum],
@@ -4983,7 +4983,7 @@ register_command :event, 'Command.show_animation'
 
 # AUTOGenerated for show_balloon
 link_method_documentation 'Command.show_balloon',
-	'Joue une émoticone sur les événements référencé par le selecteur IDS',
+	'Joue une émoticone sur les événements référencés par le selecteur ID',
  	{
 		:ids => ["IDS des événements", :Selector],
 		:id_balloon => ["ID de l'émoticone", :Fixnum],
@@ -5004,7 +5004,7 @@ register_command :standard, 'Command.website'
 
 # AUTOGenerated for event_move_speed
 link_method_documentation 'Command.event_move_speed',
-  'Modifie la vitesse des événements référencés par leur Ids',
+  'Modifie la vitesse des événements référencés par leurs Id',
   {
     :ids => ["ID des événements", :Selector],
     :v => ["Vitesse des événements", :Fixnum],
@@ -5016,14 +5016,14 @@ register_command :event, 'Command.event_move_speed'
 link_method_documentation 'Command.player_move_speed',
   'Modifie la vitesse du joueur',
   {
-    :v => ["Vitesses du joueur", :Fixnum],
+    :v => ["Vitesse du joueur à donner", :Fixnum],
 
   }
 register_command :event, 'Command.player_move_speed'
 
 # AUTOGenerated for event_move_frequency
 link_method_documentation 'Command.event_move_frequency',
-  'Modifie la fréquence des événements référencés par leur Ids',
+  'Modifie la fréquence des événements référencés par leurs Id',
   {
     :ids => ["ID des événements", :Selector],
     :f => ["Fréquence des événements", :Fixnum],
@@ -5042,7 +5042,7 @@ register_command :event, 'Command.player_move_frequency'
 
 # AUTOGenerated for event_move_speed_frequency
 link_method_documentation 'Command.event_move_speed_frequency',
-  'Change la vitesse et la fréquence des événements référencer par le ids',
+  'Change la vitesse et la fréquence des événements référencés par leurs ID',
   {
     :ids => ["IDs des événements", :Selector],
     :v => ["Vitesse des événements", :Fixnum],
@@ -5162,7 +5162,7 @@ register_command :sound, 'Command.bgm_fade'
 link_method_documentation 'Command.bgs_fade',
   'Arrêt en fondu du BGS en cours',
   {
-    :wait => ["Temps du fondu en seconde", :Fixnum],
+    :wait => ["Temps du fondu (en secondes)", :Fixnum],
     :"*frame" => ["Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes", :Boolean],
   }
 register_command :sound, 'Command.bgs_fade'
@@ -5193,7 +5193,7 @@ register_command :sound, 'Command.bgs_pitch'
 
 # AUTOGenerated for sound_fade
 link_method_documentation 'Command.sound_fade',
-  'Stop les BGM et BGS en fondu',
+  'Stoppe les BGM et BGS en fondu',
   {
     :wait => ["Temps du fondu, par défaut en secondes", :Fixnum],
     :"*frame" => ["Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes", :Boolean],
@@ -5221,31 +5221,31 @@ register_command :actors, 'Command.actor_slot'
 
 # AUTOGenerated for move_to
 link_method_documentation 'Command.move_to',
-	'Déplace l\'évènement référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument',
+	'Déplace l\'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument',
  	{
-		:id => ["Id de l'évènement (0 pour le héro)", :Fixnum],
+		:id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
-		:"*wait_flag" => ["Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non", :Boolean],
+		:"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
 
 	} # Maybe changed
 register_command :event, 'Command.move_to'
 
 # AUTOGenerated for jump_to
 link_method_documentation 'Command.jump_to',
-'Déplace l\'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument',
+'Déplace l\'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées données en argument',
  {
-  :id => ["Id de l'évènement (0 pour le héro)", :Fixnum],
+  :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
   :x => ["Coordonnées X", :Fixnum],
   :y => ["Coordonnées Y", :Fixnum],
-  :"*wait_flag" => ["Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non", :Boolean],
+  :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
 
 } # Maybe changed
 register_command :event, 'Command.jump_to'
 
 # AUTOGenerated for monster_element_rate
 link_method_documentation 'Command.monster_element_rate',
-	'Renvoi la résistance élémentaire (par son ID d\'élement) d\'un monstre référencé par son ID',
+	'Renvoie la résistance élémentaire (par son ID d\'élément) d\'un monstre référencé par son ID',
  	{
 		:id => ["Id du monstre", :Fixnum],
 		:element_id => ["Id de l'élément", :Fixnum],
@@ -5255,7 +5255,7 @@ register_command :enemy, 'Command.monster_element_rate'
 
 # AUTOGenerated for actor_element_rate
 link_method_documentation 'Command.actor_element_rate',
-  'Renvoi la résistance élémentaire (par son ID d\'élement) d\'un acteur référencé par son ID',
+  'Renvoie la résistance élémentaire (par son ID d\'élément) d\'un acteur référencé par son ID',
  	{
 		:id => ["Id de l'acteur", :Fixnum],
     :element_id => ["Id de l'élément", :Fixnum],
@@ -5265,7 +5265,7 @@ register_command :actors, 'Command.actor_element_rate'
 
 # AUTOGenerated for armor_element_rate
 link_method_documentation 'Command.armor_element_rate',
-  'Renvoi la résistance élémentaire (par son ID d\'élement) d\'une armure référencé par son ID par rapport à un acteur',
+  'Renvoie la résistance élémentaire (par son ID d\'élément) d\'une armure référencée par son ID par rapport à un acteur',
  	{
 		:i => ["Id de l'armure", :Fixnum],
 		:actor_id => ["Id de l'acteur", :Fixnum],
@@ -5276,7 +5276,7 @@ register_command :armors, 'Command.armor_element_rate'
 
 # AUTOGenerated for weapon_element_rate
 link_method_documentation 'Command.weapon_element_rate',
-'Renvoi la résistance élémentaire (par son ID d\'élement) d\'une arme référencé par son ID par rapport à un acteur',
+'Renvoie la résistance élémentaire (par son ID d\'élement) d\'une arme référencée par son ID par rapport à un acteur',
  	{
      :i => ["Id de l'arme", :Fixnum],
  		:actor_id => ["Id de l'acteur", :Fixnum],
@@ -5287,7 +5287,7 @@ register_command :weapons, 'Command.weapon_element_rate'
 
 # AUTOGenerated for item_element_rate
 link_method_documentation 'Command.item_element_rate',
-'Renvoi la résistance élémentaire (par son ID d\'élement) d\'un objet référencé par son ID par rapport à un acteur',
+'Renvoie la résistance élémentaire (par son ID d\'élement) d\'un objet référencé par son ID par rapport à un acteur',
  	{
      :i => ["Id de l'objet", :Fixnum],
  		:actor_id => ["Id de l'acteur", :Fixnum],
@@ -5298,7 +5298,7 @@ register_command :items, 'Command.item_element_rate'
 
 # AUTOGenerated for event_priority
 link_method_documentation 'Command.event_priority',
-  'Change la priorité d\'affichage des événements référencés par leur IDS (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)',
+  'Change la priorité d\'affichage des événements référencés par leurs ID (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)',
   {
     :ids => ["ID des événements", :Selector],
     :priority => ["Priorité d'affichage", :Fixnum],
@@ -5308,7 +5308,7 @@ register_command :event, 'Command.event_priority'
 
 # AUTOGenerated for event_trigger
 link_method_documentation 'Command.event_trigger',
-  'Change le type de déclenchement des événements référencés par leur IDS (0: touche action, 1: contact du héros, 2: contact de l\'event, 3: automatique, 4: processus paralléle).',
+  'Change le type de déclenchement des événements référencés par leurs ID (0: touche action, 1: contact du héros, 2: contact de l\'event, 3: automatique, 4: processus paralléle).',
   {
     :ids => ["ID des événements", :Selector],
     :trigger => ["Type de déclenchement", :Fixnum],
@@ -5318,7 +5318,7 @@ register_command :event, 'Command.event_trigger'
 
 # AUTOGenerated for camera_scroll
 link_method_documentation 'Command.camera_scroll',
-	'Fait défiler la carte dans une direction sur une distance (en case) à une certaine vitesse',
+	'Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse',
  	{
 		:direction => ["Direction (2=bas, 4=gauche, 6=droite, 8=haut)",  :Fixnum],
 		:distance => ["Nombre de case à défiler",  :Fixnum],
@@ -5409,10 +5409,10 @@ register_command :screen, 'Command.screen_tone'
 
 # AUTOGenerated for screen_flash
 link_method_documentation 'Command.screen_flash',
-	'Flash l\'écran',
+	'Envoie un flash à l\'écran',
  	{
 		:color => ["Couleur du flash (utilisez la commande 'color')", :Color],
-		:duration => ["Durée en frame", :Fixnum],
+		:duration => ["Durée en frames", :Fixnum],
 		:"*wait_flag" => ["Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false", :Boolean],
 
 	}
@@ -5420,13 +5420,13 @@ register_command :screen, 'Command.screen_flash'
 
 # AUTOGenerated for screen_width
 link_method_documentation 'Command.screen_width',
-	'Renvoi la largeur de l\'écran (en pixel)',
+	'Renvoie la largeur de l\'écran (en pixels)',
  	{}, true # Maybe changed
 register_command :screen, 'Command.screen_width'
 
 # AUTOGenerated for screen_height
 link_method_documentation 'Command.screen_height',
-	'Renvoi la hauteur de l\'écran (en pixel)',
+	'Renvoie la hauteur de l\'écran (en pixels)',
  	{}, true # Maybe changed
 register_command :screen, 'Command.screen_height'
 
@@ -5437,7 +5437,7 @@ link_method_documentation 'Command.screen_shake',
  	{
 		:power => ["Puissance du tremblement", :Fixnum],
 		:speed => ["Vitesse du tremblement", :Fixnum],
-		:duration => ["Durée en frame", :Fixnum],
+		:duration => ["Durée en frames", :Fixnum],
 		:"*wait_flag" => ["Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false", :Boolean],
 
 	}
@@ -5445,7 +5445,7 @@ register_command :screen, 'Command.screen_shake'
 
 # AUTOGenerated for event_transparent?
 link_method_documentation 'Command.event_transparent?',
-	'Renvoi true si l\'évènement est transparent (false sinon)',
+	'Renvoie true si l\'évènement est transparent (false sinon)',
  	{
 		:id => ["ID de l'évènement", :Fixnum],
 
@@ -5492,7 +5492,7 @@ register_command :event, 'Command.player_opaque'
 
 # AUTOGenerated for get_tileset_id
 link_method_documentation 'Command.get_tileset_id',
-	'Renvoi l\' ID du tileset de la carte en cours',
+	'Renvoie l\' ID du tileset de la carte en cours',
  	{}, true # Maybe changed
 register_command :mapinfo, 'Command.get_tileset_id'
 
@@ -5507,7 +5507,7 @@ register_command :mapinfo, 'Command.switch_tileset'
 
 # AUTOGenerated for wall?
 link_method_documentation 'Command.wall?',
-	'Renvoie true si les coordonnées sont sur un mur,false sinon',
+	'Renvoie true si les coordonnées sont sur un mur, false sinon',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
@@ -5517,7 +5517,7 @@ register_command :mapinfo, 'Command.wall?'
 
 # AUTOGenerated for roof?
 link_method_documentation 'Command.roof?',
-	'Renvoie true si les coordonnées sont sur un toit,false sinon',
+	'Renvoie true si les coordonnées sont sur un toit, false sinon',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
@@ -5527,7 +5527,7 @@ register_command :mapinfo, 'Command.roof?'
 
 # AUTOGenerated for stair?
 link_method_documentation 'Command.stair?',
-	'Renvoie true si les coordonnées sont sur une marche,false sinon',
+	'Renvoie true si les coordonnées sont sur une marche, false sinon',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
@@ -5537,7 +5537,7 @@ register_command :mapinfo, 'Command.stair?'
 
 # AUTOGenerated for table?
 link_method_documentation 'Command.table?',
-	'Renvoie true si les coordonnées sont sur une table ,false sinon',
+	'Renvoie true si les coordonnées sont sur une table, false sinon',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
@@ -5560,7 +5560,7 @@ register_command :mapinfo, 'Command.map_height'
 
 # AUTOGenerated for ground?
 link_method_documentation 'Command.ground?',
-	'Renvoie true si les coordonnées sont sur le sol ,false sinon',
+	'Renvoie true si les coordonnées sont sur le sol, false sinon',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
@@ -5617,7 +5617,7 @@ register_command :window, 'Command.open_window'
 
 # AUTOGenerated for window_closed?
 link_method_documentation 'Command.window_closed?',
-	'Renvoi true si la fenêtre référencée par son ID est fermée, false sinon',
+	'Renvoie true si la fenêtre référencée par son ID est fermée, false sinon',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
@@ -5626,7 +5626,7 @@ register_command :window, 'Command.window_closed?'
 
 # AUTOGenerated for window_opened?
 link_method_documentation 'Command.window_opened?',
-	'Renvoi true si la fenêtre référencée par son ID est ouverte, false sinon',
+	'Renvoie true si la fenêtre référencée par son ID est ouverte, false sinon',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
@@ -5673,7 +5673,7 @@ register_command :window, 'Command.window_dimension'
 
 # AUTOGenerated for window_opacity
 link_method_documentation 'Command.window_opacity',
-	'Change l\'opacité de la fenêtre, si aucune valeur n\'est spécifié, la commande renvoi la valeur de l\'opacité',
+	'Change l\'opacité de la fenêtre, si aucune valeur n\'est spécifiée, la commande renvoie la valeur de l\'opacité',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 		:"*value" => ["Valeur de l'opacité à changer", :Fixnum],
@@ -5711,7 +5711,7 @@ register_command :window, 'Command.window_dimension'
 
 # AUTOGenerated for window_opacity
 link_method_documentation 'Command.window_opacity',
-	'Change l\'opacité de la fenêtre, si aucune valeur n\'est spécifié, la commande renvoi la valeur de l\'opacité',
+	'Change l\'opacité de la fenêtre, si aucune valeur n\'est spécifiée, la commande renvoie la valeur de l\'opacité',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 		:"*value" => ["Valeur de l'opacité à changer", :Fixnum],
@@ -5746,7 +5746,7 @@ link_method_documentation 'Command.create_commands_window',
 		:x => ["Coordonnées X de la fenêtre", :Fixnum],
 		:y => ["Coordonnées Y de la fenêtre", :Fixnum],
 		:w => ["Largeur de la fenêtre", :Fixnum],
-		:hash => ["Hash décrivant les différentes section de la fenêtre", :Hash],
+		:hash => ["Hash décrivant les différentes sections de la fenêtre", :Hash],
 		:"*h" => ["Hauteur de la fenêtre (en nombre de ligne), si aucun argument n'est donné, la hauteur sera calculée", :Fixnum],
 
 	}
@@ -5759,14 +5759,14 @@ link_method_documentation 'Command.create_horizontal_commands_window',
      :id => ["ID de la fenêtre", :Fixnum],
  		:x => ["Coordonnées X de la fenêtre", :Fixnum],
  		:y => ["Coordonnées Y de la fenêtre", :Fixnum],
-    :hash => ["Hash décrivant les différentes section de la fenêtre", :Hash],
-    :"row" => ["Nombre de colonne. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonne", :Fixnum],
+    :hash => ["Hash décrivant les différentes sections de la fenêtre", :Hash],
+    :"row" => ["Nombre de colonnes. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonnes", :Fixnum],
 	}
 register_command :window, 'Command.create_horizontal_commands_window'
 
 # AUTOGenerated for window_current_symbol
 link_method_documentation 'Command.window_current_symbol',
-	'Renvoi, pour une fenêtre de sélection, le symbole sélectionné',
+	'Renvoie, pour une fenêtre de sélection, le symbole sélectionné',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
@@ -5805,7 +5805,7 @@ register_command :window, 'Command.create_selectable_window'
 
 # AUTOGenerated for window_width
 link_method_documentation 'Command.window_width',
-	'Renvoi la largeur de la fenêtre référencée par son ID',
+	'Renvoie la largeur de la fenêtre référencée par son ID',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
@@ -5814,7 +5814,7 @@ register_command :window, 'Command.window_width'
 
 # AUTOGenerated for window_height
 link_method_documentation 'Command.window_height',
-	'Renvoi la hauteur de la fenêtre référencée par son ID',
+	'Renvoie la hauteur de la fenêtre référencée par son ID',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
@@ -5823,7 +5823,7 @@ register_command :window, 'Command.window_height'
 
 # AUTOGenerated for window_x
 link_method_documentation 'Command.window_x',
-	'Renvoi la coordonnée X de la fenêtre référencée par son ID',
+	'Renvoie la coordonnée X de la fenêtre référencée par son ID',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
@@ -5832,7 +5832,7 @@ register_command :window, 'Command.window_x'
 
 # AUTOGenerated for window_y
 link_method_documentation 'Command.window_y',
-	'Renvoi la coordonnée Y de la fenêtre référencée par son ID',
+	'Renvoie la coordonnée Y de la fenêtre référencée par son ID',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
 
