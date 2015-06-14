@@ -28,7 +28,7 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### import_label(index, idlabel)
 
-> Renvoi la valeur d'un label issu d'une autre sauvegarde
+> Renvoie la valeur d'un label issu d'une autre sauvegarde
 
   
 > Nom|Type|Description  
@@ -39,7 +39,7 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### import_switch(index, idswitch)
 
-> Renvoi la valeur d'un interrupteur issu d'une autre sauvegarde
+> Renvoie la valeur d'un interrupteur issu d'une autre sauvegarde
 
   
 > Nom|Type|Description  
@@ -50,7 +50,7 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### import_variable(index, idvar)
 
-> Renvoi la valeur d'une variable issue d'une autre sauvegarde
+> Renvoie la valeur d'une variable issue d'une autre sauvegarde
 
   
 > Nom|Type|Description  

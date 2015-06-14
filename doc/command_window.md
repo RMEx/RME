@@ -53,7 +53,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
 `y`|`Fixnum`|Coordonnées Y de la fenêtre  
 `w`|`Fixnum`|Largeur de la fenêtre  
-`hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
+`hash`|`Hash`|Hash décrivant les différentes sections de la fenêtre  
 `*h`|`Fixnum`|Hauteur de la fenêtre (en nombre de ligne), si aucun argument n'est donné, la hauteur sera calculée  
 
 
@@ -67,8 +67,8 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
 `y`|`Fixnum`|Coordonnées Y de la fenêtre  
-`hash`|`Hash`|Hash décrivant les différentes section de la fenêtre  
-`row`|`Fixnum`|Nombre de colonne. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonne  
+`hash`|`Hash`|Hash décrivant les différentes sections de la fenêtre  
+`row`|`Fixnum`|Nombre de colonnes. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonnes  
 
 
 ##### create_selectable_window(id, x, y, width, height, hash)
@@ -103,7 +103,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### open_window(id)
 
-> Ouvre la commande référencée par son ID
+> Ouvre la fenêtre référencée par son ID
 
   
 > Nom|Type|Description  
@@ -140,7 +140,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_closed?(id)
 
-> Renvoi true si la fenêtre référencée par son ID est fermée, false sinon
+> Renvoie true si la fenêtre référencée par son ID est fermée, false sinon
 
   
 > Nom|Type|Description  
@@ -162,7 +162,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_current_symbol(id)
 
-> Renvoi, pour une fenêtre de sélection, le symbole sélectionné
+> Renvoie, pour une fenêtre de sélection, le symbole sélectionné
 
   
 > Nom|Type|Description  
@@ -196,7 +196,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_height(id)
 
-> Renvoi la hauteur de la fenêtre référencée par son ID
+> Renvoie la hauteur de la fenêtre référencée par son ID
 
   
 > Nom|Type|Description  
@@ -237,7 +237,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_opacity(id, *value, *duration, *wait_flag)
 
-> Change l'opacité de la fenêtre, si aucune valeur n'est spécifié, la commande renvoi la valeur de l'opacité
+> Change l'opacité de la fenêtre, si aucune valeur n'est spécifiée, la commande renvoie la valeur de l'opacité
 
   
 > Nom|Type|Description  
@@ -250,7 +250,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_opened?(id)
 
-> Renvoi true si la fenêtre référencée par son ID est ouverte, false sinon
+> Renvoie true si la fenêtre référencée par son ID est ouverte, false sinon
 
   
 > Nom|Type|Description  
@@ -260,7 +260,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_width(id)
 
-> Renvoi la largeur de la fenêtre référencée par son ID
+> Renvoie la largeur de la fenêtre référencée par son ID
 
   
 > Nom|Type|Description  
@@ -270,7 +270,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_x(id)
 
-> Renvoi la coordonnée X de la fenêtre référencée par son ID
+> Renvoie la coordonnée X de la fenêtre référencée par son ID
 
   
 > Nom|Type|Description  
@@ -280,7 +280,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_y(id)
 
-> Renvoi la coordonnée Y de la fenêtre référencée par son ID
+> Renvoie la coordonnée Y de la fenêtre référencée par son ID
 
   
 > Nom|Type|Description  

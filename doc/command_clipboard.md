@@ -15,7 +15,7 @@ Permet d'envoyer des données dans le presse-papier ou de récupérer le texte s
 ##Description des commandes
 ##### clipboard_get_text
 
-> Renvoi le texte contenu dans le presse-papier
+> Renvoie le texte contenu dans le presse-papier
 
   
 > 

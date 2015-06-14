@@ -155,7 +155,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_change_character(id, character_name, character_index)
 
-> Change l'aparence du héros référencé par son ID
+> Change l'apparence du héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -271,7 +271,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_element_rate(id, element_id)
 
-> Renvoi la résistance élémentaire (par son ID d'élement) d'un acteur référencé par son ID
+> Renvoie la résistance élémentaire (par son ID d'élément) d'un acteur référencé par son ID
 
   
 > Nom|Type|Description  
@@ -510,7 +510,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_hit_rate(id)
 
-> renvoie la probabilité de toucher du héros référencé par son ID sur un ennemi
+> renvoie la probabilité de toucher un ennemi pour le héros référencé par son ID
 
   
 > Nom|Type|Description  
@@ -642,7 +642,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_magical_evasion_rate(id)
 
-> renvoie la probabilité d'une esquiver une attaque magique du héros référencé par son ID par un ennemi
+> renvoie la probabilité d'une esquiver une attaque magique d'un ennemi pour le héros référencé par son ID 
 
   
 > Nom|Type|Description  
@@ -782,7 +782,7 @@ Offre des commandes pour obtenir des informations sur les acteurs
 
 ##### actor_set_graphic(id, character_name, character_index, face_name, face_index)
 
-> Change les graphisme du héros référencé par son ID
+> Change les graphismes du héros référencé par son ID
 
   
 > Nom|Type|Description  

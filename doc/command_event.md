@@ -141,12 +141,12 @@ Commandes relatives aux évènements
 
 ##### event_erase(id)
 
-> Efface les événements de la map référencer par le sélécteur IDS
+> Efface de la map les événements référencés par le sélécteur ID
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Selector`|IDS des événements  
+`id`|`Selector`|ID des événements  
 
 
 ##### event_erased?(id)
@@ -184,7 +184,7 @@ Commandes relatives aux évènements
 
 ##### event_move_frequency(ids, f)
 
-> Modifie la fréquence des événements référencés par leur Ids
+> Modifie la fréquence des événements référencés par leurs Id
 
   
 > Nom|Type|Description  
@@ -195,7 +195,7 @@ Commandes relatives aux évènements
 
 ##### event_move_speed(ids, v)
 
-> Modifie la vitesse des événements référencés par leur Ids
+> Modifie la vitesse des événements référencés par leurs Id
 
   
 > Nom|Type|Description  
@@ -206,7 +206,7 @@ Commandes relatives aux évènements
 
 ##### event_move_speed_frequency(ids, v, f)
 
-> Change la vitesse et la fréquence des événements référencer par le ids
+> Change la vitesse et la fréquence des événements référencés par leurs ID
 
   
 > Nom|Type|Description  
@@ -239,12 +239,12 @@ Commandes relatives aux évènements
 
 ##### event_name(id)
 
-> Renvoi le nom d'un évènement, renvoi nil s' il s'agit du héros
+> Renvoie le nom d'un évènement, renvoie nil s' il s'agit du héros
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
+`id`|`Fixnum`|ID de l'évènement (0 pour le héros)  
 
 
 ##### event_opacity(ids, *value)
@@ -312,7 +312,7 @@ Commandes relatives aux évènements
 
 ##### event_priority(ids, priority)
 
-> Change la priorité d'affichage des événements référencés par leur IDS (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)
+> Change la priorité d'affichage des événements référencés par leurs ID (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)
 
   
 > Nom|Type|Description  
@@ -374,7 +374,7 @@ Commandes relatives aux évènements
 
 ##### event_through?(id)
 
-> Renvoi true si l'évènement est en mode 'traverse tout', false sinon
+> Renvoie true si l'évènement est en mode 'traverse tout', false sinon
 
   
 > Nom|Type|Description  
@@ -406,7 +406,7 @@ Commandes relatives aux évènements
 
 ##### event_transparent?(id)
 
-> Renvoi true si l'évènement est transparent (false sinon)
+> Renvoie true si l'évènement est transparent (false sinon)
 
   
 > Nom|Type|Description  
@@ -416,7 +416,7 @@ Commandes relatives aux évènements
 
 ##### event_trigger(ids, trigger)
 
-> Change le type de déclenchement des événements référencés par leur IDS (0: touche action, 1: contact du héros, 2: contact de l'event, 3: automatique, 4: processus paralléle).
+> Change le type de déclenchement des événements référencés par leurs ID (0: touche action, 1: contact du héros, 2: contact de l'event, 3: automatique, 4: processus paralléle).
 
   
 > Nom|Type|Description  
@@ -486,7 +486,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `e`|`Selector`|Selecteur d'évènements  
-`*duration`|`Fixnum`|Durée du dressaillement (en frame), par défaut, 16  
+`*duration`|`Fixnum`|Durée du dressaillement (en frames), par défaut, 16  
 
 
 ##### events_buzzer_properties(e, amplitude, length)
@@ -498,7 +498,7 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `e`|`Selector`|Selecteurs d'évènements  
 `amplitude`|`ArgType`|Amplitude du tressaillement  
-`length`|`Fixnum`|Taille du tressaiellement  
+`length`|`Fixnum`|Taille du tressaillement  
 
 
 ##### events_collide?(idA, idB)
@@ -514,7 +514,7 @@ Commandes relatives aux évènements
 
 ##### followers_buzz(ids, *duration)
 
-> Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs est vide, ça s'applique à tous les followers)
+> Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs n'est pas renseignée, ça s'applique à tous les followers)
 
   
 > Nom|Type|Description  
@@ -525,14 +525,14 @@ Commandes relatives aux évènements
 
 ##### followers_buzzer_properties(*ids, amplitude, length)
 
-> Change les propriétés de tressaillement des membre de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))
+> Change les propriétés de tressaillement des membres de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `*ids`|`ArgsList`|Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.  
 `amplitude`|`ArgType`|Amplitude du tressaillement  
-`length`|`Fixnum`|Taille du tressaiellement  
+`length`|`Fixnum`|Taille du tressaillement  
 
 
 ##### fresh_event_id
@@ -572,15 +572,15 @@ Commandes relatives aux évènements
 
 ##### jump_to(id, x, y, *wait_flag)
 
-> Déplace l'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument
+> Déplace l'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées données en argument
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'évènement (0 pour le héro)  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
-`*wait_flag`|`Boolean`|Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
 
 
 ##### last_clicked_event
@@ -606,7 +606,7 @@ Commandes relatives aux évènements
 
 ##### last_released_event
 
-> Renvoie le dernier event relaché (avec mouse_left) par la souris, nil si aucun évènement n'a été relaché
+> Renvoie le dernier event relâché (avec mouse_left) par la souris, nil si aucun évènement n'a été relâché
 
   
 > 
@@ -644,7 +644,7 @@ Commandes relatives aux évènements
 
 ##### mouse_click_player?
 
-> Renvoie true si la souris clique le joueur
+> Renvoie true si la souris clique sur l'image du joueur
 
   
 > 
@@ -661,7 +661,7 @@ Commandes relatives aux évènements
 
 ##### mouse_hover_player?
 
-> Renvoie true si la souris survol le joueur
+> Renvoie true si la souris survole l'image du joueur
 
   
 > 
@@ -721,7 +721,7 @@ Commandes relatives aux évènements
 
 ##### mouse_repeat_player?(*key)
 
-> Renvoie true si la souris appuye successivement sur la touche passée en argument sur le joueur
+> Renvoie true si la souris appuie de manière répétée sur la touche passée en argument sur l'image du joueur
 
   
 > Nom|Type|Description  
@@ -752,15 +752,15 @@ Commandes relatives aux évènements
 
 ##### move_to(id, x, y, *wait_flag)
 
-> Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées donnée en argument
+> Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|Id de l'évènement (0 pour le héro)  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
-`*wait_flag`|`Boolean`|Par défaut, false, cette valeur défini le bloquage durant le déplacement ou non  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
 
 
 ##### page_runnable?(map_id, event_id, page_id, *context)
@@ -828,7 +828,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`v`|`Fixnum`|Vitesses du joueur  
+`v`|`Fixnum`|Vitesse du joueur à donner  
 
 
 ##### player_move_speed_frequency(v, f)
@@ -950,7 +950,7 @@ Commandes relatives aux évènements
 
 ##### player_through?
 
-> Renvoi true si le joueur est en mode 'traverse tout', false sinon
+> Renvoie true si le joueur est en mode 'traverse tout', false sinon
 
   
 > 
@@ -1027,7 +1027,7 @@ Commandes relatives aux évènements
 
 ##### show_animation(ids, id_animation, *wait_flag)
 
-> Joue une animation sur les événements référencé par le selecteur IDS
+> Joue une animation sur les événements référencés par le selecteur ID
 
   
 > Nom|Type|Description  
@@ -1039,7 +1039,7 @@ Commandes relatives aux évènements
 
 ##### show_balloon(ids, id_balloon, *wait_flag)
 
-> Joue une émoticone sur les événements référencé par le selecteur IDS
+> Joue une émoticone sur les événements référencés par le selecteur ID
 
   
 > Nom|Type|Description  

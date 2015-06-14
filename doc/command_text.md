@@ -129,12 +129,12 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `*zoom_y`|`Fixnum`|Zoom sur la hauteur du text par défaut 100 (pour 100%)  
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
-`*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré par défaut, zéro  
+`*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré, par défaut, zéro  
 
 
 ##### text_value(id)
 
-> Renvoi la valeur d'un texte
+> Renvoie la valeur d'un texte
 
   
 > Nom|Type|Description  

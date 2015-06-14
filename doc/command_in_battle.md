@@ -52,21 +52,21 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 ##Description des commandes
 ##### active_actor
 
-> renvoie l'identifiant d'un acteur si il est entrain de sélectionner une action, nil sinon
+> renvoie l'identifiant d'un acteur si il est en train de sélectionner une action, nil sinon
 
   
 > 
 
 ##### active_actor?
 
-> renvoie true si un acteur est entrain de choisir une action, false sinon
+> renvoie true si un acteur est en train de choisir une action, false sinon
 
   
 > 
 
 ##### current_enemies
 
-> Renvoie un tableau contenant les ennemis en cours de combat
+> Renvoie un tableau contenant les ID des ennemis en cours de combat
 
   
 > 
@@ -170,7 +170,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_floor_damage_rate(position)
 
-> renvoie le pourcentage de dommage des terrains reçu de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de dommage des terrains reçu par l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -220,7 +220,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_hp_regeneration_rate(position)
 
-> renvoie le pourcentage de régénration de HP à chaque tour de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de régénération de PV à chaque tour de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -260,7 +260,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_magical_damage_rate(position)
 
-> renvoie le pourcentage de dommage magique reçu de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de dommage magique reçu par l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -320,7 +320,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_mp_cost_rate(position)
 
-> renvoie le facteur d'un cout de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
+> renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -330,7 +330,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_mp_regeneration_rate(position)
 
-> renvoie le pourcentage de régénration MP à chaque tour de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de régénération PM à chaque tour de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -340,7 +340,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_pharmacology(position)
 
-> renvoie le pourcentage de HP/MP récupéré via un objet de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de PV/PM récupéré via un objet de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -350,7 +350,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_physical_damage_rate(position)
 
-> renvoie le pourcentage de dommage physique reçu de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de dommage physique reçu par l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -360,7 +360,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_recovery_effect_rate(position)
 
-> renvoie le pourcentage de MP/HP recu, de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de PV/PM reçus, de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -390,7 +390,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_tp_charge_rate(position)
 
-> renvoie le facteur de cout de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
+> renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  
@@ -400,7 +400,7 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 
 ##### enemy_tp_regeneration_rate(position)
 
-> renvoie le pourcentage de régénration de TP par tour de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de régénération de TP par tour de l'ennemi en combat référencé par sa position en combat
 
   
 > Nom|Type|Description  

@@ -29,14 +29,14 @@ Commandes relatives aux informations des cartes
 ##Description des commandes
 ##### get_tileset_id
 
-> Renvoi l' ID du tileset de la carte en cours
+> Renvoie l' ID du tileset de la carte en cours
 
   
 > 
 
 ##### ground?(x, y)
 
-> Renvoie true si les coordonnées sont sur le sol ,false sinon
+> Renvoie true si les coordonnées sont sur le sol, false sinon
 
   
 > Nom|Type|Description  
@@ -97,7 +97,7 @@ Commandes relatives aux informations des cartes
 
 ##### roof?(x, y)
 
-> Renvoie true si les coordonnées sont sur un toit,false sinon
+> Renvoie true si les coordonnées sont sur un toit, false sinon
 
   
 > Nom|Type|Description  
@@ -133,7 +133,7 @@ Commandes relatives aux informations des cartes
 
 ##### stair?(x, y)
 
-> Renvoie true si les coordonnées sont sur une marche,false sinon
+> Renvoie true si les coordonnées sont sur une marche, false sinon
 
   
 > Nom|Type|Description  
@@ -154,7 +154,7 @@ Commandes relatives aux informations des cartes
 
 ##### table?(x, y)
 
-> Renvoie true si les coordonnées sont sur une table ,false sinon
+> Renvoie true si les coordonnées sont sur une table, false sinon
 
   
 > Nom|Type|Description  
@@ -189,7 +189,7 @@ Commandes relatives aux informations des cartes
 
 ##### wall?(x, y)
 
-> Renvoie true si les coordonnées sont sur un mur,false sinon
+> Renvoie true si les coordonnées sont sur un mur, false sinon
 
   
 > Nom|Type|Description  

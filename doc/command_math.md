@@ -84,7 +84,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### atan(x)
 
-> Renvoie l'arc tangeant de x
+> Renvoie l'arc tangent de x
 
   
 > Nom|Type|Description  
@@ -94,7 +94,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### atan2(x, y)
 
-> Renvoie l'arc tangeant pour x et y
+> Renvoie l'arc tangent pour x et y
 
   
 > Nom|Type|Description  
@@ -105,7 +105,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### atanh(x)
 
-> Renvoie l'inverse hyperbolique tangeant de x
+> Renvoie l'inverse hyperbolique tangent de x
 
   
 > Nom|Type|Description  
@@ -183,7 +183,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### tan(x)
 
-> Renvoie la tangeante de x
+> Renvoie la tangente de x
 
   
 > Nom|Type|Description  
@@ -193,7 +193,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### tanh(x)
 
-> Renvoie la tangeante hyperbolique de x
+> Renvoie la tangente hyperbolique de x
 
   
 > Nom|Type|Description  
@@ -203,7 +203,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### to_deg(x)
 
-> Renvoie x (supposé radian) convertit en degré
+> Renvoie x (supposé radian) converti en degrés
 
   
 > Nom|Type|Description  
@@ -213,7 +213,7 @@ Outils de traitement mathématiques un peu avancé
 
 ##### to_rad(x)
 
-> Renvoie x (supposé degré) convertit en radian
+> Renvoie x (supposé degré) converti en radians
 
   
 > Nom|Type|Description  

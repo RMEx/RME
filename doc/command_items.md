@@ -148,7 +148,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_element_rate(i, actor_id, element_id)
 
-> Renvoi la résistance élémentaire (par son ID d'élement) d'un objet référencé par son ID par rapport à un acteur
+> Renvoie la résistance élémentaire (par son ID d'élement) d'un objet référencé par son ID par rapport à un acteur
 
   
 > Nom|Type|Description  
@@ -420,7 +420,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 
 ##### item_number_of_targets(id)
 
-> Renvoie le nombre de cibles d'un objet référencée par son ID, false sinon
+> Renvoie le nombre de cibles d'un objet référencé par son ID, false sinon
 
   
 > Nom|Type|Description  

@@ -89,7 +89,7 @@ Informations sur les monstres rencontrables tels que définis dans la base de do
 
 ##### monster_element_rate(id, element_id)
 
-> Renvoi la résistance élémentaire (par son ID d'élement) d'un monstre référencé par son ID
+> Renvoie la résistance élémentaire (par son ID d'élément) d'un monstre référencé par son ID
 
   
 > Nom|Type|Description  
@@ -110,7 +110,7 @@ Informations sur les monstres rencontrables tels que définis dans la base de do
 
 ##### monster_give_gold(id)
 
-> renvoie l'or donnée par un ennemi référencé par son ID
+> renvoie l'or donné par un ennemi référencé par son ID
 
   
 > Nom|Type|Description  
@@ -170,7 +170,7 @@ Informations sur les monstres rencontrables tels que définis dans la base de do
 
 ##### monster_max_mp(id)
 
-> renvoie le maximum de point de magie d'un ennemi référencé par son ID
+> renvoie le maximum de points de magie d'un ennemi référencé par son ID
 
   
 > Nom|Type|Description  

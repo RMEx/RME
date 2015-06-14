@@ -18,21 +18,21 @@ Commandes pour naviguer entre les scenes de jeu (et de systèmes)
 ##Description des commandes
 ##### call_load_screen
 
-> Renvoi à la scene de chargement de partie
+> Renvoie à la scene de chargement de partie
 
   
 > 
 
 ##### call_title_screen
 
-> Renvoi à l'écran titre
+> Renvoie à l'écran titre
 
   
 > 
 
 ##### scene_call(scene)
 
-> Appel une scene (et la place dans la pile de scene)
+> Appelle une scene (et la place dans la pile de scene)
 
   
 > Nom|Type|Description  
@@ -49,7 +49,7 @@ Commandes pour naviguer entre les scenes de jeu (et de systèmes)
 
 ##### scene_goto(scene)
 
-> Appel une scene (sans la placer dans la pile de scene)
+> Appelle une scene (sans la placer dans la pile de scene)
 
   
 > Nom|Type|Description  
@@ -59,7 +59,7 @@ Commandes pour naviguer entre les scenes de jeu (et de systèmes)
 
 ##### scene_return
 
-> Renvoi à la dernière scene dans la pile d'appel
+> Renvoie à la dernière scene dans la pile d'appel
 
   
 > 

@@ -86,7 +86,7 @@ Commandes relatives à la manipulation des sons
   
 > Nom|Type|Description  
 --- | --- | ---  
-`wait`|`Fixnum`|Temps du fondu en seconde  
+`wait`|`Fixnum`|Temps du fondu (en secondes)  
 `*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
 
 
@@ -194,7 +194,7 @@ Commandes relatives à la manipulation des sons
 
 ##### sound_fade(wait, *frame)
 
-> Stop les BGM et BGS en fondu
+> Stoppe les BGM et BGS en fondu
 
   
 > Nom|Type|Description  

@@ -112,12 +112,12 @@ Commandes standards
 
 ##### message_height(n)
 
-> Change le nombre de ligne affichage dans les messages (Commande Event Afficher message)
+> Change le nombre de lignes affichées dans les messages (Commande Event Afficher message)
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`n`|`Fixnum`|Nombre de ligne visibles  
+`n`|`Fixnum`|Nombre de lignes visibles  
 
 
 ##### min(a, b)
@@ -144,12 +144,12 @@ Commandes standards
 
 ##### pick_random(*elts)
 
-> Renvoi un élément au hasard du tableau (ou de la liste d'argument)
+> Renvoie un élément au hasard du tableau (ou de la liste d'arguments)
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*elts`|`ArgsList`|éléments dans lequel piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
+`*elts`|`ArgsList`|éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
 
 
 ##### qte(key, time, *strict)
@@ -161,7 +161,7 @@ Commandes standards
 --- | --- | ---  
 `key`|`Symbol`|Touche qu'il faut presser avant la fin  
 `time`|`Fixnum`|Durée  
-`*strict`|`Boolean`|Difficulté, si elle vaut true, aucune erreur admise, sinon erreur admises. Par défaut vaut true  
+`*strict`|`Boolean`|Difficulté, si elle vaut true, aucune erreur admise, sinon erreurs admises. Par défaut vaut true  
 
 
 ##### random(min, max)
@@ -177,7 +177,7 @@ Commandes standards
 
 ##### random_combination(len, *keys)
 
-> Renvoi une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composés des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )
+> Renvoie une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composée des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )
 
   
 > Nom|Type|Description  
@@ -212,7 +212,7 @@ Commandes standards
 
 ##### split_each_char(str)
 
-> Transforme une chaine de caractère en un tableau de caractères
+> Transforme une chaîne de caractères en un tableau de caractères
 
   
 > Nom|Type|Description  
@@ -271,7 +271,7 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `time`|`Fixnum`|Temps d'attente  
-`&block`|`Block`|Action a exécuter ({action})  
+`&block`|`Block`|Action à exécuter ({action})  
 
 
 ##### website(url)

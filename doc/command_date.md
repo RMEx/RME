@@ -18,42 +18,42 @@ Commandes pour récupérer des informations sur la date et l'heure
 ##Description des commandes
 ##### time_day
 
-> Renvoi le jour actuel
+> Renvoie le jour actuel
 
   
 > 
 
 ##### time_hour
 
-> Renvoi l' heure actuelle
+> Renvoie l' heure actuelle
 
   
 > 
 
 ##### time_min
 
-> Renvoi la minute actuelle
+> Renvoie la minute actuelle
 
   
 > 
 
 ##### time_month
 
-> Renvoi le mois actuel
+> Renvoie le mois actuel
 
   
 > 
 
 ##### time_sec
 
-> Renvoi la seconde actuelle
+> Renvoie la seconde actuelle
 
   
 > 
 
 ##### time_year
 
-> Renvoi l'année actuelle
+> Renvoie l'année actuelle
 
   
 > 

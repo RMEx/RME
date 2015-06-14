@@ -39,19 +39,19 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 
 ##### screen_flash(color, duration, *wait_flag)
 
-> Flash l'écran
+> Envoie un flash à l'écran
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `color`|`Color`|Couleur du flash (utilisez la commande 'color')  
-`duration`|`Fixnum`|Durée en frame  
+`duration`|`Fixnum`|Durée en frames  
 `*wait_flag`|`Boolean`|Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false  
 
 
 ##### screen_height
 
-> Renvoi la hauteur de l'écran (en pixel)
+> Renvoie la hauteur de l'écran (en pixels)
 
   
 > 
@@ -65,7 +65,7 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 --- | --- | ---  
 `power`|`Fixnum`|Puissance du tremblement  
 `speed`|`Fixnum`|Vitesse du tremblement  
-`duration`|`Fixnum`|Durée en frame  
+`duration`|`Fixnum`|Durée en frames  
 `*wait_flag`|`Boolean`|Attend la fin de l'effet (true), n'attend pas (false). Par défaut cet argument vaut false  
 
 
@@ -83,7 +83,7 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 
 ##### screen_width
 
-> Renvoi la largeur de l'écran (en pixel)
+> Renvoie la largeur de l'écran (en pixels)
 
   
 > 

@@ -29,7 +29,7 @@ Commandes pour créer et manipuler des zones virtuelles
 ##Description des commandes
 ##### create_circle_area(x, y, rayon)
 
-> Crée et renvoi une zone circulaire
+> Crée et renvoie une zone circulaire
 
   
 > Nom|Type|Description  
@@ -41,7 +41,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### create_ellipse_area(x, y, width, height)
 
-> Crée et renvoi une zone elliptique
+> Crée et renvoie une zone elliptique
 
   
 > Nom|Type|Description  
@@ -54,7 +54,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### create_polygon_area(points)
 
-> Crée et renvoi une zone polygonale (le dernier point est relié avec le premier)
+> Crée et renvoie une zone polygonale (le dernier point est relié avec le premier)
 
   
 > Nom|Type|Description  
@@ -64,7 +64,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### create_rect_area(x, y, width, height)
 
-> Crée et renvoi une zone rectangulaire
+> Crée et renvoie une zone rectangulaire
 
   
 > Nom|Type|Description  
@@ -89,7 +89,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_click_area?(area)
 
-> Renvoie true si la souris survol et clique sur la zone passée en argument au moment de l'appel, false sinon
+> Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel, false sinon
 
   
 > Nom|Type|Description  
@@ -99,7 +99,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_click_square_area?(area, *key)
 
-> Renvoie true si la souris survol et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+> Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
 > Nom|Type|Description  
@@ -110,7 +110,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_hover_area?(area)
 
-> Renvoie true si la souris survol la zone passée en argument au moment de l'appel, false sinon
+> Renvoie true si la souris survole la zone passée en argument au moment de l'appel, false sinon
 
   
 > Nom|Type|Description  
@@ -120,7 +120,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_hover_square_area?(area)
 
-> Renvoie true si la souris survol la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+> Renvoie true si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
 > Nom|Type|Description  
@@ -130,7 +130,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_press_area?(area, *key)
 
-> Renvoie true si la souris survol et clique en continu sur la zone passée en argument au moment de l'appel, false sinon
+> Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel, false sinon
 
   
 > Nom|Type|Description  
@@ -141,7 +141,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_press_square_area?(area, *key)
 
-> Renvoie true si la souris survol et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+> Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
 > Nom|Type|Description  
@@ -152,7 +152,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_release_area?(area, *key)
 
-> Renvoie true si la souris survol et est relachée sur la zone passée en argument au moment de l'appel, false sinon
+> Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel, false sinon
 
   
 > Nom|Type|Description  
@@ -163,7 +163,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_release_square_area?(area, *key)
 
-> Renvoie true si la souris survol et est relachée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+> Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
 > Nom|Type|Description  
@@ -174,7 +174,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_repeat_area?(area, *key)
 
-> Renvoie true si la souris survol et pressée en répétitivement sur la zone passée en argument au moment de l'appel, false sinon
+> Renvoie true si la souris survole et pressée de manière répétée sur la zone passée en argument au moment de l'appel, false sinon
 
   
 > Nom|Type|Description  
@@ -185,7 +185,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_repeat_square_area?(area, *key)
 
-> Renvoie true si la souris survol et est pressée en répétitivement sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+> Renvoie true si la souris survole et est pressée de manière répétée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
 > Nom|Type|Description  
@@ -196,7 +196,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_trigger_area?(area, *key)
 
-> Renvoie true si la souris survol et clique une fois sur la zone passée en argument au moment de l'appel, false sinon
+> Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel, false sinon
 
   
 > Nom|Type|Description  
@@ -207,7 +207,7 @@ Commandes pour créer et manipuler des zones virtuelles
 
 ##### mouse_trigger_square_area?(area, *key)
 
-> Renvoie true si la souris survol et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en case et non en pixel, false sinon
+> Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
 > Nom|Type|Description  

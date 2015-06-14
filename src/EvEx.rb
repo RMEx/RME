@@ -3149,11 +3149,11 @@ class Game_Event
       index += 1
     end
     if script =~ /^\s*(trigger|listener)/
-      script = script.gsub(/(S[VS])\[(\d+)\]/, '\1['+@id.to_s+', \2]')
+      script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
       potential_trigger = eval(script, $game_map.interpreter.get_binding)
       return potential_trigger if potential_trigger.is_a?(Proc)
     elsif script =~ /^\s*(ignore_left)/
-      script = script.gsub(/(S[VS])\[(\d+)\]/, '\1['+@id.to_s+', \2]')
+      script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
       potential_trigger = eval(script, $game_map.interpreter.get_binding)
       return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
     end

@@ -18,7 +18,7 @@ Informations sur les groupes de monstres
 ##Description des commandes
 ##### troop_member(id, position)
 
-> Renvoie l'id d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier).
+> Renvoie l'id d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier).
 
   
 > Nom|Type|Description  
@@ -29,7 +29,7 @@ Informations sur les groupes de monstres
 
 ##### troop_member_x(id, position)
 
-> Renvoie la position X d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+> Renvoie la position X d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
 
   
 > Nom|Type|Description  
@@ -40,7 +40,7 @@ Informations sur les groupes de monstres
 
 ##### troop_member_y(id, position)
 
-> Renvoie la position Y d'un monstre d'un groupe de monstre référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+> Renvoie la position Y d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
 
   
 > Nom|Type|Description  
@@ -51,7 +51,7 @@ Informations sur les groupes de monstres
 
 ##### troop_members(id)
 
-> Renvoie un tableau des enemy_id  d'un groupe de monstres référencé par son ID.
+> Renvoie un tableau des enemy_id d'un groupe de monstres référencé par son ID.
 
   
 > Nom|Type|Description  

@@ -46,7 +46,7 @@ Commandes relatives à la manipulation de la caméra (scrolling de la carte)
 
 ##### camera_scroll(direction, distance, speed)
 
-> Fait défiler la carte dans une direction sur une distance (en case) à une certaine vitesse
+> Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse
 
   
 > Nom|Type|Description  

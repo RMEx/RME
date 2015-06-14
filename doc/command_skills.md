@@ -59,7 +59,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_battle_usable?(id)
 
-> Renvoie true si la technique référencé par son ID est utilisable en combat
+> Renvoie true si la technique référencé par son ID est utilisable en combat seulement
 
   
 > Nom|Type|Description  
@@ -69,7 +69,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_certain?(id)
 
-> Renvoie true si une technique référencée par son ID a une garantie de réussite total, false sinon
+> Renvoie true si une technique référencée par son ID a une garantie de réussite totale, false sinon
 
   
 > Nom|Type|Description  
@@ -79,7 +79,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_description(id)
 
-> Renvoie la description la technique référencé par son ID
+> Renvoie la description la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -89,7 +89,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_all?(id)
 
-> Renvoie true si une technique référencée par son ID cible tout le groupe, false sinon
+> Renvoie true si une technique référencée par son ID cible tout le groupe allié, false sinon
 
   
 > Nom|Type|Description  
@@ -99,7 +99,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_all_allies?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés, false sinon
+> Renvoie true si la technique référencée par son ID cible tous les alliés, false sinon
 
   
 > Nom|Type|Description  
@@ -109,7 +109,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_all_dead_allies?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise tous les alliés morts, false sinon
+> Renvoie true si la technique référencée par son ID cible tous les alliés morts, false sinon
 
   
 > Nom|Type|Description  
@@ -119,7 +119,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_all_enemies?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise tous les ennemis, false sinon
+> Renvoie true si la technique référencée par son ID cible tous les ennemis, false sinon
 
   
 > Nom|Type|Description  
@@ -129,7 +129,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_caller?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID l'utilisateur, false sinon
+> Renvoie true si la technique référencée par son ID cible l'utilisateur, false sinon
 
   
 > Nom|Type|Description  
@@ -139,7 +139,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_dead_friend?(id)
 
-> Renvoie true si une technique référencée par son ID cible (un ou) les alliés morts, false sinon
+> Renvoie true si une technique référencée par son ID cible un (ou les) allié(s) mort(s), false sinon
 
   
 > Nom|Type|Description  
@@ -149,7 +149,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_four_random_enemies?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise quatre ennemis au hasard, false sinon
+> Renvoie true si la technique référencée par son ID cible quatre ennemis au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -159,7 +159,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_friend?(id)
 
-> Renvoie true si une technique référencée par son ID cible (un ou) les alliés, false sinon
+> Renvoie true si une technique référencée par son ID cible un (ou les) allié(s), false sinon
 
   
 > Nom|Type|Description  
@@ -169,7 +169,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_one?(id)
 
-> Renvoie true si une technique référencée par son ID cible une cible, false sinon
+> Renvoie true si une technique référencée par son ID a une cible unique, false sinon
 
   
 > Nom|Type|Description  
@@ -179,7 +179,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_one_ally?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise un allié, false sinon
+> Renvoie true si la technique référencée par son ID cible un allié, false sinon
 
   
 > Nom|Type|Description  
@@ -189,7 +189,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_one_dead_ally?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise un allié mort, false sinon
+> Renvoie true si la technique référencée par son ID cible un allié mort, false sinon
 
   
 > Nom|Type|Description  
@@ -199,7 +199,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_one_enemy?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise un ennemi, false sinon
+> Renvoie true si la technique référencée par son ID cible un ennemi, false sinon
 
   
 > Nom|Type|Description  
@@ -209,7 +209,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_one_random_enemy?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise un ennemi au hasard, false sinon
+> Renvoie true si la technique référencée par son ID cible un ennemi au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -239,7 +239,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_three_random_enemies?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise trois ennemis au hasard, false sinon
+> Renvoie true si la technique référencée par son ID cible trois ennemis au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -249,7 +249,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_for_two_random_enemies?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise deux ennemis au hasard, false sinon
+> Renvoie true si la technique référencée par son ID cible deux ennemis au hasard, false sinon
 
   
 > Nom|Type|Description  
@@ -259,7 +259,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_has_no_scope?(id)
 
-> Renvoie true si la cible d'une technique référencée par son ID vise personne, false sinon
+> Renvoie true si la technique référencée par son ID ne cible personne, false sinon
 
   
 > Nom|Type|Description  
@@ -269,7 +269,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_icon(id)
 
-> Renvoie l'index de l'icone de la technique référencé par son ID
+> Renvoie l'index de l'icone de la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -279,7 +279,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_magical?(id)
 
-> Renvoie true si une technique référencée par son ID produit un dommage magique, false sinon
+> Renvoie true si une technique référencée par son ID endommage les PM, false sinon
 
   
 > Nom|Type|Description  
@@ -289,7 +289,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_menu_usable?(id)
 
-> Renvoie true si la technique référencé par son ID est utilisable dans le menu
+> Renvoie true si la technique référencé par son ID est utilisable dans le menu seulement
 
   
 > Nom|Type|Description  
@@ -299,7 +299,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_name(id)
 
-> Renvoie le nom de la technique référencé par son ID
+> Renvoie le nom de la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -309,7 +309,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_nb_hits(id)
 
-> Renvoie le nombre de coup porté par la technique référencé par son ID
+> Renvoie le nombre de coups portés par la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -339,7 +339,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_note(id)
 
-> Renvoie le commentaire de la base de données de la technique référencé par son ID
+> Renvoie le commentaire de la base de données de la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -349,7 +349,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_number_of_targets(id)
 
-> Renvoie le nombre de cibles d'une technique référencée par son ID produit un dommage magique, false sinon
+> Renvoie le nombre de cibles d'une technique référencée par son ID, false sinon
 
   
 > Nom|Type|Description  
@@ -369,7 +369,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_physical?(id)
 
-> Renvoie true si une technique référencée par son ID produit un dommage physique, false sinon
+> Renvoie true si une technique référencée par son ID endommage les PV, false sinon
 
   
 > Nom|Type|Description  
@@ -389,7 +389,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_speed(id)
 
-> Renvoie l'apport de vitesse de la technique référencé par son ID
+> Renvoie l'apport de vitesse de la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -399,7 +399,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_success_rate(id)
 
-> Renvoie la probabilité de succès de la technique référencé par son ID
+> Renvoie la probabilité de succès de la technique référencée par son ID
 
   
 > Nom|Type|Description  
@@ -409,7 +409,7 @@ Offre des commandes pour obtenir des informations sur les techniques
 
 ##### skill_tp_gain(id)
 
-> Renvoie le gain de TP que la technique référencé par son ID apporte une fois utilisé en combat
+> Renvoie le gain de TP que la technique référencée par son ID apporte une fois utilisée en combat
 
   
 > Nom|Type|Description  

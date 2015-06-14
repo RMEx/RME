@@ -105,7 +105,7 @@ Commandes permettant de manipuler les armes
 
 ##### weapon_element_rate(i, actor_id, element_id)
 
-> Renvoi la résistance élémentaire (par son ID d'élement) d'une arme référencé par son ID par rapport à un acteur
+> Renvoie la résistance élémentaire (par son ID d'élement) d'une arme référencée par son ID par rapport à un acteur
 
   
 > Nom|Type|Description  

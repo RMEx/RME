@@ -19,7 +19,7 @@ Permet de manipuler la vibration des manettes de la XBOX360
 ##Description des commandes
 ##### pad360_plugged?(*id)
 
-> Renvoie true si une manette est branchée dans le port référencée par son ID, false sinon
+> Renvoie true si une manette est branchée dans le port référencé par son ID, false sinon
 
   
 > Nom|Type|Description  

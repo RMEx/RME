@@ -18,7 +18,7 @@ Commandes pour communiquer avec un serveur TCP/IP
 ##Description des commandes
 ##### socket_connect(address, port)
 
-> Se connecte à un serveur, renvoie true si la connexion à réussie, false sinon.
+> Se connecte à un serveur, renvoie true si la connexion a réussi, false sinon.
 
   
 > Nom|Type|Description  
@@ -29,21 +29,21 @@ Commandes pour communiquer avec un serveur TCP/IP
 
 ##### socket_connected?
 
-> Renvoi true si la connexion est en cours, false, sinon
+> Renvoie true si la connexion est en cours, false, sinon
 
   
 > 
 
 ##### socket_disconnect
 
-> Déconnecte la connexion courrante
+> Déconnecte la connexion courante
 
   
 > 
 
 ##### socket_recv(*len)
 
-> Renvoi le message envoyé par le serveur au client, false si aucun message n' est reçu
+> Renvoie le message envoyé par le serveur au client, false si aucun message n' est reçu
 
   
 > Nom|Type|Description  
@@ -53,7 +53,7 @@ Commandes pour communiquer avec un serveur TCP/IP
 
 ##### socket_send(data)
 
-> Envoi un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec
+> Envoie un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec
 
   
 > Nom|Type|Description  
@@ -63,7 +63,7 @@ Commandes pour communiquer avec un serveur TCP/IP
 
 ##### socket_wait_recv(*len)
 
-> Attend une réponse du serveur, se termine quand une réponse a été reçue (et l'a renvoi)
+> Attend une réponse du serveur, se termine quand une réponse a été reçue (et la renvoie)
 
   
 > Nom|Type|Description  

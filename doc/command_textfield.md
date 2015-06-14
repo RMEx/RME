@@ -40,7 +40,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_active?(id)
 
-> Renvoi true si le champ de texte référencé par son ID est activé
+> Renvoie true si le champ de texte référencé par son ID est activé
 
   
 > Nom|Type|Description  
@@ -50,7 +50,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_click?(id)
 
-> Renvoi true si la souris clique sur le champ de texte référencé par son ID, false sinon
+> Renvoie true si la souris clique sur le champ de texte référencé par son ID, false sinon
 
   
 > Nom|Type|Description  
@@ -91,12 +91,12 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `y`|`Fixnum`|Position Y du champ  
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
-`*range`|`Range`|Interval des nombres autorisés, peut être occulté  
+`*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
 
 
 ##### textfield_get_value(id)
 
-> Renvoi la valeur de la zone de texte référencé par son ID
+> Renvoie la valeur de la zone de texte référencé par son ID
 
   
 > Nom|Type|Description  
@@ -106,7 +106,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_hover?(id)
 
-> Renvoi true si la souris survol le champ de texte référencé par son ID, false sinon
+> Renvoie true si la souris survole le champ de texte référencé par son ID, false sinon
 
   
 > Nom|Type|Description  
@@ -122,12 +122,12 @@ Commande pour manipuler des champs de texte saisissables au clavier
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
-`number`|`Fixnum`|Nombre à afficher par défaut du champ  
+`number`|`Fixnum`|Nombre à afficher par défaut  
 `x`|`Fixnum`|Position X du champ  
 `y`|`Fixnum`|Position Y du champ  
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
-`*range`|`Range`|Interval des nombres autorisés, peut être occulté  
+`*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
 
 
 ##### textfield_opacity(id, opacity)
@@ -143,35 +143,35 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_press?(id, *key)
 
-> Renvoi true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
+> Renvoie true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
-`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+`*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
 
 
 ##### textfield_release?(id, *key)
 
-> Renvoi true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
+> Renvoie true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
-`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+`*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
 
 
 ##### textfield_repeat?(id, *key)
 
-> Renvoi true si la souris clique répétitivement sur le champ de texte référencé par son ID, false sinon
+> Renvoie true si la souris clique de manière répétée sur le champ de texte référencé par son ID, false sinon
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
-`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+`*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
 
 
 ##### textfield_set_value(id, value)
@@ -193,23 +193,23 @@ Commande pour manipuler des champs de texte saisissables au clavier
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
-`text`|`String`|Texte à afficher par défaut du champ  
+`text`|`String`|Texte du champ à afficher par défaut  
 `x`|`Fixnum`|Position X du champ  
 `y`|`Fixnum`|Position Y du champ  
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
-`*range`|`Range`|Interval du nombre de caractère autorisé, peut être occulté  
+`*range`|`Range`|Intervalle du nombre de caractères autorisés, peut être occulté  
 
 
 ##### textfield_trigger?(id, *key)
 
-> Renvoi true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
+> Renvoie true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
-`*key`|`Key`|Boutton de la souris, par défaut :mouse_left  
+`*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
 
 
 ##### textfield_visible(id, flag)
@@ -225,7 +225,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_visible?(id)
 
-> Renvoi true si le champ de texte référencé par son ID est visible, false sinon
+> Renvoie true si le champ de texte référencé par son ID est visible, false sinon
 
   
 > Nom|Type|Description  
