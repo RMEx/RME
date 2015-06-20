@@ -1324,7 +1324,7 @@ class Game_CharacterBase
     else
       set_direction(y_plus < 0 ? 8 : 2) if y_plus != 0
     end
-    return unless passable?(x,y,8)
+    return unless !@through && map_passable?(x, y, @direction)
     jump(x_plus, y_plus)
   end
   #--------------------------------------------------------------------------
