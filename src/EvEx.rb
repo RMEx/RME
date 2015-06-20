@@ -3115,13 +3115,12 @@ class Game_Event
   attr_accessor :erased
   attr_accessor :trigger
   alias_method :erased?, :erased
-  alias_method :rme_initialize, :initialize
+  alias_method :rme_setup_page_settings, :setup_page_settings
   #--------------------------------------------------------------------------
-  # * Object Initialization
-  #     event:  RPG::Event
+  # * Event Page Setup
   #--------------------------------------------------------------------------
-  def initialize(*args)
-    rme_initialize(*args)
+  def setup_page_settings
+    rme_setup_page_settings
     restore_oxy
   end
   #--------------------------------------------------------------------------

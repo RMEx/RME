@@ -51,7 +51,7 @@ class Screen < Sprite
   def initialize
     super
     self.viewport = Viewport.new
-    self.viewport.z = 200
+    self.viewport.z = 2000
     @zoom = 100
     @pixelation  = 1
     @motion_blur = 0
@@ -65,7 +65,7 @@ class Screen < Sprite
 
   def update
     return if disposed?
-    if !SceneManager.scene_is?(Scene_Map) || [@blur, @motion_blur, @pixelisation, @zoom] == [0, 0, 1, 100]
+    if !SceneManager.scene_is?(Scene_Map) || [@blur, @motion_blur, @pixelation, @zoom] == [0, 0, 1, 100]
       return self.visible = false
     end
     update_zoom_target
@@ -216,7 +216,8 @@ if RME.unsafe?
       #--------------------------------------------------------------------------
       def run
         Graphics.overlayer = Sprite.new
-        Graphics.overlayer.z = 2 ** ([42].pack('i').size - 2) -1
+        Graphics.overlayer.viewport = Viewport.new
+        Graphics.overlayer.viewport.z = 1000
         Graphics.retreive_bitmap
         incubator_run
       end

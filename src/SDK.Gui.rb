@@ -220,7 +220,6 @@ class Rect
   # * Sets all parameters at once
   #--------------------------------------------------------------------------
   def set(*args)
-    return self if parameters == args || (args.size == 1 && clone == args[0])
     if (a = args[0]).is_a? Rect
       @x, @y, @width, @height = a.x, a.y, a.width, a.height
     else
@@ -894,7 +893,7 @@ module Gui
       # * Update cursor position
       #--------------------------------------------------------------------------
       def update_virtual_cursor
-        go_left if Keyboard.krepeat?(0x25)
+        go_left  if Keyboard.krepeat?(0x25)
         go_right if Keyboard.krepeat?(0x27)
       end
       #--------------------------------------------------------------------------
@@ -917,6 +916,11 @@ module Gui
           @virtual_position += c.length
           @transformed = true
           bound_cursor
+        end
+        if Keyboard.ctrl?(:a)
+          @selection_start  = 0
+          @virtual_position = value.length
+          @cursor_moved = true
         end
       end
     end
@@ -1172,4 +1176,5 @@ module CSS
     border_left: 20
 
 end
+
 end

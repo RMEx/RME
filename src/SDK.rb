@@ -63,7 +63,7 @@ module RME
     # * Enabled Gui components
     #--------------------------------------------------------------------------
     def gui_enabled?
-      false
+      true
     end
   end
 
