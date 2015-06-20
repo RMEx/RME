@@ -3130,10 +3130,10 @@ class Game_Event
     value = rm_extender_conditions_met?(page)
     first = first_is_trigger?(page)
     if first.is_a?(Array)
-      return first[0].()
+      return first[0].(@event.id)
     end
     return value unless first
-    return value && first.()
+    return value && first.(@event.id)
   end
   #--------------------------------------------------------------------------
   # * Determine if the first command is a Trigger
