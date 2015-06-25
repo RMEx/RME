@@ -25,26 +25,39 @@ module DocGenerator
       result = Array.new
       RME::Doc.commands.each do |category, data|
         json_data =
-          "{'name':'#{data[:name]}','desc':'#{data[:desc]}', 'commands':'[#{rdoc(data[:commands])}]'}"
+          [
+            "{\"name\":\"#{data[:name]}\",\"desc\":\"#{data[:desc]}\",",
+            "\"commands\":[#{rdoc(data[:commands])}]}"
+          ].join('')
         result << json_data
       end
-      return '[' + result.join(',') + ']'
+      return 'var documentation = [' + result.join(',') + '];'
     end
 
     # A continuer ! Gestion des paramètres et tout :D
     def rdoc(commands)
-      result = Array.new
       kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
-      cmd = lambda{|x| RME::Doc.schema[:Command][:methods][x]}
-      Hash[commands].sort.each do |command|
-        c = cmd.call(command)
-        json_data = "{'title':'#{command}', 'desc':'#{c[:description]}', 'returnable':#{c[:returnable]}}"
-        result << json_data
+      res = Array.new
+      commands.each do |name, data|
+        h =
+          [
+            "{\"name\":\"#{kname.(name)}\", ",
+            "\"description\":\"#{data[:description]}\", ",
+            "\"returnable\":#{data[:returnable]},",
+            "\"parameters\":[#{params(data[:attributes])}]"
+          ].join('')
+        f = '}'
+        res << h + f
       end
+      res.join(',')
     end
 
     def params(parameters)
-
+      res = Array.new
+      parameters.each do |name, t|
+        res << "{\"name\":\"name\", \"desc\":\"#{t[0]}\", \"type\":\"#{t[1]}\"}"
+      end
+      return res.join(',')
     end
   end
 
