@@ -197,8 +197,8 @@ event_erase(ids)	-
 event_erased?(id)	-
 event_in_screen?(id)	event_in_screen?(id)
 event_look_at?(ev,to,scope,*metric)	-
-event_move_frequency(ids,f)	-
-event_move_speed(ids,v)	-
+event_move_frequency(ids,*f)	-
+event_move_speed(ids,*v)	-
 event_move_speed_frequency(ids,v,f)	-
 event_move_with(id,code)	-
 event_moving?(id)	-
@@ -209,7 +209,7 @@ event_ox(id,*value)	-
 event_oy(id,*value)	-
 event_pixel_x(id)	event_pixel_x(id)
 event_pixel_y(id)	event_pixel_y(id)
-event_priority(ids,priority)	-
+event_priority(ids,*priority)	-
 event_restore_origin(id)	-
 event_screen_x(id)	event_screen_x(id)
 event_screen_y(id)	event_screen_y(id)
@@ -219,7 +219,7 @@ event_through?(id)	-
 event_trail(ids,len,*mode,*tone)	-
 event_transparent(id)	-
 event_transparent?(id)	-
-event_trigger(ids,trigger)	-
+event_trigger(ids,*trigger)	-
 event_x(id)	event_x(id)
 event_y(id)	event_y(id)
 event_zoom(id,value)	-
@@ -487,8 +487,8 @@ play_time	play_time
 player_brutal_stop_trail	-
 player_direction(*value)	player_direction
 player_in_screen?	player_in_screen?
-player_move_frequency(f)	-
-player_move_speed(v)	-
+player_move_frequency(*f)	-
+player_move_speed(*v)	-
 player_move_speed_frequency(v,f)	-
 player_move_with(code)	-
 player_moving?	-

@@ -5025,7 +5025,7 @@ link_method_documentation 'Command.event_move_speed',
   'Modifie la vitesse des événements référencés par leurs Id',
   {
     :ids => ["ID des événements", :Selector],
-    :v => ["Vitesse des événements", :Fixnum],
+    :v => ["Vitesse des événements,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse de l'évènement référencé par son ID", :Fixnum],
 
   }
 register_command :event, 'Command.event_move_speed'
@@ -5034,7 +5034,7 @@ register_command :event, 'Command.event_move_speed'
 link_method_documentation 'Command.player_move_speed',
   'Modifie la vitesse du joueur',
   {
-    :v => ["Vitesse du joueur à donner", :Fixnum],
+    :v => ["Vitesse du joueur à donner,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse du héros", :Fixnum],
 
   }
 register_command :event, 'Command.player_move_speed'
@@ -5044,7 +5044,7 @@ link_method_documentation 'Command.event_move_frequency',
   'Modifie la fréquence des événements référencés par leurs Id',
   {
     :ids => ["ID des événements", :Selector],
-    :f => ["Fréquence des événements", :Fixnum],
+    :f => ["Fréquence des événements, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence de l'évènement référencé par son ID", :Fixnum],
 
   }
 register_command :event, 'Command.event_move_frequency'
@@ -5053,7 +5053,7 @@ register_command :event, 'Command.event_move_frequency'
 link_method_documentation 'Command.player_move_frequency',
   'Modifie la fréquence du joueur',
   {
-    :f => ["Fréquence du joueur", :Fixnum],
+    :f => ["Fréquence du joueur, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence du héros", :Fixnum],
 
   }
 register_command :event, 'Command.player_move_frequency'
@@ -5319,7 +5319,7 @@ link_method_documentation 'Command.event_priority',
   'Change la priorité d\'affichage des événements référencés par leurs ID (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)',
   {
     :ids => ["ID des événements", :Selector],
-    :priority => ["Priorité d'affichage", :Fixnum],
+    :priority => ["Priorité d'affichage, si aucune priorité n'est donnée, la commande renverra la valeur de la priorité de l'évènement référencé par son ID", :Fixnum],
 
   }
 register_command :event, 'Command.event_priority'
@@ -5329,7 +5329,7 @@ link_method_documentation 'Command.event_trigger',
   'Change le type de déclenchement des événements référencés par leurs ID (0: touche action, 1: contact du héros, 2: contact de l\'event, 3: automatique, 4: processus paralléle).',
   {
     :ids => ["ID des événements", :Selector],
-    :trigger => ["Type de déclenchement", :Fixnum],
+    :trigger => ["Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID", :Fixnum],
 
   }
 register_command :event, 'Command.event_trigger'

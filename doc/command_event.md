@@ -190,7 +190,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`f`|`Fixnum`|Fréquence des événements  
+`f`|`Fixnum`|Fréquence des événements, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence de l'évènement référencé par son ID  
 
 
 ##### event_move_speed(ids, v)
@@ -201,7 +201,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`v`|`Fixnum`|Vitesse des événements  
+`v`|`Fixnum`|Vitesse des événements,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse de l'évènement référencé par son ID  
 
 
 ##### event_move_speed_frequency(ids, v, f)
@@ -318,7 +318,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`priority`|`Fixnum`|Priorité d'affichage  
+`priority`|`Fixnum`|Priorité d'affichage, si aucune priorité n'est donnée, la commande renverra la valeur de la priorité de l'évènement référencé par son ID  
 
 
 ##### event_restore_origin(id)
@@ -422,7 +422,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`trigger`|`Fixnum`|Type de déclenchement  
+`trigger`|`Fixnum`|Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID  
 
 
 ##### event_x(id)
@@ -818,7 +818,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`f`|`Fixnum`|Fréquence du joueur  
+`f`|`Fixnum`|Fréquence du joueur, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence du héros  
 
 
 ##### player_move_speed(v)
@@ -828,7 +828,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`v`|`Fixnum`|Vitesse du joueur à donner  
+`v`|`Fixnum`|Vitesse du joueur à donner,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse du héros  
 
 
 ##### player_move_speed_frequency(v, f)

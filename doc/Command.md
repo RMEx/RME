@@ -3360,7 +3360,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`f`|`Fixnum`|Fréquence des événements  
+`f`|`Fixnum`|Fréquence des événements, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence de l'évènement référencé par son ID  
 
 
 
@@ -3375,7 +3375,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`v`|`Fixnum`|Vitesse des événements  
+`v`|`Fixnum`|Vitesse des événements,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse de l'évènement référencé par son ID  
 
 
 
@@ -3536,7 +3536,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`priority`|`Fixnum`|Priorité d'affichage  
+`priority`|`Fixnum`|Priorité d'affichage, si aucune priorité n'est donnée, la commande renverra la valeur de la priorité de l'évènement référencé par son ID  
 
 
 
@@ -3680,7 +3680,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
-`trigger`|`Fixnum`|Type de déclenchement  
+`trigger`|`Fixnum`|Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID  
 
 
 
@@ -7121,7 +7121,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`f`|`Fixnum`|Fréquence du joueur  
+`f`|`Fixnum`|Fréquence du joueur, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence du héros  
 
 
 
@@ -7135,7 +7135,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`v`|`Fixnum`|Vitesse du joueur à donner  
+`v`|`Fixnum`|Vitesse du joueur à donner,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse du héros  
 
 
 

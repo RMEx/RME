@@ -1414,23 +1414,25 @@ module RMECommands
       Fiber.yield while character.balloon_id > 0 if wait_flag
     end
 
-    def event_move_speed(ids, v)
+    def event_move_speed(ids, v = nil)
+      return event(id).move_speed if !v && ids.is_a?(Fixnum)
       select_events(ids).each do |id_event|
         event(id_event).move_speed = v
       end
     end
 
-    def player_move_speed(v)
+    def player_move_speed(v = nil)
       event_move_speed(0, v)
     end
 
-    def event_move_frequency(ids, f)
+    def event_move_frequency(ids, f = nil)
+      return event(id).move_frequency if !f && ids.is_a?(Fixnum)
       select_events(ids).each do |id_event|
         event(id_event).move_frequency = f
       end
     end
 
-    def player_move_frequency(f)
+    def player_move_frequency(f = nil)
       event_move_frequency(0, f)
     end
 
@@ -1446,13 +1448,15 @@ module RMECommands
       event_move_frequency(0, f)
     end
 
-    def event_priority(ids, priority)
+    def event_priority(ids, priority = nil)
+      return event(id).priority_type unless !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
        event(id_event).priority_type = priority
      end
     end
 
-    def event_trigger(ids, trigger)
+    def event_trigger(ids, trigger = nil)
+      return event(id).trigger unless !trigger && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
         event(id_event).trigger = trigger
       end
