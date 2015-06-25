@@ -65,7 +65,7 @@ Commandes relatives aux informations des cartes
 
 ##### map_id
 
-> Renvoie l'ID de la map en cours
+> Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!
 
   
 > 

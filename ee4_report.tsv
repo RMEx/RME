@@ -217,6 +217,7 @@ event_stop_trail(ids)	-
 event_through(id,*flag)	-
 event_through?(id)	-
 event_trail(ids,len,*mode,*tone)	-
+event_transfert(id,new_x,new_y)	-
 event_transparent(id)	-
 event_transparent?(id)	-
 event_trigger(ids,*trigger)	-
@@ -502,9 +503,11 @@ player_restore_origin	-
 player_screen_x	player_screen_x
 player_screen_y	player_screen_y
 player_stop_trail	-
+player_teleport(map_id,x,y,direction,*fade_type)	-
 player_through(*flag)	-
 player_through?	-
 player_trail(len,*mode,*tone)	-
+player_transfert(new_x,new_y)	-
 player_transparent	-
 player_transparent?	-
 player_x	player_x

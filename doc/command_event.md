@@ -34,6 +34,7 @@ Commandes relatives aux évènements
 *    [event_through(id, *flag)](#event_throughid-flag)
 *    [event_through?(id)](#event_throughid)
 *    [event_trail(ids, len, *mode)](#event_trailids-len-mode)
+*    [event_transfert(id, new_x, new_y)](#event_transfertid-new_x-new_y)
 *    [event_transparent(id)](#event_transparentid)
 *    [event_transparent?(id)](#event_transparentid)
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
@@ -91,9 +92,11 @@ Commandes relatives aux évènements
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
 *    [player_stop_trail](#player_stop_trail)
+*    [player_teleport(map_id, x, y, direction)](#player_teleportmap_id-x-y-direction)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
 *    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
+*    [player_transfert(new_x, new_y)](#player_transfertnew_x-new_y)
 *    [player_transparent](#player_transparent)
 *    [player_transparent?](#player_transparent)
 *    [player_x](#player_x)
@@ -392,6 +395,18 @@ Commandes relatives aux évènements
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 `len`|`Fixnum`|Taille de la trainée  
 `*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+
+
+##### event_transfert(id, new_x, new_y)
+
+> Téléporte l'évènement référencé par son ID à une nouvelle coordonnées de la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+`new_x`|`Fixnum`|Coordonnées X  
+`new_y`|`Fixnum`|Coordonnées Y  
 
 
 ##### event_transparent(id)
@@ -938,6 +953,19 @@ Commandes relatives aux évènements
   
 > 
 
+##### player_teleport(map_id, x, y, direction)
+
+> Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8)  
+
+
 ##### player_through(*flag)
 
 > Change le mode de traversée du joueur
@@ -965,6 +993,17 @@ Commandes relatives aux évènements
 `len`|`Fixnum`|Taille de la traînée  
 `*mode`|`Fixnum`|Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0  
 `*tone`|`Tone`|Teinte de la traînée (n'hésitez pas à utiliser la commande tone)  
+
+
+##### player_transfert(new_x, new_y)
+
+> Téléporte instanément le héros à une autre position de la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`new_x`|`Fixnum`|Coordonnée X  
+`new_y`|`Fixnum`|Coordonnée Y  
 
 
 ##### player_transparent

@@ -1462,6 +1462,20 @@ module RMECommands
       end
     end
 
+    def event_transfert(id, new_x, new_y)
+      event(id).moveto(new_x, new_y)
+    end
+
+    def player_transfert(new_x, new_y)
+      event_transfert(0, new_x, new_y)
+    end
+
+    def player_teleport(map_id, x, y, direction, fade_type = 0)
+      $game_player.reserve_transfer(map_id, x, y, direction)
+      $game_temp.fade_type = fade_type
+      Fiber.yield while $game_player.transfer?
+    end
+
     def event_transparent?(id)
       event(id).transparent
     end

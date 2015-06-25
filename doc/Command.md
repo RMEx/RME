@@ -216,6 +216,7 @@ Collection des commandes EventExtender
 *    [Command.event_through(id, *flag)](#commandevent_throughid-flag)
 *    [Command.event_through?(id)](#commandevent_throughid)
 *    [Command.event_trail(ids, len, *mode)](#commandevent_trailids-len-mode)
+*    [Command.event_transfert(id, new_x, new_y)](#commandevent_transfertid-new_x-new_y)
 *    [Command.event_transparent(id)](#commandevent_transparentid)
 *    [Command.event_transparent?(id)](#commandevent_transparentid)
 *    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
@@ -472,9 +473,11 @@ Collection des commandes EventExtender
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_stop_trail](#commandplayer_stop_trail)
+*    [Command.player_teleport(map_id, x, y, direction)](#commandplayer_teleportmap_id-x-y-direction)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
 *    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
+*    [Command.player_transfert(new_x, new_y)](#commandplayer_transfertnew_x-new_y)
 *    [Command.player_transparent](#commandplayer_transparent)
 *    [Command.player_transparent?](#commandplayer_transparent)
 *    [Command.player_x](#commandplayer_x)
@@ -3644,6 +3647,22 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_transfert(id, new_x, new_y)
+
+> Téléporte l'évènement référencé par son ID à une nouvelle coordonnées de la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement  
+`new_x`|`Fixnum`|Coordonnées X  
+`new_y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+
+
 ##### Command.event_transparent(id)
 
 > Rend l'évènement référencé par son ID transparent
@@ -5066,7 +5085,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.map_id
 
-> Renvoie l'ID de la map en cours
+> Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!
 
   
 > 
@@ -7301,6 +7320,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_teleport(map_id, x, y, direction)
+
+> Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8)  
+
+
+
+
+
+
 ##### Command.player_through(*flag)
 
 > Change le mode de traversée du joueur
@@ -7336,6 +7372,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `len`|`Fixnum`|Taille de la traînée  
 `*mode`|`Fixnum`|Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0  
 `*tone`|`Tone`|Teinte de la traînée (n'hésitez pas à utiliser la commande tone)  
+
+
+
+
+
+
+##### Command.player_transfert(new_x, new_y)
+
+> Téléporte instanément le héros à une autre position de la carte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`new_x`|`Fixnum`|Coordonnée X  
+`new_y`|`Fixnum`|Coordonnée Y  
 
 
 
