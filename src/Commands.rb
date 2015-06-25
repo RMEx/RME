@@ -495,6 +495,14 @@ module RMECommands
       pictures[id].move?
     end
 
+    def picture_erased?(id)
+      pictures[id].name.empty?
+    end
+
+    def picture_showed?(id)
+      !picture_erased?(id)
+    end
+
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------

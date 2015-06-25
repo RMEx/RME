@@ -11,6 +11,7 @@ Commandes relatives à la manipulation des images
 *    [picture_blend(id, mode)](#picture_blendid-mode)
 *    [picture_dimension(id, w, h, *duration, *wait_flag)](#picture_dimensionid-w-h-duration-wait_flag)
 *    [picture_erase(id)](#picture_eraseid)
+*    [picture_erased?(id)](#picture_erasedid)
 *    [picture_flip(id)](#picture_flipid)
 *    [picture_height(id, *v, *duration, *wait_flag)](#picture_heightid-v-duration-wait_flag)
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
@@ -26,6 +27,7 @@ Commandes relatives à la manipulation des images
 *    [picture_shake(id, power, speed, duration)](#picture_shakeid-power-speed-duration)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
+*    [picture_showed?(id)](#picture_showedid)
 *    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
@@ -81,6 +83,16 @@ Commandes relatives à la manipulation des images
 ##### picture_erase(id)
 
 > Efface l'image
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+
+
+##### picture_erased?(id)
+
+> Renvoie true si l'image est supprimée (ou non affichée), false sinon
 
   
 > Nom|Type|Description  
@@ -275,6 +287,16 @@ Commandes relatives à la manipulation des images
 `pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
+
+
+##### picture_showed?(id)
+
+> Renvoie true si l'image est affichée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 ##### picture_tone(id, tone, *duration, *wait_flag)

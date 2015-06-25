@@ -422,6 +422,7 @@ Collection des commandes EventExtender
 *    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
 *    [Command.picture_dimension(id, w, h, *duration, *wait_flag)](#commandpicture_dimensionid-w-h-duration-wait_flag)
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
+*    [Command.picture_erased?(id)](#commandpicture_erasedid)
 *    [Command.picture_flip(id)](#commandpicture_flipid)
 *    [Command.picture_height(id, *v, *duration, *wait_flag)](#commandpicture_heightid-v-duration-wait_flag)
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
@@ -437,6 +438,7 @@ Collection des commandes EventExtender
 *    [Command.picture_shake(id, power, speed, duration)](#commandpicture_shakeid-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
+*    [Command.picture_showed?(id)](#commandpicture_showedid)
 *    [Command.picture_tone(id, tone, *duration, *wait_flag)](#commandpicture_toneid-tone-duration-wait_flag)
 *    [Command.picture_unpin(id)](#commandpicture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
@@ -6565,6 +6567,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.picture_erased?(id)
+
+> Renvoie true si l'image est supprimée (ou non affichée), false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+
+
+
+
+
+
 ##### Command.picture_flip(id)
 
 > Applique un effet miroir (axe vertical) sur l'image 
@@ -6808,6 +6824,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
+
+
+
+
+
+
+##### Command.picture_showed?(id)
+
+> Renvoie true si l'image est affichée, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
 
 
 
