@@ -55,7 +55,7 @@ module DocGenerator
     def params(parameters)
       res = Array.new
       parameters.each do |name, t|
-        res << "{\"name\":\"name\", \"desc\":\"#{t[0]}\", \"type\":\"#{t[1]}\"}"
+        res << "{\"name\":\"#{name}\", \"desc\":\"#{t[0]}\", \"type\":\"#{t[1]}\"}"
       end
       return res.join(',')
     end
