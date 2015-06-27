@@ -902,7 +902,7 @@ module Command
   	'Modifie (ou retourne) la coordonnée X du point de départ d\'un événement (le point d\'accroche)',
    	{
   		:id => ["ID de l'événement", :Fixnum],
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.event_ox'
@@ -912,7 +912,7 @@ module Command
   'Modifie (ou retourne) la coordonnée y du point de départ d\'un événement (le point d\'accroche)',
    	{
   		:id => ["ID de l'événement", :Fixnum],
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.event_oy'
@@ -921,7 +921,7 @@ module Command
   link_method_documentation 'Command.player_ox',
   'Modifie (ou retourne) la coordonnée X du point de départ du héros (le point d\'accroche)',
    	{
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.player_ox'
@@ -930,7 +930,7 @@ module Command
   link_method_documentation 'Command.player_oy',
   'Modifie (ou retourne) la coordonnée Y du point de départ du héros (le point d\'accroche)',
    	{
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.player_oy'
@@ -940,7 +940,7 @@ module Command
   'Modifie (ou retourne) la valeur du zoom horizontal d\'un événement',
    	{
   		:id => ["ID de l'événement", :Fixnum],
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.event_zoom_x'
@@ -950,7 +950,7 @@ module Command
   'Modifie (ou retourne) la valeur du zoom vertical d\'un événement',
    	{
   		:id => ["ID de l'événement", :Fixnum],
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.event_zoom_y'
@@ -984,7 +984,7 @@ module Command
   link_method_documentation 'Command.player_zoom_x',
   'Modifie (ou retourne) la valeur du zoom horizontal du héros',
    	{
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.player_zoom_x'
@@ -993,7 +993,7 @@ module Command
   link_method_documentation 'Command.player_zoom_y',
   'Modifie (ou retourne) la valeur du zoom vertical du héros',
    	{
-  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnul],
+  		:"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.player_zoom_y'

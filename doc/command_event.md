@@ -279,7 +279,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### event_oy(id, *value)
@@ -290,7 +290,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### event_pixel_x(id)
@@ -479,7 +479,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### event_zoom_y(id, *value)
@@ -490,7 +490,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### events_buzz(e, *duration)
@@ -898,7 +898,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### player_oy(*value)
@@ -908,7 +908,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### player_pixel_x
@@ -1051,7 +1051,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### player_zoom_y(*value)
@@ -1061,7 +1061,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*value`|`Fixnul`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+`*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
 
 ##### show_animation(ids, id_animation, *wait_flag)
