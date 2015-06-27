@@ -1,0 +1,10 @@
+<!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='Classes et modules.html'>Classes et modules</a> > <strong>Generative::CommandAPI</strong><hr /><h1>Generative::CommandAPI</h1>
+Rend accessibles les commandes EventExtender<br /><br /><h2>Liste des méthodes<ul></h2>
+<li><a href='#selfcommandname-args'>self.command(name, args)</a></li>
+</ul><h2>Description des méthodes</h2>
+<strong name='selfcommandname-args' id='selfcommandname-args'>self.command(name, args)</strong><br /><br /><blockquote>Appel d'une commande, alias : c, cmd</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>name</code></td><td><code>Symbol</code></td><td>Nom de la commande à appeler</td></tr><tr><td><code>args</code></td><td><code>Argslist</code></td><td>Suite d'arguments</td></tr></table></blockquote><br /><br />Exemple  
+<pre><code class='ruby'>  
+command(:test, 1, 2, 3) #Appel Command.test(1,2,3) (ou : c(:test, 1,2,3) ou cmd(:test, 1,2,3)  
+</code></pre><br /><br /><br /><br /></body></html>

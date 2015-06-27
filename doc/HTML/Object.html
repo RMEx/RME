@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='Classes et modules.html'>Classes et modules</a> > <strong>Object</strong><hr /><h1>Object</h1>
+Extension de la classe Object<br /><br /><h2>Liste des méthodes<ul></h2>
+<li><a href='#objectdelegateobj-method-m_alias'>Object.delegate(obj, method, m_alias)</a></li>
+<li><a href='#objectdelegate_accessorobj-field'>Object.delegate_accessor(obj, field)</a></li>
+<li><a href='#objectexternalizeobj-m_alias'>Object.externalize(obj, m_alias)</a></li>
+<li><a href='#selfattr_values'>self.attr_values</a></li>
+<li><a href='#selfbuffersize'>self.buffer(size)</a></li>
+<li><a href='#selfidentity'>self.identity</a></li>
+</ul><h2>Description des méthodes</h2>
+<strong name='objectdelegateobj-method-m_alias' id='objectdelegateobj-method-m_alias'>Object.delegate(obj, method, m_alias)</strong><br /><br /><blockquote>Délègue une méthode à une autre méthode ou à un attribut</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>obj</code></td><td><code>Symbol</code></td><td>Attribut ou méthode à pointer</td></tr><tr><td><code>method</code></td><td><code>Symbol</code></td><td>Méthode à appeler</td></tr><tr><td><code>m_alias</code></td><td><code>Symbol</code></td><td>Alias de la méthode, peut être omis</td></tr></table></blockquote><br /><br /><br /><br /><strong name='objectdelegate_accessorobj-field' id='objectdelegate_accessorobj-field'>Object.delegate_accessor(obj, field)</strong><br /><br /><blockquote>Délègue les accesseurs, mutateurs d'un attribut à une méthode</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>obj</code></td><td><code>Symbol</code></td><td>Attribut ou méthode à pointer</td></tr><tr><td><code>field</code></td><td><code>Symbol</code></td><td>Attribut de l'obj à déléguer</td></tr></table></blockquote><br /><br /><br /><br /><strong name='objectexternalizeobj-m_alias' id='objectexternalizeobj-m_alias'>Object.externalize(obj, m_alias)</strong><br /><br /><blockquote>Transforme un object 'callable' en méthode</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>obj</code></td><td><code>Proc</code></td><td>Objet callable</td></tr><tr><td><code>m_alias</code></td><td><code>Symbol</code></td><td>Nom de la méthode</td></tr></table></blockquote><br /><br /><br /><br /><strong name='selfattr_values' id='selfattr_values'>self.attr_values</strong><br /><br /><blockquote>Renvoie un hash des attributs où la clé est le nom de l'attribut
+                            et la valeur est celle de l'attribut</blockquote>  
+<blockquote></table></blockquote><br /><br /><br /><br /><strong name='selfbuffersize' id='selfbuffersize'>self.buffer(size)</strong><br /><br /><blockquote>Renvoie un buffer (pour les Win32API's)</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>size</code></td><td><code>Fixnum</code></td><td>Taille du buffer</td></tr></table></blockquote><br /><br /><br /><br /><strong name='selfidentity' id='selfidentity'>self.identity</strong><br /><br /><blockquote>Renvoie l'instance pointée</blockquote>  
+<blockquote></table></blockquote><br /><br /><br /><br /></body></html>
