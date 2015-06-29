@@ -31,7 +31,8 @@ module DocGenerator
           ].join('')
         result << json_data
       end
-      return 'var documentation = [' + result.join(',') + '];'
+      a  = "var documentation = [" + result.join(',') + "];\n"
+      a += 'var rme_samples = ' + ASample.to_json + ";\n" 
     end
 
     # A continuer ! Gestion des paramètres et tout :D

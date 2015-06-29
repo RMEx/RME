@@ -5893,9 +5893,11 @@ register_command :window, 'Command.window_y'
 end
 
 ## Documentation generator
-if $TEST && Dir.exist?("../doc")
-  DocGenerator.markdown("../doc")
-  DocGenerator.html("../doc/HTML")
-  DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb", "../ee4_report.tsv")
-  File.open('../doc/doc.js', 'w+'){|f| f.write(DocGenerator.to_json)}
+if $STAGING
+  if $TEST && Dir.exist?("../doc")
+    DocGenerator.markdown("../doc")
+    DocGenerator.html("../doc/HTML")
+    DocGenerator::Checker.run("../doc_report.csv", "../doc_generated.rb", "../ee4_report.tsv")
+    File.open('../doc/doc.js', 'w+'){|f| f.write(DocGenerator.to_json)}
+  end
 end
