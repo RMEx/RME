@@ -16,4 +16,4 @@ ASample.new('Affiche des buisson aléatoirement toutes les 300 frames sur la car
   ['map_width', 'map_height', 'random', 'set_tile'], 13)
 
   ASample.new('Le joueur est sur la zone 2',
-    ['terrain_tag'], 14)
+    ['region_id'], 14)
