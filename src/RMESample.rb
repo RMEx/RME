@@ -11,3 +11,9 @@ ASample.new('Le joueur marchant dans le sable',
 
 ASample.new('Afficher les tiles_id de chaque couche',
   ['player_x', 'player_y', 'tile_id', 'text_show', 'text_change'], 12)
+
+ASample.new('Affiche des buisson aléatoirement toutes les 300 frames sur la carte',
+  ['map_width', 'map_height', 'random', 'set_tile'], 13)
+
+  ASample.new('Le joueur est sur la zone 2',
+    ['terrain_tag'], 14)
