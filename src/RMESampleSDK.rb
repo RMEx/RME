@@ -24,6 +24,7 @@ if $STAGING
       cmds = @commands.map {|e| "'#{e}'"}.join(',')
       stitle = "'title':'#{@title}'"
       scommands = "'commands':[#{cmds}]"
+      link = 'index.html#'
       thtml = EventPrinter::CommonEvent.build(@common_event, 1).return_html
       scommon = "'html':'#{thtml.gsub(/\\|'/) { |c| "\\#{c}" }}'"
       return "{#{stitle}, #{scommands}, #{scommon}}"
