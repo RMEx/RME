@@ -3474,6 +3474,7 @@ module UI
     #--------------------------------------------------------------------------
     def update
       return unless active?
+      return if Keyboard.press?(:enter)
       @text << Keyboard.current_char
       self.value = @text
       super

@@ -15,5 +15,17 @@ ASample.new('Afficher les tiles_id de chaque couche',
 ASample.new('Affiche des buisson aléatoirement toutes les 300 frames sur la carte',
   ['map_width', 'map_height', 'random', 'set_tile'], 13)
 
-  ASample.new('Le joueur est sur la zone 2',
-    ['region_id'], 14)
+ASample.new('Le joueur est sur la zone 2',
+  ['region_id'], 14)
+
+ASample.new('QTE extrèmement simple', ['qte'], 17)
+
+ASample.new('QTE généré aléatoirement avec choix de la taille de la combinaison',
+  ['random_combination', 'get', 'qte'], 15)
+
+ASample.new('QTE infini généré aléatoirement',
+  ['pick_random', 'qte'], 16)
+
+ASample.new('Système de saisie de nom customisé',
+['event_screen_x', 'event_screen_y', 'actor_name', 'textfield_text_show', 'textfield_activate',
+  'key_press?', 'textfield_erase', 'textfield_get_value', 'set_actor_name'], 18)
