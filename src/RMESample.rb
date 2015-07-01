@@ -29,3 +29,6 @@ ASample.new('QTE infini généré aléatoirement',
 ASample.new('Système de saisie de nom customisé',
 ['event_screen_x', 'event_screen_y', 'actor_name', 'textfield_text_show', 'textfield_activate',
   'key_press?', 'textfield_erase', 'textfield_get_value', 'set_actor_name'], 18)
+
+ASample.new('Jauges en événements',
+['actor_hp', 'actor_max_hp', 'percent', 'picture_zoom_x'], 19)
