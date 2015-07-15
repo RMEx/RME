@@ -3863,3 +3863,146 @@ module SceneManager
     end
   end
 end
+
+#==============================================================================
+# ** ScreenEffects
+#------------------------------------------------------------------------------
+#  This module manages screen effects like zoom, blur, pixelation, etc.
+#==============================================================================
+
+module ScreenEffects
+
+  #--------------------------------------------------------------------------
+  # * Screen into sprite
+  #--------------------------------------------------------------------------
+  class Screen < Sprite
+
+    #--------------------------------------------------------------------------
+    # * Public Instance Variables
+    #--------------------------------------------------------------------------
+    attr_accessor :pixelation, :zoom, :zoom_target_x, :zoom_target_y,
+    :motion_blur, :focus_event, :blur, :blur_step
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    #--------------------------------------------------------------------------
+    def initialize
+      super
+      self.viewport = Viewport.new
+      self.viewport.z = 2000
+      @zoom = 100
+      @pixelation  = 1
+      @motion_blur = 0
+      @blur = 0
+      @blur_step = 1
+      @gaussian_curve = Hash.new
+      @focus_event = true
+      @capture_rect = Rect.new
+      @display_rect  = Rect.new
+    end
+    #--------------------------------------------------------------------------
+    # * Frame update
+    #--------------------------------------------------------------------------
+    def update
+      return if disposed?
+      if !SceneManager.scene_is?(Scene_Map) || [@blur, @motion_blur, @pixelation, @zoom] == [0, 0, 1, 100]
+        return self.visible = false
+      end
+      update_zoom_target
+      update_capture_rect
+      update_pixelation
+      update_bitmap
+    end
+    #--------------------------------------------------------------------------
+    # * Update zoom target
+    #--------------------------------------------------------------------------
+    def update_zoom_target
+      if @focus_event
+        @zoom_target_x = $game_map.target_camera.screen_x
+        @zoom_target_y = $game_map.target_camera.screen_y
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Portion to capture, depending of zoom processing
+    #--------------------------------------------------------------------------
+    def update_capture_rect
+      @zoom = [100, @zoom].max
+      tx, ty = @zoom_target_x, @zoom_target_y
+      f = @zoom / 100.0
+      w = (Graphics.width / f).to_i
+      h = (Graphics.height / f).to_i
+      x = (tx - w / 2.0).to_i.bound(0, Graphics.width  - w)
+      y = (ty - h / 2.0).to_i.bound(0, Graphics.height - h)
+      @capture_rect.set(x, y, w, h)
+    end
+    #--------------------------------------------------------------------------
+    # * Pixelates the screen
+    #--------------------------------------------------------------------------
+    def update_pixelation
+      @blur = [0, @blur].max
+      pix = @forced_pixelation = [@pixelation, @blur>5?2:1, @blur>25?3:1].max
+      if pix != @pixelation_old
+        w = Graphics.width  / pix.to_i
+        h = Graphics.height / pix.to_i
+        self.zoom_x = Graphics.width.to_f  / w
+        self.zoom_y = Graphics.height.to_f / h
+        current = bitmap.clone if bitmap
+        self.bitmap = Bitmap.new(w, h)
+        @pixelation_old = pix
+        @display_rect.set(0, 0, w, h)
+        self.bitmap.stretch_blt(@display_rect, current, current.rect) if current
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Updates the bitmap
+    #--------------------------------------------------------------------------
+    def update_bitmap
+      visible_windows = collect_visible_windows
+      visible_windows.each {|w| w.visible = false}
+      o = 255 - [@motion_blur, @blur*3].max.to_i.bound(0, 255)
+      self.visible = false
+      self.bitmap.stretch_blt(@display_rect, Graphics.snap_to_bitmap, @capture_rect, o)
+      self.bitmap.gaussian_blur(@blur/@forced_pixelation, @blur_step/@forced_pixelation)
+      self.visible = true
+      visible_windows.each {|w| w.visible = true }
+    end
+    #--------------------------------------------------------------------------
+    # * Collects all visible windows
+    #--------------------------------------------------------------------------
+    def collect_visible_windows
+      scene = SceneManager.scene
+      scene.instance_variables.collect do |varname|
+        scene.instance_variable_get(varname)
+      end.select do |ivar|
+        ivar.is_a?(Window) && !ivar.disposed? && ivar.visible
+      end
+    end
+
+  end
+end
+
+#==============================================================================
+# ** Graphics
+#------------------------------------------------------------------------------
+#  The module that carries out graphics processing.
+#==============================================================================
+
+module Graphics
+  class << self
+    #--------------------------------------------------------------------------
+    # * Alias
+    #--------------------------------------------------------------------------
+    alias_method :rme_screen_effect_update, :update
+    #--------------------------------------------------------------------------
+    # * Public Instance Variables
+    #--------------------------------------------------------------------------
+    attr_accessor :screen
+    #--------------------------------------------------------------------------
+    # * Frame update
+    #--------------------------------------------------------------------------
+    def update
+      @screen = ScreenEffects::Screen.new if @screen.nil? || @screen.disposed?
+      @screen.update
+      rme_screen_effect_update
+    end
+  end
+end

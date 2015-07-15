@@ -2518,6 +2518,11 @@ module RMECommands
     def screen_width; Graphics.width; end
     def screen_height; Graphics.height; end
 
+    def screen_zoom(factor); Graphics.screen.zoom = factor; end
+    def screen_pixelation(factor); Graphics.screen.pixelation = factor; end
+    def screen_blur(factor); Graphics.screen.blur = factor; end
+    def screen_motion_blur(factor); Graphics.screen.motion_blur = factor; end
+
     append_commands
   end
 

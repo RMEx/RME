@@ -283,6 +283,35 @@ end
 class Object
 
   #--------------------------------------------------------------------------
+  # * Eeasing functions
+  #--------------------------------------------------------------------------
+  EasingFunctions = {
+    linear:         proc{|t| t },
+    easeInQuad:     proc{|t| t**2 },
+    easeOutQuad:    proc{|t| t*(2-t) },
+    easeInOutQuad:  proc{|t| t<0.5 ? 2*t**2 : -1+(4-2*t)*t },
+    easeInCubic:    proc{|t| t**3 },
+    easeOutCubic:   proc{|t| (t-1)**3+1 },
+    easeInOutCubic: proc{|t| t<0.5 ? 4*t**3 : (t-1)*(2*t-2)*(2*t-2)+1 },
+    easeInQuart:    proc{|t| t**4 },
+    easeOutQuart:   proc{|t| 1-(t-1)**4 },
+    easeInOutQuart: proc{|t| t<0.5 ? 8*t**4 : 1-8*(t-1)**4 },
+    easeInQuint:    proc{|t| t**5 },
+    easeOutQuint:   proc{|t| 1+(t-1)**5 },
+    easeInOutQuint: proc{|t| t<0.5 ? 16*t**5 : 1+16*(t-1)**5 },
+    easeInSine:     proc{|t| 1-Math.cos(t*(Math.PI/2)) },
+    easeOutSine:    proc{|t| Math.sin(t*Math.PI/2) },
+    easeInOutSine:  proc{|t| -(Math.cos(Math.PI*t)-1)/2 },
+    easeInExpo:     proc{|t| Math.pow(2, 10*(t-1)) },
+    easeOutExpo:    proc{|t| -Math.pow(2, -10*t)+1 },
+    easeInOutExpo:  proc{|t| t<0.5 ? Math.pow(2, 10*(t-1)) : -Math.pow(2, -10*(t-1))+2 },
+    easeInCirc:     proc{|t| -(Math.sqrt(1 - t**2) - 1) },
+    easeOutCirc:    proc{|t| Math.sqrt(1-(t-1)**2) },
+    easeInOutCirc:  proc{|t| t<0.5 ? Math.sqrt(1-t**2)-1 : Math.sqrt(1-(t-1)**2)+1 },
+  }
+  EasingFunctions.default = proc{|t| t }
+
+  #--------------------------------------------------------------------------
   # * Eigenclass
   #--------------------------------------------------------------------------
   class << self
@@ -374,6 +403,36 @@ class Object
   def to_bool
     true
   end
+
+  #--------------------------------------------------------------------------
+  # * Setup transition for the given parameter
+  #--------------------------------------------------------------------------
+  def set_transition(parameter, target, duration, easing = :linear)
+    pa = parameter
+    return if (b = instance_variable_get("@#{pa}")).nil?
+    instance_variable_set("@transition_base_#{pa}",  b)
+    instance_variable_set("@transition_change_#{pa}", target - b)
+    instance_variable_set("@transition_easing_#{pa}", EasingFunctions[easing])
+    instance_variable_set("@transition_duration_#{pa}", duration)
+    instance_variable_set("@transition_current_time_#{pa}", 0.0)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update transition for the given parameter
+  #--------------------------------------------------------------------------
+  def update_transition(parameter)
+    pa = parameter
+    t = instance_variable_get("@transition_current_time_#{pa}")
+    d = instance_variable_get("@transition_duration_#{pa}")
+    return if d.nil? || (t > d)
+    b = instance_variable_get("@transition_base_#{pa}")
+    c = instance_variable_get("@transition_change_#{pa}")
+    f = instance_variable_get("@transition_easing_#{pa}")
+    v = t==0 ? b : t==d ? b + c : b + c*f[t/d]
+    instance_variable_set("@#{pa}", v)
+    instance_variable_set("@transition_current_time_#{pa}", t + 1)
+  end
+
 end # End of Object
 
 #==============================================================================
@@ -1969,6 +2028,37 @@ class Bitmap
       Array.new(height) {|iy| !is_transparent?(ix, iy)}
     end
     @pixel_visible[x][y]
+  end
+  #--------------------------------------------------------------------------
+  # * Gaussian filter function
+  #--------------------------------------------------------------------------
+  def self.gaussian_filter(radius)
+    dbpwsigma = 0.4155 * (radius + 1)**2
+              # 0.4155 ~= 2*(1/sqrt(2*log(255)))**2
+    @gaussian_filter ||= Hash.new
+    @gaussian_filter[radius] ||= Array.new(2*radius + 1) do |i|
+      val = Math.exp(-((i-radius)**2)/dbpwsigma) / Math.sqrt(3.14*dbpwsigma)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Gaussian blur application
+  #--------------------------------------------------------------------------
+  def gaussian_blur(radius = 3, step = 1)
+    return self if (rad = radius.to_i) <= 0
+    step = [1, step].max.to_i
+    f = Bitmap.gaussian_filter(rad)
+    ['x=', 'y='].each do |m|
+      ori = clone
+      rec = rect.clone
+      f.length.times do |i|
+        next if i == rad
+        opa = (f[i]*255).to_i
+        next if opa == 0
+        rec.method(m).call((i - rad)*step)
+        blt(0, 0, ori, rec, opa)
+      end
+    end
+    self
   end
 end
 
