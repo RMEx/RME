@@ -428,6 +428,7 @@ Collection des commandes EventExtender
 *    [Command.picture_height(id, *v, *duration, *wait_flag)](#commandpicture_heightid-v-duration-wait_flag)
 *    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [Command.picture_move?(id)](#commandpicture_moveid)
+*    [Command.picture_name(id, *name)](#commandpicture_nameid-name)
 *    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
 *    [Command.picture_pin(id, *x, *y)](#commandpicture_pinid-x-y)
@@ -6662,6 +6663,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
+
+
+
+
+
+
+##### Command.picture_name(id, *name)
+
+> Change le nom de l'image à afficher
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais), si aucun argument n'est passé, la commande renverra le nom courrant  
 
 
 

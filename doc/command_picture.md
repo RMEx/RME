@@ -16,6 +16,7 @@ Commandes relatives à la manipulation des images
 *    [picture_height(id, *v, *duration, *wait_flag)](#picture_heightid-v-duration-wait_flag)
 *    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
 *    [picture_move?(id)](#picture_moveid)
+*    [picture_name(id, *name)](#picture_nameid-name)
 *    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
 *    [picture_origin(id, origin)](#picture_originid-origin)
 *    [picture_pin(id, *x, *y)](#picture_pinid-x-y)
@@ -150,6 +151,17 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
+
+
+##### picture_name(id, *name)
+
+> Change le nom de l'image à afficher
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais), si aucun argument n'est passé, la commande renverra le nom courrant  
 
 
 ##### picture_opacity(id, opacity, *duration, *wait_flag)

@@ -1,7 +1,11 @@
 Report,
-# Commandes documentées,666/668
+# Commandes documentées,667/673
 ,
 # Commandes non documentées,# Suggestion
+screen_zoom,Aucune suggestion
+screen_pixelation,Aucune suggestion
+screen_blur,Aucune suggestion
+screen_motion_blur,Aucune suggestion
 bind,Aucune suggestion
 unbind,Aucune suggestion
 ,

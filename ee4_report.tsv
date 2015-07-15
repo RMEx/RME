@@ -455,6 +455,7 @@ picture_flip(id)	picture_flip(id)
 picture_height(id,*v,*duration,*wf)	-
 picture_move(id,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o)	picture_move(id,*x,*y,*zoom,*zoom,*dur,*opacit,*mode,*origine)
 picture_move?(id)	-
+picture_name(id,*name)	-
 picture_opacity(id,value,*duration,*wf)	picture_opacity(id,valeur)
 picture_origin(id,*origin)	-
 picture_origine(id,*origin)	picture_origine(id,origine)
@@ -536,13 +537,17 @@ scene_call(scene)	-
 scene_clear_history	-
 scene_goto(scene)	-
 scene_return	-
+screen_blur(factor)	-
 screen_fadein(duration)	-
 screen_fadeout(duration)	-
 screen_flash(color,duration,*wait_flag)	-
 screen_height	-
+screen_motion_blur(factor)	-
+screen_pixelation(factor)	-
 screen_shake(power,speed,duration,*wait_flag)	-
 screen_tone(tone,duration,*wait_flag)	-
 screen_width	-
+screen_zoom(factor)	-
 scroll_lock?	scroll_lock?
 se_play(name,*volume,*pitch)	-
 se_stop	-

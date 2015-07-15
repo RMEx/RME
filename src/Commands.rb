@@ -338,6 +338,13 @@ module RMECommands
       pictures[id].erase
     end
     #--------------------------------------------------------------------------
+    # * Picture name
+    #--------------------------------------------------------------------------
+    def picture_name(id, name = nil)
+      return pictures[id].name unless name
+      pictures[id].name = name
+    end
+    #--------------------------------------------------------------------------
     # * Modify Origin
     # Origin : 0 | 1 (0 = Corner High Left, 1 = Center)
     #--------------------------------------------------------------------------
@@ -345,7 +352,6 @@ module RMECommands
       origin = origin[0] if origin.length == 1
       pictures[id].origin = origin
     end
-
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
