@@ -286,25 +286,37 @@ class Object
   # * Eeasing functions
   #--------------------------------------------------------------------------
   e = {
-    'Quad'  => proc{|t| t**2 },
-    'Cubic' => proc{|t| t**3 },
-    'Quart' => proc{|t| t**4 },
-    'Quint' => proc{|t| t**5 },
-    'Sine'  => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
-    'Expo'  => proc{|t| 2**(10*(t - 1)) },
-    'Circ'  => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
+    'Quad'    => proc{|t| t**2 },
+    'Cubic'   => proc{|t| t**3 },
+    'Quart'   => proc{|t| t**4 },
+    'Quint'   => proc{|t| t**5 },
+    'Sine'    => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
+    'Expo'    => proc{|t| 2**(10*(t - 1)) },
+    'Circ'    => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
+    'Back'    => proc{|t| t**2*((1.7+1)*t - 1.7) },
+    'Elastic' => proc do |t|
+      -(2**(-10*(1-t)) * Math.sin(((1-t)-0.3/4)*(2*Math::PI)/0.3))
+    end,
+    'Bounce'  => proc do |t|
+      if (1-t) < 1.0/2.75
+        1 - 7.5625*(1-t)**2
+      elsif (1-t) < 2.0/2.75
+        1 - (7.5625*((1-t)-(1.5/2.75))**2 + 0.75)
+      elsif (1-t) < 2.5/2.75
+        1 - (7.5625*((1-t)-(2.25/2.75))**2 + 0.9375)
+      else
+        1 - (7.5625*((1-t)-(2.625/2.75))**2 + 0.984375)
+      end
+    end
   }
   e.keys.each do |k|
-    e[('easeIn' + k).to_sym] = e[k]
-    e[('easeOut'+ k).to_sym] = proc do |t|
-      1 - e[k][1-t]
-    end
-    e[('easeInOut' + k).to_sym] = proc do |t|
+    e[('easeIn'   + k).to_sym] = e[k]
+    e[('easeOut'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
+    e[('easeInOut'+ k).to_sym] = proc do |t|
       t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
     end
   end
   e.default = proc{|t| t }
-
   EasingFunctions = e
 
   #--------------------------------------------------------------------------
