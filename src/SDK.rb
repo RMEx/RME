@@ -285,31 +285,27 @@ class Object
   #--------------------------------------------------------------------------
   # * Eeasing functions
   #--------------------------------------------------------------------------
-  EasingFunctions = {
-    linear:         proc{|t| t },
-    easeInQuad:     proc{|t| t**2 },
-    easeOutQuad:    proc{|t| t*(2-t) },
-    easeInOutQuad:  proc{|t| t<0.5 ? 2*t**2 : -1+(4-2*t)*t },
-    easeInCubic:    proc{|t| t**3 },
-    easeOutCubic:   proc{|t| (t-1)**3+1 },
-    easeInOutCubic: proc{|t| t<0.5 ? 4*t**3 : (t-1)*(2*t-2)*(2*t-2)+1 },
-    easeInQuart:    proc{|t| t**4 },
-    easeOutQuart:   proc{|t| 1-(t-1)**4 },
-    easeInOutQuart: proc{|t| t<0.5 ? 8*t**4 : 1-8*(t-1)**4 },
-    easeInQuint:    proc{|t| t**5 },
-    easeOutQuint:   proc{|t| 1+(t-1)**5 },
-    easeInOutQuint: proc{|t| t<0.5 ? 16*t**5 : 1+16*(t-1)**5 },
-    easeInSine:     proc{|t| 1-Math.cos(t*(Math.PI/2)) },
-    easeOutSine:    proc{|t| Math.sin(t*Math.PI/2) },
-    easeInOutSine:  proc{|t| -(Math.cos(Math.PI*t)-1)/2 },
-    easeInExpo:     proc{|t| Math.pow(2, 10*(t-1)) },
-    easeOutExpo:    proc{|t| -Math.pow(2, -10*t)+1 },
-    easeInOutExpo:  proc{|t| t<0.5 ? Math.pow(2, 10*(t-1)) : -Math.pow(2, -10*(t-1))+2 },
-    easeInCirc:     proc{|t| -(Math.sqrt(1 - t**2) - 1) },
-    easeOutCirc:    proc{|t| Math.sqrt(1-(t-1)**2) },
-    easeInOutCirc:  proc{|t| t<0.5 ? Math.sqrt(1-t**2)-1 : Math.sqrt(1-(t-1)**2)+1 },
+  e = {
+    'Quad'  => proc{|t| t**2 },
+    'Cubic' => proc{|t| t**3 },
+    'Quart' => proc{|t| t**4 },
+    'Quint' => proc{|t| t**5 },
+    'Sine'  => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
+    'Expo'  => proc{|t| 2**(10*(t - 1)) },
+    'Circ'  => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
   }
-  EasingFunctions.default = proc{|t| t }
+  e.keys.each do |k|
+    e[('easeIn' + k).to_sym] = e[k]
+    e[('easeOut'+ k).to_sym] = proc do |t|
+      1 - e[k][1-t]
+    end
+    e[('easeInOut' + k).to_sym] = proc do |t|
+      t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
+    end
+  end
+  e.default = proc{|t| t }
+
+  EasingFunctions = e
 
   #--------------------------------------------------------------------------
   # * Eigenclass
@@ -405,32 +401,32 @@ class Object
   end
 
   #--------------------------------------------------------------------------
-  # * Setup transition for the given parameter
+  # * Setup transition for the given method
   #--------------------------------------------------------------------------
-  def set_transition(parameter, target, duration, easing = :linear)
-    pa = parameter
-    return if (b = instance_variable_get("@#{pa}")).nil?
-    instance_variable_set("@transition_base_#{pa}",  b)
-    instance_variable_set("@transition_change_#{pa}", target - b)
-    instance_variable_set("@transition_easing_#{pa}", EasingFunctions[easing])
-    instance_variable_set("@transition_duration_#{pa}", duration)
-    instance_variable_set("@transition_current_time_#{pa}", 0.0)
+  def set_transition(method, target, duration, easing = :linear)
+    m = method
+    return method("#{m}=")[target] if duration == 0
+    return if (base = method(m).call).nil?
+    instance_variable_set("@trans_b_#{m}", base)
+    instance_variable_set("@trans_c_#{m}", target - base)
+    instance_variable_set("@trans_f_#{m}", EasingFunctions[easing])
+    instance_variable_set("@trans_d_#{m}", duration)
+    instance_variable_set("@trans_t_#{m}", 1.0)
   end
 
   #--------------------------------------------------------------------------
-  # * Update transition for the given parameter
+  # * Update transition for the given method
   #--------------------------------------------------------------------------
-  def update_transition(parameter)
-    pa = parameter
-    t = instance_variable_get("@transition_current_time_#{pa}")
-    d = instance_variable_get("@transition_duration_#{pa}")
-    return if d.nil? || (t > d)
-    b = instance_variable_get("@transition_base_#{pa}")
-    c = instance_variable_get("@transition_change_#{pa}")
-    f = instance_variable_get("@transition_easing_#{pa}")
+  def update_transition(method)
+    m = method
+    return if (d = instance_variable_get("@trans_d_#{m}")).nil? || d==0
+    return if (t = instance_variable_get("@trans_t_#{m}")) > d
+    b = instance_variable_get("@trans_b_#{m}")
+    c = instance_variable_get("@trans_c_#{m}")
+    f = instance_variable_get("@trans_f_#{m}")
     v = t==0 ? b : t==d ? b + c : b + c*f[t/d]
-    instance_variable_set("@#{pa}", v)
-    instance_variable_set("@transition_current_time_#{pa}", t + 1)
+    instance_variable_set("@trans_t_#{m}", t + 1)
+    method("#{m}=")[v]
   end
 
 end # End of Object
