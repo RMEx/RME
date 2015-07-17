@@ -44,6 +44,7 @@ module Doc
     :undocumented => "Commandes non documentées",
     :orphans      => "Commandes inconnues",
     :suggest      => "Suggestion",
+    :ease_desc    => "Fonction à utiliser pour effectuer la transition. :linear par défaut."
   }
   documentation_add_link "GitHub", "https://github.com/RMEx/RME"
   documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/RMEx/RME/wiki"
@@ -702,10 +703,10 @@ module Command
   link_method_documentation "Command.tone",
                         "Renvoie une teinte",
                         {
-                          :red => ["Valeur de rouge", :Fixnum],
-                          :green => ["Valeur de vert", :Fixnum],
-                          :blue => ["Valeur de bleu", :Fixnum],
-                          :"*gray" => ["Valeur de gris, par défaut 0!", :Fixnum]
+                          :red => ["Valeur de rouge, entre -255 et 255", :Fixnum],
+                          :green => ["Valeur de vert, entre -255 et 255", :Fixnum],
+                          :blue => ["Valeur de bleu, entre -255 et 255", :Fixnum],
+                          :"*gray" => ["Valeur de gris, entre 0 et 255, par défaut 0 !", :Fixnum]
                         }, true
   register_command :standard, "Command.tone"
 
@@ -873,7 +874,7 @@ module Command
   		:ids => ["Sélecteur d'évènements à qui attribuer une traînée", :Selector],
   		:len => ["Taille de la trainée", :Fixnum],
   		:"*mode" => ["Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0", :Fixnum],
-  		:"*mode" => ["Teinte de la trainée (n'hésitez pas à utiliser la commande tone)", :Tone],
+  		:"*mode" => ["Teinte de la trainée (utilisez la commande tone)", :Tone],
 
   	}
   register_command :event, 'Command.event_trail'
@@ -892,7 +893,7 @@ module Command
   link_method_documentation 'Command.player_opacity',
   	'Modifie (ou retourne) l\'opacité du héros',
    	{
-  		:"*value" => ["Valeur de l'opacité. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.", :Fixnum],
+  		:"*value" => ["Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.", :Fixnum],
 
   	}, true # Maybe changed
   register_command :event, 'Command.player_opacity'
@@ -1015,7 +1016,7 @@ module Command
    	{
   		:len => ["Taille de la traînée", :Fixnum],
   		:"*mode" => ["Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0", :Fixnum],
-  		:"*tone" => ["Teinte de la traînée (n'hésitez pas à utiliser la commande tone)", :Tone],
+  		:"*tone" => ["Teinte de la traînée (utilisez la commande tone)", :Tone],
 
   	}
   register_command :event, 'Command.player_trail'
@@ -1531,6 +1532,7 @@ module Command
                             :x => ["Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }, true
   register_command :picture, "Command.picture_x"
 
@@ -1538,9 +1540,10 @@ module Command
                           "Change l'axe Y d'une image",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :x => ["Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image", :Fixnum],
+                            :y => ["Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }, true
   register_command :picture, "Command.picture_y"
   link_method_documentation "Command.picture_position",
@@ -1549,8 +1552,9 @@ module Command
                             :id => ["ID de l'image", :Fixnum],
                             :x => ["Position en x de l'image", :Fixnum],
                             :y => ["Position en y de l'image", :Fixnum],
-                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :picture, "Command.picture_position"
   link_method_documentation "Command.picture_move",
@@ -1563,9 +1567,10 @@ module Command
                             :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
                             :duration => ["Durée du déplacement en frames", :Fixnum],
                             :"*wait_flag" => ["Attendre la fin du déplacement, par défaut, true", :Boolean],
-                            :"*opacity" => ["Opacité (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
-                            :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion du moment", :Fixnum],
-                            :"*origin" => ["Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine du moment", :Fixnum],
+                            :"*opacity" => ["Opacité (de 0 à 255) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
+                            :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son mode de fusion du moment", :Fixnum],
+                            :"*origin" => ["Origine que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son origine du moment", :Fixnum],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
 
                           }
   register_command :picture, "Command.picture_move"
@@ -1588,6 +1593,9 @@ module Command
                           {
                             :id => ["ID de l'image", :Fixnum],
                             :angle => ["Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image", :Fixnum],
+                            :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+                            :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }, true
   register_command :picture, "Command.picture_angle"
   link_method_documentation "Command.picture_rotate",
@@ -1604,6 +1612,7 @@ module Command
                             :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }, true
   register_command :picture, "Command.picture_zoom_x"
   link_method_documentation "Command.picture_zoom_y",
@@ -1613,6 +1622,7 @@ module Command
                             :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }, true
   register_command :picture, "Command.picture_zoom_y"
   link_method_documentation "Command.picture_zoom",
@@ -1623,15 +1633,17 @@ module Command
                             :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }, true
   register_command :picture, "Command.picture_zoom"
   link_method_documentation "Command.picture_tone",
                           "Change la teinte d'une image",
                           {
                             :id => ["ID de l'image", :Fixnum],
-                            :tone => ["Teinte de l'image", :Tone],
+                            :tone => ["Teinte de l'image (utilisez la commande tone)", :Tone],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :picture, "Command.picture_tone"
 
@@ -1676,6 +1688,7 @@ module Command
                             :opacity => ["valeur de l'opacité (de 0 à 255)", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :picture, "Command.picture_opacity"
   link_method_documentation "Command.picture_shake",
@@ -1736,7 +1749,7 @@ module Command
       :"*v" => ["Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image", :Fixnum],
       :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
       :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-
+      :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
     }, true # Maybe changed
   register_command :picture, 'Command.picture_width'
 
@@ -1748,7 +1761,7 @@ module Command
       :"*v" => ["Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image", :Fixnum],
       :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
       :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-
+      :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
     }, true # Maybe changed
   register_command :picture, 'Command.picture_height'
 
@@ -1761,7 +1774,7 @@ module Command
       :h => ["Hauteur à modifier", :Fixnum],
       :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
       :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-
+      :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
     }
   register_command :picture, 'Command.picture_dimension'
 
@@ -1771,7 +1784,7 @@ module Command
                             :id => ["ID du panorama", :Fixnum],
                             :name => ["Nom du panorama", :String],
                             :"*z" => ["Axe Z (par défaut - 100)", :Fixnum],
-                            :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
+                            :"*opacity" => ["Opacité, entre 0 et 255. (par défaut 255)", :Fixnum],
                             :"*auto_x" => ["Défilement automatique horizontal (par défaut 0, ne défile pas)", :Fixnum],
                             :"*auto_y" => ["Défilement automatique vertical (par défaut 0, ne défile pas)", :Fixnum],
                             :"*scroll_x" => ["Défilement horizontal (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)", :Fixnum],
@@ -1790,7 +1803,7 @@ module Command
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
                             :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
-                            :"*opacity" => ["Opacité (par défaut 255)", :Fixnum],
+                            :"*opacity" => ["Opacité, entre 0 et 255. (par défaut 255)", :Fixnum],
                             :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone]
                           }
   register_command :parallax, "Command.parallax_transform"
@@ -3825,7 +3838,7 @@ link_method_documentation "Command.text_move",
                             :y => ["Position en y ou le texte doit se rendre", :Fixnum],
                             :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
                             :zoom_y => ["Zoom de la hauteur (en %)", :Fixnum],
-                            :"opacity" => ["Opacitée (de 0 à 255)", :Fixnum],
+                            :"opacity" => ["Opacité (de 0 à 255)", :Fixnum],
                             :"blend_type" => ["Mode de fusion (0, 1, 2) ", :Fixnum],
                             :"origin" => ["Origine", :Fixnum],
 
@@ -3867,7 +3880,7 @@ link_method_documentation "Command.text_opacity",
                           "Change l'opacité du texte",
                           {
                             :id => ["Identifiant du texte", :Fixnum],
-                            :opacity => ["valeur de l'opacité", :Fixnum],
+                            :opacity => ["valeur de l'opacité, entre 0 et 255.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }
@@ -4826,7 +4839,7 @@ link_method_documentation 'Command.textfield_opacity',
   'Change l\'opacité du champ de texte référencé par son ID',
   {
     :id => ["ID de la zone de texte", :Fixnum],
-    :opacity => ["Opacité, si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ", :Fixnum],
+    :opacity => ["Opacité, entre 0 et 255. Si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ", :Fixnum],
 
   }, true # Maybe changed
 register_command :textfield, 'Command.textfield_opacity'
@@ -5774,7 +5787,7 @@ link_method_documentation 'Command.window_opacity',
 	'Change l\'opacité de la fenêtre, si aucune valeur n\'est spécifiée, la commande renvoie la valeur de l\'opacité',
  	{
 		:id => ["ID de la fenêtre", :Fixnum],
-		:"*value" => ["Valeur de l'opacité à changer", :Fixnum],
+		:"*value" => ["Valeur de l'opacité à changer, entre 0 et 255.", :Fixnum],
 		:"*duration" => ["Durée du déplacement", :Fixnum],
 		:"*wait_flag" => ["si cet argument vaut true, on attendra la fin du déplacement", :Boolean],
 

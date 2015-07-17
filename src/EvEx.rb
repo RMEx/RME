@@ -2734,12 +2734,14 @@ class Game_Picture
   # * Update Picture Move
   #--------------------------------------------------------------------------
   def update_move
+    change = [@x, @y, @zoom_x, @zoom_y]
     update_transition('x')
     update_transition('y')
     update_transition('zoom_x')
     update_transition('zoom_y')
     update_transition('opacity')
     update_transition('angle')
+    @moving = (change != [@x, @y, @zoom_x, @zoom_y])
   end
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
@@ -2855,7 +2857,7 @@ class Game_Picture
   # * Picture is in movement
   #--------------------------------------------------------------------------
   def move?
-    @duration > 0
+    @moving
   end
 
 end
