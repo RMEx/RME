@@ -310,9 +310,9 @@ class Object
     end
   }
   e.keys.each do |k|
-    e[('easeIn'   + k).to_sym] = e[k]
-    e[('easeOut'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
-    e[('easeInOut'+ k).to_sym] = proc do |t|
+    e[('In'   + k).to_sym] = e[k]
+    e[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
+    e[('InOut'+ k).to_sym] = proc do |t|
       t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
     end
   end
@@ -418,7 +418,7 @@ class Object
   def set_transition(method, target, duration, easing = :linear)
     m = method
     return method("#{m}=")[target] if duration == 0
-    return if (base = method(m).call).nil?
+    return if (base = method(m).call).nil? || base == target
     instance_variable_set("@trans_b_#{m}", base)
     instance_variable_set("@trans_c_#{m}", target - base)
     instance_variable_set("@trans_f_#{m}", EasingFunctions[easing])

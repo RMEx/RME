@@ -355,45 +355,35 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
-    def picture_x(id, x=false, duration = nil, wf = false)
+    def picture_x(id, x=false, duration = 0, wf = false, ease = :linear)
       return pictures[id].x unless x
-      if duration.is_a?(Fixnum)
-        pictures[id].target_x = x
-        pictures[id].duration = duration
-        wait(duration) if wf
-      else
-        pictures[id].x = x
-      end
+      pictures[id].set_transition('x', x, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
-    def picture_y(id, y=false, duration = nil, wf = false)
+    def picture_y(id, y=false, duration = 0, wf = false, ease = :linear)
       return pictures[id].y unless y
-      if duration.is_a?(Fixnum)
-        pictures[id].target_y = y
-        pictures[id].duration = duration
-        wait(duration) if wf
-      else
-        pictures[id].y = y
-      end
+      pictures[id].set_transition('y', y, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Modify position
     #--------------------------------------------------------------------------
-    def picture_position(id, x, y, duration = nil, wf = false)
-      picture_x(id, x, duration)
-      picture_y(id, y, duration, wf)
+    def picture_position(id, x, y, duration = 0, wf = false, ease = :linear)
+      picture_x(id, x, duration, false, ease)
+      picture_y(id, y, duration, wf, ease)
     end
     #--------------------------------------------------------------------------
     # * Move picture
     #--------------------------------------------------------------------------
-    def picture_move(id, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1)
+    def picture_move(id, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :linear)
       p = pictures[id]
       opacity = (opacity == -1) ? p.opacity : opacity
       blend = (bt == -1) ? p.blend_type : bt
       origin = (o == -1) ? p.origin : o
-      p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur)
+      p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur, ease)
       wait(dur) if wf
     end
     #--------------------------------------------------------------------------
@@ -412,9 +402,10 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify Angle
     #--------------------------------------------------------------------------
-    def picture_angle(id, angle=false)
+    def picture_angle(id, angle=false, duration = 0, wf = false, ease = :linear)
       return pictures[id].angle unless angle
-      pictures[id].angle = angle%360
+      pictures[id].set_transition('angle', angle, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Rotate
@@ -425,43 +416,32 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom X
     #--------------------------------------------------------------------------
-    def picture_zoom_x(id, zoom_x=false, duration = nil, wf = false)
+    def picture_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :linear)
       return pictures[id].zoom_x unless zoom_x
-      if duration.is_a?(Fixnum)
-        pictures[id].target_zoom_x = zoom_x
-        pictures[id].duration = duration
-        wait(duration) if wf
-      else
-        pictures[id].zoom_x = zoom_x
-      end
+      pictures[id].set_transition('zoom_x', zoom_x, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * change Zoom Y
     #--------------------------------------------------------------------------
-    def picture_zoom_y(id, zoom_y=false, duration = nil, wf = false)
+    def picture_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :linear)
       return pictures[id].zoom_y unless zoom_y
-      if duration.is_a?(Fixnum)
-        pictures[id].target_zoom_y = zoom_y
-        pictures[id].duration = duration
-        wait(duration) if wf
-      else
-        pictures[id].zoom_y = zoom_y
-      end
+      pictures[id].set_transition('zoom_y', zoom_y, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(id, zoom_x, zoom_y, duration = nil, wf = false)
-      picture_zoom_x(id, zoom_x, duration)
-      picture_zoom_y(id, zoom_y, duration)
-      wait(duration) if wf
+    def picture_zoom(id, zoom_x, zoom_y, duration = 0, wf = false, ease = :linear)
+      picture_zoom_x(id, zoom_x, duration, false, ease)
+      picture_zoom_y(id, zoom_y, duration, wf, ease)
     end
     #--------------------------------------------------------------------------
     # * change Tone
     #--------------------------------------------------------------------------
-    def picture_tone(id, tone, d = nil, wf = false)
+    def picture_tone(id, tone, d = 0, wf = false, ease = :linear)
       if d.is_a?(Fixnum)
-        pictures[id].start_tone_change(tone, d)
+        pictures[id].start_tone_change(tone, d, ease)
         wait(d) if wf
       else
         pictures[id].tone = tone
@@ -512,14 +492,9 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
-    def picture_opacity(id, value, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pictures[id].target_opacity = value
-        pictures[id].duration = duration
-        wait(duration) if wf
-      else
-        pictures[id].opacity = value
-      end
+    def picture_opacity(id, value, duration = 0, wf = false, ease = :linear)
+      pictures[id].set_transition('opacity', value, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Shake the picture
@@ -582,7 +557,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_width(id, v = nil, duration = nil, wf = false)
+    def picture_width(id, v = nil, duration = 0, wf = false, ease = :linear)
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
@@ -590,13 +565,13 @@ module RMECommands
         return (((bmp.width * pict.zoom_x))/100.0).to_i
       end
       zoom = Command.percent(v, picture_width(id))
-      picture_zoom_x(id, zoom, duration, wf)
+      picture_zoom_x(id, zoom, duration, wf, ease)
     end
 
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_height(id, v = nil, duration = nil, wf = false)
+    def picture_height(id, v = nil, duration = 0, wf = false, ease = :linear)
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
@@ -604,15 +579,15 @@ module RMECommands
         return (((bmp.height * pict.zoom_y))/100.0).to_i
       end
       zoom = Command.percent(v, picture_height(id))
-      picture_zoom_y(id, zoom, duration, wf)
+      picture_zoom_y(id, zoom, duration, wf, ease)
     end
 
     #--------------------------------------------------------------------------
     # * set pictures dimension
     #--------------------------------------------------------------------------
-    def picture_dimension(id, w, h, duration = nil, wf = false)
-      picture_width(id, w, duration)
-      picture_height(id, h, duration, wf)
+    def picture_dimension(id, w, h, duration = 0, wf = false, ease = :linear)
+      picture_width(id, w, duration, false, ease)
+      picture_height(id, h, duration, wf, ease)
     end
 
 

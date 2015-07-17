@@ -2710,8 +2710,6 @@ class Game_Picture
   attr_accessor  :wave_amp
   attr_accessor  :wave_speed
   attr_accessor  :duration
-  attr_accessor  :target_x, :target_y, :target_zoom_x, :target_zoom_y
-  attr_accessor  :target_opacity
   attr_accessor  :scroll_speed_x, :scroll_speed_y
   #--------------------------------------------------------------------------
   # * Object Initialization
@@ -2719,6 +2717,47 @@ class Game_Picture
   def initialize(number)
     rm_extender_initialize(number)
     clear_effects
+  end
+  #--------------------------------------------------------------------------
+  # * Move Picture
+  #--------------------------------------------------------------------------
+  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:linear)
+    @origin = origin
+    @blend_type = blend_type
+    set_transition('x', x, duration, ease)
+    set_transition('y', y, duration, ease)
+    set_transition('zoom_x', zoom_x, duration, ease)
+    set_transition('zoom_y', zoom_y, duration, ease)
+    set_transition('opacity', opacity, duration, ease)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Picture Move
+  #--------------------------------------------------------------------------
+  def update_move
+    update_transition('x')
+    update_transition('y')
+    update_transition('zoom_x')
+    update_transition('zoom_y')
+    update_transition('opacity')
+    update_transition('angle')
+  end
+  #--------------------------------------------------------------------------
+  # * Start Changing Color Tone
+  #--------------------------------------------------------------------------
+  def start_tone_change(tone, duration, ease=:linear)
+    @tone.set_transition('red',   tone.red,   duration, ease)
+    @tone.set_transition('green', tone.green, duration, ease)
+    @tone.set_transition('blue',  tone.blue,  duration, ease)
+    @tone.set_transition('gray',  tone.gray,  duration, ease)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Color Tone Change
+  #--------------------------------------------------------------------------
+  def update_tone_change
+    @tone.update_transition('red')
+    @tone.update_transition('green')
+    @tone.update_transition('blue')
+    @tone.update_transition('gray')
   end
   #--------------------------------------------------------------------------
   # * Clear effects
@@ -2787,23 +2826,6 @@ class Game_Picture
   #--------------------------------------------------------------------------
   def flip
     self.mirror = !self.mirror
-  end
-
-  #--------------------------------------------------------------------------
-  # * Change Tone
-  #--------------------------------------------------------------------------
-  def tone_change(*args)
-    case args.length
-    when 1;
-      tone = args[0]
-      duration = 0
-    else
-      r, g, b = args[0], args[1], args[2]
-      gray = args[3] || 0
-      tone = Tone.new(r, g, b, gray)
-      duration = args[4] || 0
-    end
-    self.start_tone_change(tone, duration)
   end
 
   #--------------------------------------------------------------------------
