@@ -227,10 +227,10 @@ Commandes standards
   
 > Nom|Type|Description  
 --- | --- | ---  
-`red`|`Fixnum`|Valeur de rouge  
-`green`|`Fixnum`|Valeur de vert  
-`blue`|`Fixnum`|Valeur de bleu  
-`*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
+`red`|`Fixnum`|Valeur de rouge, entre -255 et 255  
+`green`|`Fixnum`|Valeur de vert, entre -255 et 255  
+`blue`|`Fixnum`|Valeur de bleu, entre -255 et 255  
+`*gray`|`Fixnum`|Valeur de gris, entre 0 et 255, par défaut 0 !  
 
 
 ##### wait(duration)

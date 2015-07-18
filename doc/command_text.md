@@ -59,7 +59,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `y`|`Fixnum`|Position en y ou le texte doit se rendre  
 `zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
-`opacity`|`Fixnum`|Opacitée (de 0 à 255)  
+`opacity`|`Fixnum`|Opacité (de 0 à 255)  
 `blend_type`|`Fixnum`|Mode de fusion (0, 1, 2)   
 `origin`|`Fixnum`|Origine  
 
@@ -72,7 +72,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`opacity`|`Fixnum`|valeur de l'opacité  
+`opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 

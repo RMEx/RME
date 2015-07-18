@@ -394,7 +394,7 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 `len`|`Fixnum`|Taille de la trainée  
-`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+`*mode`|`Tone`|Teinte de la trainée (utilisez la commande tone)  
 
 
 ##### event_transfert(id, new_x, new_y)
@@ -881,7 +881,7 @@ Commandes relatives aux évènements
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*value`|`Fixnum`|Valeur de l'opacité. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
 
 
 ##### player_opaque
@@ -992,7 +992,7 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `len`|`Fixnum`|Taille de la traînée  
 `*mode`|`Fixnum`|Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0  
-`*tone`|`Tone`|Teinte de la traînée (n'hésitez pas à utiliser la commande tone)  
+`*tone`|`Tone`|Teinte de la traînée (utilisez la commande tone)  
 
 
 ##### player_transfert(new_x, new_y)

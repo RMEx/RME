@@ -7,20 +7,20 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives à la manipulation des images
 
 ##Liste des commandes
-*    [picture_angle(id, angle)](#picture_angleid-angle)
+*    [picture_angle(id, angle, *duration, *wait_flag, *ease)](#picture_angleid-angle-duration-wait_flag-ease)
 *    [picture_blend(id, mode)](#picture_blendid-mode)
-*    [picture_dimension(id, w, h, *duration, *wait_flag)](#picture_dimensionid-w-h-duration-wait_flag)
+*    [picture_dimension(id, w, h, *duration, *wait_flag, *ease)](#picture_dimensionid-w-h-duration-wait_flag-ease)
 *    [picture_erase(id)](#picture_eraseid)
 *    [picture_erased?(id)](#picture_erasedid)
 *    [picture_flip(id)](#picture_flipid)
-*    [picture_height(id, *v, *duration, *wait_flag)](#picture_heightid-v-duration-wait_flag)
-*    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
+*    [picture_height(id, *v, *duration, *wait_flag, *ease)](#picture_heightid-v-duration-wait_flag-ease)
+*    [picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)](#picture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin-ease)
 *    [picture_move?(id)](#picture_moveid)
 *    [picture_name(id, *name)](#picture_nameid-name)
-*    [picture_opacity(id, opacity, *duration, *wait_flag)](#picture_opacityid-opacity-duration-wait_flag)
+*    [picture_opacity(id, opacity, *duration, *wait_flag, *ease)](#picture_opacityid-opacity-duration-wait_flag-ease)
 *    [picture_origin(id, origin)](#picture_originid-origin)
 *    [picture_pin(id, *x, *y)](#picture_pinid-x-y)
-*    [picture_position(id, x, y, *duration, *wait_flag)](#picture_positionid-x-y-duration-wait_flag)
+*    [picture_position(id, x, y, *duration, *wait_flag, *ease)](#picture_positionid-x-y-duration-wait_flag-ease)
 *    [picture_rotate(id, speed)](#picture_rotateid-speed)
 *    [picture_scroll(id, vitesse)](#picture_scrollid-vitesse)
 *    [picture_scroll_x(id, vitesse)](#picture_scroll_xid-vitesse)
@@ -29,15 +29,15 @@ Commandes relatives à la manipulation des images
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
 *    [picture_showed?(id)](#picture_showedid)
-*    [picture_tone(id, tone, *duration, *wait_flag)](#picture_toneid-tone-duration-wait_flag)
+*    [picture_tone(id, tone, *duration, *wait_flag, *ease)](#picture_toneid-tone-duration-wait_flag-ease)
 *    [picture_unpin(id)](#picture_unpinid)
 *    [picture_wave(id, amplitude, vitesse)](#picture_waveid-amplitude-vitesse)
-*    [picture_width(id, *v, *duration, *wait_flag)](#picture_widthid-v-duration-wait_flag)
-*    [picture_x(id, x, *duration, *wait_flag)](#picture_xid-x-duration-wait_flag)
-*    [picture_y(id, x, *duration, *wait_flag)](#picture_yid-x-duration-wait_flag)
-*    [picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#picture_zoomid-zoom_x-zoom_y-duration-wait_flag)
-*    [picture_zoom_x(id, zoom, *duration, *wait_flag)](#picture_zoom_xid-zoom-duration-wait_flag)
-*    [picture_zoom_y(id, zoom, *duration, *wait_flag)](#picture_zoom_yid-zoom-duration-wait_flag)
+*    [picture_width(id, *v, *duration, *wait_flag, *ease)](#picture_widthid-v-duration-wait_flag-ease)
+*    [picture_x(id, x, *duration, *wait_flag, *ease)](#picture_xid-x-duration-wait_flag-ease)
+*    [picture_y(id, y, *duration, *wait_flag, *ease)](#picture_yid-y-duration-wait_flag-ease)
+*    [picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag, *ease)](#picture_zoomid-zoom_x-zoom_y-duration-wait_flag-ease)
+*    [picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)](#picture_zoom_xid-zoom-duration-wait_flag-ease)
+*    [picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)](#picture_zoom_yid-zoom-duration-wait_flag-ease)
 *    [pictures_clear](#pictures_clear)
 *    [pictures_collide?(id, id2)](#pictures_collideid-id2)
 *    [pictures_perfect_collide?(idA, idB)](#pictures_perfect_collideida-idb)
@@ -45,7 +45,7 @@ Commandes relatives à la manipulation des images
 
 
 ##Description des commandes
-##### picture_angle(id, angle)
+##### picture_angle(id, angle, *duration, *wait_flag, *ease)
 
 > Change l'angle de l'image
 
@@ -54,6 +54,9 @@ Commandes relatives à la manipulation des images
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### picture_blend(id, mode)
@@ -67,7 +70,7 @@ Commandes relatives à la manipulation des images
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
-##### picture_dimension(id, w, h, *duration, *wait_flag)
+##### picture_dimension(id, w, h, *duration, *wait_flag, *ease)
 
 > Change la hauteur et la largeur d'une image référencée par son ID
 
@@ -79,6 +82,7 @@ Commandes relatives à la manipulation des images
 `h`|`Fixnum`|Hauteur à modifier  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### picture_erase(id)
@@ -111,7 +115,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-##### picture_height(id, *v, *duration, *wait_flag)
+##### picture_height(id, *v, *duration, *wait_flag, *ease)
 
 > Change la hauteur d'une image référencée par son ID
 
@@ -122,9 +126,10 @@ Commandes relatives à la manipulation des images
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)
+##### picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)
 
 > Déplace une image
 
@@ -138,9 +143,10 @@ Commandes relatives à la manipulation des images
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
 `duration`|`Fixnum`|Durée du déplacement en frames  
 `*wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
-`*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
-`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion du moment  
-`*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine du moment  
+`*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son opacité actuelle  
+`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son mode de fusion du moment  
+`*origin`|`Fixnum`|Origine que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son origine du moment  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### picture_move?(id)
@@ -164,7 +170,7 @@ Commandes relatives à la manipulation des images
 `*name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais), si aucun argument n'est passé, la commande renverra le nom courrant  
 
 
-##### picture_opacity(id, opacity, *duration, *wait_flag)
+##### picture_opacity(id, opacity, *duration, *wait_flag, *ease)
 
 > Change l'opacité d'une image
 
@@ -175,6 +181,7 @@ Commandes relatives à la manipulation des images
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### picture_origin(id, origin)
@@ -200,7 +207,7 @@ Commandes relatives à la manipulation des images
 `*y`|`Fixnum`|Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
 
 
-##### picture_position(id, x, y, *duration, *wait_flag)
+##### picture_position(id, x, y, *duration, *wait_flag, *ease)
 
 > Change la position de l'image
 
@@ -212,6 +219,7 @@ Commandes relatives à la manipulation des images
 `y`|`Fixnum`|Position en y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### picture_rotate(id, speed)
@@ -311,7 +319,7 @@ Commandes relatives à la manipulation des images
 `id`|`Fixnum`|ID de l'image  
 
 
-##### picture_tone(id, tone, *duration, *wait_flag)
+##### picture_tone(id, tone, *duration, *wait_flag, *ease)
 
 > Change la teinte d'une image
 
@@ -319,9 +327,10 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`tone`|`Tone`|Teinte de l'image  
+`tone`|`Tone`|Teinte de l'image (utilisez la commande tone)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### picture_unpin(id)
@@ -346,7 +355,7 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
 
-##### picture_width(id, *v, *duration, *wait_flag)
+##### picture_width(id, *v, *duration, *wait_flag, *ease)
 
 > Change la largeur d'une image référencée par son ID
 
@@ -357,9 +366,10 @@ Commandes relatives à la manipulation des images
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### picture_x(id, x, *duration, *wait_flag)
+##### picture_x(id, x, *duration, *wait_flag, *ease)
 
 > Change l'axe X d'une image
 
@@ -370,9 +380,10 @@ Commandes relatives à la manipulation des images
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### picture_y(id, x, *duration, *wait_flag)
+##### picture_y(id, y, *duration, *wait_flag, *ease)
 
 > Change l'axe Y d'une image
 
@@ -380,12 +391,13 @@ Commandes relatives à la manipulation des images
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
+`y`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)
+##### picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
 
 > Change la taille d'une image
 
@@ -397,9 +409,10 @@ Commandes relatives à la manipulation des images
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### picture_zoom_x(id, zoom, *duration, *wait_flag)
+##### picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
 > Change la largeur d'une image
 
@@ -410,9 +423,10 @@ Commandes relatives à la manipulation des images
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### picture_zoom_y(id, zoom, *duration, *wait_flag)
+##### picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
 > Change la hauteur d'une image
 
@@ -423,6 +437,7 @@ Commandes relatives à la manipulation des images
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### pictures_clear

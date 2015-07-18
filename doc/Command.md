@@ -419,20 +419,20 @@ Collection des commandes EventExtender
 *    [Command.percent(value, max)](#commandpercentvalue-max)
 *    [Command.pi](#commandpi)
 *    [Command.pick_random(*elts)](#commandpick_randomelts)
-*    [Command.picture_angle(id, angle)](#commandpicture_angleid-angle)
+*    [Command.picture_angle(id, angle, *duration, *wait_flag, *ease)](#commandpicture_angleid-angle-duration-wait_flag-ease)
 *    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
-*    [Command.picture_dimension(id, w, h, *duration, *wait_flag)](#commandpicture_dimensionid-w-h-duration-wait_flag)
+*    [Command.picture_dimension(id, w, h, *duration, *wait_flag, *ease)](#commandpicture_dimensionid-w-h-duration-wait_flag-ease)
 *    [Command.picture_erase(id)](#commandpicture_eraseid)
 *    [Command.picture_erased?(id)](#commandpicture_erasedid)
 *    [Command.picture_flip(id)](#commandpicture_flipid)
-*    [Command.picture_height(id, *v, *duration, *wait_flag)](#commandpicture_heightid-v-duration-wait_flag)
-*    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin)
+*    [Command.picture_height(id, *v, *duration, *wait_flag, *ease)](#commandpicture_heightid-v-duration-wait_flag-ease)
+*    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin-ease)
 *    [Command.picture_move?(id)](#commandpicture_moveid)
 *    [Command.picture_name(id, *name)](#commandpicture_nameid-name)
-*    [Command.picture_opacity(id, opacity, *duration, *wait_flag)](#commandpicture_opacityid-opacity-duration-wait_flag)
+*    [Command.picture_opacity(id, opacity, *duration, *wait_flag, *ease)](#commandpicture_opacityid-opacity-duration-wait_flag-ease)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
 *    [Command.picture_pin(id, *x, *y)](#commandpicture_pinid-x-y)
-*    [Command.picture_position(id, x, y, *duration, *wait_flag)](#commandpicture_positionid-x-y-duration-wait_flag)
+*    [Command.picture_position(id, x, y, *duration, *wait_flag, *ease)](#commandpicture_positionid-x-y-duration-wait_flag-ease)
 *    [Command.picture_rotate(id, speed)](#commandpicture_rotateid-speed)
 *    [Command.picture_scroll(id, vitesse)](#commandpicture_scrollid-vitesse)
 *    [Command.picture_scroll_x(id, vitesse)](#commandpicture_scroll_xid-vitesse)
@@ -441,15 +441,15 @@ Collection des commandes EventExtender
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
 *    [Command.picture_showed?(id)](#commandpicture_showedid)
-*    [Command.picture_tone(id, tone, *duration, *wait_flag)](#commandpicture_toneid-tone-duration-wait_flag)
+*    [Command.picture_tone(id, tone, *duration, *wait_flag, *ease)](#commandpicture_toneid-tone-duration-wait_flag-ease)
 *    [Command.picture_unpin(id)](#commandpicture_unpinid)
 *    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
-*    [Command.picture_width(id, *v, *duration, *wait_flag)](#commandpicture_widthid-v-duration-wait_flag)
-*    [Command.picture_x(id, x, *duration, *wait_flag)](#commandpicture_xid-x-duration-wait_flag)
-*    [Command.picture_y(id, x, *duration, *wait_flag)](#commandpicture_yid-x-duration-wait_flag)
-*    [Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)](#commandpicture_zoomid-zoom_x-zoom_y-duration-wait_flag)
-*    [Command.picture_zoom_x(id, zoom, *duration, *wait_flag)](#commandpicture_zoom_xid-zoom-duration-wait_flag)
-*    [Command.picture_zoom_y(id, zoom, *duration, *wait_flag)](#commandpicture_zoom_yid-zoom-duration-wait_flag)
+*    [Command.picture_width(id, *v, *duration, *wait_flag, *ease)](#commandpicture_widthid-v-duration-wait_flag-ease)
+*    [Command.picture_x(id, x, *duration, *wait_flag, *ease)](#commandpicture_xid-x-duration-wait_flag-ease)
+*    [Command.picture_y(id, y, *duration, *wait_flag, *ease)](#commandpicture_yid-y-duration-wait_flag-ease)
+*    [Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag, *ease)](#commandpicture_zoomid-zoom_x-zoom_y-duration-wait_flag-ease)
+*    [Command.picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)](#commandpicture_zoom_xid-zoom-duration-wait_flag-ease)
+*    [Command.picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)](#commandpicture_zoom_yid-zoom-duration-wait_flag-ease)
 *    [Command.pictures_clear](#commandpictures_clear)
 *    [Command.pictures_collide?(id, id2)](#commandpictures_collideid-id2)
 *    [Command.pictures_perfect_collide?(idA, idB)](#commandpictures_perfect_collideida-idb)
@@ -3641,7 +3641,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 `len`|`Fixnum`|Taille de la trainée  
-`*mode`|`Tone`|Teinte de la trainée (n'hésitez pas à utiliser la commande tone)  
+`*mode`|`Tone`|Teinte de la trainée (utilisez la commande tone)  
 
 
 
@@ -6351,7 +6351,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `id`|`Fixnum`|ID du panorama  
 `name`|`String`|Nom du panorama  
 `*z`|`Fixnum`|Axe Z (par défaut - 100)  
-`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*auto_x`|`Fixnum`|Défilement automatique horizontal (par défaut 0, ne défile pas)  
 `*auto_y`|`Fixnum`|Défilement automatique vertical (par défaut 0, ne défile pas)  
 `*scroll_x`|`Fixnum`|Défilement horizontal (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)  
@@ -6395,7 +6395,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
-`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
 
 
@@ -6525,7 +6525,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_angle(id, angle)
+##### Command.picture_angle(id, angle, *duration, *wait_flag, *ease)
 
 > Change l'angle de l'image
 
@@ -6534,6 +6534,9 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6555,7 +6558,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_dimension(id, w, h, *duration, *wait_flag)
+##### Command.picture_dimension(id, w, h, *duration, *wait_flag, *ease)
 
 > Change la hauteur et la largeur d'une image référencée par son ID
 
@@ -6567,6 +6570,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `h`|`Fixnum`|Hauteur à modifier  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6615,7 +6619,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_height(id, *v, *duration, *wait_flag)
+##### Command.picture_height(id, *v, *duration, *wait_flag, *ease)
 
 > Change la hauteur d'une image référencée par son ID
 
@@ -6626,13 +6630,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin)
+##### Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)
 
 > Déplace une image
 
@@ -6646,9 +6651,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
 `duration`|`Fixnum`|Durée du déplacement en frames  
 `*wait_flag`|`Boolean`|Attendre la fin du déplacement, par défaut, true  
-`*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son opacité actuelle  
-`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si aucun argument n'est donné, l'image conserva son mode de fusion du moment  
-`*origin`|`Fixnum`|Origine que l'image devra avoir, si aucun argument n'est donné, l'image conserva son origine du moment  
+`*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son opacité actuelle  
+`*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son mode de fusion du moment  
+`*origin`|`Fixnum`|Origine que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son origine du moment  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6684,7 +6690,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_opacity(id, opacity, *duration, *wait_flag)
+##### Command.picture_opacity(id, opacity, *duration, *wait_flag, *ease)
 
 > Change l'opacité d'une image
 
@@ -6695,6 +6701,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6732,7 +6739,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_position(id, x, y, *duration, *wait_flag)
+##### Command.picture_position(id, x, y, *duration, *wait_flag, *ease)
 
 > Change la position de l'image
 
@@ -6744,6 +6751,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `y`|`Fixnum`|Position en y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6879,7 +6887,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_tone(id, tone, *duration, *wait_flag)
+##### Command.picture_tone(id, tone, *duration, *wait_flag, *ease)
 
 > Change la teinte d'une image
 
@@ -6887,9 +6895,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`tone`|`Tone`|Teinte de l'image  
+`tone`|`Tone`|Teinte de l'image (utilisez la commande tone)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6926,7 +6935,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_width(id, *v, *duration, *wait_flag)
+##### Command.picture_width(id, *v, *duration, *wait_flag, *ease)
 
 > Change la largeur d'une image référencée par son ID
 
@@ -6937,13 +6946,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.picture_x(id, x, *duration, *wait_flag)
+##### Command.picture_x(id, x, *duration, *wait_flag, *ease)
 
 > Change l'axe X d'une image
 
@@ -6954,13 +6964,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.picture_y(id, x, *duration, *wait_flag)
+##### Command.picture_y(id, y, *duration, *wait_flag, *ease)
 
 > Change l'axe Y d'une image
 
@@ -6968,16 +6979,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
-`x`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
+`y`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag)
+##### Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
 
 > Change la taille d'une image
 
@@ -6989,13 +7001,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.picture_zoom_x(id, zoom, *duration, *wait_flag)
+##### Command.picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
 > Change la largeur d'une image
 
@@ -7006,13 +7019,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.picture_zoom_y(id, zoom, *duration, *wait_flag)
+##### Command.picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
 > Change la hauteur d'une image
 
@@ -7023,6 +7037,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -7224,7 +7239,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`*value`|`Fixnum`|Valeur de l'opacité. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
 
 
 
@@ -7387,7 +7402,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `len`|`Fixnum`|Taille de la traînée  
 `*mode`|`Fixnum`|Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0  
-`*tone`|`Tone`|Teinte de la traînée (n'hésitez pas à utiliser la commande tone)  
+`*tone`|`Tone`|Teinte de la traînée (utilisez la commande tone)  
 
 
 
@@ -8890,7 +8905,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `y`|`Fixnum`|Position en y ou le texte doit se rendre  
 `zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
 `zoom_y`|`Fixnum`|Zoom de la hauteur (en %)  
-`opacity`|`Fixnum`|Opacitée (de 0 à 255)  
+`opacity`|`Fixnum`|Opacité (de 0 à 255)  
 `blend_type`|`Fixnum`|Mode de fusion (0, 1, 2)   
 `origin`|`Fixnum`|Origine  
 
@@ -8907,7 +8922,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`opacity`|`Fixnum`|valeur de l'opacité  
+`opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -9233,7 +9248,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
-`opacity`|`Fixnum`|Opacité, si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
+`opacity`|`Fixnum`|Opacité, entre 0 et 255. Si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
 
 
 
@@ -9493,10 +9508,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
   
 > Nom|Type|Description  
 --- | --- | ---  
-`red`|`Fixnum`|Valeur de rouge  
-`green`|`Fixnum`|Valeur de vert  
-`blue`|`Fixnum`|Valeur de bleu  
-`*gray`|`Fixnum`|Valeur de gris, par défaut 0!  
+`red`|`Fixnum`|Valeur de rouge, entre -255 et 255  
+`green`|`Fixnum`|Valeur de vert, entre -255 et 255  
+`blue`|`Fixnum`|Valeur de bleu, entre -255 et 255  
+`*gray`|`Fixnum`|Valeur de gris, entre 0 et 255, par défaut 0 !  
 
 
 
@@ -10101,7 +10116,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-`*value`|`Fixnum`|Valeur de l'opacité à changer  
+`*value`|`Fixnum`|Valeur de l'opacité à changer, entre 0 et 255.  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 

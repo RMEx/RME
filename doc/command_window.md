@@ -243,7 +243,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-`*value`|`Fixnum`|Valeur de l'opacité à changer  
+`*value`|`Fixnum`|Valeur de l'opacité à changer, entre 0 et 255.  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
 

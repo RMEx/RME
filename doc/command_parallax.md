@@ -144,7 +144,7 @@ Commandes relatives à la manipulation des panoramas
 `id`|`Fixnum`|ID du panorama  
 `name`|`String`|Nom du panorama  
 `*z`|`Fixnum`|Axe Z (par défaut - 100)  
-`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*auto_x`|`Fixnum`|Défilement automatique horizontal (par défaut 0, ne défile pas)  
 `*auto_y`|`Fixnum`|Défilement automatique vertical (par défaut 0, ne défile pas)  
 `*scroll_x`|`Fixnum`|Défilement horizontal (par défaut 2, à la même vitesse que la carte. 1 = vitesse du panorama de VXace)  
@@ -180,7 +180,7 @@ Commandes relatives à la manipulation des panoramas
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
-`*opacity`|`Fixnum`|Opacité (par défaut 255)  
+`*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
 
 

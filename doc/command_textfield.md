@@ -138,7 +138,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
-`opacity`|`Fixnum`|Opacité, si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
+`opacity`|`Fixnum`|Opacité, entre 0 et 255. Si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
 
 
 ##### textfield_press?(id, *key)
