@@ -158,9 +158,10 @@ module RMECommands
         zoom_x = 100,
         zoom_y = 100,
         opacity = 255,
-        tone = nil
+        tone = nil,
+        ease = :linear
       )
-      $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone)
+      $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
@@ -184,33 +185,23 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change autospeed_x
     #--------------------------------------------------------------------------
-    def parallax_autoscroll_x(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.start_auto_change(v.to_f, pr.autospeed_y, duration)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].autospeed_x = v
-      end
+    def parallax_autoscroll_x(id, v, duration = 0, wf = false, ease = :linear)
+      $game_map.parallaxes[id].set_transition('autospeed_x', v, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change autospeed_x
     #--------------------------------------------------------------------------
-    def parallax_autoscroll_y(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.start_auto_change(pr.autospeed_x, v.to_f, duration)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].autospeed_y = v
-      end
+    def parallax_autoscroll_y(id, v, duration = 0, wf = false, ease = :linear)
+      $game_map.parallaxes[id].set_transition('autospeed_y', v, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change autospeed
     #--------------------------------------------------------------------------
-    def parallax_autoscroll(id, x, y, d = nil, wf = false)
-      parallax_autoscroll_x(id, x, d)
-      parallax_autoscroll_y(id, y, d, wf)
+    def parallax_autoscroll(id, x, y, d = 0, wf = false, ease = :linear)
+      parallax_autoscroll_x(id, x, d, false, ease)
+      parallax_autoscroll_y(id, y, d, wf, ease)
     end
     #--------------------------------------------------------------------------
     # * Change z
@@ -237,67 +228,40 @@ module RMECommands
       parallax_scroll_x(id, x)
       parallax_scroll_y(id, y)
     end
-
     #--------------------------------------------------------------------------
     # * Change zoom_x
     #--------------------------------------------------------------------------
-    def parallax_zoom_x(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.move(duration, v, pr.zoom_y, pr.opacity)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].zoom_x = v
-      end
+    def parallax_zoom_x(id, v, duration = 0, wf = false, ease = :linear)
+      $game_map.parallaxes[id].set_transition('zoom_x', v, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change zoom_y
     #--------------------------------------------------------------------------
-    def parallax_zoom_y(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.move(duration, pr.zoom_x, v, pr.opacity)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].zoom_y = v
-      end
+    def parallax_zoom_y(id, v, duration = 0, wf = false, ease = :linear)
+      $game_map.parallaxes[id].set_transition('zoom_y', v, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change zoom
     #--------------------------------------------------------------------------
-    def parallax_zoom(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.move(duration, v, v, pr.opacity)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].zoom_y = v
-        $game_map.parallaxes[id].zoom_x = v
-      end
+    def parallax_zoom(id, v, duration = 0, wf = false, ease = :linear)
+      parallax_zoom_x(id, v, duration, false, ease)
+      parallax_zoom_y(id, v, duration, wf, ease)
     end
     #--------------------------------------------------------------------------
     # * Change tone
     #--------------------------------------------------------------------------
-    def parallax_tone(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.move(duration, pr.zoom_x, pr.zoom_y, pr.opacity, v)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].tone = v
-      end
+    def parallax_tone(id, tone, duration = 0, wf = false, ease = :linear)
+      $game_map.parallaxes[id].start_tone_change(tone, duration, ease)
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change opacity
     #--------------------------------------------------------------------------
-    def parallax_opacity(id, v, duration = nil, wf = false)
-      if duration.is_a?(Fixnum)
-        pr = $game_map.parallaxes[id]
-        pr.move(duration, pr.zoom_x, pr.zoom_y, v)
-        wait(duration) if wf
-      else
-        $game_map.parallaxes[id].opacity = v
-      end
+    def parallax_opacity(id, v, duration = 0, wf = false, ease = :linear)
+      $game_map.parallaxes[id].set_transition('opacity', v, duration, ease)
+      wait(duration) if wf
     end
 
     # fix for EE4

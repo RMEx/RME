@@ -400,21 +400,21 @@ Collection des commandes EventExtender
 *    [Command.pad360_vibrate_right(*id, *s)](#commandpad360_vibrate_rightid-s)
 *    [Command.page_runnable?(map_id, event_id, page_id, *context)](#commandpage_runnablemap_id-event_id-page_id-context)
 *    [Command.parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#commandparallax_autoscrollid-speed_x-duration-wait_flag)
-*    [Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag)](#commandparallax_autoscroll_xid-speed-duration-wait_flag)
-*    [Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag)](#commandparallax_autoscroll_yid-speed-duration-wait_flag)
+*    [Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)](#commandparallax_autoscroll_xid-speed-duration-wait_flag-ease)
+*    [Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)](#commandparallax_autoscroll_yid-speed-duration-wait_flag-ease)
 *    [Command.parallax_blend(id, blend_type)](#commandparallax_blendid-blend_type)
 *    [Command.parallax_erase(id)](#commandparallax_eraseid)
-*    [Command.parallax_opacity(id, opacity, *duration, *wait_flag)](#commandparallax_opacityid-opacity-duration-wait_flag)
+*    [Command.parallax_opacity(id, opacity, *duration, *wait_flag, *ease)](#commandparallax_opacityid-opacity-duration-wait_flag-ease)
 *    [Command.parallax_scroll(id, x, y)](#commandparallax_scrollid-x-y)
 *    [Command.parallax_scroll_x(id, speed)](#commandparallax_scroll_xid-speed)
 *    [Command.parallax_scroll_y(id, speed)](#commandparallax_scroll_yid-speed)
 *    [Command.parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#commandparallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
-*    [Command.parallax_tone(id, tone, *duration, *wait_flag)](#commandparallax_toneid-tone-duration-wait_flag)
-*    [Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#commandparallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
+*    [Command.parallax_tone(id, tone, *duration, *wait_flag, *ease)](#commandparallax_toneid-tone-duration-wait_flag-ease)
+*    [Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)](#commandparallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone-ease)
 *    [Command.parallax_z(id, z)](#commandparallax_zid-z)
-*    [Command.parallax_zoom(id, zoom, *duration, *wait_flag)](#commandparallax_zoomid-zoom-duration-wait_flag)
-*    [Command.parallax_zoom_x(id, zoom, *duration, *wait_flag)](#commandparallax_zoom_xid-zoom-duration-wait_flag)
-*    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)](#commandparallax_zoom_yid-zoom-duration-wait_flag)
+*    [Command.parallax_zoom(id, zoom, *duration, *wait_flag, *ease)](#commandparallax_zoomid-zoom-duration-wait_flag-ease)
+*    [Command.parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)](#commandparallax_zoom_xid-zoom-duration-wait_flag-ease)
+*    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)](#commandparallax_zoom_yid-zoom-duration-wait_flag-ease)
 *    [Command.parallaxes_clear](#commandparallaxes_clear)
 *    [Command.percent(value, max)](#commandpercentvalue-max)
 *    [Command.pi](#commandpi)
@@ -6215,7 +6215,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag)
+##### Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)
 
 > Défilement horizontal automatique d'un panorama
 
@@ -6226,13 +6226,14 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag)
+##### Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)
 
 > Défilement vertical automatique d'un panorama
 
@@ -6243,6 +6244,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6278,7 +6280,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.parallax_opacity(id, opacity, *duration, *wait_flag)
+##### Command.parallax_opacity(id, opacity, *duration, *wait_flag, *ease)
 
 > Change l'opacité d'un panorama
 
@@ -6289,6 +6291,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6366,7 +6369,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.parallax_tone(id, tone, *duration, *wait_flag)
+##### Command.parallax_tone(id, tone, *duration, *wait_flag, *ease)
 
 > Change la teinte d'un panorama
 
@@ -6377,13 +6380,14 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)
+##### Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)
 
 > Transforme un panorama durant une période
 
@@ -6397,6 +6401,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
@@ -6418,7 +6423,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.parallax_zoom(id, zoom, *duration, *wait_flag)
+##### Command.parallax_zoom(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom sur les deux axes d'un panorama
 
@@ -6429,13 +6434,14 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.parallax_zoom_x(id, zoom, *duration, *wait_flag)
+##### Command.parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom horizontal d'un panorama
 
@@ -6446,13 +6452,14 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 
 
 
 
-##### Command.parallax_zoom_y(id, zoom, *duration, *wait_flag)
+##### Command.parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom vertical d'un panorama
 
@@ -6463,6 +6470,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 

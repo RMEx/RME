@@ -2526,23 +2526,21 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   attr_accessor :id, :name, :z, :opacity, :zoom_x, :zoom_y, :blend_type
   attr_accessor :autospeed_x, :autospeed_y, :move_x, :move_y, :tone
-  attr_accessor :target_auto_x, :target_auto_y, :duration
   #--------------------------------------------------------------------------
   # * Initialize
   #--------------------------------------------------------------------------
   def initialize(id)
     @id = id
     init_basic
-    init_targets
   end
   #--------------------------------------------------------------------------
   # * Initialize basic arguments
   #--------------------------------------------------------------------------
   def init_basic
-    @name, @z, @opacity = "", -100, 255.0
-    @zoom_x, @zoom_y = 100.0, 100.0
+    @name, @z, @opacity = "", -100, 255
+    @zoom_x, @zoom_y = 100, 100
     @blend_type = 0
-    @autospeed_x = @autospeed_y = 0.0
+    @autospeed_x = @autospeed_y = 0
     @move_x = @move_y = 0
     @tone = Tone.new(0,0,0)
     @duration = 0
@@ -2550,68 +2548,33 @@ class Game_Parallax
     @auto_duration = 0
   end
   #--------------------------------------------------------------------------
-  # * Initialize Targets
+  # * show
   #--------------------------------------------------------------------------
-  def init_targets
-    @target_tone = Tone.new
-    @target_auto_x = @autospeed_x
-    @target_auto_y = @autospeed_y
-    @target_zoom_x = @zoom_x
-    @target_zoom_y = @zoom_y
-    @target_opacity = @opacity
+  def show(n, z, op, a_x, a_y, m_x, m_y, b = 0, z_x = 100, z_y = 100, t = Tone.new)
+    @name, @z, @opacity = n, z, op
+    @zoom_x, @zoom_y = z_x, z_y
+    @autospeed_x, @autospeed_y = a_x, a_y
+    @move_x, @move_y = m_x, m_y
+    @blend_type = b
+    @tone = t
   end
   #--------------------------------------------------------------------------
-  # * Start auto duration
+  # * move
   #--------------------------------------------------------------------------
-  def start_auto_change(x, y, duration)
-    @target_auto_x = x
-    @target_auto_y = y
-    @auto_duration = duration
-    if @auto_duration == 0
-      @autospeed_x = @target_auto_x
-      @autospeed_y = @target_auto_y
-    end
+  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :linear)
+    set_transition('zoom_x',  zoom_x,  duration, ease)
+    set_transition('zoom_y',  zoom_y,  duration, ease)
+    set_transition('opacity', opacity, duration, ease)
+    start_tone_change(tone, duration, ease) if tone.is_a?(Tone)
   end
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration)
-    @tone_target = tone.clone
-    @tone_duration = duration
-    @tone = @tone_target.clone if @tone_duration == 0
-  end
-  #--------------------------------------------------------------------------
-  # * Update Parallax Move
-  #--------------------------------------------------------------------------
-  def update_move
-    return if @duration == 0
-    d = @duration
-    @zoom_x  = (@zoom_x  * (d - 1) + @target_zoom_x)  / d
-    @zoom_y  = (@zoom_y  * (d - 1) + @target_zoom_y)  / d
-    @opacity = (@opacity * (d - 1) + @target_opacity) / d
-    @duration -= 1
-  end
-  #--------------------------------------------------------------------------
-  # * Update auto Change
-  #--------------------------------------------------------------------------
-  def update_auto_change
-    return if @auto_duration == 0
-    d = @auto_duration
-    @autospeed_x  = (@autospeed_x  * (d - 1) + @target_auto_x)  / d
-    @autospeed_y  = (@autospeed_y  * (d - 1) + @target_auto_y)  / d
-    @auto_duration -= 1
-  end
-  #--------------------------------------------------------------------------
-  # * Update Color Tone Change
-  #--------------------------------------------------------------------------
-  def update_tone_change
-    return if @tone_duration == 0
-    d = @tone_duration
-    @tone.red   = (@tone.red   * (d - 1) + @tone_target.red)   / d
-    @tone.green = (@tone.green * (d - 1) + @tone_target.green) / d
-    @tone.blue  = (@tone.blue  * (d - 1) + @tone_target.blue)  / d
-    @tone.gray  = (@tone.gray  * (d - 1) + @tone_target.gray)  / d
-    @tone_duration -= 1
+  def start_tone_change(tone, duration, ease = :linear)
+    @tone.set_transition('red',   tone.red,   duration, ease)
+    @tone.set_transition('green', tone.green, duration, ease)
+    @tone.set_transition('blue',  tone.blue,  duration, ease)
+    @tone.set_transition('gray',  tone.gray,  duration, ease)
   end
   #--------------------------------------------------------------------------
   # * Frame Update
@@ -2622,29 +2585,35 @@ class Game_Parallax
     update_auto_change
   end
   #--------------------------------------------------------------------------
-  # * hide parallax
+  # * Update Parallax Move
   #--------------------------------------------------------------------------
-  def hide; @name = ""; end
-  #--------------------------------------------------------------------------
-  # * show
-  #--------------------------------------------------------------------------
-  def show(n, z, op, a_x, a_y, m_x, m_y, b = 0, z_x = 100.0, z_y = 100.0, t = Tone.new)
-    @name, @z, @opacity = n, z, op.to_f
-    @zoom_x, @zoom_y = z_x.to_f, z_y.to_f
-    @autospeed_x, @autospeed_y = a_x, a_y
-    @move_x, @move_y = m_x, m_y
-    @blend_type = b
-    @tone = t
+  def update_move
+    update_transition('zoom_x')
+    update_transition('zoom_y')
+    update_transition('opacity')
   end
   #--------------------------------------------------------------------------
-  # * move
+  # * Update Color Tone Change
   #--------------------------------------------------------------------------
-  def move(duration, zoom_x, zoom_y, opacity, tone = nil)
-    @target_zoom_x = zoom_x.to_f
-    @target_zoom_y = zoom_y.to_f
-    @target_opacity = opacity.to_f
-    @duration = duration
-    start_tone_change(tone, duration) if tone.is_a?(Tone)
+  def update_tone_change
+    @tone.update_transition('red')
+    @tone.update_transition('green')
+    @tone.update_transition('blue')
+    @tone.update_transition('gray')
+  end
+  #--------------------------------------------------------------------------
+  # * Update auto Change
+  #--------------------------------------------------------------------------
+  def update_auto_change
+    update_transition('autospeed_x')
+    update_transition('autospeed_y')
+    update_transition('opacity')
+  end
+  #--------------------------------------------------------------------------
+  # * hide parallax
+  #--------------------------------------------------------------------------
+  def hide
+    @name = ""
   end
 end
 
@@ -2886,9 +2855,9 @@ class Plane_Parallax < Plane
       self.bitmap = nil
     else
       self.bitmap = Cache.parallax(@parallax.name)
+      update_zoom
       update_scroll_dimension
       update_position
-      update_zoom
       update_other
     end
   end
@@ -2896,8 +2865,8 @@ class Plane_Parallax < Plane
   # * update scroll dimension
   #--------------------------------------------------------------------------
   def update_scroll_dimension
-    @scroll_width = self.bitmap.width
-    @scroll_height = self.bitmap.height
+    @scroll_width = self.bitmap.width * self.zoom_x
+    @scroll_height = self.bitmap.height * self.zoom_y
   end
   #--------------------------------------------------------------------------
   # * update position

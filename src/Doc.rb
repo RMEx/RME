@@ -1804,7 +1804,8 @@ module Command
                             :"*zoom_x" => ["Zoom horizontal (par défaut 100)", :Fixnum],
                             :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
                             :"*opacity" => ["Opacité, entre 0 et 255. (par défaut 255)", :Fixnum],
-                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone]
+                            :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_transform"
   link_method_documentation "Command.parallax_erase",
@@ -1831,6 +1832,7 @@ module Command
                             :speed => ["Vitesse de défilement", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_autoscroll_x"
   link_method_documentation "Command.parallax_autoscroll_y",
@@ -1840,6 +1842,7 @@ module Command
                             :speed => ["Vitesse de défilement", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_autoscroll_y"
   link_method_documentation "Command.parallax_scroll_x",
@@ -1863,6 +1866,7 @@ module Command
                             :zoom => ["taille en pourcentage", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_zoom_x"
   link_method_documentation "Command.parallax_zoom_y",
@@ -1872,6 +1876,7 @@ module Command
                             :zoom => ["taille en pourcentage", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_zoom_y"
   link_method_documentation "Command.parallax_zoom",
@@ -1881,6 +1886,7 @@ module Command
                             :zoom => ["taille en pourcentage", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_zoom"
   link_method_documentation "Command.parallax_tone",
@@ -1890,6 +1896,7 @@ module Command
                             :tone => ["teinte du panorama (utilisez la commande tone des commandes standards)", :Tone],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                            :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                           }
   register_command :parallax, "Command.parallax_tone"
   link_method_documentation "Command.parallax_opacity",
@@ -1899,6 +1906,7 @@ module Command
                           :opacity => ["valeur de l'opacité (0 à 255)", :Fixnum],
                           :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                           :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
+                          :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
                         }
   register_command :parallax, "Command.parallax_opacity"
 

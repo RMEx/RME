@@ -8,21 +8,21 @@ Commandes relatives à la manipulation des panoramas
 
 ##Liste des commandes
 *    [parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#parallax_autoscrollid-speed_x-duration-wait_flag)
-*    [parallax_autoscroll_x(id, speed, *duration, *wait_flag)](#parallax_autoscroll_xid-speed-duration-wait_flag)
-*    [parallax_autoscroll_y(id, speed, *duration, *wait_flag)](#parallax_autoscroll_yid-speed-duration-wait_flag)
+*    [parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_xid-speed-duration-wait_flag-ease)
+*    [parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_yid-speed-duration-wait_flag-ease)
 *    [parallax_blend(id, blend_type)](#parallax_blendid-blend_type)
 *    [parallax_erase(id)](#parallax_eraseid)
-*    [parallax_opacity(id, opacity, *duration, *wait_flag)](#parallax_opacityid-opacity-duration-wait_flag)
+*    [parallax_opacity(id, opacity, *duration, *wait_flag, *ease)](#parallax_opacityid-opacity-duration-wait_flag-ease)
 *    [parallax_scroll(id, x, y)](#parallax_scrollid-x-y)
 *    [parallax_scroll_x(id, speed)](#parallax_scroll_xid-speed)
 *    [parallax_scroll_y(id, speed)](#parallax_scroll_yid-speed)
 *    [parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)](#parallax_showid-name-z-opacity-auto_x-auto_y-scroll_x-scroll_y-blend_type-zoom_x-zoom_y-tone)
-*    [parallax_tone(id, tone, *duration, *wait_flag)](#parallax_toneid-tone-duration-wait_flag)
-*    [parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)](#parallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone)
+*    [parallax_tone(id, tone, *duration, *wait_flag, *ease)](#parallax_toneid-tone-duration-wait_flag-ease)
+*    [parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)](#parallax_transformid-duration-wait_flag-zoom_x-zoom_y-opacity-tone-ease)
 *    [parallax_z(id, z)](#parallax_zid-z)
-*    [parallax_zoom(id, zoom, *duration, *wait_flag)](#parallax_zoomid-zoom-duration-wait_flag)
-*    [parallax_zoom_x(id, zoom, *duration, *wait_flag)](#parallax_zoom_xid-zoom-duration-wait_flag)
-*    [parallax_zoom_y(id, zoom, *duration, *wait_flag)](#parallax_zoom_yid-zoom-duration-wait_flag)
+*    [parallax_zoom(id, zoom, *duration, *wait_flag, *ease)](#parallax_zoomid-zoom-duration-wait_flag-ease)
+*    [parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)](#parallax_zoom_xid-zoom-duration-wait_flag-ease)
+*    [parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)](#parallax_zoom_yid-zoom-duration-wait_flag-ease)
 *    [parallaxes_clear](#parallaxes_clear)
 
 
@@ -40,7 +40,7 @@ Commandes relatives à la manipulation des panoramas
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### parallax_autoscroll_x(id, speed, *duration, *wait_flag)
+##### parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)
 
 > Défilement horizontal automatique d'un panorama
 
@@ -51,9 +51,10 @@ Commandes relatives à la manipulation des panoramas
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### parallax_autoscroll_y(id, speed, *duration, *wait_flag)
+##### parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)
 
 > Défilement vertical automatique d'un panorama
 
@@ -64,6 +65,7 @@ Commandes relatives à la manipulation des panoramas
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### parallax_blend(id, blend_type)
@@ -87,7 +89,7 @@ Commandes relatives à la manipulation des panoramas
 `id`|`Fixnum`|ID du panorama  
 
 
-##### parallax_opacity(id, opacity, *duration, *wait_flag)
+##### parallax_opacity(id, opacity, *duration, *wait_flag, *ease)
 
 > Change l'opacité d'un panorama
 
@@ -98,6 +100,7 @@ Commandes relatives à la manipulation des panoramas
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### parallax_scroll(id, x, y)
@@ -155,7 +158,7 @@ Commandes relatives à la manipulation des panoramas
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
 
 
-##### parallax_tone(id, tone, *duration, *wait_flag)
+##### parallax_tone(id, tone, *duration, *wait_flag, *ease)
 
 > Change la teinte d'un panorama
 
@@ -166,9 +169,10 @@ Commandes relatives à la manipulation des panoramas
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone)
+##### parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)
 
 > Transforme un panorama durant une période
 
@@ -182,6 +186,7 @@ Commandes relatives à la manipulation des panoramas
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### parallax_z(id, z)
@@ -195,7 +200,7 @@ Commandes relatives à la manipulation des panoramas
 `z`|`Fixnum`|Axe Z  
 
 
-##### parallax_zoom(id, zoom, *duration, *wait_flag)
+##### parallax_zoom(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom sur les deux axes d'un panorama
 
@@ -206,9 +211,10 @@ Commandes relatives à la manipulation des panoramas
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### parallax_zoom_x(id, zoom, *duration, *wait_flag)
+##### parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom horizontal d'un panorama
 
@@ -219,9 +225,10 @@ Commandes relatives à la manipulation des panoramas
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
-##### parallax_zoom_y(id, zoom, *duration, *wait_flag)
+##### parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom vertical d'un panorama
 
@@ -232,6 +239,7 @@ Commandes relatives à la manipulation des panoramas
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
 
 
 ##### parallaxes_clear
