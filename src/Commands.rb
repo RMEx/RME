@@ -2423,6 +2423,15 @@ module RMECommands
       $game_map.target_camera = e
     end
 
+    def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :linear)
+      Graphics.screen.set_transition('zoom', zoom, duration, ease)
+      wait(duration) if wait_flag
+    end
+    def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :linear)
+      Graphics.screen.set_transition('motion_blur', v, duration, ease)
+      wait(duration) if wait_flag
+    end
+
     append_commands
   end
 
@@ -2463,10 +2472,14 @@ module RMECommands
     def screen_width; Graphics.width; end
     def screen_height; Graphics.height; end
 
-    def screen_zoom(factor); Graphics.screen.zoom = factor; end
-    def screen_pixelation(factor); Graphics.screen.pixelation = factor; end
-    def screen_blur(factor); Graphics.screen.blur = factor; end
-    def screen_motion_blur(factor); Graphics.screen.motion_blur = factor; end
+    def screen_pixelation(v, duration = 0, wait_flag = false, ease = :linear)
+      Graphics.screen.set_transition('pixelation', v, duration, ease)
+      wait(duration) if wait_flag
+    end
+    def screen_blur(v, duration = 0, wait_flag = false, ease = :linear)
+      Graphics.screen.set_transition('blur', v, duration, ease)
+      wait(duration) if wait_flag
+    end
 
     append_commands
   end

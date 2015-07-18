@@ -3881,7 +3881,7 @@ module ScreenEffects
     def initialize
       super
       self.viewport = Viewport.new
-      self.viewport.z = 2000
+      self.viewport.z = 100
       @zoom = 100
       @pixelation  = 1
       @motion_blur = 0
@@ -3897,6 +3897,7 @@ module ScreenEffects
     #--------------------------------------------------------------------------
     def update
       return if disposed?
+      update_transitions
       if !SceneManager.scene_is?(Scene_Map) || [@blur, @motion_blur, @pixelation, @zoom] == [0, 0, 1, 100]
         return self.visible = false
       end
@@ -3904,6 +3905,19 @@ module ScreenEffects
       update_capture_rect
       update_pixelation
       update_bitmap
+    end
+    #--------------------------------------------------------------------------
+    # * Update transition
+    #--------------------------------------------------------------------------
+    def update_transitions
+      update_transition('blur')
+      update_transition('motion_blur')
+      update_transition('pixelation')
+      update_transition('zoom')
+      unless @focus_event
+        update_transition('zoom_target_x')
+        update_transition('zoom_target_y')
+      end
     end
     #--------------------------------------------------------------------------
     # * Update zoom target

@@ -131,10 +131,12 @@ Collection des commandes EventExtender
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.camera_change_focus(event_id)](#commandcamera_change_focusevent_id)
 *    [Command.camera_lock](#commandcamera_lock)
+*    [Command.camera_motion_blur(v, *duration, *wait_flag, *ease)](#commandcamera_motion_blurv-duration-wait_flag-ease)
 *    [Command.camera_move_on(x, y)](#commandcamera_move_onx-y)
 *    [Command.camera_scroll(direction, distance, speed)](#commandcamera_scrolldirection-distance-speed)
 *    [Command.camera_scroll_on(x, y, speed)](#commandcamera_scroll_onx-y-speed)
 *    [Command.camera_unlock](#commandcamera_unlock)
+*    [Command.camera_zoom(zoom, *duration, *wait_flag, *ease)](#commandcamera_zoomzoom-duration-wait_flag-ease)
 *    [Command.caps_lock?](#commandcaps_lock)
 *    [Command.click_time(key)](#commandclick_timekey)
 *    [Command.clipboard_get_text](#commandclipboard_get_text)
@@ -505,10 +507,12 @@ Collection des commandes EventExtender
 *    [Command.scene_clear_history](#commandscene_clear_history)
 *    [Command.scene_goto(scene)](#commandscene_gotoscene)
 *    [Command.scene_return](#commandscene_return)
+*    [Command.screen_blur(radius, *duration, *wait_flag, *ease)](#commandscreen_blurradius-duration-wait_flag-ease)
 *    [Command.screen_fadein(duration)](#commandscreen_fadeinduration)
 *    [Command.screen_fadeout(duration)](#commandscreen_fadeoutduration)
 *    [Command.screen_flash(color, duration, *wait_flag)](#commandscreen_flashcolor-duration-wait_flag)
 *    [Command.screen_height](#commandscreen_height)
+*    [Command.screen_pixelation(pixelation, *duration, *wait_flag, *ease)](#commandscreen_pixelationpixelation-duration-wait_flag-ease)
 *    [Command.screen_shake(power, speed, duration, *wait_flag)](#commandscreen_shakepower-speed-duration-wait_flag)
 *    [Command.screen_tone(tone, duration, *wait_flag)](#commandscreen_tonetone-duration-wait_flag)
 *    [Command.screen_width](#commandscreen_width)
@@ -2425,6 +2429,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.camera_motion_blur(v, *duration, *wait_flag, *ease)
+
+> Atténue le raffraichissement de l'écran : rend les mouvements mouvements de caméra, et mouvements à l'écran, plus diffus
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`v`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
+
+
+
+
+
 ##### Command.camera_move_on(x, y)
 
 > Place la caméra sur un point de la carte
@@ -2478,6 +2499,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.camera_zoom(zoom, *duration, *wait_flag, *ease)
+
+> Zoom tout l'écran en temps réel, sauf les windows (dialogues, etc.)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`zoom`|`ArgType`|Valeur de zoom, supérieur à 100  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
 
 
 
@@ -7769,6 +7807,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.screen_blur(radius, *duration, *wait_flag, *ease)
+
+> Applique un flou gaussien sur tout l'écran en temps réel, sauf les windows (dialogues, etc.). Attention, cette commande peut faire baisser le FPS.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`radius`|`ArgType`|Radius du flou gaussien. (0 = pas de flou)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
+
+
+
+
+
 ##### Command.screen_fadein(duration)
 
 > Affiche l'écran en fondu (de manière moins radicale que la commande fadein)
@@ -7819,6 +7874,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
   
 > 
+
+
+
+
+
+##### Command.screen_pixelation(pixelation, *duration, *wait_flag, *ease)
+
+> Pixélise tout l'écran en temps réel, sauf les windows (dialogues, etc.)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pixelation`|`ArgType`|Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
 
 
 

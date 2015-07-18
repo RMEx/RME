@@ -7,16 +7,31 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes pour manipuler l'écran (teintes, vibrations etc)
 
 ##Liste des commandes
+*    [screen_blur(radius, *duration, *wait_flag, *ease)](#screen_blurradius-duration-wait_flag-ease)
 *    [screen_fadein(duration)](#screen_fadeinduration)
 *    [screen_fadeout(duration)](#screen_fadeoutduration)
 *    [screen_flash(color, duration, *wait_flag)](#screen_flashcolor-duration-wait_flag)
 *    [screen_height](#screen_height)
+*    [screen_pixelation(pixelation, *duration, *wait_flag, *ease)](#screen_pixelationpixelation-duration-wait_flag-ease)
 *    [screen_shake(power, speed, duration, *wait_flag)](#screen_shakepower-speed-duration-wait_flag)
 *    [screen_tone(tone, duration, *wait_flag)](#screen_tonetone-duration-wait_flag)
 *    [screen_width](#screen_width)
 
 
 ##Description des commandes
+##### screen_blur(radius, *duration, *wait_flag, *ease)
+
+> Applique un flou gaussien sur tout l'écran en temps réel, sauf les windows (dialogues, etc.). Attention, cette commande peut faire baisser le FPS.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`radius`|`ArgType`|Radius du flou gaussien. (0 = pas de flou)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
+
 ##### screen_fadein(duration)
 
 > Affiche l'écran en fondu (de manière moins radicale que la commande fadein)
@@ -55,6 +70,19 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 
   
 > 
+
+##### screen_pixelation(pixelation, *duration, *wait_flag, *ease)
+
+> Pixélise tout l'écran en temps réel, sauf les windows (dialogues, etc.)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`pixelation`|`ArgType`|Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
 
 ##### screen_shake(power, speed, duration, *wait_flag)
 
