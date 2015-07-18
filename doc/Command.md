@@ -131,7 +131,7 @@ Collection des commandes EventExtender
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.camera_change_focus(event_id)](#commandcamera_change_focusevent_id)
 *    [Command.camera_lock](#commandcamera_lock)
-*    [Command.camera_motion_blur(v, *duration, *wait_flag, *ease)](#commandcamera_motion_blurv-duration-wait_flag-ease)
+*    [Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)](#commandcamera_motion_blurattenuation-duration-wait_flag-ease)
 *    [Command.camera_move_on(x, y)](#commandcamera_move_onx-y)
 *    [Command.camera_scroll(direction, distance, speed)](#commandcamera_scrolldirection-distance-speed)
 *    [Command.camera_scroll_on(x, y, speed)](#commandcamera_scroll_onx-y-speed)
@@ -2429,14 +2429,14 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
-##### Command.camera_motion_blur(v, *duration, *wait_flag, *ease)
+##### Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)
 
-> Atténue le raffraichissement de l'écran : rend les mouvements mouvements de caméra, et mouvements à l'écran, plus diffus
+> Atténue le raffraichissement de l'écran. Rend plus diffus les mouvements de caméra, et mouvements à l'écran.
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`v`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
+`attenuation`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  

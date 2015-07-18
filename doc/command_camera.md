@@ -9,7 +9,7 @@ Commandes relatives à la manipulation de la caméra (scrolling de la carte)
 ##Liste des commandes
 *    [camera_change_focus(event_id)](#camera_change_focusevent_id)
 *    [camera_lock](#camera_lock)
-*    [camera_motion_blur(v, *duration, *wait_flag, *ease)](#camera_motion_blurv-duration-wait_flag-ease)
+*    [camera_motion_blur(attenuation, *duration, *wait_flag, *ease)](#camera_motion_blurattenuation-duration-wait_flag-ease)
 *    [camera_move_on(x, y)](#camera_move_onx-y)
 *    [camera_scroll(direction, distance, speed)](#camera_scrolldirection-distance-speed)
 *    [camera_scroll_on(x, y, speed)](#camera_scroll_onx-y-speed)
@@ -35,14 +35,14 @@ Commandes relatives à la manipulation de la caméra (scrolling de la carte)
   
 > 
 
-##### camera_motion_blur(v, *duration, *wait_flag, *ease)
+##### camera_motion_blur(attenuation, *duration, *wait_flag, *ease)
 
-> Atténue le raffraichissement de l'écran : rend les mouvements mouvements de caméra, et mouvements à l'écran, plus diffus
+> Atténue le raffraichissement de l'écran. Rend plus diffus les mouvements de caméra, et mouvements à l'écran.
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`v`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
+`attenuation`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
