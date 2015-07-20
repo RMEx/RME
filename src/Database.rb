@@ -221,7 +221,7 @@ module CommonDB
     Types::Simple.new(:enemy,     [:enemy, :enemies, :opposant],          :to_i, true),
     Types::Simple.new(:troop,     [:troop, :group, :troops],              :to_i, true),
     Types::Simple.new(:state,     [:state, :statement, :states],          :to_i, true),
-    Types::Simple.new(:animtation,[:animtation, :anim],                   :to_i, true),
+    Types::Simple.new(:animation, [:animation, :anim],                   :to_i, true),
     Types::Simple.new(:tileset,   [:tileset, :tilesets, :tile, :tiles],   :to_i, true),
     Types::Simple.new(:mapinfo,   [:mapinfo, :mapinfos, :infomap],        :to_i, true)
   ]
@@ -238,7 +238,7 @@ module CommonDB
     EmbedData.new(:enemy,       RPG::Enemy,       load_data("Data/Enemies.rvdata2")),
     EmbedData.new(:troop,       RPG::Troop,       load_data("Data/Troops.rvdata2")),
     EmbedData.new(:state,       RPG::State,       load_data("Data/States.rvdata2")),
-    EmbedData.new(:animtation,  RPG::Animation,   load_data("Data/Animations.rvdata2")),
+    EmbedData.new(:animation,   RPG::Animation,   load_data("Data/Animations.rvdata2")),
     EmbedData.new(:tileset,     RPG::Tileset,     load_data("Data/Tilesets.rvdata2")),
     EmbedData.new(:mapinfo,     RPG::MapInfo,     load_data("Data/MapInfos.rvdata2")),
   ]
