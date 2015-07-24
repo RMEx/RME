@@ -1487,7 +1487,7 @@ module RMECommands
     end
 
     def player_move_with(code)
-      event_mode_with(0, code)
+      event_move_with(0, code)
     end
 
     #--------------------------------------------------------------------------
