@@ -353,13 +353,13 @@ Collection des commandes EventExtender
 *    [Command.mouse_any?(method, keys)](#commandmouse_anymethod-keys)
 *    [Command.mouse_click?](#commandmouse_click)
 *    [Command.mouse_click_area?(area)](#commandmouse_click_areaarea)
-*    [Command.mouse_click_event?(events)](#commandmouse_click_eventevents)
+*    [Command.mouse_click_event?(events, *precise)](#commandmouse_click_eventevents-precise)
 *    [Command.mouse_click_player?](#commandmouse_click_player)
 *    [Command.mouse_click_square_area?(area, *key)](#commandmouse_click_square_areaarea-key)
 *    [Command.mouse_current_key(method)](#commandmouse_current_keymethod)
 *    [Command.mouse_dragging?](#commandmouse_dragging)
 *    [Command.mouse_hover_area?(area)](#commandmouse_hover_areaarea)
-*    [Command.mouse_hover_event?(events)](#commandmouse_hover_eventevents)
+*    [Command.mouse_hover_event?(events, *precise)](#commandmouse_hover_eventevents-precise)
 *    [Command.mouse_hover_player?](#commandmouse_hover_player)
 *    [Command.mouse_hover_square_area?(area)](#commandmouse_hover_square_areaarea)
 *    [Command.mouse_in?(rectangle)](#commandmouse_inrectangle)
@@ -373,19 +373,19 @@ Collection des commandes EventExtender
 *    [Command.mouse_rect](#commandmouse_rect)
 *    [Command.mouse_release?(key)](#commandmouse_releasekey)
 *    [Command.mouse_release_area?(area, *key)](#commandmouse_release_areaarea-key)
-*    [Command.mouse_release_event?(events, *key)](#commandmouse_release_eventevents-key)
+*    [Command.mouse_release_event?(events, *key, *precise)](#commandmouse_release_eventevents-key-precise)
 *    [Command.mouse_release_player?(*key)](#commandmouse_release_playerkey)
 *    [Command.mouse_release_square_area?(area, *key)](#commandmouse_release_square_areaarea-key)
 *    [Command.mouse_repeat?(key)](#commandmouse_repeatkey)
 *    [Command.mouse_repeat_area?(area, *key)](#commandmouse_repeat_areaarea-key)
-*    [Command.mouse_repeat_event?(events, *key)](#commandmouse_repeat_eventevents-key)
+*    [Command.mouse_repeat_event?(events, *key, *precise)](#commandmouse_repeat_eventevents-key-precise)
 *    [Command.mouse_repeat_player?(*key)](#commandmouse_repeat_playerkey)
 *    [Command.mouse_repeat_square_area?(area, *key)](#commandmouse_repeat_square_areaarea-key)
 *    [Command.mouse_square_x](#commandmouse_square_x)
 *    [Command.mouse_square_y](#commandmouse_square_y)
 *    [Command.mouse_trigger?(key)](#commandmouse_triggerkey)
 *    [Command.mouse_trigger_area?(area, *key)](#commandmouse_trigger_areaarea-key)
-*    [Command.mouse_trigger_event?(events, *key)](#commandmouse_trigger_eventevents-key)
+*    [Command.mouse_trigger_event?(events, *key, *precise)](#commandmouse_trigger_eventevents-key-precise)
 *    [Command.mouse_trigger_player?(*key)](#commandmouse_trigger_playerkey)
 *    [Command.mouse_trigger_square_area?(area, *key)](#commandmouse_trigger_square_areaarea-key)
 *    [Command.mouse_x](#commandmouse_x)
@@ -455,7 +455,9 @@ Collection des commandes EventExtender
 *    [Command.pictures_clear](#commandpictures_clear)
 *    [Command.pictures_collide?(id, id2)](#commandpictures_collideid-id2)
 *    [Command.pictures_perfect_collide?(idA, idB)](#commandpictures_perfect_collideida-idb)
+*    [Command.pixel_in_event?(id, x, y, *precise)](#commandpixel_in_eventid-x-y-precise)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#commandpixel_in_pictureid-x-y-precise)
+*    [Command.pixel_in_player?(x, y, *precise)](#commandpixel_in_playerx-y-precise)
 *    [Command.pixels_between(idA, idB)](#commandpixels_betweenida-idb)
 *    [Command.play_time](#commandplay_time)
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
@@ -5574,7 +5576,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_click_event?(events)
+##### Command.mouse_click_event?(events, *precise)
 
 > Renvoie true si la souris clique sur un évènement du sélecteur passé en argument
 
@@ -5582,6 +5584,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 
@@ -5653,7 +5656,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_hover_event?(events)
+##### Command.mouse_hover_event?(events, *precise)
 
 > Renvoie true si la souris survole un évènement du sélecteur passé en argument
 
@@ -5661,6 +5664,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 
@@ -5841,7 +5845,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_release_event?(events, *key)
+##### Command.mouse_release_event?(events, *key, *precise)
 
 > Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument
 
@@ -5850,6 +5854,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 
@@ -5914,7 +5919,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_repeat_event?(events, *key)
+##### Command.mouse_repeat_event?(events, *key, *precise)
 
 > Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
 
@@ -5923,6 +5928,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 
@@ -6009,7 +6015,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_trigger_event?(events, *key)
+##### Command.mouse_trigger_event?(events, *key, *precise)
 
 > Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
 
@@ -6018,6 +6024,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 
@@ -7131,6 +7138,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.pixel_in_event?(id, x, y, *precise)
+
+> Renvoie true si le pixel (x, y) est inclu dans l'événement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`ArgType`|Args description  
+`x`|`Fixnum`|Coordonnées X du point à vérifier  
+`y`|`Fixnum`|Coordonnées Y du point à vérifier  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+
+
+
+
+
+
 ##### Command.pixel_in_picture?(id, x, y, *precise)
 
 > Vérifie que le x, y sont inscrits dans l'image
@@ -7142,6 +7166,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `*precise`|`Boolean`|Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparents seront pris en compte  
+
+
+
+
+
+
+##### Command.pixel_in_player?(x, y, *precise)
+
+> Renvoie true si le pixel (x, y) est inclu dans le joueur, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X du point à vérifier  
+`y`|`Fixnum`|Coordonnées Y du point à vérifier  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 

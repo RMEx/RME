@@ -59,20 +59,22 @@ Commandes relatives aux évènements
 *    [last_repeated_event](#last_repeated_event)
 *    [last_triggered_event](#last_triggered_event)
 *    [max_event_id](#max_event_id)
-*    [mouse_click_event?(events)](#mouse_click_eventevents)
+*    [mouse_click_event?(events, *precise)](#mouse_click_eventevents-precise)
 *    [mouse_click_player?](#mouse_click_player)
-*    [mouse_hover_event?(events)](#mouse_hover_eventevents)
+*    [mouse_hover_event?(events, *precise)](#mouse_hover_eventevents-precise)
 *    [mouse_hover_player?](#mouse_hover_player)
 *    [mouse_press_event?(events, *key)](#mouse_press_eventevents-key)
 *    [mouse_press_player?(*key)](#mouse_press_playerkey)
-*    [mouse_release_event?(events, *key)](#mouse_release_eventevents-key)
+*    [mouse_release_event?(events, *key, *precise)](#mouse_release_eventevents-key-precise)
 *    [mouse_release_player?(*key)](#mouse_release_playerkey)
-*    [mouse_repeat_event?(events, *key)](#mouse_repeat_eventevents-key)
+*    [mouse_repeat_event?(events, *key, *precise)](#mouse_repeat_eventevents-key-precise)
 *    [mouse_repeat_player?(*key)](#mouse_repeat_playerkey)
-*    [mouse_trigger_event?(events, *key)](#mouse_trigger_eventevents-key)
+*    [mouse_trigger_event?(events, *key, *precise)](#mouse_trigger_eventevents-key-precise)
 *    [mouse_trigger_player?(*key)](#mouse_trigger_playerkey)
 *    [move_to(id, x, y, *wait_flag)](#move_toid-x-y-wait_flag)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
+*    [pixel_in_event?(id, x, y, *precise)](#pixel_in_eventid-x-y-precise)
+*    [pixel_in_player?(x, y, *precise)](#pixel_in_playerx-y-precise)
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_brutal_stop_trail](#player_brutal_stop_trail)
 *    [player_direction(*value)](#player_directionvalue)
@@ -647,7 +649,7 @@ Commandes relatives aux évènements
   
 > 
 
-##### mouse_click_event?(events)
+##### mouse_click_event?(events, *precise)
 
 > Renvoie true si la souris clique sur un évènement du sélecteur passé en argument
 
@@ -655,6 +657,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 ##### mouse_click_player?
@@ -664,7 +667,7 @@ Commandes relatives aux évènements
   
 > 
 
-##### mouse_hover_event?(events)
+##### mouse_hover_event?(events, *precise)
 
 > Renvoie true si la souris survole un évènement du sélecteur passé en argument
 
@@ -672,6 +675,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 ##### mouse_hover_player?
@@ -702,7 +706,7 @@ Commandes relatives aux évènements
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
-##### mouse_release_event?(events, *key)
+##### mouse_release_event?(events, *key, *precise)
 
 > Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument
 
@@ -711,6 +715,7 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 ##### mouse_release_player?(*key)
@@ -723,7 +728,7 @@ Commandes relatives aux évènements
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
-##### mouse_repeat_event?(events, *key)
+##### mouse_repeat_event?(events, *key, *precise)
 
 > Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
 
@@ -732,6 +737,7 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 ##### mouse_repeat_player?(*key)
@@ -744,7 +750,7 @@ Commandes relatives aux évènements
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
-##### mouse_trigger_event?(events, *key)
+##### mouse_trigger_event?(events, *key, *precise)
 
 > Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
 
@@ -753,6 +759,7 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 ##### mouse_trigger_player?(*key)
@@ -789,6 +796,31 @@ Commandes relatives aux évènements
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à tester  
 `page_id`|`Fixnum`|ID de la page à tester  
 `*context`|`Boolean`|Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.  
+
+
+##### pixel_in_event?(id, x, y, *precise)
+
+> Renvoie true si le pixel (x, y) est inclu dans l'événement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`ArgType`|Args description  
+`x`|`Fixnum`|Coordonnées X du point à vérifier  
+`y`|`Fixnum`|Coordonnées Y du point à vérifier  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+
+
+##### pixel_in_player?(x, y, *precise)
+
+> Renvoie true si le pixel (x, y) est inclu dans le joueur, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X du point à vérifier  
+`y`|`Fixnum`|Coordonnées Y du point à vérifier  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
 
 
 ##### pixels_between(idA, idB)

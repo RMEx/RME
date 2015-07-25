@@ -1893,15 +1893,18 @@ class Sprite
   #--------------------------------------------------------------------------
   # * check if the mouse 's hover
   #--------------------------------------------------------------------------
-  def hover?; in?(Mouse.point); end
+  def hover?(precise = false)
+    return precise_in?(Mouse.point) if precise
+    in?(Mouse.point)
+  end
     #--------------------------------------------------------------------------
   # * check Mouse Interaction
   #--------------------------------------------------------------------------
-  def click?;         hover? && Mouse.click?;         end
-  def press?(key);    hover? && Mouse.press?(key);    end
-  def trigger?(key);  hover? && Mouse.trigger?(key);  end
-  def repeat?(key);   hover? && Mouse.repeat?(key);   end
-  def release?(key);  hover? && Mouse.release?(key);  end
+  def click?(pr = false);         hover?(pr) && Mouse.click?;         end
+  def press?(key, pr = false);    hover?(pr) && Mouse.press?(key);    end
+  def trigger?(key, pr = false);  hover?(pr) && Mouse.trigger?(key);  end
+  def repeat?(key, pr = false);   hover?(pr) && Mouse.repeat?(key);   end
+  def release?(key, pr = false);  hover?(pr) && Mouse.release?(key);  end
   #--------------------------------------------------------------------------
   # * Precise inclusion
   #--------------------------------------------------------------------------

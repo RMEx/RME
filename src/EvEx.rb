@@ -854,40 +854,53 @@ module Handler
       end
     end
     #--------------------------------------------------------------------------
+    # * In
+    #--------------------------------------------------------------------------
+    def in?(x, y, pr = false)
+      return false unless @sprite
+      @sprite.pixel_in?(x, y, pr)
+    end
+    #--------------------------------------------------------------------------
     # * Hover
     #--------------------------------------------------------------------------
-    def hover?
-      @rect.hover?
+    def hover?(pr = false)
+      return false unless @sprite
+      @sprite.hover?(pr)
     end
     #--------------------------------------------------------------------------
     # * Click
     #--------------------------------------------------------------------------
-    def click?
-      @rect.click?
+    def click?(pr = false)
+      return false unless @sprite
+      @sprite.click?(pr)
     end
     #--------------------------------------------------------------------------
     # * Press
     #--------------------------------------------------------------------------
-    def press?(key = :mouse_left)
-      @rect.press?(key)
+    def press?(key = :mouse_left, pr = false)
+      return false unless @sprite
+      @sprite.press?(key, pr)
     end
     #--------------------------------------------------------------------------
     # * Trigger
     #--------------------------------------------------------------------------
-    def trigger?(key = :mouse_left)
-      @rect.trigger?(key)
+    def trigger?(key = :mouse_left, pr = false)
+      return false unless @sprite
+      @sprite.trigger?(key, pr)
     end
     #--------------------------------------------------------------------------
     # * Repeat
     #--------------------------------------------------------------------------
-    def repeat?(key = :mouse_left)
-      @rect.repeat?(key)
+    def repeat?(key = :mouse_left, pr = false)
+      return false unless @sprite
+      @sprite.repeat?(key, pr)
     end
     #--------------------------------------------------------------------------
     # * Release
     #--------------------------------------------------------------------------
-    def release?(key = :mouse_left)
-      @rect.release?(key)
+    def release?(key = :mouse_left, pr = false)
+      return false unless @sprite
+      @sprite.release?(key, pr)
     end
   end
   #==============================================================================
@@ -921,55 +934,59 @@ module Handler
     #--------------------------------------------------------------------------
     # * Mouse Hover Event
     #--------------------------------------------------------------------------
-    def mouse_hover_event?(e)
+    def mouse_hover_event?(e, pr = false)
       e = select_events(e)
-      e.any?{|i|event(i).hover?}
+      e.any?{|i|event(i).hover?(pr)}
     end
     #--------------------------------------------------------------------------
     # * clicked event
     #--------------------------------------------------------------------------
-    def mouse_click_event?(e)
+    def mouse_click_event?(e, pr = false)
       e = select_events(e)
-      e.any?{|i|event(i).click?}
+      e.any?{|i|event(i).click?(pr)}
     end
     #--------------------------------------------------------------------------
     # * Pressed event
     #--------------------------------------------------------------------------
-    def mouse_press_event?(e, k=:mouse_left)
+    def mouse_press_event?(e, k=:mouse_left, pr = false)
       e = select_events(e)
-      e.any?{|i|event(i).press?(k)}
+      e.any?{|i|event(i).press?(k, pr)}
     end
     #--------------------------------------------------------------------------
     # * Triggered event
     #--------------------------------------------------------------------------
-    def mouse_trigger_event?(e, k=:mouse_left)
+    def mouse_trigger_event?(e, k=:mouse_left, pr = false)
       e = select_events(e)
-      e.any?{|i|event(i).trigger?(k)}
+      e.any?{|i|event(i).trigger?(k, pr)}
     end
     #--------------------------------------------------------------------------
     # * Repeated event
     #--------------------------------------------------------------------------
-    def mouse_repeat_event?(e, k=:mouse_left)
+    def mouse_repeat_event?(e, k=:mouse_left, pr = false)
       e = select_events(e)
-      e.any?{|i|event(i).repeat?(k)}
+      e.any?{|i|event(i).repeat?(k, pr)}
     end
     #--------------------------------------------------------------------------
     # * Released event
     #--------------------------------------------------------------------------
-    def mouse_release_event?(e, k=:mouse_left)
+    def mouse_release_event?(e, k=:mouse_left, pr = false)
       e = select_events(e)
-      e.any?{|i|event(i).release?(k)}
+      e.any?{|i|event(i).release?(k, pr)}
     end
     #--------------------------------------------------------------------------
     # * API for player
     #--------------------------------------------------------------------------
     [:hover, :click].each do |m|
-      define_method("mouse_#{m}_player?"){$game_player.send("#{m}?")}
+      define_method("mouse_#{m}_player?"){ |*k|
+        k = (k[0]) ? k[0] : false
+        $game_player.send("#{m}?", k)
+      }
     end
     [:press, :trigger, :repeat, :release].each do |m|
       define_method("mouse_#{m}_player?") do |*k|
         k = (k[0]) ? k[0] : :mouse_left
-        $game_player.send("{m}?")
+        r = (k[1]) ? k[1] : false
+        $game_player.send("#{m}?", k, r)
       end
     end
 
@@ -1212,6 +1229,7 @@ class Game_CharacterBase
   # * Public instance variable
   #--------------------------------------------------------------------------
   attr_reader :rect
+  attr_accessor :sprite
   #--------------------------------------------------------------------------
   # * Event Handling
   #--------------------------------------------------------------------------
@@ -1223,6 +1241,7 @@ class Game_CharacterBase
     rm_extender_initialize
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
+    @sprite = nil
   end
   #--------------------------------------------------------------------------
   # * restore ox oy
@@ -1333,6 +1352,13 @@ class Game_CharacterBase
   def name
     nil
   end
+  #--------------------------------------------------------------------------
+  # * Pixel in event
+  #--------------------------------------------------------------------------
+  def pixel_in?(x, y, pr = false)
+    return @sprite.precise_in?(x, y) if pr
+    @sprite.in?(x, y)
+  end
 end
 
 #==============================================================================
@@ -1408,6 +1434,7 @@ class Sprite_Character
       x_rect, y_rect = self.x-self.ox*self.zoom_x, self.y-self.oy*self.zoom_y
       w_rect, h_rect = self.src_rect.width*self.zoom_x, self.src_rect.height*self.zoom_y
       character.rect.set(x_rect, y_rect, w_rect, h_rect)
+      character.sprite = self
     end
   end
   #--------------------------------------------------------------------------
