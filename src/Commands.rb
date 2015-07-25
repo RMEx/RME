@@ -1486,14 +1486,14 @@ module RMECommands
       event_opacity(0, value)
     end
 
-    def event_move_with(id, code)
+    def event_move_with(id, *code)
       route = RPG::MoveRoute.new
       route.list = code.map {|i| RPG::MoveCommand.new(i)}
       event(id).force_move_route(route)
     end
 
-    def player_move_with(code)
-      event_move_with(0, code)
+    def player_move_with(*code)
+      event_move_with(0, *code)
     end
 
     #--------------------------------------------------------------------------
