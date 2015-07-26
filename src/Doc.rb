@@ -1577,7 +1577,7 @@ module Command
   link_method_documentation "Command.picture_position",
                           "Change la position de l'image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :x => ["Position en x de l'image", :Fixnum],
                             :y => ["Position en y de l'image", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
@@ -1588,7 +1588,7 @@ module Command
   link_method_documentation "Command.picture_move",
                           "Déplace une image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :x => ["Position en x de l'image où l'image doit se rendre", :Fixnum],
                             :y => ["Position en y de l'image où l'image doit se rendre", :Fixnum],
                             :zoom_x => ["Zoom de la largeur (en %)", :Fixnum],
@@ -1605,7 +1605,7 @@ module Command
   link_method_documentation "Command.picture_wave",
                           "Fait onduler l'image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :amplitude => ["Amplitude (taille de l'ondulation)", :Fixnum],
                             :vitesse => ["Vitesse de l'ondulation", :Fixnum],
                           }
@@ -1613,7 +1613,7 @@ module Command
   link_method_documentation "Command.picture_flip",
                           "Applique un effet miroir (axe vertical) sur l'image ",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                           }
   register_command :picture, "Command.picture_flip"
   link_method_documentation "Command.picture_angle",
@@ -1629,7 +1629,7 @@ module Command
   link_method_documentation "Command.picture_rotate",
                           "Fait tourner l'image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :speed => ["Vitesse de rotation de l'image", :Fixnum],
                           }
   register_command :picture, "Command.picture_rotate"
@@ -1656,7 +1656,7 @@ module Command
   link_method_documentation "Command.picture_zoom",
                           "Change la taille d'une image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :zoom_x => ["Pourcentage d'agrandissement de la largeur de l'image", :Fixnum],
                             :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
@@ -1678,14 +1678,14 @@ module Command
   link_method_documentation "Command.picture_blend",
                           "Change le mode de fusion d'une image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :mode => ["Mode choisi (0, 1 ou 2)", :Fixnum],
                           }
   register_command :picture, "Command.picture_blend"
   link_method_documentation "Command.picture_pin",
                           "Fait défiler une image avec la carte (la fixe à une position)",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :"*x" => ["Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
                             :"*y" => ["Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
                           }
@@ -1695,7 +1695,7 @@ module Command
   link_method_documentation "Command.picture_erase",
                           "Efface l'image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                           }
   register_command :picture, "Command.picture_erase"
   link_method_documentation "Command.pictures_clear",
@@ -1706,13 +1706,13 @@ module Command
   link_method_documentation "Command.picture_unpin",
                           "Arrête de faire défiler une image avec la carte",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                           }
   register_command :picture, "Command.picture_unpin"
   link_method_documentation "Command.picture_opacity",
                           "Change l'opacité d'une image",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :opacity => ["valeur de l'opacité (de 0 à 255)", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
@@ -1722,7 +1722,7 @@ module Command
   link_method_documentation "Command.picture_shake",
                           "Fait trembler l'image pendant un temps donné",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :power => ["La puissance du tremblement", :Fixnum],
                             :speed => ["La vitesse du tremblement", :Fixnum],
                             :duration => ["La durée en frames du tremblement", :Fixnum],
@@ -1750,21 +1750,21 @@ module Command
   link_method_documentation "Command.picture_scroll_x",
                           "Change la vitesse de défilement horizontal d'une image fixée sur la carte",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :vitesse => ["Vitesse de défilement", :Fixnum],
                           }
   register_command :picture, "Command.picture_scroll_x"
   link_method_documentation "Command.picture_scroll_y",
                           "Change la vitesse de défilement vertical d'une image fixée sur la carte",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :vitesse => ["Vitesse de défilement", :Fixnum],
                           }
   register_command :picture, "Command.picture_scroll_y"
   link_method_documentation "Command.picture_scroll",
                           "Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte",
                           {
-                            :id => ["ID de l'image", :Fixnum],
+                            :Selector => ["Sélécteur de l'image", :Selector],
                             :vitesse => ["Vitesse de défilement", :Fixnum],
                           }
   register_command :picture, "Command.picture_scroll"

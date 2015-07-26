@@ -422,34 +422,34 @@ Collection des commandes EventExtender
 *    [Command.pi](#commandpi)
 *    [Command.pick_random(*elts)](#commandpick_randomelts)
 *    [Command.picture_angle(id, angle, *duration, *wait_flag, *ease)](#commandpicture_angleid-angle-duration-wait_flag-ease)
-*    [Command.picture_blend(id, mode)](#commandpicture_blendid-mode)
+*    [Command.picture_blend(Selector, mode)](#commandpicture_blendselector-mode)
 *    [Command.picture_dimension(id, w, h, *duration, *wait_flag, *ease)](#commandpicture_dimensionid-w-h-duration-wait_flag-ease)
-*    [Command.picture_erase(id)](#commandpicture_eraseid)
+*    [Command.picture_erase(Selector)](#commandpicture_eraseselector)
 *    [Command.picture_erased?(id)](#commandpicture_erasedid)
-*    [Command.picture_flip(id)](#commandpicture_flipid)
+*    [Command.picture_flip(Selector)](#commandpicture_flipselector)
 *    [Command.picture_height(id, *v, *duration, *wait_flag, *ease)](#commandpicture_heightid-v-duration-wait_flag-ease)
-*    [Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)](#commandpicture_moveid-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin-ease)
+*    [Command.picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)](#commandpicture_moveselector-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin-ease)
 *    [Command.picture_move?(id)](#commandpicture_moveid)
 *    [Command.picture_name(id, *name)](#commandpicture_nameid-name)
-*    [Command.picture_opacity(id, opacity, *duration, *wait_flag, *ease)](#commandpicture_opacityid-opacity-duration-wait_flag-ease)
+*    [Command.picture_opacity(Selector, opacity, *duration, *wait_flag, *ease)](#commandpicture_opacityselector-opacity-duration-wait_flag-ease)
 *    [Command.picture_origin(id, origin)](#commandpicture_originid-origin)
-*    [Command.picture_pin(id, *x, *y)](#commandpicture_pinid-x-y)
-*    [Command.picture_position(id, x, y, *duration, *wait_flag, *ease)](#commandpicture_positionid-x-y-duration-wait_flag-ease)
-*    [Command.picture_rotate(id, speed)](#commandpicture_rotateid-speed)
-*    [Command.picture_scroll(id, vitesse)](#commandpicture_scrollid-vitesse)
-*    [Command.picture_scroll_x(id, vitesse)](#commandpicture_scroll_xid-vitesse)
-*    [Command.picture_scroll_y(id, vitesse)](#commandpicture_scroll_yid-vitesse)
-*    [Command.picture_shake(id, power, speed, duration)](#commandpicture_shakeid-power-speed-duration)
+*    [Command.picture_pin(Selector, *x, *y)](#commandpicture_pinselector-x-y)
+*    [Command.picture_position(Selector, x, y, *duration, *wait_flag, *ease)](#commandpicture_positionselector-x-y-duration-wait_flag-ease)
+*    [Command.picture_rotate(Selector, speed)](#commandpicture_rotateselector-speed)
+*    [Command.picture_scroll(Selector, vitesse)](#commandpicture_scrollselector-vitesse)
+*    [Command.picture_scroll_x(Selector, vitesse)](#commandpicture_scroll_xselector-vitesse)
+*    [Command.picture_scroll_y(Selector, vitesse)](#commandpicture_scroll_yselector-vitesse)
+*    [Command.picture_shake(Selector, power, speed, duration)](#commandpicture_shakeselector-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
 *    [Command.picture_showed?(id)](#commandpicture_showedid)
 *    [Command.picture_tone(id, tone, *duration, *wait_flag, *ease)](#commandpicture_toneid-tone-duration-wait_flag-ease)
-*    [Command.picture_unpin(id)](#commandpicture_unpinid)
-*    [Command.picture_wave(id, amplitude, vitesse)](#commandpicture_waveid-amplitude-vitesse)
+*    [Command.picture_unpin(Selector)](#commandpicture_unpinselector)
+*    [Command.picture_wave(Selector, amplitude, vitesse)](#commandpicture_waveselector-amplitude-vitesse)
 *    [Command.picture_width(id, *v, *duration, *wait_flag, *ease)](#commandpicture_widthid-v-duration-wait_flag-ease)
 *    [Command.picture_x(id, x, *duration, *wait_flag, *ease)](#commandpicture_xid-x-duration-wait_flag-ease)
 *    [Command.picture_y(id, y, *duration, *wait_flag, *ease)](#commandpicture_yid-y-duration-wait_flag-ease)
-*    [Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag, *ease)](#commandpicture_zoomid-zoom_x-zoom_y-duration-wait_flag-ease)
+*    [Command.picture_zoom(Selector, zoom_x, *zoom_y, *duration, *wait_flag, *ease)](#commandpicture_zoomselector-zoom_x-zoom_y-duration-wait_flag-ease)
 *    [Command.picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)](#commandpicture_zoom_xid-zoom-duration-wait_flag-ease)
 *    [Command.picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)](#commandpicture_zoom_yid-zoom-duration-wait_flag-ease)
 *    [Command.pictures_clear](#commandpictures_clear)
@@ -6596,14 +6596,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_blend(id, mode)
+##### Command.picture_blend(Selector, mode)
 
 > Change le mode de fusion d'une image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
 
 
@@ -6630,14 +6630,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_erase(id)
+##### Command.picture_erase(Selector)
 
 > Efface l'image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 
 
 
@@ -6658,14 +6658,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_flip(id)
+##### Command.picture_flip(Selector)
 
 > Applique un effet miroir (axe vertical) sur l'image 
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 
 
 
@@ -6690,14 +6690,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_move(id, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)
+##### Command.picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)
 
 > Déplace une image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `x`|`Fixnum`|Position en x de l'image où l'image doit se rendre  
 `y`|`Fixnum`|Position en y de l'image où l'image doit se rendre  
 `zoom_x`|`Fixnum`|Zoom de la largeur (en %)  
@@ -6743,14 +6743,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_opacity(id, opacity, *duration, *wait_flag, *ease)
+##### Command.picture_opacity(Selector, opacity, *duration, *wait_flag, *ease)
 
 > Change l'opacité d'une image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
@@ -6776,14 +6776,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_pin(id, *x, *y)
+##### Command.picture_pin(Selector, *x, *y)
 
 > Fait défiler une image avec la carte (la fixe à une position)
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `*x`|`Fixnum`|Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
 `*y`|`Fixnum`|Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
 
@@ -6792,14 +6792,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_position(id, x, y, *duration, *wait_flag, *ease)
+##### Command.picture_position(Selector, x, y, *duration, *wait_flag, *ease)
 
 > Change la position de l'image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `x`|`Fixnum`|Position en x de l'image  
 `y`|`Fixnum`|Position en y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
@@ -6811,14 +6811,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_rotate(id, speed)
+##### Command.picture_rotate(Selector, speed)
 
 > Fait tourner l'image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `speed`|`Fixnum`|Vitesse de rotation de l'image  
 
 
@@ -6826,14 +6826,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_scroll(id, vitesse)
+##### Command.picture_scroll(Selector, vitesse)
 
 > Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
@@ -6841,14 +6841,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_scroll_x(id, vitesse)
+##### Command.picture_scroll_x(Selector, vitesse)
 
 > Change la vitesse de défilement horizontal d'une image fixée sur la carte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
@@ -6856,14 +6856,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_scroll_y(id, vitesse)
+##### Command.picture_scroll_y(Selector, vitesse)
 
 > Change la vitesse de défilement vertical d'une image fixée sur la carte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
@@ -6871,14 +6871,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_shake(id, power, speed, duration)
+##### Command.picture_shake(Selector, power, speed, duration)
 
 > Fait trembler l'image pendant un temps donné
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `power`|`Fixnum`|La puissance du tremblement  
 `speed`|`Fixnum`|La vitesse du tremblement  
 `duration`|`Fixnum`|La durée en frames du tremblement  
@@ -6958,28 +6958,28 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_unpin(id)
+##### Command.picture_unpin(Selector)
 
 > Arrête de faire défiler une image avec la carte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 
 
 
 
 
 
-##### Command.picture_wave(id, amplitude, vitesse)
+##### Command.picture_wave(Selector, amplitude, vitesse)
 
 > Fait onduler l'image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
 `vitesse`|`Fixnum`|Vitesse de l'ondulation  
 
@@ -7042,14 +7042,14 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_zoom(id, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
+##### Command.picture_zoom(Selector, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
 
 > Change la taille d'une image
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`id`|`Fixnum`|ID de l'image  
+`Selector`|`Selector`|Sélécteur de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  

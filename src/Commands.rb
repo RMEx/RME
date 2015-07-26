@@ -298,8 +298,9 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Picture erase
     #--------------------------------------------------------------------------
-    def picture_erase(id)
-      pictures[id].erase
+    def picture_erase(ids)
+      ids = select_pictures(ids)
+      ids.each {|id| pictures[id].erase}
     end
     #--------------------------------------------------------------------------
     # * Picture name
@@ -335,33 +336,46 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify position
     #--------------------------------------------------------------------------
-    def picture_position(id, x, y, duration = 0, wf = false, ease = :linear)
-      picture_x(id, x, duration, false, ease)
-      picture_y(id, y, duration, wf, ease)
+    def picture_position(ids, x, y, duration = 0, wf = false, ease = :linear)
+      ids = select_pictures(ids)
+      ids.each do |id|
+        picture_x(id, x, duration, false, ease)
+        picture_y(id, y, duration, false, ease)
+      end
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Move picture
     #--------------------------------------------------------------------------
-    def picture_move(id, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :linear)
-      p = pictures[id]
-      opacity = (opacity == -1) ? p.opacity : opacity
-      blend = (bt == -1) ? p.blend_type : bt
-      origin = (o == -1) ? p.origin : o
-      p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur, ease)
+    def picture_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :linear)
+      ids = select_pictures(ids)
+      ids.each do |id|
+        p = pictures[id]
+        opacity = (opacity == -1) ? p.opacity : opacity
+        blend = (bt == -1) ? p.blend_type : bt
+        origin = (o == -1) ? p.origin : o
+        p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur, ease)
+      end
       wait(dur) if wf
     end
     #--------------------------------------------------------------------------
     # * Modify wave
     #--------------------------------------------------------------------------
-    def picture_wave(id, amp, speed)
-      pictures[id].wave_amp = amp
-      pictures[id].wave_speed = speed
+    def picture_wave(ids, amp, speed)
+      ids = select_pictures(ids)
+      ids.each do |id|
+        pictures[id].wave_amp = amp
+        pictures[id].wave_speed = speed
+      end
     end
     #--------------------------------------------------------------------------
     # * Apply Mirror
     #--------------------------------------------------------------------------
-    def picture_flip(id)
-      pictures[id].mirror = !pictures[id].mirror
+    def picture_flip(ids)
+      ids = select_pictures(ids)
+      ids.each do |id|
+        pictures[id].mirror = !pictures[id].mirror
+      end
     end
     #--------------------------------------------------------------------------
     # * Modify Angle
@@ -374,8 +388,11 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Rotate
     #--------------------------------------------------------------------------
-    def picture_rotate(id, speed)
-      pictures[id].rotate(speed)
+    def picture_rotate(ids, speed)
+      ids = select_pictures(ids)
+      ids.each do |id|
+        pictures[id].rotate(speed)
+      end
     end
     #--------------------------------------------------------------------------
     # * change Zoom X
@@ -396,9 +413,12 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(id, zoom_x, zoom_y, duration = 0, wf = false, ease = :linear)
-      picture_zoom_x(id, zoom_x, duration, false, ease)
-      picture_zoom_y(id, zoom_y, duration, wf, ease)
+    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :linear)
+      select_pictures(ids).each do |id|
+        picture_zoom_x(id, zoom_x, duration, false, ease)
+        picture_zoom_y(id, zoom_y, duration, false, ease)
+      end
+      wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * change Tone
@@ -414,28 +434,30 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change blend type
     #--------------------------------------------------------------------------
-    def picture_blend(id, blend)
-      pictures[id].blend = blend
+    def picture_blend(ids, blend)
+      select_pictures(ids).each {|id| pictures[id].blend = blend }
     end
     #--------------------------------------------------------------------------
     # * Pin picture on the map
     #--------------------------------------------------------------------------
-    def picture_pin(id, x=nil, y=nil)
-      unless x
-        x_s = 16 * pictures[id].scroll_speed_x
-        y_s = 16 * pictures[id].scroll_speed_y
-        x = picture_x(id) + $game_map.display_x * x_s + pictures[id].shake
-        y = picture_y(id) + $game_map.display_y * y_s
+    def picture_pin(ids, x=nil, y=nil)
+      select_pictures(ids).each do |id|
+        unless x
+          x_s = 16 * pictures[id].scroll_speed_x
+          y_s = 16 * pictures[id].scroll_speed_y
+          x = picture_x(id) + $game_map.display_x * x_s + pictures[id].shake
+          y = picture_y(id) + $game_map.display_y * y_s
+        end
+        picture_x(id, x)
+        picture_y(id, y)
+        pictures[id].pin
       end
-      picture_x(id, x)
-      picture_y(id, y)
-      pictures[id].pin
     end
     #--------------------------------------------------------------------------
     # * Unpin picture on the map
     #--------------------------------------------------------------------------
-    def picture_unpin(id)
-      pictures[id].unpin
+    def picture_unpin(ids)
+      select_pictures(ids).each {|id| pictures[id].unpin }
     end
 
     #--------------------------------------------------------------------------
@@ -456,15 +478,19 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
-    def picture_opacity(id, value, duration = 0, wf = false, ease = :linear)
-      pictures[id].set_transition('opacity', value, duration, ease)
+    def picture_opacity(ids, value, duration = 0, wf = false, ease = :linear)
+      select_pictures(ids).each do |id|
+        pictures[id].set_transition('opacity', value, duration, ease)
+      end
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Shake the picture
     #--------------------------------------------------------------------------
-    def picture_shake(id, power, speed, duration)
-      pictures[id].start_shake(power, speed, duration)
+    def picture_shake(ids, power, speed, duration)
+      ids.each do |id|
+        pictures[id].start_shake(power, speed, duration)
+      end
     end
     #--------------------------------------------------------------------------
     # * Point in picture
@@ -495,21 +521,23 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change scroll speed (in X)
     #--------------------------------------------------------------------------
-    def picture_scroll_x(id, speed)
-      pictures[id].scroll_speed_x = speed
+    def picture_scroll_x(ids, speed)
+      select_pictures(ids).each {|id| pictures[id].scroll_speed_x = speed}
     end
     #--------------------------------------------------------------------------
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
-    def picture_scroll_y(id, speed)
-      pictures[id].scroll_speed_y = speed
+    def picture_scroll_y(ids, speed)
+      select_pictures(ids).each {|id| pictures[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
     # * Change scroll speed
     #--------------------------------------------------------------------------
-    def picture_scroll(id, speed)
-      picture_scroll_x(id, speed)
-      picture_scroll_y(id, speed)
+    def picture_scroll(ids, speed)
+      select_pictures(ids).each do |id|
+        picture_scroll_x(id, speed)
+        picture_scroll_y(id, speed)
+      end
     end
     #--------------------------------------------------------------------------
     # * Clear all pictures

@@ -441,6 +441,7 @@ module Kernel
     return [e] if e.is_a?(Fixnum)
     e
   end
+  alias_method :select_pictures, :select_events
   #--------------------------------------------------------------------------
   # * All selector
   #--------------------------------------------------------------------------
@@ -450,6 +451,20 @@ module Kernel
   #--------------------------------------------------------------------------
   # * Selectors
   #--------------------------------------------------------------------------
+  def all_pictures
+    a = $game_map.screen.pictures.to_a.select{|pict| !pict.name.empty?}
+    a.map {|i| i.number}
+  end
+  def get_pictures(*ids, &block)
+    return [] unless SceneManager.scene.is_a?(Scene_Map)
+    if ids.length == 1 && ids[0] == :all_pictures
+      return all_pictures
+    end
+    result = []
+    ids.each { |id| result << id if all_pictures.include?(id) }
+    result += all_pictures.select(&block) if block_given?
+    result
+  end
   def events(*ids, &block)
     return [] unless SceneManager.scene.is_a?(Scene_Map)
     if ids.length == 1 && ids[0] == :all_events
@@ -460,7 +475,10 @@ module Kernel
     result += $game_map.each_events.select(&block) if block_given?
     result
   end
+
   alias :e :events
+  alias :get_events :events
+
   def once_event(&block)
     $game_map.each_events.find(&block)
   end
@@ -2670,6 +2688,21 @@ class Game_Parallaxes
   #--------------------------------------------------------------------------
   def each
     @data.compact.each {|parallax| yield parallax } if block_given?
+  end
+end
+
+#==============================================================================
+# ** Game_Pictures
+#------------------------------------------------------------------------------
+#  This is a wrapper for a picture array. This class is used within the
+# Game_Screen class. Map screen pictures and battle screen pictures are
+# handled separately.
+#==============================================================================
+
+class Game_Pictures
+  # cast to array
+  def to_a
+    return @data.compact
   end
 end
 
