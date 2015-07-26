@@ -5605,7 +5605,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 

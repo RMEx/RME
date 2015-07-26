@@ -657,7 +657,7 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 ##### mouse_click_player?

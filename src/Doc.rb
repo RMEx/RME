@@ -1123,7 +1123,7 @@ module Command
   link_method_documentation "Command.mouse_click_event?",
                         "Renvoie true si la souris clique sur un évènement du sélecteur passé en argument",
                         {:events => ["Selecteur d'évènements", :Selectors],
-                          :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true ", :Boolean],}, true
+                          :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", :Boolean],}, true
   register_command :event, "Command.mouse_click_event?"
 
   link_method_documentation "Command.mouse_press_event?",
