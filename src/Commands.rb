@@ -37,6 +37,10 @@ module RMECommands
     Graphics.fadein(time * Graphics.frame_rate / 1000)
   end
 
+  def call_common_event(id)
+    $game_temp.reserve_common_event(id)
+  end
+
   def max(a, b); [a, b].max; end
   def min(a, b); [a, b].min; end
   def screen; Game_Screen.get; end

@@ -8,6 +8,7 @@ Commandes standards
 
 ##Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
+*    [call_common_event(id)](#call_common_eventid)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
@@ -43,6 +44,16 @@ Commandes standards
 --- | --- | ---  
 `percent`|`Fixnum`|Valeur à appliquer  
 `max`|`Fixnum`|Valeur maximum  
+
+
+##### call_common_event(id)
+
+> Exécute l'événement commun référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement commun à exécuter  
 
 
 ##### color(red, green, blue, *alpha)

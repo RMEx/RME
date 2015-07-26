@@ -127,6 +127,7 @@ Collection des commandes EventExtender
 *    [Command.bgs_play(name, *volume, *pitch)](#commandbgs_playname-volume-pitch)
 *    [Command.bgs_stop](#commandbgs_stop)
 *    [Command.bgs_volume(volume)](#commandbgs_volumevolume)
+*    [Command.call_common_event(id)](#commandcall_common_eventid)
 *    [Command.call_load_screen](#commandcall_load_screen)
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.camera_change_focus(event_id)](#commandcamera_change_focusevent_id)
@@ -2378,6 +2379,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100  
+
+
+
+
+
+
+##### Command.call_common_event(id)
+
+> Exécute l'événement commun référencé par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement commun à exécuter  
 
 
 

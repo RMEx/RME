@@ -124,6 +124,7 @@ bgs_stop	-
 bgs_volume(volume)	-
 bind(e,k,*n)	-
 buzz(e,*duration)	buzz(id)
+call_common_event(id)	-
 call_load_screen	-
 call_title_screen	-
 camera_change_focus(event_id)	-

@@ -684,6 +684,14 @@ module Command
   add_internals :mouse_square_pressed_area?,:mouse_released_area?,:mouse_square_released_area?
   add_internals :mouse_repeated_area?, :mouse_square_repeated_area?
 
+  link_method_documentation 'Command.call_common_event',
+  	'Exécute l\'événement commun référencé par son ID',
+   	{
+  		:id => ["ID de l'événement commun à exécuter", :Fixnum],
+
+  	}, false
+  register_command :standard, 'Command.call_common_event'
+
   link_method_documentation "Command.max",
                         "Renvoie la plus grande des deux valeurs A, B",
                         {
