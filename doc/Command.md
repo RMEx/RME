@@ -368,7 +368,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_point](#commandmouse_point)
 *    [Command.mouse_press?(key)](#commandmouse_presskey)
 *    [Command.mouse_press_area?(area, *key)](#commandmouse_press_areaarea-key)
-*    [Command.mouse_press_event?(events, *key)](#commandmouse_press_eventevents-key)
+*    [Command.mouse_press_event?(events, *key, *precise)](#commandmouse_press_eventevents-key-precise)
 *    [Command.mouse_press_player?(*key)](#commandmouse_press_playerkey)
 *    [Command.mouse_press_square_area?(area, *key)](#commandmouse_press_square_areaarea-key)
 *    [Command.mouse_rect](#commandmouse_rect)
@@ -5782,7 +5782,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.mouse_press_event?(events, *key)
+##### Command.mouse_press_event?(events, *key, *precise)
 
 > Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument
 
@@ -5790,7 +5790,8 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 
@@ -5874,8 +5875,8 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 
@@ -5948,8 +5949,8 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 
@@ -6044,8 +6045,8 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 

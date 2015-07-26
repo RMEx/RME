@@ -63,7 +63,7 @@ Commandes relatives aux évènements
 *    [mouse_click_player?](#mouse_click_player)
 *    [mouse_hover_event?(events, *precise)](#mouse_hover_eventevents-precise)
 *    [mouse_hover_player?](#mouse_hover_player)
-*    [mouse_press_event?(events, *key)](#mouse_press_eventevents-key)
+*    [mouse_press_event?(events, *key, *precise)](#mouse_press_eventevents-key-precise)
 *    [mouse_press_player?(*key)](#mouse_press_playerkey)
 *    [mouse_release_event?(events, *key, *precise)](#mouse_release_eventevents-key-precise)
 *    [mouse_release_player?(*key)](#mouse_release_playerkey)
@@ -685,7 +685,7 @@ Commandes relatives aux évènements
   
 > 
 
-##### mouse_press_event?(events, *key)
+##### mouse_press_event?(events, *key, *precise)
 
 > Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument
 
@@ -693,7 +693,8 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 ##### mouse_press_player?(*key)
@@ -714,8 +715,8 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 ##### mouse_release_player?(*key)
@@ -736,8 +737,8 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 ##### mouse_repeat_player?(*key)
@@ -758,8 +759,8 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
-`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left  
-`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
+`*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
+`*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
 
 
 ##### mouse_trigger_player?(*key)
