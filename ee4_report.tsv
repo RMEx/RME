@@ -456,6 +456,12 @@ picture_erase(ids)	picture_erase(id)
 picture_erased?(id)	-
 picture_flip(ids)	picture_flip(id)
 picture_height(id,*v,*duration,*wf,*ease)	-
+picture_mouse_click?(id,*precise)	-
+picture_mouse_hover?(id,*precise)	-
+picture_mouse_press?(id,*key,*precise)	-
+picture_mouse_release?(id,*key,*precise)	-
+picture_mouse_repeat?(id,*key,*precise)	-
+picture_mouse_trigger?(id,*key,*precise)	-
 picture_move(ids,x,y,zoom_x,zoom_y,dur,*wf,*opacity,*bt,*o,*ease)	picture_move(id,*x,*y,*zoom,*zoom,*dur,*opacit,*mode,*origine)
 picture_move?(id)	-
 picture_name(id,*name)	-

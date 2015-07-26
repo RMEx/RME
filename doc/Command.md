@@ -429,6 +429,12 @@ Collection des commandes EventExtender
 *    [Command.picture_erased?(id)](#commandpicture_erasedid)
 *    [Command.picture_flip(Selector)](#commandpicture_flipselector)
 *    [Command.picture_height(id, *v, *duration, *wait_flag, *ease)](#commandpicture_heightid-v-duration-wait_flag-ease)
+*    [Command.picture_mouse_click?(id, *precise)](#commandpicture_mouse_clickid-precise)
+*    [Command.picture_mouse_hover?(id, *precise)](#commandpicture_mouse_hoverid-precise)
+*    [Command.picture_mouse_press?(id, *key, *precise)](#commandpicture_mouse_pressid-key-precise)
+*    [Command.picture_mouse_release?(id, *key, *precise)](#commandpicture_mouse_releaseid-key-precise)
+*    [Command.picture_mouse_repeat?(id, *key, *precise)](#commandpicture_mouse_repeatid-key-precise)
+*    [Command.picture_mouse_trigger?(id, *key, *precise)](#commandpicture_mouse_triggerid-key-precise)
 *    [Command.picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)](#commandpicture_moveselector-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin-ease)
 *    [Command.picture_move?(id)](#commandpicture_moveid)
 *    [Command.picture_name(id, *name)](#commandpicture_nameid-name)
@@ -6699,6 +6705,100 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
+
+
+
+
+
+##### Command.picture_mouse_click?(id, *precise)
+
+> Renvoie true si la souris survol et est cliquée l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+
+
+
+
+##### Command.picture_mouse_hover?(id, *precise)
+
+> Renvoie true si la souris survol l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+
+
+
+
+##### Command.picture_mouse_press?(id, *key, *precise)
+
+> Renvoie true si la souris survol et presse en continu la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+
+
+
+
+##### Command.picture_mouse_release?(id, *key, *precise)
+
+> Renvoie true si la souris survol et relâche la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+
+
+
+
+##### Command.picture_mouse_repeat?(id, *key, *precise)
+
+> Renvoie true si la souris survol et presse successivement la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+
+
+
+
+##### Command.picture_mouse_trigger?(id, *key, *precise)
+
+> Renvoie true si la souris survol et presse la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
 
 
 

@@ -14,6 +14,12 @@ Commandes relatives à la manipulation des images
 *    [picture_erased?(id)](#picture_erasedid)
 *    [picture_flip(Selector)](#picture_flipselector)
 *    [picture_height(id, *v, *duration, *wait_flag, *ease)](#picture_heightid-v-duration-wait_flag-ease)
+*    [picture_mouse_click?(id, *precise)](#picture_mouse_clickid-precise)
+*    [picture_mouse_hover?(id, *precise)](#picture_mouse_hoverid-precise)
+*    [picture_mouse_press?(id, *key, *precise)](#picture_mouse_pressid-key-precise)
+*    [picture_mouse_release?(id, *key, *precise)](#picture_mouse_releaseid-key-precise)
+*    [picture_mouse_repeat?(id, *key, *precise)](#picture_mouse_repeatid-key-precise)
+*    [picture_mouse_trigger?(id, *key, *precise)](#picture_mouse_triggerid-key-precise)
 *    [picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)](#picture_moveselector-x-y-zoom_x-zoom_y-duration-wait_flag-opacity-blend_type-origin-ease)
 *    [picture_move?(id)](#picture_moveid)
 *    [picture_name(id, *name)](#picture_nameid-name)
@@ -127,6 +133,76 @@ Commandes relatives à la manipulation des images
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+
+
+##### picture_mouse_click?(id, *precise)
+
+> Renvoie true si la souris survol et est cliquée l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+##### picture_mouse_hover?(id, *precise)
+
+> Renvoie true si la souris survol l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+##### picture_mouse_press?(id, *key, *precise)
+
+> Renvoie true si la souris survol et presse en continu la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+##### picture_mouse_release?(id, *key, *precise)
+
+> Renvoie true si la souris survol et relâche la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+##### picture_mouse_repeat?(id, *key, *precise)
+
+> Renvoie true si la souris survol et presse successivement la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
+
+
+##### picture_mouse_trigger?(id, *key, *precise)
+
+> Renvoie true si la souris survol et presse la touche référencée sur l'image référencée par son ID
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
+`*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
 
 
 ##### picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)

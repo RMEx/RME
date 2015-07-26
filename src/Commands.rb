@@ -504,6 +504,24 @@ module RMECommands
       return false unless spr
       precise ? spr.precise_in?(x, y) : spr.in?(x, y)
     end
+    def picture_mouse_hover?(id, precise = false)
+      pixel_in_picture?(id, Mouse.x, Mouse.y, precise)
+    end
+    def picture_mouse_click?(id, precise = false)
+      picture_mouse_hover?(id, precise) && Mouse.click?
+    end
+    def picture_mouse_press?(id, key = :mouse_left, precise = false)
+      picture_mouse_hover?(id, precise) && Mouse.press?(key)
+    end
+    def picture_mouse_trigger?(id, key = :mouse_left, precise = false)
+      picture_mouse_hover?(id, precise) && Mouse.trigger?(key)
+    end
+    def picture_mouse_repeat?(id, key = :mouse_left, precise = false)
+      picture_mouse_hover?(id, precise) && Mouse.repeat?(key)
+    end
+    def picture_mouse_release?(id, key = :mouse_left, precise = false)
+      picture_mouse_hover?(id, precise) && Mouse.release?(key)
+    end
     #--------------------------------------------------------------------------
     # * Picture collisions
     #--------------------------------------------------------------------------
