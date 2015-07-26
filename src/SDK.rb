@@ -236,6 +236,7 @@ module Externlib
   GetClipboardData        = Win32API.new('user32', 'GetClipboardData', 'i', 'i')
   GetCursorPos            = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
   GetKeyboardState        = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  GetPrivateProfileStringA= Win32API.new('kernel32', 'GetPrivateProfileStringA', 'pppplp', 'l')
   GlobalAlloc             = Win32API.new('kernel32', 'GlobalAlloc', 'ii', 'i')
   GlobalFree              = Win32API.new('kernel32', 'GlobalFree', 'i', 'i')
   GlobalLock              = Win32API.new('kernel32', 'GlobalLock', 'i', 'l')
@@ -243,6 +244,7 @@ module Externlib
   GlobalUnlock            = Win32API.new('kernel32', 'GlobalUnlock', 'l', 'v')
   Htons                   = Win32API.new('ws2_32', 'htons', 'l', 'l')
   Inet_Addr               = Win32API.new('ws2_32', 'inet_addr', 'p', 'l')
+  LoadLibraryA            = Win32API.new('kernel32', 'LoadLibraryA', 'p', 'i')
   Memcpy                  = Win32API.new('msvcrt', 'memcpy', 'ppi', 'i')
   MessageBox              = Win32API.new('user32','MessageBox','lppl','i')
   MultiByteToWideChar     = Win32API.new('kernel32', 'MultiByteToWideChar', 'ilpipi', 'i')
@@ -268,6 +270,9 @@ module Externlib
                             xinput.('xinput8_1_0') rescue
                             [nil, nil]
   XInputSetState =  Win32API.new(xdll, 'XInputSetState', 'ip', 'i') if xdll
+  tmpbuff = [].pack('x256')
+  GetPrivateProfileStringA.call("Game","Library","",tmpbuff, 256, './Game.ini')
+  RGSSDLL = File.expand_path(tmpbuff.delete!("\x00"))
 end
 
 #--------------------------------------------------------------------------

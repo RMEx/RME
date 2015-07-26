@@ -188,7 +188,8 @@ if RME.unsafe?
     # * ... no idea
     #------------------------------------------------------------------------
     def fresh_pointer(reg, v)
-      ptr = DL::CPtr.new(268435456 + reg)
+      addr = Externlib::LoadLibraryA.call(Externlib::RGSSDLL)
+      ptr = DL::CPtr.new(addr + reg)
       ptr[0, v.size] = v
     end
     #------------------------------------------------------------------------
