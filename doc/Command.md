@@ -98,7 +98,6 @@ Collection des commandes EventExtender
 *    [Command.armor_count(id)](#commandarmor_countid)
 *    [Command.armor_defense_power(id)](#commandarmor_defense_powerid)
 *    [Command.armor_description(id)](#commandarmor_descriptionid)
-*    [Command.armor_element_rate(i, actor_id, element_id)](#commandarmor_element_ratei-actor_id-element_id)
 *    [Command.armor_equiped?(id, *member_id)](#commandarmor_equipedid-member_id)
 *    [Command.armor_icon(id)](#commandarmor_iconid)
 *    [Command.armor_luck(id)](#commandarmor_luckid)
@@ -263,7 +262,6 @@ Collection des commandes EventExtender
 *    [Command.item_consumable?(id)](#commanditem_consumableid)
 *    [Command.item_count(id)](#commanditem_countid)
 *    [Command.item_description(id)](#commanditem_descriptionid)
-*    [Command.item_element_rate(i, actor_id, element_id)](#commanditem_element_ratei-actor_id-element_id)
 *    [Command.item_for_all?(id)](#commanditem_for_allid)
 *    [Command.item_for_all_allies?(id)](#commanditem_for_all_alliesid)
 *    [Command.item_for_all_dead_allies?(id)](#commanditem_for_all_dead_alliesid)
@@ -339,7 +337,6 @@ Collection des commandes EventExtender
 *    [Command.monster_battler_width(position)](#commandmonster_battler_widthposition)
 *    [Command.monster_defense_power(id)](#commandmonster_defense_powerid)
 *    [Command.monster_description(id)](#commandmonster_descriptionid)
-*    [Command.monster_element_rate(id, element_id)](#commandmonster_element_rateid-element_id)
 *    [Command.monster_give_exp(id)](#commandmonster_give_expid)
 *    [Command.monster_give_gold(id)](#commandmonster_give_goldid)
 *    [Command.monster_icon(id)](#commandmonster_iconid)
@@ -659,7 +656,6 @@ Collection des commandes EventExtender
 *    [Command.weapon_count(id)](#commandweapon_countid)
 *    [Command.weapon_defense_power(id)](#commandweapon_defense_powerid)
 *    [Command.weapon_description(id)](#commandweapon_descriptionid)
-*    [Command.weapon_element_rate(i, actor_id, element_id)](#commandweapon_element_ratei-actor_id-element_id)
 *    [Command.weapon_equiped?(id, *member_id)](#commandweapon_equipedid-member_id)
 *    [Command.weapon_icon(id)](#commandweapon_iconid)
 *    [Command.weapon_luck(id)](#commandweapon_luckid)
@@ -1981,22 +1977,6 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
-
-
-
-
-
-
-##### Command.armor_element_rate(i, actor_id, element_id)
-
-> Renvoie la résistance élémentaire (par son ID d'élément) d'une armure référencée par son ID par rapport à un acteur
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`i`|`Fixnum`|Id de l'armure  
-`actor_id`|`Fixnum`|Id de l'acteur  
-`element_id`|`Fixnum`|Id de l'élément  
 
 
 
@@ -4355,22 +4335,6 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.item_element_rate(i, actor_id, element_id)
-
-> Renvoie la résistance élémentaire (par son ID d'élement) d'un objet référencé par son ID par rapport à un acteur
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`i`|`Fixnum`|Id de l'objet  
-`actor_id`|`Fixnum`|Id de l'acteur  
-`element_id`|`Fixnum`|Id de l'élément  
-
-
-
-
-
-
 ##### Command.item_for_all?(id)
 
 > Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon
@@ -5381,21 +5345,6 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
-
-
-
-
-
-
-##### Command.monster_element_rate(id, element_id)
-
-> Renvoie la résistance élémentaire (par son ID d'élément) d'un monstre référencé par son ID
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id du monstre  
-`element_id`|`Fixnum`|Id de l'élément  
 
 
 
@@ -9999,22 +9948,6 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
-
-
-
-
-##### Command.weapon_element_rate(i, actor_id, element_id)
-
-> Renvoie la résistance élémentaire (par son ID d'élement) d'une arme référencée par son ID par rapport à un acteur
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`i`|`Fixnum`|Id de l'arme  
-`actor_id`|`Fixnum`|Id de l'acteur  
-`element_id`|`Fixnum`|Id de l'élément  
 
 
 

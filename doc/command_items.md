@@ -16,7 +16,6 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_consumable?(id)](#item_consumableid)
 *    [item_count(id)](#item_countid)
 *    [item_description(id)](#item_descriptionid)
-*    [item_element_rate(i, actor_id, element_id)](#item_element_ratei-actor_id-element_id)
 *    [item_for_all?(id)](#item_for_allid)
 *    [item_for_all_allies?(id)](#item_for_all_alliesid)
 *    [item_for_all_dead_allies?(id)](#item_for_all_dead_alliesid)
@@ -144,18 +143,6 @@ Commandes permettant d'obtenir ou de manipuler les objets
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
-##### item_element_rate(i, actor_id, element_id)
-
-> Renvoie la résistance élémentaire (par son ID d'élement) d'un objet référencé par son ID par rapport à un acteur
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`i`|`Fixnum`|Id de l'objet  
-`actor_id`|`Fixnum`|Id de l'acteur  
-`element_id`|`Fixnum`|Id de l'élément  
 
 
 ##### item_for_all?(id)
