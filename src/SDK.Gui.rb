@@ -308,7 +308,8 @@ class Viewport
   #--------------------------------------------------------------------------
   [
     :children,
-    :parent
+    :parent,
+    :legacy_rule
   ].each{|m| delegate_accessor :rect, m}
   #--------------------------------------------------------------------------
   # * Auto-computing when changing parameters
@@ -1087,6 +1088,7 @@ module Gui
     [
       :children,
       :parent,
+      :legacy_rule,
       :z
     ].each{|m| delegate_accessor :viewport, m}
     [
@@ -1097,21 +1099,39 @@ module Gui
     ].each{|m| attr_accessor_callback :compute, m}
 
     def initialize(args=nil)
-      @name = args[:name] if args && args[:name]
-      @viewport = Viewport.new(50, 50, 200, 300)
-      if args && args[:parent]
-        pa = args[:parent]
-        self.parent = pa
-        pa.children ||= []
-        pa.children << self
-      end
-      @style = Gui::Style.new
-      @style.css_match(self)
-      @style.set args[:style] if args && args[:style]
+      @viewport = Viewport.new
       @background = Sprite.new(@viewport)
       @inner = Rect.new
       @inner >> @viewport
+      @name = args.delete(:name) if args && args[:name]
+      @style = Gui::Style.new
+      @style.css_match(self)
+      set args if args
+    end
+
+    def resize(x, y, w, h)
+      @x = x
+      @y = y
+      @width  = w
+      @height = h
       compute_self
+    end
+
+    def set(args)
+      set_parent(args.delete(:parent)) if args[:parent]
+      @x = args.delete(:x) if args[:x]
+      @y = args.delete(:y) if args[:y]
+      @width  = args.delete(:width)  if args[:width]
+      @height = args.delete(:height) if args[:height]
+      self.legacy_rule = args.delete(:position) if args[:position]
+      @style.set args
+      compute_self
+    end
+
+    def set_parent(pa)
+      self.parent = pa
+      pa.children ||= []
+      pa.children << self
     end
 
     def update_background
