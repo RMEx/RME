@@ -24,6 +24,7 @@ module DocGenerator
     def to_json
       result = Array.new
       RME::Doc.commands.each do |category, data|
+        puts "Generate #{category}.json"
         json_data =
           [
             "{\"name\":\"#{data[:name]}\",\"desc\":\"#{data[:desc]}\",",
@@ -32,7 +33,8 @@ module DocGenerator
         result << json_data
       end
       a  = "var documentation = [" + result.join(',') + "];\n"
-      a += 'var rme_samples = ' + ASample.to_json + ";\n" 
+      puts "Generate Samples"
+      a += 'var rme_samples = ' + ASample.to_json + ";\n"
     end
 
     # A continuer ! Gestion des paramètres et tout :D
@@ -40,6 +42,7 @@ module DocGenerator
       kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
       res = Array.new
       commands.each do |name, data|
+        puts "Generate #{name}.json"
         h =
           [
             "{\"name\":\"#{kname.(name)}\", ",
