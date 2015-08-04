@@ -7,7 +7,9 @@ if $STAGING
       ASample.list = Array.new
 
       def to_json
-        "[#{ASample.list.map {|e| e.to_json}.join(',')}]"
+        "[#{ASample.list.map {|e|
+          puts "generate a sample [#{e.title}]"
+          e.to_json}.join(',')}]"
       end
 
     end
