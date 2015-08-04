@@ -446,7 +446,25 @@ class Object
     method("#{m}=")[v]
   end
 
+  alias_method :rme_method_missing, :method_missing
+  def method_missing(*a)
+    Exception.last_noMethod = self
+    rme_method_missing(*a)
+  end
+
 end # End of Object
+
+#==============================================================================
+# ** Exception
+#------------------------------------------------------------------------------
+# Try to retreive last exception
+#==============================================================================
+
+class Exception
+  class << self
+    attr_accessor :last_noMethod
+  end
+end
 
 #==============================================================================
 # ** NilClass

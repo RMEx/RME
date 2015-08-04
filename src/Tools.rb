@@ -64,6 +64,20 @@ class Scene_Map
   end
 end
 
+class Graphical_eval
+
+  def initialize
+    base_init
+  end
+
+  def base_init
+    Game_Temp.in_game = false
+    @width = Graphics.width - 12
+    @height = 58
+
+  end
+
+end
 
 class Graphical_eval
 
@@ -282,7 +296,7 @@ class Graphical_eval
     rescue Exception => exc
       invalid_marker
       result = exc.message
-      if exc.is_a?(NameError)
+      if exc.instance_of?(NameError)
         keywords = Command.singleton_methods
         keywords.uniq!
         keywords.delete(:method_missing)
@@ -290,6 +304,13 @@ class Graphical_eval
         keywords.sort_by!{|o| o.damerau_levenshtein(exc.name)}
         snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
         result = "[#{exc.name}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+      elsif exc.is_a?(NoMethodError)
+        keywords = Exception.last_noMethod.methods
+        keywords.uniq!
+        keywords.collect!{|i|i.to_s}
+        keywords.sort_by!{|o| o.damerau_levenshtein(exc.name)}
+        snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+        result = "#{exc.class}\n #{exc}\n\n[#{exc.name}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
       elsif exc.is_a?(SyntaxError)
         result = exc.message.split(/\:\d+\:/)[-1].strip
       end
