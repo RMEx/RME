@@ -591,14 +591,6 @@ class Fixnum
     NUMBER[0]
   end
 
-  #--------------------------------------------------------------------------
-  # * Bound value
-  #--------------------------------------------------------------------------
-  def bound(min, max)
-    b_min = min - ((min-self) & (min-self)>>31)
-    b_min + ((max-b_min) & (max-b_min)>>31)
-  end
-
 end
 
 #==============================================================================
@@ -664,6 +656,23 @@ class Numeric
    alias :centaines_milliers  :hundreds_thousands
    alias :dizaines_millions   :tens_millions
    alias :centaines_millions  :hundreds_millions
+   #--------------------------------------------------------------------------
+   # * Int Bound value
+   #--------------------------------------------------------------------------
+   def bound(min, max)
+     begin
+       b_min = min - ((min-self) & (min-self)>>31)
+       b_min + ((max-b_min) & (max-b_min)>>31)
+     rescue
+       fbound(min, max)
+     end
+   end
+   #--------------------------------------------------------------------------
+   # * Float Bound value
+   #--------------------------------------------------------------------------
+   def fbound(min, max)
+     [[min, self].max, max].min
+   end
 end
 
 #==============================================================================

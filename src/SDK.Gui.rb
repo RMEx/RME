@@ -1203,11 +1203,8 @@ module Gui
     def convert(m)
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
-      if [:x, :width].include?(m)
-        @style[m] = parent.inner.width  * @style[m] / 100
-      else
-        @style[m] = parent.inner.height * @style[m] / 100
-      end
+      return parent.inner.width  * @style[m] / 100 if [:x, :width].include?(m)
+      parent.inner.height * @style[m] / 100
     end
   end
 
