@@ -156,19 +156,29 @@ module Generative
 end
 
 #==============================================================================
-# ** Numeric
+# ** Percentage
 #------------------------------------------------------------------------------
-# Managing digits separately
+# Ugly pseudo-typage method
 #==============================================================================
 
 class Numeric
-   def percent
-     @percent = true
-     self
-   end
-   def percent?
-     @percent
-   end
+  def percent?
+    false
+  end
+  def percent
+    Percentage.new(self)
+  end
+end
+class Percentage
+  attr_accessor :value
+  [:abs,:ceil,:floor,:integer?,:round,:truncate,
+    :*,:+,:-,:/,:%,:**,:<=>,:==,:<,:<=,:>,:>=].each{|m| delegate :value, m}
+  def initialize(value)
+    @value = value
+  end
+  def percent?
+    true
+  end
 end
 
 #==============================================================================
@@ -1203,8 +1213,8 @@ module Gui
     def convert(m)
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
-      return parent.inner.width  * @style[m] / 100 if [:x, :width].include?(m)
-      parent.inner.height * @style[m] / 100
+      return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
+      return (@style[m] * parent.inner.height / 100)
     end
   end
 
