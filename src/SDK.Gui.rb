@@ -105,7 +105,7 @@ module Generative
         delegate_accessor :values, :[]
       end
 
-      self[:none] = proc do |r|
+      self[:absolute] = proc do |r|
         r.true_x      = r.abs_x  = r.x
         r.true_y      = r.abs_y  = r.y
         r.true_width  = r.width
@@ -147,7 +147,7 @@ module Generative
         @legacy_rule ||= :enclosed
         Rules[@legacy_rule][self]
       else
-        Rules[:none][self]
+        Rules[:absolute][self]
       end
     end
 
@@ -164,6 +164,7 @@ end
 class Numeric
    def percent
      @percent = true
+     self
    end
    def percent?
      @percent
@@ -392,33 +393,42 @@ module Gui
   #==============================================================================
 
   class Style
-
-    def initialize
+    #--------------------------------------------------------------------------
+    # * Style initialize
+    #--------------------------------------------------------------------------
+    def initialize(args = nil)
       @values = Hash.new
       set background_color: Color.new(*[255]*3),
           border_color:     Color.new(*[0]*3),
+          x:                0,
+          y:                0,
+          width:            0,
+          height:           0,
           border:           1,
           border_width:     1,
           border_radius:    0,
           font:             'Standard',
-          height:           :auto,
           max_height:       nil,
           min_height:       0,
-          width:            :auto,
           max_width:        nil,
           min_width:        0,
           padding:          8,
-          margin:           0
+          margin:           0,
+          display:          :inline
+      set args if args
     end
-
+    #--------------------------------------------------------------------------
+    # * Reading & Writing access to style specs
+    #--------------------------------------------------------------------------
     def [](k)
       @values[k.to_sym]
     end
-
     def []=(k,v)
       @values[k.to_sym] = v
     end
-
+    #--------------------------------------------------------------------------
+    # * Set style spec with named args (ex: set(margin: 5))
+    #--------------------------------------------------------------------------
     def set(args)
       args.each do |k,v|
         if [:margin, :padding, :border].include?(k)
@@ -428,7 +438,15 @@ module Gui
         end
       end
     end
-
+    #--------------------------------------------------------------------------
+    # * Quick style specification for :margin, :padding, :border
+    #  Exemple :
+    #    border: 5          => all border is set to 5
+    #    border: [5,8]      => top&bottom border is set to 5
+    #                          left&right border is set to 8
+    #    border: [5,8,10]   => in order: top, left&right, bottom definition
+    #    border: [5,8,10,3] => in order: top, right, bottom, left definition
+    #--------------------------------------------------------------------------
     def set_param(m, *args)
       m = m.to_s
       case args.length
@@ -439,15 +457,17 @@ module Gui
         self["#{m}_bottom"] = self["#{m}_top"]   = args[0]
         self["#{m}_left"]   = self["#{m}_right"] = args[1]
       when 3
-        self["#{m}_bottom"] = args[0]
-        self["#{m}_top"]    = args[2]
+        self["#{m}_top"]    = args[0]
+        self["#{m}_bottom"] = args[2]
         self["#{m}_left"]   = self["#{m}_right"] = args[1]
       else
-        self["#{m}_bottom"], self["#{m}_top"],
-        self["#{m}_left"],   self["#{m}_right"]  = *args
+        self["#{m}_top"],     self["#{m}_right"],
+        self["#{m}_bottom"],  self["#{m}_left"]  = *args
       end
     end
-
+    #--------------------------------------------------------------------------
+    # * Contracts the given rect with the given method
+    #--------------------------------------------------------------------------
     def contract_with(m, r)
       m = m.to_s
       x = r.x + self["#{m}_left"]
@@ -456,7 +476,9 @@ module Gui
       h = r.height - self["#{m}_top" ] - self["#{m}_bottom"]
       r.set x, y, w, h
     end
-
+    #--------------------------------------------------------------------------
+    # * CSS application
+    #--------------------------------------------------------------------------
     def css_match(obj)
       Gui::CSS.apply_to(obj)
     end
@@ -469,17 +491,30 @@ module Gui
   #==============================================================================
 
   module CSS
+
+    #--------------------------------------------------------------------------
+    # * Singleton
+    #--------------------------------------------------------------------------
     class << self
+      #--------------------------------------------------------------------------
+      # * CSS entries accessor
+      #--------------------------------------------------------------------------
       attr_accessor :entries
       delegate_accessor :entries, :[]
       CSS.entries = Hash.new
+      #--------------------------------------------------------------------------
+      # * Matching and application for Object's Style instance
+      #--------------------------------------------------------------------------
       def apply_to(obj)
         entries.each do |selector, style|
           obj.style.set(style) if selector[obj]
         end
       end
-    end
+    end # End Singleton
 
+    #--------------------------------------------------------------------------
+    # * CSS writing method
+    #--------------------------------------------------------------------------
     def set(*selectors, style)
       selectors.each do |s|
         s = s+'._' unless s.include?('.')
@@ -1067,7 +1102,9 @@ module Gui
     # * Import Stackable API
     #--------------------------------------------------------------------------
     include Generative::Stackable
-
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
     attr_accessor :inner, :style, :viewport, :name
     [
       :in?,
@@ -1091,50 +1128,55 @@ module Gui
       :legacy_rule,
       :z
     ].each{|m| delegate_accessor :viewport, m}
-    [
-      :x,
-      :y,
-      :width,
-      :height
-    ].each{|m| attr_accessor_callback :compute, m}
-
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args =
+    #   name:     String reference for the CSS matching (like 'class' in HTML)
+    #   parent:   Object reference used to stack into
+    #   position: :enclosed into parent by default, can be :relative or :absolute
+    #   x:, y:, width:, height: Position & dimension
+    #   border:, background_color:, padding:, etc.Style definition, see Gui::Style
+    #--------------------------------------------------------------------------
     def initialize(args=nil)
       @viewport = Viewport.new
       @background = Sprite.new(@viewport)
       @inner = Rect.new
       @inner >> @viewport
       @name = args.delete(:name) if args && args[:name]
-      @style = Gui::Style.new
+      @style = Style.new
       @style.css_match(self)
       set args if args
     end
-
-    def resize(x, y, w, h)
-      @x = x
-      @y = y
-      @width  = w
-      @height = h
-      compute_self
-    end
-
+    #--------------------------------------------------------------------------
+    # * Set value to any named args, except :name (reserved to initialize)
+    # * :parent can't be redefined
+    #--------------------------------------------------------------------------
     def set(args)
       set_parent(args.delete(:parent)) if args[:parent]
-      @x = args.delete(:x) if args[:x]
-      @y = args.delete(:y) if args[:y]
-      @width  = args.delete(:width)  if args[:width]
-      @height = args.delete(:height) if args[:height]
-      self.legacy_rule = args.delete(:position) if args[:position]
       @style.set args
-      compute_self
+      self.legacy_rule = @style[:position]
+      compute
     end
-
+    #--------------------------------------------------------------------------
+    # * Tralala
+    #--------------------------------------------------------------------------
+    def x=(v); @style[:x] = v; compute; end
+    def y=(v); @style[:y] = v; compute; end
+    def width=(v) ; @style[:width]  = v; compute; end
+    def height=(v); @style[:height] = v; compute; end
+    #--------------------------------------------------------------------------
+    # * Push into another Object
+    #--------------------------------------------------------------------------
     def set_parent(pa)
       self.parent = pa
       pa.children ||= []
       pa.children << self
     end
-
+    #--------------------------------------------------------------------------
+    # * Update background display
+    #--------------------------------------------------------------------------
     def update_background
+      return if [self.width, self.height].include?(0)
       @background.bitmap = Bitmap.new(self.width, self.height)
       r = Rect.new(0, 0, self.width, self.height)
       @style.contract_with(:margin, r)
@@ -1144,14 +1186,46 @@ module Gui
       @style.contract_with(:padding, r)
       @inner.set(r)
     end
-
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
     def compute_self
-      viewport.x = @x
-      viewport.y = @y
-      viewport.width = @width
-      viewport.height = @height
+      viewport.x = convert(:x)
+      viewport.y = convert(:y)
+      viewport.width  = convert(:width)
+      viewport.height = convert(:height)
       viewport.compute_self
       update_background
+    end
+    #--------------------------------------------------------------------------
+    # * Conversion percent to value
+    #--------------------------------------------------------------------------
+    def convert(m)
+      return @style[m] unless @style[m].percent?
+      parent = self.parent || Viewport.new
+      if [:x, :width].include?(m)
+        @style[m] = parent.width * @style[m] / 100
+      else
+        @style[m] = parent.height * @style[m] / 100
+      end
+    end
+  end
+
+  #==============================================================================
+  # ** Gui::TrackBar
+  #------------------------------------------------------------------------------
+  #  Trackbar
+  #==============================================================================
+
+  class TrackBar
+    attr_accessor :track, :bar
+    def initialize(args=nil)
+      args ||= Hash.new
+      args[:name] = 'track'
+      @track = Box.new(args)
+      @bar   = Box.new(name:'bar',   parent:@track)
+      Draggable << @bar
+      @bar.drag_restriction = Rect.new(@bar.x, @bar.y, @track.inner.width-@bar.width, 0)
     end
   end
 
@@ -1176,10 +1250,19 @@ end
 
 module CSS
 
-  set 'Gui::Box',
-    padding: 5,
-    background_color: get_color('gray'),
-    border_color: get_color('blue')
+  set 'Gui::Box.track',
+    width: 100.percent,
+    height: 8,
+    padding: 0,
+    background_color: get_color('gray')
+
+  set 'Gui::Box.bar',
+    position: :relative,
+    width: 8,
+    height: 16,
+    y: -5,
+    background_color: get_color('white'),
+    border_color: get_color('gray')
 
   set 'SuperBilou',
     padding: 10,
