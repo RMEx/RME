@@ -1149,7 +1149,10 @@ module Gui
     #--------------------------------------------------------------------------
     def initialize(args=nil)
       @viewport = Viewport.new
+      @border = Sprite.new(@viewport)
+      @border.bitmap = Bitmap.new(1,1)
       @background = Sprite.new(@viewport)
+      @background.bitmap = Bitmap.new(1,1)
       @inner = Rect.new
       @inner >> @viewport
       @name = args.delete(:name) if args && args[:name]
@@ -1187,14 +1190,28 @@ module Gui
     #--------------------------------------------------------------------------
     def update_background
       return if [self.width, self.height].include?(0)
-      @background.bitmap = Bitmap.new(self.width, self.height)
+      update_colors
       r = Rect.new(0, 0, self.width, self.height)
       @style.contract_with(:margin, r)
-      @background.bitmap.fill_rect(r, @style[:border_color])
+      fit_sprite(@border, r)
       @style.contract_with(:border, r)
-      @background.bitmap.fill_rect(r, @style[:background_color])
+      fit_sprite(@background, r)
       @style.contract_with(:padding, r)
       @inner.set(r)
+    end
+    #--------------------------------------------------------------------------
+    # * Fit sprite(1x1) into the rect
+    #--------------------------------------------------------------------------
+    def fit_sprite(s, r)
+      s.x, s.y = r.x, r.y
+      s.zoom_x, s.zoom_y = r.width, r.height
+    end
+    #--------------------------------------------------------------------------
+    # * Update colors
+    #--------------------------------------------------------------------------
+    def update_colors
+      @border.bitmap.set_pixel(0, 0, @style[:border_color])
+      @background.bitmap.set_pixel(0, 0, @style[:background_color])
     end
     #--------------------------------------------------------------------------
     # * Computes self
