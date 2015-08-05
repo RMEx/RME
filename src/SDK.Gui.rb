@@ -1149,7 +1149,7 @@ module Gui
     end
     #--------------------------------------------------------------------------
     # * Set value to any named args, except :name (reserved to initialize)
-    # * :parent can't be redefined
+    # * :parent can't be redefined twice
     #--------------------------------------------------------------------------
     def set(args)
       set_parent(args.delete(:parent)) if args[:parent]
@@ -1204,9 +1204,9 @@ module Gui
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
       if [:x, :width].include?(m)
-        @style[m] = parent.width * @style[m] / 100
+        @style[m] = parent.inner.width  * @style[m] / 100
       else
-        @style[m] = parent.height * @style[m] / 100
+        @style[m] = parent.inner.height * @style[m] / 100
       end
     end
   end
@@ -1218,14 +1218,49 @@ module Gui
   #==============================================================================
 
   class TrackBar
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
     attr_accessor :track, :bar
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = max_value:, value:, x:, y:, width:
+    #--------------------------------------------------------------------------
     def initialize(args=nil)
-      args ||= Hash.new
-      args[:name] = 'track'
-      @track = Box.new(args)
-      @bar   = Box.new(name:'bar',   parent:@track)
+      @track = Box.new(name:'track')
+      @bar   = Box.new(name:'bar', parent:@track)
+      @max_value = 255
       Draggable << @bar
-      @bar.drag_restriction = Rect.new(@bar.x, @bar.y, @track.inner.width-@bar.width, 0)
+      set args
+    end
+    #--------------------------------------------------------------------------
+    # * Set value to any named argument
+    # * :parent can't be redefined twice
+    #--------------------------------------------------------------------------
+    def set(args)
+      v = args.delete(:value) || value
+      @max_value = args.delete(:max_value) if args[:max_value]
+      @track.set(args)
+      self.value = v
+      @bar.drag_restriction = Rect.new(0, @bar.y, course, 0)
+    end
+    #--------------------------------------------------------------------------
+    # * Course
+    #--------------------------------------------------------------------------
+    def course
+      @track.inner.width-@bar.width
+    end
+    #--------------------------------------------------------------------------
+    # * Returns the current value
+    #--------------------------------------------------------------------------
+    def value
+      @max_value * @bar.x / course
+    end
+    #--------------------------------------------------------------------------
+    # * Setup the current value
+    #--------------------------------------------------------------------------
+    def value=(v)
+      @bar.x = course * v / @max_value
     end
   end
 
