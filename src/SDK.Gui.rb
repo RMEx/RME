@@ -83,6 +83,15 @@ module Generative
     def recompute_children
       children.each{|c| c.compute} if self.children
     end
+    #--------------------------------------------------------------------------
+    # * Free stacking
+    #--------------------------------------------------------------------------
+    def dispose_stack
+      children.each do |c|
+        c.dispose if c.respond_to?(:dispose)
+      end if self.children
+      parent.children.delete(self) if self.parent
+    end
 
   end
 
@@ -380,8 +389,7 @@ class Viewport
   #--------------------------------------------------------------------------
   def dispose
     @disposed = true
-    self.parent.children.delete(self) if self.parent
-    self.children.each{|c| c.dispose} if self.children
+    dispose_stack
     sdk_dispose
   end
   attr_reader :disposed
@@ -403,6 +411,10 @@ module Gui
   #==============================================================================
 
   class Style
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :values
     #--------------------------------------------------------------------------
     # * Style initialize
     #--------------------------------------------------------------------------
@@ -447,6 +459,7 @@ module Gui
           self[k] = v
         end
       end
+      self
     end
     #--------------------------------------------------------------------------
     # * Quick style specification for :margin, :padding, :border
@@ -1189,7 +1202,9 @@ module Gui
     # * Update background display
     #--------------------------------------------------------------------------
     def update_background
-      return if [self.width, self.height].include?(0)
+      if @style[:background] == :none || [self.width, self.height].include?(0)
+        return update_inner
+      end
       update_colors
       r = Rect.new(0, 0, self.width, self.height)
       @style.contract_with(:margin, r)
@@ -1198,6 +1213,12 @@ module Gui
       fit_sprite(@background, r)
       @style.contract_with(:padding, r)
       @inner.set(r)
+    end
+    #--------------------------------------------------------------------------
+    # * Update inner
+    #--------------------------------------------------------------------------
+    def update_inner
+      @inner.set(0, 0, self.width, self.height)
     end
     #--------------------------------------------------------------------------
     # * Fit sprite(1x1) into the rect
@@ -1233,6 +1254,20 @@ module Gui
       return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
       return (@style[m] * parent.inner.height / 100)
     end
+    #--------------------------------------------------------------------------
+    # * Free
+    #--------------------------------------------------------------------------
+    def dispose
+      @disposed = true
+      dispose_stack
+      @border.bitmap.dispose
+      @border.dispose
+      @background.bitmap.dispose
+      @background.dispose
+      @viewport.dispose
+    end
+    attr_reader :disposed
+    alias_method :disposed?, :disposed
   end
 
   #==============================================================================
@@ -1241,7 +1276,7 @@ module Gui
   #  Trackbar
   #==============================================================================
 
-  class TrackBar
+  class TrackBar < Box
     #--------------------------------------------------------------------------
     # * Public instances variables
     #--------------------------------------------------------------------------
@@ -1251,8 +1286,9 @@ module Gui
     # * optionnal named args = max_value:, value:, x:, y:, width:
     #--------------------------------------------------------------------------
     def initialize(args=nil)
-      @track = Box.new(name:'track')
-      @bar   = Box.new(name:'bar', parent:@track)
+      super(nil)
+      @track = Box.new(name:'track', parent:self)
+      @bar   = Box.new(name:'bar', parent:self)
       @max_value = 255
       Draggable << @bar
       set args
@@ -1264,27 +1300,37 @@ module Gui
     def set(args)
       v = args.delete(:value) || value
       @max_value = args.delete(:max_value) if args[:max_value]
-      @track.set(args)
+      super(args)
       self.value = v
-      @bar.drag_restriction = Rect.new(0, @bar.y, course, 0)
+      @bar.drag_restriction = Rect.new(start, @bar.y, course, 0)
     end
     #--------------------------------------------------------------------------
-    # * Course
+    # * Shortcuts
     #--------------------------------------------------------------------------
-    def course
-      @track.inner.width-@bar.width
-    end
+    def start;  @track.inner.x; end
+    def course; @track.inner.width - @bar.width; end
+    def value;  @max_value * @bar.x / course; end
     #--------------------------------------------------------------------------
-    # * Returns the current value
-    #--------------------------------------------------------------------------
-    def value
-      @max_value * @bar.x / course
-    end
-    #--------------------------------------------------------------------------
-    # * Setup the current value
+    # * Move bar to value
     #--------------------------------------------------------------------------
     def value=(v)
-      @bar.x = course * v / @max_value
+      @bar.x = start + course * v / @max_value
+    end
+    #--------------------------------------------------------------------------
+    # * Responsive computing
+    #--------------------------------------------------------------------------
+    def compute
+      v = value
+      super
+      self.value = v
+      @bar.drag_restriction = Rect.new(start, @bar.y, course, 0)
+    end
+    #--------------------------------------------------------------------------
+    # * Free
+    #--------------------------------------------------------------------------
+    def dispose
+      Draggable.objects.delete(@bar)
+      super
     end
   end
 
@@ -1308,18 +1354,23 @@ end
 #==============================================================================
 
 module CSS
+  set 'Gui::TrackBar',
+    width: 100.percent,
+    height: 16,
+    padding: 0,
+    border: 0,
+    background: :none
 
   set 'Gui::Box.track',
     width: 100.percent,
     height: 8,
+    y: 4,
     padding: 0,
     background_color: get_color('gray')
 
   set 'Gui::Box.bar',
-    position: :relative,
     width: 8,
     height: 16,
-    y: -5,
     background_color: get_color('white'),
     border_color: get_color('gray')
 
