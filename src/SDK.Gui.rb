@@ -362,6 +362,15 @@ class Viewport
     end
   end
   #--------------------------------------------------------------------------
+  # * Sets parameters without auto-computing
+  #--------------------------------------------------------------------------
+  def set_parameters(x, y, w, h)
+    @x = x
+    @y = y
+    @width = w
+    @height = h
+  end
+  #--------------------------------------------------------------------------
   # * Computes real Rect from legacy rules
   #--------------------------------------------------------------------------
   def compute_self
@@ -1186,10 +1195,16 @@ module Gui
     #--------------------------------------------------------------------------
     # * Tralala
     #--------------------------------------------------------------------------
-    def x=(v); @style[:x] = v; compute; end
-    def y=(v); @style[:y] = v; compute; end
-    def width=(v) ; @style[:width]  = v; compute; end
-    def height=(v); @style[:height] = v; compute; end
+    def x=(v); style_set(:x, v); end
+    def y=(v); style_set(:y, v); end
+    def width=(v) ; style_set(:width,  v); end
+    def height=(v); style_set(:height, v); end
+    def style_set(m,v)
+      if @style[m] != v
+        @style[m] = v
+        compute
+      end
+    end
     #--------------------------------------------------------------------------
     # * Push into another Object
     #--------------------------------------------------------------------------
@@ -1238,10 +1253,7 @@ module Gui
     # * Computes self
     #--------------------------------------------------------------------------
     def compute_self
-      viewport.x = convert(:x)
-      viewport.y = convert(:y)
-      viewport.width  = convert(:width)
-      viewport.height = convert(:height)
+      viewport.set_parameters(convert(:x), convert(:y), convert(:width), convert(:height))
       viewport.compute_self
       update_background
     end
@@ -1253,6 +1265,15 @@ module Gui
       parent = self.parent || Viewport.new
       return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
       return (@style[m] * parent.inner.height / 100)
+    end
+    #--------------------------------------------------------------------------
+    # * Clone
+    #--------------------------------------------------------------------------
+    def clone
+      args = @style.values
+      args[:name] = @name
+      args[:parent] = self.parent
+      self.class.new(args)
     end
     #--------------------------------------------------------------------------
     # * Free
@@ -1309,12 +1330,18 @@ module Gui
     #--------------------------------------------------------------------------
     def start;  @track.inner.x; end
     def course; @track.inner.width - @bar.width; end
-    def value;  @max_value * @bar.x / course; end
+    def value;  @max_value.to_f * (@bar.x-start) / course; end
     #--------------------------------------------------------------------------
     # * Move bar to value
     #--------------------------------------------------------------------------
     def value=(v)
-      @bar.x = start + course * v / @max_value
+      @bar.x = start + course.to_f * v.fbound(0, @max_value) / @max_value
+    end
+    #--------------------------------------------------------------------------
+    # * Fit course to @max_value
+    #--------------------------------------------------------------------------
+    def fit_to_max
+      self.width = self.width - @track.inner.width + @bar.width + @max_value
     end
     #--------------------------------------------------------------------------
     # * Responsive computing
