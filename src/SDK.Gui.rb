@@ -20,6 +20,22 @@ License coming soon
 if RME.gui_enabled?
 
 #==============================================================================
+# ** Color
+#------------------------------------------------------------------------------
+#  The RGBA color class.
+#==============================================================================
+
+class Color
+  alias_method :sdk_initialize, :initialize
+  def initialize(*args)
+    if args.length == 1 && args[0].is_a?(String)
+      args = args[0][1..6].scan(/../).map{|color| color.to_i(16)}
+    end
+    sdk_initialize(*args)
+  end
+end
+
+#==============================================================================
 # ** Generative
 #------------------------------------------------------------------------------
 #  Mixins collection
