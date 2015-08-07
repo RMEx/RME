@@ -1176,6 +1176,7 @@ module Gui
       :legacy_rule,
       :z
     ].each{|m| delegate_accessor :viewport, m}
+    attr_accessor :background
     #--------------------------------------------------------------------------
     # * Object initialize
     # * optionnal named args =
