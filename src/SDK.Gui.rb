@@ -1439,6 +1439,14 @@ module Gui
         compute
       end
     end
+    #--------------------------------------------------------------------------
+    # * Free
+    #--------------------------------------------------------------------------
+    def dispose
+      super
+      @sprite_text.bitmap.dispose
+      @sprite_text.dispose
+    end
   end
 
   #==============================================================================
@@ -1519,7 +1527,7 @@ module Gui
     #--------------------------------------------------------------------------
     def start;  @track.inner.y; end
     def course; @track.inner.height - @bar.height; end
-    def value;  @max_value.to_f * (@bar.y-start) / course; end
+    def value;  max_value.to_f * (@bar.y-start) / course; end
     #--------------------------------------------------------------------------
     # * Move bar to value
     #--------------------------------------------------------------------------
@@ -1616,71 +1624,10 @@ end
 #==============================================================================
 
 module CSS
-  set 'Gui::TrackBar','Gui::VerticalTrackBar',
-    width: 100.percent,
-    height: 12,
-    padding: 0,
-    border: 0,
-    background: :none
-
-  set 'Gui::TrackBar .track','Gui::VerticalTrackBar .track',
-    width: 100.percent,
-    height: 50.percent,
-    y: 25.percent,
-    padding: 0,
-    background_color: get_color('gray')
-
-  set 'Gui::TrackBar .bar','Gui::VerticalTrackBar .bar',
-    width: 8,
-    height: 100.percent,
-    background_color: get_color('white'),
-    border_color: get_color('gray')
-
-  set 'Gui::VerticalTrackBar',
-    width: 12,
-    height: 100.percent
-
-  set 'Gui::VerticalTrackBar .track',
-    y: 0,
-    x: 25.percent,
-    width: 50.percent,
-    height: 100.percent
-    
-  set 'Gui::VerticalTrackBar .bar',
-    width: 100.percent,
-    height: 8
-
-  set 'Gui::ScrollBar','Gui::VerticalScrollBar',
-    width: 100.percent,
-    height: 8,
-    padding: 0,
-    border: 0,
-    background: :none
-
-  set 'Gui::ScrollBar .track','Gui::VerticalScrollBar .track',
-    width: 100.percent,
-    height: 100.percent,
-    padding: 0,
-    background_color: get_color('gray')
-
-  set 'Gui::ScrollBar .bar','Gui::VerticalScrollBar .bar',
-    width: 20,
-    height: 100.percent,
-    background_color: get_color('white'),
-    border_color: get_color('gray')
-
-  set 'Gui::VerticalScrollBar',
-    width: 8,
-    height: 100.percent
-
-  set 'Gui::VerticalScrollBar .track',
-    width: 100.percent,
-    height: 100.percent
-    
-  set 'Gui::VerticalScrollBar .bar',
-    width: 100.percent,
-    height: 20
-
+  
+  #--------------------------------------------------------------------------
+  # * Pannel
+  #--------------------------------------------------------------------------
   set 'Gui::Pannel',
     title: "title",
     width: 100.percent,
@@ -1697,6 +1644,85 @@ module CSS
     font: fon,
     x: 5,
     y: 2
+  
+  #--------------------------------------------------------------------------
+  # * TrackBar & ScrollBar
+  #--------------------------------------------------------------------------
+  set 'Gui::TrackBar','Gui::VerticalTrackBar',
+    'Gui::ScrollBar','Gui::VerticalScrollBar',
+    background: :none,
+    padding: 0,
+    border: 0
+
+  set '.track',
+    background_color: get_color('gray'),
+    padding: 0
+    
+  set '.bar',
+    background_color: get_color('white'),
+    border_color: get_color('gray')
+    
+  #--------------------------------------------------------------------------
+  # * Horizontal TrackBar
+  #--------------------------------------------------------------------------
+  set 'Gui::TrackBar','Gui::VerticalTrackBar',
+    width:  100.percent,
+    height: 12
+    
+  set 'Gui::TrackBar .track',
+    width:  100.percent,
+    height: 50.percent,
+    y: 25.percent
+
+  set 'Gui::TrackBar .bar',
+    width:  8,
+    height: 100.percent
+    
+  #--------------------------------------------------------------------------
+  # * Vertical TrackBar
+  #--------------------------------------------------------------------------
+  set 'Gui::VerticalTrackBar',
+    height: 100.percent,
+    width:  12
+
+  set 'Gui::VerticalTrackBar .track',
+    width:  50.percent,
+    height: 100.percent,
+    x: 25.percent
+    
+  set 'Gui::VerticalTrackBar .bar',
+    width: 100.percent,
+    height: 8
+
+  #--------------------------------------------------------------------------
+  # * Horizontal Scrollbar
+  #--------------------------------------------------------------------------
+  set 'Gui::ScrollBar',
+    width:  100.percent,
+    height: 8
+
+  set 'Gui::ScrollBar .track',
+    width:  100.percent,
+    height: 100.percent
+
+  set 'Gui::ScrollBar .bar',
+    width:  20,
+    height: 100.percent
+
+  #--------------------------------------------------------------------------
+  # * Vertical Scrollbar
+  #--------------------------------------------------------------------------
+  set 'Gui::VerticalScrollBar',
+    width:  8,
+    height: 100.percent
+
+  set 'Gui::VerticalScrollBar .track',
+    width:  100.percent,
+    height: 100.percent
+    
+  set 'Gui::VerticalScrollBar .bar',
+    width:  100.percent,
+    height: 20
   
 end
 
