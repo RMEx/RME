@@ -55,17 +55,18 @@ module Generative
     # * Pushes other in self
     #--------------------------------------------------------------------------
     def <<(oth)
+      oth.viewport = Viewport.new if (oth.is_a?(Sprite) && !oth.viewport)
       oth.parent = self
       self.children ||= []
       self.children << oth
       compute
       oth
     end
-
     #--------------------------------------------------------------------------
     # * Pushes self in other
     #--------------------------------------------------------------------------
     def >>(oth)
+      self.viewport = Viewport.new if (self.is_a?(Sprite) && !self.viewport)
       self.parent = oth
       oth.children ||= []
       oth.children << self
@@ -422,6 +423,30 @@ class Viewport
 end
 
 #==============================================================================
+# ** Sprite
+#------------------------------------------------------------------------------
+#  Append Stackable Component
+#==============================================================================
+
+class Sprite
+
+  #--------------------------------------------------------------------------
+  # * Delegation
+  #--------------------------------------------------------------------------
+  [
+    :children,
+    :parent,
+    :legacy_rule,
+    :compute
+  ].each{|m| delegate_accessor :viewport, m}
+  #--------------------------------------------------------------------------
+  # * Import Imbrication API
+  #--------------------------------------------------------------------------
+  include Generative::Stackable
+
+end
+
+#==============================================================================
 # ** GUI
 #------------------------------------------------------------------------------
 #  Graphical User interface
@@ -454,7 +479,7 @@ module Gui
           border:           1,
           border_width:     1,
           border_radius:    0,
-          font:             'Standard',
+          font:             get_profile("small_standard").to_font,
           max_height:       nil,
           min_height:       0,
           max_width:        nil,
@@ -477,6 +502,7 @@ module Gui
     # * Set style spec with named args (ex: set(margin: 5))
     #--------------------------------------------------------------------------
     def set(args)
+      return unless args
       args.each do |k,v|
         if [:margin, :padding, :border].include?(k)
           set_param(k, *v)
@@ -1176,7 +1202,6 @@ module Gui
       :legacy_rule,
       :z
     ].each{|m| delegate_accessor :viewport, m}
-    attr_accessor :background
     #--------------------------------------------------------------------------
     # * Object initialize
     # * optionnal named args =
@@ -1195,16 +1220,17 @@ module Gui
       @inner = Rect.new
       @inner >> @viewport
       @name = args.delete(:name) if args && args[:name]
+      set_parent(args.delete(:parent)) if args && args[:parent]
       @style = Style.new
       @style.css_match(self)
-      set args if args
+      set args
     end
     #--------------------------------------------------------------------------
     # * Set value to any named args, except :name (reserved to initialize)
     # * :parent can't be redefined twice
     #--------------------------------------------------------------------------
     def set(args)
-      set_parent(args.delete(:parent)) if args[:parent]
+      set_parent(args.delete(:parent)) if args && args[:parent]
       @style.set args
       self.legacy_rule = @style[:position]
       compute
@@ -1309,6 +1335,108 @@ module Gui
   end
 
   #==============================================================================
+  # ** Gui::Label
+  #------------------------------------------------------------------------------
+  #  Label
+  #==============================================================================
+
+  class Label
+    #--------------------------------------------------------------------------
+    # * Import Stackable API
+    #--------------------------------------------------------------------------
+    include Generative::Stackable
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :style, :viewport, :name
+    [
+      :x,
+      :y,
+      :width,
+      :height,
+      :true_z,
+      :inner
+    ].each{|m| delegate :viewport, m}
+    [
+      :children,
+      :parent,
+      :legacy_rule,
+      :z
+    ].each{|m| delegate_accessor :viewport, m}
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = font:, value:, x:, y:
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      @viewport = Viewport.new
+      @sprite_text = Sprite.new(@viewport)
+      @name = args.delete(:name) if args && args[:name]
+      set_parent(args.delete(:parent)) if args && args[:parent]
+      @style = Style.new
+      @style.css_match(self)
+      set args
+    end
+    #--------------------------------------------------------------------------
+    # * Set value to any named argument
+    # * :parent can't be redefined twice
+    #--------------------------------------------------------------------------
+    def set(args)
+      set_parent(args.delete(:parent)) if args && args[:parent]
+      @style.set args
+      self.legacy_rule = @style[:position]
+      self.value = @style[:value]
+    end
+    #--------------------------------------------------------------------------
+    # * Push into another Object
+    #--------------------------------------------------------------------------
+    def set_parent(pa)
+      self.parent = pa
+      pa.children ||= []
+      pa.children << self
+    end
+    #--------------------------------------------------------------------------
+    # * Value
+    #--------------------------------------------------------------------------
+    def value; @style[:value]; end
+    def value=(v)
+      txt = @style[:value] = (v ? v : "")
+      fon = @style[:font]
+      bmp = Bitmap.new(1,1)
+      bmp.font = fon
+      size = bmp.text_size(txt)
+      @sprite_text.bitmap = Bitmap.new(size.width, size.height)
+      @sprite_text.bitmap.font = fon
+      @sprite_text.bitmap.draw_text(size, txt)
+      @style[:width]  = size.width
+      @style[:height] = size.height
+      compute
+    end
+    #--------------------------------------------------------------------------
+    # * Value
+    #--------------------------------------------------------------------------
+    def font; @style[:font]; end
+    def font=(v)
+      set(font: v)
+    end
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
+    def compute_self
+      viewport.set_parameters(convert(:x), convert(:y), convert(:width), convert(:height))
+      viewport.compute_self
+    end
+    #--------------------------------------------------------------------------
+    # * Conversion percent to value
+    #--------------------------------------------------------------------------
+    def convert(m)
+      return @style[m] unless @style[m].percent?
+      parent = self.parent || Viewport.new
+      return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
+      return (@style[m] * parent.inner.height / 100)
+    end
+  end
+
+  #==============================================================================
   # ** Gui::TrackBar
   #------------------------------------------------------------------------------
   #  Trackbar
@@ -1336,6 +1464,7 @@ module Gui
     # * :parent can't be redefined twice
     #--------------------------------------------------------------------------
     def set(args)
+      return unless args
       v = args.delete(:value) || value
       @max_value = args.delete(:max_value) if args[:max_value]
       super(args)
@@ -1378,6 +1507,47 @@ module Gui
     end
   end
 
+  #==============================================================================
+  # ** Gui::Pannel
+  #------------------------------------------------------------------------------
+  #  Pannel
+  #==============================================================================
+  
+  class Pannel < Box
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :title_label
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = title:, x:, y:, width:, height: + basic CSS
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      p @style[:title]
+      @title_label = Label.new(
+        name: 'pannel_title',
+        parent: self.viewport,
+        value: @style[:title]
+        )
+    end
+    #--------------------------------------------------------------------------
+    # * Set value to any named argument
+    # * :parent can't be redefined twice
+    #--------------------------------------------------------------------------
+    def set(args)
+      super(args)
+      @title_label.value = @style[:title] if @title_label
+    end
+    #--------------------------------------------------------------------------
+    # * Title
+    #--------------------------------------------------------------------------
+    def title; @style[:title]; end
+    def title=(v)
+      set(title: v)
+    end
+  end
+
 end
 
 #==============================================================================
@@ -1405,33 +1575,36 @@ module CSS
     border: 0,
     background: :none
 
-  set 'Gui::Box.track',
+  set 'Gui::TrackBar .track',
     width: 100.percent,
     height: 8,
     y: 4,
     padding: 0,
     background_color: get_color('gray')
 
-  set 'Gui::Box.bar',
+  set 'Gui::TrackBar .bar',
     width: 8,
     height: 16,
     background_color: get_color('white'),
     border_color: get_color('gray')
 
-  set 'SuperBilou',
-    padding: 10,
-    background_color: Gui::Tools.random_color,
-    border_color: get_color('red'),
-    border_top: 30
-
-  set 'SuperBilou Gui::Box',
-    border: 10
-
-  set 'Gui::Box.bernard', 'SuperBilou.lol',
-    background_color: get_color('green'),
-    border: [2,4,6,8],
-    border_left: 20
-
+  set 'Gui::Pannel',
+    title: "title",
+    width: 100.percent,
+    height: 100.percent,
+    border: [20, 2, 2, 2],
+    border_color: Color.new('#113F59')
+    
+  fon = Font.new(Font.default_name, 18)
+  fon.color = get_color('white')
+  fon.bold = true
+  fon.outline = false
+  
+  set 'Gui::Label.pannel_title',
+    font: fon,
+    x: 5,
+    y: 2
+  
 end
 
 end

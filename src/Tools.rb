@@ -130,10 +130,11 @@ class Graphical_Eval2
   # * Create Ttitle Label
   #--------------------------------------------------------------------------
   def create_title_label
-    @title_label = Sprite.new(@title_box.viewport)
-    @title_label.bitmap = Bitmap.new(@width, @title_height)
-    @title_label.bitmap.font = @font
-    @title_label.bitmap.draw_text(0, 0, 544, 18, "Test")
+    @title_label = Gui::Label.new(
+      parent: @title_box,
+      value: "Bilou",
+      font: @font
+    )
   end
   
   #--------------------------------------------------------------------------
