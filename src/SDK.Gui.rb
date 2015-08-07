@@ -1306,8 +1306,12 @@ module Gui
     def convert(m)
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
+      begin
       return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
       return (@style[m] * parent.inner.height / 100)
+      rescue
+      0
+      end
     end
     #--------------------------------------------------------------------------
     # * Clone
@@ -1439,7 +1443,7 @@ module Gui
   #==============================================================================
   # ** Gui::TrackBar
   #------------------------------------------------------------------------------
-  #  Trackbar
+  #  Horizontal Trackbar
   #==============================================================================
 
   class TrackBar < Box
@@ -1469,7 +1473,7 @@ module Gui
       @max_value = args.delete(:max_value) if args[:max_value]
       super(args)
       self.value = v
-      @bar.drag_restriction = Rect.new(start, @bar.y, course, 0)
+      update_drag_restriction
     end
     #--------------------------------------------------------------------------
     # * Shortcuts
@@ -1496,6 +1500,12 @@ module Gui
       v = value
       super
       self.value = v
+      update_drag_restriction
+    end
+    #--------------------------------------------------------------------------
+    # * Update drag restriction
+    #--------------------------------------------------------------------------
+    def update_drag_restriction
       @bar.drag_restriction = Rect.new(start, @bar.y, course, 0)
     end
     #--------------------------------------------------------------------------
@@ -1506,6 +1516,55 @@ module Gui
       super
     end
   end
+
+  #==============================================================================
+  # ** Gui::VerticalTrackBar
+  #------------------------------------------------------------------------------
+  #  Vertical Trackbar
+  #==============================================================================
+
+  class VerticalTrackBar < TrackBar
+    #--------------------------------------------------------------------------
+    # * Shortcuts
+    #--------------------------------------------------------------------------
+    def start;  @track.inner.y; end
+    def course; @track.inner.height - @bar.height; end
+    def value;  @max_value.to_f * (@bar.y-start) / course; end
+    #--------------------------------------------------------------------------
+    # * Move bar to value
+    #--------------------------------------------------------------------------
+    def value=(v)
+      @bar.y = start + course.to_f * v.fbound(0, @max_value) / @max_value
+    end
+    #--------------------------------------------------------------------------
+    # * Fit course to @max_value
+    #--------------------------------------------------------------------------
+    def fit_to_max
+      self.height = self.height - @track.inner.height + @bar.height + @max_value
+    end
+    #--------------------------------------------------------------------------
+    # * Update drag restriction
+    #--------------------------------------------------------------------------
+    def update_drag_restriction
+      @bar.drag_restriction = Rect.new(@bar.x, start, 0, course)
+    end
+  end
+  
+  #==============================================================================
+  # ** Gui::ScrollBar
+  #------------------------------------------------------------------------------
+  #  Horizontal ScrollBar
+  #==============================================================================
+
+  class ScrollBar < TrackBar; ;end
+
+  #==============================================================================
+  # ** Gui::VerticalScrollBar
+  #------------------------------------------------------------------------------
+  #  Vertical ScrollBar
+  #==============================================================================
+
+  class VerticalScrollBar < VerticalTrackBar; ;end
 
   #==============================================================================
   # ** Gui::Pannel
@@ -1568,25 +1627,70 @@ end
 #==============================================================================
 
 module CSS
-  set 'Gui::TrackBar',
+  set 'Gui::TrackBar','Gui::VerticalTrackBar',
     width: 100.percent,
-    height: 16,
+    height: 12,
     padding: 0,
     border: 0,
     background: :none
 
-  set 'Gui::TrackBar .track',
+  set 'Gui::TrackBar .track','Gui::VerticalTrackBar .track',
     width: 100.percent,
-    height: 8,
-    y: 4,
+    height: 50.percent,
+    y: 25.percent,
     padding: 0,
     background_color: get_color('gray')
 
-  set 'Gui::TrackBar .bar',
+  set 'Gui::TrackBar .bar','Gui::VerticalTrackBar .bar',
     width: 8,
-    height: 16,
+    height: 100.percent,
     background_color: get_color('white'),
     border_color: get_color('gray')
+
+  set 'Gui::VerticalTrackBar',
+    width: 12,
+    height: 100.percent
+
+  set 'Gui::VerticalTrackBar .track',
+    y: 0,
+    x: 25.percent,
+    width: 50.percent,
+    height: 100.percent
+    
+  set 'Gui::VerticalTrackBar .bar',
+    width: 100.percent,
+    height: 8
+
+  set 'Gui::ScrollBar','Gui::VerticalScrollBar',
+    width: 100.percent,
+    height: 8,
+    padding: 0,
+    border: 0,
+    background: :none
+
+  set 'Gui::ScrollBar .track','Gui::VerticalScrollBar .track',
+    width: 100.percent,
+    height: 100.percent,
+    padding: 0,
+    background_color: get_color('gray')
+
+  set 'Gui::ScrollBar .bar','Gui::VerticalScrollBar .bar',
+    width: 20,
+    height: 100.percent,
+    background_color: get_color('white'),
+    border_color: get_color('gray')
+
+  set 'Gui::VerticalScrollBar',
+    width: 8,
+    height: 100.percent
+
+  set 'Gui::VerticalScrollBar .track',
+    width: 100.percent,
+    height: 100.percent
+    
+  set 'Gui::VerticalScrollBar .bar',
+    width: 100.percent,
+    height: 20
 
   set 'Gui::Pannel',
     title: "title",
