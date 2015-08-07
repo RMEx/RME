@@ -1164,14 +1164,14 @@ module Gui
     end
 
   end
-
+  
   #==============================================================================
-  # ** Gui::Box
+  # ** Gui::Base
   #------------------------------------------------------------------------------
-  #  Simple box
+  #  Basic Gui Component behaviour
   #==============================================================================
 
-  class Box
+  class Base
     #--------------------------------------------------------------------------
     # * Import Stackable API
     #--------------------------------------------------------------------------
@@ -1208,35 +1208,37 @@ module Gui
     #   name:     String reference for the CSS matching (like 'class' in HTML)
     #   parent:   Object reference used to stack into
     #   position: :enclosed into parent by default, can be :relative or :absolute
-    #   x:, y:, width:, height: Position & dimension
-    #   border:, background_color:, padding:, etc.Style definition, see Gui::Style
+    #   etc: see CSS
     #--------------------------------------------------------------------------
     def initialize(args=nil)
       @viewport = Viewport.new
-      @border = Sprite.new(@viewport)
-      @border.bitmap = Bitmap.new(1,1)
-      @background = Sprite.new(@viewport)
-      @background.bitmap = Bitmap.new(1,1)
       @inner = Rect.new
       @inner >> @viewport
       @name = args.delete(:name) if args && args[:name]
       set_parent(args.delete(:parent)) if args && args[:parent]
       @style = Style.new
       @style.css_match(self)
-      set args
+      set(args, false)
+      initialize_intern_components
+      compute
+    end
+    #--------------------------------------------------------------------------
+    # * initialize_intern_components
+    #--------------------------------------------------------------------------
+    def initialize_intern_components
     end
     #--------------------------------------------------------------------------
     # * Set value to any named args, except :name (reserved to initialize)
     # * :parent can't be redefined twice
     #--------------------------------------------------------------------------
-    def set(args)
+    def set(args, auto_compute=true)
       set_parent(args.delete(:parent)) if args && args[:parent]
       @style.set args
       self.legacy_rule = @style[:position]
-      compute
+      compute if auto_compute
     end
     #--------------------------------------------------------------------------
-    # * Tralala
+    # * Basic parameters
     #--------------------------------------------------------------------------
     def x=(v); style_set(:x, v); end
     def y=(v); style_set(:y, v); end
@@ -1249,12 +1251,88 @@ module Gui
       end
     end
     #--------------------------------------------------------------------------
-    # * Push into another Object
+    # * Push into another Object without computing
     #--------------------------------------------------------------------------
     def set_parent(pa)
       self.parent = pa
       pa.children ||= []
       pa.children << self
+    end
+    #--------------------------------------------------------------------------
+    # * Update inner
+    #--------------------------------------------------------------------------
+    def update_inner
+      @inner.set(0, 0, self.width, self.height)
+    end
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
+    def compute_self
+      viewport.set_parameters(convert(:x), convert(:y), convert(:width), convert(:height))
+      viewport.compute_self
+    end
+    #--------------------------------------------------------------------------
+    # * Conversion percent to value
+    #--------------------------------------------------------------------------
+    def convert(m)
+      return @style[m] unless @style[m].percent?
+      parent = self.parent || Viewport.new
+      return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
+      return (@style[m] * parent.inner.height / 100)
+    end
+    #--------------------------------------------------------------------------
+    # * Clone
+    #--------------------------------------------------------------------------
+    def clone
+      self.class.new(clone_properties)
+    end
+    #--------------------------------------------------------------------------
+    # * Properties
+    #--------------------------------------------------------------------------
+    def clone_properties
+      args = @style.values
+      args[:name] = @name
+      args[:parent] = self.parent
+      args
+    end
+    #--------------------------------------------------------------------------
+    # * Free
+    #--------------------------------------------------------------------------
+    def dispose
+      @disposed = true
+      dispose_stack
+      @viewport.dispose
+    end
+    attr_reader :disposed
+    alias_method :disposed?, :disposed
+  end
+
+  #==============================================================================
+  # ** Gui::Box
+  #------------------------------------------------------------------------------
+  #  Simple box
+  #==============================================================================
+
+  class Box < Base
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :background, :border
+    #--------------------------------------------------------------------------
+    # * initialize_intern_components
+    #--------------------------------------------------------------------------
+    def initialize_intern_components
+      @border = Sprite.new(@viewport)
+      @border.bitmap = Bitmap.new(1,1)
+      @background = Sprite.new(@viewport)
+      @background.bitmap = Bitmap.new(1,1)
+    end
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
+    def compute_self
+      super
+      update_background
     end
     #--------------------------------------------------------------------------
     # * Update background display
@@ -1273,12 +1351,6 @@ module Gui
       @inner.set(r)
     end
     #--------------------------------------------------------------------------
-    # * Update inner
-    #--------------------------------------------------------------------------
-    def update_inner
-      @inner.set(0, 0, self.width, self.height)
-    end
-    #--------------------------------------------------------------------------
     # * Fit sprite(1x1) into the rect
     #--------------------------------------------------------------------------
     def fit_sprite(s, r)
@@ -1293,49 +1365,15 @@ module Gui
       @background.bitmap.set_pixel(0, 0, @style[:background_color])
     end
     #--------------------------------------------------------------------------
-    # * Computes self
-    #--------------------------------------------------------------------------
-    def compute_self
-      viewport.set_parameters(convert(:x), convert(:y), convert(:width), convert(:height))
-      viewport.compute_self
-      update_background
-    end
-    #--------------------------------------------------------------------------
-    # * Conversion percent to value
-    #--------------------------------------------------------------------------
-    def convert(m)
-      return @style[m] unless @style[m].percent?
-      parent = self.parent || Viewport.new
-      begin
-      return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
-      return (@style[m] * parent.inner.height / 100)
-      rescue
-      0
-      end
-    end
-    #--------------------------------------------------------------------------
-    # * Clone
-    #--------------------------------------------------------------------------
-    def clone
-      args = @style.values
-      args[:name] = @name
-      args[:parent] = self.parent
-      self.class.new(args)
-    end
-    #--------------------------------------------------------------------------
     # * Free
     #--------------------------------------------------------------------------
     def dispose
-      @disposed = true
-      dispose_stack
+      super
       @border.bitmap.dispose
       @border.dispose
       @background.bitmap.dispose
       @background.dispose
-      @viewport.dispose
     end
-    attr_reader :disposed
-    alias_method :disposed?, :disposed
   end
 
   #==============================================================================
@@ -1344,66 +1382,24 @@ module Gui
   #  Label
   #==============================================================================
 
-  class Label
-    #--------------------------------------------------------------------------
-    # * Import Stackable API
-    #--------------------------------------------------------------------------
-    include Generative::Stackable
+  class Label < Base
     #--------------------------------------------------------------------------
     # * Public instances variables
     #--------------------------------------------------------------------------
-    attr_accessor :style, :viewport, :name
-    [
-      :x,
-      :y,
-      :width,
-      :height,
-      :true_z,
-      :inner
-    ].each{|m| delegate :viewport, m}
-    [
-      :children,
-      :parent,
-      :legacy_rule,
-      :z
-    ].each{|m| delegate_accessor :viewport, m}
+    attr_accessor :sprite_text
     #--------------------------------------------------------------------------
     # * Object initialize
     # * optionnal named args = font:, value:, x:, y:
     #--------------------------------------------------------------------------
-    def initialize(args=nil)
-      @viewport = Viewport.new
+    def initialize_intern_components
       @sprite_text = Sprite.new(@viewport)
-      @name = args.delete(:name) if args && args[:name]
-      set_parent(args.delete(:parent)) if args && args[:parent]
-      @style = Style.new
-      @style.css_match(self)
-      set args
+      initialize_text(@style[:value])
     end
     #--------------------------------------------------------------------------
-    # * Set value to any named argument
-    # * :parent can't be redefined twice
+    # * Initialize text
     #--------------------------------------------------------------------------
-    def set(args)
-      set_parent(args.delete(:parent)) if args && args[:parent]
-      @style.set args
-      self.legacy_rule = @style[:position]
-      self.value = @style[:value]
-    end
-    #--------------------------------------------------------------------------
-    # * Push into another Object
-    #--------------------------------------------------------------------------
-    def set_parent(pa)
-      self.parent = pa
-      pa.children ||= []
-      pa.children << self
-    end
-    #--------------------------------------------------------------------------
-    # * Value
-    #--------------------------------------------------------------------------
-    def value; @style[:value]; end
-    def value=(v)
-      txt = @style[:value] = (v ? v : "")
+    def initialize_text(txt)
+      txt ||= ""
       fon = @style[:font]
       bmp = Bitmap.new(1,1)
       bmp.font = fon
@@ -1413,30 +1409,35 @@ module Gui
       @sprite_text.bitmap.draw_text(size, txt)
       @style[:width]  = size.width
       @style[:height] = size.height
-      compute
+    end
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
+    def compute_self
+      super
+      self.value = @style[:value]
+    end
+    #--------------------------------------------------------------------------
+    # * Value
+    #--------------------------------------------------------------------------
+    def value; @style[:value]; end
+    def value=(v)
+      if @style[:value] != v
+        @style[:value] = v
+        initialize_text(v)
+        compute
+      end
     end
     #--------------------------------------------------------------------------
     # * Value
     #--------------------------------------------------------------------------
     def font; @style[:font]; end
     def font=(v)
-      set(font: v)
-    end
-    #--------------------------------------------------------------------------
-    # * Computes self
-    #--------------------------------------------------------------------------
-    def compute_self
-      viewport.set_parameters(convert(:x), convert(:y), convert(:width), convert(:height))
-      viewport.compute_self
-    end
-    #--------------------------------------------------------------------------
-    # * Conversion percent to value
-    #--------------------------------------------------------------------------
-    def convert(m)
-      return @style[m] unless @style[m].percent?
-      parent = self.parent || Viewport.new
-      return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
-      return (@style[m] * parent.inner.height / 100)
+      if @style[:font] != v
+        @style[:font] = v
+        initialize_text(@style[:value])
+        compute
+      end
     end
   end
 
@@ -1456,22 +1457,19 @@ module Gui
     # * optionnal named args = max_value:, value:, x:, y:, width:
     #--------------------------------------------------------------------------
     def initialize(args=nil)
-      super(nil)
+      super(args)
       @track = Box.new(name:'track', parent:self)
       @bar   = Box.new(name:'bar', parent:self)
-      @max_value = 255
       Draggable << @bar
-      set args
+      update_drag_restriction
     end
     #--------------------------------------------------------------------------
-    # * Set value to any named argument
-    # * :parent can't be redefined twice
+    # * Responsive computing
     #--------------------------------------------------------------------------
-    def set(args)
-      return unless args
-      v = args.delete(:value) || value
-      @max_value = args.delete(:max_value) if args[:max_value]
-      super(args)
+    def compute
+      return super unless @bar
+      v = value
+      super
       self.value = v
       update_drag_restriction
     end
@@ -1480,33 +1478,25 @@ module Gui
     #--------------------------------------------------------------------------
     def start;  @track.inner.x; end
     def course; @track.inner.width - @bar.width; end
-    def value;  @max_value.to_f * (@bar.x-start) / course; end
-    #--------------------------------------------------------------------------
-    # * Move bar to value
-    #--------------------------------------------------------------------------
-    def value=(v)
-      @bar.x = start + course.to_f * v.fbound(0, @max_value) / @max_value
-    end
-    #--------------------------------------------------------------------------
-    # * Fit course to @max_value
-    #--------------------------------------------------------------------------
-    def fit_to_max
-      self.width = self.width - @track.inner.width + @bar.width + @max_value
-    end
-    #--------------------------------------------------------------------------
-    # * Responsive computing
-    #--------------------------------------------------------------------------
-    def compute
-      v = value
-      super
-      self.value = v
-      update_drag_restriction
-    end
+    def max_value; @style[:max_value] || 255; end
+    def value;  max_value.to_f * (@bar.x-start) / course; end
     #--------------------------------------------------------------------------
     # * Update drag restriction
     #--------------------------------------------------------------------------
     def update_drag_restriction
       @bar.drag_restriction = Rect.new(start, @bar.y, course, 0)
+    end
+    #--------------------------------------------------------------------------
+    # * Move bar to value
+    #--------------------------------------------------------------------------
+    def value=(v)
+      @bar.x = start + course.to_f * v.fbound(0, max_value) / max_value
+    end
+    #--------------------------------------------------------------------------
+    # * Fit course to @max_value
+    #--------------------------------------------------------------------------
+    def fit_to_max
+      self.width = self.width - @track.inner.width + @bar.width + max_value
     end
     #--------------------------------------------------------------------------
     # * Free
@@ -1534,13 +1524,13 @@ module Gui
     # * Move bar to value
     #--------------------------------------------------------------------------
     def value=(v)
-      @bar.y = start + course.to_f * v.fbound(0, @max_value) / @max_value
+      @bar.y = start + course.to_f * v.fbound(0, max_value) / max_value
     end
     #--------------------------------------------------------------------------
     # * Fit course to @max_value
     #--------------------------------------------------------------------------
     def fit_to_max
-      self.height = self.height - @track.inner.height + @bar.height + @max_value
+      self.height = self.height - @track.inner.height + @bar.height + max_value
     end
     #--------------------------------------------------------------------------
     # * Update drag restriction
@@ -1583,7 +1573,6 @@ module Gui
     #--------------------------------------------------------------------------
     def initialize(args=nil)
       super(args)
-      p @style[:title]
       @title_label = Label.new(
         name: 'pannel_title',
         parent: self.viewport,
@@ -1594,8 +1583,8 @@ module Gui
     # * Set value to any named argument
     # * :parent can't be redefined twice
     #--------------------------------------------------------------------------
-    def set(args)
-      super(args)
+    def set(args, ac=true)
+      super(args, ac)
       @title_label.value = @style[:title] if @title_label
     end
     #--------------------------------------------------------------------------
