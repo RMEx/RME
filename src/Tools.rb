@@ -66,30 +66,6 @@ end
 
 
 #==============================================================================
-# ** Sprite
-#------------------------------------------------------------------------------
-#  Append Stackable Component
-#==============================================================================
-
-class Sprite
-  
-  #--------------------------------------------------------------------------
-  # * Delegation
-  #--------------------------------------------------------------------------
-  [
-    :children,
-    :parent,
-    :legacy_rule
-  ].each{|m| delegate_accessor :rect, m}
-
-  #--------------------------------------------------------------------------
-  # * Import Imbrication API
-  #--------------------------------------------------------------------------
-  include Generative::Stackable
-  
-end
-
-#==============================================================================
 # ** Graphical_eval
 #------------------------------------------------------------------------------
 #  Provide a GUI toplevel
@@ -117,6 +93,9 @@ class Graphical_Eval2
     @x = 6
     @y = Graphics.height - @height - 6
     @title_height = 18
+    @font = get_profile("small_standard").to_font
+    @font.name = "Arial"
+    @font.color = Color.new(255, 255, 255)
   end
   
   #--------------------------------------------------------------------------
@@ -151,10 +130,10 @@ class Graphical_Eval2
   # * Create Ttitle Label
   #--------------------------------------------------------------------------
   def create_title_label
-    @title_label = Sprite.new
+    @title_label = Sprite.new(@title_box.viewport)
     @title_label.bitmap = Bitmap.new(@width, @title_height)
-    @title_label.bitmap.fill_rect(0, 0, 544, 18, Color.new(255, 0, 0))
-    @title_box << @title_label
+    @title_label.bitmap.font = @font
+    @title_label.bitmap.draw_text(0, 0, 544, 18, "Test")
   end
   
   #--------------------------------------------------------------------------
