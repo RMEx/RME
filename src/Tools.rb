@@ -87,10 +87,8 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def base_init
     Game_Temp.in_game = false
-    @width = Graphics.width - 12
-    @height = 58
-    @x = 6
-    @y = Graphics.height - @height - 6
+    @height = 58+12
+    @y = Graphics.height - @height
     @title_height = 18
     @font = get_profile("small_standard").to_font
     @font.name = "Arial"
@@ -102,12 +100,13 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def create_box
     @box = Gui::Pannel.new(
-      width:@width, 
-      height:@height,
-      value:"Tester un code",
-      x: @x, 
+      width: 100.percent, 
+      height: @height,
+      title: "Tester un code",
+      x: 0, 
       y: @y, 
       padding: 0,
+      margin: 6,
       border_color: Color.new('#113F59')
     )
   end

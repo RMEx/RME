@@ -1277,8 +1277,8 @@ module Gui
     def convert(m)
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
-      return (@style[m] * parent.inner.width  / 100) if [:x, :width].include?(m)
-      return (@style[m] * parent.inner.height / 100)
+      return (@style[m] * parent.inner.width  / 100.0).round if [:x, :width].include?(m)
+      return (@style[m] * parent.inner.height / 100.0).round
     end
     #--------------------------------------------------------------------------
     # * Clone
@@ -1586,6 +1586,7 @@ module Gui
         parent: self.viewport,
         value: @style[:title]
         )
+      update_title
     end
     #--------------------------------------------------------------------------
     # * Set value to any named argument
@@ -1593,11 +1594,17 @@ module Gui
     #--------------------------------------------------------------------------
     def set(args, ac=true)
       super(args, ac)
-      @title_label.value = @style[:title] if @title_label
+      update_title
     end
     #--------------------------------------------------------------------------
     # * Title
     #--------------------------------------------------------------------------
+    def update_title
+      return unless @title_label
+      @title_label.value = @style[:title]
+      @title_label.x = 5 + @style[:margin_left]
+      @title_label.y = 2 + @style[:margin_top]
+    end
     def title; @style[:title]; end
     def title=(v)
       set(title: v)
@@ -1641,9 +1648,7 @@ module CSS
   fon.outline = false
   
   set 'Gui::Label.pannel_title',
-    font: fon,
-    x: 5,
-    y: 2
+    font: fon
   
   #--------------------------------------------------------------------------
   # * TrackBar & ScrollBar
