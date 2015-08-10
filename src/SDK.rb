@@ -875,8 +875,8 @@ class Point < Struct.new(:x, :y)
     x, y = self.x-spr.x, self.y-spr.y
     x /= spr.zoom_x if spr.zoom_x != 0
     y /= spr.zoom_y if spr.zoom_y != 0
-    x, y = x+spr.ox, y+spr.oy
-    set(x.to_i, y.to_i)
+    x, y = x+spr.ox+spr.src_rect.x, y+spr.oy+spr.src_rect.y
+    set(x.round, y.round)
   end
 
   #--------------------------------------------------------------------------
@@ -1782,7 +1782,7 @@ module Generative
         tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))
         ty = (viewport.y - viewport.oy + self.y - (self.oy * zoom_y))
       end
-      Rect.new(tx, ty, bitmap.width*zoom_x, bitmap.height*zoom_y)
+      Rect.new(tx, ty, src_rect.width*zoom_x, src_rect.height*zoom_y)
     end
   end
 

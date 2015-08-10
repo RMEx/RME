@@ -880,13 +880,6 @@ module Handler
       SceneManager.scene.spriteset.character_sprites[@sprite_index]
     end
     #--------------------------------------------------------------------------
-    # * In
-    #--------------------------------------------------------------------------
-    def in?(x, y, pr = false)
-      return false unless k_sprite
-      k_sprite.pixel_in?(x, y, pr)
-    end
-    #--------------------------------------------------------------------------
     # * Hover
     #--------------------------------------------------------------------------
     def hover?(pr = false)
@@ -1378,14 +1371,7 @@ class Game_CharacterBase
   def name
     ""
   end
-  #--------------------------------------------------------------------------
-  # * Pixel in event
-  #--------------------------------------------------------------------------
-  def pixel_in?(x, y, pr = false)
-    return false unless k_sprite
-    return k_sprite.precise_in?(x, y) if pr
-    k_sprite.in?(x, y)
-  end
+
 end
 
 #==============================================================================
