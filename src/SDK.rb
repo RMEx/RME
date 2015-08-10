@@ -1480,6 +1480,7 @@ module Devices
     def update
       update_position
       update_drag
+      update_interaction
     end
 
     #--------------------------------------------------------------------------
@@ -1529,12 +1530,19 @@ module Devices
         Draggable.drop
       end
     end
+    
+    #--------------------------------------------------------------------------
+    # * Drag update
+    #--------------------------------------------------------------------------
+    def update_interaction
+      Interactive.update
+    end
 
     #--------------------------------------------------------------------------
     # * Know if the user clicked
     #--------------------------------------------------------------------------
     def click?
-      Key::Mouse_left.release? && !self.last_rect
+      Key::Mouse_left.release?
     end
 
     #--------------------------------------------------------------------------
@@ -1630,6 +1638,73 @@ module Draggable
   attr_accessor :drag_viewport_instead
   attr_accessor :drag_restriction
 
+end
+
+#==============================================================================
+# ** Draggable
+#------------------------------------------------------------------------------
+#  Any Object responding to ":x, :y, :in?" can be draggable.
+#  Simply by pushing itself into the Draggable.objects array.
+#==============================================================================
+
+module Interactive
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    attr_accessor :objects, :picked
+    Interactive.objects = []
+    Interactive.picked  = nil
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def <<(*obj)
+      obj.each do |o|
+        @objects << o
+        o.extend(Interactive)
+      end
+    end
+    alias :push :<<
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def update
+      @picked = nil
+      find
+      return unless @picked
+      @picked.on_mouse_hover   if @picked.respond_to?(:on_mouse_hover)
+      @picked.on_mouse_trigger if @picked.respond_to?(:on_mouse_trigger) &&
+        Key::Mouse_left.trigger?
+      if Key::Mouse_left.release?
+        @picked.on_mouse_release if @picked.respond_to?(:on_mouse_release)
+        @picked.on_mouse_click   if @picked.respond_to?(:on_mouse_click)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Finds and pick the first Object clicked
+    #--------------------------------------------------------------------------
+    def find
+      return if @picked
+      obj = @objects.sort do |a, b|
+        @checked = a
+        if b.true_z == a.true_z
+          b.object_id <=> a.object_id
+        else
+          b.true_z <=> a.true_z
+        end
+      end
+      @picked = obj.find do |o|
+        @checked = o
+        o.in?(Mouse.x, Mouse.y)
+      end
+      return unless @picked
+      @x_init = @picked.x
+      @y_init = @picked.y
+    rescue
+      @objects.delete(@checked)
+      find
+    end
+  end
 end
 
 #==============================================================================

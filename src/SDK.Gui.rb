@@ -51,6 +51,7 @@ module Generative
 
   module Stackable
 
+    attr_accessor :inverse_computation
     #--------------------------------------------------------------------------
     # * Pushes other in self
     #--------------------------------------------------------------------------
@@ -82,12 +83,17 @@ module Generative
       parents << parents[-1].parent while parents[-1].parent
       parents
     end
+    
     #--------------------------------------------------------------------------
     # * Computing
     #--------------------------------------------------------------------------
     def compute
       compute_self
-      recompute_children
+      if inverse_computation
+        parent.compute
+      else
+        recompute_children
+      end
     end
     #--------------------------------------------------------------------------
     # * Computes self
@@ -1180,6 +1186,7 @@ module Gui
     # * Public instances variables
     #--------------------------------------------------------------------------
     attr_accessor :inner, :style, :viewport, :name
+    alias_method :outer, :viewport
     [
       :in?,
       :hover?,
@@ -1211,6 +1218,7 @@ module Gui
     #   etc: see CSS
     #--------------------------------------------------------------------------
     def initialize(args=nil)
+      Interactive << self
       @viewport = Viewport.new
       @inner = Rect.new
       @inner >> @viewport
@@ -1250,6 +1258,9 @@ module Gui
         compute
       end
     end
+    def parameters
+      [self.x, self.y, self.width, self.height]
+    end
     #--------------------------------------------------------------------------
     # * Push into another Object without computing
     #--------------------------------------------------------------------------
@@ -1268,17 +1279,56 @@ module Gui
     # * Computes self
     #--------------------------------------------------------------------------
     def compute_self
-      viewport.set_parameters(convert(:x), convert(:y), convert(:width), convert(:height))
-      viewport.compute_self
+      if (a=[convert(:x), convert(:y), convert(:width), convert(:height)]) != parameters
+        viewport.set_parameters(*a)
+        viewport.compute_self
+        parent_style_auto?
+      end
     end
+    
     #--------------------------------------------------------------------------
     # * Conversion percent to value
     #--------------------------------------------------------------------------
     def convert(m)
+      #return auto(m) if @style[m] == :auto
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
       return (@style[m] * parent.inner.width  / 100.0).round if [:x, :width].include?(m)
       return (@style[m] * parent.inner.height / 100.0).round
+    end
+    #--------------------------------------------------------------------------
+    # * Auto adjustment with children
+    #--------------------------------------------------------------------------
+    def auto(m)
+      a = children - [self.inner, self.outer]
+      return (@style[:margin_left]  + @style[:margin_right]  +
+              @style[:border_left]  + @style[:border_right]  +
+              @style[:padding_left] + @style[:padding_right] +
+              (a.map{|c| c.x + c.width }.max||0)
+              ) if m == :width
+      return (@style[:margin_top]  + @style[:margin_bottom]  +
+              @style[:border_top]  + @style[:border_bottom]  +
+              @style[:padding_top] + @style[:padding_bottom] +
+              (a.map{|c| c.y + c.height}.max||0)
+              ) if m == :height
+    end
+    def parent_style_auto?
+      @inverse_computation = false
+      if parent.respond_to?(:style)
+        if [parent.style[:width], parent.style[:height]].include?(:auto)
+          @inverse_computation = true
+        end
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Interactive behaviour
+    #--------------------------------------------------------------------------
+    def on_mouse_hover;   on_mouse(:hover);   end
+    def on_mouse_trigger; on_mouse(:trigger); end
+    def on_mouse_release; on_mouse(:release); end
+    def on_mouse_click;   on_mouse(:click);   end
+    def on_mouse(k)
+      @style[k].call if @style[k].is_a? Proc
     end
     #--------------------------------------------------------------------------
     # * Clone
@@ -1317,7 +1367,18 @@ module Gui
     #--------------------------------------------------------------------------
     # * Public instances variables
     #--------------------------------------------------------------------------
-    attr_accessor :background, :border
+    attr_accessor :background, :border, :outer
+    [
+      :in?,
+      :hover?,
+      :click?,
+      :press?,
+      :trigger?,
+      :repeat?,
+      :release?,
+      :mouse_x,
+      :mouse_y
+    ].each{|m| delegate :outer, m}
     #--------------------------------------------------------------------------
     # * initialize_intern_components
     #--------------------------------------------------------------------------
@@ -1326,6 +1387,8 @@ module Gui
       @border.bitmap = Bitmap.new(1,1)
       @background = Sprite.new(@viewport)
       @background.bitmap = Bitmap.new(1,1)
+      @outer = Rect.new
+      @outer >> @viewport
     end
     #--------------------------------------------------------------------------
     # * Computes self
@@ -1345,6 +1408,7 @@ module Gui
       r = Rect.new(0, 0, self.width, self.height)
       @style.contract_with(:margin, r)
       fit_sprite(@border, r)
+      @outer.set(r)
       @style.contract_with(:border, r)
       fit_sprite(@background, r)
       @style.contract_with(:padding, r)
@@ -1583,10 +1647,9 @@ module Gui
       super(args)
       @title_label = Label.new(
         name: 'pannel_title',
-        parent: self.viewport,
+        parent: self.outer,
         value: @style[:title]
         )
-      update_title
     end
     #--------------------------------------------------------------------------
     # * Set value to any named argument
@@ -1594,20 +1657,62 @@ module Gui
     #--------------------------------------------------------------------------
     def set(args, ac=true)
       super(args, ac)
-      update_title
+      @title_label.value = @style[:title] if @title_label
     end
     #--------------------------------------------------------------------------
     # * Title
     #--------------------------------------------------------------------------
-    def update_title
-      return unless @title_label
-      @title_label.value = @style[:title]
-      @title_label.x = 5 + @style[:margin_left]
-      @title_label.y = 2 + @style[:margin_top]
-    end
     def title; @style[:title]; end
     def title=(v)
       set(title: v)
+    end
+  end
+  
+  #==============================================================================
+  # ** Gui::Button
+  #------------------------------------------------------------------------------
+  #  Button
+  #==============================================================================
+  
+  class Button < Box
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :title_label
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = title:, x:, y:, width:, height: + basic CSS
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      @title_label = Label.new(
+        name: 'button_title',
+        parent: self,
+        value: @style[:title]
+        )
+      Interactive.objects.delete(@title_label)
+    end
+    #--------------------------------------------------------------------------
+    # * Set value to any named argument
+    # * :parent can't be redefined twice
+    #--------------------------------------------------------------------------
+    def set(args, ac=true)
+      super(args, ac)
+      @title_label.value = @style[:title] if @title_label
+    end
+    #--------------------------------------------------------------------------
+    # * Title
+    #--------------------------------------------------------------------------
+    def title; @style[:title]; end
+    def title=(v)
+      set(title: v)
+    end
+    #--------------------------------------------------------------------------
+    # * Free
+    #--------------------------------------------------------------------------
+    def dispose
+      Interactive.objects.delete(@bar)
+      super
     end
   end
 
@@ -1648,7 +1753,9 @@ module CSS
   fon.outline = false
   
   set 'Gui::Label.pannel_title',
-    font: fon
+    font: fon,
+    x: 5,
+    y: 2
   
   #--------------------------------------------------------------------------
   # * TrackBar & ScrollBar
