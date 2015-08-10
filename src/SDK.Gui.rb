@@ -51,7 +51,6 @@ module Generative
 
   module Stackable
 
-    attr_accessor :inverse_computation
     #--------------------------------------------------------------------------
     # * Pushes other in self
     #--------------------------------------------------------------------------
@@ -89,11 +88,7 @@ module Generative
     #--------------------------------------------------------------------------
     def compute
       compute_self
-      if inverse_computation
-        parent.compute
-      else
-        recompute_children
-      end
+      recompute_children
     end
     #--------------------------------------------------------------------------
     # * Computes self
@@ -480,8 +475,8 @@ module Gui
           border_color:     Color.new(*[0]*3),
           x:                0,
           y:                0,
-          width:            0,
-          height:           0,
+          width:            :auto,
+          height:           :auto,
           border:           1,
           border_width:     1,
           border_radius:    0,
@@ -1185,7 +1180,7 @@ module Gui
     #--------------------------------------------------------------------------
     # * Public instances variables
     #--------------------------------------------------------------------------
-    attr_accessor :inner, :style, :viewport, :name
+    attr_accessor :inner, :style, :viewport, :name, :transformed
     alias_method :outer, :viewport
     [
       :in?,
@@ -1219,7 +1214,7 @@ module Gui
     #--------------------------------------------------------------------------
     def initialize(args=nil)
       Interactive << self
-      @viewport = Viewport.new
+      @viewport = Viewport.new(0,0,0,0)
       @inner = Rect.new
       @inner >> @viewport
       @name = args.delete(:name) if args && args[:name]
@@ -1276,21 +1271,30 @@ module Gui
       @inner.set(0, 0, self.width, self.height)
     end
     #--------------------------------------------------------------------------
+    # * Computing
+    #--------------------------------------------------------------------------
+    def compute
+      @transformed = false
+      compute_self
+      if @transformed
+        parent_style_auto? ? parent.compute : recompute_children
+      end
+    end
+    #--------------------------------------------------------------------------
     # * Computes self
     #--------------------------------------------------------------------------
     def compute_self
       if (a=[convert(:x), convert(:y), convert(:width), convert(:height)]) != parameters
+        @transformed = true
         viewport.set_parameters(*a)
-        viewport.compute_self
-        parent_style_auto?
       end
+      viewport.compute_self
     end
-    
     #--------------------------------------------------------------------------
     # * Conversion percent to value
     #--------------------------------------------------------------------------
     def convert(m)
-      #return auto(m) if @style[m] == :auto
+      return auto(m) if @style[m] == :auto
       return @style[m] unless @style[m].percent?
       parent = self.parent || Viewport.new
       return (@style[m] * parent.inner.width  / 100.0).round if [:x, :width].include?(m)
@@ -1313,12 +1317,7 @@ module Gui
               ) if m == :height
     end
     def parent_style_auto?
-      @inverse_computation = false
-      if parent.respond_to?(:style)
-        if [parent.style[:width], parent.style[:height]].include?(:auto)
-          @inverse_computation = true
-        end
-      end
+      parent.respond_to?(:style) && [parent.style[:width], parent.style[:height]].include?(:auto)
     end
     #--------------------------------------------------------------------------
     # * Interactive behaviour
@@ -1395,7 +1394,7 @@ module Gui
     #--------------------------------------------------------------------------
     def compute_self
       super
-      update_background
+      update_background if transformed
     end
     #--------------------------------------------------------------------------
     # * Update background display
@@ -1688,7 +1687,8 @@ module Gui
       @title_label = Label.new(
         name: 'button_title',
         parent: self,
-        value: @style[:title]
+        value: @style[:title],
+        font: @style[:font]
         )
       Interactive.objects.delete(@title_label)
     end
@@ -1747,7 +1747,7 @@ module CSS
     border: [20, 2, 2, 2],
     border_color: Color.new('#113F59')
     
-  fon = Font.new(Font.default_name, 18)
+  fon = Font.new(Font.default_name, 16)
   fon.color = get_color('white')
   fon.bold = true
   fon.outline = false
@@ -1756,6 +1756,14 @@ module CSS
     font: fon,
     x: 5,
     y: 2
+  
+  set 'Gui::Button',
+    background_color: Color.new('#D54F58'),
+    title: "title",
+    padding: [3, 6],
+    border: 0,
+    font: fon,
+    border: 0
   
   #--------------------------------------------------------------------------
   # * TrackBar & ScrollBar
