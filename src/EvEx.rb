@@ -876,10 +876,8 @@ module Handler
     #--------------------------------------------------------------------------
     def k_sprite
       return nil unless SceneManager.scene.is_a?(Scene_Map)
-      r = SceneManager.scene.spriteset.character_sprites.find do |e|
-        e.character == self
-      end
-      r
+      return nil unless @sprite_index
+      SceneManager.scene.spriteset.character_sprites[@sprite_index]
     end
     #--------------------------------------------------------------------------
     # * In
@@ -899,7 +897,7 @@ module Handler
     # * Click
     #--------------------------------------------------------------------------
     def click?(pr = false)
-      return false unless sprite
+      return false unless k_sprite
       k_sprite.click?(pr)
     end
     #--------------------------------------------------------------------------
@@ -1257,7 +1255,7 @@ class Game_CharacterBase
   # * Public instance variable
   #--------------------------------------------------------------------------
   attr_reader :rect
-  attr_accessor :sprite
+  attr_accessor :sprite_index
   #--------------------------------------------------------------------------
   # * Event Handling
   #--------------------------------------------------------------------------
@@ -1269,6 +1267,7 @@ class Game_CharacterBase
     rm_extender_initialize
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
+    @sprite_index
   end
   #--------------------------------------------------------------------------
   # * restore ox oy
@@ -2983,6 +2982,8 @@ class Spriteset_Map
   alias_method :rm_extender_create_parallax, :create_parallax
   alias_method :rm_extender_dispose_parallax, :dispose_parallax
   alias_method :rm_extender_update_parallax, :update_parallax
+  alias_method :rm_extender_create_chars, :create_characters
+  
   #--------------------------------------------------------------------------
   # * Public instances variables
   #--------------------------------------------------------------------------
@@ -2995,6 +2996,16 @@ class Spriteset_Map
     create_texts
     rme_initialize
   end
+  #--------------------------------------------------------------------------
+  # * Create Character Sprite
+  #--------------------------------------------------------------------------
+  def create_characters
+    rm_extender_create_chars
+    @character_sprites.each.with_index do |c, i|
+      c.character.sprite_index = i  
+    end
+  end
+    
   #--------------------------------------------------------------------------
   # * Text creation
   #--------------------------------------------------------------------------
