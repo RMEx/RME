@@ -872,53 +872,63 @@ module Handler
       end
     end
     #--------------------------------------------------------------------------
+    # * Get according sprite
+    #--------------------------------------------------------------------------
+    def k_sprite
+      return nil unless SceneManager.scene.is_a?(Scene_Map)
+      r = SceneManager.scene.spriteset.character_sprites.find do |e|
+        e.character == self
+      end
+      r
+    end
+    #--------------------------------------------------------------------------
     # * In
     #--------------------------------------------------------------------------
     def in?(x, y, pr = false)
-      return false unless @sprite
-      @sprite.pixel_in?(x, y, pr)
+      return false unless k_sprite
+      k_sprite.pixel_in?(x, y, pr)
     end
     #--------------------------------------------------------------------------
     # * Hover
     #--------------------------------------------------------------------------
     def hover?(pr = false)
-      return false unless @sprite
-      @sprite.hover?(pr)
+      return false unless k_sprite
+      k_sprite.hover?(pr)
     end
     #--------------------------------------------------------------------------
     # * Click
     #--------------------------------------------------------------------------
     def click?(pr = false)
-      return false unless @sprite
-      @sprite.click?(pr)
+      return false unless sprite
+      k_sprite.click?(pr)
     end
     #--------------------------------------------------------------------------
     # * Press
     #--------------------------------------------------------------------------
     def press?(key = :mouse_left, pr = false)
-      return false unless @sprite
-      @sprite.press?(key, pr)
+      return false unless k_sprite
+      k_sprite.press?(key, pr)
     end
     #--------------------------------------------------------------------------
     # * Trigger
     #--------------------------------------------------------------------------
     def trigger?(key = :mouse_left, pr = false)
-      return false unless @sprite
-      @sprite.trigger?(key, pr)
+      return false unless k_sprite
+      k_sprite.trigger?(key, pr)
     end
     #--------------------------------------------------------------------------
     # * Repeat
     #--------------------------------------------------------------------------
     def repeat?(key = :mouse_left, pr = false)
-      return false unless @sprite
-      @sprite.repeat?(key, pr)
+      return false unless k_sprite
+      k_sprite.repeat?(key, pr)
     end
     #--------------------------------------------------------------------------
     # * Release
     #--------------------------------------------------------------------------
     def release?(key = :mouse_left, pr = false)
-      return false unless @sprite
-      @sprite.release?(key, pr)
+      return false unless k_sprite
+      k_sprite.release?(key, pr)
     end
   end
   #==============================================================================
@@ -1259,7 +1269,6 @@ class Game_CharacterBase
     rm_extender_initialize
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
-    @sprite = nil
   end
   #--------------------------------------------------------------------------
   # * restore ox oy
@@ -1374,8 +1383,9 @@ class Game_CharacterBase
   # * Pixel in event
   #--------------------------------------------------------------------------
   def pixel_in?(x, y, pr = false)
-    return @sprite.precise_in?(x, y) if pr
-    @sprite.in?(x, y)
+    return false unless k_sprite
+    return k_sprite.precise_in?(x, y) if pr
+    k_sprite.in?(x, y)
   end
 end
 
@@ -1452,7 +1462,6 @@ class Sprite_Character
       x_rect, y_rect = self.x-self.ox*self.zoom_x, self.y-self.oy*self.zoom_y
       w_rect, h_rect = self.src_rect.width*self.zoom_x, self.src_rect.height*self.zoom_y
       character.rect.set(x_rect, y_rect, w_rect, h_rect)
-      character.sprite = self
     end
   end
   #--------------------------------------------------------------------------

@@ -79,8 +79,7 @@ class Graphical_Eval2
   def initialize
     base_init
     create_box
-    create_title_box
-    create_title_label
+    create_consistent_block
   end
   
   #--------------------------------------------------------------------------
@@ -102,38 +101,28 @@ class Graphical_Eval2
   # * Create General Box
   #--------------------------------------------------------------------------
   def create_box
-    @box = Gui::Box.new(
+    @box = Gui::Pannel.new(
       width:@width, 
       height:@height,
+      value:"Tester un code",
       x: @x, 
       y: @y, 
-      border: 0, 
       padding: 0,
-      background_color: Color.new(25, 190, 192)
+      border_color: Color.new('#113F59')
     )
   end
   
   #--------------------------------------------------------------------------
-  # * Create Ttitle Box
+  # * Create consistent block
   #--------------------------------------------------------------------------
-  def create_title_box
-    @title_box = Gui::Box.new(
+  def create_consistent_block 
+    @bg = Gui::Box.new(
       parent: @box, 
+      width: 30.percent,
+      height: 100.percent, 
+      background_color: Color.new('#19BEC0'),
       border: 0,
-      width: 100.percent, 
-      height: @title_height,
-      background_color: Color.new(17, 63, 89)
-     )
-  end
-  
-  #--------------------------------------------------------------------------
-  # * Create Ttitle Label
-  #--------------------------------------------------------------------------
-  def create_title_label
-    @title_label = Gui::Label.new(
-      parent: @title_box,
-      value: "Bilou",
-      font: @font
+      x: 70.percent
     )
   end
   
