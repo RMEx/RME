@@ -659,6 +659,7 @@ module RMECommands
     def terrain_tag(x, y)
       $game_map.terrain_tag(x, y)
     end
+
     #--------------------------------------------------------------------------
     # * Get Tile ID from coords and layer (0,1,2)
     #--------------------------------------------------------------------------
@@ -720,6 +721,12 @@ module RMECommands
     #--------------------------------------------------------------------------
     def square_passable?(x, y, d=2)
       $game_map.passable?(x, y, d)
+    end
+    #--------------------------------------------------------------------------
+    # * Check wounding
+    #--------------------------------------------------------------------------
+    def damage_floor?(x, y)
+      $game_map.damage_floor?(x, y)
     end
     #--------------------------------------------------------------------------
     # * Get a percent
@@ -920,25 +927,25 @@ module RMECommands
     def armor_agility(id); $data_armors[id].params[6]; end
     def armor_luck(id); $data_armors[id].params[7]; end
 
-    # def armor_element_rate(i, actor_id, element_id)
-    #   item = $data_armors[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
+    def armor_element_rate(i, actor_id, element_id)
+      item = $data_armors[i]
+      user = $game_actors[i]
+      if item.damage.element_id < 0
+        user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
+      else
+        element_rate(item.damage.element_id)
+      end
+    end
 
-    # def weapon_element_rate(i, actor_id, element_id)
-    #   item = $data_weapons[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
+    def weapon_element_rate(i, actor_id, element_id)
+      item = $data_weapons[i]
+      user = $game_actors[i]
+      if item.damage.element_id < 0
+        user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
+      else
+        element_rate(item.damage.element_id)
+      end
+    end
 
     def give_item(id, amount)
       item = $data_items[id];
@@ -1052,15 +1059,15 @@ module RMECommands
     def item_nb_hits(i); $data_items[i].repeats; end
     def item_success_rate(i); $data_items[i].success_rate; end
     def item_tp_gain(i); $data_items[i].tp_gain; end
-    # def item_element_rate(i, actor_id, element_id)
-    #   item = $data_items[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
+    def item_element_rate(i, actor_id, element_id)
+      item = $data_items[i]
+      user = $game_actors[i]
+      if item.damage.element_id < 0
+        user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
+      else
+        element_rate(item.damage.element_id)
+      end
+    end
 
     append_commands
   end
@@ -1738,9 +1745,9 @@ module RMECommands
     def monster_battler_name(id); enemy(id).battler_name; end
     def monster_battler_hue(id); enemy(id).battler_hue; end
     def current_troop; Kernel.current_troop; end
-    # def monster_element_rate(id, element_id)
-    #   enemy(id).element_rate(element_id)
-    # end
+    def monster_element_rate(id, element_id)
+      enemy(id).element_rate(element_id)
+    end
 
     # Fix for EE4
     alias_method :monster_attack, :monster_attack_power
@@ -1946,7 +1953,7 @@ module RMECommands
   #  cmd about Time
   #==============================================================================
 
-  module CmdTime
+  module Time
 
     #--------------------------------------------------------------------------
     # * Get the current year
