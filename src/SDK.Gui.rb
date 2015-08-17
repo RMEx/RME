@@ -1318,12 +1318,14 @@ module Gui
       return (@style[:margin_left]  + @style[:margin_right]  +
               @style[:border_left]  + @style[:border_right]  +
               @style[:padding_left] + @style[:padding_right] +
-              (a.map{|c| c.x + c.width }.max||0)
+              (a.delete_if{|c| c.respond_to?(:style) && (c = c.style[:width]) != :auto && c.percent?
+                }.map{|c| c.x + c.width }.max||0)
               ) if m == :width
       return (@style[:margin_top]  + @style[:margin_bottom]  +
               @style[:border_top]  + @style[:border_bottom]  +
               @style[:padding_top] + @style[:padding_bottom] +
-              (a.map{|c| c.y + c.height}.max||0)
+              (a.delete_if{|c| c.respond_to?(:style) && (c = c.style[:height]) != :auto && c.percent?
+                }.map{|c| c.y + c.height}.max||0)
               ) if m == :height
     end
     def parent_style_auto?
@@ -1484,11 +1486,12 @@ module Gui
       @style[:height] = size.height
     end
     #--------------------------------------------------------------------------
-    # * Computes self
+    # * Set value to any named args, except :name (reserved to initialize)
+    # * :parent can't be redefined twice
     #--------------------------------------------------------------------------
-    def compute_self
-      super
-      self.value = @style[:value]
+    def set(args, auto_compute=true)
+      initialize_text(args[:value]) if args && args[:value]
+      super(args, auto_compute)
     end
     #--------------------------------------------------------------------------
     # * Value
