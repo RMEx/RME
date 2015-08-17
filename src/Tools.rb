@@ -80,7 +80,7 @@ class Graphical_Eval2
     base_init
     create_box
     create_consistent_block
-    create_tabulation_feedback
+    create_toolbox
     create_textfield
   end
   
@@ -133,16 +133,17 @@ class Graphical_Eval2
   end
   
   #--------------------------------------------------------------------------
-  # * Create tabulation feedback
+  # * Create tool box
   #--------------------------------------------------------------------------
-  def create_tabulation_feedback
-    @tab_feedback = Gui::Box.new(
+  def create_toolbox
+    h = 8
+    @toolbox = Gui::Box.new(
       parent: @box, 
       width: 100.percent,
-      height: 12, 
+      height: h, 
       background_color:  Color.new('#113F59'),
       border: 0, 
-      y: @box.inner.height - 12,
+      y: @box.inner.height - h,
     )  
   end
   
@@ -151,10 +152,14 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def create_textfield
     @textfield = 
-      Gui::Components::Text_Field.new(
-        Gui::Components::Text_Recorder.new, 4, 4, @box.inner.width - @bg.width - 8,
-        @textfield_font, true)
-    @textfield >> @box
+      Gui::TextField.new(
+        parent: @box, 
+        width: 70.percent, 
+        height: @box.inner.height - @toolbox.height,
+        border: 0,
+        margin: 4,
+      )
+    @textfield.activate
   end
   
   #--------------------------------------------------------------------------

@@ -1766,6 +1766,8 @@ module Gui
     # * Public instances variables
     #--------------------------------------------------------------------------
     attr_accessor :recorder, :textfield
+    delegate :@textfield, :activate
+    delegate :@textfield, :deactivate
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
