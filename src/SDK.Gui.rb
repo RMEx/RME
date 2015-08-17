@@ -1797,7 +1797,7 @@ module Gui
     # * Update
     #--------------------------------------------------------------------------
     def update
-      @textfield.deactivate if Key::Mouse_left.release? && !self.hover?
+      @textfield.deactivate if Key::Mouse_left.trigger? && !self.hover?
       @textfield.update
     end
     #--------------------------------------------------------------------------
@@ -1806,6 +1806,14 @@ module Gui
     def on_mouse_trigger
       @textfield.activate
       @textfield.locate
+    end
+    #--------------------------------------------------------------------------
+    # * set value
+    #--------------------------------------------------------------------------
+    def value=(d)
+      recorder.value = d 
+      @textfield.refresh
+      recorder.cursor_jump(@textfield.formatted_value.length)
     end
   end
   

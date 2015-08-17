@@ -85,6 +85,7 @@ class Graphical_Eval2
   # * Build Object
   #--------------------------------------------------------------------------
   def initialize
+    init_fonts
     base_init
     create_box
     create_consistent_block
@@ -95,13 +96,9 @@ class Graphical_Eval2
   end
   
   #--------------------------------------------------------------------------
-  # * Init coords
+  # * Init fonts
   #--------------------------------------------------------------------------
-  def base_init
-    Game_Temp.in_game = false
-    @height = 58+12
-    @y = Graphics.height - @height
-    @title_height = 18
+  def init_fonts
     @font = Font.new("Arial")
     @font.color = Color.new(255, 255, 255)
     @font.size = 15
@@ -112,6 +109,20 @@ class Graphical_Eval2
     @textfield_font.color = Color.new('#000000')
     @toolbox_font = @font.clone 
     @toolbox_font.size = 14
+    @success_font = @toolbox_font.clone 
+    @failure_font = @toolbox_font.clone 
+    @success_font.color = Color.new('#00FF00')
+    @failure_font.color = Color.new('#FF0000')
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Init coords
+  #--------------------------------------------------------------------------
+  def base_init
+    Game_Temp.in_game = false
+    @height = 58+12
+    @y = Graphics.height - @height
+    @title_height = 18
   end
   
   #--------------------------------------------------------------------------
@@ -199,24 +210,39 @@ class Graphical_Eval2
   # * Create marker
   #--------------------------------------------------------------------------
   def create_marker
-    @marker = Gui::Box.new(
-      parent: @toolbox, 
-      width: 10, 
-      height: 10, 
-      border: 0, 
-      background_color: Color.new('#00FF00'),
-      x: @toolbox.width - 10,
-      y: 2,
-    )  
+    @marker = Gui::Label.new(
+      parent: @toolbox,
+      font: @font,
+      value:" "
+    )
+    
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Valid marker
+  #--------------------------------------------------------------------------
+  def build_passing 
+    @marker.set(font: @success_font)
+    @marker.value = 'success'
+    @marker.set(x: @toolbox.width - @marker.width)
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Invalid
+  #--------------------------------------------------------------------------
+  def build_failure
+    @marker.set(font: @failure_font)
+    @marker.value = 'failure'
+    @marker.set(x: @toolbox.width - @marker.width)
   end
   
   #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
-    @textfield.update
     update_cursor
     execute_command if Devices::Keys::Enter.trigger?
+    @textfield.update
   end
   
   #--------------------------------------------------------------------------
@@ -224,15 +250,10 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def update_cursor
     return if self.class.stack.length == 0
-    if Devices::Keys::Up.trigger?
-      self.class.cursor -= 1 
-      self.class.cursor = [[0, self.class.cursor].max, self.class.stack.length].max
-      p :must_change
-    end
-    if Devices::Keys::Down.trigger?
-      self.class.cursor -= 1 
-      self.class.cursor = [[0, self.class.cursor].max, self.class.stack.length].max
-      p :must_change
+    if Devices::Keys::Up.trigger? || Devices::Keys::Down.trigger?
+      self.class.cursor += (Keys::Down.press?) ? 1 : -1 
+      self.class.cursor = self.class.cursor % self.class.stack.length
+      @textfield.value = self.class.stack[self.class.cursor]
     end
   end
   
@@ -257,11 +278,11 @@ class Graphical_Eval2
     begin 
       raw_command = commands
       commands = "p (#{commands})" if @checkbox.checked?
-      @marker.set(background_color: Color.new('#00FF00'))
+      build_passing
       eval(commands, $game_map.interpreter.get_binding)
       $game_map.need_refresh = true
       self.class.stack << raw_command if raw_command != self.class.stack[-1]
-      self.class.cursor = self.class.stack.length
+      self.class.cursor = self.class.stack.length-1
       return
     rescue NameError => error
       if error.instance_of?(NoMethodError)
@@ -274,7 +295,7 @@ class Graphical_Eval2
     rescue Exception => exc
       message = "#{exc.message}"    
     end 
-    @marker.set(background_color: Color.new('#FF0000'))
+    build_failure
     msgbox(message)
   end
   
