@@ -678,6 +678,7 @@ module Area
     #--------------------------------------------------------------------------
     def initialize(x, y, w, h)
       @sprite = nil
+      @color = Color.new(Kernel.rand(255), Kernel.rand(255),Kernel.rand(255), 200)
       set(x, y, w, h)
     end
     #--------------------------------------------------------------------------
@@ -699,12 +700,14 @@ module Area
     # * Render area
     #--------------------------------------------------------------------------
     def render
+      if @sprite && @sprite.disposed?
+        @sprite.dispose  
+      end
       @sprite = Sprite.new 
       @sprite.bitmap = Bitmap.new(@width, @height)
       @sprite.x = @x 
       @sprite.y = @y 
-      @sprite.bitmap.fill_rect(0, 0, @width, @height, 
-        Color.new(Kernel.rand(255), Kernel.rand(255),Kernel.rand(255), 200))
+      @sprite.bitmap.fill_rect(0, 0, @width, @height, @color)
     end
     def hide 
       return unless @sprite || @sprite.disposed?
