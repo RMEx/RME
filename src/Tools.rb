@@ -303,9 +303,16 @@ class Graphical_Eval2
     update_cursor
     execute_command if Devices::Keys::Enter.trigger?
     @textfield.update
-    if Devices::Keys::Tab.trigger?
-      p @textfield.formatted_value.complete_at_point(@textfield.recorder.virtual_position)
-    end 
+    update_completion if Devices::Keys::Tab.trigger?
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Update Autocompletion
+  #--------------------------------------------------------------------------
+  def update_completion
+    # Cette ligne renvoi la liste des candidats pour une complétion, 
+    # correctement ordonnées. Si aucun candidat n'est troué... []
+    #p @textfield.formatted_value.complete_at_point(@textfield.recorder.virtual_position)
   end
   
   #--------------------------------------------------------------------------
