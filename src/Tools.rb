@@ -82,6 +82,7 @@ class Graphical_Eval2
     create_consistent_block
     create_toolbox
     create_textfield
+    create_checkbox
   end
   
   #--------------------------------------------------------------------------
@@ -136,7 +137,7 @@ class Graphical_Eval2
   # * Create tool box
   #--------------------------------------------------------------------------
   def create_toolbox
-    h = 8
+    h = 12
     @toolbox = Gui::Box.new(
       parent: @box, 
       width: 100.percent,
@@ -144,6 +145,7 @@ class Graphical_Eval2
       background_color:  Color.new('#113F59'),
       border: 0, 
       y: @box.inner.height - h,
+      margin: 0,
     )  
   end
   
@@ -157,9 +159,20 @@ class Graphical_Eval2
         width: 70.percent, 
         height: @box.inner.height - @toolbox.height,
         border: 0,
-        margin: 4,
+        margin: 2,
       )
     @textfield.activate
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Create checkbox
+  #--------------------------------------------------------------------------
+  def create_checkbox
+    @checkbox = Gui::CheckBox.new(
+      parent: @toolbox, 
+      width: 6, 
+      height: 6,
+    )  
   end
   
   #--------------------------------------------------------------------------

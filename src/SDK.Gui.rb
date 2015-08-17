@@ -1768,6 +1768,7 @@ module Gui
     attr_accessor :recorder, :textfield
     delegate :@textfield, :activate
     delegate :@textfield, :deactivate
+    delegate :@textfield, :formatted_value
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
