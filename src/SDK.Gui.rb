@@ -487,6 +487,8 @@ module Gui
           min_width:        0,
           padding:          8,
           margin:           0,
+          value:            " ",
+          title:            " ",
           display:          :inline
       set args if args
     end
@@ -1688,8 +1690,8 @@ module Gui
     # * Object initialize
     # * optionnal named args = title:, x:, y:, width:, height: + basic CSS
     #--------------------------------------------------------------------------
-    def initialize(args=nil)
-      super(args)
+    def initialize_intern_components
+      super
       @title_label = Label.new(
         name: 'button_title',
         parent: self,
@@ -1723,9 +1725,30 @@ module Gui
   end
 
   #==============================================================================
-  # ** Gui::Button
+  # ** Gui::CheckBox
   #------------------------------------------------------------------------------
-  #  Button
+  #  CheckBox
+  #==============================================================================
+  
+  class CheckBox < Button
+    #--------------------------------------------------------------------------
+    # * Mouse click
+    #--------------------------------------------------------------------------
+    def on_mouse_click
+      self.title = (@style[:title] == "x" ? " " : "x")
+    end
+    #--------------------------------------------------------------------------
+    # * Checked?
+    #--------------------------------------------------------------------------
+    def checked?
+      @style[:title] == "x"
+    end
+  end
+
+  #==============================================================================
+  # ** Gui::TextField
+  #------------------------------------------------------------------------------
+  #  TextField
   #==============================================================================
   
   class TextField < Box
@@ -1772,6 +1795,7 @@ module Gui
       @textfield.locate
     end
   end
+  
 end
 
 #==============================================================================
@@ -1793,6 +1817,11 @@ end
 
 module CSS
 
+  fon = Font.new(Font.default_name, 16)
+  fon.color = get_color('white')
+  fon.bold = true
+  fon.outline = false
+
   #--------------------------------------------------------------------------
   # * TextField
   #--------------------------------------------------------------------------
@@ -1809,17 +1838,15 @@ module CSS
     height: 100.percent,
     border: [20, 2, 2, 2],
     border_color: Color.new('#113F59')
-    
-  fon = Font.new(Font.default_name, 16)
-  fon.color = get_color('white')
-  fon.bold = true
-  fon.outline = false
   
   set 'Gui::Label.pannel_title',
     font: fon,
     x: 5,
     y: 2
   
+  #--------------------------------------------------------------------------
+  # * Button
+  #--------------------------------------------------------------------------
   set 'Gui::Button',
     background_color: Color.new('#D54F58'),
     title: "title",
@@ -1827,6 +1854,12 @@ module CSS
     border: 0,
     font: fon,
     border: 0
+  
+  #--------------------------------------------------------------------------
+  # * CheckBox
+  #--------------------------------------------------------------------------
+  set 'Gui::CheckBox',
+    padding: [0,4]
   
   #--------------------------------------------------------------------------
   # * TrackBar & ScrollBar
