@@ -1746,11 +1746,13 @@ module Gui
     def checked? ; @style[:title] == @style[:checked_label] ; end
     def check    ; self.title = @style[:checked_label]      ; end
     def uncheck  ; self.title = @style[:unchecked_label]    ; end
-    def toggle   ; checked? ? uncheck : check               ; end
     #--------------------------------------------------------------------------
     # * Mouse click
     #--------------------------------------------------------------------------
-    def on_mouse_click; super; toggle; end
+    def on_mouse_click
+      super
+      checked? ? uncheck : check
+    end
   end
 
   #==============================================================================
