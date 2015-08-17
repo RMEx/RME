@@ -846,12 +846,13 @@ class String
       end 
     else 
       # Isolate token
-      container = Command.singleton_methods + Object.constants + Kernel.methods
+      container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
       candidates = token.auto_complete(container)
     end
-    return candidates[0..5].select do |e| 
-              token.damerau_levenshtein(e.to_s[0..token.length]) < 3
-            end 
+    k = candidates[0..5].select do |e| 
+          token.damerau_levenshtein(e.to_s[0..token.length]) < 3
+        end
+    return k 
   end
 end
 
