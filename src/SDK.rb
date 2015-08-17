@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-$STAGING = true # REMOVE ME
+$STAGING = false # REMOVE ME
 #==============================================================================
 # ** RME V1.0.0
 #------------------------------------------------------------------------------
@@ -87,10 +87,10 @@ module RME
       attr_accessor :to_fix
       attr_accessor :internals
       Doc.internals ||= Array.new
-      Doc.to_fix ||= Array.new
-      Doc.schema ||= Hash.new
-      Doc.links ||= Hash.new
-      Doc.commands ||= Hash.new
+      Doc.to_fix    ||= Array.new
+      Doc.schema    ||= Hash.new
+      Doc.links     ||= Hash.new
+      Doc.commands  ||= Hash.new
     end
     #--------------------------------------------------------------------------
     # * classname

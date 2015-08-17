@@ -702,7 +702,11 @@ module Gui
         @active = active
         @text = textrecorder
         @x,@y,@w = x,y,w
-        @font = get_profile(font).to_font
+        if font.is_a?(Font)
+          @font = font  
+        else
+          @font = get_profile(font).to_font
+        end
         @text.start_capture
         @cursor_timer = 0
         create_sprite

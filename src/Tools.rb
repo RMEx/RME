@@ -81,6 +81,7 @@ class Graphical_Eval2
     create_box
     create_consistent_block
     create_tabulation_feedback
+    create_textfield
   end
   
   #--------------------------------------------------------------------------
@@ -91,9 +92,14 @@ class Graphical_Eval2
     @height = 58+12
     @y = Graphics.height - @height
     @title_height = 18
-    @font = get_profile("small_standard").to_font
-    @font.name = "Arial"
+    @font = Font.new("Arial")
     @font.color = Color.new(255, 255, 255)
+    @font.size = 15
+    @font.shadow = false 
+    @font.bold = false
+    @font.outline = false
+    @textfield_font = @font.clone 
+    @textfield_font.color = Color.new('#000000')
   end
   
   #--------------------------------------------------------------------------
@@ -103,7 +109,7 @@ class Graphical_Eval2
     @box = Gui::Pannel.new(
       width: 100.percent, 
       height: @height,
-      title: "Tester un code",
+      title: "Ingame tester",
       x: 0, 
       y: @y, 
       padding: 0,
@@ -133,17 +139,66 @@ class Graphical_Eval2
     @tab_feedback = Gui::Box.new(
       parent: @box, 
       width: 100.percent,
-      height: 14, 
+      height: 12, 
       background_color:  Color.new('#113F59'),
       border: 0, 
-      y: 18,
+      y: @box.inner.height - 12,
     )  
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Create textfield
+  #--------------------------------------------------------------------------
+  def create_textfield
+    @textfield = 
+      Gui::Components::Text_Field.new(
+        Gui::Components::Text_Recorder.new, 4, 4, @box.inner.width - @bg.width - 8,
+        @textfield_font, true)
+    @textfield >> @box
   end
   
   #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
+    @textfield.update
+    execute_command if Devices::Keys::Enter.trigger?
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Filter with damerau_levenshtein
+  #--------------------------------------------------------------------------
+  def filter(key, candidates)
+    candidates.uniq!
+    candidates.delete(:method_missing)
+    candidates.collect!(&:to_s)
+    candidates.sort_by! {|i| i.damerau_levenshtein(key)}
+    key_a = "Did you mean maybe [#{candidates[0]}]"
+    key_b = candidates.length > 1 ? ", or [#{candidates[1]}] ?" : " ?"
+    return "[#{key}] does not exist.\n#{key_a}#{key_b}"
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Execute code
+  #--------------------------------------------------------------------------
+  def execute_command
+    commands = @textfield.formatted_value
+    begin 
+      eval(commands, $game_map.interpreter.get_binding)
+      $game_map.need_refresh = true
+      return
+    rescue NameError => error
+      if error.instance_of?(NoMethodError)
+        message = filter(error.name, Exception.last_noMethod.methods)
+      else
+        message = filter(error.name, Command.singleton_methods)
+      end
+    rescue SyntaxError => syntaxFailure 
+      message = syntaxFailure.message.split(/\:\d+\:/)[-1].strip 
+    rescue Exception => exc
+      message = "#{exc.message}"    
+    end 
+    msgbox(message)
   end
   
 end
