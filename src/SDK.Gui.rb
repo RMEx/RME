@@ -1317,7 +1317,7 @@ module Gui
       a = children - [self.inner, self.outer]
       return (@style[:margin_left]  + @style[:margin_right]  +
               @style[:border_left]  + @style[:border_right]  +
-              @style[:padding_left] + @style[:padding_right] +
+              @style[:padding_left] + @style[:padding_right] + 
               (a.delete_if{|c| c.respond_to?(:style) && (c = c.style[:width]) != :auto && c.percent?
                 }.map{|c| c.x + c.width }.max||0)
               ) if m == :width
@@ -1361,6 +1361,7 @@ module Gui
     #--------------------------------------------------------------------------
     def dispose
       @disposed = true
+      Interactive.objects.delete(self)
       dispose_stack
       @viewport.dispose
     end
@@ -1407,7 +1408,7 @@ module Gui
     def compute_self
       super
       update_colors
-      update_background if transformed
+      update_background
     end
     #--------------------------------------------------------------------------
     # * Update background display
@@ -1474,6 +1475,7 @@ module Gui
     # * Initialize text
     #--------------------------------------------------------------------------
     def initialize_text(txt)
+      return unless @sprite_text
       txt ||= ""
       fon = @style[:font]
       bmp = Bitmap.new(1,1)
@@ -1678,6 +1680,13 @@ module Gui
     def title=(v)
       set(title: v)
     end
+    #--------------------------------------------------------------------------
+    # * Free
+    #--------------------------------------------------------------------------
+    def dispose
+      @title_label.dispose
+      super
+    end
   end
   
   #==============================================================================
@@ -1719,13 +1728,6 @@ module Gui
     def title; @style[:title]; end
     def title=(v)
       set(title: v)
-    end
-    #--------------------------------------------------------------------------
-    # * Free
-    #--------------------------------------------------------------------------
-    def dispose
-      Interactive.objects.delete(@bar)
-      super
     end
     #--------------------------------------------------------------------------
     # * Computing
