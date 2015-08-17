@@ -692,7 +692,7 @@ module Gui
       delegate :@text, :formatted_value
       delegate :@text, :has_transformation?
       delegate :@text, :delete
-      [:x, :y].each{|m| delegate_accessor :@viewport, m}
+      [:x, :y, :width, :height, :inner, :outer].each{|m| delegate_accessor :@viewport, m}
 
       include Tools::Activable
       #--------------------------------------------------------------------------
@@ -732,8 +732,10 @@ module Gui
       def update
         unless actived?
           @cursor.opacity = 0
+          @selection_rect.opacity = 0
           check_callback
         else
+          @selection_rect.opacity = 255
           locate if press?(:mouse_left) || Mouse.dragging? && in?(Mouse.drag.start)
           @text.update unless Devices::Keys::Enter.press? || Devices::Keys::Tab.press?
           update_bitmap if @text.has_transformation?
@@ -834,8 +836,8 @@ module Gui
       # * IZI Viewport update
       #--------------------------------------------------------------------------
       def update_viewport
-        a = @cursor.x - @w
-        b = @sprite.bitmap.width - @w
+        a = @cursor.x - self.width
+        b = @sprite.bitmap.width - self.width
         @viewport.ox = @viewport.ox.bound(a, b).bound(0, @cursor.x-1)
       end
       #--------------------------------------------------------------------------
@@ -847,7 +849,7 @@ module Gui
         match = approach(approx, x)
         @text.cursor_jump(match)
         @viewport.ox -= 10 if mouse_x < 0
-        @viewport.ox += 10 if (@w - mouse_x) < 0
+        @viewport.ox += 10 if (self.width - mouse_x) < 0
       end
       #--------------------------------------------------------------------------
       # * IZI Approach
@@ -1720,6 +1722,56 @@ module Gui
     end
   end
 
+  #==============================================================================
+  # ** Gui::Button
+  #------------------------------------------------------------------------------
+  #  Button
+  #==============================================================================
+  
+  class TextField < Box
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :recorder, :textfield
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    #--------------------------------------------------------------------------
+    def initialize_intern_components
+      super
+      case @style[:format]
+      when :int
+        @recorder = Components::Int_Recorder.new
+      when :float
+        @recorder = Components::Float_Recorder.new
+      else
+        @recorder = Components::Text_Recorder.new
+      end
+      @textfield = Components::Text_Field.new(@recorder,
+        0, 0, 0, @style[:font], false)
+      @textfield >> self
+    end
+    #--------------------------------------------------------------------------
+    # * Computes self
+    #--------------------------------------------------------------------------
+    def compute_self
+      super
+      @textfield.width = self.inner.width if @textfield
+    end
+    #--------------------------------------------------------------------------
+    # * Update
+    #--------------------------------------------------------------------------
+    def update
+      @textfield.deactivate if Key::Mouse_left.release? && !self.hover?
+      @textfield.update
+    end
+    #--------------------------------------------------------------------------
+    # * Mouse trigger
+    #--------------------------------------------------------------------------
+    def on_mouse_trigger
+      @textfield.activate
+      @textfield.locate
+    end
+  end
 end
 
 #==============================================================================
@@ -1740,6 +1792,13 @@ end
 #==============================================================================
 
 module CSS
+
+  #--------------------------------------------------------------------------
+  # * TextField
+  #--------------------------------------------------------------------------
+  set 'Gui::TextField',
+    width: 100.percent,
+    padding: 3
   
   #--------------------------------------------------------------------------
   # * Pannel
