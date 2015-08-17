@@ -18,6 +18,7 @@ Outils de traitement mathématiques un peu avancé
 *    [cos(x)](#cosx)
 *    [cosh(x)](#coshx)
 *    [hypot(x, y)](#hypotx-y)
+*    [mantissa(x)](#mantissax)
 *    [pi](#pi)
 *    [sin(x)](#sinx)
 *    [sinh(x)](#sinhx)
@@ -142,6 +143,16 @@ Outils de traitement mathématiques un peu avancé
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 `y`|`Numeric`|Valeur numérique  
+
+
+##### mantissa(x)
+
+> Renvoi la partie flottante d'un nombre à virgule
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Float`|Nombre à virgule  
 
 
 ##### pi

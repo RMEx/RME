@@ -159,6 +159,7 @@ Collection des commandes EventExtender
 *    [Command.current_enemies](#commandcurrent_enemies)
 *    [Command.current_troop](#commandcurrent_troop)
 *    [Command.cursor_system(flag)](#commandcursor_systemflag)
+*    [Command.damage_floor?(x, y)](#commanddamage_floorx-y)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -318,6 +319,7 @@ Collection des commandes EventExtender
 *    [Command.length(array)](#commandlengtharray)
 *    [Command.load_game(index, *time)](#commandload_gameindex-time)
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
+*    [Command.mantissa(x)](#commandmantissax)
 *    [Command.map_height](#commandmap_height)
 *    [Command.map_id](#commandmap_id)
 *    [Command.map_name](#commandmap_name)
@@ -2847,6 +2849,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.damage_floor?(x, y)
+
+> Renvoie true si la case référencée par X, Y est blessante, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X de la case  
+`y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
 ##### Command.enemy_agility(position)
 
 > renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
@@ -5092,6 +5109,20 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 > Nom|Type|Description  
 --- | --- | ---  
 `amount`|`o`|T  
+
+
+
+
+
+
+##### Command.mantissa(x)
+
+> Renvoi la partie flottante d'un nombre à virgule
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Float`|Nombre à virgule  
 
 
 

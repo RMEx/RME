@@ -1,6 +1,7 @@
 <!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='Liste des commandes.html'>Index des commandes</a> > <strong>Carte</strong><hr /><h1>Carte</h1>
 Commandes relatives aux informations des cartes<br /><br /><h2>Liste des commandes<ul></h2>
+<li><a href='#damage_floorx-y'>damage_floor?(x, y)</a></li>
 <li><a href='#get_tileset_id'>get_tileset_id</a></li>
 <li><a href='#groundx-y'>ground?(x, y)</a></li>
 <li><a href='#id_atx-y'>id_at(x, y)</a></li>
@@ -19,7 +20,8 @@ Commandes relatives aux informations des cartes<br /><br /><h2>Liste des command
 <li><a href='#tile_idx-y-layer-map_id'>tile_id(x, y, layer, *map_id)</a></li>
 <li><a href='#wallx-y'>wall?(x, y)</a></li>
 </ul><h2>Description des commandes</h2>
-<strong name='get_tileset_id' id='get_tileset_id'>get_tileset_id</strong><br /><br /><blockquote>Renvoie l' ID du tileset de la carte en cours</blockquote>  
+<strong name='damage_floorx-y' id='damage_floorx-y'>damage_floor?(x, y)</strong><br /><br /><blockquote>Renvoie true si la case référencée par X, Y est blessante, false sinon</blockquote>  
+<blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>x</code></td><td><code>Fixnum</code></td><td>Coordonnées X de la case</td></tr><tr><td><code>y</code></td><td><code>Fixnum</code></td><td>Coordonnées Y de la case</td></tr></table></blockquote><strong name='get_tileset_id' id='get_tileset_id'>get_tileset_id</strong><br /><br /><blockquote>Renvoie l' ID du tileset de la carte en cours</blockquote>  
 <blockquote></table></blockquote><strong name='groundx-y' id='groundx-y'>ground?(x, y)</strong><br /><br /><blockquote>Renvoie true si les coordonnées sont sur le sol, false sinon</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>x</code></td><td><code>Fixnum</code></td><td>Coordonnées X</td></tr><tr><td><code>y</code></td><td><code>Fixnum</code></td><td>Coordonnées Y</td></tr></table></blockquote><strong name='id_atx-y' id='id_atx-y'>id_at(x, y)</strong><br /><br /><blockquote>Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>x</code></td><td><code>Fixnum</code></td><td>Coordonnées X de la case</td></tr><tr><td><code>y</code></td><td><code>Fixnum</code></td><td>Coordonnées Y de la case</td></tr></table></blockquote><strong name='map_height' id='map_height'>map_height</strong><br /><br /><blockquote>Retourne la hauteur de la carte</blockquote>  

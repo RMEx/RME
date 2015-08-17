@@ -1678,6 +1678,10 @@ module RMECommands
     def tanh(x); Math.tanh(x); end
     def to_deg(x); (x.to_f)*57.2957795; end
     def to_rad(x); (x.to_f)/57.2957795; end
+    # This ugly method is only for preserve the precision ! 
+    def mantissa(x)
+      [0, x.to_s.split('.')[1]].join('.').to_f
+    end
     #--------------------------------------------------------------------------
     # * Find angle from a couple of point
     #--------------------------------------------------------------------------

@@ -7,6 +7,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives aux informations des cartes
 
 ##Liste des commandes
+*    [damage_floor?(x, y)](#damage_floorx-y)
 *    [get_tileset_id](#get_tileset_id)
 *    [ground?(x, y)](#groundx-y)
 *    [id_at(x, y)](#id_atx-y)
@@ -27,6 +28,17 @@ Commandes relatives aux informations des cartes
 
 
 ##Description des commandes
+##### damage_floor?(x, y)
+
+> Renvoie true si la case référencée par X, Y est blessante, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X de la case  
+`y`|`Fixnum`|Coordonnées Y de la case  
+
+
 ##### get_tileset_id
 
 > Renvoie l' ID du tileset de la carte en cours

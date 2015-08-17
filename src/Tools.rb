@@ -80,6 +80,7 @@ class Graphical_Eval2
     base_init
     create_box
     create_consistent_block
+    create_tabulation_feedback
   end
   
   #--------------------------------------------------------------------------
@@ -123,6 +124,20 @@ class Graphical_Eval2
       border: 0,
       x: 70.percent
     )
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Create tabulation feedback
+  #--------------------------------------------------------------------------
+  def create_tabulation_feedback
+    @tab_feedback = Gui::Box.new(
+      parent: @box, 
+      width: 100.percent,
+      height: 14, 
+      background_color:  Color.new('#113F59'),
+      border: 0, 
+      y: 18,
+    )  
   end
   
   #--------------------------------------------------------------------------
