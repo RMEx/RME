@@ -677,6 +677,7 @@ module Area
     # * Constructor
     #--------------------------------------------------------------------------
     def initialize(x, y, w, h)
+      @sprite = nil
       set(x, y, w, h)
     end
     #--------------------------------------------------------------------------
@@ -693,6 +694,21 @@ module Area
       check_x = x.between?(@x, @x+@width)
       check_y = y.between?(@y, @y+@height)
       check_x && check_y
+    end
+    #--------------------------------------------------------------------------
+    # * Render area
+    #--------------------------------------------------------------------------
+    def render
+      @sprite = Sprite.new 
+      @sprite.bitmap = Bitmap.new(@width, @height)
+      @sprite.x = @x 
+      @sprite.y = @y 
+      @sprite.bitmap.fill_rect(0, 0, @width, @height, 
+        Color.new(Kernel.rand(255), Kernel.rand(255),Kernel.rand(255), 200))
+    end
+    def hide 
+      return unless @sprite || @sprite.disposed?
+      @sprite.dispose   
     end
   end
 
