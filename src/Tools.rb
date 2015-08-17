@@ -303,6 +303,9 @@ class Graphical_Eval2
     update_cursor
     execute_command if Devices::Keys::Enter.trigger?
     @textfield.update
+    if Devices::Keys::Tab.trigger?
+      p @textfield.formatted_value.complete_at_point(@textfield.recorder.virtual_position)
+    end 
   end
   
   #--------------------------------------------------------------------------

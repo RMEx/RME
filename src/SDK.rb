@@ -827,6 +827,32 @@ class String
       (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
     end
   end
+  #--------------------------------------------------------------------------
+  # * Complete at point
+  #--------------------------------------------------------------------------
+  def complete_at_point(i)
+    tokens = extract_tokens(i-1).map {|s| (!s) ? [s] : s.split(/\.|\:\:/)}.flatten
+    token = tokens[-1]
+    return [] unless token
+    if tokens[-2]
+      # Need a receiver
+      begin 
+        receiver = eval(tokens[-2], $game_map.interpreter.get_binding)
+        container = receiver.methods 
+        konst  = (receiver.respond_to?(:constants)) ? receiver.constants : []
+        candidates = token.auto_complete(container + konst)
+      rescue Exception => exc 
+        return []
+      end 
+    else 
+      # Isolate token
+      container = Command.singleton_methods + Object.constants + Kernel.methods
+      candidates = token.auto_complete(container)
+    end
+    return candidates[0..5].select do |e| 
+              token.damerau_levenshtein(e.to_s[0..token.length]) < 3
+            end 
+  end
 end
 
 
