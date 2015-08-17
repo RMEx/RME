@@ -690,6 +690,7 @@ module Gui
         :>>,
         :<<
       ].each{|m| delegate :@viewport, m}
+      attr_reader :cursor
       delegate_accessor :@text, :value
       delegate_accessor :@text, :virtual_position
       delegate_accessor :@text, :selection_start
@@ -1814,6 +1815,12 @@ module Gui
     def update
       @textfield.deactivate if Key::Mouse_left.trigger? && !self.hover?
       @textfield.update
+    end
+    #--------------------------------------------------------------------------
+    # * position of cursor in screen
+    #--------------------------------------------------------------------------
+    def cursor_screen_x
+      @textfield.cursor.rect.x + @textfield.inner.abs_x
     end
     #--------------------------------------------------------------------------
     # * Mouse trigger
