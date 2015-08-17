@@ -88,11 +88,12 @@ class Graphical_Eval2
     init_fonts
     base_init
     create_box
-    create_consistent_block
     create_toolbox
+    create_consistent_block
     create_textfield
     create_checkbox
     create_marker
+    create_buttons
   end
   
   #--------------------------------------------------------------------------
@@ -139,6 +140,20 @@ class Graphical_Eval2
       margin: 6,
       border_color: Color.new('#113F59')
     )
+    @title_lab = Gui::Label.new(
+      parent: @box.outer,
+      x: 70.percent, 
+      font: @font,
+      value: 'Copy as'
+    )
+    @run_lab = Gui::Label.new(
+      parent: @box.outer,
+      font: @font,
+      value: 'Run'
+    )
+    @run_lab.set(
+      x: @box.outer.width - @run_lab.width - 8
+    )
   end
   
   #--------------------------------------------------------------------------
@@ -148,10 +163,12 @@ class Graphical_Eval2
     @bg = Gui::Box.new(
       parent: @box, 
       width: 30.percent,
-      height: 100.percent, 
+      height: @box.inner.height - @toolbox.height, 
       background_color: Color.new('#19BEC0'),
       border: 0,
-      x: 70.percent
+      x: 70.percent,
+      margin: 0, 
+      padding: 0,
     )
   end
   
@@ -219,6 +236,49 @@ class Graphical_Eval2
   end
   
   #--------------------------------------------------------------------------
+  # * Create buttons
+  #--------------------------------------------------------------------------
+  def create_buttons
+    @copy_as_text = Gui::Button.new(
+      parent: @bg, 
+      margin: 3, 
+      width: 33.percent, 
+      height: 100.percent,
+      title: 'TXT',
+      trigger: trigger do 
+          unless @textfield.formatted_value.empty?
+            Clipboard.push_text(@textfield.formatted_value)
+            msgbox("Script line pushed in the clipboard (as a text)")
+          end
+        end
+    )
+    @copy_as_ev = Gui::Button.new(
+      parent: @bg, 
+      margin: 3, 
+      width: 33.percent, 
+      height: 100.percent,
+      title: 'EVT',
+      x: 33.percent,
+      trigger: trigger do 
+          unless @textfield.formatted_value.empty?
+            rpg_command = RPG::EventCommand.new(355, 0, [@textfield.formatted_value])
+            Clipboard.push_command(rpg_command)
+            msgbox("Script line pushed in the clipboard (as an event's command)")
+          end
+        end
+    ) 
+    @run = Gui::Button.new(
+      parent: @bg, 
+      margin: 3, 
+      width: 33.percent, 
+      height: 100.percent,
+      title: '►',
+      x: 66.percent,
+      trigger: trigger { execute_command }
+    ) 
+  end
+  
+  #--------------------------------------------------------------------------
   # * Valid marker
   #--------------------------------------------------------------------------
   def build_passing 
@@ -275,9 +335,10 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def execute_command
     commands = @textfield.formatted_value
+    return if commands.empty?
     begin 
       raw_command = commands
-      commands = "p (#{commands})" if @checkbox.checked?
+      commands = "p #{commands}" if @checkbox.checked?
       build_passing
       eval(commands, $game_map.interpreter.get_binding)
       $game_map.need_refresh = true

@@ -1724,6 +1724,16 @@ module Gui
       Interactive.objects.delete(@bar)
       super
     end
+    #--------------------------------------------------------------------------
+    # * Computing
+    #--------------------------------------------------------------------------
+    def compute
+      super
+      @title_label.set(
+        x: (self.inner.width - @title_label.width)/2,
+        y: (self.inner.height - @title_label.height)/2
+      ) if @title_label
+    end
   end
 
   #==============================================================================
@@ -1839,7 +1849,7 @@ end
 module CSS
 
   fon = Font.new(Font.default_name, 16)
-  fon.color = get_color('white')
+  fon.color = Color.new('#FFFFFF')
   fon.bold = true
   fon.outline = false
 
