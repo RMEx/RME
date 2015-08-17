@@ -1404,6 +1404,7 @@ module Gui
     #--------------------------------------------------------------------------
     def compute_self
       super
+      update_colors
       update_background if transformed
     end
     #--------------------------------------------------------------------------
@@ -1413,7 +1414,6 @@ module Gui
       if @style[:background] == :none || [self.width, self.height].include?(0)
         return update_inner
       end
-      update_colors
       r = Rect.new(0, 0, self.width, self.height)
       @style.contract_with(:margin, r)
       fit_sprite(@border, r)

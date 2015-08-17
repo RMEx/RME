@@ -72,6 +72,14 @@ end
 #==============================================================================
 
 class Graphical_Eval2
+  
+  class << self 
+    
+    attr_accessor :stack, :cursor
+    Graphical_Eval2.stack = Array.new
+    Graphical_Eval2.cursor = 0
+      
+  end
 
   #--------------------------------------------------------------------------
   # * Build Object
@@ -83,6 +91,7 @@ class Graphical_Eval2
     create_toolbox
     create_textfield
     create_checkbox
+    create_marker
   end
   
   #--------------------------------------------------------------------------
@@ -101,6 +110,8 @@ class Graphical_Eval2
     @font.outline = false
     @textfield_font = @font.clone 
     @textfield_font.color = Color.new('#000000')
+    @toolbox_font = @font.clone 
+    @toolbox_font.size = 14
   end
   
   #--------------------------------------------------------------------------
@@ -146,6 +157,7 @@ class Graphical_Eval2
       border: 0, 
       y: @box.inner.height - h,
       margin: 0,
+      padding: 0,
     )  
   end
   
@@ -170,8 +182,31 @@ class Graphical_Eval2
   def create_checkbox
     @checkbox = Gui::CheckBox.new(
       parent: @toolbox, 
-      width: 6, 
-      height: 6,
+      position: :relative,
+      border: 0,
+      border_color: Color.new(0, 0, 0, 0), 
+      background_color: Color.new(0, 0, 0, 0), 
+      font: @toolbox_font, 
+      checked_label: '[X] console output',
+      unchecked_label: '[  ] console output', 
+      margin: 0, 
+      padding: 0,
+    )
+    @checkbox.check
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Create marker
+  #--------------------------------------------------------------------------
+  def create_marker
+    @marker = Gui::Box.new(
+      parent: @toolbox, 
+      width: 10, 
+      height: 10, 
+      border: 0, 
+      background_color: Color.new('#00FF00'),
+      x: @toolbox.width - 10,
+      y: 2,
     )  
   end
   
@@ -180,7 +215,25 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def update
     @textfield.update
+    update_cursor
     execute_command if Devices::Keys::Enter.trigger?
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Update cursor
+  #--------------------------------------------------------------------------
+  def update_cursor
+    return if self.class.stack.length == 0
+    if Devices::Keys::Up.trigger?
+      self.class.cursor -= 1 
+      self.class.cursor = [[0, self.class.cursor].max, self.class.stack.length].max
+      p :must_change
+    end
+    if Devices::Keys::Down.trigger?
+      self.class.cursor -= 1 
+      self.class.cursor = [[0, self.class.cursor].max, self.class.stack.length].max
+      p :must_change
+    end
   end
   
   #--------------------------------------------------------------------------
@@ -202,8 +255,13 @@ class Graphical_Eval2
   def execute_command
     commands = @textfield.formatted_value
     begin 
+      raw_command = commands
+      commands = "p (#{commands})" if @checkbox.checked?
+      @marker.set(background_color: Color.new('#00FF00'))
       eval(commands, $game_map.interpreter.get_binding)
       $game_map.need_refresh = true
+      self.class.stack << raw_command if raw_command != self.class.stack[-1]
+      self.class.cursor = self.class.stack.length
       return
     rescue NameError => error
       if error.instance_of?(NoMethodError)
@@ -216,6 +274,7 @@ class Graphical_Eval2
     rescue Exception => exc
       message = "#{exc.message}"    
     end 
+    @marker.set(background_color: Color.new('#FF0000'))
     msgbox(message)
   end
   
