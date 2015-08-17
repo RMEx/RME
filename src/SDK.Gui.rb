@@ -489,6 +489,8 @@ module Gui
           margin:           0,
           value:            " ",
           title:            " ",
+          checked_label:    "x",
+          unchecked_label:  " ",
           display:          :inline
       set args if args
     end
@@ -1732,16 +1734,24 @@ module Gui
   
   class CheckBox < Button
     #--------------------------------------------------------------------------
+    # * Initialize
+    #--------------------------------------------------------------------------    
+    def initialize_intern_components
+      @style[:title] = @style[:unchecked_label]
+      super
+    end
+    #--------------------------------------------------------------------------
+    # * Macros
+    #--------------------------------------------------------------------------
+    def checked? ; @style[:title] == @style[:checked_label] ; end
+    def check    ; self.title = @style[:checked_label]      ; end
+    def uncheck  ; self.title = @style[:unchecked_label]    ; end
+    #--------------------------------------------------------------------------
     # * Mouse click
     #--------------------------------------------------------------------------
     def on_mouse_click
-      self.title = (@style[:title] == "x" ? " " : "x")
-    end
-    #--------------------------------------------------------------------------
-    # * Checked?
-    #--------------------------------------------------------------------------
-    def checked?
-      @style[:title] == "x"
+      super
+      checked? ? uncheck : check
     end
   end
 
