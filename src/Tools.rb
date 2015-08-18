@@ -306,6 +306,10 @@ class Graphical_Eval2
     @textfield.update
     @completion_list.dispose if @completion_list && a != @textfield.formatted_value
     update_completion if Devices::Keys::Tab.trigger? #a != @textfield.formatted_value# 
+    #if Devices::Keys::Tab.trigger? 
+    #   i = @textfield.recorder.virtual_position
+    #   p @textfield.formatted_value.ast_complete_at_point(i)
+    #end
   end
   
   #--------------------------------------------------------------------------

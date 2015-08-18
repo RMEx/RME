@@ -817,8 +817,9 @@ class String
     n_s = n_s.join('\n').split('\n')
     n_s.compact.collect(&:strip)
   end
+  
   #--------------------------------------------------------------------------
-  # * Extract_tokens
+  # * AST Extract_tokens
   #--------------------------------------------------------------------------
   def extract_tokens(position=nil)
     position ||= length - 1
@@ -827,6 +828,65 @@ class String
       (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
     end
   end
+  
+  #--------------------------------------------------------------------------
+  # * AST Extract_tokens
+  #--------------------------------------------------------------------------
+  def ast_extract_tokens(at_point = -1)
+		substring = self[0, at_point]
+		reg = [
+			'\(\+?\d+\.\d*\)', '\(\+?\d+\.\d*\)',
+			'\+?\d+', '\-?\d+',
+      '\w+\[.*\]',
+			'\:\w+', '\:\"\w+\"', '\:\'\w+\'',
+			 '\'[^\']*\'', '"[\s*\w*]*"',
+			 '\!\w+',
+			'\.', '::', '\$\w+', '\w+', '\s*'
+			]
+		scan(Regexp.new(reg.join("|"))).select {|e| not e.empty?}
+	end
+  
+  #--------------------------------------------------------------------------
+  # * AST Complete at point
+  # Work in progress /!\ Not finished !
+  #--------------------------------------------------------------------------
+  def ast_complete_at_point(i)
+     tokens = ast_extract_tokens(i-1)
+     token = tokens[-1]
+     p tokens
+     return [nil, []] unless token 
+     if tokens[-2] == '.' && tokens[-3]
+       # Standard receiver case
+       begin
+         raw_receiver = tokens.reverse.take_while.with_index do |v, i|
+          (i%2 != 0) ? v == '.' : true   
+         end.reverse.join('')
+         p raw_receiver
+         receiver = eval(raw_receiver)
+         container = receiver.methods
+       rescue Exception => exc 
+         p exc 
+         return [nil, []]
+       end
+     elsif tokens[-2] == '::' && tokens[-3]
+       # Static or constant context
+       receiver = tokens[-3]
+     else 
+      return [token, tokens[-2].methods[0..7]] if tokens[-2] && token == '.'
+      # atomic keyword
+      gv = global_variables
+      cm = Command.singleton_methods
+      co = Object.constants
+      pu = Kernel.methods
+      container = (gv + cm + co + pu).uniq
+     end
+     candidates = container.map do |meth|
+          [token.damerau_levenshtein(meth[0..(token.length-1)]), meth]
+      end.select {|r| r[0] < 2}.sort_by {|r| r[0]}.map {|e| e[1]}
+      return (token.length < 4 && candidates.length > 30) ? 
+        [token, candidates[0..7]] : [token, candidates]
+  end
+  
   #--------------------------------------------------------------------------
   # * Complete at point
   #--------------------------------------------------------------------------
