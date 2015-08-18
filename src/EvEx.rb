@@ -2359,6 +2359,7 @@ class Game_Map
   #     main:  Interpreter update flag
   #--------------------------------------------------------------------------
   def update(main = false)
+    setup(@map_id) if $TEST && Keyboard.trigger?(RME::Config::MAP_RELOAD)
     Game_Map.eval_proc(:all, Game_Map.running_proc)
     Game_Map.eval_proc(map_id, Game_Map.running_proc)
     @parallaxes.each {|parallax| parallax.update}

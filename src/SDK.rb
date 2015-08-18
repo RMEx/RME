@@ -34,6 +34,7 @@ module RME
   module Config
 
     KEY_EVAL = :f3
+    MAP_RELOAD = :f11
 
   end
 
@@ -58,7 +59,7 @@ module RME
     # * unsafe?
     #--------------------------------------------------------------------------
     def unsafe?
-      false
+      true
     end
     #--------------------------------------------------------------------------
     # * Enabled Gui components
@@ -427,7 +428,7 @@ class Object
     return if (base = method(m).call).nil? || base == target
     instance_variable_set("@trans_b_#{m}", base)
     instance_variable_set("@trans_c_#{m}", target - base)
-    instance_variable_set("@trans_f_#{m}", EasingFunctions[easing])
+    instance_variable_set("@trans_f_#{m}", easing)
     instance_variable_set("@trans_d_#{m}", duration)
     instance_variable_set("@trans_t_#{m}", 1.0)
   end
