@@ -105,7 +105,7 @@ module Generative
     # * Free stacking
     #--------------------------------------------------------------------------
     def dispose_stack
-      children.each do |c|
+      children.reverse.each do |c|
         c.dispose if c.respond_to?(:dispose)
       end if self.children
       parent.children.delete(self) if self.parent
@@ -1256,6 +1256,7 @@ module Gui
     #--------------------------------------------------------------------------
     def x=(v); style_set(:x, v); end
     def y=(v); style_set(:y, v); end
+    def z=(v); style_set(:z, v); end
     def width=(v) ; style_set(:width,  v); end
     def height=(v); style_set(:height, v); end
     def style_set(m,v)
@@ -1299,6 +1300,7 @@ module Gui
         @transformed = true
         viewport.set_parameters(*a)
       end
+      viewport.z = @style[:z]
       viewport.compute_self
     end
     #--------------------------------------------------------------------------
@@ -1361,6 +1363,7 @@ module Gui
     # * Free
     #--------------------------------------------------------------------------
     def dispose
+      return if @disposed
       @disposed = true
       Interactive.objects.delete(self)
       dispose_stack
@@ -1445,11 +1448,11 @@ module Gui
     # * Free
     #--------------------------------------------------------------------------
     def dispose
-      super
       @border.bitmap.dispose
       @border.dispose
       @background.bitmap.dispose
       @background.dispose
+      super
     end
   end
 
@@ -1522,9 +1525,9 @@ module Gui
     # * Free
     #--------------------------------------------------------------------------
     def dispose
-      super
       @sprite_text.bitmap.dispose
       @sprite_text.dispose
+      super
     end
   end
 
@@ -1821,6 +1824,12 @@ module Gui
     #--------------------------------------------------------------------------
     def cursor_screen_x
       @textfield.cursor.rect.x + @textfield.inner.abs_x
+    end
+    #--------------------------------------------------------------------------
+    # * position of cursor in screen
+    #--------------------------------------------------------------------------
+    def cursor_screen_y
+      @textfield.cursor.rect.y + @textfield.inner.abs_y
     end
     #--------------------------------------------------------------------------
     # * Mouse trigger

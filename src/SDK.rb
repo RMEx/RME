@@ -822,7 +822,7 @@ class String
   #--------------------------------------------------------------------------
   def extract_tokens(position=nil)
     position ||= length - 1
-    substring = self[0..position].gsub(/\s+|;|\(|\)|,|\{|\}|\"|\'|\[|\]/, "\0")
+    substring = self[0..position].gsub(/\s+|;|\(|\)|,|\{|\}|\[|\]/, "\0")
     substring.split(/(\0)/).map do |elt|
       (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
     end
@@ -849,10 +849,10 @@ class String
       container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
       candidates = token.auto_complete(container)
     end
-    k = candidates[0..5].select do |e| 
-          token.damerau_levenshtein(e.to_s[0..token.length]) < 3
+    k = candidates.select do |e| 
+          token.damerau_levenshtein(e[0..(token.length-1)]) < 3
         end
-    return k 
+    return k.length > 30 ? [] : k[0..7].unshift(token)
   end
 end
 

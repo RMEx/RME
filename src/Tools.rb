@@ -302,17 +302,40 @@ class Graphical_Eval2
   def update
     update_cursor
     execute_command if Devices::Keys::Enter.trigger?
+    a = @textfield.formatted_value
     @textfield.update
-    update_completion if Devices::Keys::Tab.trigger?
+    @completion_list.dispose if @completion_list && a != @textfield.formatted_value
+    update_completion if Devices::Keys::Tab.trigger? #a != @textfield.formatted_value# 
   end
   
   #--------------------------------------------------------------------------
   # * Update Autocompletion
   #--------------------------------------------------------------------------
   def update_completion
-    # Cette ligne renvoi la liste des candidats pour une complétion, 
-    # correctement ordonnées. Si aucun candidat n'est troué... []
-    #p @textfield.formatted_value.complete_at_point(@textfield.recorder.virtual_position)
+    candidates = completion_candidates.reverse
+    token = candidates.pop
+    return unless token
+    @completion_list.dispose if @completion_list
+    @completion_list = Gui::Box.new(z: 500)
+    @completion_candidates = []
+    candidates.each_index do |c|
+      @completion_candidates[c] = Gui::Label.new(
+        parent: @completion_list,
+        value: candidates[c], y: 18*c
+      )
+    end
+    @completion_list.set(
+      x: @textfield.cursor_screen_x,
+      y: @textfield.cursor_screen_y - @completion_list.height
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Completion candidates
+  #--------------------------------------------------------------------------  
+  def completion_candidates
+    i = @textfield.recorder.virtual_position
+    @textfield.formatted_value.complete_at_point(i)
   end
   
   #--------------------------------------------------------------------------
