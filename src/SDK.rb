@@ -862,7 +862,7 @@ class String
           (i%2 != 0) ? v == '.' : true   
          end.reverse.join('')
          p raw_receiver
-         receiver = eval(raw_receiver)
+         receiver = eval(raw_receiver) # NEED A RECURSION !
          container = receiver.methods
        rescue Exception => exc 
          p exc 
