@@ -443,6 +443,7 @@ class Object
     b = instance_variable_get("@trans_b_#{m}")
     c = instance_variable_get("@trans_c_#{m}")
     f = instance_variable_get("@trans_f_#{m}")
+    f = EasingFunctions[f]
     v = t==0 ? b : t==d ? b + c : b + c*f[t/d]
     instance_variable_set("@trans_t_#{m}", t + 1)
     method("#{m}=")[v]
