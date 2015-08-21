@@ -2733,6 +2733,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_update,     :update
+  alias_method :rm_extender_show,       :show
   #--------------------------------------------------------------------------
   # * Public Instance Variables
   #--------------------------------------------------------------------------
@@ -2759,6 +2760,13 @@ class Game_Picture
   #--------------------------------------------------------------------------
   def initialize(number)
     rm_extender_initialize(number)
+    clear_effects
+  end
+  #--------------------------------------------------------------------------
+  # * Show Picture
+  #--------------------------------------------------------------------------
+  def show(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+    rm_extender_show(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
     clear_effects
   end
   #--------------------------------------------------------------------------
@@ -3123,6 +3131,7 @@ class Sprite_Picture
       self.bitmap = nil
     else
       self.bitmap = Sprite_Picture.swap_cache(@picture.name)
+      self.mirror = false
     end
   end
   #--------------------------------------------------------------------------
@@ -3130,7 +3139,7 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   def update
     rm_extender_update
-    self.mirror = !self.mirror if @picture.mirror != self.mirror
+    self.mirror = @picture.mirror if @picture.mirror != self.mirror
     self.wave_amp = @picture.wave_amp if @picture.wave_amp != self.wave_amp
     self.wave_speed = @picture.wave_speed if @picture.wave_speed != self.wave_speed
   end
