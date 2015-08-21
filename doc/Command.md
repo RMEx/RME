@@ -329,6 +329,7 @@ Collection des commandes EventExtender
 *    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
 *    [Command.me_play(name, *volume, *pitch)](#commandme_playname-volume-pitch)
 *    [Command.me_stop](#commandme_stop)
+*    [Command.message(value, *face_name, *face_index, *position, *background)](#commandmessagevalue-face_name-face_index-position-background)
 *    [Command.message_height(n)](#commandmessage_heightn)
 *    [Command.min(a, b)](#commandmina-b)
 *    [Command.monster_agility(id)](#commandmonster_agilityid)
@@ -5236,6 +5237,24 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
   
 > 
+
+
+
+
+
+##### Command.message(value, *face_name, *face_index, *position, *background)
+
+> Affiche un message à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`value`|`String`|Message à afficer  
+`*face_name`|`String`|Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \n pour afficher plusieurs lignes  
+`*face_index`|`Fixnum`|Index du faceset (ne sert à rien si aucun faceset n'est donnée)  
+`*position`|`Fixnum`|Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2  
+`*background`|`Fixnum`|Fond du message, 0 normal, 1 sombre, 2 transparent  
+
 
 
 

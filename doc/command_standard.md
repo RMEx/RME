@@ -15,6 +15,7 @@ Commandes standards
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
+*    [message(value, *face_name, *face_index, *position, *background)](#messagevalue-face_name-face_index-position-background)
 *    [message_height(n)](#message_heightn)
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
@@ -119,6 +120,20 @@ Commandes standards
 --- | --- | ---  
 `a`|`Object`|Valeur de A  
 `b`|`Object`|Valeur de B  
+
+
+##### message(value, *face_name, *face_index, *position, *background)
+
+> Affiche un message à l'écran
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`value`|`String`|Message à afficer  
+`*face_name`|`String`|Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \n pour afficher plusieurs lignes  
+`*face_index`|`Fixnum`|Index du faceset (ne sert à rien si aucun faceset n'est donnée)  
+`*position`|`Fixnum`|Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2  
+`*background`|`Fixnum`|Fond du message, 0 normal, 1 sombre, 2 transparent  
 
 
 ##### message_height(n)

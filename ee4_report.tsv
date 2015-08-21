@@ -335,6 +335,7 @@ max_event_id	max_event_id
 me_fade(wait,*frame)	-
 me_play(name,*volume,*pitch)	-
 me_stop	-
+message(value,*face_name,*face_index,*position,*background)	-
 message_height(n)	message_height(nombre)
 min(a,b)	-
 monster_agility(id)	monster_agility(id)
