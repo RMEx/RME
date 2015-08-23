@@ -1475,9 +1475,9 @@ class Sprite_Character
     rm_extender_update
     return if disposed?
     set_rect
+    update_zooms
     update_buzzer
     update_trails
-    update_zooms
   end
   #--------------------------------------------------------------------------
   # * Frame Update zoom
@@ -2067,7 +2067,7 @@ class Window_EvSelectable < Window_Selectable
   #--------------------------------------------------------------------------
   def write_text(index, s, align = 0)
     change_color(normal_color, enabled?(index))
-    draw_text(item_rect_for_text(index), s.to_s, align)
+    draw_text(item_rect_for_text(s), s.to_s, align)
   end
   def write_with_number(index, s, n)
     write_text(index, s)
@@ -2733,7 +2733,6 @@ class Game_Picture
   #--------------------------------------------------------------------------
   alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_update,     :update
-  alias_method :rm_extender_show,       :show
   #--------------------------------------------------------------------------
   # * Public Instance Variables
   #--------------------------------------------------------------------------
@@ -2760,13 +2759,6 @@ class Game_Picture
   #--------------------------------------------------------------------------
   def initialize(number)
     rm_extender_initialize(number)
-    clear_effects
-  end
-  #--------------------------------------------------------------------------
-  # * Show Picture
-  #--------------------------------------------------------------------------
-  def show(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
-    rm_extender_show(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
     clear_effects
   end
   #--------------------------------------------------------------------------
@@ -3131,7 +3123,6 @@ class Sprite_Picture
       self.bitmap = nil
     else
       self.bitmap = Sprite_Picture.swap_cache(@picture.name)
-      self.mirror = false
     end
   end
   #--------------------------------------------------------------------------
@@ -3139,7 +3130,7 @@ class Sprite_Picture
   #--------------------------------------------------------------------------
   def update
     rm_extender_update
-    self.mirror = @picture.mirror if @picture.mirror != self.mirror
+    self.mirror = !self.mirror if @picture.mirror != self.mirror
     self.wave_amp = @picture.wave_amp if @picture.wave_amp != self.wave_amp
     self.wave_speed = @picture.wave_speed if @picture.wave_speed != self.wave_speed
   end
