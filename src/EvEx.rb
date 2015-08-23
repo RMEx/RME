@@ -1475,9 +1475,9 @@ class Sprite_Character
     rm_extender_update
     return if disposed?
     set_rect
+    update_zooms
     update_buzzer
     update_trails
-    update_zooms
   end
   #--------------------------------------------------------------------------
   # * Frame Update zoom
