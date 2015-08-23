@@ -121,6 +121,17 @@ module RMECommands
     scene = SceneManager.scene
     scene.refresh_message if scene.respond_to?(:refresh_message)
   end
+  
+  def message(value, face_name = nil, face_index = 0, position = 2, background = 0)
+    if face_name
+      $game_message.face_name = face_name 
+      $game_message.face_index = face_index  
+    end
+    $game_message.position = position
+    $game_message.background = background
+    $game_message.add(value)
+    wait_for_message
+  end
 
   # Fix Username
   alias_method :windows_username, :session_username

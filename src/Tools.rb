@@ -318,6 +318,7 @@ class Graphical_Eval2
   def update_completion
     candidates = completion_candidates.reverse
     token = candidates.pop
+    p candidates
     return unless token
     @completion_list.dispose if @completion_list
     @completion_list = Gui::Box.new(z: 500)
