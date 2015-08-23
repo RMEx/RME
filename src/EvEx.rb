@@ -2067,7 +2067,7 @@ class Window_EvSelectable < Window_Selectable
   #--------------------------------------------------------------------------
   def write_text(index, s, align = 0)
     change_color(normal_color, enabled?(index))
-    draw_text(item_rect_for_text(s), s.to_s, align)
+    draw_text(item_rect_for_text(index), s.to_s, align)
   end
   def write_with_number(index, s, n)
     write_text(index, s)
