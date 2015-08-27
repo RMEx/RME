@@ -2497,6 +2497,7 @@ if RME.unsafe?
     # * Bitmap Mutator
     #------------------------------------------------------------------------
     def bitmap=(tile)
+      return tile if (@bitmap == tile)
       @bitmap = tile
       xx = 1 + (Graphics.width.to_f / tile.width).ceil
       yy = 1 + (Graphics.height.to_f / tile.height).ceil
