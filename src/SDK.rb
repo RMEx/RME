@@ -2499,6 +2499,7 @@ if RME.unsafe?
     def bitmap=(tile)
       return tile if (@bitmap == tile)
       @bitmap = tile
+      return super(nil) unless tile
       xx = 1 + (Graphics.width.to_f / tile.width).ceil
       yy = 1 + (Graphics.height.to_f / tile.height).ceil
       plane = Bitmap.new(@bitmap.width * xx, @bitmap.height * yy)
