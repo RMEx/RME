@@ -895,6 +895,7 @@ module Handler
     #--------------------------------------------------------------------------
     def k_sprite
       return nil unless SceneManager.scene.is_a?(Scene_Map)
+        return nil unless SceneManager.scene.spriteset
       return nil unless @sprite_index
       SceneManager.scene.spriteset.character_sprites[@sprite_index]
     end
