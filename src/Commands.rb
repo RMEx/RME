@@ -51,9 +51,17 @@ module RMECommands
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id)
+    if id.is_a?(Array) && id[0] == :follower
+      e = $game_player.followers[id[1]] 
+      return e if e 
+      raise sprintf("Follower n° %d doesn't exist", id)
+    end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
     raise sprintf("Event %d doesn't exist", id)
+  end
+  def follower(pos)
+    [:follower, pos]
   end
   def rm_kill; SceneManager.exit; end
   def website(url); Thread.new { system("start #{url}") };end
