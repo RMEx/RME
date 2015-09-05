@@ -439,6 +439,7 @@ module Kernel
   #--------------------------------------------------------------------------
   def select_events(e)
     return [e] if e.is_a?(Fixnum)
+    return [e] if e.is_a?(Array) && e[0] == :follower && e.length == 2
     e
   end
   alias_method :select_pictures, :select_events
