@@ -46,6 +46,8 @@ module RMECommands
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end
+  def spriteset; scene.spriteset; end 
+  def tilemap; spriteset.tilemap; end 
   def wait(d); d.times { Fiber.yield}; end
   def session_username; USERNAME; end
   def length(a); a.length; end
@@ -300,12 +302,6 @@ module RMECommands
   #==============================================================================
 
   module Pictures
-    #--------------------------------------------------------------------------
-    # * Spriteset
-    #--------------------------------------------------------------------------
-    def spriteset
-      scene.spriteset
-    end
     #--------------------------------------------------------------------------
     # * Sprite picture
     #--------------------------------------------------------------------------
@@ -807,6 +803,36 @@ module RMECommands
 
     def map_width; $game_map.width; end
     def map_height; $game_map.height; end
+    
+    #--------------------------------------------------------------------------
+    # * Flash a square
+    #--------------------------------------------------------------------------
+    def flash_square(x, y, color)
+      tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
+      tilemap.flash_data[x, y] = color.to_hex
+    end
+    #--------------------------------------------------------------------------
+    # * UnFlash a square
+    #--------------------------------------------------------------------------
+    def unflash_square(x, y)
+      flash_square(x, y, Color.new(0, 0, 0))
+    end
+    #--------------------------------------------------------------------------
+    # * Flash rect
+    #--------------------------------------------------------------------------
+    def flash_rect(x, y, width, height, color)
+      (x..x+width).each do |i|
+        (y..y+height).each do |j|
+          flash_square(i, j, color)  
+        end  
+      end  
+    end
+    #--------------------------------------------------------------------------
+    # * UnFlash rect
+    #--------------------------------------------------------------------------
+    def unflash_rect(x, y, width, height)
+      flash_rect(x, y, width, height, Color.new(0, 0, 0))
+    end
 
     append_commands
   end

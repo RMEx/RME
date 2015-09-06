@@ -233,6 +233,8 @@ Collection des commandes EventExtender
 *    [Command.events_collide?(idA, idB)](#commandevents_collideida-idb)
 *    [Command.fadein(*time)](#commandfadeintime)
 *    [Command.fadeout(*time)](#commandfadeouttime)
+*    [Command.flash_rect(x, y, width, height, color)](#commandflash_rectx-y-width-height-color)
+*    [Command.flash_square(x, y, color)](#commandflash_squarex-y-color)
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
 *    [Command.fresh_event_id](#commandfresh_event_id)
@@ -648,6 +650,8 @@ Collection des commandes EventExtender
 *    [Command.troop_members(id)](#commandtroop_membersid)
 *    [Command.troop_name(id)](#commandtroop_nameid)
 *    [Command.troop_size(id)](#commandtroop_sizeid)
+*    [Command.unflash_rect(x, y, width, height)](#commandunflash_rectx-y-width-height)
+*    [Command.unflash_square(x, y)](#commandunflash_squarex-y)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
 *    [Command.wait_release(key)](#commandwait_releasekey)
@@ -3907,6 +3911,40 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 > Nom|Type|Description  
 --- | --- | ---  
 `*time`|`Fixnum`|Durée de fondu  
+
+
+
+
+
+
+##### Command.flash_rect(x, y, width, height, color)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`width`|`Fixnum`|Largeur du rectangle  
+`height`|`Fixnum`|Largeur du rectangle  
+`color`|`Color`|Couleur du flash (utilisez la commande color)  
+
+
+
+
+
+
+##### Command.flash_square(x, y, color)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`color`|`Color`|Couleur du flash (utilisez la commande color)  
 
 
 
@@ -9845,6 +9883,38 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
+
+
+
+
+
+
+##### Command.unflash_rect(x, y, width, height)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`width`|`Fixnum`|Largeur du rectangle  
+`height`|`Fixnum`|Largeur du rectangle  
+
+
+
+
+
+
+##### Command.unflash_square(x, y)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 

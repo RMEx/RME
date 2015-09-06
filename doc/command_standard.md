@@ -12,6 +12,8 @@ Commandes standards
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
+*    [flash_rect(x, y, width, height, color)](#flash_rectx-y-width-height-color)
+*    [flash_square(x, y, color)](#flash_squarex-y-color)
 *    [get(array, index)](#getarray-index)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
@@ -28,6 +30,8 @@ Commandes standards
 *    [session_username](#session_username)
 *    [split_each_char(str)](#split_each_charstr)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
+*    [unflash_rect(x, y, width, height)](#unflash_rectx-y-width-height)
+*    [unflash_square(x, y)](#unflash_squarex-y)
 *    [wait(duration)](#waitduration)
 *    [wait_release(key)](#wait_releasekey)
 *    [wait_trigger(key)](#wait_triggerkey)
@@ -88,6 +92,32 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `*time`|`Fixnum`|Durée de fondu  
+
+
+##### flash_rect(x, y, width, height, color)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`width`|`Fixnum`|Largeur du rectangle  
+`height`|`Fixnum`|Largeur du rectangle  
+`color`|`Color`|Couleur du flash (utilisez la commande color)  
+
+
+##### flash_square(x, y, color)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`color`|`Color`|Couleur du flash (utilisez la commande color)  
 
 
 ##### get(array, index)
@@ -257,6 +287,30 @@ Commandes standards
 `green`|`Fixnum`|Valeur de vert, entre -255 et 255  
 `blue`|`Fixnum`|Valeur de bleu, entre -255 et 255  
 `*gray`|`Fixnum`|Valeur de gris, entre 0 et 255, par défaut 0 !  
+
+
+##### unflash_rect(x, y, width, height)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`width`|`Fixnum`|Largeur du rectangle  
+`height`|`Fixnum`|Largeur du rectangle  
+
+
+##### unflash_square(x, y)
+
+> Your description
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 ##### wait(duration)

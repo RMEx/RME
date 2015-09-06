@@ -234,6 +234,8 @@ events_buzzer_properties(e,amplitude,length)	-
 events_collide?(ev1,ev2)	-
 fadein(*time)	-
 fadeout(*time)	-
+flash_rect(x,y,width,height,color)	-
+flash_square(x,y,color)	-
 followers_buzz(ids,*duration)	-
 followers_buzzer_properties(*ids,amplitude,length)	-
 fresh_event_id	-
@@ -700,6 +702,8 @@ troop_size(id)	troop_size(id)
 -	unactivate_all_textfield
 -	unactivate_textfield(champ)
 unbind(e,*k)	-
+unflash_rect(x,y,width,height)	-
+unflash_square(x,y)	-
 version_id	-
 wait(d)	-
 wait_release(key)	-
