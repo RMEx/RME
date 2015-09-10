@@ -1,4 +1,4 @@
-START /WAIT project/Game.exe test console
+START /WAIT project/Game.exe test reloader
 git add .
 git commit -m "Deploy from RMEBot"
 git push origin master
