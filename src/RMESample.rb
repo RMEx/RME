@@ -35,3 +35,6 @@ ASample.new('Jauges en événements',
 
 ASample.new('Clignotement de la case pointée par la souris en fonction de son type',
 ['mouse_square_x', 'mouse_square_y', 'flash_square', 'unflash_square', 'square_passable?', 'player_direction', 'damage_floor?', 'color'], 20)
+
+ASample.new('Renvoyer l\'id du tileset courant, et le changer',
+['get_tileset_id', 'switch_tileset'], 21)
