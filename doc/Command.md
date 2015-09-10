@@ -3919,7 +3919,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.flash_rect(x, y, width, height, color)
 
-> Your description
+> Fait clignoter un rectangle de cases
 
   
 > Nom|Type|Description  
@@ -3937,7 +3937,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.flash_square(x, y, color)
 
-> Your description
+> Fait clignoter une case selon une couleur
 
   
 > Nom|Type|Description  
@@ -9891,7 +9891,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.unflash_rect(x, y, width, height)
 
-> Your description
+> Arrête de faire clignoter les cases référencées par le rectangle
 
   
 > Nom|Type|Description  
@@ -9908,7 +9908,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.unflash_square(x, y)
 
-> Your description
+> Arrête le clignotement
 
   
 > Nom|Type|Description  

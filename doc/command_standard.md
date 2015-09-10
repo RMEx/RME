@@ -96,7 +96,7 @@ Commandes standards
 
 ##### flash_rect(x, y, width, height, color)
 
-> Your description
+> Fait clignoter un rectangle de cases
 
   
 > Nom|Type|Description  
@@ -110,7 +110,7 @@ Commandes standards
 
 ##### flash_square(x, y, color)
 
-> Your description
+> Fait clignoter une case selon une couleur
 
   
 > Nom|Type|Description  
@@ -291,7 +291,7 @@ Commandes standards
 
 ##### unflash_rect(x, y, width, height)
 
-> Your description
+> Arrête de faire clignoter les cases référencées par le rectangle
 
   
 > Nom|Type|Description  
@@ -304,7 +304,7 @@ Commandes standards
 
 ##### unflash_square(x, y)
 
-> Your description
+> Arrête le clignotement
 
   
 > Nom|Type|Description  
