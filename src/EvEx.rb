@@ -3175,6 +3175,7 @@ class Sprite_Picture
   # * Update Origin
   #--------------------------------------------------------------------------
   def update_origin
+    return unless bitmap || disposed?
     if @picture.origin.is_a?(Array)
       k_x, k_y = @picture.origin
       self.ox, self.oy = k_x, k_y
