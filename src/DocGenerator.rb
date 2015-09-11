@@ -456,7 +456,7 @@ module DocGenerator
         get_raw_methods
         each_commands_methods
         save_report(output, out_gen)
-        ee_report(ee)
+        #ee_report(ee)
       end
       #--------------------------------------------------------------------------
       # *  Process EE report
