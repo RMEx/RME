@@ -1392,6 +1392,16 @@ class Game_CharacterBase
   def name
     ""
   end
+  
+  #--------------------------------------------------------------------------
+  # * Eval sequence
+  #--------------------------------------------------------------------------
+  def eval(str)
+    Game_Interpreter.current_id = @id
+    Game_Interpreter.current_map_id = $game_map.map_id
+    script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
+    super(script)  
+  end
 
 end
 
