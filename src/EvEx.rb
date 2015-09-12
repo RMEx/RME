@@ -2321,6 +2321,21 @@ class Game_Map
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
+    unflash_map
+  end
+  #--------------------------------------------------------------------------
+  # * Unflash all squares
+  #--------------------------------------------------------------------------
+  def unflash_map
+    return unless SceneManager.scene.is_a?(Scene_Map)
+    tilemap = SceneManager.scene.spriteset.tilemap 
+    if tilemap.flash_data
+      height.times do |y|
+        width.times do |x|
+          tilemap.flash_data[x, y] = Color.new(0, 0, 0).to_hex
+        end
+      end      
+    end  
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
