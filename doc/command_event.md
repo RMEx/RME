@@ -94,7 +94,7 @@ Commandes relatives aux évènements
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
 *    [player_stop_trail](#player_stop_trail)
-*    [player_teleport(map_id, x, y, direction)](#player_teleportmap_id-x-y-direction)
+*    [player_teleport(map_id, x, y, direction, *fade_type)](#player_teleportmap_id-x-y-direction-fade_type)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
 *    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
@@ -986,7 +986,7 @@ Commandes relatives aux évènements
   
 > 
 
-##### player_teleport(map_id, x, y, direction)
+##### player_teleport(map_id, x, y, direction, *fade_type)
 
 > Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
 
@@ -997,6 +997,7 @@ Commandes relatives aux évènements
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8)  
+`*fade_type`|`Fixnum`|Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné  
 
 
 ##### player_through(*flag)

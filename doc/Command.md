@@ -487,7 +487,7 @@ Collection des commandes EventExtender
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_stop_trail](#commandplayer_stop_trail)
-*    [Command.player_teleport(map_id, x, y, direction)](#commandplayer_teleportmap_id-x-y-direction)
+*    [Command.player_teleport(map_id, x, y, direction, *fade_type)](#commandplayer_teleportmap_id-x-y-direction-fade_type)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
 *    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
@@ -7590,7 +7590,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.player_teleport(map_id, x, y, direction)
+##### Command.player_teleport(map_id, x, y, direction, *fade_type)
 
 > Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
 
@@ -7601,6 +7601,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8)  
+`*fade_type`|`Fixnum`|Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné  
 
 
 
