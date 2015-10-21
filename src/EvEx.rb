@@ -1400,7 +1400,7 @@ class Game_CharacterBase
     Game_Interpreter.current_id = @id
     Game_Interpreter.current_map_id = $game_map.map_id
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
-    super(script)  
+    super(script, $game_map.interpreter.get_binding)  
   end
 
 end
