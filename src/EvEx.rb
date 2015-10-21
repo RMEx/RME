@@ -2304,6 +2304,7 @@ class Game_Map
   attr_accessor :parallaxes
   attr_accessor :target_camera
   attr_accessor :tileset_id
+  attr_accessor :map
   alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
@@ -3308,7 +3309,11 @@ class Game_Interpreter
     # * Get page
     #--------------------------------------------------------------------------
     def get_page(map_id, event_id, page_id)
-      map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+      if map_id != $game_map.map_id
+        map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+      else
+        map = $game_map.map
+      end 
       return unless map
       event = map.events[event_id]
       return unless event
