@@ -1600,7 +1600,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
-    def move_to(id, x, y, w=false); event(id).move_to_position(x, y, w); end
+    def move_to(id, x, y, w=false, no_t = false); event(id).move_to_position(x, y, w, no_t); end
     #--------------------------------------------------------------------------
     # * Jump event to x, y coords
     #--------------------------------------------------------------------------

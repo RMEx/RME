@@ -71,7 +71,7 @@ Commandes relatives aux évènements
 *    [mouse_repeat_player?(*key)](#mouse_repeat_playerkey)
 *    [mouse_trigger_event?(events, *key, *precise)](#mouse_trigger_eventevents-key-precise)
 *    [mouse_trigger_player?(*key)](#mouse_trigger_playerkey)
-*    [move_to(id, x, y, *wait_flag)](#move_toid-x-y-wait_flag)
+*    [move_to(id, x, y, *wait_flag, *no_throug)](#move_toid-x-y-wait_flag-no_throug)
 *    [page_runnable?(map_id, event_id, page_id, *context)](#page_runnablemap_id-event_id-page_id-context)
 *    [pixel_in_event?(id, x, y, *precise)](#pixel_in_eventid-x-y-precise)
 *    [pixel_in_player?(x, y, *precise)](#pixel_in_playerx-y-precise)
@@ -773,7 +773,7 @@ Commandes relatives aux évènements
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
 
-##### move_to(id, x, y, *wait_flag)
+##### move_to(id, x, y, *wait_flag, *no_throug)
 
 > Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument
 
@@ -784,6 +784,7 @@ Commandes relatives aux évènements
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
+`*no_throug`|`Boolean`|Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable  
 
 
 ##### page_runnable?(map_id, event_id, page_id, *context)

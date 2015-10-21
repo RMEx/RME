@@ -393,7 +393,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_trigger_square_area?(area, *key)](#commandmouse_trigger_square_areaarea-key)
 *    [Command.mouse_x](#commandmouse_x)
 *    [Command.mouse_y](#commandmouse_y)
-*    [Command.move_to(id, x, y, *wait_flag)](#commandmove_toid-x-y-wait_flag)
+*    [Command.move_to(id, x, y, *wait_flag, *no_throug)](#commandmove_toid-x-y-wait_flag-no_throug)
 *    [Command.num_lock?](#commandnum_lock)
 *    [Command.open_window(id)](#commandopen_windowid)
 *    [Command.pad360_plugged?(*id)](#commandpad360_pluggedid)
@@ -6141,7 +6141,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 
 
-##### Command.move_to(id, x, y, *wait_flag)
+##### Command.move_to(id, x, y, *wait_flag, *no_throug)
 
 > Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument
 
@@ -6152,6 +6152,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
+`*no_throug`|`Boolean`|Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable  
 
 
 

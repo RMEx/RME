@@ -1364,9 +1364,9 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Move to x y coord
   #--------------------------------------------------------------------------
-  def move_to_position(x, y, wait=false)
+  def move_to_position(x, y, wait=false, no_through = false)
     return unless $game_map.passable?(x,y,0)
-    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self)
+    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
   end
@@ -3842,7 +3842,10 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check the passability
   #--------------------------------------------------------------------------
-  def passable?(e, x, y, dir);
+  def passable?(e, x, y, dir, s = false);
+    if s and e.through
+      return $game_map.passable?(x, y, dir)
+    end
     e.passable?(x, y, dir)
   end
   #--------------------------------------------------------------------------
@@ -3854,7 +3857,7 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Create a path
   #--------------------------------------------------------------------------
-  def create_path(goal, event)
+  def create_path(goal, event, no_through = false)
     open_list, closed_list = Hash.new, Hash.new
     current = Point.new(event.x, event.y, nil, goal)
     open_list[current.id] = current
@@ -3863,7 +3866,7 @@ module Pathfinder
       open_list.delete(current.id)
       closed_list[current.id] = current
       args = current.x, current.y+1
-      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 2, no_through) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -3871,7 +3874,7 @@ module Pathfinder
         end
       end
       args = current.x-1, current.y
-      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 4, no_through) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -3879,7 +3882,7 @@ module Pathfinder
         end
       end
       args = current.x+1, current.y
-      if passable?(event, current.x, current.y, 4) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 4, no_through) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
@@ -3887,7 +3890,7 @@ module Pathfinder
         end
       end
       args = current.x, current.y-1
-      if passable?(event, current.x, current.y, 2) && !has_key?(*args, closed_list)
+      if passable?(event, current.x, current.y, 2, no_through) && !has_key?(*args, closed_list)
         if !has_key?(*args, open_list)
           open_list[id(*args)] = Point.new(*args, current, goal)
         else
