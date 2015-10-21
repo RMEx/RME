@@ -1,6 +1,9 @@
-#Devices::Keys
-[Retourner à l'index](README.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Devices::Keys**  
+- - -  
+#Devices::Keys
 Représentation des touches clavier/souris, est accessible via Keys, Key, ou Devices::Keys
 
 ##Attributs
@@ -178,7 +181,14 @@ Nom|Description
 `Keys::Oem_clear`|Pointe la touche oem_clear  
 `Keys::Ctrl`|Pointe la touche CTRL  
 ##Liste des méthodes
-**self.press?**
+*    [self.press?](#selfpress)
+*    [self.release?](#selfrelease)
+*    [self.repeat?](#selfrepeat)
+*    [self.trigger?](#selftrigger)
+
+
+##Description des méthodes
+##### self.press?
 
 > Renvoie true si la touche est pressée, false sinon
 
@@ -189,7 +199,7 @@ Nom|Description
 
 
 
-**self.release?**
+##### self.release?
 
 > Renvoie true si la touche vient d'être relâchée, false sinon
 
@@ -200,9 +210,9 @@ Nom|Description
 
 
 
-**self.repeat?**
+##### self.repeat?
 
-> Renvoie true si la touche est pressée successivement, false sinon
+> Renvoie true si la touche est pressée de manière répétée, false sinon
 
   
 > 
@@ -211,7 +221,7 @@ Nom|Description
 
 
 
-**self.trigger?**
+##### self.trigger?
 
 > Renvoie true si la touche vient d'être pressée, false sinon
 
@@ -223,8 +233,8 @@ Nom|Description
 Exemple  
 ```ruby  
 if Keys::Mouse_left.trigger?
-    p :mouse_pressed
-  end  
+  p :mouse_pressed
+end  
 ```
 
 

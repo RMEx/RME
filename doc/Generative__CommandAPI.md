@@ -1,10 +1,17 @@
-#Generative::CommandAPI
-[Retourner à l'index](README.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Generative::CommandAPI**  
+- - -  
+#Generative::CommandAPI
 Rend accessibles les commandes EventExtender
 
 ##Liste des méthodes
-**self.command(`name`, `args`)**
+*    [self.command(name, args)](#selfcommandname-args)
+
+
+##Description des méthodes
+##### self.command(name, args)
 
 > Appel d'une commande, alias : c, cmd
 

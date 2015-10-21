@@ -1,0 +1,16 @@
+<!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='Classes et modules.html'>Classes et modules</a> > <strong>Array</strong><hr /><h1>Array</h1>
+Extension des arrays<br /><br /><h2>Liste des méthodes<ul></h2>
+<li><a href='#selfto_point'>self.to_point</a></li>
+<li><a href='#selfto_xy'>self.to_xy</a></li>
+</ul><h2>Description des méthodes</h2>
+<strong name='selfto_point' id='selfto_point'>self.to_point</strong><br /><br /><blockquote>Retourne l'objet Point, que le tableau ait la forme [x, y] ou [Point]</blockquote>  
+<blockquote></table></blockquote><br /><br /><br /><br /><strong name='selfto_xy' id='selfto_xy'>self.to_xy</strong><br /><br /><blockquote>Retourne les valeurs 'x, y', que le tableau ait la forme [x, y] ou [Point]</blockquote>  
+<blockquote></table></blockquote><br /><br />Exemple  
+<pre><code class='ruby'>  
+def foo?(*p)
+  x, y = p.to_xy
+  bar(x, y)
+end
+# La méthode foo? pourra recevoir soit (x, y), soit une instance de point en argument  
+</code></pre><br /><br /><br /><br /></body></html>

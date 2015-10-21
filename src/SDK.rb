@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+
 #==============================================================================
-# ** RME V1.0.0
+# ** RME
 #------------------------------------------------------------------------------
-#  With : 
+#  With :
 # Grim (original project)
 # Nuki (a lot of things)
 # Raho (general reformulation)
@@ -13,12 +14,12 @@
 # XHTMLBoy (koffie)
 # Fabien (Buzzer)
 # Kaelar (Improvement)
-# 
+#
 #==============================================================================
 
 =begin
-  
-License coming soon 
+
+License coming soon
 
 =end
 
@@ -29,11 +30,20 @@ License coming soon
 #==============================================================================
 
 module RME
+
+  module Config
+
+    KEY_EVAL = :f3
+    MAP_RELOAD = :f11
+
+  end
+
   class << self
     #--------------------------------------------------------------------------
     # * Version
+    # * With RMEPackage, it's seems useless ? 
     #--------------------------------------------------------------------------
-    def version; define_version(1,0,0); end
+    def version; define_version(0,1,0); end
     #--------------------------------------------------------------------------
     # * define Version
     #--------------------------------------------------------------------------
@@ -46,8 +56,19 @@ module RME
     def check_version(oth)
       version >= oth
     end
+    #--------------------------------------------------------------------------
+    # * unsafe?
+    #--------------------------------------------------------------------------
+    def unsafe?
+      false
+    end
+    #--------------------------------------------------------------------------
+    # * Enabled Gui components
+    #--------------------------------------------------------------------------
+    def gui_enabled?
+      true
+    end
   end
-
 
   #==============================================================================
   # ** Doc
@@ -63,15 +84,27 @@ module RME
       attr_accessor :schema
       attr_accessor :header
       attr_accessor :commands
-      Doc.schema ||= Hash.new
-      Doc.header ||= Hash.new
-      Doc.commands ||= Hash.new
+      attr_accessor :links
+      attr_accessor :vocab
+      attr_accessor :to_fix
+      attr_accessor :internals
+      Doc.internals ||= Array.new
+      Doc.to_fix    ||= Array.new
+      Doc.schema    ||= Hash.new
+      Doc.links     ||= Hash.new
+      Doc.commands  ||= Hash.new
     end
     #--------------------------------------------------------------------------
     # * classname
     #--------------------------------------------------------------------------
     def classname
       self.to_s.to_sym
+    end
+    #--------------------------------------------------------------------------
+    # * add internals
+    #--------------------------------------------------------------------------
+    def add_internals(*args)
+      Doc.internals += args
     end
     #--------------------------------------------------------------------------
     # * Init doc
@@ -94,6 +127,7 @@ module RME
       d = Doc.schema[classname][:methods][name.to_sym]
       register_command_category(cat, "undefined", "undefined")
       Doc.commands[cat][:commands][name.to_sym] = d if d
+      Doc.to_fix << name.to_sym unless d
     end
     #--------------------------------------------------------------------------
     # * Class documentation
@@ -119,7 +153,6 @@ module RME
       Doc.schema[classname][:methods][name.to_sym][:attributes] = attributes
       Doc.schema[classname][:methods][name.to_sym][:returnable] = returned
     end
-
     #--------------------------------------------------------------------------
     # * Snippet documentation
     #--------------------------------------------------------------------------
@@ -127,13 +160,19 @@ module RME
       init_doc_statement
       Doc.schema[classname][:methods][meth.to_sym][:snippet] = value
     end
+    #--------------------------------------------------------------------------
+    # * Additional links
+    #--------------------------------------------------------------------------
+    def documentation_add_link(name, link)
+      Doc.links[name] = link
+    end
+    #--------------------------------------------------------------------------
+    # * Vocab
+    #--------------------------------------------------------------------------
+    def documentation_define(sadly_useless_dude, vocab)
+      Doc.vocab = vocab
+    end
 
-    #--------------------------------------------------------------------------
-    # * Header
-    #--------------------------------------------------------------------------
-    Doc.header[:title]  = "RME : RPG Maker Extender"
-    Doc.header[:desc]   = "Outil d'extension de RPG Maker 
-    (les objets étendus ne sont documentés que pour les ajouts.)" 
   end
 
   #==============================================================================
@@ -168,13 +207,75 @@ module RME
     #--------------------------------------------------------------------------
     # * Operators overloading
     #--------------------------------------------------------------------------
-    def ==(o); self.cmp(o) == 0; end 
+    def ==(o); self.cmp(o) == 0; end
     def >(o);  self.cmp(o) > 0; end
-    def <(o);  self.cmp(o) < 0; end 
-    def >=(o); self.cmp(o) >= 0; end 
+    def <(o);  self.cmp(o) < 0; end
+    def >=(o); self.cmp(o) >= 0; end
     def <=(o); self.cmp(o) <= 0; end
   end
 
+end
+
+#--------------------------------------------------------------------------
+# * Win32API Extension
+#--------------------------------------------------------------------------
+
+#==============================================================================
+# ** Externlib
+#------------------------------------------------------------------------------
+#  win32/registry is registry accessor library for Win32 platform.
+#  It uses dl/import to call Win32 Registry APIs.
+#==============================================================================
+
+module Externlib
+  #--------------------------------------------------------------------------
+  # * Library as constants
+  #--------------------------------------------------------------------------
+  CloseClipboard          = Win32API.new('user32', 'CloseClipboard', 'v', 'i')
+  EmptyClipboard          = Win32API.new('user32', 'EmptyClipboard', 'v', 'i')
+  CloseSocket             = Win32API.new('ws2_32', 'closesocket', 'p', 'l')
+  Connect                 = Win32API.new('ws2_32', 'connect', 'ppl', 'l')
+  FindWindow              = Win32API.new('user32', 'FindWindow', 'pp', 'i')
+  GetClipboardData        = Win32API.new('user32', 'GetClipboardData', 'i', 'i')
+  GetCursorPos            = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
+  GetKeyboardState        = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
+  GetPrivateProfileStringA= Win32API.new('kernel32', 'GetPrivateProfileStringA', 'pppplp', 'l')
+  GlobalAlloc             = Win32API.new('kernel32', 'GlobalAlloc', 'ii', 'i')
+  GlobalFree              = Win32API.new('kernel32', 'GlobalFree', 'i', 'i')
+  GlobalLock              = Win32API.new('kernel32', 'GlobalLock', 'i', 'l')
+  GlobalSize              = Win32API.new('kernel32', 'GlobalSize', 'l', 'l')
+  GlobalUnlock            = Win32API.new('kernel32', 'GlobalUnlock', 'l', 'v')
+  Htons                   = Win32API.new('ws2_32', 'htons', 'l', 'l')
+  Inet_Addr               = Win32API.new('ws2_32', 'inet_addr', 'p', 'l')
+  LoadLibraryA            = Win32API.new('kernel32', 'LoadLibraryA', 'p', 'i')
+  Memcpy                  = Win32API.new('msvcrt', 'memcpy', 'ppi', 'i')
+  MessageBox              = Win32API.new('user32','MessageBox','lppl','i')
+  MultiByteToWideChar     = Win32API.new('kernel32', 'MultiByteToWideChar', 'ilpipi', 'i')
+  OpenClipboard           = Win32API.new('user32', 'OpenClipboard', 'i', 'i')
+  Recv                    = Win32API.new('ws2_32', 'recv', 'ppll', 'l')
+  RegisterClipboardFormat = Win32API.new('user32', 'RegisterClipboardFormat', 'p', 'i')
+  RtlMoveMemory           = Win32API.new('kernel32', 'RtlMoveMemory', 'ppi', 'i')
+  ScreenToClient          = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
+  Send                    = Win32API.new('ws2_32', 'send', 'ppll', 'l')
+  SetClipboardData        = Win32API.new('user32', 'SetClipboardData', 'ii', 'i')
+  ShowCursor              = Win32API.new('user32', 'ShowCursor','i', 'i')
+  Shutdown                = Win32API.new('ws2_32', 'shutdown', 'pl', 'l')
+  Socket                  = Win32API.new('ws2_32', 'socket', 'lll', 'l')
+  ToUnicode               = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
+  WideCharToMultiByte     = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
+  #--------------------------------------------------------------------------
+  # * 360 Game Pad WIN32API's
+  #--------------------------------------------------------------------------
+  xinput = ->(dll){ return dll, Win32API.new(dll, 'XInputGetState', 'ip', 'i')}
+  xdll, XInputGetState  =   xinput.('xinput1_3') rescue
+                            xinput.('xinput1_2') rescue
+                            xinput.('xinput1_1') rescue
+                            xinput.('xinput8_1_0') rescue
+                            [nil, nil]
+  XInputSetState =  Win32API.new(xdll, 'XInputSetState', 'ip', 'i') if xdll
+  tmpbuff = [].pack('x256')
+  GetPrivateProfileStringA.call("Game","Library","",tmpbuff, 256, './Game.ini')
+  RGSSDLL = File.expand_path(tmpbuff.delete!("\x00"))
 end
 
 #--------------------------------------------------------------------------
@@ -190,6 +291,43 @@ end
 class Object
 
   #--------------------------------------------------------------------------
+  # * Eeasing functions
+  #--------------------------------------------------------------------------
+  e = {
+    'Quad'    => proc{|t| t**2 },
+    'Cubic'   => proc{|t| t**3 },
+    'Quart'   => proc{|t| t**4 },
+    'Quint'   => proc{|t| t**5 },
+    'Sine'    => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
+    'Expo'    => proc{|t| 2**(10*(t - 1)) },
+    'Circ'    => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
+    'Back'    => proc{|t| t**2*((1.7+1)*t - 1.7) },
+    'Elastic' => proc do |t|
+      -(2**(-10*(1-t)) * Math.sin(((1-t)-0.3/4)*(2*Math::PI)/0.3))
+    end,
+    'Bounce'  => proc do |t|
+      if (1-t) < 1.0/2.75
+        1 - 7.5625*(1-t)**2
+      elsif (1-t) < 2.0/2.75
+        1 - (7.5625*((1-t)-(1.5/2.75))**2 + 0.75)
+      elsif (1-t) < 2.5/2.75
+        1 - (7.5625*((1-t)-(2.25/2.75))**2 + 0.9375)
+      else
+        1 - (7.5625*((1-t)-(2.625/2.75))**2 + 0.984375)
+      end
+    end
+  }
+  e.keys.each do |k|
+    e[('In'   + k).to_sym] = e[k]
+    e[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
+    e[('InOut'+ k).to_sym] = proc do |t|
+      t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
+    end
+  end
+  e.default = proc{|t| t }
+  EasingFunctions = e
+
+  #--------------------------------------------------------------------------
   # * Eigenclass
   #--------------------------------------------------------------------------
   class << self
@@ -201,12 +339,12 @@ class Object
     private :dynlink
 
     #--------------------------------------------------------------------------
-    # * Define method as delegator instance method with an optional alias name 
+    # * Define method as delegator instance method with an optional alias name
     # * m_alias. Method calls to alias will be delegated to accessor.method.
     #--------------------------------------------------------------------------
     def delegate(obj, method, m_alias = method)
       dynlink(m_alias) do |*args|
-        instance = (obj[0] == "@") ? 
+        instance = (obj[0] == "@") ?
           instance_variable_get(obj) :
           send(obj)
         instance.send(method, *args)
@@ -230,6 +368,18 @@ class Object
       end
     end
 
+    #--------------------------------------------------------------------------
+    # * Calls another method when the instance variable is changing
+    #--------------------------------------------------------------------------
+    def attr_accessor_callback(to_call, m)
+      define_method("#{m}=") do |v|
+        if instance_variable_get("@#{m}") != v
+          instance_variable_set("@#{m}", v)
+          method(to_call).call
+        end
+      end
+    end
+
   end # End of Object.self
 
   #--------------------------------------------------------------------------
@@ -242,7 +392,7 @@ class Object
   #--------------------------------------------------------------------------
   # * Returns an Hash of instance variables :name => value
   #--------------------------------------------------------------------------
-  def attr_values 
+  def attr_values
     values = self.instance_variables.collect do |key|
       [key, self.instance_variable_get(key)]
     end
@@ -262,7 +412,7 @@ class Object
   def boolean?
     return false
   end
-  
+
   #--------------------------------------------------------------------------
   # * Convert to Bool
   #--------------------------------------------------------------------------
@@ -270,7 +420,73 @@ class Object
     true
   end
 
+  #--------------------------------------------------------------------------
+  # * Setup transition for the given method
+  #--------------------------------------------------------------------------
+  def set_transition(method, target, duration, easing = :linear)
+    m = method
+    return method("#{m}=")[target] if duration == 0
+    return if (base = method(m).call).nil? || base == target
+    instance_variable_set("@trans_b_#{m}", base)
+    instance_variable_set("@trans_c_#{m}", target - base)
+    instance_variable_set("@trans_f_#{m}", easing)
+    instance_variable_set("@trans_d_#{m}", duration)
+    instance_variable_set("@trans_t_#{m}", 1.0)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update transition for the given method
+  #--------------------------------------------------------------------------
+  def update_transition(method)
+    m = method
+    return if (d = instance_variable_get("@trans_d_#{m}")).nil? || d==0
+    return if (t = instance_variable_get("@trans_t_#{m}")) > d
+    b = instance_variable_get("@trans_b_#{m}")
+    c = instance_variable_get("@trans_c_#{m}")
+    f = instance_variable_get("@trans_f_#{m}")
+    f = EasingFunctions[f]
+    v = t==0 ? b : t==d ? b + c : b + c*f[t/d]
+    instance_variable_set("@trans_t_#{m}", t + 1)
+    method("#{m}=")[v]
+  end
+
+  alias_method :rme_method_missing, :method_missing
+  def method_missing(*a)
+    Exception.last_noMethod = self
+    rme_method_missing(*a)
+  end
+
 end # End of Object
+
+#==============================================================================
+# ** Color
+#------------------------------------------------------------------------------
+# The RGBA color class. Each component is handled with a floating-point 
+# value (Float).
+#==============================================================================
+
+class Color 
+  
+  def to_hex
+    r = ((self.red / 255.0)   * 15.0).to_i.to_s(16)  
+    g = ((self.green / 255.0) * 15.0).to_i.to_s(16)    
+    b = ((self.blue / 255.0)  * 15.0).to_i.to_s(16)  
+    [r, g, b].join.to_i(16)
+  end
+  
+end
+
+#==============================================================================
+# ** Exception
+#------------------------------------------------------------------------------
+# Try to retreive last exception
+#==============================================================================
+
+class Exception
+  class << self
+    attr_accessor :last_noMethod
+  end
+end
 
 #==============================================================================
 # ** NilClass
@@ -297,17 +513,24 @@ end
 #==============================================================================
 
 class FalseClass
-  
+
   #--------------------------------------------------------------------------
   # * Convert to Bool
   #--------------------------------------------------------------------------
   alias_method :to_bool, :identity
-  
+
   #--------------------------------------------------------------------------
   # * Check type: bool
   #--------------------------------------------------------------------------
   def boolean?
     true
+  end
+
+  #--------------------------------------------------------------------------
+  # * Cast to integer
+  #--------------------------------------------------------------------------
+  def to_i
+    0
   end
 
 end
@@ -320,19 +543,26 @@ end
 #==============================================================================
 
 class TrueClass
-  
+
   #--------------------------------------------------------------------------
   # * Convert to Bool
   #--------------------------------------------------------------------------
   alias_method :to_bool, :identity
-  
+
   #--------------------------------------------------------------------------
   # * Check type: bool
   #--------------------------------------------------------------------------
   def boolean?
     true
   end
-  
+
+  #--------------------------------------------------------------------------
+  # * Cast to integer
+  #--------------------------------------------------------------------------
+  def to_i
+    1
+  end
+
 end
 
 #==============================================================================
@@ -350,6 +580,7 @@ class Module
   extend RME::Doc
 end
 
+
 #==============================================================================
 # ** Fixnum
 #------------------------------------------------------------------------------
@@ -362,14 +593,14 @@ class Fixnum
   # * Number const
   #--------------------------------------------------------------------------
   NUMBER = [
-    :zero, 
+    :zero,
     :one,
-    :two, 
+    :two,
     :three,
-    :four, 
-    :five, 
+    :four,
+    :five,
     :six,
-    :seven, 
+    :seven,
     :eight,
     :nine
   ]
@@ -385,13 +616,131 @@ class Fixnum
 end
 
 #==============================================================================
+# ** Array
+#------------------------------------------------------------------------------
+# Arrays are ordered, integer-indexed collections of any object.
+#==============================================================================
+
+class Array
+  #--------------------------------------------------------------------------
+  # * Exclude data
+  #--------------------------------------------------------------------------
+  def not(*ids, &block)
+    self.delete_if{|e| ids.include?(e)}.delete_if(&block)
+  end
+  #--------------------------------------------------------------------------
+  # * Extract Point object from array "[x,y]" or "[Point]"
+  #--------------------------------------------------------------------------
+  def to_point
+    if length == 2
+      p = Point.new(*self)
+    elsif length == 1
+      p = self[0].clone
+    end
+    return p
+  end
+  #--------------------------------------------------------------------------
+  # * Extract x, y from array "[x,y]" or "[Point]"
+  #--------------------------------------------------------------------------
+  def to_xy
+    a = self
+    a = [a[0].x, a[0].y] if length == 1
+    return *a
+  end
+end
+
+#==============================================================================
+# ** Numeric
+#------------------------------------------------------------------------------
+# Managing digits separately
+#==============================================================================
+
+class Numeric
+   #--------------------------------------------------------------------------
+   # * handle isoler
+   #--------------------------------------------------------------------------
+   def isole_int(i); (self%(10**i))/(10**(i-1)).to_i; end
+   #--------------------------------------------------------------------------
+   # * Int isoler
+   #--------------------------------------------------------------------------
+   [:units, :tens, :hundreds, :thousands,
+     :tens_thousands, :hundreds_thousands,
+     :millions, :tens_millions,
+     :hundreds_millions ].each.with_index{|m, i|define_method(m){isole_int(i+1)}}
+   #--------------------------------------------------------------------------
+   # * alias
+   #--------------------------------------------------------------------------
+   alias :unites              :units
+   alias :dizaines            :tens
+   alias :centaines           :hundreds
+   alias :milliers            :thousands
+   alias :dizaines_milliers   :tens_thousands
+   alias :centaines_milliers  :hundreds_thousands
+   alias :dizaines_millions   :tens_millions
+   alias :centaines_millions  :hundreds_millions
+   #--------------------------------------------------------------------------
+   # * Int Bound value
+   #--------------------------------------------------------------------------
+   def bound(min, max)
+     begin
+       b_min = min - ((min-self) & (min-self)>>31)
+       b_min + ((max-b_min) & (max-b_min)>>31)
+     rescue
+       fbound(min, max)
+     end
+   end
+   #--------------------------------------------------------------------------
+   # * Float Bound value
+   #--------------------------------------------------------------------------
+   def fbound(min, max)
+     [[min, self].max, max].min
+   end
+end
+
+#==============================================================================
 # ** String
 #------------------------------------------------------------------------------
 #  String char extension
 #==============================================================================
 
 class String
- 
+  #--------------------------------------------------------------------------
+  # * Import
+  #--------------------------------------------------------------------------
+  externalize Externlib::WideCharToMultiByte, :to_multibyte
+  externalize Externlib::MultiByteToWideChar, :to_widechar
+  ASCII8BIT = 0
+  UTF8 = 65001
+  #--------------------------------------------------------------------------
+  # * Convert
+  #--------------------------------------------------------------------------
+  def convert_format(from, to)
+    size = to_widechar(from, 0, self, -1, nil, 0)
+    buff = [].pack("x#{size*2}")
+    to_widechar(from, 0, self, -1, buff, buff.size/2)
+    size = to_multibyte(to, 0, buff, -1, nil, 0, nil, nil)
+    sbuf = [].pack("x#{size}")
+    to_multibyte(to, 0, buff, -1, sbuf, sbuf.size, nil, nil)
+    sbuf.delete!("\000") if to == 65001
+    sbuf.delete!("\x00") if to == 0
+    sbuf
+  end
+  #--------------------------------------------------------------------------
+  # * return self in ASCII-8BIT
+  #--------------------------------------------------------------------------
+  def to_ascii; convert_format(UTF8, ASCII8BIT);end
+  #--------------------------------------------------------------------------
+  # * convert self in ASCII-8BIT
+  #--------------------------------------------------------------------------
+  def to_ascii!; replace(to_ascii); end
+  #--------------------------------------------------------------------------
+  # * return self to UTF8
+  #--------------------------------------------------------------------------
+  def to_utf8; convert_format(ASCII8BIT, UTF8); end
+  #--------------------------------------------------------------------------
+  # * convert self in UTF8
+  #--------------------------------------------------------------------------
+  def to_utf8!; replace(to_utf8); end
   #--------------------------------------------------------------------------
   # * Extract number
   #--------------------------------------------------------------------------
@@ -399,7 +748,7 @@ class String
     scan(/-*\d+/).collect{|n|n.to_i}
   end
   #--------------------------------------------------------------------------
-  # * Calcul the Damerau Levenshtein 's Distance 
+  # * Calcul the Damerau Levenshtein 's Distance
   #--------------------------------------------------------------------------
   def damerau_levenshtein(other)
     n, m = self.length, other.length
@@ -408,7 +757,7 @@ class String
     matrix  = Array.new(n+1) do |i|
       Array.new(m+1) do |j|
         if i == 0 then j
-        elsif j == 0 then i 
+        elsif j == 0 then i
         else 0 end
       end
     end
@@ -425,6 +774,45 @@ class String
       end
     end
     return matrix.last.last
+  end
+  #--------------------------------------------------------------------------
+  # * Autocomplete
+  #--------------------------------------------------------------------------
+  def auto_complete(words)
+    words.sort_by do |wordA|
+      placeholder = wordA[0...length]
+      (placeholder == self) ? 0 : damerau_levenshtein(placeholder)+1
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Delete at
+  #--------------------------------------------------------------------------
+  def insert_at(pos, char)
+    a = slice(0, pos) || ""
+    b = slice(pos, length) || ""
+    a + char + b
+  end
+  #--------------------------------------------------------------------------
+  # * Delete at
+  #--------------------------------------------------------------------------
+  def delete_at(pos)
+    a = slice(0, pos) || ""
+    b = slice(pos+1, length) || ""
+    a + b
+  end
+  #--------------------------------------------------------------------------
+  # * Delete between
+  #--------------------------------------------------------------------------
+  def delete_between(a, b)
+    a = slice(0, a) || ""
+    b = slice(b, length) || ""
+    a + b
+  end
+  #--------------------------------------------------------------------------
+  # * Split each
+  #--------------------------------------------------------------------------
+  def split_each(len)
+    self.scan(Regexp.new(".{1,#{len}}"))
   end
   #--------------------------------------------------------------------------
   # * Format a string
@@ -450,6 +838,103 @@ class String
     n_s = n_s.join('\n').split('\n')
     n_s.compact.collect(&:strip)
   end
+  
+  #--------------------------------------------------------------------------
+  # * AST Extract_tokens
+  #--------------------------------------------------------------------------
+  def extract_tokens(position=nil)
+    position ||= length - 1
+    substring = self[0..position].gsub(/\s+|;|\(|\)|,|\{|\}|\[|\]/, "\0")
+    substring.split(/(\0)/).map do |elt|
+      (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
+    end
+  end
+  
+  #--------------------------------------------------------------------------
+  # * AST Extract_tokens
+  #--------------------------------------------------------------------------
+  def ast_extract_tokens(at_point = -1)
+		substring = self[0, at_point]
+		reg = [
+			'\(\+?\d+\.\d*\)', '\(\+?\d+\.\d*\)',
+			'\+?\d+', '\-?\d+',
+      '\w+\[.*\]',
+			'\:\w+', '\:\"\w+\"', '\:\'\w+\'',
+			 '\'[^\']*\'', '"[\s*\w*]*"',
+			 '\!\w+',
+			'\.', '::', '\$\w+', '\w+', '\s*'
+			]
+		scan(Regexp.new(reg.join("|"))).select {|e| not e.empty?}
+	end
+  
+  #--------------------------------------------------------------------------
+  # * AST Complete at point
+  # Work in progress /!\ Not finished !
+  #--------------------------------------------------------------------------
+  def ast_complete_at_point(i)
+     tokens = ast_extract_tokens(i-1)
+     token = tokens[-1]
+     p tokens
+     return [nil, []] unless token 
+     if tokens[-2] == '.' && tokens[-3]
+       # Standard receiver case
+       begin
+         raw_receiver = tokens.reverse.take_while.with_index do |v, i|
+          (i%2 != 0) ? v == '.' : true   
+         end.reverse.join('')
+         p raw_receiver
+         receiver = eval(raw_receiver) # NEED A RECURSION !
+         container = receiver.methods
+       rescue Exception => exc 
+         p exc 
+         return [nil, []]
+       end
+     elsif tokens[-2] == '::' && tokens[-3]
+       # Static or constant context
+       receiver = tokens[-3]
+     else 
+      return [token, tokens[-2].methods[0..7]] if tokens[-2] && token == '.'
+      # atomic keyword
+      gv = global_variables
+      cm = Command.singleton_methods
+      co = Object.constants
+      pu = Kernel.methods
+      container = (gv + cm + co + pu).uniq
+     end
+     candidates = container.map do |meth|
+          [token.damerau_levenshtein(meth[0..(token.length-1)]), meth]
+      end.select {|r| r[0] < 2}.sort_by {|r| r[0]}.map {|e| e[1]}
+      return (token.length < 4 && candidates.length > 30) ? 
+        [token, candidates[0..7]] : [token, candidates]
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Complete at point
+  #--------------------------------------------------------------------------
+  def complete_at_point(i)
+    tokens = extract_tokens(i-1).map {|s| (!s) ? [s] : s.split(/\.|\:\:/)}.flatten
+    token = tokens[-1]
+    return [] unless token
+    if tokens[-2]
+      # Need a receiver
+      begin 
+        receiver = eval(tokens[-2], $game_map.interpreter.get_binding)
+        container = receiver.methods 
+        konst  = (receiver.respond_to?(:constants)) ? receiver.constants : []
+        candidates = token.auto_complete(container + konst)
+      rescue Exception => exc 
+        return []
+      end 
+    else 
+      # Isolate token
+      container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
+      candidates = token.auto_complete(container)
+    end
+    k = candidates.select do |e| 
+          token.damerau_levenshtein(e[0..(token.length-1)]) < 3
+        end
+    return k.length > 30 ? [] : k[0..7].unshift(token)
+  end
 end
 
 
@@ -470,12 +955,58 @@ class Point < Struct.new(:x, :y)
   end
 
   #--------------------------------------------------------------------------
+  # * Translation after a rotation from a point
+  #--------------------------------------------------------------------------
+  def rotate(angle, *p)
+    return if angle == 0
+    ox, oy = p.to_xy
+    angle *= Math::PI/180
+    c, s = Math.cos(angle), Math.sin(angle)
+    x, y = self.x, self.y
+    x, y = x-ox, y-oy
+    x, y = (x*c+y*s), (-x*s+y*c)
+    x, y = x+ox, y+oy
+    set(x, y)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Transforms point from screen to rect
+  #--------------------------------------------------------------------------
+  def screen_to_sprite(spr)
+    rotate(-spr.angle, spr.x, spr.y)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Transforms point from screen to bitmap
+  #--------------------------------------------------------------------------
+  def screen_to_bitmap(spr)
+    rotate(-spr.angle, spr.x, spr.y)
+    x, y = self.x-spr.x, self.y-spr.y
+    x /= spr.zoom_x if spr.zoom_x != 0
+    y /= spr.zoom_y if spr.zoom_y != 0
+    x, y = x+spr.ox+spr.src_rect.x, y+spr.oy+spr.src_rect.y
+    set(x.round, y.round)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Transforms point from bitmap to screen
+  #--------------------------------------------------------------------------
+  def bitmap_to_screen(spr)
+    self.x = (self.x-spr.ox)*spr.zoom_x
+    self.y = (self.y-spr.oy)*spr.zoom_y
+    rotate(spr.angle, 0, 0)
+    set(self.x+spr.x, self.y+spr.y)
+  end
+
+  #--------------------------------------------------------------------------
   # * In area
   #--------------------------------------------------------------------------
   def in?(rect)
     return rect && (
-      check_x = self.x.between?(rect.x, rect.x+rect.width)
-      check_y = self.y.between?(rect.y, rect.y+rect.height)
+      a, b = [rect.x, rect.x+rect.width].sort
+      c, d = [rect.y, rect.y+rect.height].sort
+      check_x = self.x.between?(a, b)
+      check_y = self.y.between?(c, d)
       check_x && check_y
     )
   end
@@ -489,31 +1020,6 @@ class Point < Struct.new(:x, :y)
 
 end
 
-
-#--------------------------------------------------------------------------
-# * Win32API Extension
-#--------------------------------------------------------------------------
-
-#==============================================================================
-# ** Externlib
-#------------------------------------------------------------------------------
-#  win32/registry is registry accessor library for Win32 platform. 
-#  It uses dl/import to call Win32 Registry APIs.
-#==============================================================================
-
-module Externlib 
-  #--------------------------------------------------------------------------
-  # * Library as constants
-  #--------------------------------------------------------------------------
-  FindWindow          = Win32API.new('user32', 'FindWindow', 'pp', 'i')
-  GetCursorPos        = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
-  GetKeyboardState    = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
-  ScreenToClient      = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
-  ShowCursor          = Win32API.new('user32', 'ShowCursor','i', 'i')
-  ToUnicode           = Win32API.new('user32', 'ToUnicode', 'iippii', 'l')
-  WideCharToMultiByte = Win32API.new('kernel32', 'WideCharToMultiByte', 'iipipipp', 'i')
-end
-
 #==============================================================================
 # ** Devices
 #------------------------------------------------------------------------------
@@ -522,11 +1028,66 @@ end
 
 module Devices
 
-#==============================================================================
-# ** Keys
-#------------------------------------------------------------------------------
-# Module relatif aux touches
-#==============================================================================
+  #==============================================================================
+  # ** XBOX360Pad
+  #------------------------------------------------------------------------------
+  # Xbox360Pad vibration
+  #==============================================================================
+
+  module XBOX360Pad
+    class << self
+      #--------------------------------------------------------------------------
+      # * Public instance variables
+      #--------------------------------------------------------------------------
+      attr_accessor :v_state
+      XBOX360Pad.v_state = [0, 0]
+      #--------------------------------------------------------------------------
+      # * Set Vibration
+      #--------------------------------------------------------------------------
+      def set_vibration(id, motor, strength)
+        XBOX360Pad.v_state[motor] = (strength.to_f)/100.0
+        vibration_left = [XBOX360Pad.v_state[0] * 0xFFFF, 0xFFFF].min
+        vibration_right = [XBOX360Pad.v_state[1] * 0xFFFF, 0xFFFF].min
+        Externlib::XInputSetState.(id, [vibration_left, vibration_right].pack('S2'))
+      end
+      #--------------------------------------------------------------------------
+      # * Set Vibration to motor left
+      #--------------------------------------------------------------------------
+      def left_vibration(id, strength)
+        set_vibration(id, 0, strength)
+      end
+      #--------------------------------------------------------------------------
+      # * Stop Vibration to motor left
+      #--------------------------------------------------------------------------
+      def stop_left_vibration(id)
+        set_vibration(id, 0, 0)
+      end
+      #--------------------------------------------------------------------------
+      # * Stop Vibration to motor right
+      #--------------------------------------------------------------------------
+      def stop_right_vibration(id)
+        set_vibration(id, 1, 0)
+      end
+      #--------------------------------------------------------------------------
+      # * Set Vibration to motor right
+      #--------------------------------------------------------------------------
+      def right_vibration(id, strength)
+        set_vibration(id, 1, strength)
+      end
+      #--------------------------------------------------------------------------
+      # * Check if controller 's plugged
+      #--------------------------------------------------------------------------
+      def plugged?(id = 0)
+        Externlib::XInputGetState.(id, [].pack('x16')) == 0
+      end
+    end
+  end
+
+  #==============================================================================
+  # ** Keys
+  #------------------------------------------------------------------------------
+  # Module relatif aux touches
+  #==============================================================================
 
   class Keys
 
@@ -536,24 +1097,24 @@ module Devices
     n = :none
     All = [
       n, :mouse_left, :mouse_right, :cancel, :mouse_center, :mouse_x1,
-      :mouse_x2, n, :backspace, :tab] + ([n]*2) + [:clear, :enter] + ([n]*2) + 
+      :mouse_x2, n, :backspace, :tab] + ([n]*2) + [:clear, :enter] + ([n]*2) +
       [:shift, :control, :alt, :pause, :caps_lock, :hangul, n,
       :junja, :final, :kanji, n, :esc, :convert, :nonconvert,
       :accept, :modechange, :space, :page_up, :page_down, :end, :home, :left,
-      :up, :right, :down, :select, :print, :execute, :snapshot, :insert, 
+      :up, :right, :down, :select, :print, :execute, :snapshot, :insert,
       :delete, :help] + (0..9).to_a + ([n]*7) + (:a..:z).to_a + [
       :lwindow, :rwindow, :apps, n, :sleep] + (:num_0 .. :num_9).to_a + [
-      :multiply, :add, :separator, :substract, :decimal, :divide] + (:f1..:f9).to_a + 
-      (:f10..:f19).to_a+(:f9..:f19).to_a + (:f20..:f24).to_a + ([n]*8) + 
-      [:num_lock, :scroll_lock] + ([n]*14) + [:lshift, :rshift, :lcontrol, 
-      :rcontrol, :lmenu, :rmenu, :browser_back, :browser_forward, 
-      :browser_refresh, :browser_stop, :browser_search, :browser_favorites, 
-      :browser_home, :volume_mute, :volume_down, :volume_up, :media_next_track, 
-      :media_prev_track, :media_stop, :media_play_pause, :launch_mail, 
+      :multiply, :add, :separator, :substract, :decimal, :divide] + (:f1..:f9).to_a +
+      (:f10..:f19).to_a+(:f9..:f19).to_a + (:f20..:f24).to_a + ([n]*8) +
+      [:num_lock, :scroll_lock] + ([n]*14) + [:lshift, :rshift, :lcontrol,
+      :rcontrol, :lmenu, :rmenu, :browser_back, :browser_forward,
+      :browser_refresh, :browser_stop, :browser_search, :browser_favorites,
+      :browser_home, :volume_mute, :volume_down, :volume_up, :media_next_track,
+      :media_prev_track, :media_stop, :media_play_pause, :launch_mail,
       :launch_media_select, :launch_app1, :launch_app2] + ([n]*2) + [
-      :oem_1, :oem_plus, :oem_comma,:oem_minus, :oem_period, :oem_2, :oem_3] + 
-      ([n]*26) + (:oem_4..:oem_8).to_a + ([n]*2) + [:oem_102] + ([n]*2) + 
-      [:process, n, :packet] + ([n]*14) + [:attn, :crsel, :exsel, :ereof, 
+      :oem_1, :oem_plus, :oem_comma,:oem_minus, :oem_period, :oem_2, :oem_3] +
+      ([n]*26) + (:oem_4..:oem_8).to_a + ([n]*2) + [:oem_102] + ([n]*2) +
+      [:process, n, :packet] + ([n]*14) + [:attn, :crsel, :exsel, :ereof,
       :play, :zoom, :noname, :pa1, :oem_clear, n, :DOWN, :LEFT, :RIGHT, :UP,
       :A, :B, :C, :X, :Y, :Z, :L, :R, :SHIFT, :CTRL, :ALT] + (:F5..:F9).to_a
 
@@ -561,19 +1122,19 @@ module Devices
     # * DeadKeys list
     #--------------------------------------------------------------------------
     DEAD_KEYS = {
-      "^"=>{"a" => "â", "A" => "Â", "e" => "ê", "E" => "Ê", 
+      "^"=>{"a" => "â", "A" => "Â", "e" => "ê", "E" => "Ê",
         "i" => "î", "I" => "Î","o" => "ô", "O" => "Ô",
         "u" => "û", "U" => "Û"," " => "^"},
-      "¨"=>{"a" => "ä", "A" => "Ä","e" => "ë", "E" => "Ë", 
+      "¨"=>{"a" => "ä", "A" => "Ä","e" => "ë", "E" => "Ë",
         "i" => "ï", "I" => "Ï","o" => "ö", "O" => "Ö",
         "u" => "ü", "U" => "Ü","y" => "ÿ", " " => "¨"},
-      "´"=>{"a" => "á", "A" => "Á","e" => "é", "E" => "É", 
+      "´"=>{"a" => "á", "A" => "Á","e" => "é", "E" => "É",
         "i" => "í", "I" => "Í","o" => "ó", "O" => "Ó",
         "u" => "ú", "U" => "Ú","y" => "ý", "Y" => "Ý"," " => "´"},
-      "`"=>{"a" => "à", "A" => "Á","e" => "è", "E" => "É", 
+      "`"=>{"a" => "à", "A" => "Á","e" => "è", "E" => "É",
         "i" => "ì", "I" => "Í","o" => "ò", "O" => "Ó",
       "u" => "ù", "U" => "Ú"," " => "`"},
-      "~"=>{"a" => "ã", "A" => "Ã","o" => "õ", "O" => "Õ", 
+      "~"=>{"a" => "ã", "A" => "Ã","o" => "õ", "O" => "Õ",
         "n" => "ñ", "N" => "Ñ"}}
 
     #--------------------------------------------------------------------------
@@ -606,15 +1167,10 @@ module Devices
     # * Detection methods
     #--------------------------------------------------------------------------
     [:trigger?, :press?, :repeat?, :release?].each do |m|
-      define_method(m) do 
+      define_method(m) do
         ::Keyboard.send("k#{m}", instance_variable_get(:@id))
       end
     end
-
-    #--------------------------------------------------------------------------
-    # * Click API
-    #--------------------------------------------------------------------------
-    alias_method :click?, :press?
 
     #--------------------------------------------------------------------------
     # * Append to Input Const
@@ -679,7 +1235,7 @@ module Devices
       @keys.each_index do |code|
         if key_active?(code)
           @count[code] += 1
-        elsif @count[code] != 0 
+        elsif @count[code] != 0
           @count[code] = 0
           @release << code
         end
@@ -726,7 +1282,7 @@ module Devices
     # * Repeat logic
     #--------------------------------------------------------------------------
     def krepeat?(code)
-      (@count[code.to_i] == 1) || 
+      (@count[code.to_i] == 1) ||
         (@count[code.to_i] >= 24 && @count[code.to_i]%6 == 0)
     end
 
@@ -846,15 +1402,16 @@ module Devices
     # * Get char from a key (lol LISP)
     #--------------------------------------------------------------------------
     def char(key)
-      return "" if [0x0D, 0x1B, 0x08].include?(key) || 
+      return "\n" if key == 0x0D
+      return "" if [0x1B, 0x08].include?(key) ||
         to_uc(key, 0, @buffer, chr = buffer(16), 8, 0) == 0
       to_multibyte(65001, 0, chr, 1, output = buffer(4), 4, 0, 0)
       output.delete!("\0")
-      @wait_char, output = 
-        (!@wait_char.empty?) ? 
-          ((dead_chars[@wait_char].has_key?(output)) ? 
+      @wait_char, output =
+        (!@wait_char.empty?) ?
+          ((dead_chars[@wait_char].has_key?(output)) ?
             ["", dead_chars[@wait_char][output]] :
-              ((dead_chars.has_key?(output)) ? 
+              ((dead_chars.has_key?(output)) ?
               [output, @wait_char] : ["", @wait_char + output])) :
             (dead_chars.has_key?(output)) ? [output, ""] : [@wait_char, output]
       output
@@ -908,7 +1465,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Singleton Keyboard instance
     #--------------------------------------------------------------------------
-    ::Keyboard = self.new 
+    ::Keyboard = self.new
 
   end
 
@@ -925,6 +1482,8 @@ module Devices
     #--------------------------------------------------------------------------
     attr_accessor :start
     attr_accessor :initiated
+    attr_accessor :ox
+    attr_accessor :oy
 
     #--------------------------------------------------------------------------
     # * Alias
@@ -943,7 +1502,7 @@ module Devices
     #--------------------------------------------------------------------------
     # * Subtyping
     #--------------------------------------------------------------------------
-    def subtype 
+    def subtype
       Rect.new(self.x, self.y, self.width, self.height)
     end
 
@@ -970,12 +1529,12 @@ module Devices
     externalize Externlib::GetCursorPos,   :cursor_position
     externalize Externlib::ScreenToClient, :screen_to_client
     [
-      :trigger?, 
-      :press?, 
-      :release?, 
-      :repeat?, 
+      :trigger?,
+      :press?,
+      :release?,
+      :repeat?,
       :time,
-      :all?, 
+      :all?,
       :any?
     ].each { |m| externalize ::Keyboard.method(m), m }
 
@@ -986,6 +1545,7 @@ module Devices
     attr_reader :square
     attr_reader :last_rect
     attr_reader :dragging
+    attr_reader :drag
 
     #--------------------------------------------------------------------------
     # * Alias
@@ -1029,12 +1589,13 @@ module Devices
     def update
       update_position
       update_drag
+      update_interaction
     end
 
     #--------------------------------------------------------------------------
     # * Position update
     #--------------------------------------------------------------------------
-    def update_position 
+    def update_position
       buffer = [0,0].pack('l2')
       cursor_position(buffer)
       screen_to_client(HWND, buffer)
@@ -1059,26 +1620,38 @@ module Devices
         @drag.initiated = true
         @drag.start.x = @point.x
         @drag.start.y = @point.y
+        Draggable.find
       elsif @drag.initiated? && Key::Mouse_left.press?
         if dragging? || !(self.x == @drag.start.x && self.y == @drag.start.y)
           @dragging = true
           min_x, max_x  = *[@drag.start.x, @point.x].sort
           min_y, max_y  = *[@drag.start.y, @point.y].sort
           @drag.set(min_x, min_y, max_x-min_x, max_y-min_y)
+          @drag.ox = @point.x - @drag.start.x
+          @drag.oy = @point.y - @drag.start.y
+          Draggable.drag
         end
       elsif @drag.initiated?
         @last_rect    = rect
         @drag.initiated = false
         @dragging     = false
         @drag.empty
+        Draggable.drop
       end
+    end
+    
+    #--------------------------------------------------------------------------
+    # * Drag update
+    #--------------------------------------------------------------------------
+    def update_interaction
+      Interactive.update
     end
 
     #--------------------------------------------------------------------------
     # * Know if the user clicked
     #--------------------------------------------------------------------------
     def click?
-      Key::Mouse_left.release? && !self.last_rect
+      Key::Mouse_left.release?
     end
 
     #--------------------------------------------------------------------------
@@ -1086,15 +1659,256 @@ module Devices
     #--------------------------------------------------------------------------
     def rect
       dragging? && @drag.subtype
-    end 
+    end
 
     #--------------------------------------------------------------------------
     # * Singleton Mouse instance
     #--------------------------------------------------------------------------
-    ::Mouse = self.new 
+    ::Mouse = self.new
 
   end
 
+end
+
+#==============================================================================
+# ** Draggable
+#------------------------------------------------------------------------------
+#  Any Object responding to ":x, :y, :in?" can be draggable.
+#  Simply by pushing itself into the Draggable.objects array.
+#==============================================================================
+
+module Draggable
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    attr_accessor :objects, :picked
+    Draggable.objects = []
+    Draggable.picked  = nil
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def <<(*obj)
+      obj.each do |o|
+        @objects << o
+        o.extend(Draggable)
+      end
+    end
+    alias :push :<<
+    #--------------------------------------------------------------------------
+    # * Finds and pick the first Object clicked
+    #--------------------------------------------------------------------------
+    def find
+      return if @picked
+      obj = @objects.sort do |a, b|
+        @checked = a
+        if b.true_z == a.true_z
+          b.object_id <=> a.object_id
+        else
+          b.true_z <=> a.true_z
+        end
+      end
+      @picked = obj.find do |o|
+          @checked = o
+          o.in?(Mouse.x, Mouse.y)
+      end
+      return unless @picked
+      @x_init = @picked.x
+      @y_init = @picked.y
+    rescue
+      @objects.delete(@checked)
+      find
+    end
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def drag
+      return unless @picked
+      @picked.drag_viewport_instead ? o = @picked.viewport : o = @picked
+      nx, ny = @x_init + Mouse.drag.ox, @y_init + Mouse.drag.oy
+      if r = @picked.drag_restriction
+        o.x = [[nx, r.x].max, r.x + r.width ].min
+        o.y = [[ny, r.y].max, r.y + r.height].min
+      else
+        o.x, o.y = nx, ny
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Drops the last picked Object
+    #--------------------------------------------------------------------------
+    def drop
+      @picked = nil
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Extend the draggable object's behaviour
+  #--------------------------------------------------------------------------
+  attr_accessor :drag_viewport_instead
+  attr_accessor :drag_restriction
+
+end
+
+#==============================================================================
+# ** Draggable
+#------------------------------------------------------------------------------
+#  Any Object responding to ":x, :y, :in?" can be draggable.
+#  Simply by pushing itself into the Draggable.objects array.
+#==============================================================================
+
+module Interactive
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    attr_accessor :objects, :picked
+    Interactive.objects = []
+    Interactive.picked  = nil
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def <<(*obj)
+      obj.each do |o|
+        @objects << o
+        o.extend(Interactive)
+      end
+    end
+    alias :push :<<
+    #--------------------------------------------------------------------------
+    # * Drags the picked Object
+    #--------------------------------------------------------------------------
+    def update
+      @picked = nil
+      find
+      return unless @picked
+      @picked.on_mouse_hover   if @picked.respond_to?(:on_mouse_hover)
+      @picked.on_mouse_trigger if @picked.respond_to?(:on_mouse_trigger) &&
+        Key::Mouse_left.trigger?
+      if Key::Mouse_left.release?
+        @picked.on_mouse_release if @picked.respond_to?(:on_mouse_release)
+        @picked.on_mouse_click   if @picked.respond_to?(:on_mouse_click)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Finds and pick the first Object clicked
+    #--------------------------------------------------------------------------
+    def find
+      return if @picked
+      obj = @objects.sort do |a, b|
+        @checked = a
+        if b.true_z == a.true_z
+          b.object_id <=> a.object_id
+        else
+          b.true_z <=> a.true_z
+        end
+      end
+      @picked = obj.find do |o|
+        @checked = o
+        o.in?(Mouse.x, Mouse.y)
+      end
+      return unless @picked
+      @x_init = @picked.x
+      @y_init = @picked.y
+    rescue
+      @objects.delete(@checked)
+      find
+    end
+  end
+end
+
+#==============================================================================
+# ** Prompt
+#------------------------------------------------------------------------------
+#  Display prompt
+#==============================================================================
+
+module Prompt
+  #--------------------------------------------------------------------------
+  # * Extend self
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Yes no
+  #--------------------------------------------------------------------------
+  def yes_no?(title, message)
+    k = Externlib::MessageBox.call(HWND, message, title, 305)
+    k == 1
+  end
+  #--------------------------------------------------------------------------
+  # * Yes no cancel
+  #--------------------------------------------------------------------------
+  def yes_no_cancel?(title, message)
+    k = Externlib::MessageBox.call(HWND, message, title, 3)
+    return :yes if k == 6
+    return :no if k == 7
+    :cancel
+  end
+end
+
+#==============================================================================
+# ** Clipboard
+#------------------------------------------------------------------------------
+#  Module for clipboard handling
+#==============================================================================
+
+module Clipboard
+  #--------------------------------------------------------------------------
+  # * Extend self
+  #--------------------------------------------------------------------------
+  extend self
+  #--------------------------------------------------------------------------
+  # * Get a clipboard format
+  #--------------------------------------------------------------------------
+  def get_format(key)
+    Externlib::RegisterClipboardFormat.(key)
+  end
+  FORMAT = Clipboard.get_format("VX Ace EVENT_COMMAND")
+  #--------------------------------------------------------------------------
+  # * Copy Text
+  #--------------------------------------------------------------------------
+  def push_text(clip_data)
+    clip_data.to_ascii!.to_utf8!
+    Externlib::OpenClipboard.(0)
+    Externlib::EmptyClipboard.()
+    hmem = Externlib::GlobalAlloc.(0x42, clip_data.length+1)
+    mem = Externlib::GlobalLock.(hmem)
+    Externlib::Memcpy.(mem, clip_data, clip_data.length+1)
+    Externlib::SetClipboardData.(7, hmem)
+    Externlib::GlobalFree.(hmem)
+    Externlib::CloseClipboard.()
+    true
+  end
+  #--------------------------------------------------------------------------
+  # *  Get value from clipboard
+  #--------------------------------------------------------------------------
+  def get_text
+    Externlib::OpenClipboard.(0)
+    data = Externlib::GetClipboardData.(7)
+    Externlib::CloseClipboard.()
+    return "" if data == 0
+    mem = Externlib::GlobalLock.(data)
+    size = Externlib::GlobalSize.(data)
+    final_data = " "*(size-1)
+    Externlib::Memcpy.(final_data, mem, size)
+    Externlib::GlobalUnlock.(data)
+    final_data
+  end
+  #--------------------------------------------------------------------------
+  # *  Push Command in Clipboard
+  #--------------------------------------------------------------------------
+  def push_command(*commands)
+    clip_data = Marshal.dump(commands)
+    clip_data.insert(0, [clip_data.size].pack('L'))
+    Externlib::OpenClipboard.(0)
+    Externlib::EmptyClipboard.()
+    hmem = Externlib::GlobalAlloc.(0x42, clip_data.length)
+    mem = Externlib::GlobalLock.(hmem)
+    Externlib::Memcpy.(mem, clip_data, clip_data.length)
+    Externlib::SetClipboardData.(Clipboard::FORMAT, hmem)
+    Externlib::GlobalFree.(hmem)
+    Externlib::CloseClipboard.()
+    true
+  end
 end
 
 #--------------------------------------------------------------------------
@@ -1122,7 +1936,7 @@ module Input
     def update
       Keyboard.update
       Mouse.update
-      sdk_update
+      sdk_update if Game_Temp.in_game
     end
   end
 end
@@ -1143,16 +1957,16 @@ module Generative
 
   module BitmapRect
     #--------------------------------------------------------------------------
-    # * Rect accessor 
+    # * Rect accessor
     #--------------------------------------------------------------------------
-    def rect 
-      return Rect.new(0,0,0,0) unless self.bitmap 
+    def rect
+      return Rect.new(0,0,0,0) unless self.bitmap
       tx, ty = self.x, self.y
       if viewport
-        tx = viewport.x - viewport.ox
-        ty = viewport.y - viewport.oy
+        tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))
+        ty = (viewport.y - viewport.oy + self.y - (self.oy * zoom_y))
       end
-      Rect.new(tx, ty, bitmap.width, bitmap.height)
+      Rect.new(tx, ty, src_rect.width*zoom_x, src_rect.height*zoom_y)
     end
   end
 
@@ -1184,7 +1998,7 @@ end
 #==============================================================================
 # ** Kernel
 #------------------------------------------------------------------------------
-#  Object class methods are defined in this module. 
+#  Object class methods are defined in this module.
 #  This ensures compatibility with top-level method redefinition.
 #==============================================================================
 
@@ -1194,66 +2008,13 @@ module Kernel
   #--------------------------------------------------------------------------
   HWND = Externlib::FindWindow.call('RGSS Player', 0)
   IDENTITY = lambda{|x| x}
+  USERNAME = ENV['USERNAME'].dup.to_utf8
   #--------------------------------------------------------------------------
   # * Import CMD API
   #--------------------------------------------------------------------------
   include Generative::CommandAPI
   extend Generative::CommandAPI
 end
-
-#==============================================================================
-# ** Viewport
-#------------------------------------------------------------------------------
-#  Used when displaying sprites on one portion of the screen
-#==============================================================================
-
-class Viewport
-  #--------------------------------------------------------------------------
-  # * alias
-  #--------------------------------------------------------------------------
-  alias_method :sdk_initialize, :initialize
-  #--------------------------------------------------------------------------
-  # * Public instances variables
-  #--------------------------------------------------------------------------
-  attr_accessor :elts
-  delegate_accessor :rect, :x 
-  delegate_accessor :rect, :y
-  delegate_accessor :rect, :width
-  delegate_accessor :rect, :height
-
-  #--------------------------------------------------------------------------
-  # * Object initialize
-  #--------------------------------------------------------------------------
-  def initialize(*args)
-    sdk_initialize(*args)
-    @elts = []
-  end
-
-  #--------------------------------------------------------------------------
-  # * append Sprites
-  #--------------------------------------------------------------------------
-  def append(s)
-    @elts << (s)
-  end
-
-  #--------------------------------------------------------------------------
-  # * Calcul height space
-  #--------------------------------------------------------------------------
-  def calc_height
-    return rect.height if @elts.empty?
-    v = @elts.max{|a, b| (a.y + a.rect.height) <=> (b.y + b.rect.height)}
-    [(v.y+v.rect.height), rect.height].max
-  end
-
-  #--------------------------------------------------------------------------
-  # * Calcul height space
-  #--------------------------------------------------------------------------
-  def calc_width
-    return rect.width if @elts.empty?
-    v = @elts.max{|a, b| (a.x + a.rect.width) <=> (b.x + b.rect.width)}
-    [(v.x+v.rect.width), rect.width].max
-  end
-end 
 
 #==============================================================================
 # ** Rect
@@ -1266,15 +2027,8 @@ class Rect
   # * check if point 's include in the rect
   #--------------------------------------------------------------------------
   def in?(*p)
-    x = y = 0
-    if p.length == 2
-      x, y = *p
-    elsif p.length == 1
-      x, y = p[0].x, p[0].y
-    end 
-    check_x = x.between?(self.x, self.x+self.width)
-    check_y = y.between?(self.y, self.y+self.height)
-    check_x && check_y
+    point = p.to_point
+    point.in?(self)
   end
   #--------------------------------------------------------------------------
   # * check if the mouse 's hover
@@ -1283,11 +2037,270 @@ class Rect
   #--------------------------------------------------------------------------
   # * check Mouse Interaction
   #--------------------------------------------------------------------------
-  def click?(key);    hover? && Mouse.click?(key);    end
+  def click?;         hover? && Mouse.click?;         end
   def press?(key);    hover? && Mouse.press?(key);    end
   def trigger?(key);  hover? && Mouse.trigger?(key);  end
   def repeat?(key);   hover? && Mouse.repeat?(key);   end
   def release?(key);  hover? && Mouse.release?(key);  end
+  #--------------------------------------------------------------------------
+  # * Mouse accessor
+  #--------------------------------------------------------------------------
+  def mouse_x; Mouse.x - self.abs_x; end
+  def mouse_y; Mouse.y - self.abs_y; end
+
+end
+
+#==============================================================================
+# ** Viewport
+#------------------------------------------------------------------------------
+#  Used when displaying sprites on one portion of the true
+#==============================================================================
+
+class Viewport
+  #--------------------------------------------------------------------------
+  # * Delegation
+  #--------------------------------------------------------------------------
+  [
+    :in?,
+    :hover?,
+    :click?,
+    :press?,
+    :trigger?,
+    :repeat?,
+    :release?,
+    :mouse_x,
+    :mouse_y,
+    :x,
+    :y,
+    :width,
+    :height
+  ].each{|m| delegate :rect, m}
+
+end
+
+#==============================================================================
+# ** Sprite
+#------------------------------------------------------------------------------
+#  The sprite class. Sprites are the basic concept used to display characters
+#  and other objects on the game screen.
+#==============================================================================
+
+class Sprite
+  #--------------------------------------------------------------------------
+  # * Extend sprite behaviour
+  #--------------------------------------------------------------------------
+  include Generative::BitmapRect
+  #--------------------------------------------------------------------------
+  # * Delegate Process
+  #--------------------------------------------------------------------------
+  [
+    :mouse_x,
+    :mouse_y
+  ].each{|m| delegate :rect, m}
+
+  #--------------------------------------------------------------------------
+  # * check if point 's include in the rect
+  #--------------------------------------------------------------------------
+  def in?(*p)
+    point = p.to_point
+    point.screen_to_sprite(self)
+    point.in?(rect)
+  end
+  #--------------------------------------------------------------------------
+  # * check if the mouse 's hover
+  #--------------------------------------------------------------------------
+  def hover?(precise = false)
+    return precise_in?(Mouse.point) if precise
+    in?(Mouse.point)
+  end
+    #--------------------------------------------------------------------------
+  # * check Mouse Interaction
+  #--------------------------------------------------------------------------
+  def click?(pr = false);         hover?(pr) && Mouse.click?;         end
+  def press?(key, pr = false);    hover?(pr) && Mouse.press?(key);    end
+  def trigger?(key, pr = false);  hover?(pr) && Mouse.trigger?(key);  end
+  def repeat?(key, pr = false);   hover?(pr) && Mouse.repeat?(key);   end
+  def release?(key, pr = false);  hover?(pr) && Mouse.release?(key);  end
+  #--------------------------------------------------------------------------
+  # * Precise inclusion
+  #--------------------------------------------------------------------------
+  def precise_in?(*p)
+    return false unless self.bitmap
+    return false if self.zoom_x == 0 || self.zoom_y == 0
+    p1 = p.to_point
+    p2 = p1.clone
+    p2.screen_to_bitmap(self)
+    in?(p1) && !bitmap.is_transparent?(p2)
+  end
+  #--------------------------------------------------------------------------
+  # * Collision
+  #--------------------------------------------------------------------------
+  def collide_with?(with_rect)
+    raise RuntimeError.new("Not a rect !") unless with_rect.respond_to?(:rect)
+    a = self.rect
+    b = with_rect.rect
+    return !((b.x >= a.x + a.width) ||
+        (b.x + b.width < a.x)  ||
+        (b.y >= a.y + a.height)||
+        (b.y + b.height < a.y)
+      )
+  end
+  #--------------------------------------------------------------------------
+  # * Super precise Collision
+  #--------------------------------------------------------------------------
+  def pixel_collide_with(with_rect)
+    fa = collide_with?(with_rect)
+    return false unless fa
+    min, max = self, with_rect
+    max, min = min, max if (min.rect.width * min.rect.height) > (max.rect.width * max.rect.height)
+    lines = (0 .. (min.rect.height - 1)).to_a
+    rows = (0 .. (min.rect.width - 1)).to_a
+    lines = lines.reverse if min.rect.y < max.y
+    rows = rows.reverse if min.rect.x < max.rect.x
+    lines.each do |y|
+      rows.each do |x|
+        real_x = min.rect.x + x - max.rect.x
+        real_y = min.rect.y + y - max.rect.y
+        if max.rect.in?(min.rect.x + x, min.rect.y + y)
+          fa = min.bitmap.pixel_visible?(x, y)
+          fb = max.bitmap.pixel_visible?(real_x, real_y)
+          return true if fa && fb
+        end
+      end
+    end
+    return false
+  end
+end
+
+#==============================================================================
+# ** Bitmap
+#------------------------------------------------------------------------------
+#  The bitmap class. Bitmaps represent images.
+#  Sprites (Sprite) and other objects must be used to display bitmaps onscreen.
+#==============================================================================
+
+class Bitmap
+  #--------------------------------------------------------------------------
+  # * Optimize get_data
+  #--------------------------------------------------------------------------
+  def address
+    return 0 if disposed?
+    @address ||= (
+      Externlib::RtlMoveMemory.call(a=[0].pack('L'), __id__*2+16, 4)
+      Externlib::RtlMoveMemory.call(a, a.unpack('L')[0]+8 , 4)
+      Externlib::RtlMoveMemory.call(a, a.unpack('L')[0]+16, 4)
+      a.unpack('L')[0]
+    )
+  end
+  #--------------------------------------------------------------------------
+  # * Returns byte size
+  #--------------------------------------------------------------------------
+  def bytesize
+    width * height * 4
+  end
+  #--------------------------------------------------------------------------
+  # * Get Data
+  #--------------------------------------------------------------------------
+  def get_data
+    data = [].pack('x') * bytesize
+    Externlib::RtlMoveMemory.call(data, address, data.bytesize)
+    data
+  end
+  #--------------------------------------------------------------------------
+  # * Get Data pointer
+  #--------------------------------------------------------------------------
+  def get_data_ptr
+    data = String.new
+    Externlib::RtlMoveMemory.call(data.__id__*2, [0x6005].pack('L'), 4)
+    Externlib::RtlMoveMemory.call(data.__id__*2+8, [bytesize,address].pack('L2'), 8)
+    def data.free() Externlib::RtlMoveMemory.call(__id__*2, String.new, 16) end
+    return data
+  end
+  #--------------------------------------------------------------------------
+  # * Set data
+  #--------------------------------------------------------------------------
+  def set_data(data)
+    Externlib::RtlMoveMemory.call(self.address, data, data.bytesize)
+  end
+  #--------------------------------------------------------------------------
+  # * Fast get pixel
+  #--------------------------------------------------------------------------
+  def fast_get_pixel(*p)
+    x_in, y_in = p.to_xy
+    return Color.new(0,0,0,0) unless x_in.between?(0, self.width) && y_in.between?(0, self.height)
+    data = self.get_data_ptr
+    i = (x_in + (self.height - 1 - y_in) * self.width) * 4
+    blue = data.getbyte(i)
+    green = data.getbyte(i+1)
+    red = data.getbyte(i+2)
+    alpha = data.getbyte(i+3)
+    data.free
+    Color.new(red, green, blue, alpha)
+  end
+  #--------------------------------------------------------------------------
+  # * Transparency
+  #--------------------------------------------------------------------------
+  def is_transparent?(*p)
+    x_in, y_in = p.to_xy
+    return true unless x_in.between?(0, self.width) && y_in.between?(0, self.height)
+    data = self.get_data_ptr
+    i = (x_in + (self.height - 1 - y_in) * self.width) * 4
+    alpha = data.getbyte(i+3)
+    data.free
+    (alpha == 0)
+  end
+  def pixel_visible?(*p)
+    x, y = p.to_xy
+    @pixel_visible ||= Array.new(width) do |ix|
+      Array.new(height) {|iy| !is_transparent?(ix, iy)}
+    end
+    @pixel_visible[x][y]
+  end
+  #--------------------------------------------------------------------------
+  # * Gaussian filter function
+  #--------------------------------------------------------------------------
+  def self.gaussian_filter(radius)
+    dbpwsigma = 0.4155 * (radius + 1)**2
+              # 0.4155 ~= 2*(1/sqrt(2*log(255)))**2
+    @gaussian_filter ||= Hash.new
+    @gaussian_filter[radius] ||= Array.new(2*radius + 1) do |i|
+      val = Math.exp(-((i-radius)**2)/dbpwsigma) / Math.sqrt(3.14*dbpwsigma)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Gaussian blur application
+  #--------------------------------------------------------------------------
+  def gaussian_blur(radius = 3, step = 1)
+    return self if (rad = radius.to_i) <= 0
+    step = [1, step].max.to_i
+    f = Bitmap.gaussian_filter(rad)
+    ['x=', 'y='].each do |m|
+      ori = clone
+      rec = rect.clone
+      f.length.times do |i|
+        next if i == rad
+        opa = (f[i]*255).to_i
+        next if opa == 0
+        rec.method(m).call((i - rad)*step)
+        blt(0, 0, ori, rec, opa)
+      end
+    end
+    self
+  end
+end
+
+#==============================================================================
+# ** Game_Temp
+#------------------------------------------------------------------------------
+#  This class handles temporary data that is not included with save data.
+# The instance of this class is referenced by $game_temp.
+#==============================================================================
+
+class Game_Temp
+  class << self
+    attr_accessor :in_game
+    Game_Temp.in_game = true
+  end
 end
 
 #==============================================================================
@@ -1299,9 +2312,223 @@ end
 module Command
   extend self
   #--------------------------------------------------------------------------
-  # * Screen data
+  # * Method suggestions
   #--------------------------------------------------------------------------
-  def screen; Game_Screen.get; end
-  def pictures; screen.pictures; end
-  def scene; SceneManager.scene; end
+  def method_missing(*args)
+    super(*args) unless Game_Temp.in_game
+    keywords = Command.singleton_methods
+    keywords.uniq!
+    keywords.delete(:method_missing)
+    keywords.collect!{|i|i.to_s}
+    keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
+    snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+    msg = "In  [map: #{map_id}, event: #{@event_id}, line: #{@index+1}]\n\n"
+    msg += "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+    msg += "\nDo you want save potential fix in the clipboard?"
+    cp = Prompt.yes_no_cancel?("Error", msg)
+    if cp == :yes
+      res = keywords[0].to_s
+      Clipboard.push_text(res)
+    end
+    exit if cp != :cancel
+  end
+end
+
+#==============================================================================
+# ** FileTools
+#------------------------------------------------------------------------------
+#  Tools for file manipulation
+#==============================================================================
+
+module FileTools
+  extend self
+  #--------------------------------------------------------------------------
+  # * Write
+  #--------------------------------------------------------------------------
+  def write(file, str, flag = "w+")
+    File.open(file, flag) {|f| f.write(str)}
+  end
+  #--------------------------------------------------------------------------
+  # * Read
+  #--------------------------------------------------------------------------
+  def read(file)
+    File.open(file, 'rb') { |f| f.read }
+  end
+  #--------------------------------------------------------------------------
+  # * Copy
+  #--------------------------------------------------------------------------
+  def copy(src, dst)
+    k = read(src)
+    write(dst, k)
+  end
+  #--------------------------------------------------------------------------
+  # * mv
+  #--------------------------------------------------------------------------
+  def move(src, dst)
+    copy(src, dst)
+    File.delete(src)
+  end
+end
+
+#==============================================================================
+# ** Socket
+#------------------------------------------------------------------------------
+# Adds the possibility to send/receive messages to/from a server
+# Big thanks to Zeus81 (and to Nuki, too)
+#==============================================================================
+
+class Socket
+  #--------------------------------------------------------------------------
+  # * Public instance variable
+  #--------------------------------------------------------------------------
+  attr_reader :address
+  attr_reader :port
+  #--------------------------------------------------------------------------
+  # * Externalize
+  #--------------------------------------------------------------------------
+  externalize Externlib::Htons,        :w32_htons
+  externalize Externlib::Inet_Addr,    :w32_inet_addr
+  externalize Externlib::Socket,       :w32_socket
+  externalize Externlib::Connect,      :w32_connect
+  externalize Externlib::Send,         :w32_send
+  externalize Externlib::Recv,         :w32_recv
+  externalize Externlib::Shutdown,     :w32_shutdown
+  externalize Externlib::CloseSocket,  :w32_close
+  #--------------------------------------------------------------------------
+  # * Constructor
+  #--------------------------------------------------------------------------
+  def initialize(address, port)
+    @address = address
+    @port = port
+    init_sockaddr
+    @socket = w32_socket(2, 1, 0)
+    @connected = false
+  end
+  #--------------------------------------------------------------------------
+  # * Init sockaddr
+  #--------------------------------------------------------------------------
+  def init_sockaddr
+    sinf = 2
+    spor = w32_htons(@port)
+    iadr = w32_inet_addr(@address)
+    @sockaddr = [sinf, spor, iadr].pack('sSLx8')
+  end
+  #--------------------------------------------------------------------------
+  # * Connect
+  #--------------------------------------------------------------------------
+  def connect!
+    return unless @socket
+    f = w32_connect(@socket, @sockaddr, @sockaddr.size)
+    @connected = f != -1
+    @connected
+  end
+  #--------------------------------------------------------------------------
+  # * Send
+  #--------------------------------------------------------------------------
+  def send(data)
+    return if !@socket || !@connected
+    v = w32_send(@socket, data, data.length, 0)
+    shutdown(2) if v == -1
+    !v == -1
+  end
+  #--------------------------------------------------------------------------
+  # * Recv
+  #--------------------------------------------------------------------------
+  def recv(len = 1024)
+    return if !@socket || !@connected
+    buf = [].pack('x'+len.to_s)
+    v = w32_recv(@socket, buf, len, 0)
+    return buf.gsub(/\x00/,"") if v != -1
+    false
+  end
+  #--------------------------------------------------------------------------
+  # * Shutdown
+  #--------------------------------------------------------------------------
+  def shutdown(how)
+    return if !@socket || !@connected
+    w32_shutdown(@socket, how)
+  end
+  #--------------------------------------------------------------------------
+  # * Close
+  #--------------------------------------------------------------------------
+  def close
+    return if !@socket || !@connected
+    w32_close(@socket)
+    @socket = nil
+    @connected = false
+  end
+  #--------------------------------------------------------------------------
+  # * Connected
+  #--------------------------------------------------------------------------
+  def connected?
+    @socket && @connected
+  end
+  #--------------------------------------------------------------------------
+  # * Singleton
+  #--------------------------------------------------------------------------
+  class << self
+    attr_accessor :instance
+  end
+end
+
+
+if RME.unsafe?
+  #==============================================================================
+  # ** Plane
+  #------------------------------------------------------------------------------
+  #  Plane rewritting
+  #==============================================================================
+  #------------------------------------------------------------------------
+  # * jutsu to erase acutal Plane class
+  #------------------------------------------------------------------------
+  Object.send(:remove_const, :Plane)
+  class Plane < Sprite
+
+    #------------------------------------------------------------------------
+    # * Z modifier
+    #------------------------------------------------------------------------
+    def z=(z); super(z * 1000);end
+
+    #------------------------------------------------------------------------
+    # * Oz modifier
+    #------------------------------------------------------------------------
+    def ox=(ox)
+      return if @bitmap == nil
+      super(ox % @bitmap.width)
+    end
+
+    #------------------------------------------------------------------------
+    # * Oy modifier
+    #------------------------------------------------------------------------
+    def oy=(oy)
+      return if @bitmap == nil
+      super(oy % @bitmap.height)
+    end
+
+    #------------------------------------------------------------------------
+    # * Bitmap accessor
+    #------------------------------------------------------------------------
+    def bitmap
+      return @bitmap
+    end
+
+    #------------------------------------------------------------------------
+    # * Bitmap Mutator
+    #------------------------------------------------------------------------
+    def bitmap=(tile)
+      return tile if (@bitmap == tile)
+      @bitmap = tile
+      return super(nil) unless tile
+      xx = 1 + (Graphics.width.to_f / tile.width).ceil
+      yy = 1 + (Graphics.height.to_f / tile.height).ceil
+      plane = Bitmap.new(@bitmap.width * xx, @bitmap.height * yy)
+      (0..xx).each do|x|
+        (0..yy).each do |y|
+          plane.blt(x * @bitmap.width, y * @bitmap.height, @bitmap, @bitmap.rect)
+        end
+      end
+      super(plane)
+    end
+
+  end
 end

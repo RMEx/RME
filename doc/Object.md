@@ -1,10 +1,22 @@
-#Object
-[Retourner à l'index](README.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Object**  
+- - -  
+#Object
 Extension de la classe Object
 
 ##Liste des méthodes
-**Object.delegate(`obj`, `method`, `m_alias`)**
+*    [Object.delegate(obj, method, m_alias)](#objectdelegateobj-method-m_alias)
+*    [Object.delegate_accessor(obj, field)](#objectdelegate_accessorobj-field)
+*    [Object.externalize(obj, m_alias)](#objectexternalizeobj-m_alias)
+*    [self.attr_values](#selfattr_values)
+*    [self.buffer(size)](#selfbuffersize)
+*    [self.identity](#selfidentity)
+
+
+##Description des méthodes
+##### Object.delegate(obj, method, m_alias)
 
 > Délègue une méthode à une autre méthode ou à un attribut
 
@@ -20,7 +32,7 @@ Extension de la classe Object
 
 
 
-**Object.delegate_accessor(`obj`, `field`)**
+##### Object.delegate_accessor(obj, field)
 
 > Délègue les accesseurs, mutateurs d'un attribut à une méthode
 
@@ -35,7 +47,7 @@ Extension de la classe Object
 
 
 
-**Object.externalize(`obj`, `m_alias`)**
+##### Object.externalize(obj, m_alias)
 
 > Transforme un object 'callable' en méthode
 
@@ -50,7 +62,7 @@ Extension de la classe Object
 
 
 
-**self.attr_values**
+##### self.attr_values
 
 > Renvoie un hash des attributs où la clé est le nom de l'attribut
                             et la valeur est celle de l'attribut
@@ -62,7 +74,7 @@ Extension de la classe Object
 
 
 
-**self.buffer(`size`)**
+##### self.buffer(size)
 
 > Renvoie un buffer (pour les Win32API's)
 
@@ -76,7 +88,7 @@ Extension de la classe Object
 
 
 
-**self.identity**
+##### self.identity
 
 > Renvoie l'instance pointée
 

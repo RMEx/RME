@@ -1,6 +1,9 @@
-#Devices::Keyboard
-[Retourner à l'index](README.md)
+#RME : RPG Maker Extender
+Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
+[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Devices::Keyboard**  
+- - -  
+#Devices::Keyboard
 Représentation du clavier, est accessible via Keyboard
 
 ##Attributs
@@ -197,15 +200,35 @@ Nom|Description
 `:F8`|Pointe la touche Keys::F8 (comme argument à passer)  
 `:F9`|Pointe la touche Keys::F9 (comme argument à passer)  
 ##Liste des méthodes
-**Keyboard.all?(`method`, `keys`)**
+*    [Keyboard.all?(method, keys)](#keyboardallmethod-keys)
+*    [Keyboard.alt_gr?](#keyboardalt_gr)
+*    [Keyboard.any?(method, keys)](#keyboardanymethod-keys)
+*    [Keyboard.caps_lock?](#keyboardcaps_lock)
+*    [Keyboard.ctrl?(key)](#keyboardctrlkey)
+*    [Keyboard.current_char](#keyboardcurrent_char)
+*    [Keyboard.current_digit](#keyboardcurrent_digit)
+*    [Keyboard.current_key(method)](#keyboardcurrent_keymethod)
+*    [Keyboard.num_lock?](#keyboardnum_lock)
+*    [Keyboard.press?(key)](#keyboardpresskey)
+*    [Keyboard.release?(key)](#keyboardreleasekey)
+*    [Keyboard.repeat?(key)](#keyboardrepeatkey)
+*    [Keyboard.rgss_current_key(method)](#keyboardrgss_current_keymethod)
+*    [Keyboard.scroll_lock?](#keyboardscroll_lock)
+*    [Keyboard.shift?](#keyboardshift)
+*    [Keyboard.time(key)](#keyboardtimekey)
+*    [Keyboard.trigger?(key)](#keyboardtriggerkey)
 
-> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+
+##Description des méthodes
+##### Keyboard.all?(method, keys)
+
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
-`keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
 
 
 
@@ -217,7 +240,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.alt_gr?**
+##### Keyboard.alt_gr?
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
@@ -228,14 +251,14 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.any?(`method`, `keys`)**
+##### Keyboard.any?(method, keys)
 
-> Renvoie true si toutes au moins une touches passée à keys est activée selon la méthode passées à method
+> Renvoie true si au moins une touche passée à keys est activée selon la méthode passées à method
 
   
 > Nom|Type|Description  
 --- | --- | ---  
-`method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
+`method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
 
 
@@ -243,7 +266,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.caps_lock?**
+##### Keyboard.caps_lock?
 
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
@@ -254,7 +277,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.ctrl?(`key`)**
+##### Keyboard.ctrl?(key)
 
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
 
@@ -268,20 +291,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.current_char**
+##### Keyboard.current_char
 
-> Renvoie le caractère actuel pressé par le clavier
-
-  
-> 
-
-
-
-
-
-**Keyboard.current_digit**
-
-> Renvoie le chiffre actuel pressé par le clavier
+> Renvoie le caractère pressé sur clavier au moment de l'appel
 
   
 > 
@@ -290,7 +302,18 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.current_key(`method`)**
+##### Keyboard.current_digit
+
+> Renvoie le chiffre pressé sur le clavier au moment de l'appel
+
+  
+> 
+
+
+
+
+
+##### Keyboard.current_key(method)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -304,7 +327,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.num_lock?**
+##### Keyboard.num_lock?
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
@@ -315,7 +338,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.press?(`key`)**
+##### Keyboard.press?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
@@ -329,7 +352,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.release?(`key`)**
+##### Keyboard.release?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
@@ -343,9 +366,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.repeat?(`key`)**
+##### Keyboard.repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée successivement, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 > Nom|Type|Description  
@@ -357,7 +380,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.rgss_current_key(`method`)**
+##### Keyboard.rgss_current_key(method)
 
 > Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
@@ -371,7 +394,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.scroll_lock?**
+##### Keyboard.scroll_lock?
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
 
@@ -382,7 +405,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.shift?**
+##### Keyboard.shift?
 
 > Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
@@ -393,9 +416,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.time(`key`)**
+##### Keyboard.time(key)
 
-> Renvoie le nombre de frame pressée d'une touche en cours
+> Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie
 
   
 > Nom|Type|Description  
@@ -407,7 +430,7 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 
 
 
-**Keyboard.trigger?(`key`)**
+##### Keyboard.trigger?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
