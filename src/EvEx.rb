@@ -3310,7 +3310,11 @@ class Game_Interpreter
     #--------------------------------------------------------------------------
     def get_page(map_id, event_id, page_id)
       if map_id != $game_map.map_id
-        map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+        if !Game_Temp.cached_map || Game_Temp.cached_map[0] != map_id
+          Game_Temp.cached_map =
+            [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
+        end
+        map = Game_Temp.cached_map[1]
       else
         map = $game_map.map
       end 
