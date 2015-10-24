@@ -4058,10 +4058,10 @@ link_method_documentation "Command.text_change",
 register_command :text, "Command.text_change"
 
 link_method_documentation "Command.text_profile",
-                          "Change le profil du texte",
+                          "Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte",
                           {
                             :id => ["Identifiant du texte", :Fixnum],
-                            :profile => ["Nouveau profil", :String]
+                            :"*profile" => ["Nouveau profil", :String]
                           }
 register_command :text, "Command.text_profile"
 
@@ -4074,10 +4074,10 @@ link_method_documentation "Command.text_rotate",
 register_command :text, "Command.text_rotate"
 
 link_method_documentation "Command.text_opacity",
-                          "Change l'opacité du texte",
+                          "Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte",
                           {
                             :id => ["Identifiant du texte", :Fixnum],
-                            :opacity => ["valeur de l'opacité, entre 0 et 255.", :Fixnum],
+                            :"*opacity" => ["valeur de l'opacité, entre 0 et 255.", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }

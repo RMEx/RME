@@ -1899,8 +1899,9 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change profile
     #--------------------------------------------------------------------------
-    def text_profile(id, profile)
-     Game_Screen.get.texts[id].profile = profile
+    def text_profile(id, profile = nil)
+      return Game_Screen.get.texts[id].profile unless profile
+      Game_Screen.get.texts[id].profile = profile
     end
     #--------------------------------------------------------------------------
     # * Rotation
@@ -1984,7 +1985,8 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Text Opacity
     #--------------------------------------------------------------------------
-    def text_opacity(id, value, duration = nil, wf = false)
+    def text_opacity(id, value = nil, duration = nil, wf = false)
+      return Game_Screen.get.texts[id].opacity unless value
       if duration.is_a?(Fixnum)
         Game_Screen.get.texts[id].target_opacity = value
         Game_Screen.get.texts[id].opacity_duration = duration

@@ -605,9 +605,9 @@ Collection des commandes EventExtender
 *    [Command.text_erase(id)](#commandtext_eraseid)
 *    [Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#commandtext_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.text_move?(id)](#commandtext_moveid)
-*    [Command.text_opacity(id, opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
+*    [Command.text_opacity(id, *opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
 *    [Command.text_position(id, x, y, *duration, *wait_flag)](#commandtext_positionid-x-y-duration-wait_flag)
-*    [Command.text_profile(id, profile)](#commandtext_profileid-profile)
+*    [Command.text_profile(id, *profile)](#commandtext_profileid-profile)
 *    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
 *    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.text_value(id)](#commandtext_valueid)
@@ -9220,15 +9220,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.text_opacity(id, opacity, *duration, *wait_flag)
+##### Command.text_opacity(id, *opacity, *duration, *wait_flag)
 
-> Change l'opacité du texte
+> Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
+`*opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -9255,15 +9255,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.text_profile(id, profile)
+##### Command.text_profile(id, *profile)
 
-> Change le profil du texte
+> Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`profile`|`String`|Nouveau profil  
+`*profile`|`String`|Nouveau profil  
 
 
 
