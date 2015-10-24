@@ -690,8 +690,8 @@ Collection des commandes EventExtender
 *    [Command.window_opacity(id, *value, *duration, *wait_flag)](#commandwindow_opacityid-value-duration-wait_flag)
 *    [Command.window_opened?(id)](#commandwindow_openedid)
 *    [Command.window_width(id)](#commandwindow_widthid)
-*    [Command.window_x(id)](#commandwindow_xid)
-*    [Command.window_y(id)](#commandwindow_yid)
+*    [Command.window_x(id, *x)](#commandwindow_xid-x)
+*    [Command.window_y(id, *y)](#commandwindow_yid-y)
 
 
 ##Description des méthodes
@@ -10481,28 +10481,30 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.window_x(id)
+##### Command.window_x(id, *x)
 
-> Renvoie la coordonnée X de la fenêtre référencée par son ID
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de la fenêtre  
-
-
-
-
-
-
-##### Command.window_y(id)
-
-> Renvoie la coordonnée Y de la fenêtre référencée par son ID
+> Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
+`*x`|`Fixnum`|Coordonnée X de la fenêtre  
+
+
+
+
+
+
+##### Command.window_y(id, *y)
+
+> Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`*y`|`Fixnum`|Coordonnée Y de la fenêtre  
 
 
 

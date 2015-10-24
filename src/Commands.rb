@@ -2717,12 +2717,14 @@ module RMECommands
       SceneManager.scene.windows[id].height
     end
 
-    def window_x(id)
-      SceneManager.scene.windows[id].x
+    def window_x(id, x = nil)
+      return SceneManager.scene.windows[id].x unless x
+      SceneManager.scene.windows[id].x = x
     end
 
-    def window_y(id)
-      SceneManager.scene.windows[id].y
+    def window_y(id, y = nil)
+      return SceneManager.scene.windows[id].y unless y 
+      SceneManager.scene.windows[id].y = y
     end
 
     append_commands
