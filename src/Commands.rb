@@ -1879,6 +1879,10 @@ module RMECommands
       )
       wait(duration) if wait_flag
     end
+    
+    def text_move?(id)
+      Game_Screen.get.texts[id].move?
+    end
 
     #--------------------------------------------------------------------------
     # * Erase
@@ -1992,6 +1996,11 @@ module RMECommands
 
     def text_value(id)
       Game_Screen.get.texts[id].text_value
+    end
+    
+    def text_angle(id, value = nil)
+      return Game_Screen.get.texts[id].angle unless value 
+      Game_Screen.get.texts[id].angle = value
     end
 
     append_commands

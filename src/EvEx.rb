@@ -1056,7 +1056,7 @@ class Game_Text
   attr_accessor :x, :y
   attr_accessor :zoom_x, :zoom_y
   attr_accessor :opacity
-  attr_reader :angle
+  attr_accessor :angle
   attr_reader :blend_type
   attr_accessor :text_value
   attr_reader :profile
@@ -1069,6 +1069,7 @@ class Game_Text
   # * Constructor
   #--------------------------------------------------------------------------
   def initialize(index)
+    @moving = false
     @profile = nil
     @number = index
     init_basic
@@ -1157,9 +1158,11 @@ class Game_Text
   # * Update frame
   #--------------------------------------------------------------------------
   def update
+    change = [@x, @y, @zoom_x, @zoom_y, @angle]
     update_move
     update_opacity
     update_rotate
+    @moving = (change != [@x, @y, @zoom_x, @zoom_y, @angle])
   end
   #--------------------------------------------------------------------------
   # * Update movement
@@ -1190,6 +1193,12 @@ class Game_Text
     @angle += @rotate_speed / 2.0
     @angle += 360 while @angle < 0
     @angle %= 360
+  end
+  #--------------------------------------------------------------------------
+  # * Text is moving ? 
+  #--------------------------------------------------------------------------
+  def move? 
+    return @moving
   end
 end
 

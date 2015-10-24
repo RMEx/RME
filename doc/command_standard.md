@@ -29,6 +29,7 @@ Commandes standards
 *    [rm_kill](#rm_kill)
 *    [session_username](#session_username)
 *    [split_each_char(str)](#split_each_charstr)
+*    [text_angle(id, *value)](#text_angleid-value)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [unflash_rect(x, y, width, height)](#unflash_rectx-y-width-height)
 *    [unflash_square(x, y)](#unflash_squarex-y)
@@ -274,6 +275,17 @@ Commandes standards
 > Nom|Type|Description  
 --- | --- | ---  
 `str`|`String`|Chaine a transformer  
+
+
+##### text_angle(id, *value)
+
+> Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id du texte  
+`*value`|`Fixnum`|Nouvel angle (peut être vide)  
 
 
 ##### tone(red, green, blue, *gray)

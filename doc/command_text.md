@@ -10,6 +10,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [text_change(id, text)](#text_changeid-text)
 *    [text_erase(id)](#text_eraseid)
 *    [text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#text_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [text_move?(id)](#text_moveid)
 *    [text_opacity(id, opacity, *duration, *wait_flag)](#text_opacityid-opacity-duration-wait_flag)
 *    [text_position(id, x, y, *duration, *wait_flag)](#text_positionid-x-y-duration-wait_flag)
 *    [text_profile(id, profile)](#text_profileid-profile)
@@ -62,6 +63,16 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `opacity`|`Fixnum`|Opacité (de 0 à 255)  
 `blend_type`|`Fixnum`|Mode de fusion (0, 1, 2)   
 `origin`|`Fixnum`|Origine  
+
+
+##### text_move?(id)
+
+> Retourne true sur le texte référencé par son ID est en mouvement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
 
 
 ##### text_opacity(id, opacity, *duration, *wait_flag)

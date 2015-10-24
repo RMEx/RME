@@ -600,9 +600,11 @@ Collection des commandes EventExtender
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
+*    [Command.text_angle(id, *value)](#commandtext_angleid-value)
 *    [Command.text_change(id, text)](#commandtext_changeid-text)
 *    [Command.text_erase(id)](#commandtext_eraseid)
 *    [Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#commandtext_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
+*    [Command.text_move?(id)](#commandtext_moveid)
 *    [Command.text_opacity(id, opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
 *    [Command.text_position(id, x, y, *duration, *wait_flag)](#commandtext_positionid-x-y-duration-wait_flag)
 *    [Command.text_profile(id, profile)](#commandtext_profileid-profile)
@@ -9137,6 +9139,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.text_angle(id, *value)
+
+> Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id du texte  
+`*value`|`Fixnum`|Nouvel angle (peut être vide)  
+
+
+
+
+
+
 ##### Command.text_change(id, text)
 
 > Change le texte affiché à l'écran
@@ -9183,6 +9200,20 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `opacity`|`Fixnum`|Opacité (de 0 à 255)  
 `blend_type`|`Fixnum`|Mode de fusion (0, 1, 2)   
 `origin`|`Fixnum`|Origine  
+
+
+
+
+
+
+##### Command.text_move?(id)
+
+> Retourne true sur le texte référencé par son ID est en mouvement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
 
 
 
