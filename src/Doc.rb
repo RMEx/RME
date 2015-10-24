@@ -4846,6 +4846,8 @@ link_method_documentation 'Command.textfield_text_show',
     :w => ["Largeur du champ de texte", :Fixnum],
     :profile => ["Référence du profile du champ de texte", :Fixnum],
     :"*range" => ["Intervalle du nombre de caractères autorisés, peut être occulté", :Range],
+    :"*active" => ["Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true", :Boolean],
+    :"*opacity" => ["Défini l'opacité du textfield, par défaut, 255", :Fixnum]
 
   }
 register_command :textfield, 'Command.textfield_text_show'
@@ -4861,6 +4863,8 @@ link_method_documentation 'Command.textfield_int_show',
     :w => ["Largeur du champ de texte", :Fixnum],
     :profile => ["Référence du profile du champ de texte", :Fixnum],
     :"*range" => ["Intervalle des nombres autorisés, peut être occulté", :Range],
+    :"*active" => ["Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true", :Boolean],
+    :"*opacity" => ["Défini l'opacité du textfield, par défaut, 255", :Fixnum]
 
   }
 register_command :textfield, 'Command.textfield_int_show'
@@ -4876,6 +4880,8 @@ link_method_documentation 'Command.textfield_float_show',
     :w => ["Largeur du champ de texte", :Fixnum],
     :profile => ["Référence du profile du champ de texte", :Fixnum],
     :"*range" => ["Intervalle des nombres autorisés, peut être occulté", :Range],
+    :"*active" => ["Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true", :Boolean],
+    :"*opacity" => ["Défini l'opacité du textfield, par défaut, 255", :Fixnum]
 
   }
 register_command :textfield, 'Command.textfield_float_show'

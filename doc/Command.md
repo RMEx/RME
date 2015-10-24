@@ -619,16 +619,16 @@ Collection des commandes EventExtender
 *    [Command.textfield_click?(id)](#commandtextfield_clickid)
 *    [Command.textfield_deactivate(*id)](#commandtextfield_deactivateid)
 *    [Command.textfield_erase(*id)](#commandtextfield_eraseid)
-*    [Command.textfield_float_show(id, number, x, y, w, profile, *range)](#commandtextfield_float_showid-number-x-y-w-profile-range)
+*    [Command.textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)](#commandtextfield_float_showid-number-x-y-w-profile-range-active-opacity)
 *    [Command.textfield_get_value(id)](#commandtextfield_get_valueid)
 *    [Command.textfield_hover?(id)](#commandtextfield_hoverid)
-*    [Command.textfield_int_show(id, number, x, y, w, profile, *range)](#commandtextfield_int_showid-number-x-y-w-profile-range)
+*    [Command.textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)](#commandtextfield_int_showid-number-x-y-w-profile-range-active-opacity)
 *    [Command.textfield_opacity(id, opacity)](#commandtextfield_opacityid-opacity)
 *    [Command.textfield_press?(id, *key)](#commandtextfield_pressid-key)
 *    [Command.textfield_release?(id, *key)](#commandtextfield_releaseid-key)
 *    [Command.textfield_repeat?(id, *key)](#commandtextfield_repeatid-key)
 *    [Command.textfield_set_value(id, value)](#commandtextfield_set_valueid-value)
-*    [Command.textfield_text_show(id, text, x, y, w, profile, *range)](#commandtextfield_text_showid-text-x-y-w-profile-range)
+*    [Command.textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)](#commandtextfield_text_showid-text-x-y-w-profile-range-active-opacity)
 *    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
 *    [Command.textfield_visible(id, flag)](#commandtextfield_visibleid-flag)
 *    [Command.textfield_visible?(id)](#commandtextfield_visibleid)
@@ -9447,7 +9447,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_float_show(id, number, x, y, w, profile, *range)
+##### Command.textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir des nombres à virgule
 
@@ -9461,6 +9461,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 
@@ -9495,7 +9497,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_int_show(id, number, x, y, w, profile, *range)
+##### Command.textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir des nombres entiers
 
@@ -9509,6 +9511,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 
@@ -9590,7 +9594,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_text_show(id, text, x, y, w, profile, *range)
+##### Command.textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir du texte
 
@@ -9604,6 +9608,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle du nombre de caractères autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 

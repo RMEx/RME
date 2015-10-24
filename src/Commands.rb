@@ -2340,16 +2340,22 @@ module RMECommands
 
     def scene; SceneManager.scene; end
 
-    def textfield_text_show(id, text, x, y, w, profile, range = false)
+    def textfield_text_show(id, text, x, y, w, profile, range = false, active = true, op = 255)
       scene.add_textfield(id, UI::Window_Textfield.new(x, y, w, text, profile, range))
+      textfield_opacity(id, op)
+      textfield_activate(id)
     end
 
-    def textfield_int_show(id, number, x, y, w, profile, range = false)
+    def textfield_int_show(id, number, x, y, w, profile, range = false, active = true, op = 255)
       scene.add_textfield(id, UI::Window_Intfield.new(x, y, w, text, profile, range))
+      textfield_opacity(id, op)
+      textfield_activate(id)
     end
 
-    def textfield_float_show(id, number, x, y, w, profile, range = false)
+    def textfield_float_show(id, number, x, y, w, profile, range = false, active = true, op = 255)
       scene.add_textfield(id, UI::Window_Floatfield.new(x, y, w, text, profile, range))
+      textfield_opacity(id, op)
+      textfield_activate(id)
     end
 
     def textfield_erase(id = nil)
@@ -2603,22 +2609,22 @@ module RMECommands
 
   module CmdWindow
 
-    def create_text_window(id, content, x, y, w=-1, h=-1, closed=nil)
+    def create_text_window(id, content, x, y, w=-1, h=-1, op = 255, closed=nil)
       f = Window_Text.new(x, y, content, w, h, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_commands_window(id, x, y, w, hash, closed =nil, h = hash.size)
+    def create_commands_window(id, x, y, w, hash, op = 255,  closed =nil, h = hash.size)
       f = Window_EvCommand.new(x, y, w, h, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_horizontal_commands_window(id, x, y, hash, closed = nil, rows = hash.length)
+    def create_horizontal_commands_window(id, x, y, hash, op=255, closed = nil, rows = hash.length)
       f = Window_EvHorzCommand.new(x, y, rows, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_selectable_window(id, x, y, width, height, hash, closed = nil)
+    def create_selectable_window(id, x, y, width, height, hash, op=255, closed = nil)
       f = Window_EvSelectable.new(x, y, width, height, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
