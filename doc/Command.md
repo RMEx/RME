@@ -2708,7 +2708,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_horizontal_commands_window(id, x, y, hash, row)
 
-> Your description
+> Crée une fenêtre de sélection horizontale
 
   
 > Nom|Type|Description  

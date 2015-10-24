@@ -59,7 +59,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### create_horizontal_commands_window(id, x, y, hash, row)
 
-> Your description
+> Crée une fenêtre de sélection horizontale
 
   
 > Nom|Type|Description  
