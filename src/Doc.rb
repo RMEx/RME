@@ -1881,17 +1881,17 @@ register_command :standard, 'Command.unflash_rect'
   register_command :picture, "Command.pictures_collide?"
 
   link_method_documentation "Command.picture_scroll_x",
-                          "Change la vitesse de défilement horizontal d'une image fixée sur la carte",
+                          "Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.",
                           {
                             :Selector => ["Sélécteur de l'image", :Selector],
-                            :vitesse => ["Vitesse de défilement", :Fixnum],
+                            :"*vitesse" => ["Vitesse de défilement", :Fixnum],
                           }
   register_command :picture, "Command.picture_scroll_x"
   link_method_documentation "Command.picture_scroll_y",
-                          "Change la vitesse de défilement vertical d'une image fixée sur la carte",
+                          "Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.",
                           {
                             :Selector => ["Sélécteur de l'image", :Selector],
-                            :vitesse => ["Vitesse de défilement", :Fixnum],
+                            :"*vitesse" => ["Vitesse de défilement", :Fixnum],
                           }
   register_command :picture, "Command.picture_scroll_y"
   link_method_documentation "Command.picture_scroll",

@@ -446,8 +446,8 @@ Collection des commandes EventExtender
 *    [Command.picture_position(Selector, x, y, *duration, *wait_flag, *ease)](#commandpicture_positionselector-x-y-duration-wait_flag-ease)
 *    [Command.picture_rotate(Selector, speed)](#commandpicture_rotateselector-speed)
 *    [Command.picture_scroll(Selector, vitesse)](#commandpicture_scrollselector-vitesse)
-*    [Command.picture_scroll_x(Selector, vitesse)](#commandpicture_scroll_xselector-vitesse)
-*    [Command.picture_scroll_y(Selector, vitesse)](#commandpicture_scroll_yselector-vitesse)
+*    [Command.picture_scroll_x(Selector, *vitesse)](#commandpicture_scroll_xselector-vitesse)
+*    [Command.picture_scroll_y(Selector, *vitesse)](#commandpicture_scroll_yselector-vitesse)
 *    [Command.picture_shake(Selector, power, speed, duration)](#commandpicture_shakeselector-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
@@ -6995,30 +6995,30 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_scroll_x(Selector, vitesse)
+##### Command.picture_scroll_x(Selector, *vitesse)
 
-> Change la vitesse de défilement horizontal d'une image fixée sur la carte
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`Selector`|`Selector`|Sélécteur de l'image  
-`vitesse`|`Fixnum`|Vitesse de défilement  
-
-
-
-
-
-
-##### Command.picture_scroll_y(Selector, vitesse)
-
-> Change la vitesse de défilement vertical d'une image fixée sur la carte
+> Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
-`vitesse`|`Fixnum`|Vitesse de défilement  
+`*vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+##### Command.picture_scroll_y(Selector, *vitesse)
+
+> Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`Selector`|`Selector`|Sélécteur de l'image  
+`*vitesse`|`Fixnum`|Vitesse de défilement  
 
 
 

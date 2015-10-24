@@ -29,8 +29,8 @@ Commandes relatives à la manipulation des images
 *    [picture_position(Selector, x, y, *duration, *wait_flag, *ease)](#picture_positionselector-x-y-duration-wait_flag-ease)
 *    [picture_rotate(Selector, speed)](#picture_rotateselector-speed)
 *    [picture_scroll(Selector, vitesse)](#picture_scrollselector-vitesse)
-*    [picture_scroll_x(Selector, vitesse)](#picture_scroll_xselector-vitesse)
-*    [picture_scroll_y(Selector, vitesse)](#picture_scroll_yselector-vitesse)
+*    [picture_scroll_x(Selector, *vitesse)](#picture_scroll_xselector-vitesse)
+*    [picture_scroll_y(Selector, *vitesse)](#picture_scroll_yselector-vitesse)
 *    [picture_shake(Selector, power, speed, duration)](#picture_shakeselector-power-speed-duration)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
@@ -320,26 +320,26 @@ Commandes relatives à la manipulation des images
 `vitesse`|`Fixnum`|Vitesse de défilement  
 
 
-##### picture_scroll_x(Selector, vitesse)
+##### picture_scroll_x(Selector, *vitesse)
 
-> Change la vitesse de défilement horizontal d'une image fixée sur la carte
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`Selector`|`Selector`|Sélécteur de l'image  
-`vitesse`|`Fixnum`|Vitesse de défilement  
-
-
-##### picture_scroll_y(Selector, vitesse)
-
-> Change la vitesse de défilement vertical d'une image fixée sur la carte
+> Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
-`vitesse`|`Fixnum`|Vitesse de défilement  
+`*vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+##### picture_scroll_y(Selector, *vitesse)
+
+> Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`Selector`|`Selector`|Sélécteur de l'image  
+`*vitesse`|`Fixnum`|Vitesse de défilement  
 
 
 ##### picture_shake(Selector, power, speed, duration)

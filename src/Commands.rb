@@ -558,13 +558,15 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change scroll speed (in X)
     #--------------------------------------------------------------------------
-    def picture_scroll_x(ids, speed)
+    def picture_scroll_x(ids, speed = nil)
+      return pictures[ids].scroll_speed_x unless speed 
       select_pictures(ids).each {|id| pictures[id].scroll_speed_x = speed}
     end
     #--------------------------------------------------------------------------
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
-    def picture_scroll_y(ids, speed)
+    def picture_scroll_y(ids, speed = nil)
+    return pictures[ids].scroll_speed_y unless speed 
       select_pictures(ids).each {|id| pictures[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
