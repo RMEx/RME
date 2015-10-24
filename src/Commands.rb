@@ -2653,14 +2653,23 @@ module RMECommands
     end
 
     def window_dimension(id, width, height, duration = 0, wf = false)
-      SceneManager.scene.windows[id].move_size(x, y, duration)
-      wait(duration) if wf
+      if duration > 0
+        SceneManager.scene.windows[id].move_size(x, y, duration)
+        wait(duration) if wf
+        return 
+      end
+      SceneManager.scene.windows[id].width = width
+      SceneManager.scene.windows[id].height = height
     end
 
     def window_opacity(id, value = nil, duration = 0, wf = false)
       return SceneManager.scene.windows[id].opacity unless value
-      SceneManager.scene.windows[id].move_opacity(value, duration)
-      wait(duration) if wf
+      if duration > 0
+        SceneManager.scene.windows[id].move_opacity(value, duration)
+        wait(duration) if wf
+        return 
+      end
+      SceneManager.scene.windows[id].opacity = value
     end
 
     def window_move(id, x, y, w, h, opacity, duration = 0, wf = false)
