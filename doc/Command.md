@@ -680,7 +680,7 @@ Collection des commandes EventExtender
 *    [Command.website(url)](#commandwebsiteurl)
 *    [Command.window_activate(id)](#commandwindow_activateid)
 *    [Command.window_closed?(id)](#commandwindow_closedid)
-*    [Command.window_content(id, content, *resize)](#commandwindow_contentid-content-resize)
+*    [Command.window_content(id, *content, *resize)](#commandwindow_contentid-content-resize)
 *    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
 *    [Command.window_deactivate(id)](#commandwindow_deactivateid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
@@ -10321,15 +10321,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.window_content(id, content, *resize)
+##### Command.window_content(id, *content, *resize)
 
-> Change le contenu de la fenêtre référencée par son ID
+> Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-`content`|`Object`|Valeur affichée de la fenêtre  
+`*content`|`Object`|Valeur affichée de la fenêtre  
 `*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
 
 

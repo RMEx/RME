@@ -2661,7 +2661,8 @@ module RMECommands
     def window_closed?(id); SceneManager.scene.windows[id].close?; end
     def window_opened?(id); SceneManager.scene.windows[id].open?; end
 
-    def window_content(id, content, resize = false)
+    def window_content(id, content = nil, resize = false)
+      return SceneManager.scene.windows[id].content unless content
       SceneManager.scene.windows[id].content = content
       SceneManager.scene.windows[id].refresh(resize)
     end

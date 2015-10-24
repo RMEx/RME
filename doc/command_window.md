@@ -17,7 +17,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [remove_window(id)](#remove_windowid)
 *    [window_activate(id)](#window_activateid)
 *    [window_closed?(id)](#window_closedid)
-*    [window_content(id, content, *resize)](#window_contentid-content-resize)
+*    [window_content(id, *content, *resize)](#window_contentid-content-resize)
 *    [window_current_symbol(id)](#window_current_symbolid)
 *    [window_deactivate(id)](#window_deactivateid)
 *    [window_dimension(id, width, height, *duration, *wait_flag)](#window_dimensionid-width-height-duration-wait_flag)
@@ -148,15 +148,15 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `id`|`Fixnum`|ID de la fenêtre  
 
 
-##### window_content(id, content, *resize)
+##### window_content(id, *content, *resize)
 
-> Change le contenu de la fenêtre référencée par son ID
+> Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-`content`|`Object`|Valeur affichée de la fenêtre  
+`*content`|`Object`|Valeur affichée de la fenêtre  
 `*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
 
 
