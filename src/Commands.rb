@@ -558,13 +558,15 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change scroll speed (in X)
     #--------------------------------------------------------------------------
-    def picture_scroll_x(ids, speed)
+    def picture_scroll_x(ids, speed = nil)
+      return pictures[ids].scroll_speed_x unless speed 
       select_pictures(ids).each {|id| pictures[id].scroll_speed_x = speed}
     end
     #--------------------------------------------------------------------------
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
-    def picture_scroll_y(ids, speed)
+    def picture_scroll_y(ids, speed = nil)
+    return pictures[ids].scroll_speed_y unless speed 
       select_pictures(ids).each {|id| pictures[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
@@ -1877,6 +1879,10 @@ module RMECommands
       )
       wait(duration) if wait_flag
     end
+    
+    def text_move?(id)
+      Game_Screen.get.texts[id].move?
+    end
 
     #--------------------------------------------------------------------------
     # * Erase
@@ -1893,8 +1899,9 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change profile
     #--------------------------------------------------------------------------
-    def text_profile(id, profile)
-     Game_Screen.get.texts[id].profile = profile
+    def text_profile(id, profile = nil)
+      return Game_Screen.get.texts[id].profile unless profile
+      Game_Screen.get.texts[id].profile = profile
     end
     #--------------------------------------------------------------------------
     # * Rotation
@@ -1978,7 +1985,8 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Text Opacity
     #--------------------------------------------------------------------------
-    def text_opacity(id, value, duration = nil, wf = false)
+    def text_opacity(id, value = nil, duration = nil, wf = false)
+      return Game_Screen.get.texts[id].opacity unless value
       if duration.is_a?(Fixnum)
         Game_Screen.get.texts[id].target_opacity = value
         Game_Screen.get.texts[id].opacity_duration = duration
@@ -1990,6 +1998,11 @@ module RMECommands
 
     def text_value(id)
       Game_Screen.get.texts[id].text_value
+    end
+    
+    def text_angle(id, value = nil)
+      return Game_Screen.get.texts[id].angle unless value 
+      Game_Screen.get.texts[id].angle = value
     end
 
     append_commands
@@ -2340,16 +2353,22 @@ module RMECommands
 
     def scene; SceneManager.scene; end
 
-    def textfield_text_show(id, text, x, y, w, profile, range = false)
+    def textfield_text_show(id, text, x, y, w, profile, range = false, active = true, op = 255)
       scene.add_textfield(id, UI::Window_Textfield.new(x, y, w, text, profile, range))
+      textfield_opacity(id, op)
+      textfield_activate(id)
     end
 
-    def textfield_int_show(id, number, x, y, w, profile, range = false)
+    def textfield_int_show(id, number, x, y, w, profile, range = false, active = true, op = 255)
       scene.add_textfield(id, UI::Window_Intfield.new(x, y, w, text, profile, range))
+      textfield_opacity(id, op)
+      textfield_activate(id)
     end
 
-    def textfield_float_show(id, number, x, y, w, profile, range = false)
+    def textfield_float_show(id, number, x, y, w, profile, range = false, active = true, op = 255)
       scene.add_textfield(id, UI::Window_Floatfield.new(x, y, w, text, profile, range))
+      textfield_opacity(id, op)
+      textfield_activate(id)
     end
 
     def textfield_erase(id = nil)
@@ -2603,22 +2622,22 @@ module RMECommands
 
   module CmdWindow
 
-    def create_text_window(id, content, x, y, w=-1, h=-1, closed=nil)
+    def create_text_window(id, content, x, y, w=-1, h=-1, op = 255, closed=nil)
       f = Window_Text.new(x, y, content, w, h, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_commands_window(id, x, y, w, hash, closed =nil, h = hash.size)
+    def create_commands_window(id, x, y, w, hash, op = 255,  closed =nil, h = hash.size)
       f = Window_EvCommand.new(x, y, w, h, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_horizontal_commands_window(id, x, y, hash, closed = nil, rows = hash.length)
+    def create_horizontal_commands_window(id, x, y, hash, op=255, closed = nil, rows = hash.length)
       f = Window_EvHorzCommand.new(x, y, rows, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
 
-    def create_selectable_window(id, x, y, width, height, hash, closed = nil)
+    def create_selectable_window(id, x, y, width, height, hash, op=255, closed = nil)
       f = Window_EvSelectable.new(x, y, width, height, hash, closed)
       SceneManager.scene.add_window(id, f)
     end
@@ -2642,7 +2661,8 @@ module RMECommands
     def window_closed?(id); SceneManager.scene.windows[id].close?; end
     def window_opened?(id); SceneManager.scene.windows[id].open?; end
 
-    def window_content(id, content, resize = false)
+    def window_content(id, content = nil, resize = false)
+      return SceneManager.scene.windows[id].content unless content
       SceneManager.scene.windows[id].content = content
       SceneManager.scene.windows[id].refresh(resize)
     end
@@ -2653,14 +2673,23 @@ module RMECommands
     end
 
     def window_dimension(id, width, height, duration = 0, wf = false)
-      SceneManager.scene.windows[id].move_size(x, y, duration)
-      wait(duration) if wf
+      if duration > 0
+        SceneManager.scene.windows[id].move_size(x, y, duration)
+        wait(duration) if wf
+        return 
+      end
+      SceneManager.scene.windows[id].width = width
+      SceneManager.scene.windows[id].height = height
     end
 
     def window_opacity(id, value = nil, duration = 0, wf = false)
       return SceneManager.scene.windows[id].opacity unless value
-      SceneManager.scene.windows[id].move_opacity(value, duration)
-      wait(duration) if wf
+      if duration > 0
+        SceneManager.scene.windows[id].move_opacity(value, duration)
+        wait(duration) if wf
+        return 
+      end
+      SceneManager.scene.windows[id].opacity = value
     end
 
     def window_move(id, x, y, w, h, opacity, duration = 0, wf = false)
@@ -2688,12 +2717,14 @@ module RMECommands
       SceneManager.scene.windows[id].height
     end
 
-    def window_x(id)
-      SceneManager.scene.windows[id].x
+    def window_x(id, x = nil)
+      return SceneManager.scene.windows[id].x unless x
+      SceneManager.scene.windows[id].x = x
     end
 
-    def window_y(id)
-      SceneManager.scene.windows[id].y
+    def window_y(id, y = nil)
+      return SceneManager.scene.windows[id].y unless y 
+      SceneManager.scene.windows[id].y = y
     end
 
     append_commands

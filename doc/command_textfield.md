@@ -12,16 +12,16 @@ Commande pour manipuler des champs de texte saisissables au clavier
 *    [textfield_click?(id)](#textfield_clickid)
 *    [textfield_deactivate(*id)](#textfield_deactivateid)
 *    [textfield_erase(*id)](#textfield_eraseid)
-*    [textfield_float_show(id, number, x, y, w, profile, *range)](#textfield_float_showid-number-x-y-w-profile-range)
+*    [textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)](#textfield_float_showid-number-x-y-w-profile-range-active-opacity)
 *    [textfield_get_value(id)](#textfield_get_valueid)
 *    [textfield_hover?(id)](#textfield_hoverid)
-*    [textfield_int_show(id, number, x, y, w, profile, *range)](#textfield_int_showid-number-x-y-w-profile-range)
+*    [textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)](#textfield_int_showid-number-x-y-w-profile-range-active-opacity)
 *    [textfield_opacity(id, opacity)](#textfield_opacityid-opacity)
 *    [textfield_press?(id, *key)](#textfield_pressid-key)
 *    [textfield_release?(id, *key)](#textfield_releaseid-key)
 *    [textfield_repeat?(id, *key)](#textfield_repeatid-key)
 *    [textfield_set_value(id, value)](#textfield_set_valueid-value)
-*    [textfield_text_show(id, text, x, y, w, profile, *range)](#textfield_text_showid-text-x-y-w-profile-range)
+*    [textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)](#textfield_text_showid-text-x-y-w-profile-range-active-opacity)
 *    [textfield_trigger?(id, *key)](#textfield_triggerid-key)
 *    [textfield_visible(id, flag)](#textfield_visibleid-flag)
 *    [textfield_visible?(id)](#textfield_visibleid)
@@ -78,7 +78,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `*id`|`Fixnum`|ID de la zone de texte, si aucun ID n'est spécifié, toutes les zones de textes seront supprimées  
 
 
-##### textfield_float_show(id, number, x, y, w, profile, *range)
+##### textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir des nombres à virgule
 
@@ -92,6 +92,8 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 ##### textfield_get_value(id)
@@ -114,7 +116,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `id`|`Fixnum`|ID de la zone de texte  
 
 
-##### textfield_int_show(id, number, x, y, w, profile, *range)
+##### textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir des nombres entiers
 
@@ -128,6 +130,8 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 ##### textfield_opacity(id, opacity)
@@ -185,7 +189,7 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `value`|`TextfieldType`|Valeur à attribuer  
 
 
-##### textfield_text_show(id, text, x, y, w, profile, *range)
+##### textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir du texte
 
@@ -199,6 +203,8 @@ Commande pour manipuler des champs de texte saisissables au clavier
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle du nombre de caractères autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 ##### textfield_trigger?(id, *key)

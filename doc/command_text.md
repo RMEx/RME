@@ -10,9 +10,10 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [text_change(id, text)](#text_changeid-text)
 *    [text_erase(id)](#text_eraseid)
 *    [text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#text_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
-*    [text_opacity(id, opacity, *duration, *wait_flag)](#text_opacityid-opacity-duration-wait_flag)
+*    [text_move?(id)](#text_moveid)
+*    [text_opacity(id, *opacity, *duration, *wait_flag)](#text_opacityid-opacity-duration-wait_flag)
 *    [text_position(id, x, y, *duration, *wait_flag)](#text_positionid-x-y-duration-wait_flag)
-*    [text_profile(id, profile)](#text_profileid-profile)
+*    [text_profile(id, *profile)](#text_profileid-profile)
 *    [text_rotate(id, speed)](#text_rotateid-speed)
 *    [text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#text_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [text_value(id)](#text_valueid)
@@ -64,15 +65,25 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `origin`|`Fixnum`|Origine  
 
 
-##### text_opacity(id, opacity, *duration, *wait_flag)
+##### text_move?(id)
 
-> Change l'opacité du texte
+> Retourne true sur le texte référencé par son ID est en mouvement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+
+
+##### text_opacity(id, *opacity, *duration, *wait_flag)
+
+> Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
+`*opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -91,15 +102,15 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
 
-##### text_profile(id, profile)
+##### text_profile(id, *profile)
 
-> Change le profil du texte
+> Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`profile`|`String`|Nouveau profil  
+`*profile`|`String`|Nouveau profil  
 
 
 ##### text_rotate(id, speed)

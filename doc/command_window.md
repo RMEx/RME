@@ -17,7 +17,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [remove_window(id)](#remove_windowid)
 *    [window_activate(id)](#window_activateid)
 *    [window_closed?(id)](#window_closedid)
-*    [window_content(id, content, *resize)](#window_contentid-content-resize)
+*    [window_content(id, *content, *resize)](#window_contentid-content-resize)
 *    [window_current_symbol(id)](#window_current_symbolid)
 *    [window_deactivate(id)](#window_deactivateid)
 *    [window_dimension(id, width, height, *duration, *wait_flag)](#window_dimensionid-width-height-duration-wait_flag)
@@ -27,8 +27,8 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [window_opacity(id, *value, *duration, *wait_flag)](#window_opacityid-value-duration-wait_flag)
 *    [window_opened?(id)](#window_openedid)
 *    [window_width(id)](#window_widthid)
-*    [window_x(id)](#window_xid)
-*    [window_y(id)](#window_yid)
+*    [window_x(id, *x)](#window_xid-x)
+*    [window_y(id, *y)](#window_yid-y)
 
 
 ##Description des commandes
@@ -59,7 +59,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### create_horizontal_commands_window(id, x, y, hash, row)
 
-> Your description
+> Crée une fenêtre de sélection horizontale
 
   
 > Nom|Type|Description  
@@ -148,15 +148,15 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `id`|`Fixnum`|ID de la fenêtre  
 
 
-##### window_content(id, content, *resize)
+##### window_content(id, *content, *resize)
 
-> Change le contenu de la fenêtre référencée par son ID
+> Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-`content`|`Object`|Valeur affichée de la fenêtre  
+`*content`|`Object`|Valeur affichée de la fenêtre  
 `*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
 
 
@@ -268,23 +268,25 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 `id`|`Fixnum`|ID de la fenêtre  
 
 
-##### window_x(id)
+##### window_x(id, *x)
 
-> Renvoie la coordonnée X de la fenêtre référencée par son ID
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de la fenêtre  
-
-
-##### window_y(id)
-
-> Renvoie la coordonnée Y de la fenêtre référencée par son ID
+> Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
+`*x`|`Fixnum`|Coordonnée X de la fenêtre  
+
+
+##### window_y(id, *y)
+
+> Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`*y`|`Fixnum`|Coordonnée Y de la fenêtre  
 
 

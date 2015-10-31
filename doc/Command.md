@@ -446,8 +446,8 @@ Collection des commandes EventExtender
 *    [Command.picture_position(Selector, x, y, *duration, *wait_flag, *ease)](#commandpicture_positionselector-x-y-duration-wait_flag-ease)
 *    [Command.picture_rotate(Selector, speed)](#commandpicture_rotateselector-speed)
 *    [Command.picture_scroll(Selector, vitesse)](#commandpicture_scrollselector-vitesse)
-*    [Command.picture_scroll_x(Selector, vitesse)](#commandpicture_scroll_xselector-vitesse)
-*    [Command.picture_scroll_y(Selector, vitesse)](#commandpicture_scroll_yselector-vitesse)
+*    [Command.picture_scroll_x(Selector, *vitesse)](#commandpicture_scroll_xselector-vitesse)
+*    [Command.picture_scroll_y(Selector, *vitesse)](#commandpicture_scroll_yselector-vitesse)
 *    [Command.picture_shake(Selector, power, speed, duration)](#commandpicture_shakeselector-power-speed-duration)
 *    [Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#commandpicture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [Command.picture_show_enemy(pic_id, id, position)](#commandpicture_show_enemypic_id-id-position)
@@ -600,12 +600,14 @@ Collection des commandes EventExtender
 *    [Command.tanh(x)](#commandtanhx)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
+*    [Command.text_angle(id, *value)](#commandtext_angleid-value)
 *    [Command.text_change(id, text)](#commandtext_changeid-text)
 *    [Command.text_erase(id)](#commandtext_eraseid)
 *    [Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#commandtext_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
-*    [Command.text_opacity(id, opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
+*    [Command.text_move?(id)](#commandtext_moveid)
+*    [Command.text_opacity(id, *opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
 *    [Command.text_position(id, x, y, *duration, *wait_flag)](#commandtext_positionid-x-y-duration-wait_flag)
-*    [Command.text_profile(id, profile)](#commandtext_profileid-profile)
+*    [Command.text_profile(id, *profile)](#commandtext_profileid-profile)
 *    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
 *    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.text_value(id)](#commandtext_valueid)
@@ -619,16 +621,16 @@ Collection des commandes EventExtender
 *    [Command.textfield_click?(id)](#commandtextfield_clickid)
 *    [Command.textfield_deactivate(*id)](#commandtextfield_deactivateid)
 *    [Command.textfield_erase(*id)](#commandtextfield_eraseid)
-*    [Command.textfield_float_show(id, number, x, y, w, profile, *range)](#commandtextfield_float_showid-number-x-y-w-profile-range)
+*    [Command.textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)](#commandtextfield_float_showid-number-x-y-w-profile-range-active-opacity)
 *    [Command.textfield_get_value(id)](#commandtextfield_get_valueid)
 *    [Command.textfield_hover?(id)](#commandtextfield_hoverid)
-*    [Command.textfield_int_show(id, number, x, y, w, profile, *range)](#commandtextfield_int_showid-number-x-y-w-profile-range)
+*    [Command.textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)](#commandtextfield_int_showid-number-x-y-w-profile-range-active-opacity)
 *    [Command.textfield_opacity(id, opacity)](#commandtextfield_opacityid-opacity)
 *    [Command.textfield_press?(id, *key)](#commandtextfield_pressid-key)
 *    [Command.textfield_release?(id, *key)](#commandtextfield_releaseid-key)
 *    [Command.textfield_repeat?(id, *key)](#commandtextfield_repeatid-key)
 *    [Command.textfield_set_value(id, value)](#commandtextfield_set_valueid-value)
-*    [Command.textfield_text_show(id, text, x, y, w, profile, *range)](#commandtextfield_text_showid-text-x-y-w-profile-range)
+*    [Command.textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)](#commandtextfield_text_showid-text-x-y-w-profile-range-active-opacity)
 *    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
 *    [Command.textfield_visible(id, flag)](#commandtextfield_visibleid-flag)
 *    [Command.textfield_visible?(id)](#commandtextfield_visibleid)
@@ -678,7 +680,7 @@ Collection des commandes EventExtender
 *    [Command.website(url)](#commandwebsiteurl)
 *    [Command.window_activate(id)](#commandwindow_activateid)
 *    [Command.window_closed?(id)](#commandwindow_closedid)
-*    [Command.window_content(id, content, *resize)](#commandwindow_contentid-content-resize)
+*    [Command.window_content(id, *content, *resize)](#commandwindow_contentid-content-resize)
 *    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
 *    [Command.window_deactivate(id)](#commandwindow_deactivateid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
@@ -688,8 +690,8 @@ Collection des commandes EventExtender
 *    [Command.window_opacity(id, *value, *duration, *wait_flag)](#commandwindow_opacityid-value-duration-wait_flag)
 *    [Command.window_opened?(id)](#commandwindow_openedid)
 *    [Command.window_width(id)](#commandwindow_widthid)
-*    [Command.window_x(id)](#commandwindow_xid)
-*    [Command.window_y(id)](#commandwindow_yid)
+*    [Command.window_x(id, *x)](#commandwindow_xid-x)
+*    [Command.window_y(id, *y)](#commandwindow_yid-y)
 
 
 ##Description des méthodes
@@ -2708,7 +2710,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_horizontal_commands_window(id, x, y, hash, row)
 
-> Your description
+> Crée une fenêtre de sélection horizontale
 
   
 > Nom|Type|Description  
@@ -6995,30 +6997,30 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.picture_scroll_x(Selector, vitesse)
+##### Command.picture_scroll_x(Selector, *vitesse)
 
-> Change la vitesse de défilement horizontal d'une image fixée sur la carte
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`Selector`|`Selector`|Sélécteur de l'image  
-`vitesse`|`Fixnum`|Vitesse de défilement  
-
-
-
-
-
-
-##### Command.picture_scroll_y(Selector, vitesse)
-
-> Change la vitesse de défilement vertical d'une image fixée sur la carte
+> Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
-`vitesse`|`Fixnum`|Vitesse de défilement  
+`*vitesse`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+
+
+##### Command.picture_scroll_y(Selector, *vitesse)
+
+> Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`Selector`|`Selector`|Sélécteur de l'image  
+`*vitesse`|`Fixnum`|Vitesse de défilement  
 
 
 
@@ -9137,6 +9139,21 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.text_angle(id, *value)
+
+> Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id du texte  
+`*value`|`Fixnum`|Nouvel angle (peut être vide)  
+
+
+
+
+
+
 ##### Command.text_change(id, text)
 
 > Change le texte affiché à l'écran
@@ -9189,15 +9206,29 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.text_opacity(id, opacity, *duration, *wait_flag)
+##### Command.text_move?(id)
 
-> Change l'opacité du texte
+> Retourne true sur le texte référencé par son ID est en mouvement, false sinon
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+
+
+
+
+
+
+##### Command.text_opacity(id, *opacity, *duration, *wait_flag)
+
+> Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
+`*opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
@@ -9224,15 +9255,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.text_profile(id, profile)
+##### Command.text_profile(id, *profile)
 
-> Change le profil du texte
+> Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-`profile`|`String`|Nouveau profil  
+`*profile`|`String`|Nouveau profil  
 
 
 
@@ -9447,7 +9478,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_float_show(id, number, x, y, w, profile, *range)
+##### Command.textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir des nombres à virgule
 
@@ -9461,6 +9492,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 
@@ -9495,7 +9528,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_int_show(id, number, x, y, w, profile, *range)
+##### Command.textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir des nombres entiers
 
@@ -9509,6 +9542,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle des nombres autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 
@@ -9590,7 +9625,7 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.textfield_text_show(id, text, x, y, w, profile, *range)
+##### Command.textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)
 
 > Affiche un champ de texte permettant de saisir du texte
 
@@ -9604,6 +9639,8 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `w`|`Fixnum`|Largeur du champ de texte  
 `profile`|`Fixnum`|Référence du profile du champ de texte  
 `*range`|`Range`|Intervalle du nombre de caractères autorisés, peut être occulté  
+`*active`|`Boolean`|Défini si le textfield est actif à sa création (true oui, false non). Par défaut: true  
+`*opacity`|`Fixnum`|Défini l'opacité du textfield, par défaut, 255  
 
 
 
@@ -10284,15 +10321,15 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.window_content(id, content, *resize)
+##### Command.window_content(id, *content, *resize)
 
-> Change le contenu de la fenêtre référencée par son ID
+> Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
-`content`|`Object`|Valeur affichée de la fenêtre  
+`*content`|`Object`|Valeur affichée de la fenêtre  
 `*resize`|`Boolean`|Si cet argument vaut true, la taille de la fenêtre est recalculée  
 
 
@@ -10444,28 +10481,30 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
-##### Command.window_x(id)
+##### Command.window_x(id, *x)
 
-> Renvoie la coordonnée X de la fenêtre référencée par son ID
-
-  
-> Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de la fenêtre  
-
-
-
-
-
-
-##### Command.window_y(id)
-
-> Renvoie la coordonnée Y de la fenêtre référencée par son ID
+> Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
 
   
 > Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
+`*x`|`Fixnum`|Coordonnée X de la fenêtre  
+
+
+
+
+
+
+##### Command.window_y(id, *y)
+
+> Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
+`*y`|`Fixnum`|Coordonnée Y de la fenêtre  
 
 
 
