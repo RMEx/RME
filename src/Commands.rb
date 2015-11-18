@@ -2008,7 +2008,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Clear all texts
     #--------------------------------------------------------------------------
-    def text_clear; Game_Screen.get.clear_texts; end
+    def texts_clear; Game_Screen.get.clear_texts; end
 
     append_commands
   end
