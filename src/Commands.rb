@@ -2004,6 +2004,11 @@ module RMECommands
       return Game_Screen.get.texts[id].angle unless value 
       Game_Screen.get.texts[id].angle = value
     end
+    
+    #--------------------------------------------------------------------------
+    # * Clear all texts
+    #--------------------------------------------------------------------------
+    def text_clear; Game_Screen.get.clear_texts; end
 
     append_commands
   end
