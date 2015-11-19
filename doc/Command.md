@@ -634,6 +634,7 @@ Collection des commandes EventExtender
 *    [Command.textfield_trigger?(id, *key)](#commandtextfield_triggerid-key)
 *    [Command.textfield_visible(id, flag)](#commandtextfield_visibleid-flag)
 *    [Command.textfield_visible?(id)](#commandtextfield_visibleid)
+*    [Command.texts_clear](#commandtexts_clear)
 *    [Command.tile_id(x, y, layer, *map_id)](#commandtile_idx-y-layer-map_id)
 *    [Command.time_day](#commandtime_day)
 *    [Command.time_hour](#commandtime_hour)
@@ -9686,6 +9687,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
+
+
+
+
+
+##### Command.texts_clear
+
+> Supprime tous les textes
+
+  
+> 
 
 
 

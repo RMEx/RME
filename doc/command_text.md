@@ -22,6 +22,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)](#text_zoomid-zoom_x-zoom_y-duration-wait_flag)
 *    [text_zoom_x(id, zoom_x, *duration, *wait_flag)](#text_zoom_xid-zoom_x-duration-wait_flag)
 *    [text_zoom_y(id, zoom_y, *duration, *wait_flag)](#text_zoom_yid-zoom_y-duration-wait_flag)
+*    [texts_clear](#texts_clear)
 
 
 ##Description des commandes
@@ -218,4 +219,11 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 
+
+##### texts_clear
+
+> Supprime tous les textes
+
+  
+> 
 

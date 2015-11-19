@@ -1405,7 +1405,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Eval sequence
   #--------------------------------------------------------------------------
-  def eval(str)
+  def eval(str, r=nil)
     Game_Interpreter.current_id = @id
     Game_Interpreter.current_map_id = $game_map.map_id
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
@@ -3277,11 +3277,11 @@ class Game_Event
     end
     if script =~ /^\s*(trigger|listener)/
       script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
-      potential_trigger = eval(script, $game_map.interpreter.get_binding)
+      potential_trigger = eval(script)
       return potential_trigger if potential_trigger.is_a?(Proc)
     elsif script =~ /^\s*(ignore_left)/
       script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
-      potential_trigger = eval(script, $game_map.interpreter.get_binding)
+      potential_trigger = eval(script)
       return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
     end
     return false
