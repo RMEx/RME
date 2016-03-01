@@ -1461,6 +1461,7 @@ class Sprite_Character
   alias_method :rm_extender_update,      :update
   alias_method :rm_extender_initialize,  :initialize
   alias_method :rm_extender_dispose,     :dispose
+  alias_method :rm_extender_set_character_bitmap,  :set_character_bitmap
   #--------------------------------------------------------------------------
   # * Object initialization
   #--------------------------------------------------------------------------
@@ -1470,6 +1471,14 @@ class Sprite_Character
     set_rect
     self.character.setup_buzzer if self.character
     @old_buzz = 0
+  end
+  #--------------------------------------------------------------------------
+  # * Frame Update zoom
+  #--------------------------------------------------------------------------
+  def set_character_bitmap
+    rm_extender_set_character_bitmap
+    character.ox = self.ox
+    character.oy = self.ox
   end
   #--------------------------------------------------------------------------
   # * Dispose trails

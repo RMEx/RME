@@ -1,14 +1,15 @@
 # Package description
 Package.new(
   name: 'RME',
-  version: vsn(0, 1, 0),
+  version: vsn(0, 2, 0),
   authors: {
     'Nuki' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
     'Raho' => '',
     'Hiino' => '',
     'Joke' => 'joke@biloucorp.com',
-    'Mspawn' => ''
+    'Mspawn' => '',
+    'Zangther' => 'zangther@gmail.com'
   },
   components: [
     'SDK.rb',
