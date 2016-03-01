@@ -1,3 +1,7 @@
+> Avec l'arrivée de MV, RPGMaker VXAce n'est plus fortement maintenu. 
+> Cependant, nous tâchons de fixer les bogues relayés dans le système 
+> d'issue.
+
 # [![RMEx](http://rmex.github.io/images/rmex-shortcut.png)](http://rmex.github.io) [RME : RPG Maker Extender](https://github.com/RMEx/RME/wiki)
 
 **RME** est le successeur de l'**[Event Extender](http://funkywork.github.io/EE)**.
