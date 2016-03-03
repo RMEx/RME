@@ -5503,10 +5503,10 @@ link_method_documentation 'Command.player_path_length',
 		                        :x => ["Coordonnées X", :Fixnum],
 		                        :y => ["Coordonnées Y", :Fixnum],
 		                       :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
-                           :"*no_throug" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
+                           :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
 	                        } # Maybe changed
-register_command :event, 'Command.player_path_length
+register_command :event, 'Command.player_path_length'
 
 link_method_documentation 'Command.event_path_length',
 	                        'Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point',
@@ -5515,7 +5515,7 @@ link_method_documentation 'Command.event_path_length',
 		                        :x => ["Coordonnées X", :Fixnum],
 		                        :y => ["Coordonnées Y", :Fixnum],
 		                       :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
-                           :"*no_throug" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
+                           :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
 	                        } # Maybe changed
 register_command :event, 'Command.event_path_length'

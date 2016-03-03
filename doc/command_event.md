@@ -24,6 +24,7 @@ Commandes relatives aux évènements
 *    [event_opaque(id)](#event_opaqueid)
 *    [event_ox(id, *value)](#event_oxid-value)
 *    [event_oy(id, *value)](#event_oyid-value)
+*    [event_path_length(id, x, y, *wait_flag, *no_through)](#event_path_lengthid-x-y-wait_flag-no_through)
 *    [event_pixel_x(id)](#event_pixel_xid)
 *    [event_pixel_y(id)](#event_pixel_yid)
 *    [event_priority(ids, priority)](#event_priorityids-priority)
@@ -88,6 +89,7 @@ Commandes relatives aux évènements
 *    [player_opaque](#player_opaque)
 *    [player_ox(*value)](#player_oxvalue)
 *    [player_oy(*value)](#player_oyvalue)
+*    [player_path_length(x, y, *wait_flag, *no_through)](#player_path_lengthx-y-wait_flag-no_through)
 *    [player_pixel_x](#player_pixel_x)
 *    [player_pixel_y](#player_pixel_y)
 *    [player_restore_origin](#player_restore_origin)
@@ -293,6 +295,20 @@ Commandes relatives aux évènements
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+##### event_path_length(id, x, y, *wait_flag, *no_through)
+
+> Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
+`*no_through`|`Boolean`|Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable  
 
 
 ##### event_pixel_x(id)
@@ -943,6 +959,19 @@ Commandes relatives aux évènements
 > Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+##### player_path_length(x, y, *wait_flag, *no_through)
+
+> Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
+`*no_through`|`Boolean`|Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable  
 
 
 ##### player_pixel_x

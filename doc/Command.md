@@ -209,6 +209,7 @@ Collection des commandes EventExtender
 *    [Command.event_opaque(id)](#commandevent_opaqueid)
 *    [Command.event_ox(id, *value)](#commandevent_oxid-value)
 *    [Command.event_oy(id, *value)](#commandevent_oyid-value)
+*    [Command.event_path_length(id, x, y, *wait_flag, *no_through)](#commandevent_path_lengthid-x-y-wait_flag-no_through)
 *    [Command.event_pixel_x(id)](#commandevent_pixel_xid)
 *    [Command.event_pixel_y(id)](#commandevent_pixel_yid)
 *    [Command.event_priority(ids, priority)](#commandevent_priorityids-priority)
@@ -481,6 +482,7 @@ Collection des commandes EventExtender
 *    [Command.player_opaque](#commandplayer_opaque)
 *    [Command.player_ox(*value)](#commandplayer_oxvalue)
 *    [Command.player_oy(*value)](#commandplayer_oyvalue)
+*    [Command.player_path_length(x, y, *wait_flag, *no_through)](#commandplayer_path_lengthx-y-wait_flag-no_through)
 *    [Command.player_pixel_x](#commandplayer_pixel_x)
 *    [Command.player_pixel_y](#commandplayer_pixel_y)
 *    [Command.player_restore_origin](#commandplayer_restore_origin)
@@ -3564,6 +3566,24 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
+##### Command.event_path_length(id, x, y, *wait_flag, *no_through)
+
+> Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
+`*no_through`|`Boolean`|Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable  
 
 
 
@@ -7522,6 +7542,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 > Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
+
+
+
+
+
+
+##### Command.player_path_length(x, y, *wait_flag, *no_through)
+
+> Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*wait_flag`|`Boolean`|Par défaut, false, cette valeur définit le blocage durant le déplacement ou non  
+`*no_through`|`Boolean`|Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable  
 
 
 
