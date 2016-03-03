@@ -1380,6 +1380,13 @@ class Game_CharacterBase
     Fiber.yield while self.move_route_forcing if wait
   end
   #--------------------------------------------------------------------------
+  # * Get path length
+  #--------------------------------------------------------------------------
+  def get_path_length(x, y, noth=false)
+    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, noth)
+    return route.length
+  end
+  #--------------------------------------------------------------------------
   # * Jump to coord
   #--------------------------------------------------------------------------
   def jump_to(x, y, wait=true)
