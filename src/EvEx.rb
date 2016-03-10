@@ -1485,7 +1485,7 @@ class Sprite_Character
   def set_character_bitmap
     rm_extender_set_character_bitmap
     character.ox = self.ox
-    character.oy = self.ox
+    character.oy = self.oy
   end
   #--------------------------------------------------------------------------
   # * Dispose trails

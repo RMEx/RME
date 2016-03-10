@@ -1,7 +1,7 @@
 # Package description
 Package.new(
   name: 'RME',
-  version: vsn(0, 2, 1),
+  version: vsn(0, 2, 2),
   authors: {
     'Nuki' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
