@@ -1384,7 +1384,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def get_path_length(x, y, noth=false)
     route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, noth)
-    return route.length
+    return route.list.length
   end
   #--------------------------------------------------------------------------
   # * Jump to coord
