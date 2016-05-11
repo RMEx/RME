@@ -702,17 +702,17 @@ module Area
     #--------------------------------------------------------------------------
     def render
       if @sprite && @sprite.disposed?
-        @sprite.dispose  
+        @sprite.dispose
       end
-      @sprite = Sprite.new 
+      @sprite = Sprite.new
       @sprite.bitmap = Bitmap.new(@width, @height)
-      @sprite.x = @x 
-      @sprite.y = @y 
+      @sprite.x = @x
+      @sprite.y = @y
       @sprite.bitmap.fill_rect(0, 0, @width, @height, @color)
     end
-    def hide 
+    def hide
       return unless @sprite || @sprite.disposed?
-      @sprite.dispose   
+      @sprite.dispose
     end
   end
 
@@ -1195,9 +1195,9 @@ class Game_Text
     @angle %= 360
   end
   #--------------------------------------------------------------------------
-  # * Text is moving ? 
+  # * Text is moving ?
   #--------------------------------------------------------------------------
-  def move? 
+  def move?
     return @moving
   end
 end
@@ -1384,7 +1384,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def get_path_length(x, y, noth=false)
     route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, noth)
-    return route.length
+    return route.list.length
   end
   #--------------------------------------------------------------------------
   # * Jump to coord
@@ -1408,7 +1408,7 @@ class Game_CharacterBase
   def name
     ""
   end
-  
+
   #--------------------------------------------------------------------------
   # * Eval sequence
   #--------------------------------------------------------------------------
@@ -1416,7 +1416,7 @@ class Game_CharacterBase
     Game_Interpreter.current_id = @id
     Game_Interpreter.current_map_id = $game_map.map_id
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
-    super(script, $game_map.interpreter.get_binding)  
+    super(script, $game_map.interpreter.get_binding)
   end
 
 end
@@ -1478,6 +1478,8 @@ class Sprite_Character
     set_rect
     self.character.setup_buzzer if self.character
     @old_buzz = 0
+    @origin_len_x = self.zoom_x
+    @origin_len_y = self.zoom_y
   end
   #--------------------------------------------------------------------------
   # * Frame Update zoom
@@ -1486,6 +1488,8 @@ class Sprite_Character
     rm_extender_set_character_bitmap
     character.ox = self.ox
     character.oy = self.oy
+    @old_buzz = 0
+    @origin_len_x = self.zoom_x
   end
   #--------------------------------------------------------------------------
   # * Dispose trails
@@ -2354,14 +2358,14 @@ class Game_Map
   #--------------------------------------------------------------------------
   def unflash_map
     return unless SceneManager.scene.is_a?(Scene_Map)
-    tilemap = SceneManager.scene.spriteset.tilemap 
+    tilemap = SceneManager.scene.spriteset.tilemap
     if tilemap.flash_data
       height.times do |y|
         width.times do |x|
           tilemap.flash_data[x, y] = Color.new(0, 0, 0).to_hex
         end
-      end      
-    end  
+      end
+    end
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
@@ -3050,7 +3054,7 @@ class Spriteset_Map
   alias_method :rm_extender_dispose_parallax, :dispose_parallax
   alias_method :rm_extender_update_parallax, :update_parallax
   alias_method :rm_extender_create_chars, :create_characters
-  
+
   #--------------------------------------------------------------------------
   # * Public instances variables
   #--------------------------------------------------------------------------
@@ -3070,10 +3074,10 @@ class Spriteset_Map
   def create_characters
     rm_extender_create_chars
     @character_sprites.each.with_index do |c, i|
-      c.character.sprite_index = i  
+      c.character.sprite_index = i
     end
   end
-    
+
   #--------------------------------------------------------------------------
   # * Text creation
   #--------------------------------------------------------------------------
@@ -3342,7 +3346,7 @@ class Game_Interpreter
         map = Game_Temp.cached_map[1]
       else
         map = $game_map.map
-      end 
+      end
       return unless map
       event = map.events[event_id]
       return unless event
