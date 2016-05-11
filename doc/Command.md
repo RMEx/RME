@@ -116,6 +116,7 @@ Collection des commandes EventExtender
 *    [Command.atan2(x, y)](#commandatan2x-y)
 *    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
+*    [Command.between(x1, y1, x2, y2)](#commandbetweenx1-y1-x2-y2)
 *    [Command.bgm_fade(wait, *frame)](#commandbgm_fadewait-frame)
 *    [Command.bgm_pitch(pitch)](#commandbgm_pitchpitch)
 *    [Command.bgm_play(name, *volume, *pitch)](#commandbgm_playname-volume-pitch)
@@ -2238,6 +2239,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
   
 > 
+
+
+
+
+
+##### Command.between(x1, y1, x2, y2)
+
+> Donne la distance entre deux points
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x1`|`Fixnum`|Valeur X du premier point  
+`y1`|`Fixnum`|Valeur Y du premier point  
+`x2`|`Fixnum`|Valeur X du second point  
+`y2`|`Fixnum`|Valeur Y du second point  
+
 
 
 

@@ -46,16 +46,16 @@ module RMECommands
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
   def scene; SceneManager.scene; end
-  def spriteset; scene.spriteset; end 
-  def tilemap; spriteset.tilemap; end 
+  def spriteset; scene.spriteset; end
+  def tilemap; spriteset.tilemap; end
   def wait(d); d.times { Fiber.yield}; end
   def session_username; USERNAME; end
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id)
     if id.is_a?(Array) && id[0] == :follower
-      e = $game_player.followers[id[1]] 
-      return e if e 
+      e = $game_player.followers[id[1]]
+      return e if e
       raise sprintf("Follower n° %d doesn't exist", id)
     end
     return $game_player if id == 0
@@ -131,11 +131,11 @@ module RMECommands
     scene = SceneManager.scene
     scene.refresh_message if scene.respond_to?(:refresh_message)
   end
-  
+
   def message(value, face_name = nil, face_index = 0, position = 2, background = 0)
     if face_name
-      $game_message.face_name = face_name 
-      $game_message.face_index = face_index  
+      $game_message.face_name = face_name
+      $game_message.face_index = face_index
     end
     $game_message.position = position
     $game_message.background = background
@@ -559,14 +559,14 @@ module RMECommands
     # * Change scroll speed (in X)
     #--------------------------------------------------------------------------
     def picture_scroll_x(ids, speed = nil)
-      return pictures[ids].scroll_speed_x unless speed 
+      return pictures[ids].scroll_speed_x unless speed
       select_pictures(ids).each {|id| pictures[id].scroll_speed_x = speed}
     end
     #--------------------------------------------------------------------------
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
     def picture_scroll_y(ids, speed = nil)
-    return pictures[ids].scroll_speed_y unless speed 
+    return pictures[ids].scroll_speed_y unless speed
       select_pictures(ids).each {|id| pictures[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
@@ -805,7 +805,7 @@ module RMECommands
 
     def map_width; $game_map.width; end
     def map_height; $game_map.height; end
-    
+
     #--------------------------------------------------------------------------
     # * Flash a square
     #--------------------------------------------------------------------------
@@ -825,9 +825,9 @@ module RMECommands
     def flash_rect(x, y, width, height, color)
       (x..x+width).each do |i|
         (y..y+height).each do |j|
-          flash_square(i, j, color)  
-        end  
-      end  
+          flash_square(i, j, color)
+        end
+      end
     end
     #--------------------------------------------------------------------------
     # * UnFlash rect
@@ -1294,6 +1294,11 @@ module RMECommands
       args = (ev1.x-ev2.x),(ev1.y-ev2.y) if flag == :square
       Math.hypot(*args).to_i
     end
+    def between(x1, y1, x2, y2)
+      a = x1 - x2
+      b = y1 - y2
+      Math.hypot(a, b)
+    end
     def squares_between(ev1, ev2); distance_between(:square, ev1, ev2); end
     def pixels_between(ev1, ev2); distance_between(:pixel, ev1, ev2); end
     def angle_between(ev1, ev2)
@@ -1733,7 +1738,7 @@ module RMECommands
     def tanh(x); Math.tanh(x); end
     def to_deg(x); (x.to_f)*57.2957795; end
     def to_rad(x); (x.to_f)/57.2957795; end
-    # This ugly method is only for preserve the precision ! 
+    # This ugly method is only for preserve the precision !
     def mantissa(x)
       [0, x.to_s.split('.')[1]].join('.').to_f
     end
@@ -1887,7 +1892,7 @@ module RMECommands
       )
       wait(duration) if wait_flag
     end
-    
+
     def text_move?(id)
       Game_Screen.get.texts[id].move?
     end
@@ -2007,12 +2012,12 @@ module RMECommands
     def text_value(id)
       Game_Screen.get.texts[id].text_value
     end
-    
+
     def text_angle(id, value = nil)
-      return Game_Screen.get.texts[id].angle unless value 
+      return Game_Screen.get.texts[id].angle unless value
       Game_Screen.get.texts[id].angle = value
     end
-    
+
     #--------------------------------------------------------------------------
     # * Clear all texts
     #--------------------------------------------------------------------------
@@ -2689,7 +2694,7 @@ module RMECommands
       if duration > 0
         SceneManager.scene.windows[id].move_size(x, y, duration)
         wait(duration) if wf
-        return 
+        return
       end
       SceneManager.scene.windows[id].width = width
       SceneManager.scene.windows[id].height = height
@@ -2700,7 +2705,7 @@ module RMECommands
       if duration > 0
         SceneManager.scene.windows[id].move_opacity(value, duration)
         wait(duration) if wf
-        return 
+        return
       end
       SceneManager.scene.windows[id].opacity = value
     end
@@ -2736,7 +2741,7 @@ module RMECommands
     end
 
     def window_y(id, y = nil)
-      return SceneManager.scene.windows[id].y unless y 
+      return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
     end
 
