@@ -15,6 +15,7 @@ Outils de traitement mathématiques un peu avancé
 *    [atan(x)](#atanx)
 *    [atan2(x, y)](#atan2x-y)
 *    [atanh(x)](#atanhx)
+*    [between(x1, y1, x2, y2)](#betweenx1-y1-x2-y2)
 *    [cos(x)](#cosx)
 *    [cosh(x)](#coshx)
 *    [hypot(x, y)](#hypotx-y)
@@ -112,6 +113,19 @@ Outils de traitement mathématiques un peu avancé
 > Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
+
+
+##### between(x1, y1, x2, y2)
+
+> Donne la distance entre deux points
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x1`|`Fixnum`|Valeur X du premier point  
+`y1`|`Fixnum`|Valeur Y du premier point  
+`x2`|`Fixnum`|Valeur X du second point  
+`y2`|`Fixnum`|Valeur Y du second point  
 
 
 ##### cos(x)

@@ -116,6 +116,7 @@ Collection des commandes EventExtender
 *    [Command.atan2(x, y)](#commandatan2x-y)
 *    [Command.atanh(x)](#commandatanhx)
 *    [Command.battle_count](#commandbattle_count)
+*    [Command.between(x1, y1, x2, y2)](#commandbetweenx1-y1-x2-y2)
 *    [Command.bgm_fade(wait, *frame)](#commandbgm_fadewait-frame)
 *    [Command.bgm_pitch(pitch)](#commandbgm_pitchpitch)
 *    [Command.bgm_play(name, *volume, *pitch)](#commandbgm_playname-volume-pitch)
@@ -160,6 +161,7 @@ Collection des commandes EventExtender
 *    [Command.current_troop](#commandcurrent_troop)
 *    [Command.cursor_system(flag)](#commandcursor_systemflag)
 *    [Command.damage_floor?(x, y)](#commanddamage_floorx-y)
+*    [Command.delete_tiles(layer, id)](#commanddelete_tileslayer-id)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -536,6 +538,7 @@ Collection des commandes EventExtender
 *    [Command.set_actor_name(id, new_name)](#commandset_actor_nameid-new_name)
 *    [Command.set_actor_nickname(id, new_name)](#commandset_actor_nicknameid-new_name)
 *    [Command.set_tile(value, x, y, layer)](#commandset_tilevalue-x-y-layer)
+*    [Command.set_tile_where(layer, id, new_id)](#commandset_tile_wherelayer-id-new_id)
 *    [Command.shift?](#commandshift)
 *    [Command.show_animation(ids, id_animation, *wait_flag)](#commandshow_animationids-id_animation-wait_flag)
 *    [Command.show_balloon(ids, id_balloon, *wait_flag)](#commandshow_balloonids-id_balloon-wait_flag)
@@ -2243,6 +2246,23 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.between(x1, y1, x2, y2)
+
+> Donne la distance entre deux points
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`x1`|`Fixnum`|Valeur X du premier point  
+`y1`|`Fixnum`|Valeur Y du premier point  
+`x2`|`Fixnum`|Valeur X du second point  
+`y2`|`Fixnum`|Valeur Y du second point  
+
+
+
+
+
+
 ##### Command.bgm_fade(wait, *frame)
 
 > Arrêt en fondu du BGM en cours
@@ -2868,6 +2888,21 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+
+
+##### Command.delete_tiles(layer, id)
+
+> Supprime tous les tiles référencés par un ID et un layer
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`layer`|`Fixnum`|Numéro de la couche  
+`id`|`Fixnum`|Id du tile à supprimer  
 
 
 
@@ -8265,6 +8300,22 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `layer`|`Fixnum`|Couche de la carte (1,2 ou 3)  
+
+
+
+
+
+
+##### Command.set_tile_where(layer, id, new_id)
+
+> Change tous les tile d'une carte selon un ID et un layer
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`layer`|`Fixnum`|Numero de la couche  
+`id`|`Fixnum`|Id du tile à remplacer  
+`new_id`|`Fixnum`|Nouvel Id du tile  
 
 
 

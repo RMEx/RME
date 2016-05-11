@@ -8,6 +8,7 @@ Commandes relatives aux informations des cartes
 
 ##Liste des commandes
 *    [damage_floor?(x, y)](#damage_floorx-y)
+*    [delete_tiles(layer, id)](#delete_tileslayer-id)
 *    [get_tileset_id](#get_tileset_id)
 *    [ground?(x, y)](#groundx-y)
 *    [id_at(x, y)](#id_atx-y)
@@ -18,6 +19,7 @@ Commandes relatives aux informations des cartes
 *    [region_id(x, y)](#region_idx-y)
 *    [roof?(x, y)](#roofx-y)
 *    [set_tile(value, x, y, layer)](#set_tilevalue-x-y-layer)
+*    [set_tile_where(layer, id, new_id)](#set_tile_wherelayer-id-new_id)
 *    [square_passable?(x, y, direction)](#square_passablex-y-direction)
 *    [stair?(x, y)](#stairx-y)
 *    [switch_tileset(tileset_id)](#switch_tilesettileset_id)
@@ -37,6 +39,17 @@ Commandes relatives aux informations des cartes
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+##### delete_tiles(layer, id)
+
+> Supprime tous les tiles référencés par un ID et un layer
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`layer`|`Fixnum`|Numéro de la couche  
+`id`|`Fixnum`|Id du tile à supprimer  
 
 
 ##### get_tileset_id
@@ -129,6 +142,18 @@ Commandes relatives aux informations des cartes
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `layer`|`Fixnum`|Couche de la carte (1,2 ou 3)  
+
+
+##### set_tile_where(layer, id, new_id)
+
+> Change tous les tile d'une carte selon un ID et un layer
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`layer`|`Fixnum`|Numero de la couche  
+`id`|`Fixnum`|Id du tile à remplacer  
+`new_id`|`Fixnum`|Nouvel Id du tile  
 
 
 ##### square_passable?(x, y, direction)
