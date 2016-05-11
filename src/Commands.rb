@@ -123,6 +123,19 @@ module RMECommands
     $game_map.instance_variable_get(:@map).data[x, y, layer] = value
   end
 
+  def set_tile_where(layer, id, new_id)
+    map = $game_map.instance_variable_get(:@map)
+    map_height.times do |y|
+      map_width.times do |x|
+        map.data[x, y, layer] = new_id if map.data[x, y, layer] == id
+      end
+    end
+  end
+
+  def delete_tiles(layer, id)
+    set_tile_where(layer, id, 0)
+  end
+
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------
