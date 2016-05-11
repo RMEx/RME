@@ -41,7 +41,7 @@ module RME
   class << self
     #--------------------------------------------------------------------------
     # * Version
-    # * With RMEPackage, it's seems useless ? 
+    # * With RMEPackage, it's seems useless ?
     #--------------------------------------------------------------------------
     def version; define_version(0,1,0); end
     #--------------------------------------------------------------------------
@@ -451,29 +451,29 @@ class Object
   end
 
   alias_method :rme_method_missing, :method_missing
-  def method_missing(*a)
-    Exception.last_noMethod = self
-    rme_method_missing(*a)
-  end
+  # def method_missing(*a)
+  #   Exception.last_noMethod = self
+  #   rme_method_missing(*a)
+  # end
 
 end # End of Object
 
 #==============================================================================
 # ** Color
 #------------------------------------------------------------------------------
-# The RGBA color class. Each component is handled with a floating-point 
+# The RGBA color class. Each component is handled with a floating-point
 # value (Float).
 #==============================================================================
 
-class Color 
-  
+class Color
+
   def to_hex
-    r = ((self.red / 255.0)   * 15.0).to_i.to_s(16)  
-    g = ((self.green / 255.0) * 15.0).to_i.to_s(16)    
-    b = ((self.blue / 255.0)  * 15.0).to_i.to_s(16)  
+    r = ((self.red / 255.0)   * 15.0).to_i.to_s(16)
+    g = ((self.green / 255.0) * 15.0).to_i.to_s(16)
+    b = ((self.blue / 255.0)  * 15.0).to_i.to_s(16)
     [r, g, b].join.to_i(16)
   end
-  
+
 end
 
 #==============================================================================
@@ -838,7 +838,7 @@ class String
     n_s = n_s.join('\n').split('\n')
     n_s.compact.collect(&:strip)
   end
-  
+
   #--------------------------------------------------------------------------
   # * AST Extract_tokens
   #--------------------------------------------------------------------------
@@ -849,7 +849,7 @@ class String
       (elt.empty? || elt =~ /^\d+/ || elt == "\0") ? false : elt
     end
   end
-  
+
   #--------------------------------------------------------------------------
   # * AST Extract_tokens
   #--------------------------------------------------------------------------
@@ -866,7 +866,7 @@ class String
 			]
 		scan(Regexp.new(reg.join("|"))).select {|e| not e.empty?}
 	end
-  
+
   #--------------------------------------------------------------------------
   # * AST Complete at point
   # Work in progress /!\ Not finished !
@@ -875,24 +875,24 @@ class String
      tokens = ast_extract_tokens(i-1)
      token = tokens[-1]
      p tokens
-     return [nil, []] unless token 
+     return [nil, []] unless token
      if tokens[-2] == '.' && tokens[-3]
        # Standard receiver case
        begin
          raw_receiver = tokens.reverse.take_while.with_index do |v, i|
-          (i%2 != 0) ? v == '.' : true   
+          (i%2 != 0) ? v == '.' : true
          end.reverse.join('')
          p raw_receiver
          receiver = eval(raw_receiver) # NEED A RECURSION !
          container = receiver.methods
-       rescue Exception => exc 
-         p exc 
+       rescue Exception => exc
+         p exc
          return [nil, []]
        end
      elsif tokens[-2] == '::' && tokens[-3]
        # Static or constant context
        receiver = tokens[-3]
-     else 
+     else
       return [token, tokens[-2].methods[0..7]] if tokens[-2] && token == '.'
       # atomic keyword
       gv = global_variables
@@ -904,10 +904,10 @@ class String
      candidates = container.map do |meth|
           [token.damerau_levenshtein(meth[0..(token.length-1)]), meth]
       end.select {|r| r[0] < 2}.sort_by {|r| r[0]}.map {|e| e[1]}
-      return (token.length < 4 && candidates.length > 30) ? 
+      return (token.length < 4 && candidates.length > 30) ?
         [token, candidates[0..7]] : [token, candidates]
   end
-  
+
   #--------------------------------------------------------------------------
   # * Complete at point
   #--------------------------------------------------------------------------
@@ -917,20 +917,20 @@ class String
     return [] unless token
     if tokens[-2]
       # Need a receiver
-      begin 
+      begin
         receiver = eval(tokens[-2], $game_map.interpreter.get_binding)
-        container = receiver.methods 
+        container = receiver.methods
         konst  = (receiver.respond_to?(:constants)) ? receiver.constants : []
         candidates = token.auto_complete(container + konst)
-      rescue Exception => exc 
+      rescue Exception => exc
         return []
-      end 
-    else 
+      end
+    else
       # Isolate token
       container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
       candidates = token.auto_complete(container)
     end
-    k = candidates.select do |e| 
+    k = candidates.select do |e|
           token.damerau_levenshtein(e[0..(token.length-1)]) < 3
         end
     return k.length > 30 ? [] : k[0..7].unshift(token)
@@ -1639,7 +1639,7 @@ module Devices
         Draggable.drop
       end
     end
-    
+
     #--------------------------------------------------------------------------
     # * Drag update
     #--------------------------------------------------------------------------
