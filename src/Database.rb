@@ -689,7 +689,8 @@ module DataManager
           # retreive datas
           content = FileTools.read(CommonDB.path+"/tables/#{table_sym.to_s}.csv")
           content = content.split("\n")[1..-1]
-          content.each do |line|
+          content.each do |_line|
+            line = _line.strip
             fields = line.split(";")
             hashed[table_sym] << fields
           end
