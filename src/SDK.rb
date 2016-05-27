@@ -240,6 +240,7 @@ module Externlib
   GetCursorPos            = Win32API.new('user32', 'GetCursorPos', 'p',  'i')
   GetKeyboardState        = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
   GetPrivateProfileStringA= Win32API.new('kernel32', 'GetPrivateProfileStringA', 'pppplp', 'l')
+  GetWindowRect           = Win32API.new('user32', 'GetWindowRect', 'lp', 'i')
   GlobalAlloc             = Win32API.new('kernel32', 'GlobalAlloc', 'ii', 'i')
   GlobalFree              = Win32API.new('kernel32', 'GlobalFree', 'i', 'i')
   GlobalLock              = Win32API.new('kernel32', 'GlobalLock', 'i', 'l')
@@ -451,10 +452,10 @@ class Object
   end
 
   alias_method :rme_method_missing, :method_missing
-  # def method_missing(*a)
-  #   Exception.last_noMethod = self
-  #   rme_method_missing(*a)
-  # end
+  def method_missing(*a)
+    Exception.last_noMethod = self
+    rme_method_missing(*a)
+  end
 
 end # End of Object
 
