@@ -11,6 +11,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Date/Heure](command_date.md)
 *    [Ennemis](command_enemy.md)
 *    [Evénements](command_event.md)
+*    [Fenêtre de jeu](command_game_window.md)
 *    [En combat](command_in_battle.md)
 *    [Objets](command_items.md)
 *    [Clavier](command_keyboard.md)
