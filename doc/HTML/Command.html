@@ -237,6 +237,7 @@ Collection des commandes EventExtender<br /><br /><h2>Liste des méthodes<ul></h
 <li><a href='#commandfresh_event_id'>Command.fresh_event_id</a></li>
 <li><a href='#commandgain_goldamount'>Command.gain_gold(amount)</a></li>
 <li><a href='#commandgame_title'>Command.game_title</a></li>
+<li><a href='#commandgame_window_rect'>Command.game_window_rect</a></li>
 <li><a href='#commandgetarray-index'>Command.get(array, index)</a></li>
 <li><a href='#commandget_tileset_id'>Command.get_tileset_id</a></li>
 <li><a href='#commandgive_armorid-amount-include_equipement'>Command.give_armor(id, amount, *include_equipement)</a></li>
@@ -932,6 +933,7 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>*ids</code></td><td><code>ArgsList</code></td><td>Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.</td></tr><tr><td><code>amplitude</code></td><td><code>ArgType</code></td><td>Amplitude du tressaillement</td></tr><tr><td><code>length</code></td><td><code>Fixnum</code></td><td>Taille du tressaillement</td></tr></table></blockquote><br /><br /><br /><br /><strong name='commandfresh_event_id' id='commandfresh_event_id'>Command.fresh_event_id</strong><br /><br /><blockquote>Renvoie un ID libre (utile en cas d'invocation d'évènement)</blockquote>  
 <blockquote></table></blockquote><br /><br /><br /><br /><strong name='commandgain_goldamount' id='commandgain_goldamount'>Command.gain_gold(amount)</strong><br /><br /><blockquote>Fait gagner de l'argent à l'équipe</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>amount</code></td><td><code>o</code></td><td>T</td></tr></table></blockquote><br /><br /><br /><br /><strong name='commandgame_title' id='commandgame_title'>Command.game_title</strong><br /><br /><blockquote>Renvoie le titre du jeu</blockquote>  
+<blockquote></table></blockquote><br /><br /><br /><br /><strong name='commandgame_window_rect' id='commandgame_window_rect'>Command.game_window_rect</strong><br /><br /><blockquote>Renvoie le rectangle correspondant à la fenêtre de jeu</blockquote>  
 <blockquote></table></blockquote><br /><br /><br /><br /><strong name='commandgetarray-index' id='commandgetarray-index'>Command.get(array, index)</strong><br /><br /><blockquote>Renvoie la cellule à la valeur donnée d'un tableau</blockquote>  
 <blockquote><table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>array</code></td><td><code>Array</code></td><td>Tableau</td></tr><tr><td><code>index</code></td><td><code>Fixnum</code></td><td>Index à trouver</td></tr></table></blockquote><br /><br />Exemple  
 <pre><code class='ruby'>  

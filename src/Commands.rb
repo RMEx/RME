@@ -23,6 +23,13 @@ module RMECommands
   # * Public Commands
   #--------------------------------------------------------------------------
 
+  def game_window_rect
+    rect = [0,0,0,0].pack('l4')
+    Externlib::GetWindowRect.call(HWND, rect)
+    args = rect.unpack('l4')
+    return ::Rect.new(*args)
+  end
+
   def fadeout(time = 100)
     RPG::BGM.fade(time)
     RPG::BGS.fade(time)

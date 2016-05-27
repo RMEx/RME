@@ -1,34 +1,38 @@
 {:IColor[[
 "
-black"0"0"0"	255[
+black"0"0"0"255[
 "
-white"255"255"255"	255[
-"red"255"0"0"	255[
+white"255"255"255"255[
+"red"255"0"0"255[
 "
-green"0"255"0"	255[
-"	blue"0"0"255"	255[
+green"0"255"0"255[
+"	blue"0"0"255"255[
 "	gray"120"120"120"255:
 ITone[[
-"transluent"0"0"0"0[
+"transluent"0"0"0"0[
 "darkblue"-34"0"68"0:ITextProfile[	["default"24"VL Gothic"
 white"
 false"
 false"	true"
-black"false["standard"24"VL Gothic"
+black"
+false["standard"24"VL Gothic"
 black"
 false"
 false"
 false"
-black"false["small_standard"15"VL Gothic"
+black"
+false["small_standard"15"VL Gothic"
 black"
 false"
 false"
 false"
-black"false["small_standard_title"12"VL Gothic"
+black"
+false["small_standard_title"12"VL Gothic"
 white"
 false"	true"
 false"
 black"
 false:ITextFieldProfile[["default"default"0"54"6"6"darkblue:IWindowProfile[[	"default"default"0"darkblue:ISkipTitle[[
 "SkipTitle"
-false"11"7"43:TestTable[["1"[1,2]
+false"11"7"43:TestTable[["1"
+[1,2]

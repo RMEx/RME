@@ -243,6 +243,7 @@ Collection des commandes EventExtender
 *    [Command.fresh_event_id](#commandfresh_event_id)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
 *    [Command.game_title](#commandgame_title)
+*    [Command.game_window_rect](#commandgame_window_rect)
 *    [Command.get(array, index)](#commandgetarray-index)
 *    [Command.get_tileset_id](#commandget_tileset_id)
 *    [Command.give_armor(id, amount, *include_equipement)](#commandgive_armorid-amount-include_equipement)
@@ -4068,6 +4069,17 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 ##### Command.game_title
 
 > Renvoie le titre du jeu
+
+  
+> 
+
+
+
+
+
+##### Command.game_window_rect
+
+> Renvoie le rectangle correspondant à la fenêtre de jeu
 
   
 > 
