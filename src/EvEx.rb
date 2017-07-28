@@ -3151,6 +3151,7 @@ class Sprite_Picture
     # * Get cache
     #--------------------------------------------------------------------------
     def swap_cache(name)
+      return Graphics.snap_to_bitmap.clone if name == :screenshot
       if /^(\/Pictures|Pictures)\/(.*)/ =~ name
         return Cache.picture($2)
       end
