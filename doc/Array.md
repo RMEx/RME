@@ -6,30 +6,26 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Array
 Extension des arrays
 
-# # Liste des méthodes
+## Liste des méthodes
 *    [self.to_point](#selfto_point)
 *    [self.to_xy](#selfto_xy)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### self.to_point
 
-Retourne l'objet Point, que le tableau ait la forme [x, y] ou [Point]
+> Retourne l'objet Point, que le tableau ait la forme [x, y] ou [Point]
 
   
-
-
 
 
 
 
 ##### self.to_xy
 
-Retourne les valeurs 'x, y', que le tableau ait la forme [x, y] ou [Point]
+> Retourne les valeurs 'x, y', que le tableau ait la forme [x, y] ou [Point]
 
   
-
-
 
 
 Exemple  

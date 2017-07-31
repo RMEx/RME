@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Kernel
 Module référençant les outils génériques
 
-# # Attributs
+## Attributs
 Nom|Description  
 --- | ---  
 `HWND`|Renvoie la fenêtre courante de jeu (pour les WIN32API's)  

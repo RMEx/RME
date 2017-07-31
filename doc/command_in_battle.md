@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # En combat
 Commandes d'informations en combat (en plus de la base de données). Uniquement valide en combat
 
-# # Liste des commandes
+## Liste des commandes
 *    [active_actor](#active_actor)
 *    [active_actor?](#active_actor)
 *    [current_enemies](#current_enemies)
@@ -49,389 +49,309 @@ Commandes d'informations en combat (en plus de la base de données). Uniquement 
 *    [total_enemies](#total_enemies)
 
 
-# # Description des commandes
+## Description des commandes
 ##### active_actor
 
-renvoie l'identifiant d'un acteur si il est en train de sélectionner une action, nil sinon
+> renvoie l'identifiant d'un acteur si il est en train de sélectionner une action, nil sinon
 
   
-
-
 ##### active_actor?
 
-renvoie true si un acteur est en train de choisir une action, false sinon
+> renvoie true si un acteur est en train de choisir une action, false sinon
 
   
-
-
 ##### current_enemies
 
-Renvoie un tableau contenant les ID des ennemis en cours de combat
+> Renvoie un tableau contenant les ID des ennemis en cours de combat
 
   
-
-
 ##### current_troop
 
-Renvoie l'identifiant du groupe en cours de combat
+> Renvoie l'identifiant du groupe en cours de combat
 
   
-
-
 ##### enemy_agility(position)
 
-renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
+> renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_attack(position)
 
-renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat
+> renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_counter_attack_rate(position)
 
-renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat
+> renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_critical_evasion_rate(position)
 
-renvoie la probabilité de faire un coup critique en préemptif de l'ennemi en combat référencé par sa position en combat
+> renvoie la probabilité de faire un coup critique en préemptif de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_critical_rate(position)
 
-renvoie la probabilité de coup critique de l'ennemi en combat référencé par sa position en combat
+> renvoie la probabilité de coup critique de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_defense(position)
 
-renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
+> renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_die?(position)
 
-renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
+> renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_evasion_rate(position)
 
-renvoie la probabilité d'esquiver une attaque physique de l'ennemi en combat référencé par sa position en combat
+> renvoie la probabilité d'esquiver une attaque physique de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_experience_rate(position)
 
-renvoie le pourcentage de la variation d'acquisition d'expérience de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de la variation d'acquisition d'expérience de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_floor_damage_rate(position)
 
-renvoie le pourcentage de dommage des terrains reçu par l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de dommage des terrains reçu par l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_guard_effect_rate(position)
 
-renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
+> renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_hidden?(position)
 
-renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
+> renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_hit_rate(position)
 
-renvoie la probabilité de toucher de l'ennemi en combat référencé par sa position en combat sur un ennemi
+> renvoie la probabilité de toucher de l'ennemi en combat référencé par sa position en combat sur un ennemi
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_hp(position)
 
-renvoie les points de vie de l'ennemi en combat référencé par sa position en combat
+> renvoie les points de vie de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_hp_regeneration_rate(position)
 
-renvoie le pourcentage de régénération de PV à chaque tour de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de régénération de PV à chaque tour de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_luck(position)
 
-renvoie les points de chance de l'ennemi en combat référencé par sa position en combat
+> renvoie les points de chance de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_magic_attack(position)
 
-renvoie les points d'attaque magique de l'ennemi en combat référencé par sa position en combat
+> renvoie les points d'attaque magique de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_magic_defense(position)
 
-renvoie les points de défense magique de l'ennemi en combat référencé par sa position en combat
+> renvoie les points de défense magique de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_magical_damage_rate(position)
 
-renvoie le pourcentage de dommage magique reçu par l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de dommage magique reçu par l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_magical_evasion_rate(position)
 
-renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi
+> renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_magical_reflection_rate(position)
 
-renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat
+> renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_max_hp(position)
 
-renvoie le nombre de points de vie maximum de l'ennemi en combat référencé par sa position en combat
+> renvoie le nombre de points de vie maximum de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_max_mp(position)
 
-renvoie le nombre de points de magie de l'ennemi en combat référencé par sa position en combat
+> renvoie le nombre de points de magie de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_mp(position)
 
-renvoie les points de magie de l'ennemi en combat référencé par sa position en combat
+> renvoie les points de magie de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_mp_cost_rate(position)
 
-renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
+> renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_mp_regeneration_rate(position)
 
-renvoie le pourcentage de régénération PM à chaque tour de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de régénération PM à chaque tour de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_pharmacology(position)
 
-renvoie le pourcentage de PV/PM récupéré via un objet de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de PV/PM récupéré via un objet de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_physical_damage_rate(position)
 
-renvoie le pourcentage de dommage physique reçu par l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de dommage physique reçu par l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_recovery_effect_rate(position)
 
-renvoie le pourcentage de PV/PM reçus, de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de PV/PM reçus, de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_target_rate(position)
 
-renvoie la probabilité d'être ciblé par un ennemi, de l'ennemi en combat référencé par sa position en combat
+> renvoie la probabilité d'être ciblé par un ennemi, de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_tp(position)
 
-renvoie les points de temps de l'ennemi en combat référencé par sa position en combat
+> renvoie les points de temps de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_tp_charge_rate(position)
 
-renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
+> renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### enemy_tp_regeneration_rate(position)
 
-renvoie le pourcentage de régénération de TP par tour de l'ennemi en combat référencé par sa position en combat
+> renvoie le pourcentage de régénération de TP par tour de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### monster_battler_height(position)
 
-renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### monster_battler_width(position)
 
-renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
-
-
 ##### total_enemies
 
-Renvoie le nombre d'enemis en combat (mort ou vivant)
+> Renvoie le nombre d'enemis en combat (mort ou vivant)
 
   
-
-

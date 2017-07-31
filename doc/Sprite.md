@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Sprite
 Extension des sprites
 
-# # Liste des méthodes
+## Liste des méthodes
 *    [self.click?](#selfclick)
 *    [self.hover?](#selfhover)
 *    [self.in?(x, y)](#selfinx-y)
@@ -20,69 +20,59 @@ Extension des sprites
 *    [self.trigger?(key)](#selftriggerkey)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### self.click?
 
-Vérifie si la souris clique sur le rectangle du sprite
+> Vérifie si la souris clique sur le rectangle du sprite
 
   
-
-
 
 
 
 
 ##### self.hover?
 
-Vérifie si la souris passe au dessus du rectangle du sprite
+> Vérifie si la souris passe au dessus du rectangle du sprite
 
   
-
-
 
 
 
 
 ##### self.in?(x, y)
 
-Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle du sprite
+> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle du sprite
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X du point  
 `y`|`Fixnum`|Coordonnées Y du point  
-
-
 
 
 
 
 ##### self.mouse_x
 
-Retourne la position x de la souris relative au rectangle du sprite
+> Retourne la position x de la souris relative au rectangle du sprite
 
   
-
-
 
 
 
 
 ##### self.mouse_y
 
-Retourne la position y de la souris relative au rectangle du sprite
+> Retourne la position y de la souris relative au rectangle du sprite
 
   
 
 
 
 
-
-
 ##### self.precise_in?(x, y)
 
-Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le bitmap du sprite, en tenant compte de la transparence
+> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le bitmap du sprite, en tenant compte de la transparence
 
   
 Nom|Type|Description  
@@ -93,71 +83,59 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.press?(key)
 
-Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle du sprite
+> Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
-
-
 
 
 
 
 ##### self.rect
 
-Retourne le rectangle relatif d'un sprite
+> Retourne le rectangle relatif d'un sprite
 
   
-
-
 
 
 
 
 ##### self.release?(key)
 
-Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle du sprite
+> Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
-
-
 
 
 
 
 ##### self.repeat?(key)
 
-Vérifie si l'utilisateur a cliqué de manière répétée la touche de la souris passée en argument au-dessus du rectangle du sprite
+> Vérifie si l'utilisateur a cliqué de manière répétée la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
-
-
 
 
 
 
 ##### self.trigger?(key)
 
-Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle du sprite
+> Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle du sprite
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
-
-
 
 
 

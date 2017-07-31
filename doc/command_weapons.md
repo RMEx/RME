@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Armes
 Commandes permettant de manipuler les armes
 
-# # Liste des commandes
+## Liste des commandes
 *    [give_weapon(id, amount, *include_equipement)](#give_weaponid-amount-include_equipement)
 *    [has_weapon?(id, *include_equipement)](#has_weaponid-include_equipement)
 *    [weapon_agility(id)](#weapon_agilityid)
@@ -28,10 +28,10 @@ Commandes permettant de manipuler les armes
 *    [weapons_possessed](#weapons_possessed)
 
 
-# # Description des commandes
+## Description des commandes
 ##### give_weapon(id, amount, *include_equipement)
 
-Fait gagner à l'équipe l'arme référencé par son ID
+> Fait gagner à l'équipe l'arme référencé par son ID
 
   
 Nom|Type|Description  
@@ -39,184 +39,146 @@ Nom|Type|Description
 `id`|`Fixnum`|Id de l'arme  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
 `*include_equipement`|`Boolean`|Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement  
-
-
 ##### has_weapon?(id, *include_equipement)
 
-Renvoie true si l'arme référencée par son ID est possédée par l'équipe, false sinon
+> Renvoie true si l'arme référencée par son ID est possédée par l'équipe, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 `*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
-
-
 ##### weapon_agility(id)
 
-Renvoie l'apport d'agilité d'une arme référencée par son ID
+> Renvoie l'apport d'agilité d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_attack_power(id)
 
-Renvoie la puissance d'attaque d'une arme référencée par son ID
+> Renvoie la puissance d'attaque d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_count(id)
 
-Renvoie le nombre d'armes (référencées par un ID) possédées par l'équipe
+> Renvoie le nombre d'armes (référencées par un ID) possédées par l'équipe
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme à compter  
-
-
 ##### weapon_defense_power(id)
 
-Renvoie la puissance de défense d'une arme référencée par son ID
+> Renvoie la puissance de défense d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_description(id)
 
-Renvoie la description de l'arme référencée par son ID
+> Renvoie la description de l'arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
 ##### weapon_equiped?(id, *member_id)
 
-Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon
+> Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 `*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
-
-
 ##### weapon_icon(id)
 
-Renvoie l'index de l'icone de l'arme référencée par son ID
+> Renvoie l'index de l'icone de l'arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
 ##### weapon_luck(id)
 
-Renvoie l'apport de chance d'une arme référencée par son ID
+> Renvoie l'apport de chance d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_magic_attack_power(id)
 
-Renvoie la puissance d'attaque magique d'une arme référencée par son ID
+> Renvoie la puissance d'attaque magique d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_magic_defense_power(id)
 
-Renvoie la puissance de défense magique d'une arme référencée par son ID
+> Renvoie la puissance de défense magique d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_max_hit_points(id)
 
-Renvoie le maximum des points de vie d'une arme référencée par son ID
+> Renvoie le maximum des points de vie d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_max_magic_points(id)
 
-Renvoie le maximum des points de magie d'une arme référencée par son ID
+> Renvoie le maximum des points de magie d'une arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### weapon_name(id)
 
-Renvoie le nom de l'arme référencée par son ID
+> Renvoie le nom de l'arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
 ##### weapon_note(id)
 
-Renvoie le commentaire de l'arme référencée par son ID
+> Renvoie le commentaire de l'arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
 ##### weapon_price(id)
 
-Renvoie le prix de l'arme référencée par son ID
+> Renvoie le prix de l'arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
 ##### weapon_type(id)
 
-Renvoie le type de l'arme référencée par son ID
+> Renvoie le type de l'arme référencée par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
-
-
 ##### weapons_possessed
 
-Renvoie la liste des armes possédées
+> Renvoie la liste des armes possédées
 
   
-
-

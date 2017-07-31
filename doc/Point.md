@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Point
 Représente un point dans un plan cartésien
 
-# # Liste des méthodes
+## Liste des méthodes
 *    [Point.new(x, y)](#pointnewx-y)
 *    [self.bitmap_to_screen(sprite)](#selfbitmap_to_screensprite)
 *    [self.in?(rect)](#selfinrect)
@@ -17,10 +17,10 @@ Représente un point dans un plan cartésien
 *    [self.set(x, y)](#selfsetx-y)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### Point.new(x, y)
 
-Constructeur de point
+> Constructeur de point
 
   
 Nom|Type|Description  
@@ -31,11 +31,9 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.bitmap_to_screen(sprite)
 
-Transforme les coordonnées du point, du référentiel du bitmap vers l'écran en fonction des paramètres du sprite
+> Transforme les coordonnées du point, du référentiel du bitmap vers l'écran en fonction des paramètres du sprite
 
   
 Nom|Type|Description  
@@ -45,11 +43,9 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.in?(rect)
 
-Vérifie si un point est inscrit dans un rectangle
+> Vérifie si un point est inscrit dans un rectangle
 
   
 Nom|Type|Description  
@@ -59,22 +55,18 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.null!
 
-Replace le X et le Y du point à zéro
+> Replace le X et le Y du point à zéro
 
   
 
 
 
 
-
-
 ##### self.rotate(angle, x, y)
 
-Rotation du point par rapport au point passé en argument (via (x, y), ou via une instance de Point)
+> Rotation du point par rapport au point passé en argument (via (x, y), ou via une instance de Point)
 
   
 Nom|Type|Description  
@@ -86,25 +78,21 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.screen_to_bitmap(sprite)
 
-Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite
+> Transforme les coordonnées du point, de l'écran vers le référentiel du bitmap en fonction des paramètres du sprite
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `sprite`|`Sprite`|Sprite à vérifier  
-
-
 
 
 
 
 ##### self.screen_to_sprite(sprite)
 
-Transforme les coordonnées du point, de l'écran vers le référentiel du sprite
+> Transforme les coordonnées du point, de l'écran vers le référentiel du sprite
 
   
 Nom|Type|Description  
@@ -114,19 +102,15 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.set(x, y)
 
-Change les coordonnées du point
+> Change les coordonnées du point
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X du point  
 `y`|`Fixnum`|Coordonnées Y du point  
-
-
 
 
 

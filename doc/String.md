@@ -6,16 +6,16 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # String
 Extension des chaînes de caractères
 
-# # Liste des méthodes
+## Liste des méthodes
 *    [self.damerau_levenshtein(oth)](#selfdamerau_levenshteinoth)
 *    [self.extract_numbers](#selfextract_numbers)
 *    [self.stretch(lin_len)](#selfstretchlin_len)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### self.damerau_levenshtein(oth)
 
-Renvoie la distance de Damerau–Levenshtein avec
+> Renvoie la distance de Damerau–Levenshtein avec
                             une autre chaîne
 
   
@@ -26,29 +26,23 @@ Nom|Type|Description
 
 
 
-
-
 ##### self.extract_numbers
 
-Renvoie tous les entiers d'une chaîne de caractères
+> Renvoie tous les entiers d'une chaîne de caractères
 
   
-
-
 
 
 
 
 ##### self.stretch(lin_len)
 
-Injecte des retours à la ligne dans la chaîne
+> Injecte des retours à la ligne dans la chaîne
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `lin_len`|`Fixnum`|Taille des lignes  
-
-
 
 
 

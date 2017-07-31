@@ -6,22 +6,20 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Generative::CommandAPI
 Rend accessibles les commandes EventExtender
 
-# # Liste des méthodes
+## Liste des méthodes
 *    [self.command(name, args)](#selfcommandname-args)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### self.command(name, args)
 
-Appel d'une commande, alias : c, cmd
+> Appel d'une commande, alias : c, cmd
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `name`|`Symbol`|Nom de la commande à appeler  
 `args`|`Argslist`|Suite d'arguments  
-
-
 
 
 Exemple  

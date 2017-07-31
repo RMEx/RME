@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Date/Heure
 Commandes pour récupérer des informations sur la date et l'heure
 
-# # Liste des commandes
+## Liste des commandes
 *    [time_day](#time_day)
 *    [time_hour](#time_hour)
 *    [time_min](#time_min)
@@ -15,46 +15,34 @@ Commandes pour récupérer des informations sur la date et l'heure
 *    [time_year](#time_year)
 
 
-# # Description des commandes
+## Description des commandes
 ##### time_day
 
-Renvoie le jour actuel
+> Renvoie le jour actuel
 
   
-
-
 ##### time_hour
 
-Renvoie l' heure actuelle
+> Renvoie l' heure actuelle
 
   
-
-
 ##### time_min
 
-Renvoie la minute actuelle
+> Renvoie la minute actuelle
 
   
-
-
 ##### time_month
 
-Renvoie le mois actuel
+> Renvoie le mois actuel
 
   
-
-
 ##### time_sec
 
-Renvoie la seconde actuelle
+> Renvoie la seconde actuelle
 
   
-
-
 ##### time_year
 
-Renvoie l'année actuelle
+> Renvoie l'année actuelle
 
   
-
-

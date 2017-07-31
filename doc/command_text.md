@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Textes
 Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID, comme les images.
 
-# # Liste des commandes
+## Liste des commandes
 *    [text_change(id, text)](#text_changeid-text)
 *    [text_erase(id)](#text_eraseid)
 *    [text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#text_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
@@ -25,31 +25,27 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [texts_clear](#texts_clear)
 
 
-# # Description des commandes
+## Description des commandes
 ##### text_change(id, text)
 
-Change le texte affiché à l'écran
+> Change le texte affiché à l'écran
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `text`|`String`|Nouveau texte  
-
-
 ##### text_erase(id)
 
-Supprime le texte affiché à l'écran
+> Supprime le texte affiché à l'écran
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
-
-
 ##### text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)
 
-Déplace un texte affiché à l'écran
+> Déplace un texte affiché à l'écran
 
   
 Nom|Type|Description  
@@ -64,21 +60,17 @@ Nom|Type|Description
 `opacity`|`Fixnum`|Opacité (de 0 à 255)  
 `blend_type`|`Fixnum`|Mode de fusion (0, 1, 2)   
 `origin`|`Fixnum`|Origine  
-
-
 ##### text_move?(id)
 
-Retourne true sur le texte référencé par son ID est en mouvement, false sinon
+> Retourne true sur le texte référencé par son ID est en mouvement, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
-
-
 ##### text_opacity(id, *opacity, *duration, *wait_flag)
 
-Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
+> Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
 
   
 Nom|Type|Description  
@@ -87,11 +79,9 @@ Nom|Type|Description
 `*opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### text_position(id, x, y, *duration, *wait_flag)
 
-Change la position d'un texte
+> Change la position d'un texte
 
   
 Nom|Type|Description  
@@ -101,33 +91,27 @@ Nom|Type|Description
 `y`|`Fixnum`|Position en y du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### text_profile(id, *profile)
 
-Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
+> Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `*profile`|`String`|Nouveau profil  
-
-
 ##### text_rotate(id, speed)
 
-Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
+> Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `speed`|`Fixnum`|Vitesse de rotation  
-
-
 ##### text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)
 
-Affiche un texte à l'écran
+> Affiche un texte à l'écran
 
   
 Nom|Type|Description  
@@ -142,21 +126,17 @@ Nom|Type|Description
 `*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
 `*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 `*origin`|`Fixnum`|Origine du texte, 0 = Haut gauche, 1 = centré, par défaut, zéro  
-
-
 ##### text_value(id)
 
-Renvoie la valeur d'un texte
+> Renvoie la valeur d'un texte
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
-
-
 ##### text_x(id, x, *duration, *wait_flag)
 
-Change l'axe X d'un texte
+> Change l'axe X d'un texte
 
   
 Nom|Type|Description  
@@ -165,11 +145,9 @@ Nom|Type|Description
 `x`|`Fixnum`|Position en x du texte, si aucun argument n'est passé, la commande renverra la position X du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### text_y(id, y, *duration, *wait_flag)
 
-Change l'axe Y d'un texte
+> Change l'axe Y d'un texte
 
   
 Nom|Type|Description  
@@ -178,11 +156,9 @@ Nom|Type|Description
 `y`|`Fixnum`|Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)
 
-Change le zoom d'un texte
+> Change le zoom d'un texte
 
   
 Nom|Type|Description  
@@ -192,11 +168,9 @@ Nom|Type|Description
 `zoom_y`|`Fixnum`|zoom y du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### text_zoom_x(id, zoom_x, *duration, *wait_flag)
 
-Change le zoom X d'un texte
+> Change le zoom X d'un texte
 
   
 Nom|Type|Description  
@@ -205,11 +179,9 @@ Nom|Type|Description
 `zoom_x`|`Fixnum`|zoom x du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### text_zoom_y(id, zoom_y, *duration, *wait_flag)
 
-Change le zoom y d'un texte
+> Change le zoom y d'un texte
 
   
 Nom|Type|Description  
@@ -218,12 +190,8 @@ Nom|Type|Description
 `zoom_y`|`Fixnum`|zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### texts_clear
 
-Supprime tous les textes
+> Supprime tous les textes
 
   
-
-

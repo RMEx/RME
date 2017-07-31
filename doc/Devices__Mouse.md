@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Devices::Mouse
 Représentation de la souris, est accessible via Mouse
 
-# # Attributs
+## Attributs
 Nom|Description  
 --- | ---  
 `:mouse_left`|Pointe la touche Keys::Mouse_left (comme argument à passer)  
@@ -14,7 +14,7 @@ Nom|Description
 `:mouse_center`|Pointe la touche Keys::Mouse_center (comme argument à passer)  
 `:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)  
 `:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)  
-# # Liste des méthodes
+## Liste des méthodes
 *    [Mouse.all?(method, keys)](#mouseallmethod-keys)
 *    [Mouse.any?(method, keys)](#mouseanymethod-keys)
 *    [Mouse.click?(key)](#mouseclickkey)
@@ -35,18 +35,16 @@ Nom|Description
 *    [Mouse.y](#mousey)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### Mouse.all?(method, keys)
 
-Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
+> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
-
-
 
 
 Exemple  
@@ -58,7 +56,7 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 
 ##### Mouse.any?(method, keys)
 
-Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
+> Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
 
   
 Nom|Type|Description  
@@ -69,11 +67,9 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.click?(key)
 
-Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
 
   
 Nom|Type|Description  
@@ -83,11 +79,9 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.current_key(method)
 
-Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
 Nom|Type|Description  
@@ -97,22 +91,18 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.dragging?
 
-Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
+> Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
 
   
 
 
 
 
-
-
 ##### Mouse.in?(rectangle)
 
-Renvoie true si la souris se trouve dans le rectangle passé en argument
+> Renvoie true si la souris se trouve dans le rectangle passé en argument
 
   
 Nom|Type|Description  
@@ -122,72 +112,60 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.last_rect
 
-Renvoie le dernier rectangle de sélection de la souris effectué
+> Renvoie le dernier rectangle de sélection de la souris effectué
 
   
-
-
 
 
 
 
 ##### Mouse.point
 
-Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
+> Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
 
   
-
-
 
 
 
 
 ##### Mouse.press?(key)
 
-Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
 
 ##### Mouse.rect
 
-Renvoie le rectangle de sélection de la souris (tracé en cours)
+> Renvoie le rectangle de sélection de la souris (tracé en cours)
 
   
-
-
 
 
 
 
 ##### Mouse.release?(key)
 
-Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
 
 ##### Mouse.repeat?(key)
 
-Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
 Nom|Type|Description  
@@ -197,33 +175,27 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.square_x
 
-Renvoie la position (en cases) X de la souris
+> Renvoie la position (en cases) X de la souris
 
   
-
-
 
 
 
 
 ##### Mouse.square_y
 
-Renvoie la position (en cases) Y de la souris
+> Renvoie la position (en cases) Y de la souris
 
   
 
 
 
 
-
-
 ##### Mouse.time(key)
 
-Renvoie, en nombre de frames, le temps de pression de la touche de la souris choisie, au moment de l'appel
+> Renvoie, en nombre de frames, le temps de pression de la touche de la souris choisie, au moment de l'appel
 
   
 Nom|Type|Description  
@@ -233,11 +205,9 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.trigger?(key)
 
-Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
+> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
   
 Nom|Type|Description  
@@ -247,26 +217,20 @@ Nom|Type|Description
 
 
 
-
-
 ##### Mouse.x
 
-Renvoie la position (en pixels) X de la souris
+> Renvoie la position (en pixels) X de la souris
 
   
-
-
 
 
 
 
 ##### Mouse.y
 
-Renvoie la position (en pixels) Y de la souris
+> Renvoie la position (en pixels) Y de la souris
 
   
-
-
 
 
 

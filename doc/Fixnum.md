@@ -6,18 +6,16 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Fixnum
 Extension des entiers
 
-# # Liste des méthodes
+## Liste des méthodes
 *    [self.to_digit](#selfto_digit)
 
 
-# # Description des méthodes
+## Description des méthodes
 ##### self.to_digit
 
-Renvoie la représentation textuelle d'un chiffre
+> Renvoie la représentation textuelle d'un chiffre
 
   
-
-
 
 
 Exemple  

@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Objets
 Commandes permettant d'obtenir ou de manipuler les objets
 
-# # Liste des commandes
+## Liste des commandes
 *    [give_item(id, amount)](#give_itemid-amount)
 *    [has_item?(id)](#has_itemid)
 *    [is_key_item?(id)](#is_key_itemid)
@@ -53,442 +53,354 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [items_possessed](#items_possessed)
 
 
-# # Description des commandes
+## Description des commandes
 ##### give_item(id, amount)
 
-Fait gagner à l'équipe l'objet référencé par son ID
+> Fait gagner à l'équipe l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
-
-
 ##### has_item?(id)
 
-Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon
+> Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### is_key_item?(id)
 
-Renvoie true si l'objet référencé par son ID est un objet clé, false sinon
+> Renvoie true si l'objet référencé par son ID est un objet clé, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_always_usable?(id)
 
-Renvoie true si l'objet référencé par son ID est utilisable partout
+> Renvoie true si l'objet référencé par son ID est utilisable partout
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_battle_usable?(id)
 
-Renvoie true si l'objet référencé par son ID est utilisable en combat seulement 
+> Renvoie true si l'objet référencé par son ID est utilisable en combat seulement 
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_certain?(id)
 
-Renvoie true si un objet référencé par son ID a une garantie de réussite totale, false sinon
+> Renvoie true si un objet référencé par son ID a une garantie de réussite totale, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_consumable?(id)
 
-Renvoie true si l'objet référencé par son ID est consommable, false sinon
+> Renvoie true si l'objet référencé par son ID est consommable, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_count(id)
 
-Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe
+> Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet à compter  
-
-
 ##### item_description(id)
 
-Renvoie la description de l'objet référencé par son ID
+> Renvoie la description de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_all?(id)
 
-Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon
+> Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_all_allies?(id)
 
-Renvoie true si l'objet référencé par son ID cible tous les alliés vivants, false sinon
+> Renvoie true si l'objet référencé par son ID cible tous les alliés vivants, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_all_dead_allies?(id)
 
-Renvoie true si l'objet référencé par son ID cible tous les alliés morts, false sinon
+> Renvoie true si l'objet référencé par son ID cible tous les alliés morts, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_all_enemies?(id)
 
-Renvoie true si l'objet référencé par son ID cible tous les ennemis, false sinon
+> Renvoie true si l'objet référencé par son ID cible tous les ennemis, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_caller?(id)
 
-Renvoie true si l'objet référencé par son ID est utilisable sur le personnage du moment, false sinon
+> Renvoie true si l'objet référencé par son ID est utilisable sur le personnage du moment, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_dead_friend?(id)
 
-Renvoie true si l'objet référencé par son ID cible un (ou les) allié(s) mort(s), false sinon
+> Renvoie true si l'objet référencé par son ID cible un (ou les) allié(s) mort(s), false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_four_random_enemies?(id)
 
-Renvoie true si l'objet référencé par son ID cible quatre ennemis au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible quatre ennemis au hasard, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_friend?(id)
 
-Renvoie true si la cible de l'objet référencé par son ID est du côté allié, false sinon
+> Renvoie true si la cible de l'objet référencé par son ID est du côté allié, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_one?(id)
 
-Renvoie true si l'objet référencé par son ID a une seule cible, false sinon
+> Renvoie true si l'objet référencé par son ID a une seule cible, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_one_ally?(id)
 
-Renvoie true si l'objet référencé par son ID cible un allié vivant, false sinon
+> Renvoie true si l'objet référencé par son ID cible un allié vivant, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_one_dead_ally?(id)
 
-Renvoie true si l'objet référencé par son ID cible un allié mort, false sinon
+> Renvoie true si l'objet référencé par son ID cible un allié mort, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_one_enemy?(id)
 
-Renvoie true si l'objet référencé par son ID cible un ennemi, false sinon
+> Renvoie true si l'objet référencé par son ID cible un ennemi, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_one_random_enemy?(id)
 
-Renvoie true si l'objet référencé par son ID cible un ennemi au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible un ennemi au hasard, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_opponent?(id)
 
-Renvoie true si l'objet référencé par son ID cible les ennemis, false sinon
+> Renvoie true si l'objet référencé par son ID cible les ennemis, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_random?(id)
 
-Renvoie true si l'objet référencé par son ID cible aléatoirement, false sinon
+> Renvoie true si l'objet référencé par son ID cible aléatoirement, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_three_random_enemies?(id)
 
-Renvoie true si l'objet référencé par son ID cible trois ennemis au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible trois ennemis au hasard, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_for_two_random_enemies?(id)
 
-Renvoie true si l'objet référencé par son ID cible deux ennemis au hasard, false sinon
+> Renvoie true si l'objet référencé par son ID cible deux ennemis au hasard, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_has_no_scope?(id)
 
-Renvoie true si l'objet référencé par son ID ne cible personne, false sinon
+> Renvoie true si l'objet référencé par son ID ne cible personne, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_icon(id)
 
-Renvoie l'index de l'icone de l'objet référencé par son ID
+> Renvoie l'index de l'icone de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_magical?(id)
 
-Renvoie true si un objet référencé par son ID endommage les PM, false sinon
+> Renvoie true si un objet référencé par son ID endommage les PM, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_menu_usable?(id)
 
-Renvoie true si l'objet référencé par son ID est utilisable dans le menu seulement
+> Renvoie true si l'objet référencé par son ID est utilisable dans le menu seulement
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_name(id)
 
-Renvoie le nom de l'objet référencé par son ID
+> Renvoie le nom de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_nb_hits(id)
 
-Renvoie le nombre de coups portés par l'objet référencé par son ID
+> Renvoie le nombre de coups portés par l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_need_selection?(id)
 
-Renvoie true si un objet référencé par son ID requiert la sélection d'une cible, false sinon
+> Renvoie true si un objet référencé par son ID requiert la sélection d'une cible, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_never_usable?(id)
 
-Renvoie true si l'objet référencé par son ID n'est jamais utilisable
+> Renvoie true si l'objet référencé par son ID n'est jamais utilisable
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_note(id)
 
-Renvoie le commentaire de l'objet référencé par son ID
+> Renvoie le commentaire de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_number_of_targets(id)
 
-Renvoie le nombre de cibles d'un objet référencé par son ID, false sinon
+> Renvoie le nombre de cibles d'un objet référencé par son ID, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_occasion(id)
 
-Renvoie un entier correspondant au droit d'utilisation de l'objet
+> Renvoie un entier correspondant au droit d'utilisation de l'objet
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_physical?(id)
 
-Renvoie true si un objet référencé par son ID endommage les PV, false sinon
+> Renvoie true si un objet référencé par son ID endommage les PV, false sinon
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_price(id)
 
-Renvoie le prix de l'objet référencé par son ID
+> Renvoie le prix de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_scope(id)
 
-Renvoie la portée (en Entier) d'un objet référencé par son ID
+> Renvoie la portée (en Entier) d'un objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
-
-
 ##### item_speed(id)
 
-Renvoie l'apport de vitesse de l'objet référencé par son ID
+> Renvoie l'apport de vitesse de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_success_rate(id)
 
-Renvoie la probabilité de succès de l'objet référencé par son ID
+> Renvoie la probabilité de succès de l'objet référencé par son ID
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### item_tp_gain(id)
 
-Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat
+> Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
-
-
 ##### items_possessed
 
-Renvoie la liste des objets possédés
+> Renvoie la liste des objets possédés
 
   
-
-

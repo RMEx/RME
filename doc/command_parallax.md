@@ -6,7 +6,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 # Panoramas
 Commandes relatives à la manipulation des panoramas
 
-# # Liste des commandes
+## Liste des commandes
 *    [parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#parallax_autoscrollid-speed_x-duration-wait_flag)
 *    [parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_xid-speed-duration-wait_flag-ease)
 *    [parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_yid-speed-duration-wait_flag-ease)
@@ -26,10 +26,10 @@ Commandes relatives à la manipulation des panoramas
 *    [parallaxes_clear](#parallaxes_clear)
 
 
-# # Description des commandes
+## Description des commandes
 ##### parallax_autoscroll(id, speed_x, *duration, *wait_flag)
 
-Défilement horizontal et vertical automatique d'un panorama
+> Défilement horizontal et vertical automatique d'un panorama
 
   
 Nom|Type|Description  
@@ -38,11 +38,9 @@ Nom|Type|Description
 `speed_x`|`Fixnum`|Vitesse de défilement vertical  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-
-
 ##### parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)
 
-Défilement horizontal automatique d'un panorama
+> Défilement horizontal automatique d'un panorama
 
   
 Nom|Type|Description  
@@ -52,11 +50,9 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)
 
-Défilement vertical automatique d'un panorama
+> Défilement vertical automatique d'un panorama
 
   
 Nom|Type|Description  
@@ -66,32 +62,26 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_blend(id, blend_type)
 
-Change le mode de fusion d'un panorama
+> Change le mode de fusion d'un panorama
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `blend_type`|`Fixnum`|mode de fusion (0 => normal, 1 => Addition, 2 => Soustraction)  
-
-
 ##### parallax_erase(id)
 
-Supprime un panorama
+> Supprime un panorama
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
-
-
 ##### parallax_opacity(id, opacity, *duration, *wait_flag, *ease)
 
-Change l'opacité d'un panorama
+> Change l'opacité d'un panorama
 
   
 Nom|Type|Description  
@@ -101,11 +91,9 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_scroll(id, x, y)
 
-Change la vitesse de défilement d' un panorama référencé par son ID
+> Change la vitesse de défilement d' un panorama référencé par son ID
 
   
 Nom|Type|Description  
@@ -113,33 +101,27 @@ Nom|Type|Description
 `id`|`Fixnum`|Identifiant du panorama  
 `x`|`Fixnum`|vitesse horizontale  
 `y`|`Fixnum`|vitesse verticale  
-
-
 ##### parallax_scroll_x(id, speed)
 
-Défilement horizontal d'un panorama par rapport au défilement de la carte
+> Défilement horizontal d'un panorama par rapport au défilement de la carte
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
-
-
 ##### parallax_scroll_y(id, speed)
 
-Défilement vertical d'un panorama par rapport au défilement de la carte
+> Défilement vertical d'un panorama par rapport au défilement de la carte
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
-
-
 ##### parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)
 
-Affiche un panorama
+> Affiche un panorama
 
   
 Nom|Type|Description  
@@ -156,11 +138,9 @@ Nom|Type|Description
 `*zoom_x`|`Fixnum`|Zoom horizontal (par défaut 100)  
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
-
-
 ##### parallax_tone(id, tone, *duration, *wait_flag, *ease)
 
-Change la teinte d'un panorama
+> Change la teinte d'un panorama
 
   
 Nom|Type|Description  
@@ -170,11 +150,9 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)
 
-Transforme un panorama durant une période
+> Transforme un panorama durant une période
 
   
 Nom|Type|Description  
@@ -187,22 +165,18 @@ Nom|Type|Description
 `*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_z(id, z)
 
-Change l'axe Z du panorama
+> Change l'axe Z du panorama
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du panorama  
 `z`|`Fixnum`|Axe Z  
-
-
 ##### parallax_zoom(id, zoom, *duration, *wait_flag, *ease)
 
-Zoom sur les deux axes d'un panorama
+> Zoom sur les deux axes d'un panorama
 
   
 Nom|Type|Description  
@@ -212,11 +186,9 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
-Zoom horizontal d'un panorama
+> Zoom horizontal d'un panorama
 
   
 Nom|Type|Description  
@@ -226,11 +198,9 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
-Zoom vertical d'un panorama
+> Zoom vertical d'un panorama
 
   
 Nom|Type|Description  
@@ -240,12 +210,8 @@ Nom|Type|Description
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
 `*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
-
-
 ##### parallaxes_clear
 
-Supprime tous les panoramas
+> Supprime tous les panoramas
 
   
-
-
