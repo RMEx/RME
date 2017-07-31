@@ -1637,18 +1637,58 @@ module RMECommands
       event_move_with(0, *code)
     end
 
-    def event_move_down(id); event(id).move_straight(2); end
-    def event_move_left(id); event(id).move_straight(4); end
-    def event_move_right(id); event(id).move_straight(6); end
-    def event_move_up(id); event(id).move_straight(8); end
+    def event_move_straight(id, value, turn_ok = true)
+      ev = event(id)
+      ev.move_straight(value, turn_ok)
+      return ev.move_succeed
+    end
 
-    def player_move_down; event_move_down(0); end
-    def player_move_left; event_move_left(0); end
-    def player_move_right; event_move_right(0); end
-    def player_move_up; event_move_up(0); end
+    def player_move_straight(value, turn_ok = true)
+      event_move_straight(0, value, turn_ok)
+    end
+
+    def event_move_down(id, turn_ok = true)
+      event_move_straight(id, 2, turn_ok)
+    end
+    def event_move_left(id, turn_ok = true)
+      event_move_straight(id, 4, turn_ok)
+    end
+    def event_move_right(id, turn_ok = true)
+      event_move_straight(id, 6, turn_ok)
+    end
+    def event_move_up(id, turn_ok = true)
+      event_move_straight(id, 8, turn_ok)
+    end
+
+    def player_move_down(turn_ok = true); event_move_down(0, turn_ok); end
+    def player_move_left(turn_ok = true); event_move_left(0, turn_ok); end
+    def player_move_right(turn_ok = true); event_move_right(0, turn_ok); end
+    def player_move_up(turn_ok = true); event_move_up(0, turn_ok); end
+
+    def event_move_random(id); event(id).move_random; end 
+    def player_move_random; event_move_random(0); end
+
+    def event_move_diagonal(id, horizontal, vertical)
+      ev = event(id)
+      ev.move_diagonal(horizontal, vertical)
+      ev.move_succeed
+    end
+
+    def player_move_diagonal(horizontal, vertical)
+      event_move_diagonal(0, horizontal, vertical)
+    end
+
+    def event_move_lower_left(id); event_move_diagonal(id, 4, 2); end
+    def event_move_lower_right(id); event_move_diagonal(id, 6, 2); end
+    def event_move_upper_left(id); event_move_diagonal(id, 4, 8); end
+    def event_move_upper_right(id); event_move_diagonal(id, 6, 8); end
+    
+    def player_move_lower_left; event_move_lower_left(0); end
+    def player_move_lower_right; event_move_lower_right(0); end
+    def player_move_upper_left; event_move_upper_left(0); end 
+    def player_move_upper_right; event_move_upper_right(0); end
 
 
-  
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords

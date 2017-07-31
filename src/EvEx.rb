@@ -1266,6 +1266,7 @@ class Game_CharacterBase
   attr_accessor :trails_signal
   attr_accessor :opacity
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
+  attr_accessor :move_succeed
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------

@@ -1,8 +1,14 @@
 Report,
-# Commandes documentées,701/703
+# Commandes documentées,707/715
 ,
 # Commandes non documentées,# Suggestion
-bind,Aucune suggestion
-unbind,Aucune suggestion
+event_move_lower_left,Aucune suggestion
+event_move_lower_right,Aucune suggestion
+event_move_upper_left,Aucune suggestion
+event_move_upper_right,Aucune suggestion
+player_move_lower_left,Aucune suggestion
+player_move_lower_right,Aucune suggestion
+player_move_upper_left,Aucune suggestion
+player_move_upper_right,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion

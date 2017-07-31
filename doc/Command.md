@@ -201,13 +201,16 @@ Collection des commandes EventExtender
 *    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
-*    [Command.event_move_down(id)](#commandevent_move_downid)
+*    [Command.event_move_diagonal(id, horizontal, vertical)](#commandevent_move_diagonalid-horizontal-vertical)
+*    [Command.event_move_down(id, *turn_ok)](#commandevent_move_downid-turn_ok)
 *    [Command.event_move_frequency(ids, f)](#commandevent_move_frequencyids-f)
-*    [Command.event_move_left(id)](#commandevent_move_leftid)
-*    [Command.event_move_right(id)](#commandevent_move_rightid)
+*    [Command.event_move_left(id, *turn_ok)](#commandevent_move_leftid-turn_ok)
+*    [Command.event_move_random(id)](#commandevent_move_randomid)
+*    [Command.event_move_right(id, *turn_ok)](#commandevent_move_rightid-turn_ok)
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
-*    [Command.event_move_up(id)](#commandevent_move_upid)
+*    [Command.event_move_straight(id, value, *turn_ok)](#commandevent_move_straightid-value-turn_ok)
+*    [Command.event_move_up(id, *turn_ok)](#commandevent_move_upid-turn_ok)
 *    [Command.event_move_with(id, code)](#commandevent_move_withid-code)
 *    [Command.event_moving?(id)](#commandevent_movingid)
 *    [Command.event_name(id)](#commandevent_nameid)
@@ -481,13 +484,16 @@ Collection des commandes EventExtender
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
 *    [Command.player_direction(*value)](#commandplayer_directionvalue)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
-*    [Command.player_move_down](#commandplayer_move_down)
+*    [Command.player_move_diagonal(horizontal, vertical)](#commandplayer_move_diagonalhorizontal-vertical)
+*    [Command.player_move_down(*turn_ok)](#commandplayer_move_downturn_ok)
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
-*    [Command.player_move_left](#commandplayer_move_left)
-*    [Command.player_move_right](#commandplayer_move_right)
+*    [Command.player_move_left(*turn_ok)](#commandplayer_move_leftturn_ok)
+*    [Command.player_move_random](#commandplayer_move_random)
+*    [Command.player_move_right(*turn_ok)](#commandplayer_move_rightturn_ok)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
-*    [Command.player_move_up](#commandplayer_move_up)
+*    [Command.player_move_straight(value, *turn_ok)](#commandplayer_move_straightvalue-turn_ok)
+*    [Command.player_move_up(*turn_ok)](#commandplayer_move_upturn_ok)
 *    [Command.player_move_with(code)](#commandplayer_move_withcode)
 *    [Command.player_moving?](#commandplayer_moving)
 *    [Command.player_opacity(*value)](#commandplayer_opacityvalue)
@@ -3081,14 +3087,29 @@ Nom|Type|Description
 
 
 
-##### Command.event_move_down(id)
+##### Command.event_move_diagonal(id, horizontal, vertical)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+> Déplace un événement référencé par son ID d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
+`horizontal`|`Fixnum`|Direction horizontale (4 pour gauche, 6 pour droite)  
+`vertical`|`Fixnum`|Direction verticale (2 pour bas, 8 pour haut)  
+
+
+
+
+##### Command.event_move_down(id, *turn_ok)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas. Renvoie true si le déplacement s'est effectué, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
 
 
 
@@ -3106,9 +3127,22 @@ Nom|Type|Description
 
 
 
-##### Command.event_move_left(id)
+##### Command.event_move_left(id, *turn_ok)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+> Fait bouger l'événement référencé par son ID d'une case vers la gauche. Renvoie true si le déplacement s'est effectué, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.event_move_random(id)
+
+> Déplace un événement d' une case aléatoire.
 
   
 Nom|Type|Description  
@@ -3118,14 +3152,15 @@ Nom|Type|Description
 
 
 
-##### Command.event_move_right(id)
+##### Command.event_move_right(id, *turn_ok)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+> Fait bouger l'événement référencé par son ID d'une case vers la droite. Renvoie true si le déplacement s'est effectué, false sinon.
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
 
 
 
@@ -3157,14 +3192,29 @@ Nom|Type|Description
 
 
 
-##### Command.event_move_up(id)
+##### Command.event_move_straight(id, value, *turn_ok)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+> Déplace un événement référencé par son ID d'une case dans une direction. La commande renvoie true ou false si le déplacement a réussi ou non.
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
+`value`|`Fixnum`|Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.event_move_up(id, *turn_ok)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le haut. Renvoie true si le déplacement s'est effectué, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
 
 
 
@@ -6612,11 +6662,27 @@ Nom|Type|Description
 
 
 
-##### Command.player_move_down
+##### Command.player_move_diagonal(horizontal, vertical)
+
+> Déplace le héro d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`horizontal`|`Fixnum`|Direction horizontale (4 pour gauche, 6 pour droite)  
+`vertical`|`Fixnum`|Direction verticale (2 pour bas, 8 pour haut)  
+
+
+
+
+##### Command.player_move_down(*turn_ok)
 
 > Fait bouger le joueur d'une case vers le bas
 
   
+Nom|Type|Description  
+--- | --- | ---  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
 
 
 
@@ -6633,20 +6699,35 @@ Nom|Type|Description
 
 
 
-##### Command.player_move_left
+##### Command.player_move_left(*turn_ok)
 
-> Fait bouger le joueur d'une case vers le bas
+> Fait bouger le joueur d'une case vers la gauche. Renvoie true si le déplacement s'est effectué, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.player_move_random
+
+> Déplacele héro d' une case aléatoire.
 
   
 
 
 
 
-##### Command.player_move_right
+##### Command.player_move_right(*turn_ok)
 
-> Fait bouger le joueur d'une case vers le bas
+> Fait bouger le joueur d'une case vers la droite. Renvoie true si le déplacement s'est effectué, false sinon.
 
   
+Nom|Type|Description  
+--- | --- | ---  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
 
 
 
@@ -6676,11 +6757,27 @@ Nom|Type|Description
 
 
 
-##### Command.player_move_up
+##### Command.player_move_straight(value, *turn_ok)
 
-> Fait bouger le joueur d'une case vers le bas
+> Déplace un événement référencé par son ID d'une case dans une direction. La commande renvoie true ou false si le déplacement a réussi ou non.
 
   
+Nom|Type|Description  
+--- | --- | ---  
+`value`|`Fixnum`|Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.player_move_up(*turn_ok)
+
+> Fait bouger le joueur d'une case vers le haut. Renvoie true si le déplacement s'est effectué, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
 
 
 
