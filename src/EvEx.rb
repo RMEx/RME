@@ -1423,6 +1423,73 @@ class Game_CharacterBase
 end
 
 #==============================================================================
+# ** Game_Character
+#------------------------------------------------------------------------------
+#  A character class with mainly movement route and other such processing
+# added. It is used as a super class of Game_Player, Game_Follower,
+# GameVehicle, and Game_Event.
+#==============================================================================
+
+class Game_Character
+
+  #--------------------------------------------------------------------------
+  # * Move Toward position
+  #--------------------------------------------------------------------------
+  def move_toward_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      move_straight(sx > 0 ? 4 : 6)
+      move_straight(sy > 0 ? 8 : 2) if !@move_succeed && sy != 0
+    elsif sy != 0
+      move_straight(sy > 0 ? 8 : 2)
+      move_straight(sx > 0 ? 4 : 6) if !@move_succeed && sx != 0
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Move Away from position
+  #--------------------------------------------------------------------------
+  def move_away_from_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      move_straight(sx > 0 ? 6 : 4)
+      move_straight(sy > 0 ? 2 : 8) if !@move_succeed && sy != 0
+    elsif sy != 0
+      move_straight(sy > 0 ? 2 : 8)
+      move_straight(sx > 0 ? 6 : 4) if !@move_succeed && sx != 0
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Turn Toward position
+  #--------------------------------------------------------------------------
+  def turn_toward_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      set_direction(sx > 0 ? 4 : 6)
+    elsif sy != 0
+      set_direction(sy > 0 ? 8 : 2)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Turn Away from position
+  #--------------------------------------------------------------------------
+  def turn_away_from_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      set_direction(sx > 0 ? 6 : 4)
+    elsif sy != 0
+      set_direction(sy > 0 ? 2 : 8)
+    end
+  end
+
+end
+
+
+
+#==============================================================================
 # ** Game_Player
 #------------------------------------------------------------------------------
 #  This class handles the player. It includes event starting determinants and

@@ -1682,11 +1682,23 @@ module RMECommands
     def event_move_lower_right(id); event_move_diagonal(id, 6, 2); end
     def event_move_upper_left(id); event_move_diagonal(id, 4, 8); end
     def event_move_upper_right(id); event_move_diagonal(id, 6, 8); end
-    
+
     def player_move_lower_left; event_move_lower_left(0); end
     def player_move_lower_right; event_move_lower_right(0); end
     def player_move_upper_left; event_move_upper_left(0); end 
     def player_move_upper_right; event_move_upper_right(0); end
+
+    def event_move_toward_position(id, x, y)
+      ev = event(id)
+      ev.move_toward_xy(x, y)
+      ev.move_succeed
+    end
+
+    def player_move_toward_position(x, y)
+      event_move_toward_position(0, x, y)
+    end
+
+
 
 
 
