@@ -3146,35 +3146,42 @@ end
 #==============================================================================
 
 class Sprite_Picture
-  class << self
-    #--------------------------------------------------------------------------
-    # * Get cache
-    #--------------------------------------------------------------------------
-    def swap_cache(name)
-      return Graphics.snap_to_bitmap.clone if name == :screenshot
-      if /^(\/Pictures|Pictures)\/(.*)/ =~ name
-        return Cache.picture($2)
-      end
-      if /^(\/Battlers|Battlers)\/(.*)/ =~ name
-        return Cache.battler($2, 0)
-      end
-      if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
-        return Cache.battleback1($2)
-      end
-      if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
-        return Cache.battleback2($2)
-      end
-      if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
-        return Cache.parallax($2)
-      end
-      if /^(\/Titles1|Titles1)\/(.*)/ =~ name
-        return Cache.title1($2)
-      end
-      if /^(\/Titles2|Titles2)\/(.*)/ =~ name
-        return Cache.title2($2)
-      end
-      return Cache.picture(name)
+  #--------------------------------------------------------------------------
+  # * Get cache
+  #--------------------------------------------------------------------------
+  def swap_cache
+
+    name = @picture.name
+
+    if name == :screenshot
+      return self.bitmap if @old_snap
+      @old_snap = true
+      return Graphics.snap_to_bitmap.clone 
     end
+
+    @old_snap = false
+    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+      return Cache.picture($2)
+    end
+    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+      return Cache.battler($2, 0)
+    end
+    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+      return Cache.battleback1($2)
+    end
+    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+      return Cache.battleback2($2)
+    end
+    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+      return Cache.parallax($2)
+    end
+    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+      return Cache.title1($2)
+    end
+    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+      return Cache.title2($2)
+    end
+    return Cache.picture(name)
   end
   #--------------------------------------------------------------------------
   # * Alias
@@ -3189,7 +3196,7 @@ class Sprite_Picture
     if @picture.name.empty?
       self.bitmap = nil
     else
-      self.bitmap = Sprite_Picture.swap_cache(@picture.name)
+      self.bitmap = swap_cache
       self.mirror = false
     end
   end
