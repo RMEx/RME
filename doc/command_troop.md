@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Groupes**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Groupes**  
 - - -  
-#Groupes
+# Groupes
 Informations sur les groupes de monstres
 
-##Liste des commandes
+# # Liste des commandes
 *    [troop_member(id, position)](#troop_memberid-position)
 *    [troop_member_x(id, position)](#troop_member_xid-position)
 *    [troop_member_y(id, position)](#troop_member_yid-position)
@@ -15,13 +15,13 @@ Informations sur les groupes de monstres
 *    [troop_size(id)](#troop_sizeid)
 
 
-##Description des commandes
+# # Description des commandes
 ##### troop_member(id, position)
 
-> Renvoie l'id d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier).
+Renvoie l'id d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier).
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
@@ -29,10 +29,10 @@ Informations sur les groupes de monstres
 
 ##### troop_member_x(id, position)
 
-> Renvoie la position X d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+Renvoie la position X d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
@@ -40,10 +40,10 @@ Informations sur les groupes de monstres
 
 ##### troop_member_y(id, position)
 
-> Renvoie la position Y d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+Renvoie la position Y d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
@@ -51,30 +51,30 @@ Informations sur les groupes de monstres
 
 ##### troop_members(id)
 
-> Renvoie un tableau des enemy_id d'un groupe de monstres référencé par son ID.
+Renvoie un tableau des enemy_id d'un groupe de monstres référencé par son ID.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 
 
 ##### troop_name(id)
 
-> Renvoie le nom d'un groupe de monstres référencé par son ID.
+Renvoie le nom d'un groupe de monstres référencé par son ID.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 
 
 ##### troop_size(id)
 
-> Renvoie la taille d'un groupe de monstres référencé par son ID.
+Renvoie la taille d'un groupe de monstres référencé par son ID.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 

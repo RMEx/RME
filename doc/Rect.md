@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Rect**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Rect**  
 - - -  
-#Rect
+# Rect
 Extension des rectangles
 
-##Liste des méthodes
+# # Liste des méthodes
 *    [self.click?](#selfclick)
 *    [self.hover?](#selfhover)
 *    [self.in?(x, y)](#selfinx-y)
@@ -18,13 +18,13 @@ Extension des rectangles
 *    [self.trigger?(key)](#selftriggerkey)
 
 
-##Description des méthodes
+# # Description des méthodes
 ##### self.click?
 
-> Vérifie si l'utilisateur a cliqué sur le rectangle
+Vérifie si l'utilisateur a cliqué sur le rectangle
 
   
-> 
+
 
 
 
@@ -32,10 +32,10 @@ Extension des rectangles
 
 ##### self.hover?
 
-> Vérifie si la souris passe au dessus du rectangle
+Vérifie si la souris passe au dessus du rectangle
 
   
-> 
+
 
 
 
@@ -43,10 +43,10 @@ Extension des rectangles
 
 ##### self.in?(x, y)
 
-> Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle
+Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X du point  
 `y`|`Fixnum`|Coordonnées Y du point  
@@ -58,10 +58,10 @@ Extension des rectangles
 
 ##### self.mouse_x
 
-> Retourne la position x de la souris relative au rectangle
+Retourne la position x de la souris relative au rectangle
 
   
-> 
+
 
 
 
@@ -69,10 +69,10 @@ Extension des rectangles
 
 ##### self.mouse_y
 
-> Retourne la position y de la souris relative au rectangle
+Retourne la position y de la souris relative au rectangle
 
   
-> 
+
 
 
 
@@ -80,10 +80,10 @@ Extension des rectangles
 
 ##### self.press?(key)
 
-> Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle
+Vérifie si l'utilisateur a enfoncé la touche de la souris passée en argument au-dessus du rectangle
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
 
@@ -94,10 +94,10 @@ Extension des rectangles
 
 ##### self.release?(key)
 
-> Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle
+Vérifie si l'utilisateur a relâché la touche de la souris passée en argument au-dessus du rectangle
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
 
@@ -108,10 +108,10 @@ Extension des rectangles
 
 ##### self.repeat?(key)
 
-> Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle
+Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
 
@@ -122,10 +122,10 @@ Extension des rectangles
 
 ##### self.trigger?(key)
 
-> Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle
+Vérifie si l'utilisateur a cliqué une fois avec la touche de la souris passée en argument au-dessus du rectangle
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche d'activation  
 

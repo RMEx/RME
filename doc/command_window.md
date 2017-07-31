@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Fenêtres**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Fenêtres**  
 - - -  
-#Fenêtres
+# Fenêtres
 Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez du texte, utilisez de préférence les apostrophes comme séparateur. Cette collection de commande est documentée dans le Wiki!
 
-##Liste des commandes
+# # Liste des commandes
 *    [close_window(id)](#close_windowid)
 *    [create_commands_window(id, x, y, w, hash, *h)](#create_commands_windowid-x-y-w-hash-h)
 *    [create_horizontal_commands_window(id, x, y, hash, row)](#create_horizontal_commands_windowid-x-y-hash-row)
@@ -31,23 +31,23 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [window_y(id, *y)](#window_yid-y)
 
 
-##Description des commandes
+# # Description des commandes
 ##### close_window(id)
 
-> Ferme la fenêtre référencée par son ID
+Ferme la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### create_commands_window(id, x, y, w, hash, *h)
 
-> Crée une fenêtre de sélection verticale
+Crée une fenêtre de sélection verticale
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
@@ -59,10 +59,10 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### create_horizontal_commands_window(id, x, y, hash, row)
 
-> Crée une fenêtre de sélection horizontale
+Crée une fenêtre de sélection horizontale
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
@@ -73,10 +73,10 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### create_selectable_window(id, x, y, width, height, hash)
 
-> Crée une fenêtre de sélection complexe
+Crée une fenêtre de sélection complexe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnée X  
@@ -88,10 +88,10 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### create_text_window(id, content, x, y, *w, *h)
 
-> Crée une fenêtre pouvant contenir du texte
+Crée une fenêtre pouvant contenir du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Numéro de la fenêtre  
 `content`|`String`|Texte (ou tableau séparé par des virgules) à afficher  
@@ -103,57 +103,57 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### open_window(id)
 
-> Ouvre la fenêtre référencée par son ID
+Ouvre la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### remove_all_windows
 
-> Supprime toutes les fenêtres
+Supprime toutes les fenêtres
 
   
-> 
+
 
 ##### remove_window(id)
 
-> Supprime la fenêtre référencée par son ID
+Supprime la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_activate(id)
 
-> Rend la fenêtre référencée par son ID active
+Rend la fenêtre référencée par son ID active
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_closed?(id)
 
-> Renvoie true si la fenêtre référencée par son ID est fermée, false sinon
+Renvoie true si la fenêtre référencée par son ID est fermée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_content(id, *content, *resize)
 
-> Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
+Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*content`|`Object`|Valeur affichée de la fenêtre  
@@ -162,30 +162,30 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_current_symbol(id)
 
-> Renvoie, pour une fenêtre de sélection, le symbole sélectionné
+Renvoie, pour une fenêtre de sélection, le symbole sélectionné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_deactivate(id)
 
-> Rend la fenêtre référencée par son ID inactive
+Rend la fenêtre référencée par son ID inactive
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_dimension(id, width, height, *duration, *wait_flag)
 
-> Change la dimension de la fenêtre
+Change la dimension de la fenêtre
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `width`|`Fixnum`|Largeur de la fenêtre  
@@ -196,20 +196,20 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_height(id)
 
-> Renvoie la hauteur de la fenêtre référencée par son ID
+Renvoie la hauteur de la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_move(id, x, y, w, h, opacity, *duration, *wait_flag)
 
-> Déplacement sur tous les paramètres
+Déplacement sur tous les paramètres
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X  
@@ -223,10 +223,10 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_moveto(id, x, y, *duration, *wait_flag)
 
-> Change les coordonnées X et Y de la fenêtre
+Change les coordonnées X et Y de la fenêtre
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnée X  
@@ -237,10 +237,10 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_opacity(id, *value, *duration, *wait_flag)
 
-> Change l'opacité de la fenêtre, si aucune valeur n'est spécifiée, la commande renvoie la valeur de l'opacité
+Change l'opacité de la fenêtre, si aucune valeur n'est spécifiée, la commande renvoie la valeur de l'opacité
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*value`|`Fixnum`|Valeur de l'opacité à changer, entre 0 et 255.  
@@ -250,30 +250,30 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_opened?(id)
 
-> Renvoie true si la fenêtre référencée par son ID est ouverte, false sinon
+Renvoie true si la fenêtre référencée par son ID est ouverte, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_width(id)
 
-> Renvoie la largeur de la fenêtre référencée par son ID
+Renvoie la largeur de la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
 
 ##### window_x(id, *x)
 
-> Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
+Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*x`|`Fixnum`|Coordonnée X de la fenêtre  
@@ -281,10 +281,10 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 
 ##### window_y(id, *y)
 
-> Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
+Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*y`|`Fixnum`|Coordonnée Y de la fenêtre  

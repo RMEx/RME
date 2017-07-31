@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Sauvegardes**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Sauvegardes**  
 - - -  
-#Sauvegardes
+# Sauvegardes
 Commandes pour gérer et naviguer entre les sauvegardes
 
-##Liste des commandes
+# # Liste des commandes
 *    [a_save_exists?](#a_save_exists)
 *    [import_label(index, idlabel)](#import_labelindex-idlabel)
 *    [import_switch(index, idswitch)](#import_switchindex-idswitch)
@@ -18,20 +18,20 @@ Commandes pour gérer et naviguer entre les sauvegardes
 *    [start_new_game](#start_new_game)
 
 
-##Description des commandes
+# # Description des commandes
 ##### a_save_exists?
 
-> Renvoie true si au moins une sauvegade a été faite, false sinon
+Renvoie true si au moins une sauvegade a été faite, false sinon
 
   
-> 
+
 
 ##### import_label(index, idlabel)
 
-> Renvoie la valeur d'un label issu d'une autre sauvegarde
+Renvoie la valeur d'un label issu d'une autre sauvegarde
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idlabel`|`Fixnum`|Identifiant du label  
@@ -39,10 +39,10 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### import_switch(index, idswitch)
 
-> Renvoie la valeur d'un interrupteur issu d'une autre sauvegarde
+Renvoie la valeur d'un interrupteur issu d'une autre sauvegarde
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idswitch`|`Fixnum`|Numéro de l'interrupteur  
@@ -50,10 +50,10 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### import_variable(index, idvar)
 
-> Renvoie la valeur d'une variable issue d'une autre sauvegarde
+Renvoie la valeur d'une variable issue d'une autre sauvegarde
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idvar`|`Fixnum`|Numéro de la variable  
@@ -61,10 +61,10 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### load_game(index, *time)
 
-> Charge la partie référencée par l'ID de sauvegarde donné
+Charge la partie référencée par l'ID de sauvegarde donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `*time`|`Fixnum`|Durée du fadeout  
@@ -72,38 +72,38 @@ Commandes pour gérer et naviguer entre les sauvegardes
 
 ##### save_delete(index)
 
-> Supprime la sauvegarde référencée par son numéro
+Supprime la sauvegarde référencée par son numéro
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 
 
 ##### save_exists?(index)
 
-> Renvoie true si la sauvegarde référencée par son numéro existe
+Renvoie true si la sauvegarde référencée par son numéro existe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 
 
 ##### save_game(index)
 
-> Sauvegarde la partie sur la sauvegardé référencée par l'ID donné
+Sauvegarde la partie sur la sauvegardé référencée par l'ID donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 
 
 ##### start_new_game
 
-> Démarre une nouvelle partie
+Démarre une nouvelle partie
 
   
-> 
+
 

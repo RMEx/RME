@@ -1,10 +1,10 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
 **Documentation**  
 - - -  
-*    [Index des commandes](Liste des commandes.md)
-*    [Classes et modules](Classes et modules.md)
+*    [Index des commandes](Liste%20des%20commandes.md)
+*    [Classes et modules](Classes%20et%20modules.md)
 
 
 

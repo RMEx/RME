@@ -84,7 +84,7 @@ module DocGenerator
     def footer; ""; end
     def nl; "  \n"; end
     def np; "\n"*2; end
-    def title(size, value); ("#"*size) + value.to_s + "\n"; end
+    def title(size, value); ("# "*size) + value.to_s + "\n"; end
     def strong(value); "**#{value}**"; end
     def strong_t(value, n=""); '##### '+value.to_s; end
     def italic(value); "*#{value}*"; end
@@ -99,8 +99,8 @@ module DocGenerator
     end
     def tr(*values); values.join("|") + nl; end
     def end_table; ""; end
-    def blockquote(s); "> #{s}"+np; end
-    def link(text, url); "[#{text}](#{url})"; end
+    def blockquote(s); "#{s}"+np; end
+    def link(text, url); "[#{text}](#{url.gsub(/\s/, '%20')})"; end
     def line; "  \n- - -  \n"; end
 
     #--------------------------------------------------------------------------

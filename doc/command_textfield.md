@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Champs de texte**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Champs de texte**  
 - - -  
-#Champs de texte
+# Champs de texte
 Commande pour manipuler des champs de texte saisissables au clavier
 
-##Liste des commandes
+# # Liste des commandes
 *    [textfield_activate(id)](#textfield_activateid)
 *    [textfield_active?(id)](#textfield_activeid)
 *    [textfield_click?(id)](#textfield_clickid)
@@ -27,63 +27,63 @@ Commande pour manipuler des champs de texte saisissables au clavier
 *    [textfield_visible?(id)](#textfield_visibleid)
 
 
-##Description des commandes
+# # Description des commandes
 ##### textfield_activate(id)
 
-> Active la zone de texte référencée par son ID
+Active la zone de texte référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
 
 ##### textfield_active?(id)
 
-> Renvoie true si le champ de texte référencé par son ID est activé
+Renvoie true si le champ de texte référencé par son ID est activé
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
 
 ##### textfield_click?(id)
 
-> Renvoie true si la souris clique sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris clique sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
 
 ##### textfield_deactivate(*id)
 
-> désactive la zone de texte référencée par son ID
+désactive la zone de texte référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|ID du champ de texte, si aucun ID n'est spécifié, toutes les zones de textes seront désactivés  
 
 
 ##### textfield_erase(*id)
 
-> Supprime le champ de texte référencé par son ID
+Supprime le champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|ID de la zone de texte, si aucun ID n'est spécifié, toutes les zones de textes seront supprimées  
 
 
 ##### textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
-> Affiche un champ de texte permettant de saisir des nombres à virgule
+Affiche un champ de texte permettant de saisir des nombres à virgule
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
 `number`|`Float`|Nombre à afficher par défaut du champ  
@@ -98,30 +98,30 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_get_value(id)
 
-> Renvoie la valeur de la zone de texte référencé par son ID
+Renvoie la valeur de la zone de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
 
 ##### textfield_hover?(id)
 
-> Renvoie true si la souris survole le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris survole le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
 
 ##### textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
-> Affiche un champ de texte permettant de saisir des nombres entiers
+Affiche un champ de texte permettant de saisir des nombres entiers
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
 `number`|`Fixnum`|Nombre à afficher par défaut  
@@ -136,10 +136,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_opacity(id, opacity)
 
-> Change l'opacité du champ de texte référencé par son ID
+Change l'opacité du champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `opacity`|`Fixnum`|Opacité, entre 0 et 255. Si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
@@ -147,10 +147,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_press?(id, *key)
 
-> Renvoie true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -158,10 +158,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_release?(id, *key)
 
-> Renvoie true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -169,10 +169,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_repeat?(id, *key)
 
-> Renvoie true si la souris clique de manière répétée sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris clique de manière répétée sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -180,10 +180,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_set_value(id, value)
 
-> Attribue une valeur à un champ de texte référencé par son ID
+Attribue une valeur à un champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `value`|`TextfieldType`|Valeur à attribuer  
@@ -191,10 +191,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)
 
-> Affiche un champ de texte permettant de saisir du texte
+Affiche un champ de texte permettant de saisir du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
 `text`|`String`|Texte du champ à afficher par défaut  
@@ -209,10 +209,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_trigger?(id, *key)
 
-> Renvoie true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -220,10 +220,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_visible(id, flag)
 
-> Change la visibilité du champ de texte référencé par son ID
+Change la visibilité du champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `flag`|`Boolean`|True pour visible, false pour invisible  
@@ -231,10 +231,10 @@ Commande pour manipuler des champs de texte saisissables au clavier
 
 ##### textfield_visible?(id)
 
-> Renvoie true si le champ de texte référencé par son ID est visible, false sinon
+Renvoie true si le champ de texte référencé par son ID est visible, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 

@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Command**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Command**  
 - - -  
-#Command
+# Command
 Collection des commandes EventExtender
 
-##Liste des méthodes
+# # Liste des méthodes
 *    [Command.a_save_exists?](#commanda_save_exists)
 *    [Command.acos(x)](#commandacosx)
 *    [Command.acosh(x)](#commandacoshx)
@@ -710,13 +710,13 @@ Collection des commandes EventExtender
 *    [Command.window_y(id, *y)](#commandwindow_yid-y)
 
 
-##Description des méthodes
+# # Description des méthodes
 ##### Command.a_save_exists?
 
-> Renvoie true si au moins une sauvegade a été faite, false sinon
+Renvoie true si au moins une sauvegade a été faite, false sinon
 
   
-> 
+
 
 
 
@@ -724,10 +724,10 @@ Collection des commandes EventExtender
 
 ##### Command.acos(x)
 
-> Renvoie l'arc cosinus de x
+Renvoie l'arc cosinus de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -738,10 +738,10 @@ Collection des commandes EventExtender
 
 ##### Command.acosh(x)
 
-> Renvoie l'inverse hyperbolique cosinus de x
+Renvoie l'inverse hyperbolique cosinus de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -752,10 +752,10 @@ Collection des commandes EventExtender
 
 ##### Command.active_actor
 
-> renvoie l'identifiant d'un acteur si il est en train de sélectionner une action, nil sinon
+renvoie l'identifiant d'un acteur si il est en train de sélectionner une action, nil sinon
 
   
-> 
+
 
 
 
@@ -763,10 +763,10 @@ Collection des commandes EventExtender
 
 ##### Command.active_actor?
 
-> renvoie true si un acteur est en train de choisir une action, false sinon
+renvoie true si un acteur est en train de choisir une action, false sinon
 
   
-> 
+
 
 
 
@@ -774,10 +774,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_accessory(id)
 
-> renvoie l'id l'accessoire équipé par le héros référencé par son ID
+renvoie l'id l'accessoire équipé par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -788,10 +788,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_agility(id)
 
-> renvoie les points d'agilité du héros référencé par son ID
+renvoie les points d'agilité du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -802,10 +802,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_armors(id)
 
-> renvoie le tableau des ID's des armures équipées du héros référencé par son ID
+renvoie le tableau des ID's des armures équipées du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -816,10 +816,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_attack(id)
 
-> renvoie les points d'attaque du héros référencé par son ID
+renvoie les points d'attaque du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -830,10 +830,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_body(id)
 
-> renvoie l'id de l'armure équipée par le héros référencé par son ID
+renvoie l'id de l'armure équipée par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -844,10 +844,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_change_appear(id, character_name, character_index, face_name, face_index)
 
-> Change l'apparence et la face du héros référencé par son ID
+Change l'apparence et la face du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du héros  
 `character_name`|`String`|Nom du caractère  
@@ -862,10 +862,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_change_character(id, character_name, character_index)
 
-> Change l'apparence du héros référencé par son ID
+Change l'apparence du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du héros  
 `character_name`|`String`|Nom du caractère  
@@ -878,10 +878,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_change_equip(id, slot, object_id)
 
-> Change l'équipement du héros référencé par son ID
+Change l'équipement du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `slot`|`Symbol`|Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)  
@@ -894,10 +894,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_change_face(id, face_name, face_index)
 
-> Change la face du héros référencé par son ID
+Change la face du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du héros  
 `face_name`|`String`|Nom du face  
@@ -910,10 +910,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_character_index(id)
 
-> renvoie l'index du charset du héros référencé par son ID
+renvoie l'index du charset du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -924,10 +924,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_character_name(id)
 
-> renvoie le nom du charset du héros référencé par son ID
+renvoie le nom du charset du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -938,10 +938,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_class(id)
 
-> renvoie l'ID de la classe du héros référencé par son ID
+renvoie l'ID de la classe du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -952,10 +952,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_counter_attack_rate(id)
 
-> renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID
+renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -966,10 +966,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_critical_evasion_rate(id)
 
-> renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID
+renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -980,10 +980,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_critical_rate(id)
 
-> renvoie la probabilité de coup critique du héros référencé par son ID
+renvoie la probabilité de coup critique du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -994,10 +994,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_defense(id)
 
-> renvoie les points de défense du héros référencé par son ID
+renvoie les points de défense du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1008,10 +1008,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_description(id)
 
-> renvoie la description du héros référencé par son ID
+renvoie la description du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1022,10 +1022,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_element_rate(id, element_id)
 
-> Renvoie la résistance élémentaire (par son ID d'élément) d'un acteur référencé par son ID
+Renvoie la résistance élémentaire (par son ID d'élément) d'un acteur référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'acteur  
 `element_id`|`Fixnum`|Id de l'élément  
@@ -1037,10 +1037,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_equip(id, slot)
 
-> Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)
+Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `slot`|`Symbol`|Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory  
@@ -1052,10 +1052,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_equip_accessory(id, object_id)
 
-> Change l'accessoire du héros référencé par son ID
+Change l'accessoire du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `object_id`|`Fixnum`|ID de l'Armure  
@@ -1067,10 +1067,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_equip_body(id, object_id)
 
-> Change l'armure du héros référencé par son ID
+Change l'armure du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `object_id`|`Fixnum`|ID de l'Armure  
@@ -1082,10 +1082,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_equip_head(id, object_id)
 
-> Change le casque du héros référencé par son ID
+Change le casque du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `object_id`|`Fixnum`|ID de l'Armure  
@@ -1097,10 +1097,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_equip_shield(id, object_id)
 
-> Change le bouclier du héros référencé par son ID
+Change le bouclier du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `object_id`|`Fixnum`|ID de l'Armure  
@@ -1112,10 +1112,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_equip_weapon(id, object_id)
 
-> Change l'arme du héros référencé par son ID
+Change l'arme du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `object_id`|`Fixnum`|ID de l'Arme  
@@ -1127,10 +1127,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_evasion_rate(id)
 
-> renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID
+renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1141,10 +1141,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_exp(id)
 
-> renvoie les points d'expérience du héros référencé par son ID
+renvoie les points d'expérience du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1155,10 +1155,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_exp_for_next_level(id)
 
-> renvoie le nombre de points d'expérience nécéssaires pour passer au niveau suivant pour le héros référencé par son ID
+renvoie le nombre de points d'expérience nécéssaires pour passer au niveau suivant pour le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1169,10 +1169,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_exp_rate(id)
 
-> renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
+renvoie le pourcentage de la variation d'acquisition d'expérience du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1183,10 +1183,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_face_index(id)
 
-> renvoie l'index du faceset du héros référencé par son ID
+renvoie l'index du faceset du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1197,10 +1197,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_face_name(id)
 
-> renvoie le nom du faceset du héros référencé par son ID
+renvoie le nom du faceset du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1211,10 +1211,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_floor_damage_rate(id)
 
-> renvoie le pourcentage de dommage des terrains reçu par le héros référencé par son ID
+renvoie le pourcentage de dommage des terrains reçu par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1225,10 +1225,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_forget(id, skill_id)
 
-> Oublie la technique passée en argument au héros référencé par son ID
+Oublie la technique passée en argument au héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `skill_id`|`Fixnum`|ID de le technique  
@@ -1240,10 +1240,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_give_exp(id, exp)
 
-> fait gagner de l'expérience au héros référencé par son ID
+fait gagner de l'expérience au héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `exp`|`Fixnum`|Expérience donnée  
@@ -1255,10 +1255,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_guard_effect_rate(id)
 
-> renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID
+renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1269,10 +1269,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_has_accessory?(id)
 
-> renvoie true si le héros référencé par son ID est équipé d'un accessoire, false sinon
+renvoie true si le héros référencé par son ID est équipé d'un accessoire, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1283,10 +1283,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_has_body?(id)
 
-> renvoie true si le héros référencé par son ID est équipé d'une armure, false sinon
+renvoie true si le héros référencé par son ID est équipé d'une armure, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1297,10 +1297,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_has_head?(id)
 
-> renvoie true si le héros référencé par son ID est équipé d'une casque, false sinon
+renvoie true si le héros référencé par son ID est équipé d'une casque, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1311,10 +1311,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_has_shield?(id)
 
-> renvoie true si le héros référencé par son ID est équipé d'un bouclier, false sinon
+renvoie true si le héros référencé par son ID est équipé d'un bouclier, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1325,10 +1325,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_has_weapon?(id)
 
-> renvoie true si le héros référencé par son ID est équipé d'une arme, false sinon
+renvoie true si le héros référencé par son ID est équipé d'une arme, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1339,10 +1339,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_head(id)
 
-> renvoie l'id du casque équipé par le héros référencé par son ID
+renvoie l'id du casque équipé par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1353,10 +1353,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_hit_rate(id)
 
-> renvoie la probabilité de toucher un ennemi pour le héros référencé par son ID
+renvoie la probabilité de toucher un ennemi pour le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1367,10 +1367,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_hp(id)
 
-> renvoie les points de vie du héros référencé par son ID
+renvoie les points de vie du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1381,10 +1381,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_hp_regeneration_rate(id)
 
-> renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID
+renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1395,10 +1395,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_knowns?(id, skill_id)
 
-> Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon
+Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `skill_id`|`Fixnum`|ID de le technique  
@@ -1410,10 +1410,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_learn(id, skill_id)
 
-> Apprend la technique passée en argument au héros référencé par son ID
+Apprend la technique passée en argument au héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `skill_id`|`Fixnum`|ID de le technique  
@@ -1425,10 +1425,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_level(id)
 
-> renvoie le niveau du héros référencé par son ID
+renvoie le niveau du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1439,10 +1439,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_level_down(id)
 
-> fait perdre un niveau au héros référencé par son ID
+fait perdre un niveau au héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1453,10 +1453,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_level_max(id)
 
-> renvoie le niveau maximum du héros référencé par son ID
+renvoie le niveau maximum du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1467,10 +1467,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_level_up(id)
 
-> fait gagner un niveau au héros référencé par son ID
+fait gagner un niveau au héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1481,10 +1481,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_luck(id)
 
-> renvoie les points de chance du héros référencé par son ID
+renvoie les points de chance du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1495,10 +1495,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_magic_attack(id)
 
-> renvoie les points d'attaque magique du héros référencé par son ID
+renvoie les points d'attaque magique du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1509,10 +1509,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_magic_defense(id)
 
-> renvoie les points de défense magique du héros référencé par son ID
+renvoie les points de défense magique du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1523,10 +1523,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_magical_damage_rate(id)
 
-> renvoie le pourcentage de dommage magique reçu par le héros référencé par son ID
+renvoie le pourcentage de dommage magique reçu par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1537,10 +1537,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_magical_evasion_rate(id)
 
-> renvoie la probabilité d'une esquiver une attaque magique d'un ennemi pour le héros référencé par son ID 
+renvoie la probabilité d'une esquiver une attaque magique d'un ennemi pour le héros référencé par son ID 
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1551,10 +1551,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_magical_reflection_rate(id)
 
-> renvoie la probabilité d'une réflexion magique du héros référencé par son ID
+renvoie la probabilité d'une réflexion magique du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1565,10 +1565,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_max_hp(id)
 
-> renvoie le nombre de points de vie maximum du héros référencé par son ID
+renvoie le nombre de points de vie maximum du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1579,10 +1579,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_max_mp(id)
 
-> renvoie le nombre de points de magie maximum du héros référencé par son ID
+renvoie le nombre de points de magie maximum du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1593,10 +1593,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_mp(id)
 
-> renvoie les points de magie du héros référencé par son ID
+renvoie les points de magie du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1607,10 +1607,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_mp_cost_rate(id)
 
-> renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID
+renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1621,10 +1621,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_mp_regeneration_rate(id)
 
-> renvoie le pourcentage de régénration de MP à chaque tour du héros référencé par son ID
+renvoie le pourcentage de régénration de MP à chaque tour du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1635,10 +1635,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_name(id)
 
-> renvoie le nom du héros référencé par son ID
+renvoie le nom du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1649,10 +1649,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_nickname(id)
 
-> renvoie le surnom du héros référencé par son ID
+renvoie le surnom du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1663,10 +1663,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_note(id)
 
-> renvoie le commentaire de la base de données du héros référencé par son ID
+renvoie le commentaire de la base de données du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1677,10 +1677,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_optimize_equipement(id)
 
-> Optimise l'équipement du héros référencé par son ID
+Optimise l'équipement du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1691,10 +1691,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_pharmacology(id)
 
-> renvoie le pourcentage de PV/PM récupéré via un objet du héros référencé par son ID
+renvoie le pourcentage de PV/PM récupéré via un objet du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1705,10 +1705,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_physical_damage_rate(id)
 
-> renvoie le pourcentage de dommage physique reçu par le héros référencé par son ID
+renvoie le pourcentage de dommage physique reçu par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1719,10 +1719,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_recovery_effect_rate(id)
 
-> renvoie le pourcentage de PV/PM reçu, du héros référencé par son ID
+renvoie le pourcentage de PV/PM reçu, du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1733,10 +1733,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_set_graphic(id, character_name, character_index, face_name, face_index)
 
-> Change les graphismes du héros référencé par son ID
+Change les graphismes du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `character_name`|`String`|Charset  
@@ -1751,10 +1751,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_shield(id)
 
-> renvoie l'id du bouclier équipé par le héros référencé par son ID
+renvoie l'id du bouclier équipé par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1765,10 +1765,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_skills(id)
 
-> renvoie le tableau des ID's des techniques connues du héros référencé par son ID
+renvoie le tableau des ID's des techniques connues du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1779,10 +1779,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_slot(id)
 
-> Renvoie l'ID d'un acteur en fonction de sa position dans l'équipe. Renvoie 0 si le slot est vide.
+Renvoie l'ID d'un acteur en fonction de sa position dans l'équipe. Renvoie 0 si le slot est vide.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Position de l'acteur dans l'équipe  
 
@@ -1793,10 +1793,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_target_rate(id)
 
-> renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID
+renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1807,10 +1807,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_tp(id)
 
-> renvoie les points de temps du héros référencé par son ID
+renvoie les points de temps du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1821,10 +1821,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_tp_charge_rate(id)
 
-> renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID
+renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1835,10 +1835,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_tp_regeneration_rate(id)
 
-> renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID
+renvoie le pourcentage de régénration de TP par tour du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1849,10 +1849,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_weapon(id)
 
-> renvoie l'id de l'arme équipée par le héros référencé par son ID
+renvoie l'id de l'arme équipée par le héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1863,10 +1863,10 @@ Collection des commandes EventExtender
 
 ##### Command.actor_weapons(id)
 
-> renvoie le tableau des ID's des armes équipées du héros référencé par son ID
+renvoie le tableau des ID's des armes équipées du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 
@@ -1877,10 +1877,10 @@ Collection des commandes EventExtender
 
 ##### Command.alt_gr?
 
-> Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
+Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
   
-> 
+
 
 
 
@@ -1888,10 +1888,10 @@ Collection des commandes EventExtender
 
 ##### Command.angle_between(idA, idB)
 
-> Renvoie l'angle entre deux événements référencés par leurs ID's
+Renvoie l'angle entre deux événements référencés par leurs ID's
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
@@ -1903,10 +1903,10 @@ Collection des commandes EventExtender
 
 ##### Command.angle_xy(xa, ya, xb, yb)
 
-> Renvoie l' angle entre deux points, dans le sens anti-horaire, défini entre 0 et 360 degrés
+Renvoie l' angle entre deux points, dans le sens anti-horaire, défini entre 0 et 360 degrés
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `xa`|`Fixnum`|Coordonnée X du point A  
 `ya`|`Fixnum`|Coordonnée Y du point A  
@@ -1920,10 +1920,10 @@ Collection des commandes EventExtender
 
 ##### Command.apply_percent(percent, max)
 
-> Applique percent à max
+Applique percent à max
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `percent`|`Fixnum`|Valeur à appliquer  
 `max`|`Fixnum`|Valeur maximum  
@@ -1940,10 +1940,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_agility(id)
 
-> Renvoie l'apport d'agilité d'une armure référencée par son ID
+Renvoie l'apport d'agilité d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -1954,10 +1954,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_attack_power(id)
 
-> Renvoie la puissance d'attaque d'une armure référencée par son ID
+Renvoie la puissance d'attaque d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -1968,10 +1968,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_count(id)
 
-> Renvoie le nombre d'armures (référencées par un ID) possédées par l'équipe
+Renvoie le nombre d'armures (référencées par un ID) possédées par l'équipe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure à compter  
 
@@ -1982,10 +1982,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_defense_power(id)
 
-> Renvoie la puissance de défense d'une armure référencée par son ID
+Renvoie la puissance de défense d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -1996,10 +1996,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_description(id)
 
-> Renvoie la description de l'armure référencé par son ID
+Renvoie la description de l'armure référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -2010,10 +2010,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_equiped?(id, *member_id)
 
-> Renvoie true si l'armure référencée par son ID est équipée par un des membres de l'équipe, false sinon
+Renvoie true si l'armure référencée par son ID est équipée par un des membres de l'équipe, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 `*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
@@ -2025,10 +2025,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_icon(id)
 
-> Renvoie l'index de l'icone de l'armure référencée par son ID
+Renvoie l'index de l'icone de l'armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -2039,10 +2039,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_luck(id)
 
-> Renvoie l'apport de chance d'une armure référencée par son ID
+Renvoie l'apport de chance d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -2053,10 +2053,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_magic_attack_power(id)
 
-> Renvoie la puissance d'attaque magique d'une armure référencée par son ID
+Renvoie la puissance d'attaque magique d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -2067,10 +2067,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_magic_defense_power(id)
 
-> Renvoie la puissance de défense magique d'une armure référencée par son ID
+Renvoie la puissance de défense magique d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -2081,10 +2081,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_max_hit_points(id)
 
-> Renvoie le maximum des points de vie d'une armure référencée par son ID
+Renvoie le maximum des points de vie d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -2095,10 +2095,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_max_magic_points(id)
 
-> Renvoie le maximum des points de magie d'une armure référencée par son ID
+Renvoie le maximum des points de magie d'une armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -2109,10 +2109,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_name(id)
 
-> Renvoie le nom de l'armure référencée par son ID
+Renvoie le nom de l'armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -2123,10 +2123,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_note(id)
 
-> Renvoie le commentaire de l'armure référencée par son ID
+Renvoie le commentaire de l'armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -2137,10 +2137,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_price(id)
 
-> Renvoie le prix  de l'armure référencée par son ID
+Renvoie le prix  de l'armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -2151,10 +2151,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armor_type(id)
 
-> Renvoie le type de l'armure référencée par son ID
+Renvoie le type de l'armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -2165,10 +2165,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.armors_possessed
 
-> Renvoie la liste des armures possédées
+Renvoie la liste des armures possédées
 
   
-> 
+
 
 
 
@@ -2176,10 +2176,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.asin(x)
 
-> Renvoie l'arc sinus de x
+Renvoie l'arc sinus de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -2190,10 +2190,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.asinh(x)
 
-> Renvoie l'inverse hyperbolique sinus de x
+Renvoie l'inverse hyperbolique sinus de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -2204,10 +2204,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.atan(x)
 
-> Renvoie l'arc tangent de x
+Renvoie l'arc tangent de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -2218,10 +2218,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.atan2(x, y)
 
-> Renvoie l'arc tangent pour x et y
+Renvoie l'arc tangent pour x et y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 `y`|`Numeric`|Valeur numérique  
@@ -2233,10 +2233,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.atanh(x)
 
-> Renvoie l'inverse hyperbolique tangent de x
+Renvoie l'inverse hyperbolique tangent de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -2247,10 +2247,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.battle_count
 
-> Renvoie le nombre de combats effectués par partie
+Renvoie le nombre de combats effectués par partie
 
   
-> 
+
 
 
 
@@ -2258,10 +2258,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.between(x1, y1, x2, y2)
 
-> Donne la distance entre deux points
+Donne la distance entre deux points
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x1`|`Fixnum`|Valeur X du premier point  
 `y1`|`Fixnum`|Valeur Y du premier point  
@@ -2275,10 +2275,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgm_fade(wait, *frame)
 
-> Arrêt en fondu du BGM en cours
+Arrêt en fondu du BGM en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu, par défaut en secondes  
 `*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
@@ -2290,10 +2290,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgm_pitch(pitch)
 
-> Change la vitesse du BGM en cours
+Change la vitesse du BGM en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `pitch`|`Fixnum`|Vitesse du BGM. Pourcentage entre 1 et 453  
 
@@ -2304,10 +2304,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgm_play(name, *volume, *pitch)
 
-> Joue un BGM
+Joue un BGM
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du BGM  
 `*volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100. Par défaut : 100  
@@ -2320,10 +2320,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgm_stop
 
-> Stoppe le BGM en cours
+Stoppe le BGM en cours
 
   
-> 
+
 
 
 
@@ -2331,10 +2331,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgm_volume(volume)
 
-> Change le volume du BGM en cours
+Change le volume du BGM en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `volume`|`Fixnum`|Volume du BGM. Pourcentage entre 0 et 100  
 
@@ -2345,10 +2345,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgs_fade(wait, *frame)
 
-> Arrêt en fondu du BGS en cours
+Arrêt en fondu du BGS en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu (en secondes)  
 `*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
@@ -2360,10 +2360,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgs_pitch(pitch)
 
-> Change la vitesse du BGS en cours
+Change la vitesse du BGS en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `pitch`|`Fixnum`|Vitesse du BGS. Pourcentage entre 1 et 453  
 
@@ -2374,10 +2374,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgs_play(name, *volume, *pitch)
 
-> Joue un BGS
+Joue un BGS
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du BGS  
 `*volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100. Par défaut : 80  
@@ -2390,10 +2390,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgs_stop
 
-> Stoppe le BGS en cours
+Stoppe le BGS en cours
 
   
-> 
+
 
 
 
@@ -2401,10 +2401,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.bgs_volume(volume)
 
-> Change le volume du BGS en cours
+Change le volume du BGS en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `volume`|`Fixnum`|Volume du BGS. Pourcentage entre 0 et 100  
 
@@ -2415,10 +2415,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.call_common_event(id)
 
-> Exécute l'événement commun référencé par son ID
+Exécute l'événement commun référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement commun à exécuter  
 
@@ -2429,10 +2429,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.call_load_screen
 
-> Renvoie à la scene de chargement de partie
+Renvoie à la scene de chargement de partie
 
   
-> 
+
 
 
 
@@ -2440,10 +2440,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.call_title_screen
 
-> Renvoie à l'écran titre
+Renvoie à l'écran titre
 
   
-> 
+
 
 
 
@@ -2451,10 +2451,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_change_focus(event_id)
 
-> Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre évènement
+Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre évènement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `event_id`|`Fixnum`|ID de l'évènement à suivre par la caméra  
 
@@ -2465,10 +2465,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_lock
 
-> Verrouille la position de la caméra
+Verrouille la position de la caméra
 
   
-> 
+
 
 
 
@@ -2476,10 +2476,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)
 
-> Atténue le raffraichissement de l'écran. Rend plus diffus les mouvements de caméra, et mouvements à l'écran.
+Atténue le raffraichissement de l'écran. Rend plus diffus les mouvements de caméra, et mouvements à l'écran.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `attenuation`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
@@ -2493,10 +2493,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_move_on(x, y)
 
-> Place la caméra sur un point de la carte
+Place la caméra sur un point de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -2508,10 +2508,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_scroll(direction, distance, speed)
 
-> Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse
+Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `direction`|`Fixnum`|Direction (2=bas, 4=gauche, 6=droite, 8=haut)  
 `distance`|`Fixnum`|Nombre de case à défiler  
@@ -2524,10 +2524,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_scroll_on(x, y, speed)
 
-> Fait défiler la carte vers un point donné
+Fait défiler la carte vers un point donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -2540,10 +2540,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_unlock
 
-> Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
+Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
 
   
-> 
+
 
 
 
@@ -2551,10 +2551,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.camera_zoom(zoom, *duration, *wait_flag, *ease)
 
-> Zoom tout l'écran en temps réel, sauf les windows (dialogues, etc.)
+Zoom tout l'écran en temps réel, sauf les windows (dialogues, etc.)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `zoom`|`ArgType`|Valeur de zoom, supérieur à 100  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
@@ -2568,10 +2568,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.caps_lock?
 
-> Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
+Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
   
-> 
+
 
 
 
@@ -2579,10 +2579,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.click_time(key)
 
-> Renvoie, en nombre de frames, la durée de pression d'une touche de souris choisie
+Renvoie, en nombre de frames, la durée de pression d'une touche de souris choisie
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
 
@@ -2593,10 +2593,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.clipboard_get_text
 
-> Renvoie le texte contenu dans le presse-papier
+Renvoie le texte contenu dans le presse-papier
 
   
-> 
+
 
 
 
@@ -2604,10 +2604,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.clipboard_push_command(cmd)
 
-> Place une commande évènement dans le presse-papier
+Place une commande évènement dans le presse-papier
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `cmd`|`RPGCommand`|Commande à placer dans le presse-papier  
 
@@ -2618,10 +2618,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.clipboard_push_text(text)
 
-> Place un texte dans le presse-papier
+Place un texte dans le presse-papier
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `text`|`String`|Texte à sauvegarder dans le presse-papier  
 
@@ -2632,10 +2632,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.close_window(id)
 
-> Ferme la fenêtre référencée par son ID
+Ferme la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -2646,10 +2646,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.color(red, green, blue, *alpha)
 
-> Renvoie une couleur
+Renvoie une couleur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `red`|`Fixnum`|Valeur de rouge  
 `green`|`Fixnum`|Valeur de vert  
@@ -2663,10 +2663,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.cos(x)
 
-> Renvoie le cosinus de x
+Renvoie le cosinus de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -2677,10 +2677,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.cosh(x)
 
-> Renvoie le cosinus hyperbolique de x
+Renvoie le cosinus hyperbolique de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -2691,10 +2691,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_circle_area(x, y, rayon)
 
-> Crée et renvoie une zone circulaire
+Crée et renvoie une zone circulaire
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la zone  
 `y`|`Fixnum`|Coordonnées Y de la zone  
@@ -2707,10 +2707,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_commands_window(id, x, y, w, hash, *h)
 
-> Crée une fenêtre de sélection verticale
+Crée une fenêtre de sélection verticale
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
@@ -2726,10 +2726,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_ellipse_area(x, y, width, height)
 
-> Crée et renvoie une zone elliptique
+Crée et renvoie une zone elliptique
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la zone  
 `y`|`Fixnum`|Coordonnées Y de la zone  
@@ -2743,10 +2743,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_horizontal_commands_window(id, x, y, hash, row)
 
-> Crée une fenêtre de sélection horizontale
+Crée une fenêtre de sélection horizontale
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X de la fenêtre  
@@ -2761,10 +2761,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_polygon_area(points)
 
-> Crée et renvoie une zone polygonale (le dernier point est relié avec le premier)
+Crée et renvoie une zone polygonale (le dernier point est relié avec le premier)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `points`|`ArgType`|Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])  
 
@@ -2775,10 +2775,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_rect_area(x, y, width, height)
 
-> Crée et renvoie une zone rectangulaire
+Crée et renvoie une zone rectangulaire
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la zone  
 `y`|`Fixnum`|Coordonnées Y de la zone  
@@ -2792,10 +2792,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_selectable_window(id, x, y, width, height, hash)
 
-> Crée une fenêtre de sélection complexe
+Crée une fenêtre de sélection complexe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnée X  
@@ -2811,10 +2811,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.create_text_window(id, content, x, y, *w, *h)
 
-> Crée une fenêtre pouvant contenir du texte
+Crée une fenêtre pouvant contenir du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Numéro de la fenêtre  
 `content`|`String`|Texte (ou tableau séparé par des virgules) à afficher  
@@ -2830,10 +2830,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.ctrl?(key)
 
-> Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
+Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
 
@@ -2844,10 +2844,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.currency
 
-> Renvoie la monnaie du jeu
+Renvoie la monnaie du jeu
 
   
-> 
+
 
 
 
@@ -2855,10 +2855,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.current_enemies
 
-> Renvoie un tableau contenant les ID des ennemis en cours de combat
+Renvoie un tableau contenant les ID des ennemis en cours de combat
 
   
-> 
+
 
 
 
@@ -2866,10 +2866,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.current_troop
 
-> Renvoie l'identifiant du groupe en cours de combat
+Renvoie l'identifiant du groupe en cours de combat
 
   
-> 
+
 
 
 
@@ -2877,10 +2877,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.cursor_system(flag)
 
-> Affiche ou masque le curseur Windows sur la fenêtre de jeu
+Affiche ou masque le curseur Windows sur la fenêtre de jeu
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `flag`|`Boolean`|true pour visible, false pour invisible  
 
@@ -2891,10 +2891,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.damage_floor?(x, y)
 
-> Renvoie true si la case référencée par X, Y est blessante, false sinon
+Renvoie true si la case référencée par X, Y est blessante, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
@@ -2906,10 +2906,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.delete_tiles(layer, id)
 
-> Supprime tous les tiles référencés par un ID et un layer
+Supprime tous les tiles référencés par un ID et un layer
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `layer`|`Fixnum`|Numéro de la couche  
 `id`|`Fixnum`|Id du tile à supprimer  
@@ -2921,10 +2921,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_agility(position)
 
-> renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
+renvoie les points d'agilité de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -2935,10 +2935,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_attack(position)
 
-> renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat
+renvoie les points d'attaque de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -2949,10 +2949,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_counter_attack_rate(position)
 
-> renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat
+renvoie la probabilité d'un contre (sur une attaque physique) de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -2963,10 +2963,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_critical_evasion_rate(position)
 
-> renvoie la probabilité de faire un coup critique en préemptif de l'ennemi en combat référencé par sa position en combat
+renvoie la probabilité de faire un coup critique en préemptif de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -2977,10 +2977,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_critical_rate(position)
 
-> renvoie la probabilité de coup critique de l'ennemi en combat référencé par sa position en combat
+renvoie la probabilité de coup critique de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -2991,10 +2991,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_defense(position)
 
-> renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
+renvoie les points de défense de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3005,10 +3005,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_die?(position)
 
-> renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
+renvoie true si l'ennemi en combat référencé par sa position en combat est mort, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3019,10 +3019,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_evasion_rate(position)
 
-> renvoie la probabilité d'esquiver une attaque physique de l'ennemi en combat référencé par sa position en combat
+renvoie la probabilité d'esquiver une attaque physique de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3033,10 +3033,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_experience_rate(position)
 
-> renvoie le pourcentage de la variation d'acquisition d'expérience de l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de la variation d'acquisition d'expérience de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3047,10 +3047,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_floor_damage_rate(position)
 
-> renvoie le pourcentage de dommage des terrains reçu par l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de dommage des terrains reçu par l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3061,10 +3061,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_guard_effect_rate(position)
 
-> renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
+renvoie la force de défense (diminution de l'attaque subie) de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3075,10 +3075,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_hidden?(position)
 
-> renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
+renvoie true si l'ennemi en combat référencé par sa position en combat est invisble, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3089,10 +3089,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_hit_rate(position)
 
-> renvoie la probabilité de toucher de l'ennemi en combat référencé par sa position en combat sur un ennemi
+renvoie la probabilité de toucher de l'ennemi en combat référencé par sa position en combat sur un ennemi
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3103,10 +3103,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_hp(position)
 
-> renvoie les points de vie de l'ennemi en combat référencé par sa position en combat
+renvoie les points de vie de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3117,10 +3117,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_hp_regeneration_rate(position)
 
-> renvoie le pourcentage de régénération de PV à chaque tour de l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de régénération de PV à chaque tour de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3131,10 +3131,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_luck(position)
 
-> renvoie les points de chance de l'ennemi en combat référencé par sa position en combat
+renvoie les points de chance de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3145,10 +3145,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_magic_attack(position)
 
-> renvoie les points d'attaque magique de l'ennemi en combat référencé par sa position en combat
+renvoie les points d'attaque magique de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3159,10 +3159,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_magic_defense(position)
 
-> renvoie les points de défense magique de l'ennemi en combat référencé par sa position en combat
+renvoie les points de défense magique de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3173,10 +3173,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_magical_damage_rate(position)
 
-> renvoie le pourcentage de dommage magique reçu par l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de dommage magique reçu par l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3187,10 +3187,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_magical_evasion_rate(position)
 
-> renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi
+renvoie la probabilité d'une esquiver une attaque magique de l'ennemi en combat référencé par sa position en combat par un ennemi
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3201,10 +3201,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_magical_reflection_rate(position)
 
-> renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat
+renvoie la probabilité d'une réflexion magique de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3215,10 +3215,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_max_hp(position)
 
-> renvoie le nombre de points de vie maximum de l'ennemi en combat référencé par sa position en combat
+renvoie le nombre de points de vie maximum de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3229,10 +3229,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_max_mp(position)
 
-> renvoie le nombre de points de magie de l'ennemi en combat référencé par sa position en combat
+renvoie le nombre de points de magie de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3243,10 +3243,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_mp(position)
 
-> renvoie les points de magie de l'ennemi en combat référencé par sa position en combat
+renvoie les points de magie de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3257,10 +3257,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_mp_cost_rate(position)
 
-> renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
+renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3271,10 +3271,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_mp_regeneration_rate(position)
 
-> renvoie le pourcentage de régénération PM à chaque tour de l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de régénération PM à chaque tour de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3285,10 +3285,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_pharmacology(position)
 
-> renvoie le pourcentage de PV/PM récupéré via un objet de l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de PV/PM récupéré via un objet de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3299,10 +3299,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_physical_damage_rate(position)
 
-> renvoie le pourcentage de dommage physique reçu par l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de dommage physique reçu par l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3313,10 +3313,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_recovery_effect_rate(position)
 
-> renvoie le pourcentage de PV/PM reçus, de l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de PV/PM reçus, de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3327,10 +3327,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_target_rate(position)
 
-> renvoie la probabilité d'être ciblé par un ennemi, de l'ennemi en combat référencé par sa position en combat
+renvoie la probabilité d'être ciblé par un ennemi, de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3341,10 +3341,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_tp(position)
 
-> renvoie les points de temps de l'ennemi en combat référencé par sa position en combat
+renvoie les points de temps de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3355,10 +3355,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_tp_charge_rate(position)
 
-> renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
+renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3369,10 +3369,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.enemy_tp_regeneration_rate(position)
 
-> renvoie le pourcentage de régénération de TP par tour de l'ennemi en combat référencé par sa position en combat
+renvoie le pourcentage de régénération de TP par tour de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -3383,10 +3383,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_brutal_stop_trail(ids)
 
-> Arrête brutalement la traînée sur un sélecteur d'évènements
+Arrête brutalement la traînée sur un sélecteur d'évènements
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 
@@ -3397,10 +3397,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_direction(id, *value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
+Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 `*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.  
@@ -3412,10 +3412,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_erase(id)
 
-> Efface de la map les événements référencés par le sélécteur ID
+Efface de la map les événements référencés par le sélécteur ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Selector`|ID des événements  
 
@@ -3426,10 +3426,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_erased?(id)
 
-> Renvoie true si l'évènement référencé par son ID à été supprimé, false sinon
+Renvoie true si l'évènement référencé par son ID à été supprimé, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
 
@@ -3440,10 +3440,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_in_screen?(id)
 
-> Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon
+Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3454,10 +3454,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_look_at?(idA, idB, scope, *metric)
 
-> Renvoie true si l'évènement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon
+Renvoie true si l'évènement A regarde dans la direction de l'évènement B et que celui ci est dans son périmètre, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
@@ -3471,10 +3471,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_down(id)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+Fait bouger l'événement référencé par son ID d'une case vers le bas
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 
@@ -3485,10 +3485,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_frequency(ids, f)
 
-> Modifie la fréquence des événements référencés par leurs Id
+Modifie la fréquence des événements référencés par leurs Id
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `f`|`Fixnum`|Fréquence des événements, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence de l'évènement référencé par son ID  
@@ -3500,10 +3500,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_left(id)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+Fait bouger l'événement référencé par son ID d'une case vers le bas
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 
@@ -3514,10 +3514,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_right(id)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+Fait bouger l'événement référencé par son ID d'une case vers le bas
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 
@@ -3528,10 +3528,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_speed(ids, v)
 
-> Modifie la vitesse des événements référencés par leurs Id
+Modifie la vitesse des événements référencés par leurs Id
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `v`|`Fixnum`|Vitesse des événements,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse de l'évènement référencé par son ID  
@@ -3543,10 +3543,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_speed_frequency(ids, v, f)
 
-> Change la vitesse et la fréquence des événements référencés par leurs ID
+Change la vitesse et la fréquence des événements référencés par leurs ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|IDs des événements  
 `v`|`Fixnum`|Vitesse des événements  
@@ -3559,10 +3559,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_up(id)
 
-> Fait bouger l'événement référencé par son ID d'une case vers le bas
+Fait bouger l'événement référencé par son ID d'une case vers le bas
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 
@@ -3573,10 +3573,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_move_with(id, code)
 
-> Applique un déplacement (selon un code) à un événement
+Applique un déplacement (selon un code) à un événement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 `code`|`Fixnum`|Liste des codes de déplacement  
@@ -3588,10 +3588,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_moving?(id)
 
-> Renvoie true si l'évènement est en mouvement, false sinon.
+Renvoie true si l'évènement est en mouvement, false sinon.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 
@@ -3602,10 +3602,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_name(id)
 
-> Renvoie le nom d'un évènement, renvoie nil s' il s'agit du héros
+Renvoie le nom d'un évènement, renvoie nil s' il s'agit du héros
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour le héros)  
 
@@ -3616,10 +3616,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_opacity(ids, *value)
 
-> Modifie (ou retourne) l'opacité d'un évènement 
+Modifie (ou retourne) l'opacité d'un évènement 
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Id de l'évènement (ne pas utiliser de selecteur pour renvoyer l'opacité)  
 `*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
@@ -3631,10 +3631,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_opaque(id)
 
-> Rend l'évènement référencé par son ID opaque
+Rend l'évènement référencé par son ID opaque
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
 
@@ -3645,10 +3645,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_ox(id, *value)
 
-> Modifie (ou retourne) la coordonnée X du point de départ d'un événement (le point d'accroche)
+Modifie (ou retourne) la coordonnée X du point de départ d'un événement (le point d'accroche)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
@@ -3660,10 +3660,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_oy(id, *value)
 
-> Modifie (ou retourne) la coordonnée y du point de départ d'un événement (le point d'accroche)
+Modifie (ou retourne) la coordonnée y du point de départ d'un événement (le point d'accroche)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
@@ -3675,10 +3675,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_path_length(id, x, y, *wait_flag, *no_through)
 
-> Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
+Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
 `x`|`Fixnum`|Coordonnées X  
@@ -3693,10 +3693,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_pixel_x(id)
 
-> Renvoie la coordonnée X de l'évènement référencé par son ID en pixel sur la carte
+Renvoie la coordonnée X de l'évènement référencé par son ID en pixel sur la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3707,10 +3707,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_pixel_y(id)
 
-> Renvoie la coordonnée Y de l'évènement référencé par son ID en pixel sur la carte
+Renvoie la coordonnée Y de l'évènement référencé par son ID en pixel sur la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3721,10 +3721,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_priority(ids, priority)
 
-> Change la priorité d'affichage des événements référencés par leurs ID (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)
+Change la priorité d'affichage des événements référencés par leurs ID (0: sous le héros, 1: même niveau que le héros, 2: au dessus du héros)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `priority`|`Fixnum`|Priorité d'affichage, si aucune priorité n'est donnée, la commande renverra la valeur de la priorité de l'évènement référencé par son ID  
@@ -3736,10 +3736,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_restore_origin(id)
 
-> Restore l'origine de l'événement référencé par son ID
+Restore l'origine de l'événement référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 
@@ -3750,10 +3750,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_screen_x(id)
 
-> Renvoie la coordonnée X de l'évènement référencé par son ID par rapport à l'écran
+Renvoie la coordonnée X de l'évènement référencé par son ID par rapport à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3764,10 +3764,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_screen_y(id)
 
-> Renvoie la coordonnée Y de l'évènement référencé par son ID par rapport à l'écran
+Renvoie la coordonnée Y de l'évènement référencé par son ID par rapport à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3778,10 +3778,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_stop_trail(ids)
 
-> Arrête la trainée sur un sélecteur d'évènements
+Arrête la trainée sur un sélecteur d'évènements
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 
@@ -3792,10 +3792,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_through(id, *flag)
 
-> Change le mode de traversée de l'évènement
+Change le mode de traversée de l'évènement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
 `*flag`|`Boolean`|true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true   
@@ -3807,10 +3807,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_through?(id)
 
-> Renvoie true si l'évènement est en mode 'traverse tout', false sinon
+Renvoie true si l'évènement est en mode 'traverse tout', false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
 
@@ -3821,10 +3821,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_trail(ids, len, *mode)
 
-> Applique une traînée sur un sélecteur d'évènements
+Applique une traînée sur un sélecteur d'évènements
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
 `len`|`Fixnum`|Taille de la trainée  
@@ -3837,10 +3837,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_transfert(id, new_x, new_y)
 
-> Téléporte l'évènement référencé par son ID à une nouvelle coordonnées de la carte
+Téléporte l'évènement référencé par son ID à une nouvelle coordonnées de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
 `new_x`|`Fixnum`|Coordonnées X  
@@ -3853,10 +3853,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_transparent(id)
 
-> Rend l'évènement référencé par son ID transparent
+Rend l'évènement référencé par son ID transparent
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
 
@@ -3867,10 +3867,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_transparent?(id)
 
-> Renvoie true si l'évènement est transparent (false sinon)
+Renvoie true si l'évènement est transparent (false sinon)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
 
@@ -3881,10 +3881,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_trigger(ids, trigger)
 
-> Change le type de déclenchement des événements référencés par leurs ID (0: touche action, 1: contact du héros, 2: contact de l'event, 3: automatique, 4: processus paralléle).
+Change le type de déclenchement des événements référencés par leurs ID (0: touche action, 1: contact du héros, 2: contact de l'event, 3: automatique, 4: processus paralléle).
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `trigger`|`Fixnum`|Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID  
@@ -3896,10 +3896,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_x(id)
 
-> Renvoie la coordonnées X de la case sur laquelle se trouve l'évènement référencé par son ID
+Renvoie la coordonnées X de la case sur laquelle se trouve l'évènement référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3910,10 +3910,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_y(id)
 
-> Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID
+Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
@@ -3924,10 +3924,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_zoom(id, value)
 
-> Modifie le zoom d'un événement
+Modifie le zoom d'un événement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `value`|`Fixnum`|Valeur du zoom  
@@ -3939,10 +3939,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_zoom_x(id, *value)
 
-> Modifie (ou retourne) la valeur du zoom horizontal d'un événement
+Modifie (ou retourne) la valeur du zoom horizontal d'un événement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
@@ -3954,10 +3954,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.event_zoom_y(id, *value)
 
-> Modifie (ou retourne) la valeur du zoom vertical d'un événement
+Modifie (ou retourne) la valeur du zoom vertical d'un événement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
@@ -3969,10 +3969,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.events_buzz(e, *duration)
 
-> Fait tressaillir les évènements
+Fait tressaillir les évènements
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `e`|`Selector`|Selecteur d'évènements  
 `*duration`|`Fixnum`|Durée du dressaillement (en frames), par défaut, 16  
@@ -3984,10 +3984,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.events_buzzer_properties(e, amplitude, length)
 
-> Change les propriétés de tressaillement d'évènements
+Change les propriétés de tressaillement d'évènements
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `e`|`Selector`|Selecteurs d'évènements  
 `amplitude`|`ArgType`|Amplitude du tressaillement  
@@ -4000,10 +4000,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.events_collide?(idA, idB)
 
-> Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
+Renvoie true si l'evenement A est en collision avec l'évènement B, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
@@ -4015,10 +4015,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.fadein(*time)
 
-> Affiche l'écran en fondu
+Affiche l'écran en fondu
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*time`|`Fixnum`|Durée de la transition  
 
@@ -4029,10 +4029,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.fadeout(*time)
 
-> Fondu noir (et sonore) du jeu pendant la durée passée en argument
+Fondu noir (et sonore) du jeu pendant la durée passée en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*time`|`Fixnum`|Durée de fondu  
 
@@ -4043,10 +4043,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.flash_rect(x, y, width, height, color)
 
-> Fait clignoter un rectangle de cases
+Fait clignoter un rectangle de cases
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -4061,10 +4061,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.flash_square(x, y, color)
 
-> Fait clignoter une case selon une couleur
+Fait clignoter une case selon une couleur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -4077,10 +4077,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.followers_buzz(ids, *duration)
 
-> Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs n'est pas renseignée, ça s'applique à tous les followers)
+Fait tressaillir les suiveurs (followers_buzz([1,2,3], *duration), par exemple, si la liste des suiveurs n'est pas renseignée, ça s'applique à tous les followers)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Tableau des identifiants des suiveurs à faire tressaillir, utiliser [] pour appliquer à tous les suiveurs  
 `*duration`|`Fixnum`|Durée du dressaillement (en frame), par défaut, 16  
@@ -4092,10 +4092,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.followers_buzzer_properties(*ids, amplitude, length)
 
-> Change les propriétés de tressaillement des membres de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))
+Change les propriétés de tressaillement des membres de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*ids`|`ArgsList`|Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.  
 `amplitude`|`ArgType`|Amplitude du tressaillement  
@@ -4108,10 +4108,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.fresh_event_id
 
-> Renvoie un ID libre (utile en cas d'invocation d'évènement)
+Renvoie un ID libre (utile en cas d'invocation d'évènement)
 
   
-> 
+
 
 
 
@@ -4119,10 +4119,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.gain_gold(amount)
 
-> Fait gagner de l'argent à l'équipe
+Fait gagner de l'argent à l'équipe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `amount`|`o`|T  
 
@@ -4133,10 +4133,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.game_title
 
-> Renvoie le titre du jeu
+Renvoie le titre du jeu
 
   
-> 
+
 
 
 
@@ -4144,10 +4144,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.game_window_rect
 
-> Renvoie le rectangle correspondant à la fenêtre de jeu
+Renvoie le rectangle correspondant à la fenêtre de jeu
 
   
-> 
+
 
 
 
@@ -4155,10 +4155,10 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 ##### Command.get(array, index)
 
-> Renvoie la cellule à la valeur donnée d'un tableau
+Renvoie la cellule à la valeur donnée d'un tableau
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `array`|`Array`|Tableau  
 `index`|`Fixnum`|Index à trouver  
@@ -4175,10 +4175,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.get_tileset_id
 
-> Renvoie l' ID du tileset de la carte en cours
+Renvoie l' ID du tileset de la carte en cours
 
   
-> 
+
 
 
 
@@ -4186,10 +4186,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.give_armor(id, amount, *include_equipement)
 
-> Fait gagner à l'équipe l'armure référencée par son ID
+Fait gagner à l'équipe l'armure référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
@@ -4202,10 +4202,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.give_item(id, amount)
 
-> Fait gagner à l'équipe l'objet référencé par son ID
+Fait gagner à l'équipe l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
@@ -4217,10 +4217,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.give_weapon(id, amount, *include_equipement)
 
-> Fait gagner à l'équipe l'arme référencé par son ID
+Fait gagner à l'équipe l'arme référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 `amount`|`Fixnum`|Nombre à donner. Si le nombre est négatif, l'objet sera retiré  
@@ -4233,10 +4233,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.gold
 
-> Renvoie l'argent possédé
+Renvoie l'argent possédé
 
   
-> 
+
 
 
 
@@ -4244,10 +4244,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.ground?(x, y)
 
-> Renvoie true si les coordonnées sont sur le sol, false sinon
+Renvoie true si les coordonnées sont sur le sol, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -4259,10 +4259,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.has_armor?(id, *include_equipement)
 
-> Renvoie true si l'armure référencée par son ID est possédée par l'équipe, false sinon
+Renvoie true si l'armure référencée par son ID est possédée par l'équipe, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 `*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
@@ -4274,10 +4274,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.has_item?(id)
 
-> Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon
+Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4288,10 +4288,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.has_weapon?(id, *include_equipement)
 
-> Renvoie true si l'arme référencée par son ID est possédée par l'équipe, false sinon
+Renvoie true si l'arme référencée par son ID est possédée par l'équipe, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 `*include_equipement`|`Boolean`|Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)  
@@ -4303,10 +4303,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.hypot(x, y)
 
-> Renvoie l'hypothénuse de x et y
+Renvoie l'hypothénuse de x et y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 `y`|`Numeric`|Valeur numérique  
@@ -4318,10 +4318,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.id_at(x, y)
 
-> Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)
+Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
@@ -4333,10 +4333,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.import_label(index, idlabel)
 
-> Renvoie la valeur d'un label issu d'une autre sauvegarde
+Renvoie la valeur d'un label issu d'une autre sauvegarde
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idlabel`|`Fixnum`|Identifiant du label  
@@ -4348,10 +4348,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.import_switch(index, idswitch)
 
-> Renvoie la valeur d'un interrupteur issu d'une autre sauvegarde
+Renvoie la valeur d'un interrupteur issu d'une autre sauvegarde
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idswitch`|`Fixnum`|Numéro de l'interrupteur  
@@ -4363,10 +4363,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.import_variable(index, idvar)
 
-> Renvoie la valeur d'une variable issue d'une autre sauvegarde
+Renvoie la valeur d'une variable issue d'une autre sauvegarde
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `idvar`|`Fixnum`|Numéro de la variable  
@@ -4378,10 +4378,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.in_area?(area, x, y)
 
-> Vérifie si le point référencé par X, Y est inscrit dans la zone passée en argument
+Vérifie si le point référencé par X, Y est inscrit dans la zone passée en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `x`|`Fixnum`|Coordonnée X du point  
@@ -4394,10 +4394,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.include_page(map_id, event_id, page_id, *runnable, *context)
 
-> Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
+Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à inclure  
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à inclure  
@@ -4412,10 +4412,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.invoke_event(map_id, event_id, new_id, *x, *y)
 
-> Invoque un évènement d'une autre map (ou de la même) sur la carte
+Invoque un évènement d'une autre map (ou de la même) sur la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à invoquer  
 `event_id`|`Fixnum`|ID de l'évènement à invoquer  
@@ -4430,10 +4430,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.is_key_item?(id)
 
-> Renvoie true si l'objet référencé par son ID est un objet clé, false sinon
+Renvoie true si l'objet référencé par son ID est un objet clé, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4444,10 +4444,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_always_usable?(id)
 
-> Renvoie true si l'objet référencé par son ID est utilisable partout
+Renvoie true si l'objet référencé par son ID est utilisable partout
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4458,10 +4458,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_battle_usable?(id)
 
-> Renvoie true si l'objet référencé par son ID est utilisable en combat seulement 
+Renvoie true si l'objet référencé par son ID est utilisable en combat seulement 
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4472,10 +4472,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_certain?(id)
 
-> Renvoie true si un objet référencé par son ID a une garantie de réussite totale, false sinon
+Renvoie true si un objet référencé par son ID a une garantie de réussite totale, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4486,10 +4486,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_consumable?(id)
 
-> Renvoie true si l'objet référencé par son ID est consommable, false sinon
+Renvoie true si l'objet référencé par son ID est consommable, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4500,10 +4500,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_count(id)
 
-> Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe
+Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet à compter  
 
@@ -4514,10 +4514,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_description(id)
 
-> Renvoie la description de l'objet référencé par son ID
+Renvoie la description de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4528,10 +4528,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_all?(id)
 
-> Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon
+Renvoie true si l'objet référencé par son ID cible tout un groupe (tous les alliés ou tous les ennemis), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4542,10 +4542,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_all_allies?(id)
 
-> Renvoie true si l'objet référencé par son ID cible tous les alliés vivants, false sinon
+Renvoie true si l'objet référencé par son ID cible tous les alliés vivants, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4556,10 +4556,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_all_dead_allies?(id)
 
-> Renvoie true si l'objet référencé par son ID cible tous les alliés morts, false sinon
+Renvoie true si l'objet référencé par son ID cible tous les alliés morts, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4570,10 +4570,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_all_enemies?(id)
 
-> Renvoie true si l'objet référencé par son ID cible tous les ennemis, false sinon
+Renvoie true si l'objet référencé par son ID cible tous les ennemis, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4584,10 +4584,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_caller?(id)
 
-> Renvoie true si l'objet référencé par son ID est utilisable sur le personnage du moment, false sinon
+Renvoie true si l'objet référencé par son ID est utilisable sur le personnage du moment, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4598,10 +4598,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_dead_friend?(id)
 
-> Renvoie true si l'objet référencé par son ID cible un (ou les) allié(s) mort(s), false sinon
+Renvoie true si l'objet référencé par son ID cible un (ou les) allié(s) mort(s), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4612,10 +4612,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_four_random_enemies?(id)
 
-> Renvoie true si l'objet référencé par son ID cible quatre ennemis au hasard, false sinon
+Renvoie true si l'objet référencé par son ID cible quatre ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4626,10 +4626,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_friend?(id)
 
-> Renvoie true si la cible de l'objet référencé par son ID est du côté allié, false sinon
+Renvoie true si la cible de l'objet référencé par son ID est du côté allié, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4640,10 +4640,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_one?(id)
 
-> Renvoie true si l'objet référencé par son ID a une seule cible, false sinon
+Renvoie true si l'objet référencé par son ID a une seule cible, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4654,10 +4654,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_one_ally?(id)
 
-> Renvoie true si l'objet référencé par son ID cible un allié vivant, false sinon
+Renvoie true si l'objet référencé par son ID cible un allié vivant, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4668,10 +4668,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_one_dead_ally?(id)
 
-> Renvoie true si l'objet référencé par son ID cible un allié mort, false sinon
+Renvoie true si l'objet référencé par son ID cible un allié mort, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4682,10 +4682,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_one_enemy?(id)
 
-> Renvoie true si l'objet référencé par son ID cible un ennemi, false sinon
+Renvoie true si l'objet référencé par son ID cible un ennemi, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4696,10 +4696,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_one_random_enemy?(id)
 
-> Renvoie true si l'objet référencé par son ID cible un ennemi au hasard, false sinon
+Renvoie true si l'objet référencé par son ID cible un ennemi au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4710,10 +4710,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_opponent?(id)
 
-> Renvoie true si l'objet référencé par son ID cible les ennemis, false sinon
+Renvoie true si l'objet référencé par son ID cible les ennemis, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4724,10 +4724,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_random?(id)
 
-> Renvoie true si l'objet référencé par son ID cible aléatoirement, false sinon
+Renvoie true si l'objet référencé par son ID cible aléatoirement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4738,10 +4738,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_three_random_enemies?(id)
 
-> Renvoie true si l'objet référencé par son ID cible trois ennemis au hasard, false sinon
+Renvoie true si l'objet référencé par son ID cible trois ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4752,10 +4752,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_for_two_random_enemies?(id)
 
-> Renvoie true si l'objet référencé par son ID cible deux ennemis au hasard, false sinon
+Renvoie true si l'objet référencé par son ID cible deux ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4766,10 +4766,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_has_no_scope?(id)
 
-> Renvoie true si l'objet référencé par son ID ne cible personne, false sinon
+Renvoie true si l'objet référencé par son ID ne cible personne, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4780,10 +4780,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_icon(id)
 
-> Renvoie l'index de l'icone de l'objet référencé par son ID
+Renvoie l'index de l'icone de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4794,10 +4794,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_magical?(id)
 
-> Renvoie true si un objet référencé par son ID endommage les PM, false sinon
+Renvoie true si un objet référencé par son ID endommage les PM, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4808,10 +4808,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_menu_usable?(id)
 
-> Renvoie true si l'objet référencé par son ID est utilisable dans le menu seulement
+Renvoie true si l'objet référencé par son ID est utilisable dans le menu seulement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4822,10 +4822,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_name(id)
 
-> Renvoie le nom de l'objet référencé par son ID
+Renvoie le nom de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4836,10 +4836,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_nb_hits(id)
 
-> Renvoie le nombre de coups portés par l'objet référencé par son ID
+Renvoie le nombre de coups portés par l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4850,10 +4850,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_need_selection?(id)
 
-> Renvoie true si un objet référencé par son ID requiert la sélection d'une cible, false sinon
+Renvoie true si un objet référencé par son ID requiert la sélection d'une cible, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4864,10 +4864,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_never_usable?(id)
 
-> Renvoie true si l'objet référencé par son ID n'est jamais utilisable
+Renvoie true si l'objet référencé par son ID n'est jamais utilisable
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4878,10 +4878,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_note(id)
 
-> Renvoie le commentaire de l'objet référencé par son ID
+Renvoie le commentaire de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4892,10 +4892,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_number_of_targets(id)
 
-> Renvoie le nombre de cibles d'un objet référencé par son ID, false sinon
+Renvoie le nombre de cibles d'un objet référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4906,10 +4906,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_occasion(id)
 
-> Renvoie un entier correspondant au droit d'utilisation de l'objet
+Renvoie un entier correspondant au droit d'utilisation de l'objet
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4920,10 +4920,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_physical?(id)
 
-> Renvoie true si un objet référencé par son ID endommage les PV, false sinon
+Renvoie true si un objet référencé par son ID endommage les PV, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4934,10 +4934,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_price(id)
 
-> Renvoie le prix de l'objet référencé par son ID
+Renvoie le prix de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4948,10 +4948,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_scope(id)
 
-> Renvoie la portée (en Entier) d'un objet référencé par son ID
+Renvoie la portée (en Entier) d'un objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'armure  
 
@@ -4962,10 +4962,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_speed(id)
 
-> Renvoie l'apport de vitesse de l'objet référencé par son ID
+Renvoie l'apport de vitesse de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4976,10 +4976,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_success_rate(id)
 
-> Renvoie la probabilité de succès de l'objet référencé par son ID
+Renvoie la probabilité de succès de l'objet référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -4990,10 +4990,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.item_tp_gain(id)
 
-> Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat
+Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -5004,10 +5004,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.items_possessed
 
-> Renvoie la liste des objets possédés
+Renvoie la liste des objets possédés
 
   
-> 
+
 
 
 
@@ -5015,10 +5015,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.jump_to(id, x, y, *wait_flag)
 
-> Déplace l'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées données en argument
+Déplace l'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées données en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
 `x`|`Fixnum`|Coordonnées X  
@@ -5032,10 +5032,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_current(method)
 
-> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
 
@@ -5046,10 +5046,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_current_rgss(method)
 
-> Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
+Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
 
@@ -5060,10 +5060,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_press?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -5074,10 +5074,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_release?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -5088,10 +5088,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -5102,10 +5102,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_time(key)
 
-> Renvoie, en nombre de frames, le temps de pression d'une touche de clavier choisie
+Renvoie, en nombre de frames, le temps de pression d'une touche de clavier choisie
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
 
@@ -5116,10 +5116,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.key_trigger?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -5130,10 +5130,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.keyboard_all?(method, keys)
 
-> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
+Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
@@ -5145,10 +5145,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.keyboard_any?(method, keys)
 
-> Renvoie true si  au moins une touche passée à keys est activée selon la méthode passée à method
+Renvoie true si  au moins une touche passée à keys est activée selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
@@ -5160,10 +5160,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.keyboard_current_char
 
-> Renvoie le caractère actuel pressé par le clavier
+Renvoie le caractère actuel pressé par le clavier
 
   
-> 
+
 
 
 
@@ -5171,10 +5171,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.keyboard_current_digit
 
-> Renvoie le chiffre actuel pressé par le clavier
+Renvoie le chiffre actuel pressé par le clavier
 
   
-> 
+
 
 
 
@@ -5182,10 +5182,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.last_clicked_event
 
-> Renvoie le dernier event cliqué par la souris, nil si aucun évènement n'a été cliqué
+Renvoie le dernier event cliqué par la souris, nil si aucun évènement n'a été cliqué
 
   
-> 
+
 
 
 
@@ -5193,10 +5193,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.last_hovered_event
 
-> Renvoie le dernier event survolé par la souris, nil si aucun évènement n'a été survolé
+Renvoie le dernier event survolé par la souris, nil si aucun évènement n'a été survolé
 
   
-> 
+
 
 
 
@@ -5204,10 +5204,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.last_pressed_event
 
-> Renvoie le dernier event pressé (avec :mouse_left) par la souris, nil si aucun évènement n'a été pressé
+Renvoie le dernier event pressé (avec :mouse_left) par la souris, nil si aucun évènement n'a été pressé
 
   
-> 
+
 
 
 
@@ -5215,10 +5215,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.last_released_event
 
-> Renvoie le dernier event relâché (avec mouse_left) par la souris, nil si aucun évènement n'a été relâché
+Renvoie le dernier event relâché (avec mouse_left) par la souris, nil si aucun évènement n'a été relâché
 
   
-> 
+
 
 
 
@@ -5226,10 +5226,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.last_repeated_event
 
-> Renvoie le dernier event cliqué en continu (avec :mouse_left) par la souris, nil si aucun évènement n'a été cliqué en continu
+Renvoie le dernier event cliqué en continu (avec :mouse_left) par la souris, nil si aucun évènement n'a été cliqué en continu
 
   
-> 
+
 
 
 
@@ -5237,10 +5237,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.last_triggered_event
 
-> Renvoie le dernier event appuyé une fois (avec :mouse_left) par la souris, nil si aucun évènement n'a été triggeré
+Renvoie le dernier event appuyé une fois (avec :mouse_left) par la souris, nil si aucun évènement n'a été triggeré
 
   
-> 
+
 
 
 
@@ -5248,10 +5248,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.length(array)
 
-> Renvoie la taille d'un tableau
+Renvoie la taille d'un tableau
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `array`|`Array`|Tableau dont il faut renvoyer la taille  
 
@@ -5262,10 +5262,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.load_game(index, *time)
 
-> Charge la partie référencée par l'ID de sauvegarde donné
+Charge la partie référencée par l'ID de sauvegarde donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 `*time`|`Fixnum`|Durée du fadeout  
@@ -5277,10 +5277,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.lose_gold(amount)
 
-> Fait perdre de l'argent à l'équipe
+Fait perdre de l'argent à l'équipe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `amount`|`o`|T  
 
@@ -5291,10 +5291,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mantissa(x)
 
-> Renvoi la partie flottante d'un nombre à virgule
+Renvoi la partie flottante d'un nombre à virgule
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Float`|Nombre à virgule  
 
@@ -5305,10 +5305,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.map_height
 
-> Retourne la hauteur de la carte
+Retourne la hauteur de la carte
 
   
-> 
+
 
 
 
@@ -5316,10 +5316,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.map_id
 
-> Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!
+Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!
 
   
-> 
+
 
 
 
@@ -5327,10 +5327,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.map_name
 
-> Renvoie le nom de la map en cours
+Renvoie le nom de la map en cours
 
   
-> 
+
 
 
 
@@ -5338,10 +5338,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.map_width
 
-> Retourne la largeur de la carte
+Retourne la largeur de la carte
 
   
-> 
+
 
 
 
@@ -5349,10 +5349,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.max(a, b)
 
-> Renvoie la plus grande des deux valeurs A, B
+Renvoie la plus grande des deux valeurs A, B
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `a`|`Object`|Valeur de A  
 `b`|`Object`|Valeur de B  
@@ -5364,10 +5364,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.max_event_id
 
-> Renvoie le plus grand ID d'évènement occupé sur la carte
+Renvoie le plus grand ID d'évènement occupé sur la carte
 
   
-> 
+
 
 
 
@@ -5375,10 +5375,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.me_fade(wait, *frame)
 
-> Arrêt en fondu du ME en cours
+Arrêt en fondu du ME en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu, par défaut en secondes  
 `*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
@@ -5390,10 +5390,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.me_play(name, *volume, *pitch)
 
-> Joue un ME
+Joue un ME
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du ME  
 `*volume`|`Fixnum`|Volume du ME. Pourcentage entre 0 et 100. Par défaut : 100  
@@ -5406,10 +5406,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.me_stop
 
-> Stoppe le ME en cours
+Stoppe le ME en cours
 
   
-> 
+
 
 
 
@@ -5417,10 +5417,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.message(value, *face_name, *face_index, *position, *background)
 
-> Affiche un message à l'écran
+Affiche un message à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `value`|`String`|Message à afficer  
 `*face_name`|`String`|Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \n pour afficher plusieurs lignes  
@@ -5435,10 +5435,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.message_height(n)
 
-> Change le nombre de lignes affichées dans les messages (Commande Event Afficher message)
+Change le nombre de lignes affichées dans les messages (Commande Event Afficher message)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `n`|`Fixnum`|Nombre de lignes visibles  
 
@@ -5449,10 +5449,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.min(a, b)
 
-> Renvoie la plus petite des deux valeurs A, B
+Renvoie la plus petite des deux valeurs A, B
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `a`|`Object`|Valeur de A  
 `b`|`Object`|Valeur de B  
@@ -5464,10 +5464,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_agility(id)
 
-> renvoie l'agilité d'un ennemi référencé par son ID
+renvoie l'agilité d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5478,10 +5478,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_attack_power(id)
 
-> renvoie les points d'attaque d'un ennemi référencé par son ID
+renvoie les points d'attaque d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5492,10 +5492,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_battler_height(position)
 
-> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -5506,10 +5506,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_battler_hue(id)
 
-> renvoie la teinte d'un ennemi référencé par son ID
+renvoie la teinte d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5520,10 +5520,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_battler_name(id)
 
-> renvoie le nom du fichier battler d'un ennemi référencé par son ID
+renvoie le nom du fichier battler d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5534,10 +5534,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_battler_width(position)
 
-> renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
+renvoie la largeur du battler de l'ennemi en combat référencé par sa position en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `position`|`Fixnum`|Position du monstre en combat (0 = premier) (attention ce n'est pas l'ID du monstre dans la base de données!!!)  
 
@@ -5548,10 +5548,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_defense_power(id)
 
-> renvoie les points de défense d'un ennemi référencé par son ID
+renvoie les points de défense d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5562,10 +5562,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_description(id)
 
-> renvoie la description d'un ennemi référencé par son ID
+renvoie la description d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5576,10 +5576,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_give_exp(id)
 
-> renvoie l'experience donnée par un ennemi référencé par son ID
+renvoie l'experience donnée par un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5590,10 +5590,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_give_gold(id)
 
-> renvoie l'or donné par un ennemi référencé par son ID
+renvoie l'or donné par un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5604,10 +5604,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_icon(id)
 
-> renvoie l'icone index d'un ennemi référencé par son ID
+renvoie l'icone index d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5618,10 +5618,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_luck(id)
 
-> renvoie la chance d'un ennemi référencé par son ID
+renvoie la chance d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5632,10 +5632,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_magic_attack_power(id)
 
-> renvoie les points d'attaque magique d'un ennemi référencé par son ID
+renvoie les points d'attaque magique d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5646,10 +5646,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_magic_defense_power(id)
 
-> renvoie les points de défense magique d'un ennemi référencé par son ID
+renvoie les points de défense magique d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5660,10 +5660,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_max_hp(id)
 
-> renvoie le maximum de points de vie d'un ennemi référencé par son ID
+renvoie le maximum de points de vie d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5674,10 +5674,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_max_mp(id)
 
-> renvoie le maximum de points de magie d'un ennemi référencé par son ID
+renvoie le maximum de points de magie d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5688,10 +5688,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_name(id)
 
-> renvoie le nom d'un ennemi référencé par son ID
+renvoie le nom d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5702,10 +5702,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.monster_note(id)
 
-> renvoie la note/commentaire d'un ennemi référencé par son ID
+renvoie la note/commentaire d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
@@ -5716,10 +5716,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_all?(method, keys)
 
-> Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
+Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
@@ -5731,10 +5731,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_any?(method, keys)
 
-> Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
+Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
@@ -5746,10 +5746,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_click?
 
-> Renvoie true lorsqu'on effectue un clic gauche
+Renvoie true lorsqu'on effectue un clic gauche
 
   
-> 
+
 
 
 
@@ -5757,10 +5757,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_click_area?(area)
 
-> Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel, false sinon
+Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 
@@ -5771,10 +5771,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_click_event?(events, *precise)
 
-> Renvoie true si la souris clique sur un évènement du sélecteur passé en argument
+Renvoie true si la souris clique sur un évènement du sélecteur passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false   
@@ -5786,10 +5786,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_click_player?
 
-> Renvoie true si la souris clique sur l'image du joueur
+Renvoie true si la souris clique sur l'image du joueur
 
   
-> 
+
 
 
 
@@ -5797,10 +5797,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_click_square_area?(area, *key)
 
-> Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
+Renvoie true si la souris survole et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -5812,10 +5812,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_current_key(method)
 
-> Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
+Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
 
@@ -5826,10 +5826,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_dragging?
 
-> Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
+Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
 
   
-> 
+
 
 
 
@@ -5837,10 +5837,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_hover_area?(area)
 
-> Renvoie true si la souris survole la zone passée en argument au moment de l'appel, false sinon
+Renvoie true si la souris survole la zone passée en argument au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 
@@ -5851,10 +5851,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_hover_event?(events, *precise)
 
-> Renvoie true si la souris survole un évènement du sélecteur passé en argument
+Renvoie true si la souris survole un évènement du sélecteur passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*precise`|`Boolean`|Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true   
@@ -5866,10 +5866,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_hover_player?
 
-> Renvoie true si la souris survole l'image du joueur
+Renvoie true si la souris survole l'image du joueur
 
   
-> 
+
 
 
 
@@ -5877,10 +5877,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_hover_square_area?(area)
 
-> Renvoie true si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
+Renvoie true si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 
@@ -5891,10 +5891,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_in?(rectangle)
 
-> Renvoie true si la souris se trouve dans le rectangle passé en argument
+Renvoie true si la souris se trouve dans le rectangle passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `rectangle`|`Rect`|Rectangle à vérifier  
 
@@ -5905,10 +5905,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_last_rect
 
-> Renvoie le dernier rectangle de sélection de la souris effectué
+Renvoie le dernier rectangle de sélection de la souris effectué
 
   
-> 
+
 
 
 
@@ -5916,10 +5916,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_point
 
-> Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
+Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
 
   
-> 
+
 
 
 
@@ -5927,10 +5927,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_press?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -5941,10 +5941,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_press_area?(area, *key)
 
-> Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel, false sinon
+Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -5956,10 +5956,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_press_event?(events, *key, *precise)
 
-> Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument
+Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
@@ -5972,10 +5972,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_press_player?(*key)
 
-> Renvoie true si la souris presse en continu la touche passée en argument sur le joueur
+Renvoie true si la souris presse en continu la touche passée en argument sur le joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
@@ -5986,10 +5986,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_press_square_area?(area, *key)
 
-> Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
+Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6001,10 +6001,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_rect
 
-> Renvoie le rectangle de sélection de la souris (tracé en cours)
+Renvoie le rectangle de sélection de la souris (tracé en cours)
 
   
-> 
+
 
 
 
@@ -6012,10 +6012,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_release?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -6026,10 +6026,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_release_area?(area, *key)
 
-> Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel, false sinon
+Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6041,10 +6041,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_release_event?(events, *key, *precise)
 
-> Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument
+Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
@@ -6057,10 +6057,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_release_player?(*key)
 
-> Renvoie true si la souris relâche la touche passée en argument sur le joueur
+Renvoie true si la souris relâche la touche passée en argument sur le joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
@@ -6071,10 +6071,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_release_square_area?(area, *key)
 
-> Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
+Renvoie true si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6086,10 +6086,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_repeat?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -6100,10 +6100,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_repeat_area?(area, *key)
 
-> Renvoie true si la souris survole et pressée de manière répétée sur la zone passée en argument au moment de l'appel, false sinon
+Renvoie true si la souris survole et pressée de manière répétée sur la zone passée en argument au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6115,10 +6115,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_repeat_event?(events, *key, *precise)
 
-> Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
+Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
@@ -6131,10 +6131,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_repeat_player?(*key)
 
-> Renvoie true si la souris appuie de manière répétée sur la touche passée en argument sur l'image du joueur
+Renvoie true si la souris appuie de manière répétée sur la touche passée en argument sur l'image du joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
@@ -6145,10 +6145,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_repeat_square_area?(area, *key)
 
-> Renvoie true si la souris survole et est pressée de manière répétée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
+Renvoie true si la souris survole et est pressée de manière répétée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6160,10 +6160,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_square_x
 
-> Renvoie la position (en cases) X de la souris
+Renvoie la position (en cases) X de la souris
 
   
-> 
+
 
 
 
@@ -6171,10 +6171,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_square_y
 
-> Renvoie la position (en cases) Y de la souris
+Renvoie la position (en cases) Y de la souris
 
   
-> 
+
 
 
 
@@ -6182,10 +6182,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_trigger?(key)
 
-> Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
+Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
 
@@ -6196,10 +6196,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_trigger_area?(area, *key)
 
-> Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel, false sinon
+Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6211,10 +6211,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_trigger_event?(events, *key, *precise)
 
-> Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
+Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `events`|`Selectors`|Selecteur d'évènements  
 `*key`|`Symbol`|Touche à presser (par défaut, la touche est :mouse_left)  
@@ -6227,10 +6227,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_trigger_player?(*key)
 
-> Renvoie true si la souris appuie une fois la touche passée en argument sur le joueur
+Renvoie true si la souris appuie une fois la touche passée en argument sur le joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*key`|`ArgType`|Touche à presser (par défaut, la touche est :mouse_left)  
 
@@ -6241,10 +6241,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_trigger_square_area?(area, *key)
 
-> Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
+Renvoie true si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
 `*key`|`Symbol`|Touche à vérifier (par défaut, :mouse_left)  
@@ -6256,10 +6256,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_x
 
-> Renvoie la position (en pixels) X de la souris
+Renvoie la position (en pixels) X de la souris
 
   
-> 
+
 
 
 
@@ -6267,10 +6267,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.mouse_y
 
-> Renvoie la position (en pixels) Y de la souris
+Renvoie la position (en pixels) Y de la souris
 
   
-> 
+
 
 
 
@@ -6278,10 +6278,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.move_to(id, x, y, *wait_flag, *no_throug)
 
-> Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument
+Déplace l'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'évènement (0 pour le héros)  
 `x`|`Fixnum`|Coordonnées X  
@@ -6296,10 +6296,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.num_lock?
 
-> Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
+Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
   
-> 
+
 
 
 
@@ -6307,10 +6307,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.open_window(id)
 
-> Ouvre la fenêtre référencée par son ID
+Ouvre la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -6321,10 +6321,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_plugged?(*id)
 
-> Renvoie true si une manette est branchée dans le port référencé par son ID, false sinon
+Renvoie true si une manette est branchée dans le port référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 
@@ -6335,10 +6335,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_stop_vibration(*id)
 
-> Arrête la vibration des deux moteurs de la manette référencée par son ID
+Arrête la vibration des deux moteurs de la manette référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 
@@ -6349,10 +6349,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_stop_vibration_left(*id)
 
-> Arrête la vibration du moteur gauche de la manette référencée par son ID
+Arrête la vibration du moteur gauche de la manette référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 
@@ -6363,10 +6363,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_stop_vibration_right(*id)
 
-> Arrête la vibration du moteur droit de la manette référencée par son ID
+Arrête la vibration du moteur droit de la manette référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 
@@ -6377,10 +6377,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_vibrate(*id, *left, *right)
 
-> Fait vibrer la manette référencée par son ID
+Fait vibrer la manette référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 `*left`|`Fixnum`|Force dans le moteur gauche, par défaut, 100  
@@ -6393,10 +6393,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_vibrate_left(*id, *s)
 
-> Fait vibrer le moteur gauche de la manette référencée par son ID
+Fait vibrer le moteur gauche de la manette référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 `*s`|`Fixnum`|Force de la vibration, par défaut, 100  
@@ -6408,10 +6408,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.pad360_vibrate_right(*id, *s)
 
-> Fait vibrer le moteur droit de la manette référencée par son ID
+Fait vibrer le moteur droit de la manette référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|Port de la manette, par défaut 0, soit la première manette branchée  
 `*s`|`Fixnum`|Force de la vibration, par défaut, 100  
@@ -6423,10 +6423,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.page_runnable?(map_id, event_id, page_id, *context)
 
-> Vérifie si la page est exécutable dans le contexte de l'évènement appelant.
+Vérifie si la page est exécutable dans le contexte de l'évènement appelant.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `map_id`|`Fixnum`|ID de la map où chercher l'évènement à tester  
 `event_id`|`Fixnum`|ID de l'évènement où chercher la page à tester  
@@ -6440,10 +6440,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_autoscroll(id, speed_x, *duration, *wait_flag)
 
-> Défilement horizontal et vertical automatique d'un panorama
+Défilement horizontal et vertical automatique d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed_x`|`Fixnum`|Vitesse de défilement vertical  
@@ -6457,10 +6457,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)
 
-> Défilement horizontal automatique d'un panorama
+Défilement horizontal automatique d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -6475,10 +6475,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)
 
-> Défilement vertical automatique d'un panorama
+Défilement vertical automatique d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -6493,10 +6493,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_blend(id, blend_type)
 
-> Change le mode de fusion d'un panorama
+Change le mode de fusion d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `blend_type`|`Fixnum`|mode de fusion (0 => normal, 1 => Addition, 2 => Soustraction)  
@@ -6508,10 +6508,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_erase(id)
 
-> Supprime un panorama
+Supprime un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 
@@ -6522,10 +6522,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_opacity(id, opacity, *duration, *wait_flag, *ease)
 
-> Change l'opacité d'un panorama
+Change l'opacité d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
@@ -6540,10 +6540,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_scroll(id, x, y)
 
-> Change la vitesse de défilement d' un panorama référencé par son ID
+Change la vitesse de défilement d' un panorama référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du panorama  
 `x`|`Fixnum`|vitesse horizontale  
@@ -6556,10 +6556,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_scroll_x(id, speed)
 
-> Défilement horizontal d'un panorama par rapport au défilement de la carte
+Défilement horizontal d'un panorama par rapport au défilement de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -6571,10 +6571,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_scroll_y(id, speed)
 
-> Défilement vertical d'un panorama par rapport au défilement de la carte
+Défilement vertical d'un panorama par rapport au défilement de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -6586,10 +6586,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)
 
-> Affiche un panorama
+Affiche un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `name`|`String`|Nom du panorama  
@@ -6611,10 +6611,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_tone(id, tone, *duration, *wait_flag, *ease)
 
-> Change la teinte d'un panorama
+Change la teinte d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
@@ -6629,10 +6629,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)
 
-> Transforme un panorama durant une période
+Transforme un panorama durant une période
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `duration`|`Fixnum`|Durée en frame du déplacement  
@@ -6650,10 +6650,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_z(id, z)
 
-> Change l'axe Z du panorama
+Change l'axe Z du panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du panorama  
 `z`|`Fixnum`|Axe Z  
@@ -6665,10 +6665,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_zoom(id, zoom, *duration, *wait_flag, *ease)
 
-> Zoom sur les deux axes d'un panorama
+Zoom sur les deux axes d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
@@ -6683,10 +6683,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
-> Zoom horizontal d'un panorama
+Zoom horizontal d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
@@ -6701,10 +6701,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
-> Zoom vertical d'un panorama
+Zoom vertical d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
@@ -6719,10 +6719,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.parallaxes_clear
 
-> Supprime tous les panoramas
+Supprime tous les panoramas
 
   
-> 
+
 
 
 
@@ -6730,10 +6730,10 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 
 ##### Command.percent(value, max)
 
-> Renvoie le pourcentage de value par rapport à max
+Renvoie le pourcentage de value par rapport à max
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `value`|`Fixnum`|Valeur à transformer  
 `max`|`Fixnum`|Valeur maximum  
@@ -6750,10 +6750,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pi
 
-> Renvoie une approximation de PI
+Renvoie une approximation de PI
 
   
-> 
+
 
 
 
@@ -6761,10 +6761,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pick_random(*elts)
 
-> Renvoie un élément au hasard du tableau (ou de la liste d'arguments)
+Renvoie un élément au hasard du tableau (ou de la liste d'arguments)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*elts`|`ArgsList`|éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
 
@@ -6775,10 +6775,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_angle(id, angle, *duration, *wait_flag, *ease)
 
-> Change l'angle de l'image
+Change l'angle de l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
@@ -6793,10 +6793,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_blend(Selector, mode)
 
-> Change le mode de fusion d'une image
+Change le mode de fusion d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
@@ -6808,10 +6808,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_dimension(id, w, h, *duration, *wait_flag, *ease)
 
-> Change la hauteur et la largeur d'une image référencée par son ID
+Change la hauteur et la largeur d'une image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `w`|`Fixnum`|Largeur à modifier  
@@ -6827,10 +6827,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_erase(Selector)
 
-> Efface l'image
+Efface l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 
@@ -6841,10 +6841,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_erased?(id)
 
-> Renvoie true si l'image est supprimée (ou non affichée), false sinon
+Renvoie true si l'image est supprimée (ou non affichée), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 
@@ -6855,10 +6855,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_flip(Selector)
 
-> Applique un effet miroir (axe vertical) sur l'image 
+Applique un effet miroir (axe vertical) sur l'image 
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 
@@ -6869,10 +6869,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_height(id, *v, *duration, *wait_flag, *ease)
 
-> Change la hauteur d'une image référencée par son ID
+Change la hauteur d'une image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
@@ -6887,10 +6887,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_mouse_click?(id, *precise)
 
-> Renvoie true si la souris survol et est cliquée l'image référencée par son ID
+Renvoie true si la souris survol et est cliquée l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
@@ -6902,10 +6902,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_mouse_hover?(id, *precise)
 
-> Renvoie true si la souris survol l'image référencée par son ID
+Renvoie true si la souris survol l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
@@ -6917,10 +6917,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_mouse_press?(id, *key, *precise)
 
-> Renvoie true si la souris survol et presse en continu la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et presse en continu la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -6933,10 +6933,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_mouse_release?(id, *key, *precise)
 
-> Renvoie true si la souris survol et relâche la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et relâche la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -6949,10 +6949,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_mouse_repeat?(id, *key, *precise)
 
-> Renvoie true si la souris survol et presse successivement la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et presse successivement la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -6965,10 +6965,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_mouse_trigger?(id, *key, *precise)
 
-> Renvoie true si la souris survol et presse la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et presse la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -6981,10 +6981,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)
 
-> Déplace une image
+Déplace une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `x`|`Fixnum`|Position en x de l'image où l'image doit se rendre  
@@ -7005,10 +7005,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_move?(id)
 
-> Renvoie true si l'image référencée par son ID est en mouvement, false sinon
+Renvoie true si l'image référencée par son ID est en mouvement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 
@@ -7019,10 +7019,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_name(id, *name)
 
-> Change le nom de l'image à afficher
+Change le nom de l'image à afficher
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais), si aucun argument n'est passé, la commande renverra le nom courrant  
@@ -7034,10 +7034,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_opacity(Selector, opacity, *duration, *wait_flag, *ease)
 
-> Change l'opacité d'une image
+Change l'opacité d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
@@ -7052,10 +7052,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_origin(id, origin)
 
-> Change l'origine d'une image
+Change l'origine d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X,Y, par défaut, zéro, zéro  
@@ -7067,10 +7067,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_pin(Selector, *x, *y)
 
-> Fait défiler une image avec la carte (la fixe à une position)
+Fait défiler une image avec la carte (la fixe à une position)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `*x`|`Fixnum`|Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
@@ -7083,10 +7083,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_position(Selector, x, y, *duration, *wait_flag, *ease)
 
-> Change la position de l'image
+Change la position de l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `x`|`Fixnum`|Position en x de l'image  
@@ -7102,10 +7102,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_rotate(Selector, speed)
 
-> Fait tourner l'image
+Fait tourner l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `speed`|`Fixnum`|Vitesse de rotation de l'image  
@@ -7117,10 +7117,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_scroll(Selector, vitesse)
 
-> Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
+Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `vitesse`|`Fixnum`|Vitesse de défilement  
@@ -7132,10 +7132,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_scroll_x(Selector, *vitesse)
 
-> Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `*vitesse`|`Fixnum`|Vitesse de défilement  
@@ -7147,10 +7147,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_scroll_y(Selector, *vitesse)
 
-> Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `*vitesse`|`Fixnum`|Vitesse de défilement  
@@ -7162,10 +7162,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_shake(Selector, power, speed, duration)
 
-> Fait trembler l'image pendant un temps donné
+Fait trembler l'image pendant un temps donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `power`|`Fixnum`|La puissance du tremblement  
@@ -7179,10 +7179,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)
 
-> Affiche une image à l'écran
+Affiche une image à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais)  
@@ -7201,10 +7201,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_show_enemy(pic_id, id, position)
 
-> Affiche un monstre d'un groupe à sa position définie dans la base de données
+Affiche un monstre d'un groupe à sa position définie dans la base de données
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
 `id`|`Fixnum`|ID du groupe de monstre  
@@ -7217,10 +7217,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_show_screenshot(id, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)
 
-> Affiche une capture d'écran (comme une image normale)
+Affiche une capture d'écran (comme une image normale)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*x`|`Fixnum`|Position en X de l'image (par défaut 0)  
@@ -7238,10 +7238,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_showed?(id)
 
-> Renvoie true si l'image est affichée, false sinon
+Renvoie true si l'image est affichée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 
@@ -7252,10 +7252,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_tone(id, tone, *duration, *wait_flag, *ease)
 
-> Change la teinte d'une image
+Change la teinte d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `tone`|`Tone`|Teinte de l'image (utilisez la commande tone)  
@@ -7270,10 +7270,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_unpin(Selector)
 
-> Arrête de faire défiler une image avec la carte
+Arrête de faire défiler une image avec la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 
@@ -7284,10 +7284,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_wave(Selector, amplitude, vitesse)
 
-> Fait onduler l'image
+Fait onduler l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
@@ -7300,10 +7300,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_width(id, *v, *duration, *wait_flag, *ease)
 
-> Change la largeur d'une image référencée par son ID
+Change la largeur d'une image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
@@ -7318,10 +7318,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_x(id, x, *duration, *wait_flag, *ease)
 
-> Change l'axe X d'une image
+Change l'axe X d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
@@ -7336,10 +7336,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_y(id, y, *duration, *wait_flag, *ease)
 
-> Change l'axe Y d'une image
+Change l'axe Y d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `y`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
@@ -7354,10 +7354,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_zoom(Selector, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
 
-> Change la taille d'une image
+Change la taille d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
@@ -7373,10 +7373,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
-> Change la largeur d'une image
+Change la largeur d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
@@ -7391,10 +7391,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
-> Change la hauteur d'une image
+Change la hauteur d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
@@ -7409,10 +7409,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pictures_clear
 
-> Efface toutes les images
+Efface toutes les images
 
   
-> 
+
 
 
 
@@ -7420,10 +7420,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pictures_collide?(id, id2)
 
-> Vérifie que deux images sont en collision
+Vérifie que deux images sont en collision
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `id2`|`Fixnum`|ID de l'autre image  
@@ -7435,10 +7435,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pictures_perfect_collide?(idA, idB)
 
-> Vérifie la collision entre deux images au pixel près. ATTENTION, CETTE COMMANDE LAG ENORMEMENT !IL EST DECONSEILLE DE L'UTILISER !
+Vérifie la collision entre deux images au pixel près. ATTENTION, CETTE COMMANDE LAG ENORMEMENT !IL EST DECONSEILLE DE L'UTILISER !
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de la première image  
 `idB`|`Fixnum`|ID de la seconde image  
@@ -7450,10 +7450,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pixel_in_event?(id, x, y, *precise)
 
-> Renvoie true si le pixel (x, y) est inclu dans l'événement, false sinon
+Renvoie true si le pixel (x, y) est inclu dans l'événement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`ArgType`|Args description  
 `x`|`Fixnum`|Coordonnées X du point à vérifier  
@@ -7467,10 +7467,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pixel_in_picture?(id, x, y, *precise)
 
-> Vérifie que le x, y sont inscrits dans l'image
+Vérifie que le x, y sont inscrits dans l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Coordonnées X  
@@ -7484,10 +7484,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pixel_in_player?(x, y, *precise)
 
-> Renvoie true si le pixel (x, y) est inclu dans le joueur, false sinon
+Renvoie true si le pixel (x, y) est inclu dans le joueur, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X du point à vérifier  
 `y`|`Fixnum`|Coordonnées Y du point à vérifier  
@@ -7500,10 +7500,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.pixels_between(idA, idB)
 
-> Renvoie le nombre de pixels entre deux évènements référencés par leurs ID's
+Renvoie le nombre de pixels entre deux évènements référencés par leurs ID's
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
@@ -7515,10 +7515,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.play_time
 
-> Renvoie le temps de jeu en secondes
+Renvoie le temps de jeu en secondes
 
   
-> 
+
 
 
 
@@ -7526,10 +7526,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_brutal_stop_trail
 
-> Arrête brutalement la traînée sur le joueur
+Arrête brutalement la traînée sur le joueur
 
   
-> 
+
 
 
 
@@ -7537,10 +7537,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_direction(*value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur
+Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros  
 
@@ -7551,10 +7551,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_in_screen?
 
-> Renvoie true si le joueur est visible à l'écran, false sinon
+Renvoie true si le joueur est visible à l'écran, false sinon
 
   
-> 
+
 
 
 
@@ -7562,10 +7562,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_down
 
-> Fait bouger le joueur d'une case vers le bas
+Fait bouger le joueur d'une case vers le bas
 
   
-> 
+
 
 
 
@@ -7573,10 +7573,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_frequency(f)
 
-> Modifie la fréquence du joueur
+Modifie la fréquence du joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `f`|`Fixnum`|Fréquence du joueur, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence du héros  
 
@@ -7587,10 +7587,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_left
 
-> Fait bouger le joueur d'une case vers le bas
+Fait bouger le joueur d'une case vers le bas
 
   
-> 
+
 
 
 
@@ -7598,10 +7598,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_right
 
-> Fait bouger le joueur d'une case vers le bas
+Fait bouger le joueur d'une case vers le bas
 
   
-> 
+
 
 
 
@@ -7609,10 +7609,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_speed(v)
 
-> Modifie la vitesse du joueur
+Modifie la vitesse du joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `v`|`Fixnum`|Vitesse du joueur à donner,si aucune priorité n'est donnée, la commande renverra la valeur de la vitesse du héros  
 
@@ -7623,10 +7623,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_speed_frequency(v, f)
 
-> Change la vitesse et la fréquence de déplacement du joueur
+Change la vitesse et la fréquence de déplacement du joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `v`|`Fixnum`|Vitesse du joueur  
 `f`|`Fixnum`|Fréquence du joueur  
@@ -7638,10 +7638,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_up
 
-> Fait bouger le joueur d'une case vers le bas
+Fait bouger le joueur d'une case vers le bas
 
   
-> 
+
 
 
 
@@ -7649,10 +7649,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_move_with(code)
 
-> Applique un déplacement (selon un code) au héros
+Applique un déplacement (selon un code) au héros
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `code`|`Fixnum`|Liste des codes de déplacement  
 
@@ -7663,10 +7663,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_moving?
 
-> Renvoie true si le héros est en mouvement, false sinon
+Renvoie true si le héros est en mouvement, false sinon
 
   
-> 
+
 
 
 
@@ -7674,10 +7674,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_opacity(*value)
 
-> Modifie (ou retourne) l'opacité du héros
+Modifie (ou retourne) l'opacité du héros
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée. La commande retourne l'opacité du héros.  
 
@@ -7688,10 +7688,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_opaque
 
-> Rend le joueur opaque
+Rend le joueur opaque
 
   
-> 
+
 
 
 
@@ -7699,10 +7699,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_ox(*value)
 
-> Modifie (ou retourne) la coordonnée X du point de départ du héros (le point d'accroche)
+Modifie (ou retourne) la coordonnée X du point de départ du héros (le point d'accroche)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
@@ -7713,10 +7713,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_oy(*value)
 
-> Modifie (ou retourne) la coordonnée Y du point de départ du héros (le point d'accroche)
+Modifie (ou retourne) la coordonnée Y du point de départ du héros (le point d'accroche)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
@@ -7727,10 +7727,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_path_length(x, y, *wait_flag, *no_through)
 
-> Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
+Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -7744,10 +7744,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_pixel_x
 
-> Renvoie la coordonnées X du joueur en pixel sur la carte
+Renvoie la coordonnées X du joueur en pixel sur la carte
 
   
-> 
+
 
 
 
@@ -7755,10 +7755,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_pixel_y
 
-> Renvoie la coordonnées Y du joueur en pixel sur la carte
+Renvoie la coordonnées Y du joueur en pixel sur la carte
 
   
-> 
+
 
 
 
@@ -7766,10 +7766,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_restore_origin
 
-> Restore l'origine du héros
+Restore l'origine du héros
 
   
-> 
+
 
 
 
@@ -7777,10 +7777,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_screen_x
 
-> Renvoie la coordonnée X du joueur par rapport à l'écran
+Renvoie la coordonnée X du joueur par rapport à l'écran
 
   
-> 
+
 
 
 
@@ -7788,10 +7788,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_screen_y
 
-> Renvoie la coordonnée Y du joueur par rapport à l'écran
+Renvoie la coordonnée Y du joueur par rapport à l'écran
 
   
-> 
+
 
 
 
@@ -7799,10 +7799,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_stop_trail
 
-> Arrête la traînée sur le joueur
+Arrête la traînée sur le joueur
 
   
-> 
+
 
 
 
@@ -7810,10 +7810,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_teleport(map_id, x, y, direction, *fade_type)
 
-> Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
+Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
 `x`|`Fixnum`|Coordonnées X  
@@ -7828,10 +7828,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_through(*flag)
 
-> Change le mode de traversée du joueur
+Change le mode de traversée du joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*flag`|`Boolean`|true pour 'traverse tout', false pour 'ne traverse pas tout', par défaut vaut true   
 
@@ -7842,10 +7842,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_through?
 
-> Renvoie true si le joueur est en mode 'traverse tout', false sinon
+Renvoie true si le joueur est en mode 'traverse tout', false sinon
 
   
-> 
+
 
 
 
@@ -7853,10 +7853,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_trail(len, *mode, *tone)
 
-> Applique une traînée sur le joueur
+Applique une traînée sur le joueur
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `len`|`Fixnum`|Taille de la traînée  
 `*mode`|`Fixnum`|Mode de fusion de la traînée (0, 1 ou 2), par défaut: 0  
@@ -7869,10 +7869,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_transfert(new_x, new_y)
 
-> Téléporte instanément le héros à une autre position de la carte
+Téléporte instanément le héros à une autre position de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `new_x`|`Fixnum`|Coordonnée X  
 `new_y`|`Fixnum`|Coordonnée Y  
@@ -7884,10 +7884,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_transparent
 
-> Rend le joueur transparent
+Rend le joueur transparent
 
   
-> 
+
 
 
 
@@ -7895,10 +7895,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_transparent?
 
-> Renvoi true si le joueur est transparent (false sinon)
+Renvoi true si le joueur est transparent (false sinon)
 
   
-> 
+
 
 
 
@@ -7906,10 +7906,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_x
 
-> Renvoie la coordonnée X de la case sur laquelle est le joueur
+Renvoie la coordonnée X de la case sur laquelle est le joueur
 
   
-> 
+
 
 
 
@@ -7917,10 +7917,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_y
 
-> Renvoie la coordonnée Y de la case sur laquelle est le joueur
+Renvoie la coordonnée Y de la case sur laquelle est le joueur
 
   
-> 
+
 
 
 
@@ -7928,10 +7928,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_zoom(value)
 
-> Modifie le zoom du héros
+Modifie le zoom du héros
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `value`|`Fixnum`|Valeur du zoom  
 
@@ -7942,10 +7942,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_zoom_x(*value)
 
-> Modifie (ou retourne) la valeur du zoom horizontal du héros
+Modifie (ou retourne) la valeur du zoom horizontal du héros
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
@@ -7956,10 +7956,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.player_zoom_y(*value)
 
-> Modifie (ou retourne) la valeur du zoom vertical du héros
+Modifie (ou retourne) la valeur du zoom vertical du héros
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante  
 
@@ -7970,10 +7970,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.qte(key, time, *strict)
 
-> Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
+Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche qu'il faut presser avant la fin  
 `time`|`Fixnum`|Durée  
@@ -7986,10 +7986,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.random(min, max)
 
-> Renvoie un nombre aléatoire compris entre MIN et MAX inclus
+Renvoie un nombre aléatoire compris entre MIN et MAX inclus
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `min`|`Fixnum`|Borne minimale  
 `max`|`Fixnum`|Borne maximale (à noter que si cet argument n'est pas spécifié, le résultat sera compris entre 0 et min inclus)  
@@ -8001,10 +8001,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.random_combination(len, *keys)
 
-> Renvoie une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composée des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )
+Renvoie une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composée des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `len`|`Fixnum`|Args description  
 `*keys`|`Argslist`|Liste des touches pouvant constituer la combinaison  
@@ -8016,10 +8016,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.random_figures(x)
 
-> Renvoie un nombre à virgule aléatoire compris entre x et x+1
+Renvoie un nombre à virgule aléatoire compris entre x et x+1
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Valeur de base (si cet argument n'est pas spécifié, le résultat sera compris entre 0 et 1)  
 
@@ -8030,10 +8030,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.region_id(x, y)
 
-> Renvoie l'ID de la région pointée par les coordonnées X,Y
+Renvoie l'ID de la région pointée par les coordonnées X,Y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
@@ -8045,10 +8045,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.remove_all_windows
 
-> Supprime toutes les fenêtres
+Supprime toutes les fenêtres
 
   
-> 
+
 
 
 
@@ -8056,10 +8056,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.remove_window(id)
 
-> Supprime la fenêtre référencée par son ID
+Supprime la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -8070,10 +8070,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.replay_bgm
 
-> Reprend le BGM mémorisé
+Reprend le BGM mémorisé
 
   
-> 
+
 
 
 
@@ -8081,10 +8081,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.rm_kill
 
-> Quitte le jeu... d'un coup sec... TCHAK
+Quitte le jeu... d'un coup sec... TCHAK
 
   
-> 
+
 
 
 
@@ -8092,10 +8092,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.roof?(x, y)
 
-> Renvoie true si les coordonnées sont sur un toit, false sinon
+Renvoie true si les coordonnées sont sur un toit, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -8107,10 +8107,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.save_bgm
 
-> Mémorise le BGM en cours
+Mémorise le BGM en cours
 
   
-> 
+
 
 
 
@@ -8118,10 +8118,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.save_count
 
-> Renvoie le nombre de sauvegardes effectuées par partie
+Renvoie le nombre de sauvegardes effectuées par partie
 
   
-> 
+
 
 
 
@@ -8129,10 +8129,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.save_delete(index)
 
-> Supprime la sauvegarde référencée par son numéro
+Supprime la sauvegarde référencée par son numéro
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 
@@ -8143,10 +8143,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.save_exists?(index)
 
-> Renvoie true si la sauvegarde référencée par son numéro existe
+Renvoie true si la sauvegarde référencée par son numéro existe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 
@@ -8157,10 +8157,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.save_game(index)
 
-> Sauvegarde la partie sur la sauvegardé référencée par l'ID donné
+Sauvegarde la partie sur la sauvegardé référencée par l'ID donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
 
@@ -8171,10 +8171,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.scene_call(scene)
 
-> Appelle une scene (et la place dans la pile de scene)
+Appelle une scene (et la place dans la pile de scene)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `scene`|`Scene`|Scene à appeler  
 
@@ -8185,10 +8185,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.scene_clear_history
 
-> Vide la pile d'appel des scenes
+Vide la pile d'appel des scenes
 
   
-> 
+
 
 
 
@@ -8196,10 +8196,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.scene_goto(scene)
 
-> Appelle une scene (sans la placer dans la pile de scene)
+Appelle une scene (sans la placer dans la pile de scene)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `scene`|`Scene`|Scene à appeler  
 
@@ -8210,10 +8210,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.scene_return
 
-> Renvoie à la dernière scene dans la pile d'appel
+Renvoie à la dernière scene dans la pile d'appel
 
   
-> 
+
 
 
 
@@ -8221,10 +8221,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_blur(radius, *duration, *wait_flag, *ease)
 
-> Applique un flou gaussien sur tout l'écran en temps réel, sauf les windows (dialogues, etc.). Attention, cette commande peut faire baisser le FPS.
+Applique un flou gaussien sur tout l'écran en temps réel, sauf les windows (dialogues, etc.). Attention, cette commande peut faire baisser le FPS.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `radius`|`ArgType`|Radius du flou gaussien. (0 = pas de flou)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
@@ -8238,10 +8238,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_fadein(duration)
 
-> Affiche l'écran en fondu (de manière moins radicale que la commande fadein)
+Affiche l'écran en fondu (de manière moins radicale que la commande fadein)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Durée en frame  
 
@@ -8252,10 +8252,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_fadeout(duration)
 
-> Efface l'écran en fondu (de manière moins radicale que la commande fadeout)
+Efface l'écran en fondu (de manière moins radicale que la commande fadeout)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Durée en frame  
 
@@ -8266,10 +8266,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_flash(color, duration, *wait_flag)
 
-> Envoie un flash à l'écran
+Envoie un flash à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `color`|`Color`|Couleur du flash (utilisez la commande 'color')  
 `duration`|`Fixnum`|Durée en frames  
@@ -8282,10 +8282,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_height
 
-> Renvoie la hauteur de l'écran (en pixels)
+Renvoie la hauteur de l'écran (en pixels)
 
   
-> 
+
 
 
 
@@ -8293,10 +8293,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_pixelation(pixelation, *duration, *wait_flag, *ease)
 
-> Pixélise tout l'écran en temps réel, sauf les windows (dialogues, etc.)
+Pixélise tout l'écran en temps réel, sauf les windows (dialogues, etc.)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `pixelation`|`ArgType`|Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
@@ -8310,10 +8310,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_shake(power, speed, duration, *wait_flag)
 
-> Fait trembler l'écran pendant une durée déterminée
+Fait trembler l'écran pendant une durée déterminée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `power`|`Fixnum`|Puissance du tremblement  
 `speed`|`Fixnum`|Vitesse du tremblement  
@@ -8327,10 +8327,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_tone(tone, duration, *wait_flag)
 
-> Change la teinte de l'écran
+Change la teinte de l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `tone`|`Tone`|Teinte (utilisez la commande 'tone')  
 `duration`|`Fixnum`|Durée en frame  
@@ -8343,10 +8343,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.screen_width
 
-> Renvoie la largeur de l'écran (en pixels)
+Renvoie la largeur de l'écran (en pixels)
 
   
-> 
+
 
 
 
@@ -8354,10 +8354,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.scroll_lock?
 
-> Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
+Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
 
   
-> 
+
 
 
 
@@ -8365,10 +8365,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.se_play(name, *volume, *pitch)
 
-> Joue un SE
+Joue un SE
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `name`|`String`|Nom du SE  
 `*volume`|`Fixnum`|Volume du SE. Pourcentage entre 0 et 100. Par défaut : 80  
@@ -8381,10 +8381,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.se_stop
 
-> Stoppe le SE en cours
+Stoppe le SE en cours
 
   
-> 
+
 
 
 
@@ -8392,10 +8392,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.session_username
 
-> Renvoie le nom d'utilisateur de la session Windows
+Renvoie le nom d'utilisateur de la session Windows
 
   
-> 
+
 
 
 
@@ -8403,10 +8403,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.set_actor_name(id, new_name)
 
-> modifie le nom du héros référencé par son ID
+modifie le nom du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `new_name`|`String`|Nouveau nom  
@@ -8418,10 +8418,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.set_actor_nickname(id, new_name)
 
-> modifie le surnom du héros référencé par son ID
+modifie le surnom du héros référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'acteur  
 `new_name`|`String`|Nouveau surnom  
@@ -8433,10 +8433,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.set_tile(value, x, y, layer)
 
-> Change une case de tile
+Change une case de tile
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `value`|`Fixnum`|Valeur du tile (utilisez éventuellement la commande tile_id)  
 `x`|`Fixnum`|Coordonnées X  
@@ -8450,10 +8450,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.set_tile_where(layer, id, new_id)
 
-> Change tous les tile d'une carte selon un ID et un layer
+Change tous les tile d'une carte selon un ID et un layer
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `layer`|`Fixnum`|Numero de la couche  
 `id`|`Fixnum`|Id du tile à remplacer  
@@ -8466,10 +8466,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.shift?
 
-> Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
+Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
   
-> 
+
 
 
 
@@ -8477,10 +8477,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.show_animation(ids, id_animation, *wait_flag)
 
-> Joue une animation sur les événements référencés par le selecteur ID
+Joue une animation sur les événements référencés par le selecteur ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|IDS des événements  
 `id_animation`|`Fixnum`|ID de l'animation  
@@ -8493,10 +8493,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.show_balloon(ids, id_balloon, *wait_flag)
 
-> Joue une émoticone sur les événements référencés par le selecteur ID
+Joue une émoticone sur les événements référencés par le selecteur ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|IDS des événements  
 `id_balloon`|`Fixnum`|ID de l'émoticone  
@@ -8509,10 +8509,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.sin(x)
 
-> Renvoie le sinus de x
+Renvoie le sinus de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -8523,10 +8523,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.sinh(x)
 
-> Renvoie le sinus hyperbolique de x
+Renvoie le sinus hyperbolique de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -8537,10 +8537,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_always_usable?(id)
 
-> Renvoie true si la technique référencé par son ID est utilisable partout
+Renvoie true si la technique référencé par son ID est utilisable partout
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8551,10 +8551,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_battle_usable?(id)
 
-> Renvoie true si la technique référencé par son ID est utilisable en combat seulement
+Renvoie true si la technique référencé par son ID est utilisable en combat seulement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8565,10 +8565,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_certain?(id)
 
-> Renvoie true si une technique référencée par son ID a une garantie de réussite totale, false sinon
+Renvoie true si une technique référencée par son ID a une garantie de réussite totale, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8579,10 +8579,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_description(id)
 
-> Renvoie la description la technique référencée par son ID
+Renvoie la description la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8593,10 +8593,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_all?(id)
 
-> Renvoie true si une technique référencée par son ID cible tout le groupe allié, false sinon
+Renvoie true si une technique référencée par son ID cible tout le groupe allié, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8607,10 +8607,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_all_allies?(id)
 
-> Renvoie true si la technique référencée par son ID cible tous les alliés, false sinon
+Renvoie true si la technique référencée par son ID cible tous les alliés, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8621,10 +8621,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_all_dead_allies?(id)
 
-> Renvoie true si la technique référencée par son ID cible tous les alliés morts, false sinon
+Renvoie true si la technique référencée par son ID cible tous les alliés morts, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8635,10 +8635,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_all_enemies?(id)
 
-> Renvoie true si la technique référencée par son ID cible tous les ennemis, false sinon
+Renvoie true si la technique référencée par son ID cible tous les ennemis, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8649,10 +8649,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_caller?(id)
 
-> Renvoie true si la technique référencée par son ID cible l'utilisateur, false sinon
+Renvoie true si la technique référencée par son ID cible l'utilisateur, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8663,10 +8663,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_dead_friend?(id)
 
-> Renvoie true si une technique référencée par son ID cible un (ou les) allié(s) mort(s), false sinon
+Renvoie true si une technique référencée par son ID cible un (ou les) allié(s) mort(s), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8677,10 +8677,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_four_random_enemies?(id)
 
-> Renvoie true si la technique référencée par son ID cible quatre ennemis au hasard, false sinon
+Renvoie true si la technique référencée par son ID cible quatre ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8691,10 +8691,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_friend?(id)
 
-> Renvoie true si une technique référencée par son ID cible un (ou les) allié(s), false sinon
+Renvoie true si une technique référencée par son ID cible un (ou les) allié(s), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8705,10 +8705,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_one?(id)
 
-> Renvoie true si une technique référencée par son ID a une cible unique, false sinon
+Renvoie true si une technique référencée par son ID a une cible unique, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8719,10 +8719,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_one_ally?(id)
 
-> Renvoie true si la technique référencée par son ID cible un allié, false sinon
+Renvoie true si la technique référencée par son ID cible un allié, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8733,10 +8733,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_one_dead_ally?(id)
 
-> Renvoie true si la technique référencée par son ID cible un allié mort, false sinon
+Renvoie true si la technique référencée par son ID cible un allié mort, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8747,10 +8747,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_one_enemy?(id)
 
-> Renvoie true si la technique référencée par son ID cible un ennemi, false sinon
+Renvoie true si la technique référencée par son ID cible un ennemi, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8761,10 +8761,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_one_random_enemy?(id)
 
-> Renvoie true si la technique référencée par son ID cible un ennemi au hasard, false sinon
+Renvoie true si la technique référencée par son ID cible un ennemi au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8775,10 +8775,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_opponent?(id)
 
-> Renvoie true si une technique référencée par son ID cible les ennemis, false sinon
+Renvoie true si une technique référencée par son ID cible les ennemis, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8789,10 +8789,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_random?(id)
 
-> Renvoie true si une technique référencée par son ID cible aléatoirement, false sinon
+Renvoie true si une technique référencée par son ID cible aléatoirement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8803,10 +8803,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_three_random_enemies?(id)
 
-> Renvoie true si la technique référencée par son ID cible trois ennemis au hasard, false sinon
+Renvoie true si la technique référencée par son ID cible trois ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8817,10 +8817,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_for_two_random_enemies?(id)
 
-> Renvoie true si la technique référencée par son ID cible deux ennemis au hasard, false sinon
+Renvoie true si la technique référencée par son ID cible deux ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8831,10 +8831,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_has_no_scope?(id)
 
-> Renvoie true si la technique référencée par son ID ne cible personne, false sinon
+Renvoie true si la technique référencée par son ID ne cible personne, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8845,10 +8845,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_icon(id)
 
-> Renvoie l'index de l'icone de la technique référencée par son ID
+Renvoie l'index de l'icone de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8859,10 +8859,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_magical?(id)
 
-> Renvoie true si une technique référencée par son ID endommage les PM, false sinon
+Renvoie true si une technique référencée par son ID endommage les PM, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8873,10 +8873,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_menu_usable?(id)
 
-> Renvoie true si la technique référencé par son ID est utilisable dans le menu seulement
+Renvoie true si la technique référencé par son ID est utilisable dans le menu seulement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8887,10 +8887,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_name(id)
 
-> Renvoie le nom de la technique référencée par son ID
+Renvoie le nom de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8901,10 +8901,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_nb_hits(id)
 
-> Renvoie le nombre de coups portés par la technique référencée par son ID
+Renvoie le nombre de coups portés par la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8915,10 +8915,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_need_selection?(id)
 
-> Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon
+Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8929,10 +8929,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_never_usable?(id)
 
-> Renvoie true si la technique référencé par son ID n'est jamais utilisable
+Renvoie true si la technique référencé par son ID n'est jamais utilisable
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8943,10 +8943,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_note(id)
 
-> Renvoie le commentaire de la base de données de la technique référencée par son ID
+Renvoie le commentaire de la base de données de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8957,10 +8957,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_number_of_targets(id)
 
-> Renvoie le nombre de cibles d'une technique référencée par son ID, false sinon
+Renvoie le nombre de cibles d'une technique référencée par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8971,10 +8971,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_occasion(id)
 
-> Renvoie un entier correspondant au droit d'utilisation de la technique
+Renvoie un entier correspondant au droit d'utilisation de la technique
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8985,10 +8985,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_physical?(id)
 
-> Renvoie true si une technique référencée par son ID endommage les PV, false sinon
+Renvoie true si une technique référencée par son ID endommage les PV, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -8999,10 +8999,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_scope(id)
 
-> Renvoie la portée (en Entier) d'une technique référencée par son ID
+Renvoie la portée (en Entier) d'une technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la techinuqe  
 
@@ -9013,10 +9013,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_speed(id)
 
-> Renvoie l'apport de vitesse de la technique référencée par son ID
+Renvoie l'apport de vitesse de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -9027,10 +9027,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_success_rate(id)
 
-> Renvoie la probabilité de succès de la technique référencée par son ID
+Renvoie la probabilité de succès de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -9041,10 +9041,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.skill_tp_gain(id)
 
-> Renvoie le gain de TP que la technique référencée par son ID apporte une fois utilisée en combat
+Renvoie le gain de TP que la technique référencée par son ID apporte une fois utilisée en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
 
@@ -9055,10 +9055,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.socket_connect(address, port)
 
-> Se connecte à un serveur, renvoie true si la connexion a réussi, false sinon.
+Se connecte à un serveur, renvoie true si la connexion a réussi, false sinon.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `address`|`String`|Adresse du serveur  
 `port`|`Fixnum`|Port d'écoute  
@@ -9070,10 +9070,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.socket_connected?
 
-> Renvoie true si la connexion est en cours, false, sinon
+Renvoie true si la connexion est en cours, false, sinon
 
   
-> 
+
 
 
 
@@ -9081,10 +9081,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.socket_disconnect
 
-> Déconnecte la connexion courante
+Déconnecte la connexion courante
 
   
-> 
+
 
 
 
@@ -9092,10 +9092,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.socket_recv(*len)
 
-> Renvoie le message envoyé par le serveur au client, false si aucun message n' est reçu
+Renvoie le message envoyé par le serveur au client, false si aucun message n' est reçu
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
 
@@ -9106,10 +9106,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.socket_send(data)
 
-> Envoie un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec
+Envoie un message au serveur connecté, renvoie true en cas de réussite, false en cas d'échec
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `data`|`String`|Message à envoyer  
 
@@ -9120,10 +9120,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.socket_wait_recv(*len)
 
-> Attend une réponse du serveur, se termine quand une réponse a été reçue (et la renvoie)
+Attend une réponse du serveur, se termine quand une réponse a été reçue (et la renvoie)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*len`|`Fixnum`|Taille maximale du message à recevoir, par défaut 1024  
 
@@ -9134,10 +9134,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.sound_fade(wait, *frame)
 
-> Stoppe les BGM et BGS en fondu
+Stoppe les BGM et BGS en fondu
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `wait`|`Fixnum`|Temps du fondu, par défaut en secondes  
 `*frame`|`Boolean`|Spécifiez 'true' si vous renseignez un temps en frames plutôt qu'en secondes  
@@ -9149,10 +9149,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.sound_stop
 
-> Stoppe tous les sons en cours
+Stoppe tous les sons en cours
 
   
-> 
+
 
 
 
@@ -9160,10 +9160,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.split_each_char(str)
 
-> Transforme une chaîne de caractères en un tableau de caractères
+Transforme une chaîne de caractères en un tableau de caractères
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `str`|`String`|Chaine a transformer  
 
@@ -9174,10 +9174,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.sqrt(x)
 
-> Renvoie la racine carrée de x
+Renvoie la racine carrée de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -9188,10 +9188,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.square_passable?(x, y, direction)
 
-> Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon
+Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
@@ -9204,10 +9204,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.squares_between(idA, idB)
 
-> Renvoie le nombre de cases entre deux évènements référencés par leurs ID
+Renvoie le nombre de cases entre deux évènements référencés par leurs ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
@@ -9219,10 +9219,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.stair?(x, y)
 
-> Renvoie true si les coordonnées sont sur une marche, false sinon
+Renvoie true si les coordonnées sont sur une marche, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -9234,10 +9234,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.start_map_id
 
-> Renvoie l'ID de la map de départ
+Renvoie l'ID de la map de départ
 
   
-> 
+
 
 
 
@@ -9245,10 +9245,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.start_new_game
 
-> Démarre une nouvelle partie
+Démarre une nouvelle partie
 
   
-> 
+
 
 
 
@@ -9256,10 +9256,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.start_x
 
-> Renvoie la position X de départ du joueur
+Renvoie la position X de départ du joueur
 
   
-> 
+
 
 
 
@@ -9267,10 +9267,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.start_y
 
-> Renvoie la position Y de départ du joueur
+Renvoie la position Y de départ du joueur
 
   
-> 
+
 
 
 
@@ -9278,10 +9278,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.steps
 
-> Renvoie le nombre de pas effectués par l'équipe
+Renvoie le nombre de pas effectués par l'équipe
 
   
-> 
+
 
 
 
@@ -9289,10 +9289,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.switch_tileset(tileset_id)
 
-> Change le tileset de la carte en cours
+Change le tileset de la carte en cours
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `tileset_id`|`Fixnum`|ID du nouveau tileset  
 
@@ -9303,10 +9303,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.table?(x, y)
 
-> Renvoie true si les coordonnées sont sur une table, false sinon
+Renvoie true si les coordonnées sont sur une table, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -9318,10 +9318,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.tan(x)
 
-> Renvoie la tangente de x
+Renvoie la tangente de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -9332,10 +9332,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.tanh(x)
 
-> Renvoie la tangente hyperbolique de x
+Renvoie la tangente hyperbolique de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -9346,10 +9346,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.team_size
 
-> Renvoie la taille de l'équipe
+Renvoie la taille de l'équipe
 
   
-> 
+
 
 
 
@@ -9357,10 +9357,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.terrain_tag(x, y)
 
-> Renvoie le tag du terrain de la case pointée par les coordonnées X,Y
+Renvoie le tag du terrain de la case pointée par les coordonnées X,Y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
@@ -9372,10 +9372,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_angle(id, *value)
 
-> Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte
+Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id du texte  
 `*value`|`Fixnum`|Nouvel angle (peut être vide)  
@@ -9387,10 +9387,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_change(id, text)
 
-> Change le texte affiché à l'écran
+Change le texte affiché à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `text`|`String`|Nouveau texte  
@@ -9402,10 +9402,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_erase(id)
 
-> Supprime le texte affiché à l'écran
+Supprime le texte affiché à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 
@@ -9416,10 +9416,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)
 
-> Déplace un texte affiché à l'écran
+Déplace un texte affiché à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `duration`|`Fixnum`|Durée du déplacement en frames  
@@ -9439,10 +9439,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_move?(id)
 
-> Retourne true sur le texte référencé par son ID est en mouvement, false sinon
+Retourne true sur le texte référencé par son ID est en mouvement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 
@@ -9453,10 +9453,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_opacity(id, *opacity, *duration, *wait_flag)
 
-> Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
+Change l'opacité du texte, si aucune opacité n'est donnée, la commande renverra l'opacité du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `*opacity`|`Fixnum`|valeur de l'opacité, entre 0 et 255.  
@@ -9470,10 +9470,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_position(id, x, y, *duration, *wait_flag)
 
-> Change la position d'un texte
+Change la position d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `x`|`Fixnum`|Position en x du texte  
@@ -9488,10 +9488,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_profile(id, *profile)
 
-> Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
+Change le profil du texte, si aucun profile n'est donné, la commande renverra le profil du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `*profile`|`String`|Nouveau profil  
@@ -9503,10 +9503,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_rotate(id, speed)
 
-> Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
+Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `speed`|`Fixnum`|Vitesse de rotation  
@@ -9518,10 +9518,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)
 
-> Affiche un texte à l'écran
+Affiche un texte à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `text`|`String`|Texte a afficher  
@@ -9541,10 +9541,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_value(id)
 
-> Renvoie la valeur d'un texte
+Renvoie la valeur d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 
@@ -9555,10 +9555,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_x(id, x, *duration, *wait_flag)
 
-> Change l'axe X d'un texte
+Change l'axe X d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `x`|`Fixnum`|Position en x du texte, si aucun argument n'est passé, la commande renverra la position X du texte  
@@ -9572,10 +9572,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_y(id, y, *duration, *wait_flag)
 
-> Change l'axe Y d'un texte
+Change l'axe Y d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `y`|`Fixnum`|Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte  
@@ -9589,10 +9589,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_zoom(id, zoom_x, zoom_y, *duration, *wait_flag)
 
-> Change le zoom d'un texte
+Change le zoom d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `zoom_x`|`Fixnum`|zoom x du texte  
@@ -9607,10 +9607,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_zoom_x(id, zoom_x, *duration, *wait_flag)
 
-> Change le zoom X d'un texte
+Change le zoom X d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `zoom_x`|`Fixnum`|zoom x du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
@@ -9624,10 +9624,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.text_zoom_y(id, zoom_y, *duration, *wait_flag)
 
-> Change le zoom y d'un texte
+Change le zoom y d'un texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du texte  
 `zoom_y`|`Fixnum`|zoom y du texte, si aucun argument n'est passé, la commande renverra le zoom X du texte  
@@ -9641,10 +9641,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_activate(id)
 
-> Active la zone de texte référencée par son ID
+Active la zone de texte référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
@@ -9655,10 +9655,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_active?(id)
 
-> Renvoie true si le champ de texte référencé par son ID est activé
+Renvoie true si le champ de texte référencé par son ID est activé
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
@@ -9669,10 +9669,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_click?(id)
 
-> Renvoie true si la souris clique sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris clique sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
@@ -9683,10 +9683,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_deactivate(*id)
 
-> désactive la zone de texte référencée par son ID
+désactive la zone de texte référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|ID du champ de texte, si aucun ID n'est spécifié, toutes les zones de textes seront désactivés  
 
@@ -9697,10 +9697,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_erase(*id)
 
-> Supprime le champ de texte référencé par son ID
+Supprime le champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `*id`|`Fixnum`|ID de la zone de texte, si aucun ID n'est spécifié, toutes les zones de textes seront supprimées  
 
@@ -9711,10 +9711,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_float_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
-> Affiche un champ de texte permettant de saisir des nombres à virgule
+Affiche un champ de texte permettant de saisir des nombres à virgule
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
 `number`|`Float`|Nombre à afficher par défaut du champ  
@@ -9733,10 +9733,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_get_value(id)
 
-> Renvoie la valeur de la zone de texte référencé par son ID
+Renvoie la valeur de la zone de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
@@ -9747,10 +9747,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_hover?(id)
 
-> Renvoie true si la souris survole le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris survole le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
@@ -9761,10 +9761,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_int_show(id, number, x, y, w, profile, *range, *active, *opacity)
 
-> Affiche un champ de texte permettant de saisir des nombres entiers
+Affiche un champ de texte permettant de saisir des nombres entiers
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
 `number`|`Fixnum`|Nombre à afficher par défaut  
@@ -9783,10 +9783,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_opacity(id, opacity)
 
-> Change l'opacité du champ de texte référencé par son ID
+Change l'opacité du champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `opacity`|`Fixnum`|Opacité, entre 0 et 255. Si aucune opacité n'est donnée, la commande renverra la valeur de l'opacité du champ  
@@ -9798,10 +9798,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_press?(id, *key)
 
-> Renvoie true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris est pressée en continu sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -9813,10 +9813,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_release?(id, *key)
 
-> Renvoie true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris est relâchée sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -9828,10 +9828,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_repeat?(id, *key)
 
-> Renvoie true si la souris clique de manière répétée sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris clique de manière répétée sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -9843,10 +9843,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_set_value(id, value)
 
-> Attribue une valeur à un champ de texte référencé par son ID
+Attribue une valeur à un champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `value`|`TextfieldType`|Valeur à attribuer  
@@ -9858,10 +9858,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_text_show(id, text, x, y, w, profile, *range, *active, *opacity)
 
-> Affiche un champ de texte permettant de saisir du texte
+Affiche un champ de texte permettant de saisir du texte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du champ de texte  
 `text`|`String`|Texte du champ à afficher par défaut  
@@ -9880,10 +9880,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_trigger?(id, *key)
 
-> Renvoie true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
+Renvoie true si la souris clique une fois sur le champ de texte référencé par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `*key`|`Key`|Bouton de la souris, par défaut :mouse_left  
@@ -9895,10 +9895,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_visible(id, flag)
 
-> Change la visibilité du champ de texte référencé par son ID
+Change la visibilité du champ de texte référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 `flag`|`Boolean`|True pour visible, false pour invisible  
@@ -9910,10 +9910,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.textfield_visible?(id)
 
-> Renvoie true si le champ de texte référencé par son ID est visible, false sinon
+Renvoie true si le champ de texte référencé par son ID est visible, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la zone de texte  
 
@@ -9924,10 +9924,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.texts_clear
 
-> Supprime tous les textes
+Supprime tous les textes
 
   
-> 
+
 
 
 
@@ -9935,10 +9935,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.tile_id(x, y, layer, *map_id)
 
-> Renvoie l'ID de la tile pointée par les coordonnées X,Y
+Renvoie l'ID de la tile pointée par les coordonnées X,Y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
@@ -9952,10 +9952,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.time_day
 
-> Renvoie le jour actuel
+Renvoie le jour actuel
 
   
-> 
+
 
 
 
@@ -9963,10 +9963,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.time_hour
 
-> Renvoie l' heure actuelle
+Renvoie l' heure actuelle
 
   
-> 
+
 
 
 
@@ -9974,10 +9974,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.time_min
 
-> Renvoie la minute actuelle
+Renvoie la minute actuelle
 
   
-> 
+
 
 
 
@@ -9985,10 +9985,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.time_month
 
-> Renvoie le mois actuel
+Renvoie le mois actuel
 
   
-> 
+
 
 
 
@@ -9996,10 +9996,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.time_sec
 
-> Renvoie la seconde actuelle
+Renvoie la seconde actuelle
 
   
-> 
+
 
 
 
@@ -10007,10 +10007,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.time_year
 
-> Renvoie l'année actuelle
+Renvoie l'année actuelle
 
   
-> 
+
 
 
 
@@ -10018,10 +10018,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.timer
 
-> Renvoie la valeur du chronomètre
+Renvoie la valeur du chronomètre
 
   
-> 
+
 
 
 
@@ -10029,10 +10029,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.to_deg(x)
 
-> Renvoie x (supposé radian) converti en degrés
+Renvoie x (supposé radian) converti en degrés
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -10043,10 +10043,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.to_rad(x)
 
-> Renvoie x (supposé degré) converti en radians
+Renvoie x (supposé degré) converti en radians
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
 
@@ -10057,10 +10057,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.tone(red, green, blue, *gray)
 
-> Renvoie une teinte
+Renvoie une teinte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `red`|`Fixnum`|Valeur de rouge, entre -255 et 255  
 `green`|`Fixnum`|Valeur de vert, entre -255 et 255  
@@ -10074,10 +10074,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.total_enemies
 
-> Renvoie le nombre d'enemis en combat (mort ou vivant)
+Renvoie le nombre d'enemis en combat (mort ou vivant)
 
   
-> 
+
 
 
 
@@ -10085,10 +10085,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.troop_member(id, position)
 
-> Renvoie l'id d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier).
+Renvoie l'id d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier).
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
@@ -10100,10 +10100,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.troop_member_x(id, position)
 
-> Renvoie la position X d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+Renvoie la position X d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
@@ -10115,10 +10115,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.troop_member_y(id, position)
 
-> Renvoie la position Y d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
+Renvoie la position Y d'un monstre d'un groupe de monstres référencé par son ID et par sa position (0 = premier) tel que défini dans la base de données.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
@@ -10130,10 +10130,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.troop_members(id)
 
-> Renvoie un tableau des enemy_id d'un groupe de monstres référencé par son ID.
+Renvoie un tableau des enemy_id d'un groupe de monstres référencé par son ID.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 
@@ -10144,10 +10144,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.troop_name(id)
 
-> Renvoie le nom d'un groupe de monstres référencé par son ID.
+Renvoie le nom d'un groupe de monstres référencé par son ID.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 
@@ -10158,10 +10158,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.troop_size(id)
 
-> Renvoie la taille d'un groupe de monstres référencé par son ID.
+Renvoie la taille d'un groupe de monstres référencé par son ID.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du groupe de monstre  
 
@@ -10172,10 +10172,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.unflash_rect(x, y, width, height)
 
-> Arrête de faire clignoter les cases référencées par le rectangle
+Arrête de faire clignoter les cases référencées par le rectangle
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -10189,10 +10189,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.unflash_square(x, y)
 
-> Arrête le clignotement
+Arrête le clignotement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -10204,10 +10204,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.version_id
 
-> Renvoie l'ID de la version du jeu
+Renvoie l'ID de la version du jeu
 
   
-> 
+
 
 
 
@@ -10215,10 +10215,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.wait(duration)
 
-> Attend un nombre de frames donné
+Attend un nombre de frames donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `duration`|`Fixnum`|Nombre de frames à attendre  
 
@@ -10229,10 +10229,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.wait_release(key)
 
-> Attend le relâchement d'une touche
+Attend le relâchement d'une touche
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à attendre  
 
@@ -10243,10 +10243,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.wait_trigger(key)
 
-> Attend l'appui d'une touche
+Attend l'appui d'une touche
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à attendre  
 
@@ -10257,10 +10257,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.wait_with(time, &block)
 
-> Attend en exécutant une action
+Attend en exécutant une action
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `time`|`Fixnum`|Temps d'attente  
 `&block`|`Block`|Action à exécuter ({action})  
@@ -10272,10 +10272,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.wall?(x, y)
 
-> Renvoie true si les coordonnées sont sur un mur, false sinon
+Renvoie true si les coordonnées sont sur un mur, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
@@ -10287,10 +10287,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_agility(id)
 
-> Renvoie l'apport d'agilité d'une arme référencée par son ID
+Renvoie l'apport d'agilité d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10301,10 +10301,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_attack_power(id)
 
-> Renvoie la puissance d'attaque d'une arme référencée par son ID
+Renvoie la puissance d'attaque d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10315,10 +10315,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_count(id)
 
-> Renvoie le nombre d'armes (référencées par un ID) possédées par l'équipe
+Renvoie le nombre d'armes (référencées par un ID) possédées par l'équipe
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme à compter  
 
@@ -10329,10 +10329,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_defense_power(id)
 
-> Renvoie la puissance de défense d'une arme référencée par son ID
+Renvoie la puissance de défense d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10343,10 +10343,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_description(id)
 
-> Renvoie la description de l'arme référencée par son ID
+Renvoie la description de l'arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
@@ -10357,10 +10357,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_equiped?(id, *member_id)
 
-> Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon
+Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 `*member_id`|`Fixnum`|Id du membre de l'équipe. Si aucun membre_id n'est spécifié, la commande vérifiera pour toute l'équipe   
@@ -10372,10 +10372,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_icon(id)
 
-> Renvoie l'index de l'icone de l'arme référencée par son ID
+Renvoie l'index de l'icone de l'arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
@@ -10386,10 +10386,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_luck(id)
 
-> Renvoie l'apport de chance d'une arme référencée par son ID
+Renvoie l'apport de chance d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10400,10 +10400,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_magic_attack_power(id)
 
-> Renvoie la puissance d'attaque magique d'une arme référencée par son ID
+Renvoie la puissance d'attaque magique d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10414,10 +10414,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_magic_defense_power(id)
 
-> Renvoie la puissance de défense magique d'une arme référencée par son ID
+Renvoie la puissance de défense magique d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10428,10 +10428,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_max_hit_points(id)
 
-> Renvoie le maximum des points de vie d'une arme référencée par son ID
+Renvoie le maximum des points de vie d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10442,10 +10442,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_max_magic_points(id)
 
-> Renvoie le maximum des points de magie d'une arme référencée par son ID
+Renvoie le maximum des points de magie d'une arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
 
@@ -10456,10 +10456,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_name(id)
 
-> Renvoie le nom de l'arme référencée par son ID
+Renvoie le nom de l'arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
@@ -10470,10 +10470,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_note(id)
 
-> Renvoie le commentaire de l'arme référencée par son ID
+Renvoie le commentaire de l'arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
@@ -10484,10 +10484,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_price(id)
 
-> Renvoie le prix de l'arme référencée par son ID
+Renvoie le prix de l'arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
@@ -10498,10 +10498,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapon_type(id)
 
-> Renvoie le type de l'arme référencée par son ID
+Renvoie le type de l'arme référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'arme  
 
@@ -10512,10 +10512,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.weapons_possessed
 
-> Renvoie la liste des armes possédées
+Renvoie la liste des armes possédées
 
   
-> 
+
 
 
 
@@ -10523,10 +10523,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.website(url)
 
-> Ouvre la page web passée en argument
+Ouvre la page web passée en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `url`|`String`|Url à charger  
 
@@ -10537,10 +10537,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_activate(id)
 
-> Rend la fenêtre référencée par son ID active
+Rend la fenêtre référencée par son ID active
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10551,10 +10551,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_closed?(id)
 
-> Renvoie true si la fenêtre référencée par son ID est fermée, false sinon
+Renvoie true si la fenêtre référencée par son ID est fermée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10565,10 +10565,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_content(id, *content, *resize)
 
-> Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
+Change le contenu de la fenêtre référencée par son ID, si aucun contenu n'est donné, la commande renverra le contenu de la fenêtre
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*content`|`Object`|Valeur affichée de la fenêtre  
@@ -10581,10 +10581,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_current_symbol(id)
 
-> Renvoie, pour une fenêtre de sélection, le symbole sélectionné
+Renvoie, pour une fenêtre de sélection, le symbole sélectionné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10595,10 +10595,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_deactivate(id)
 
-> Rend la fenêtre référencée par son ID inactive
+Rend la fenêtre référencée par son ID inactive
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10609,10 +10609,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_dimension(id, width, height, *duration, *wait_flag)
 
-> Change la dimension de la fenêtre
+Change la dimension de la fenêtre
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `width`|`Fixnum`|Largeur de la fenêtre  
@@ -10627,10 +10627,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_height(id)
 
-> Renvoie la hauteur de la fenêtre référencée par son ID
+Renvoie la hauteur de la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10641,10 +10641,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)
 
-> Déplacement sur tous les paramètres
+Déplacement sur tous les paramètres
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnées X  
@@ -10662,10 +10662,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_moveto(id, x, y, *duration, *wait_flag)
 
-> Change les coordonnées X et Y de la fenêtre
+Change les coordonnées X et Y de la fenêtre
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `x`|`Fixnum`|Coordonnée X  
@@ -10680,10 +10680,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_opacity(id, *value, *duration, *wait_flag)
 
-> Change l'opacité de la fenêtre, si aucune valeur n'est spécifiée, la commande renvoie la valeur de l'opacité
+Change l'opacité de la fenêtre, si aucune valeur n'est spécifiée, la commande renvoie la valeur de l'opacité
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*value`|`Fixnum`|Valeur de l'opacité à changer, entre 0 et 255.  
@@ -10697,10 +10697,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_opened?(id)
 
-> Renvoie true si la fenêtre référencée par son ID est ouverte, false sinon
+Renvoie true si la fenêtre référencée par son ID est ouverte, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10711,10 +10711,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_width(id)
 
-> Renvoie la largeur de la fenêtre référencée par son ID
+Renvoie la largeur de la fenêtre référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 
@@ -10725,10 +10725,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_x(id, *x)
 
-> Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
+Change la coordonnée X de la fenêtre référencée par son ID, si aucun X n'est donné, la commande renverra la valeur actuelle de x
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*x`|`Fixnum`|Coordonnée X de la fenêtre  
@@ -10740,10 +10740,10 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 ##### Command.window_y(id, *y)
 
-> Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
+Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*y`|`Fixnum`|Coordonnée Y de la fenêtre  

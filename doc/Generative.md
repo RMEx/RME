@@ -1,8 +1,8 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Generative**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Generative**  
 - - -  
-#Generative
+# Generative
 Collection de modules MIXINS pour généraliser des comportements
 

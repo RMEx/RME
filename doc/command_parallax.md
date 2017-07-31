@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Panoramas**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Panoramas**  
 - - -  
-#Panoramas
+# Panoramas
 Commandes relatives à la manipulation des panoramas
 
-##Liste des commandes
+# # Liste des commandes
 *    [parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#parallax_autoscrollid-speed_x-duration-wait_flag)
 *    [parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_xid-speed-duration-wait_flag-ease)
 *    [parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_yid-speed-duration-wait_flag-ease)
@@ -26,13 +26,13 @@ Commandes relatives à la manipulation des panoramas
 *    [parallaxes_clear](#parallaxes_clear)
 
 
-##Description des commandes
+# # Description des commandes
 ##### parallax_autoscroll(id, speed_x, *duration, *wait_flag)
 
-> Défilement horizontal et vertical automatique d'un panorama
+Défilement horizontal et vertical automatique d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed_x`|`Fixnum`|Vitesse de défilement vertical  
@@ -42,10 +42,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)
 
-> Défilement horizontal automatique d'un panorama
+Défilement horizontal automatique d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -56,10 +56,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)
 
-> Défilement vertical automatique d'un panorama
+Défilement vertical automatique d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -70,10 +70,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_blend(id, blend_type)
 
-> Change le mode de fusion d'un panorama
+Change le mode de fusion d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `blend_type`|`Fixnum`|mode de fusion (0 => normal, 1 => Addition, 2 => Soustraction)  
@@ -81,20 +81,20 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_erase(id)
 
-> Supprime un panorama
+Supprime un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 
 
 ##### parallax_opacity(id, opacity, *duration, *wait_flag, *ease)
 
-> Change l'opacité d'un panorama
+Change l'opacité d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
@@ -105,10 +105,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_scroll(id, x, y)
 
-> Change la vitesse de défilement d' un panorama référencé par son ID
+Change la vitesse de défilement d' un panorama référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du panorama  
 `x`|`Fixnum`|vitesse horizontale  
@@ -117,10 +117,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_scroll_x(id, speed)
 
-> Défilement horizontal d'un panorama par rapport au défilement de la carte
+Défilement horizontal d'un panorama par rapport au défilement de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -128,10 +128,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_scroll_y(id, speed)
 
-> Défilement vertical d'un panorama par rapport au défilement de la carte
+Défilement vertical d'un panorama par rapport au défilement de la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `speed`|`Fixnum`|Vitesse de défilement  
@@ -139,10 +139,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_show(id, name, *z, *opacity, *auto_x, *auto_y, *scroll_x, *scroll_y, *blend_type, *zoom_x, *zoom_y, *tone)
 
-> Affiche un panorama
+Affiche un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `name`|`String`|Nom du panorama  
@@ -160,10 +160,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_tone(id, tone, *duration, *wait_flag, *ease)
 
-> Change la teinte d'un panorama
+Change la teinte d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
@@ -174,10 +174,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)
 
-> Transforme un panorama durant une période
+Transforme un panorama durant une période
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `duration`|`Fixnum`|Durée en frame du déplacement  
@@ -191,10 +191,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_z(id, z)
 
-> Change l'axe Z du panorama
+Change l'axe Z du panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du panorama  
 `z`|`Fixnum`|Axe Z  
@@ -202,10 +202,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_zoom(id, zoom, *duration, *wait_flag, *ease)
 
-> Zoom sur les deux axes d'un panorama
+Zoom sur les deux axes d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
@@ -216,10 +216,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
-> Zoom horizontal d'un panorama
+Zoom horizontal d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
@@ -230,10 +230,10 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
-> Zoom vertical d'un panorama
+Zoom vertical d'un panorama
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID du panorama  
 `zoom`|`Fixnum`|taille en pourcentage  
@@ -244,8 +244,8 @@ Commandes relatives à la manipulation des panoramas
 
 ##### parallaxes_clear
 
-> Supprime tous les panoramas
+Supprime tous les panoramas
 
   
-> 
+
 

@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Ennemis**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Ennemis**  
 - - -  
-#Ennemis
+# Ennemis
 Informations sur les monstres rencontrables tels que définis dans la base de données, donc utilisables partout.
 
-##Liste des commandes
+# # Liste des commandes
 *    [monster_agility(id)](#monster_agilityid)
 *    [monster_attack_power(id)](#monster_attack_powerid)
 *    [monster_battler_hue(id)](#monster_battler_hueid)
@@ -25,163 +25,163 @@ Informations sur les monstres rencontrables tels que définis dans la base de do
 *    [monster_note(id)](#monster_noteid)
 
 
-##Description des commandes
+# # Description des commandes
 ##### monster_agility(id)
 
-> renvoie l'agilité d'un ennemi référencé par son ID
+renvoie l'agilité d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_attack_power(id)
 
-> renvoie les points d'attaque d'un ennemi référencé par son ID
+renvoie les points d'attaque d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_battler_hue(id)
 
-> renvoie la teinte d'un ennemi référencé par son ID
+renvoie la teinte d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_battler_name(id)
 
-> renvoie le nom du fichier battler d'un ennemi référencé par son ID
+renvoie le nom du fichier battler d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_defense_power(id)
 
-> renvoie les points de défense d'un ennemi référencé par son ID
+renvoie les points de défense d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_description(id)
 
-> renvoie la description d'un ennemi référencé par son ID
+renvoie la description d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_give_exp(id)
 
-> renvoie l'experience donnée par un ennemi référencé par son ID
+renvoie l'experience donnée par un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_give_gold(id)
 
-> renvoie l'or donné par un ennemi référencé par son ID
+renvoie l'or donné par un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_icon(id)
 
-> renvoie l'icone index d'un ennemi référencé par son ID
+renvoie l'icone index d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_luck(id)
 
-> renvoie la chance d'un ennemi référencé par son ID
+renvoie la chance d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_magic_attack_power(id)
 
-> renvoie les points d'attaque magique d'un ennemi référencé par son ID
+renvoie les points d'attaque magique d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_magic_defense_power(id)
 
-> renvoie les points de défense magique d'un ennemi référencé par son ID
+renvoie les points de défense magique d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_max_hp(id)
 
-> renvoie le maximum de points de vie d'un ennemi référencé par son ID
+renvoie le maximum de points de vie d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_max_mp(id)
 
-> renvoie le maximum de points de magie d'un ennemi référencé par son ID
+renvoie le maximum de points de magie d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_name(id)
 
-> renvoie le nom d'un ennemi référencé par son ID
+renvoie le nom d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 
 
 ##### monster_note(id)
 
-> renvoie la note/commentaire d'un ennemi référencé par son ID
+renvoie la note/commentaire d'un ennemi référencé par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'ennemi  
 

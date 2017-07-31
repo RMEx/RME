@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Images**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Images**  
 - - -  
-#Images
+# Images
 Commandes relatives à la manipulation des images
 
-##Liste des commandes
+# # Liste des commandes
 *    [picture_angle(id, angle, *duration, *wait_flag, *ease)](#picture_angleid-angle-duration-wait_flag-ease)
 *    [picture_blend(Selector, mode)](#picture_blendselector-mode)
 *    [picture_dimension(id, w, h, *duration, *wait_flag, *ease)](#picture_dimensionid-w-h-duration-wait_flag-ease)
@@ -51,13 +51,13 @@ Commandes relatives à la manipulation des images
 *    [pixel_in_picture?(id, x, y, *precise)](#pixel_in_pictureid-x-y-precise)
 
 
-##Description des commandes
+# # Description des commandes
 ##### picture_angle(id, angle, *duration, *wait_flag, *ease)
 
-> Change l'angle de l'image
+Change l'angle de l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
@@ -68,10 +68,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_blend(Selector, mode)
 
-> Change le mode de fusion d'une image
+Change le mode de fusion d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `mode`|`Fixnum`|Mode choisi (0, 1 ou 2)  
@@ -79,10 +79,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_dimension(id, w, h, *duration, *wait_flag, *ease)
 
-> Change la hauteur et la largeur d'une image référencée par son ID
+Change la hauteur et la largeur d'une image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `w`|`Fixnum`|Largeur à modifier  
@@ -94,40 +94,40 @@ Commandes relatives à la manipulation des images
 
 ##### picture_erase(Selector)
 
-> Efface l'image
+Efface l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 
 
 ##### picture_erased?(id)
 
-> Renvoie true si l'image est supprimée (ou non affichée), false sinon
+Renvoie true si l'image est supprimée (ou non affichée), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 
 
 ##### picture_flip(Selector)
 
-> Applique un effet miroir (axe vertical) sur l'image 
+Applique un effet miroir (axe vertical) sur l'image 
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 
 
 ##### picture_height(id, *v, *duration, *wait_flag, *ease)
 
-> Change la hauteur d'une image référencée par son ID
+Change la hauteur d'une image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
@@ -138,10 +138,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_mouse_click?(id, *precise)
 
-> Renvoie true si la souris survol et est cliquée l'image référencée par son ID
+Renvoie true si la souris survol et est cliquée l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
@@ -149,10 +149,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_mouse_hover?(id, *precise)
 
-> Renvoie true si la souris survol l'image référencée par son ID
+Renvoie true si la souris survol l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*precise`|`Boolean`|si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false  
@@ -160,10 +160,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_mouse_press?(id, *key, *precise)
 
-> Renvoie true si la souris survol et presse en continu la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et presse en continu la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -172,10 +172,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_mouse_release?(id, *key, *precise)
 
-> Renvoie true si la souris survol et relâche la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et relâche la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -184,10 +184,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_mouse_repeat?(id, *key, *precise)
 
-> Renvoie true si la souris survol et presse successivement la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et presse successivement la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -196,10 +196,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_mouse_trigger?(id, *key, *precise)
 
-> Renvoie true si la souris survol et presse la touche référencée sur l'image référencée par son ID
+Renvoie true si la souris survol et presse la touche référencée sur l'image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left)  
@@ -208,10 +208,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_move(Selector, x, y, zoom_x, zoom_y, duration, *wait_flag, *opacity, *blend_type, *origin, *ease)
 
-> Déplace une image
+Déplace une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `x`|`Fixnum`|Position en x de l'image où l'image doit se rendre  
@@ -228,20 +228,20 @@ Commandes relatives à la manipulation des images
 
 ##### picture_move?(id)
 
-> Renvoie true si l'image référencée par son ID est en mouvement, false sinon
+Renvoie true si l'image référencée par son ID est en mouvement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 
 
 ##### picture_name(id, *name)
 
-> Change le nom de l'image à afficher
+Change le nom de l'image à afficher
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais), si aucun argument n'est passé, la commande renverra le nom courrant  
@@ -249,10 +249,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_opacity(Selector, opacity, *duration, *wait_flag, *ease)
 
-> Change l'opacité d'une image
+Change l'opacité d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
@@ -263,10 +263,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_origin(id, origin)
 
-> Change l'origine d'une image
+Change l'origine d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X,Y, par défaut, zéro, zéro  
@@ -274,10 +274,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_pin(Selector, *x, *y)
 
-> Fait défiler une image avec la carte (la fixe à une position)
+Fait défiler une image avec la carte (la fixe à une position)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `*x`|`Fixnum`|Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte  
@@ -286,10 +286,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_position(Selector, x, y, *duration, *wait_flag, *ease)
 
-> Change la position de l'image
+Change la position de l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `x`|`Fixnum`|Position en x de l'image  
@@ -301,10 +301,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_rotate(Selector, speed)
 
-> Fait tourner l'image
+Fait tourner l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `speed`|`Fixnum`|Vitesse de rotation de l'image  
@@ -312,10 +312,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_scroll(Selector, vitesse)
 
-> Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
+Change la vitesse de défilement (vertical et horizontal) d'une image fixée sur la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `vitesse`|`Fixnum`|Vitesse de défilement  
@@ -323,10 +323,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_scroll_x(Selector, *vitesse)
 
-> Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+Change la vitesse de défilement horizontal d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `*vitesse`|`Fixnum`|Vitesse de défilement  
@@ -334,10 +334,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_scroll_y(Selector, *vitesse)
 
-> Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
+Change la vitesse de défilement vertical d'une image fixée sur la carte, si aucune vitesse n'est donnée (et que le selector est un simple ID) alors la commande renverra simplement la valeur de défilement.
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `*vitesse`|`Fixnum`|Vitesse de défilement  
@@ -345,10 +345,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_shake(Selector, power, speed, duration)
 
-> Fait trembler l'image pendant un temps donné
+Fait trembler l'image pendant un temps donné
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `power`|`Fixnum`|La puissance du tremblement  
@@ -358,10 +358,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)
 
-> Affiche une image à l'écran
+Affiche une image à l'écran
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `name`|`String`|Nom de l'image (sans l'extension, entre guillemets anglais)  
@@ -376,10 +376,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_show_enemy(pic_id, id, position)
 
-> Affiche un monstre d'un groupe à sa position définie dans la base de données
+Affiche un monstre d'un groupe à sa position définie dans la base de données
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
 `id`|`Fixnum`|ID du groupe de monstre  
@@ -388,10 +388,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_show_screenshot(id, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)
 
-> Affiche une capture d'écran (comme une image normale)
+Affiche une capture d'écran (comme une image normale)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*x`|`Fixnum`|Position en X de l'image (par défaut 0)  
@@ -405,20 +405,20 @@ Commandes relatives à la manipulation des images
 
 ##### picture_showed?(id)
 
-> Renvoie true si l'image est affichée, false sinon
+Renvoie true si l'image est affichée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 
 
 ##### picture_tone(id, tone, *duration, *wait_flag, *ease)
 
-> Change la teinte d'une image
+Change la teinte d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `tone`|`Tone`|Teinte de l'image (utilisez la commande tone)  
@@ -429,20 +429,20 @@ Commandes relatives à la manipulation des images
 
 ##### picture_unpin(Selector)
 
-> Arrête de faire défiler une image avec la carte
+Arrête de faire défiler une image avec la carte
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 
 
 ##### picture_wave(Selector, amplitude, vitesse)
 
-> Fait onduler l'image
+Fait onduler l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `amplitude`|`Fixnum`|Amplitude (taille de l'ondulation)  
@@ -451,10 +451,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_width(id, *v, *duration, *wait_flag, *ease)
 
-> Change la largeur d'une image référencée par son ID
+Change la largeur d'une image référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
@@ -465,10 +465,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_x(id, x, *duration, *wait_flag, *ease)
 
-> Change l'axe X d'une image
+Change l'axe X d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
@@ -479,10 +479,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_y(id, y, *duration, *wait_flag, *ease)
 
-> Change l'axe Y d'une image
+Change l'axe Y d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `y`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
@@ -493,10 +493,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_zoom(Selector, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
 
-> Change la taille d'une image
+Change la taille d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `Selector`|`Selector`|Sélécteur de l'image  
 `zoom_x`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image  
@@ -508,10 +508,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
-> Change la largeur d'une image
+Change la largeur d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
@@ -522,10 +522,10 @@ Commandes relatives à la manipulation des images
 
 ##### picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
-> Change la hauteur d'une image
+Change la hauteur d'une image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
@@ -536,17 +536,17 @@ Commandes relatives à la manipulation des images
 
 ##### pictures_clear
 
-> Efface toutes les images
+Efface toutes les images
 
   
-> 
+
 
 ##### pictures_collide?(id, id2)
 
-> Vérifie que deux images sont en collision
+Vérifie que deux images sont en collision
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `id2`|`Fixnum`|ID de l'autre image  
@@ -554,10 +554,10 @@ Commandes relatives à la manipulation des images
 
 ##### pictures_perfect_collide?(idA, idB)
 
-> Vérifie la collision entre deux images au pixel près. ATTENTION, CETTE COMMANDE LAG ENORMEMENT !IL EST DECONSEILLE DE L'UTILISER !
+Vérifie la collision entre deux images au pixel près. ATTENTION, CETTE COMMANDE LAG ENORMEMENT !IL EST DECONSEILLE DE L'UTILISER !
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `idA`|`Fixnum`|ID de la première image  
 `idB`|`Fixnum`|ID de la seconde image  
@@ -565,10 +565,10 @@ Commandes relatives à la manipulation des images
 
 ##### pixel_in_picture?(id, x, y, *precise)
 
-> Vérifie que le x, y sont inscrits dans l'image
+Vérifie que le x, y sont inscrits dans l'image
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'image  
 `x`|`Fixnum`|Coordonnées X  

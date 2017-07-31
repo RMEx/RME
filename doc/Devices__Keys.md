@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Devices::Keys**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Devices::Keys**  
 - - -  
-#Devices::Keys
+# Devices::Keys
 Représentation des touches clavier/souris, est accessible via Keys, Key, ou Devices::Keys
 
-##Attributs
+# # Attributs
 Nom|Description  
 --- | ---  
 `Keys::Mouse_left`|Pointe la touche mouse_left  
@@ -180,20 +180,20 @@ Nom|Description
 `Keys::Pa1`|Pointe la touche pa1  
 `Keys::Oem_clear`|Pointe la touche oem_clear  
 `Keys::Ctrl`|Pointe la touche CTRL  
-##Liste des méthodes
+# # Liste des méthodes
 *    [self.press?](#selfpress)
 *    [self.release?](#selfrelease)
 *    [self.repeat?](#selfrepeat)
 *    [self.trigger?](#selftrigger)
 
 
-##Description des méthodes
+# # Description des méthodes
 ##### self.press?
 
-> Renvoie true si la touche est pressée, false sinon
+Renvoie true si la touche est pressée, false sinon
 
   
-> 
+
 
 
 
@@ -201,10 +201,10 @@ Nom|Description
 
 ##### self.release?
 
-> Renvoie true si la touche vient d'être relâchée, false sinon
+Renvoie true si la touche vient d'être relâchée, false sinon
 
   
-> 
+
 
 
 
@@ -212,10 +212,10 @@ Nom|Description
 
 ##### self.repeat?
 
-> Renvoie true si la touche est pressée de manière répétée, false sinon
+Renvoie true si la touche est pressée de manière répétée, false sinon
 
   
-> 
+
 
 
 
@@ -223,10 +223,10 @@ Nom|Description
 
 ##### self.trigger?
 
-> Renvoie true si la touche vient d'être pressée, false sinon
+Renvoie true si la touche vient d'être pressée, false sinon
 
   
-> 
+
 
 
 
