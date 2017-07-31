@@ -10,17 +10,6 @@ Commandes standards
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [call_common_event(id)](#call_common_eventid)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
-*    [event_move_diagonal(id, horizontal, vertical)](#event_move_diagonalid-horizontal-vertical)
-*    [event_move_down(id, *turn_ok)](#event_move_downid-turn_ok)
-*    [event_move_left(id, *turn_ok)](#event_move_leftid-turn_ok)
-*    [event_move_lower_left(id)](#event_move_lower_leftid)
-*    [event_move_lower_right(id)](#event_move_lower_rightid)
-*    [event_move_random(id)](#event_move_randomid)
-*    [event_move_right(id, *turn_ok)](#event_move_rightid-turn_ok)
-*    [event_move_straight(id, value, *turn_ok)](#event_move_straightid-value-turn_ok)
-*    [event_move_up(id, *turn_ok)](#event_move_upid-turn_ok)
-*    [event_move_upper_left(id)](#event_move_upper_leftid)
-*    [event_move_upper_right(id)](#event_move_upper_rightid)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
 *    [flash_rect(x, y, width, height, color)](#flash_rectx-y-width-height-color)
@@ -33,17 +22,6 @@ Commandes standards
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
 *    [pick_random(*elts)](#pick_randomelts)
-*    [player_move_diagonal(horizontal, vertical)](#player_move_diagonalhorizontal-vertical)
-*    [player_move_down(*turn_ok)](#player_move_downturn_ok)
-*    [player_move_left(*turn_ok)](#player_move_leftturn_ok)
-*    [player_move_lower_left](#player_move_lower_left)
-*    [player_move_lower_right](#player_move_lower_right)
-*    [player_move_random](#player_move_random)
-*    [player_move_right(*turn_ok)](#player_move_rightturn_ok)
-*    [player_move_straight(value, *turn_ok)](#player_move_straightvalue-turn_ok)
-*    [player_move_up(*turn_ok)](#player_move_upturn_ok)
-*    [player_move_upper_left](#player_move_upper_left)
-*    [player_move_upper_right](#player_move_upper_right)
 *    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
 *    [random_combination(len, *keys)](#random_combinationlen-keys)
@@ -91,102 +69,6 @@ Nom|Type|Description
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
-##### event_move_diagonal(id, horizontal, vertical)
-
-> Déplace un événement référencé par son ID d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-`horizontal`|`Fixnum`|Direction horizontale (4 pour gauche, 6 pour droite)  
-`vertical`|`Fixnum`|Direction verticale (2 pour bas, 8 pour haut)  
-##### event_move_down(id, *turn_ok)
-
-> Fait bouger l'événement référencé par son ID d'une case vers le bas. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### event_move_left(id, *turn_ok)
-
-> Fait bouger l'événement référencé par son ID d'une case vers la gauche. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### event_move_lower_left(id)
-
-> Déplacement l'événement référencé par son ID d'une case en diagonale bas-gauche. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'événement  
-##### event_move_lower_right(id)
-
-> Déplacement l'événement référencé par son ID d'une case en diagonale bas-droite. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'événement  
-##### event_move_random(id)
-
-> Déplace un événement d' une case aléatoire.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-##### event_move_right(id, *turn_ok)
-
-> Fait bouger l'événement référencé par son ID d'une case vers la droite. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### event_move_straight(id, value, *turn_ok)
-
-> Déplace un événement référencé par son ID d'une case dans une direction. La commande renvoie true ou false si le déplacement a réussi ou non.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-`value`|`Fixnum`|Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### event_move_up(id, *turn_ok)
-
-> Fait bouger l'événement référencé par son ID d'une case vers le haut. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id de l'événement  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### event_move_upper_left(id)
-
-> Déplacement l'événement référencé par son ID d'une case en diagonale haut-gauche. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'événement  
-##### event_move_upper_right(id)
-
-> Déplacement l'événement référencé par son ID d'une case en diagonale haut-droite. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|ID de l'événement  
 ##### fadein(*time)
 
 > Affiche l'écran en fondu
@@ -297,81 +179,6 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*elts`|`ArgsList`|éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
-##### player_move_diagonal(horizontal, vertical)
-
-> Déplace le héro d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`horizontal`|`Fixnum`|Direction horizontale (4 pour gauche, 6 pour droite)  
-`vertical`|`Fixnum`|Direction verticale (2 pour bas, 8 pour haut)  
-##### player_move_down(*turn_ok)
-
-> Fait bouger le joueur d'une case vers le bas
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### player_move_left(*turn_ok)
-
-> Fait bouger le joueur d'une case vers la gauche. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### player_move_lower_left
-
-> Déplacement  le héro d'une case en diagonale bas-gauche. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-##### player_move_lower_right
-
-> Déplacement  le héro d'une case en diagonale bas-droite. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-##### player_move_random
-
-> Déplacele héro d' une case aléatoire.
-
-  
-##### player_move_right(*turn_ok)
-
-> Fait bouger le joueur d'une case vers la droite. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### player_move_straight(value, *turn_ok)
-
-> Déplace un événement référencé par son ID d'une case dans une direction. La commande renvoie true ou false si le déplacement a réussi ou non.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`value`|`Fixnum`|Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### player_move_up(*turn_ok)
-
-> Fait bouger le joueur d'une case vers le haut. Renvoie true si le déplacement s'est effectué, false sinon.
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
-##### player_move_upper_left
-
-> Déplacement  le héro d'une case en diagonale haut-gauche. Renvoie true si le déplacement à réussi, false sinon.
-
-  
-##### player_move_upper_right
-
-> Déplacement  le héro d'une case en diagonale haut-droite. Renvoie true si le déplacement à réussi, false sinon.
-
-  
 ##### qte(key, time, *strict)
 
 > Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.

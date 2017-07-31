@@ -1698,10 +1698,22 @@ module RMECommands
       event_move_toward_position(0, x, y)
     end
 
+    def event_move_toward_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.move_toward_character(tr)
+      ev.move_succeed
+    end
 
+    def event_move_toward_player(id)
+      event_move_toward_event(id, 0)
+    end 
 
+    def player_move_toward_event(id)
+      event_move_toward_event(0, id)
+    end
 
-
+    
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------

@@ -212,6 +212,9 @@ Collection des commandes EventExtender
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
 *    [Command.event_move_straight(id, value, *turn_ok)](#commandevent_move_straightid-value-turn_ok)
+*    [Command.event_move_toward_event(id, target)](#commandevent_move_toward_eventid-target)
+*    [Command.event_move_toward_player(id)](#commandevent_move_toward_playerid)
+*    [Command.event_move_toward_position(id, x, y)](#commandevent_move_toward_positionid-x-y)
 *    [Command.event_move_up(id, *turn_ok)](#commandevent_move_upid-turn_ok)
 *    [Command.event_move_upper_left(id)](#commandevent_move_upper_leftid)
 *    [Command.event_move_upper_right(id)](#commandevent_move_upper_rightid)
@@ -499,6 +502,8 @@ Collection des commandes EventExtender
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
 *    [Command.player_move_straight(value, *turn_ok)](#commandplayer_move_straightvalue-turn_ok)
+*    [Command.player_move_toward_event(id)](#commandplayer_move_toward_eventid)
+*    [Command.player_move_toward_position(x, y)](#commandplayer_move_toward_positionx-y)
 *    [Command.player_move_up(*turn_ok)](#commandplayer_move_upturn_ok)
 *    [Command.player_move_upper_left](#commandplayer_move_upper_left)
 *    [Command.player_move_upper_right](#commandplayer_move_upper_right)
@@ -3234,6 +3239,45 @@ Nom|Type|Description
 `id`|`Fixnum`|Id de l'événement  
 `value`|`Fixnum`|Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas  
 `*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.event_move_toward_event(id, target)
+
+> Déplace un événement référencé par son ID d'une case en direction d'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+`target`|`Fixnum`|Id de l'événement cible  
+
+
+
+
+##### Command.event_move_toward_player(id)
+
+> Déplace un événement référencé par son ID d'une case en direction du héro. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+
+
+
+
+##### Command.event_move_toward_position(id, x, y)
+
+> Déplace un événement référencé par son ID d'une case en direction d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 
@@ -6840,6 +6884,31 @@ Nom|Type|Description
 --- | --- | ---  
 `value`|`Fixnum`|Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas  
 `*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.player_move_toward_event(id)
+
+> Déplace le héro d'une case en direction d'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement cible  
+
+
+
+
+##### Command.player_move_toward_position(x, y)
+
+> Déplace le héro d'une case en direction d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 
 
 
