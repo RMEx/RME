@@ -1380,51 +1380,50 @@ module RMECommands
     end
 
     def event_ox(id, value = nil)
-       return event(id).ox unless value
-       event(id).ox = value
-     end
+      return event(id).ox unless value
+      event(id).ox = value
+    end
 
-     def event_oy(id, value = nil)
-        return event(id).oy unless value
-        event(id).oy = value
-      end
+    def event_oy(id, value = nil)
+      return event(id).oy unless value
+      event(id).oy = value
+    end
 
-      def player_ox(value = nil); event_ox(0, value); end
-      def player_oy(value = nil); event_oy(0, value); end
+    def player_ox(value = nil); event_ox(0, value); end
+    def player_oy(value = nil); event_oy(0, value); end
 
-      def event_zoom_x(id, value = nil)
-        return event(id).zoom_x unless value
-        event(id).zoom_x = value
-      end
+    def event_zoom_x(id, value = nil)
+      return event(id).zoom_x unless value
+      event(id).zoom_x = value
+    end
 
-      def event_zoom_y(id, value = nil)
-        return event(id).zoom_y unless value
-        event(id).zoom_y = value
-      end
+    def event_zoom_y(id, value = nil)
+      return event(id).zoom_y unless value
+      event(id).zoom_y = value
+    end
 
-      def event_zoom(id, value)
-        event_zoom_x(id, value)
-        event_zoom_y(id, value)
-      end
+    def event_zoom(id, value)
+      event_zoom_x(id, value)
+      event_zoom_y(id, value)
+    end
 
-      def player_zoom_x(value = nil); event_zoom_x(0, value); end
-      def player_zoom_y(value = nil); event_zoom_y(0, value); end
-      def player_zoom(value); event_zoom(0, value); end
+    def player_zoom_x(value = nil); event_zoom_x(0, value); end
+    def player_zoom_y(value = nil); event_zoom_y(0, value); end
+    def player_zoom(value); event_zoom(0, value); end
 
-      def event_restore_origin(id)
-        event(id).restore_oxy
-      end
-      def player_restore_origin; event_restore_origin(0); end
-
-    [:last_clicked,
-    :last_pressed,
-    :last_triggered,
-    :last_released ,
-    :last_repeated,
-    :last_hovered].each do |m|
-      define_method("#{m}_event") do
-        Game_CharacterBase.send(m)
-      end
+    def event_restore_origin(id)
+      event(id).restore_oxy
+    end
+    def player_restore_origin; event_restore_origin(0); end
+      [:last_clicked,
+      :last_pressed,
+      :last_triggered,
+      :last_released ,
+      :last_repeated,
+      :last_hovered].each do |m|
+        define_method("#{m}_event") do
+          Game_CharacterBase.send(m)
+        end
     end
 
     def events_buzzer_properties(e, amplitude, length)
@@ -1536,8 +1535,8 @@ module RMECommands
     def event_priority(ids, priority = nil)
       return event(ids).priority_type unless !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
-       event(id_event).priority_type = priority
-     end
+      event(id_event).priority_type = priority
+    end
     end
 
     def event_trigger(ids, trigger = nil)
@@ -1637,6 +1636,19 @@ module RMECommands
     def player_move_with(*code)
       event_move_with(0, *code)
     end
+
+    def event_move_down(id); event(id).move_straight(2); end
+    def event_move_left(id); event(id).move_straight(4); end
+    def event_move_right(id); event(id).move_straight(6); end
+    def event_move_up(id); event(id).move_straight(8); end
+
+    def player_move_down; event_move_down(0); end
+    def player_move_left; event_move_left(0); end
+    def player_move_right; event_move_right(0); end
+    def player_move_up; event_move_up(0); end
+
+
+  
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords

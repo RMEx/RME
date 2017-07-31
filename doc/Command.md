@@ -201,9 +201,13 @@ Collection des commandes EventExtender
 *    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
+*    [Command.event_move_down(id)](#commandevent_move_downid)
 *    [Command.event_move_frequency(ids, f)](#commandevent_move_frequencyids-f)
+*    [Command.event_move_left(id)](#commandevent_move_leftid)
+*    [Command.event_move_right(id)](#commandevent_move_rightid)
 *    [Command.event_move_speed(ids, v)](#commandevent_move_speedids-v)
 *    [Command.event_move_speed_frequency(ids, v, f)](#commandevent_move_speed_frequencyids-v-f)
+*    [Command.event_move_up(id)](#commandevent_move_upid)
 *    [Command.event_move_with(id, code)](#commandevent_move_withid-code)
 *    [Command.event_moving?(id)](#commandevent_movingid)
 *    [Command.event_name(id)](#commandevent_nameid)
@@ -477,9 +481,13 @@ Collection des commandes EventExtender
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
 *    [Command.player_direction(*value)](#commandplayer_directionvalue)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
+*    [Command.player_move_down](#commandplayer_move_down)
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
+*    [Command.player_move_left](#commandplayer_move_left)
+*    [Command.player_move_right](#commandplayer_move_right)
 *    [Command.player_move_speed(v)](#commandplayer_move_speedv)
 *    [Command.player_move_speed_frequency(v, f)](#commandplayer_move_speed_frequencyv-f)
+*    [Command.player_move_up](#commandplayer_move_up)
 *    [Command.player_move_with(code)](#commandplayer_move_withcode)
 *    [Command.player_moving?](#commandplayer_moving)
 *    [Command.player_opacity(*value)](#commandplayer_opacityvalue)
@@ -3461,6 +3469,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 
 
 
+##### Command.event_move_down(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+
+
+
+
+
+
 ##### Command.event_move_frequency(ids, f)
 
 > Modifie la fréquence des événements référencés par leurs Id
@@ -3470,6 +3492,34 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `f`|`Fixnum`|Fréquence des événements, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence de l'évènement référencé par son ID  
+
+
+
+
+
+
+##### Command.event_move_left(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+
+
+
+
+
+
+##### Command.event_move_right(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
 
 
 
@@ -3501,6 +3551,20 @@ Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)
 `ids`|`Selector`|IDs des événements  
 `v`|`Fixnum`|Vitesse des événements  
 `f`|`Fixnum`|Fréquence des événements  
+
+
+
+
+
+
+##### Command.event_move_up(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
 
 
 
@@ -7496,6 +7560,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.player_move_down
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
+
+
+
+
+
 ##### Command.player_move_frequency(f)
 
 > Modifie la fréquence du joueur
@@ -7505,6 +7580,28 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 --- | --- | ---  
 `f`|`Fixnum`|Fréquence du joueur, si aucune priorité n'est donnée, la commande renverra la valeur de la fréquence du héros  
 
+
+
+
+
+
+##### Command.player_move_left
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
+
+
+
+
+
+##### Command.player_move_right
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
 
 
 
@@ -7534,6 +7631,17 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 `v`|`Fixnum`|Vitesse du joueur  
 `f`|`Fixnum`|Fréquence du joueur  
 
+
+
+
+
+
+##### Command.player_move_up
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
 
 
 

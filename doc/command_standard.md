@@ -10,6 +10,10 @@ Commandes standards
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [call_common_event(id)](#call_common_eventid)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
+*    [event_move_down(id)](#event_move_downid)
+*    [event_move_left(id)](#event_move_leftid)
+*    [event_move_right(id)](#event_move_rightid)
+*    [event_move_up(id)](#event_move_upid)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
 *    [flash_rect(x, y, width, height, color)](#flash_rectx-y-width-height-color)
@@ -22,6 +26,10 @@ Commandes standards
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
 *    [pick_random(*elts)](#pick_randomelts)
+*    [player_move_down](#player_move_down)
+*    [player_move_left](#player_move_left)
+*    [player_move_right](#player_move_right)
+*    [player_move_up](#player_move_up)
 *    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
 *    [random_combination(len, *keys)](#random_combinationlen-keys)
@@ -73,6 +81,46 @@ Commandes standards
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+
+
+##### event_move_down(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+
+
+##### event_move_left(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+
+
+##### event_move_right(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
+
+
+##### event_move_up(id)
+
+> Fait bouger l'événement référencé par son ID d'une case vers le bas
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement  
 
 
 ##### fadein(*time)
@@ -208,6 +256,34 @@ Commandes standards
 --- | --- | ---  
 `*elts`|`ArgsList`|éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
 
+
+##### player_move_down
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
+
+##### player_move_left
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
+
+##### player_move_right
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
+
+##### player_move_up
+
+> Fait bouger le joueur d'une case vers le bas
+
+  
+> 
 
 ##### qte(key, time, *strict)
 
