@@ -34,6 +34,7 @@ Commandes relatives à la manipulation des images
 *    [picture_shake(Selector, power, speed, duration)](#picture_shakeselector-power-speed-duration)
 *    [picture_show(id, name, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_showid-name-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [picture_show_enemy(pic_id, id, position)](#picture_show_enemypic_id-id-position)
+*    [picture_show_screenshot(id, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)](#picture_show_screenshotid-x-y-origin-zoom_x-zoom_y-opacity-blend_type)
 *    [picture_showed?(id)](#picture_showedid)
 *    [picture_tone(id, tone, *duration, *wait_flag, *ease)](#picture_toneid-tone-duration-wait_flag-ease)
 *    [picture_unpin(Selector)](#picture_unpinselector)
@@ -383,6 +384,23 @@ Commandes relatives à la manipulation des images
 `pic_id`|`Fixnum`|ID de l'image dans laquelle afficher le monstre  
 `id`|`Fixnum`|ID du groupe de monstre  
 `position`|`Fixnum`|Position du monstre  
+
+
+##### picture_show_screenshot(id, *x, *y, *origin, *zoom_x, *zoom_y, *opacity, *blend_type)
+
+> Affiche une capture d'écran (comme une image normale)
+
+  
+> Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'image  
+`*x`|`Fixnum`|Position en X de l'image (par défaut 0)  
+`*y`|`Fixnum`|Position en Y de l'image (par défaut 0)  
+`*origin`|`Fixnum`|Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro  
+`*zoom_x`|`Fixnum`|Zoom sur la largeur de l'image par défaut 100 (pour 100%)  
+`*zoom_y`|`Fixnum`|Zoom sur la hauteur de l'image par défaut 100 (pour 100%)  
+`*opacity`|`Fixnum`|Opacité de l'image, par défaut 255 (de 0 à 255)  
+`*blend_type`|`Fixnum`|Mode de fusion, par défaut 0, 0=Normal, 1=Addition, 2=Soustraction  
 
 
 ##### picture_showed?(id)
