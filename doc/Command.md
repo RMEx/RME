@@ -201,8 +201,13 @@ Collection des commandes EventExtender
 *    [Command.event_erased?(id)](#commandevent_erasedid)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
+*    [Command.event_move_away_from_event(id, target)](#commandevent_move_away_from_eventid-target)
+*    [Command.event_move_away_from_player(id)](#commandevent_move_away_from_playerid)
+*    [Command.event_move_away_from_position(id, x, y)](#commandevent_move_away_from_positionid-x-y)
+*    [Command.event_move_backward(id)](#commandevent_move_backwardid)
 *    [Command.event_move_diagonal(id, horizontal, vertical)](#commandevent_move_diagonalid-horizontal-vertical)
 *    [Command.event_move_down(id, *turn_ok)](#commandevent_move_downid-turn_ok)
+*    [Command.event_move_forward(id)](#commandevent_move_forwardid)
 *    [Command.event_move_frequency(ids, f)](#commandevent_move_frequencyids-f)
 *    [Command.event_move_left(id, *turn_ok)](#commandevent_move_leftid-turn_ok)
 *    [Command.event_move_lower_left(id)](#commandevent_move_lower_leftid)
@@ -491,8 +496,12 @@ Collection des commandes EventExtender
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
 *    [Command.player_direction(*value)](#commandplayer_directionvalue)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
+*    [Command.player_move_away_from_event(id)](#commandplayer_move_away_from_eventid)
+*    [Command.player_move_away_from_position(x, y)](#commandplayer_move_away_from_positionx-y)
+*    [Command.player_move_backward](#commandplayer_move_backward)
 *    [Command.player_move_diagonal(horizontal, vertical)](#commandplayer_move_diagonalhorizontal-vertical)
 *    [Command.player_move_down(*turn_ok)](#commandplayer_move_downturn_ok)
+*    [Command.player_move_forward](#commandplayer_move_forward)
 *    [Command.player_move_frequency(f)](#commandplayer_move_frequencyf)
 *    [Command.player_move_left(*turn_ok)](#commandplayer_move_leftturn_ok)
 *    [Command.player_move_lower_left](#commandplayer_move_lower_left)
@@ -3100,6 +3109,57 @@ Nom|Type|Description
 
 
 
+##### Command.event_move_away_from_event(id, target)
+
+> Déplace un événement référencé par son ID d'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+`target`|`Fixnum`|Id de l'événement cible  
+
+
+
+
+##### Command.event_move_away_from_player(id)
+
+> Déplace un événement référencé par son ID d'une case en direction opposée au héro. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+
+
+
+
+##### Command.event_move_away_from_position(id, x, y)
+
+> Déplace un événement référencé par son ID d'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+##### Command.event_move_backward(id)
+
+> Déplace l'événement référencé par son ID d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+
+
+
+
 ##### Command.event_move_diagonal(id, horizontal, vertical)
 
 > Déplace un événement référencé par son ID d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
@@ -3123,6 +3183,18 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 `*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.event_move_forward(id)
+
+> Déplace l'événement référencé par son ID d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
 
 
 
@@ -6762,6 +6834,40 @@ Nom|Type|Description
 
 
 
+##### Command.player_move_away_from_event(id)
+
+> Déplace le héro d'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement cible  
+
+
+
+
+##### Command.player_move_away_from_position(x, y)
+
+> Déplace le héro d'une case dans la direction opposée d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+##### Command.player_move_backward
+
+> Déplace le héro d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+
+
+
+
 ##### Command.player_move_diagonal(horizontal, vertical)
 
 > Déplace le héro d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
@@ -6783,6 +6889,15 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+
+
+
+
+##### Command.player_move_forward
+
+> Déplace le héro d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.
+
+  
 
 
 

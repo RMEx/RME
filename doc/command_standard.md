@@ -10,6 +10,8 @@ Commandes standards
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [call_common_event(id)](#call_common_eventid)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
+*    [event_move_backward(id)](#event_move_backwardid)
+*    [event_move_forward(id)](#event_move_forwardid)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
 *    [flash_rect(x, y, width, height, color)](#flash_rectx-y-width-height-color)
@@ -22,6 +24,8 @@ Commandes standards
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
 *    [pick_random(*elts)](#pick_randomelts)
+*    [player_move_backward](#player_move_backward)
+*    [player_move_forward](#player_move_forward)
 *    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
 *    [random_combination(len, *keys)](#random_combinationlen-keys)
@@ -69,6 +73,22 @@ Nom|Type|Description
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+##### event_move_backward(id)
+
+> Déplace l'événement référencé par son ID d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+##### event_move_forward(id)
+
+> Déplace l'événement référencé par son ID d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
 ##### fadein(*time)
 
 > Affiche l'écran en fondu
@@ -179,6 +199,16 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*elts`|`ArgsList`|éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
+##### player_move_backward
+
+> Déplace le héro d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+##### player_move_forward
+
+> Déplace le héro d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.
+
+  
 ##### qte(key, time, *strict)
 
 > Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.

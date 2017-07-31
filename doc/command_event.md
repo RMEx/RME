@@ -14,6 +14,9 @@ Commandes relatives aux évènements
 *    [event_erased?(id)](#event_erasedid)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
+*    [event_move_away_from_event(id, target)](#event_move_away_from_eventid-target)
+*    [event_move_away_from_player(id)](#event_move_away_from_playerid)
+*    [event_move_away_from_position(id, x, y)](#event_move_away_from_positionid-x-y)
 *    [event_move_diagonal(id, horizontal, vertical)](#event_move_diagonalid-horizontal-vertical)
 *    [event_move_down(id, *turn_ok)](#event_move_downid-turn_ok)
 *    [event_move_frequency(ids, f)](#event_move_frequencyids-f)
@@ -94,6 +97,8 @@ Commandes relatives aux évènements
 *    [player_brutal_stop_trail](#player_brutal_stop_trail)
 *    [player_direction(*value)](#player_directionvalue)
 *    [player_in_screen?](#player_in_screen)
+*    [player_move_away_from_event(id)](#player_move_away_from_eventid)
+*    [player_move_away_from_position(x, y)](#player_move_away_from_positionx-y)
 *    [player_move_diagonal(horizontal, vertical)](#player_move_diagonalhorizontal-vertical)
 *    [player_move_down(*turn_ok)](#player_move_downturn_ok)
 *    [player_move_frequency(f)](#player_move_frequencyf)
@@ -202,6 +207,33 @@ Nom|Type|Description
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
 `scope`|`Fixnum`|Nombre de cases ou de pixels  
 `*metric`|`Fixnum`|par défaut :square pour en cases, mettre :pixels pour en pixels  
+##### event_move_away_from_event(id, target)
+
+> Déplace un événement référencé par son ID d'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+`target`|`Fixnum`|Id de l'événement cible  
+##### event_move_away_from_player(id)
+
+> Déplace un événement référencé par son ID d'une case en direction opposée au héro. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+##### event_move_away_from_position(id, x, y)
+
+> Déplace un événement référencé par son ID d'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 ##### event_move_diagonal(id, horizontal, vertical)
 
 > Déplace un événement référencé par son ID d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
@@ -880,6 +912,23 @@ Nom|Type|Description
 > Renvoie true si le joueur est visible à l'écran, false sinon
 
   
+##### player_move_away_from_event(id)
+
+> Déplace le héro d'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement cible  
+##### player_move_away_from_position(x, y)
+
+> Déplace le héro d'une case dans la direction opposée d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 ##### player_move_diagonal(horizontal, vertical)
 
 > Déplace le héro d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.

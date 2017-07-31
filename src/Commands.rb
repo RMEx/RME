@@ -1713,7 +1713,48 @@ module RMECommands
       event_move_toward_event(0, id)
     end
 
-    
+
+    def event_move_away_from_position(id, x, y)
+      ev = event(id)
+      ev.move_away_from_xy(x, y)
+      ev.move_succeed
+    end
+
+    def player_move_away_from_position(x, y)
+      event_move_away_from_position(0, x, y)
+    end
+
+    def event_move_away_from_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.move_away_from_character(tr)
+      ev.move_succeed
+    end
+
+    def event_move_away_from_player(id)
+      event_move_away_from_event(id, 0)
+    end 
+
+    def player_move_away_from_event(id)
+      event_move_away_from_event(0, id)
+    end
+
+    def event_move_forward(id)
+      ev = event(id)
+      ev.move_forward
+      ev.move_succeed
+    end
+    def player_move_forward; event_move_forward(0); end
+
+    def event_move_backward(id)
+      ev = event(id)
+      ev.move_backward
+      ev.move_succeed
+    end
+    def player_move_backward; event_move_backward(0); end
+
+
+
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
