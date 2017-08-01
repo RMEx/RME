@@ -1530,9 +1530,11 @@ end
 
 class Sprite_Reflect < Sprite_Character
 
-  def initialize(*args, id)
+  def initialize(*args, id, cases)
+    @cases = cases || {}
     @id = id
-    @y_offset = 1    
+    @y_offset = @cases[:y_offset] || 1 
+    p [@y_offset, :yolo] if id == 0
     super(*args)
   end
 
@@ -1542,6 +1544,7 @@ class Sprite_Reflect < Sprite_Character
     self.angle = 180
     self.mirror = true
     self.z = -(50 + self.z)
+    self.y = @character.screen_y + ((@y_offset - 1) * 32)
     update_effects
   end
 
@@ -3211,24 +3214,24 @@ class Spriteset_Map
     cases = $game_map.reflection_properties[:cases] || {}
     $game_map.events.values.each do |event|
       next if cases.has_key?(event.id) && cases[event.id] == :ignored
-      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, event, event.id))
+      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, event, event.id, cases[event.id]))
     end
     i = 0
     $game_map.vehicles.each do |vehicle|
       id =  [:vehicle, i]
       next if cases.has_key?(id) && cases[id] == :ignored
-      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, vehicle, id))
+      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, vehicle, id, cases[id]))
       i += 1
     end
     i = 0
     $game_player.followers.reverse_each do |follower|
       id =  [:vehicle, i]
       next if cases.has_key?(id) && cases[id] == :ignored
-      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, follower, id))
+      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, follower, id, cases[id]))
       i += 1
     end
     return if cases.has_key?(0) && cases[0] == :ignored
-    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, $game_player, 0))
+    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, $game_player, 0, cases[0]))
   end
 
   #--------------------------------------------------------------------------
