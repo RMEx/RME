@@ -2420,6 +2420,18 @@ class Game_Map
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
     unflash_map
+    setup_region_data
+  end
+  #--------------------------------------------------------------------------
+  # * Setup Region Data
+  #--------------------------------------------------------------------------
+  def setup_region_data
+    @region_mapper = Array.new(64) { Array.new }
+    data.xsize.times do |x|
+      data.ysize.times do |y|
+        @region_mapper[region_id(x, y)] << Point.new(x, y)
+      end 
+    end
   end
   #--------------------------------------------------------------------------
   # * Unflash all squares
@@ -2496,6 +2508,13 @@ class Game_Map
   def setup_events
     rm_extender_setup_events
     @common_events.each {|event| event.refresh }
+  end
+  #--------------------------------------------------------------------------
+  # * Get Random Square of the map
+  #--------------------------------------------------------------------------
+  def random_square(region_id)
+    reg = @region_mapper[region_id] || []
+    reg.sample
   end
   #--------------------------------------------------------------------------
   # * Get Array of Parallel Common Events

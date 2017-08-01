@@ -9,6 +9,7 @@ Commandes relatives aux informations des cartes
 ## Liste des commandes
 *    [damage_floor?(x, y)](#damage_floorx-y)
 *    [delete_tiles(layer, id)](#delete_tileslayer-id)
+*    [get_random_square(*region_id)](#get_random_squareregion_id)
 *    [get_tileset_id](#get_tileset_id)
 *    [ground?(x, y)](#groundx-y)
 *    [id_at(x, y)](#id_atx-y)
@@ -48,6 +49,14 @@ Nom|Type|Description
 --- | --- | ---  
 `layer`|`Fixnum`|Numéro de la couche  
 `id`|`Fixnum`|Id du tile à supprimer  
+##### get_random_square(*region_id)
+
+> Renvoie un point aléatoire sur la carte, dont la région est référencée par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*region_id`|`Fixnum`|L'id de la région dans laquelle chercher une case aléatoire. Par défaut, elle vaut 0  
 ##### get_tileset_id
 
 > Renvoie l' ID du tileset de la carte en cours

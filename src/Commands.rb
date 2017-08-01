@@ -752,6 +752,11 @@ module RMECommands
       (tile_id > 1663 && !stair?(x,y))
     end
 
+    def get_random_square(region_id = 0)
+      $game_map.random_square(region_id)
+    end
+
+
     #--------------------------------------------------------------------------
     # * Get Region ID from coords
     #--------------------------------------------------------------------------
