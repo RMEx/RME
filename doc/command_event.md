@@ -62,10 +62,16 @@ Commandes relatives aux évènements
 *    [event_turn_90_left(id)](#event_turn_90_leftid)
 *    [event_turn_90_right(id)](#event_turn_90_rightid)
 *    [event_turn_90_right_or_left(id)](#event_turn_90_right_or_leftid)
+*    [event_turn_away_from_event(id, target)](#event_turn_away_from_eventid-target)
+*    [event_turn_away_from_player(id)](#event_turn_away_from_playerid)
+*    [event_turn_away_from_position(id, x, y)](#event_turn_away_from_positionid-x-y)
 *    [event_turn_down(id)](#event_turn_downid)
 *    [event_turn_left(id)](#event_turn_leftid)
 *    [event_turn_random(id)](#event_turn_randomid)
 *    [event_turn_right(id)](#event_turn_rightid)
+*    [event_turn_toward_event(id, target)](#event_turn_toward_eventid-target)
+*    [event_turn_toward_player(id)](#event_turn_toward_playerid)
+*    [event_turn_toward_position(id, x, y)](#event_turn_toward_positionid-x-y)
 *    [event_turn_up(id)](#event_turn_upid)
 *    [event_x(id)](#event_xid)
 *    [event_y(id)](#event_yid)
@@ -152,10 +158,14 @@ Commandes relatives aux évènements
 *    [player_turn_90_left](#player_turn_90_left)
 *    [player_turn_90_right](#player_turn_90_right)
 *    [player_turn_90_right_or_left](#player_turn_90_right_or_left)
+*    [player_turn_away_from_event(id)](#player_turn_away_from_eventid)
+*    [player_turn_away_from_position(x, y)](#player_turn_away_from_positionx-y)
 *    [player_turn_down](#player_turn_down)
 *    [player_turn_left](#player_turn_left)
 *    [player_turn_random](#player_turn_random)
 *    [player_turn_right](#player_turn_right)
+*    [player_turn_toward_event(id)](#player_turn_toward_eventid)
+*    [player_turn_toward_position(x, y)](#player_turn_toward_positionx-y)
 *    [player_turn_up](#player_turn_up)
 *    [player_x](#player_x)
 *    [player_y](#player_y)
@@ -646,6 +656,33 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
+##### event_turn_away_from_event(id, target)
+
+> Tourne un événement référencé par son ID d'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+`target`|`Fixnum`|Id de l'événement cible  
+##### event_turn_away_from_player(id)
+
+> Tourne un événement référencé par son ID d'une case en direction opposée au héro. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+##### event_turn_away_from_position(id, x, y)
+
+> Tourne un événement référencé par son ID d'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 ##### event_turn_down(id)
 
 > Fait tourner un événement vers le bas
@@ -678,6 +715,33 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement  
+##### event_turn_toward_event(id, target)
+
+> Tourne un événement référencé par son ID d'une case en direction d'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+`target`|`Fixnum`|Id de l'événement cible  
+##### event_turn_toward_player(id)
+
+> Tourne un événement référencé par son ID d'une case en direction du héro. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
+##### event_turn_toward_position(id, x, y)
+
+> Tourne un événement référencé par son ID d'une case en direction d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 ##### event_turn_up(id)
 
 > Fait tourner un événement vers le bas
@@ -1323,6 +1387,23 @@ Nom|Type|Description
 > Fait tourner le héro de 90° par la gauche ou par la droite (aléatoirement)
 
   
+##### player_turn_away_from_event(id)
+
+> Tourne le héro d'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement cible  
+##### player_turn_away_from_position(x, y)
+
+> Tourne le héro d'une case dans la direction opposée d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 ##### player_turn_down
 
 > Fait tourner le héro vers le bas
@@ -1343,6 +1424,23 @@ Nom|Type|Description
 > Fait tourner le héro à droite
 
   
+##### player_turn_toward_event(id)
+
+> Tourne le héro d'une case en direction d'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement cible  
+##### player_turn_toward_position(x, y)
+
+> Tourne le héro d'une case en direction d'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
 ##### player_turn_up
 
 > Fait tourner le héro vers le bas

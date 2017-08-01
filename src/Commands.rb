@@ -1778,6 +1778,55 @@ module RMECommands
     def event_turn_random(id); event(id).turn_random; end 
     def player_turn_random; event_turn_random(0); end
 
+    
+    def event_turn_toward_position(id, x, y)
+      ev = event(id)
+      ev.turn_toward_xy(x, y)
+    end
+
+    def player_turn_toward_position(x, y)
+      event_turn_toward_position(0, x, y)
+    end
+
+    def event_turn_toward_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.turn_toward_character(tr)
+    end
+
+    def event_turn_toward_player(id)
+      event_turn_toward_event(id, 0)
+    end 
+
+    def player_turn_toward_event(id)
+      event_turn_toward_event(0, id)
+    end
+
+
+    def event_turn_away_from_position(id, x, y)
+      ev.turn_away_from_xy(x, y)
+    end
+
+    def player_turn_away_from_position(x, y)
+      event_turn_away_from_position(0, x, y)
+    end
+
+    def event_turn_away_from_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.turn_away_from_character(tr)
+    end
+
+    def event_turn_away_from_player(id)
+      event_turn_away_from_event(id, 0)
+    end 
+
+    def player_turn_away_from_event(id)
+      event_turn_away_from_event(0, id)
+    end
+
+
+
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
