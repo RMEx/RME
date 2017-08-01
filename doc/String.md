@@ -1,29 +1,27 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **String**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **String**  
 - - -  
-#String
+# String
 Extension des chaînes de caractères
 
-##Liste des méthodes
+## Liste des méthodes
 *    [self.damerau_levenshtein(oth)](#selfdamerau_levenshteinoth)
 *    [self.extract_numbers](#selfextract_numbers)
 *    [self.stretch(lin_len)](#selfstretchlin_len)
 
 
-##Description des méthodes
+## Description des méthodes
 ##### self.damerau_levenshtein(oth)
 
 > Renvoie la distance de Damerau–Levenshtein avec
                             une autre chaîne
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `oth`|`String`|Autre chaîne à comparer  
-
-
 
 
 
@@ -33,8 +31,6 @@ Extension des chaînes de caractères
 > Renvoie tous les entiers d'une chaîne de caractères
 
   
-> 
-
 
 
 
@@ -44,11 +40,9 @@ Extension des chaînes de caractères
 > Injecte des retours à la ligne dans la chaîne
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `lin_len`|`Fixnum`|Taille des lignes  
-
-
 
 
 

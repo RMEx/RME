@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Date/Heure**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Date/Heure**  
 - - -  
-#Date/Heure
+# Date/Heure
 Commandes pour récupérer des informations sur la date et l'heure
 
-##Liste des commandes
+## Liste des commandes
 *    [time_day](#time_day)
 *    [time_hour](#time_hour)
 *    [time_min](#time_min)
@@ -15,46 +15,34 @@ Commandes pour récupérer des informations sur la date et l'heure
 *    [time_year](#time_year)
 
 
-##Description des commandes
+## Description des commandes
 ##### time_day
 
 > Renvoie le jour actuel
 
   
-> 
-
 ##### time_hour
 
 > Renvoie l' heure actuelle
 
   
-> 
-
 ##### time_min
 
 > Renvoie la minute actuelle
 
   
-> 
-
 ##### time_month
 
 > Renvoie le mois actuel
 
   
-> 
-
 ##### time_sec
 
 > Renvoie la seconde actuelle
 
   
-> 
-
 ##### time_year
 
 > Renvoie l'année actuelle
 
   
-> 
-

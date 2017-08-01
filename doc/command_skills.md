@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Techniques**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Techniques**  
 - - -  
-#Techniques
+# Techniques
 Offre des commandes pour obtenir des informations sur les techniques
 
-##Liste des commandes
+## Liste des commandes
 *    [skill_always_usable?(id)](#skill_always_usableid)
 *    [skill_battle_usable?(id)](#skill_battle_usableid)
 *    [skill_certain?(id)](#skill_certainid)
@@ -46,374 +46,300 @@ Offre des commandes pour obtenir des informations sur les techniques
 *    [skill_tp_gain(id)](#skill_tp_gainid)
 
 
-##Description des commandes
+## Description des commandes
 ##### skill_always_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable partout
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_battle_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable en combat seulement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_certain?(id)
 
 > Renvoie true si une technique référencée par son ID a une garantie de réussite totale, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_description(id)
 
 > Renvoie la description la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_all?(id)
 
 > Renvoie true si une technique référencée par son ID cible tout le groupe allié, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_all_allies?(id)
 
 > Renvoie true si la technique référencée par son ID cible tous les alliés, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_all_dead_allies?(id)
 
 > Renvoie true si la technique référencée par son ID cible tous les alliés morts, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_all_enemies?(id)
 
 > Renvoie true si la technique référencée par son ID cible tous les ennemis, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_caller?(id)
 
 > Renvoie true si la technique référencée par son ID cible l'utilisateur, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_dead_friend?(id)
 
 > Renvoie true si une technique référencée par son ID cible un (ou les) allié(s) mort(s), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_four_random_enemies?(id)
 
 > Renvoie true si la technique référencée par son ID cible quatre ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_friend?(id)
 
 > Renvoie true si une technique référencée par son ID cible un (ou les) allié(s), false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_one?(id)
 
 > Renvoie true si une technique référencée par son ID a une cible unique, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_one_ally?(id)
 
 > Renvoie true si la technique référencée par son ID cible un allié, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_one_dead_ally?(id)
 
 > Renvoie true si la technique référencée par son ID cible un allié mort, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_one_enemy?(id)
 
 > Renvoie true si la technique référencée par son ID cible un ennemi, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_one_random_enemy?(id)
 
 > Renvoie true si la technique référencée par son ID cible un ennemi au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_opponent?(id)
 
 > Renvoie true si une technique référencée par son ID cible les ennemis, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_random?(id)
 
 > Renvoie true si une technique référencée par son ID cible aléatoirement, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_three_random_enemies?(id)
 
 > Renvoie true si la technique référencée par son ID cible trois ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_for_two_random_enemies?(id)
 
 > Renvoie true si la technique référencée par son ID cible deux ennemis au hasard, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_has_no_scope?(id)
 
 > Renvoie true si la technique référencée par son ID ne cible personne, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_icon(id)
 
 > Renvoie l'index de l'icone de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_magical?(id)
 
 > Renvoie true si une technique référencée par son ID endommage les PM, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_menu_usable?(id)
 
 > Renvoie true si la technique référencé par son ID est utilisable dans le menu seulement
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_name(id)
 
 > Renvoie le nom de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_nb_hits(id)
 
 > Renvoie le nombre de coups portés par la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_need_selection?(id)
 
 > Renvoie true si une technique référencée par son ID requiert la sélection de l'ennemi, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_never_usable?(id)
 
 > Renvoie true si la technique référencé par son ID n'est jamais utilisable
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_note(id)
 
 > Renvoie le commentaire de la base de données de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_number_of_targets(id)
 
 > Renvoie le nombre de cibles d'une technique référencée par son ID, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_occasion(id)
 
 > Renvoie un entier correspondant au droit d'utilisation de la technique
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_physical?(id)
 
 > Renvoie true si une technique référencée par son ID endommage les PV, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_scope(id)
 
 > Renvoie la portée (en Entier) d'une technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la techinuqe  
-
-
 ##### skill_speed(id)
 
 > Renvoie l'apport de vitesse de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_success_rate(id)
 
 > Renvoie la probabilité de succès de la technique référencée par son ID
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-
 ##### skill_tp_gain(id)
 
 > Renvoie le gain de TP que la technique référencée par son ID apporte une fois utilisée en combat
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de la technique  
-
-

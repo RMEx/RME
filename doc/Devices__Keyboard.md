@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Devices::Keyboard**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Devices::Keyboard**  
 - - -  
-#Devices::Keyboard
+# Devices::Keyboard
 Représentation du clavier, est accessible via Keyboard
 
-##Attributs
+## Attributs
 Nom|Description  
 --- | ---  
 `:mouse_left`|Pointe la touche Keys::Mouse_left (comme argument à passer)  
@@ -199,7 +199,7 @@ Nom|Description
 `:F7`|Pointe la touche Keys::F7 (comme argument à passer)  
 `:F8`|Pointe la touche Keys::F8 (comme argument à passer)  
 `:F9`|Pointe la touche Keys::F9 (comme argument à passer)  
-##Liste des méthodes
+## Liste des méthodes
 *    [Keyboard.all?(method, keys)](#keyboardallmethod-keys)
 *    [Keyboard.alt_gr?](#keyboardalt_gr)
 *    [Keyboard.any?(method, keys)](#keyboardanymethod-keys)
@@ -219,18 +219,16 @@ Nom|Description
 *    [Keyboard.trigger?(key)](#keyboardtriggerkey)
 
 
-##Description des méthodes
+## Description des méthodes
 ##### Keyboard.all?(method, keys)
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
-
-
 
 
 Exemple  
@@ -245,8 +243,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
   
-> 
-
 
 
 
@@ -256,12 +252,10 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si au moins une touche passée à keys est activée selon la méthode passées à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
-
-
 
 
 
@@ -271,8 +265,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
   
-> 
-
 
 
 
@@ -282,11 +274,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
-
-
 
 
 
@@ -296,8 +286,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie le caractère pressé sur clavier au moment de l'appel
 
   
-> 
-
 
 
 
@@ -307,8 +295,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie le chiffre pressé sur le clavier au moment de l'appel
 
   
-> 
-
 
 
 
@@ -318,11 +304,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
-
-
 
 
 
@@ -332,8 +316,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
   
-> 
-
 
 
 
@@ -343,11 +325,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -357,11 +337,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -371,11 +349,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -385,11 +361,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
-
-
 
 
 
@@ -399,8 +373,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
 
   
-> 
-
 
 
 
@@ -410,8 +382,6 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
   
-> 
-
 
 
 
@@ -421,11 +391,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie, en nombre de frames, le temps de pression de la touche du clavier choisie
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
-
-
 
 
 
@@ -435,11 +403,9 @@ p 'A, B et C sont pressées' if Keyboard.all?(:press?, :a, :b, :c)
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 

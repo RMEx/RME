@@ -1380,51 +1380,50 @@ module RMECommands
     end
 
     def event_ox(id, value = nil)
-       return event(id).ox unless value
-       event(id).ox = value
-     end
+      return event(id).ox unless value
+      event(id).ox = value
+    end
 
-     def event_oy(id, value = nil)
-        return event(id).oy unless value
-        event(id).oy = value
-      end
+    def event_oy(id, value = nil)
+      return event(id).oy unless value
+      event(id).oy = value
+    end
 
-      def player_ox(value = nil); event_ox(0, value); end
-      def player_oy(value = nil); event_oy(0, value); end
+    def player_ox(value = nil); event_ox(0, value); end
+    def player_oy(value = nil); event_oy(0, value); end
 
-      def event_zoom_x(id, value = nil)
-        return event(id).zoom_x unless value
-        event(id).zoom_x = value
-      end
+    def event_zoom_x(id, value = nil)
+      return event(id).zoom_x unless value
+      event(id).zoom_x = value
+    end
 
-      def event_zoom_y(id, value = nil)
-        return event(id).zoom_y unless value
-        event(id).zoom_y = value
-      end
+    def event_zoom_y(id, value = nil)
+      return event(id).zoom_y unless value
+      event(id).zoom_y = value
+    end
 
-      def event_zoom(id, value)
-        event_zoom_x(id, value)
-        event_zoom_y(id, value)
-      end
+    def event_zoom(id, value)
+      event_zoom_x(id, value)
+      event_zoom_y(id, value)
+    end
 
-      def player_zoom_x(value = nil); event_zoom_x(0, value); end
-      def player_zoom_y(value = nil); event_zoom_y(0, value); end
-      def player_zoom(value); event_zoom(0, value); end
+    def player_zoom_x(value = nil); event_zoom_x(0, value); end
+    def player_zoom_y(value = nil); event_zoom_y(0, value); end
+    def player_zoom(value); event_zoom(0, value); end
 
-      def event_restore_origin(id)
-        event(id).restore_oxy
-      end
-      def player_restore_origin; event_restore_origin(0); end
-
-    [:last_clicked,
-    :last_pressed,
-    :last_triggered,
-    :last_released ,
-    :last_repeated,
-    :last_hovered].each do |m|
-      define_method("#{m}_event") do
-        Game_CharacterBase.send(m)
-      end
+    def event_restore_origin(id)
+      event(id).restore_oxy
+    end
+    def player_restore_origin; event_restore_origin(0); end
+      [:last_clicked,
+      :last_pressed,
+      :last_triggered,
+      :last_released ,
+      :last_repeated,
+      :last_hovered].each do |m|
+        define_method("#{m}_event") do
+          Game_CharacterBase.send(m)
+        end
     end
 
     def events_buzzer_properties(e, amplitude, length)
@@ -1536,8 +1535,8 @@ module RMECommands
     def event_priority(ids, priority = nil)
       return event(ids).priority_type unless !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
-       event(id_event).priority_type = priority
-     end
+      event(id_event).priority_type = priority
+    end
     end
 
     def event_trigger(ids, trigger = nil)
@@ -1637,6 +1636,197 @@ module RMECommands
     def player_move_with(*code)
       event_move_with(0, *code)
     end
+
+    def event_move_straight(id, value, turn_ok = true)
+      ev = event(id)
+      ev.move_straight(value, turn_ok)
+      return ev.move_succeed
+    end
+
+    def player_move_straight(value, turn_ok = true)
+      event_move_straight(0, value, turn_ok)
+    end
+
+    def event_move_down(id, turn_ok = true)
+      event_move_straight(id, 2, turn_ok)
+    end
+    def event_move_left(id, turn_ok = true)
+      event_move_straight(id, 4, turn_ok)
+    end
+    def event_move_right(id, turn_ok = true)
+      event_move_straight(id, 6, turn_ok)
+    end
+    def event_move_up(id, turn_ok = true)
+      event_move_straight(id, 8, turn_ok)
+    end
+
+    def player_move_down(turn_ok = true); event_move_down(0, turn_ok); end
+    def player_move_left(turn_ok = true); event_move_left(0, turn_ok); end
+    def player_move_right(turn_ok = true); event_move_right(0, turn_ok); end
+    def player_move_up(turn_ok = true); event_move_up(0, turn_ok); end
+
+    def event_move_random(id); event(id).move_random; end 
+    def player_move_random; event_move_random(0); end
+
+    def event_move_diagonal(id, horizontal, vertical)
+      ev = event(id)
+      ev.move_diagonal(horizontal, vertical)
+      ev.move_succeed
+    end
+
+    def player_move_diagonal(horizontal, vertical)
+      event_move_diagonal(0, horizontal, vertical)
+    end
+
+    def event_move_lower_left(id); event_move_diagonal(id, 4, 2); end
+    def event_move_lower_right(id); event_move_diagonal(id, 6, 2); end
+    def event_move_upper_left(id); event_move_diagonal(id, 4, 8); end
+    def event_move_upper_right(id); event_move_diagonal(id, 6, 8); end
+
+    def player_move_lower_left; event_move_lower_left(0); end
+    def player_move_lower_right; event_move_lower_right(0); end
+    def player_move_upper_left; event_move_upper_left(0); end 
+    def player_move_upper_right; event_move_upper_right(0); end
+
+    def event_move_toward_position(id, x, y)
+      ev = event(id)
+      ev.move_toward_xy(x, y)
+      ev.move_succeed
+    end
+
+    def player_move_toward_position(x, y)
+      event_move_toward_position(0, x, y)
+    end
+
+    def event_move_toward_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.move_toward_character(tr)
+      ev.move_succeed
+    end
+
+    def event_move_toward_player(id)
+      event_move_toward_event(id, 0)
+    end 
+
+    def player_move_toward_event(id)
+      event_move_toward_event(0, id)
+    end
+
+
+    def event_move_away_from_position(id, x, y)
+      ev = event(id)
+      ev.move_away_from_xy(x, y)
+      ev.move_succeed
+    end
+
+    def player_move_away_from_position(x, y)
+      event_move_away_from_position(0, x, y)
+    end
+
+    def event_move_away_from_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.move_away_from_character(tr)
+      ev.move_succeed
+    end
+
+    def event_move_away_from_player(id)
+      event_move_away_from_event(id, 0)
+    end 
+
+    def player_move_away_from_event(id)
+      event_move_away_from_event(0, id)
+    end
+
+    def event_move_forward(id)
+      ev = event(id)
+      ev.move_forward
+      ev.move_succeed
+    end
+    def player_move_forward; event_move_forward(0); end
+
+    def event_move_backward(id)
+      ev = event(id)
+      ev.move_backward
+      ev.move_succeed
+    end
+    def player_move_backward; event_move_backward(0); end
+
+
+    def event_turn_down(id); event_direction(id, 2); end 
+    def player_turn_down; event_turn_down(0); end
+
+    def event_turn_left(id); event_direction(id, 4); end 
+    def player_turn_left; event_turn_left(0); end
+
+    def event_turn_right(id); event_direction(id, 6); end 
+    def player_turn_right; event_turn_right(0); end
+
+    def event_turn_up(id); event_direction(id, 8); end 
+    def player_turn_up; event_turn_up(0); end
+
+
+    def event_turn_90_left(id); event(id).turn_left_90; end
+    def player_turn_90_left; event_turn_90_left(0); end 
+    def event_turn_90_right(id); event(id).turn_right_90; end
+    def player_turn_90_right; event_turn_90_right(0); end
+    def event_turn_180(id); event.turn_180; end 
+    def player_turn_180; event_turn_180(0); end
+    def event_turn_90_right_or_left(id); event(id).turn_right_or_left_90; end
+    def player_turn_90_right_or_left; event_turn_90_right_or_left(0); end
+    def event_turn_random(id); event(id).turn_random; end 
+    def player_turn_random; event_turn_random(0); end
+
+    
+    def event_turn_toward_position(id, x, y)
+      ev = event(id)
+      ev.turn_toward_xy(x, y)
+    end
+
+    def player_turn_toward_position(x, y)
+      event_turn_toward_position(0, x, y)
+    end
+
+    def event_turn_toward_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.turn_toward_character(tr)
+    end
+
+    def event_turn_toward_player(id)
+      event_turn_toward_event(id, 0)
+    end 
+
+    def player_turn_toward_event(id)
+      event_turn_toward_event(0, id)
+    end
+
+
+    def event_turn_away_from_position(id, x, y)
+      ev = event(id)
+      ev.turn_away_from_xy(x, y)
+    end
+
+    def player_turn_away_from_position(x, y)
+      event_turn_away_from_position(0, x, y)
+    end
+
+    def event_turn_away_from_event(id, target) 
+      ev = event(id)
+      tr = event(target)
+      ev.turn_away_from_character(tr)
+    end
+
+    def event_turn_away_from_player(id)
+      event_turn_away_from_event(id, 0)
+    end 
+
+    def player_turn_away_from_event(id)
+      event_turn_away_from_event(0, id)
+    end
+
+
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords

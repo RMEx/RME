@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Devices::Mouse**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Devices::Mouse**  
 - - -  
-#Devices::Mouse
+# Devices::Mouse
 Représentation de la souris, est accessible via Mouse
 
-##Attributs
+## Attributs
 Nom|Description  
 --- | ---  
 `:mouse_left`|Pointe la touche Keys::Mouse_left (comme argument à passer)  
@@ -14,7 +14,7 @@ Nom|Description
 `:mouse_center`|Pointe la touche Keys::Mouse_center (comme argument à passer)  
 `:mouse_x1`|Pointe la touche Keys::Mouse_x1 (comme argument à passer)  
 `:mouse_x2`|Pointe la touche Keys::Mouse_x2 (comme argument à passer)  
-##Liste des méthodes
+## Liste des méthodes
 *    [Mouse.all?(method, keys)](#mouseallmethod-keys)
 *    [Mouse.any?(method, keys)](#mouseanymethod-keys)
 *    [Mouse.click?(key)](#mouseclickkey)
@@ -35,18 +35,16 @@ Nom|Description
 *    [Mouse.y](#mousey)
 
 
-##Description des méthodes
+## Description des méthodes
 ##### Mouse.all?(method, keys)
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passées à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode  
-
-
 
 
 Exemple  
@@ -61,12 +59,10 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
-
-
 
 
 
@@ -76,11 +72,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon. (Alias de Mouse.press?)
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -90,11 +84,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
-
-
 
 
 
@@ -104,8 +96,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran
 
   
-> 
-
 
 
 
@@ -115,11 +105,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la souris se trouve dans le rectangle passé en argument
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `rectangle`|`Rect`|Rectangle à vérifier  
-
-
 
 
 
@@ -129,8 +117,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie le dernier rectangle de sélection de la souris effectué
 
   
-> 
-
 
 
 
@@ -140,8 +126,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran
 
   
-> 
-
 
 
 
@@ -151,11 +135,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -165,8 +147,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie le rectangle de sélection de la souris (tracé en cours)
 
   
-> 
-
 
 
 
@@ -176,11 +156,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -190,11 +168,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -204,8 +180,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie la position (en cases) X de la souris
 
   
-> 
-
 
 
 
@@ -215,8 +189,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie la position (en cases) Y de la souris
 
   
-> 
-
 
 
 
@@ -226,11 +198,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie, en nombre de frames, le temps de pression de la touche de la souris choisie, au moment de l'appel
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
-
-
 
 
 
@@ -240,11 +210,9 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 
 
 
@@ -254,8 +222,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie la position (en pixels) X de la souris
 
   
-> 
-
 
 
 
@@ -265,8 +231,6 @@ p 'souris gauche et souris droit sont pressées' if Mouse.all?(:press?, :mouse_l
 > Renvoie la position (en pixels) Y de la souris
 
   
-> 
-
 
 
 

@@ -1266,6 +1266,7 @@ class Game_CharacterBase
   attr_accessor :trails_signal
   attr_accessor :opacity
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
+  attr_accessor :move_succeed
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1420,6 +1421,73 @@ class Game_CharacterBase
   end
 
 end
+
+#==============================================================================
+# ** Game_Character
+#------------------------------------------------------------------------------
+#  A character class with mainly movement route and other such processing
+# added. It is used as a super class of Game_Player, Game_Follower,
+# GameVehicle, and Game_Event.
+#==============================================================================
+
+class Game_Character
+
+  #--------------------------------------------------------------------------
+  # * Move Toward position
+  #--------------------------------------------------------------------------
+  def move_toward_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      move_straight(sx > 0 ? 4 : 6)
+      move_straight(sy > 0 ? 8 : 2) if !@move_succeed && sy != 0
+    elsif sy != 0
+      move_straight(sy > 0 ? 8 : 2)
+      move_straight(sx > 0 ? 4 : 6) if !@move_succeed && sx != 0
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Move Away from position
+  #--------------------------------------------------------------------------
+  def move_away_from_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      move_straight(sx > 0 ? 6 : 4)
+      move_straight(sy > 0 ? 2 : 8) if !@move_succeed && sy != 0
+    elsif sy != 0
+      move_straight(sy > 0 ? 2 : 8)
+      move_straight(sx > 0 ? 6 : 4) if !@move_succeed && sx != 0
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Turn Toward position
+  #--------------------------------------------------------------------------
+  def turn_toward_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      set_direction(sx > 0 ? 4 : 6)
+    elsif sy != 0
+      set_direction(sy > 0 ? 8 : 2)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Turn Away from position
+  #--------------------------------------------------------------------------
+  def turn_away_from_xy(x, y)
+    sx = distance_x_from(x)
+    sy = distance_y_from(y)
+    if sx.abs > sy.abs
+      set_direction(sx > 0 ? 6 : 4)
+    elsif sy != 0
+      set_direction(sy > 0 ? 2 : 8)
+    end
+  end
+
+end
+
+
 
 #==============================================================================
 # ** Game_Player
@@ -3146,35 +3214,42 @@ end
 #==============================================================================
 
 class Sprite_Picture
-  class << self
-    #--------------------------------------------------------------------------
-    # * Get cache
-    #--------------------------------------------------------------------------
-    def swap_cache(name)
-      return Graphics.snap_to_bitmap.clone if name == :screenshot
-      if /^(\/Pictures|Pictures)\/(.*)/ =~ name
-        return Cache.picture($2)
-      end
-      if /^(\/Battlers|Battlers)\/(.*)/ =~ name
-        return Cache.battler($2, 0)
-      end
-      if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
-        return Cache.battleback1($2)
-      end
-      if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
-        return Cache.battleback2($2)
-      end
-      if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
-        return Cache.parallax($2)
-      end
-      if /^(\/Titles1|Titles1)\/(.*)/ =~ name
-        return Cache.title1($2)
-      end
-      if /^(\/Titles2|Titles2)\/(.*)/ =~ name
-        return Cache.title2($2)
-      end
-      return Cache.picture(name)
+  #--------------------------------------------------------------------------
+  # * Get cache
+  #--------------------------------------------------------------------------
+  def swap_cache
+
+    name = @picture.name
+
+    if name == :screenshot
+      return self.bitmap if @old_snap
+      @old_snap = true
+      return Graphics.snap_to_bitmap.clone 
     end
+
+    @old_snap = false
+    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+      return Cache.picture($2)
+    end
+    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+      return Cache.battler($2, 0)
+    end
+    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+      return Cache.battleback1($2)
+    end
+    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+      return Cache.battleback2($2)
+    end
+    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+      return Cache.parallax($2)
+    end
+    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+      return Cache.title1($2)
+    end
+    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+      return Cache.title2($2)
+    end
+    return Cache.picture(name)
   end
   #--------------------------------------------------------------------------
   # * Alias
@@ -3189,7 +3264,7 @@ class Sprite_Picture
     if @picture.name.empty?
       self.bitmap = nil
     else
-      self.bitmap = Sprite_Picture.swap_cache(@picture.name)
+      self.bitmap = swap_cache
       self.mirror = false
     end
   end

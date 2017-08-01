@@ -84,7 +84,7 @@ module DocGenerator
     def footer; ""; end
     def nl; "  \n"; end
     def np; "\n"*2; end
-    def title(size, value); ("#"*size) + value.to_s + "\n"; end
+    def title(size, value); ("#"*size ) + " " + value.to_s + "\n"; end
     def strong(value); "**#{value}**"; end
     def strong_t(value, n=""); '##### '+value.to_s; end
     def italic(value); "*#{value}*"; end
@@ -100,7 +100,7 @@ module DocGenerator
     def tr(*values); values.join("|") + nl; end
     def end_table; ""; end
     def blockquote(s); "> #{s}"+np; end
-    def link(text, url); "[#{text}](#{url})"; end
+    def link(text, url); "[#{text}](#{url.gsub(/\s/, '%20')})"; end
     def line; "  \n- - -  \n"; end
 
     #--------------------------------------------------------------------------
@@ -284,7 +284,7 @@ module DocGenerator
           t += mdl.strong_t("#{name}#{inline_args}", "#{name2}#{inline_args2}")
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
-          t += mdl.np + mdl.blockquote(desc) + mdl.nl + mdl.blockquote(atr_list) + snippet
+          t += mdl.np + mdl.blockquote(desc) + mdl.nl + atr_list + snippet
           ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name2}#{inline_args2}"}"))
         end
         return ls + mdl.end_ul + t

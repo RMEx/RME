@@ -1,23 +1,21 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Fixnum**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Fixnum**  
 - - -  
-#Fixnum
+# Fixnum
 Extension des entiers
 
-##Liste des méthodes
+## Liste des méthodes
 *    [self.to_digit](#selfto_digit)
 
 
-##Description des méthodes
+## Description des méthodes
 ##### self.to_digit
 
 > Renvoie la représentation textuelle d'un chiffre
 
   
-> 
-
 
 
 Exemple  

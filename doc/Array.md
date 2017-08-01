@@ -1,24 +1,22 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Classes et modules](Classes et modules.md) > **Array**  
+[Documentation](README.md) > [Classes et modules](Classes%20et%20modules.md) > **Array**  
 - - -  
-#Array
+# Array
 Extension des arrays
 
-##Liste des méthodes
+## Liste des méthodes
 *    [self.to_point](#selfto_point)
 *    [self.to_xy](#selfto_xy)
 
 
-##Description des méthodes
+## Description des méthodes
 ##### self.to_point
 
 > Retourne l'objet Point, que le tableau ait la forme [x, y] ou [Point]
 
   
-> 
-
 
 
 
@@ -28,8 +26,6 @@ Extension des arrays
 > Retourne les valeurs 'x, y', que le tableau ait la forme [x, y] ou [Point]
 
   
-> 
-
 
 
 Exemple  

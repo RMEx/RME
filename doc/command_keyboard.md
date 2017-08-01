@@ -1,12 +1,12 @@
-#RME : RPG Maker Extender
+# RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste des commandes.md) > **Clavier**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Clavier**  
 - - -  
-#Clavier
+# Clavier
 Commandes relatives au clavier
 
-##Liste des commandes
+## Liste des commandes
 *    [alt_gr?](#alt_gr)
 *    [caps_lock?](#caps_lock)
 *    [ctrl?(key)](#ctrlkey)
@@ -26,155 +26,121 @@ Commandes relatives au clavier
 *    [shift?](#shift)
 
 
-##Description des commandes
+## Description des commandes
 ##### alt_gr?
 
 > Renvoie true si la touche ALT_GR (ou la combinaison CTRL+ALT) est appuyée au moment de l'appel, false sinon
 
   
-> 
-
 ##### caps_lock?
 
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
   
-> 
-
 ##### ctrl?(key)
 
 > Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant la touche (cf:attributs) mise en combinaison  
-
-
 ##### key_current(method)
 
 > Renvoie la touche activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
-
-
 ##### key_current_rgss(method)
 
 > Renvoie la touche du RGSS (:X, :A, :B, :C etc.) activée selon la méthode passée en argument, nil si aucune touche n'est activée
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode d'activation (:press?, :release?, :trigger? etc.)  
-
-
 ##### key_press?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 ##### key_release?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 ##### key_repeat?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 ##### key_time(key)
 
 > Renvoie, en nombre de frames, le temps de pression d'une touche de clavier choisie
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Touche à vérifier  
-
-
 ##### key_trigger?(key)
 
 > Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `key`|`Symbol`|Symbole référençant une touche (cf:attributs)  
-
-
 ##### keyboard_all?(method, keys)
 
 > Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activées selon la méthode  
-
-
 ##### keyboard_any?(method, keys)
 
 > Renvoie true si  au moins une touche passée à keys est activée selon la méthode passée à method
 
   
-> Nom|Type|Description  
+Nom|Type|Description  
 --- | --- | ---  
 `method`|`Symbol`|Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.  
 `keys`|`Argslist`|Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte  
-
-
 ##### keyboard_current_char
 
 > Renvoie le caractère actuel pressé par le clavier
 
   
-> 
-
 ##### keyboard_current_digit
 
 > Renvoie le chiffre actuel pressé par le clavier
 
   
-> 
-
 ##### num_lock?
 
 > Renvoie true si le clavier est en mode NUM_LOCK au moment de l'appel, false sinon
 
   
-> 
-
 ##### scroll_lock?
 
 > Renvoie true si le clavier est en mode SCROLL_LOCK au moment de l'appel, false sinon
 
   
-> 
-
 ##### shift?
 
 > Renvoie true si la touche Maj du clavier est activée au moment de l'appel, false sinon
 
   
-> 
-
