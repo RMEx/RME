@@ -10091,10 +10091,16 @@ module RMECommands
   def length(a); a.length; end
   def get(a, i); a[i]; end
   def event(id)
-    if id.is_a?(Array) && id[0] == :follower
-      e = $game_player.followers[id[1]]
-      return e if e
-      raise sprintf("Follower n° %d doesn't exist", id)
+    if id.is_a?(Array)
+      if id[0] == :follower
+        e = $game_player.followers[id[1]]
+        return e if e
+        raise sprintf("Follower n° %d doesn't exist", id)
+      else id[0] == :vehicle 
+        e =  $game_map.vehicles[id[1]]
+        return e if e
+        raise sprintf("Vehicle n° %d doesn't exist", id)
+      end 
     end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
