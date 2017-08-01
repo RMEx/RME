@@ -38,3 +38,9 @@ ASample.new('Clignotement de la case pointée par la souris en fonction de son t
 
 ASample.new('Renvoyer l"id du tileset courant, et le changer',
 ['get_tileset_id', 'switch_tileset'], 21)
+
+ASample.new('Afficher progressivement du texte',
+['text_show', 'text_progressive'], 22)
+
+ASample.new('Afficher progressivement du texte en jouant un son à chaque caractère',
+['text_show', 'text_progressive'], 23)
