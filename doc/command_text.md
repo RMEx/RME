@@ -111,7 +111,7 @@ Nom|Type|Description
 `id`|`Fixnum`|Id du champ de texte  
 `value`|`String`|Texte a afficher  
 `delay`|`Fixnum`|Durée (délai) entre chaque apparition de caractères  
-`*block`|`Block`|Vous pouvez passer du code entre { et } qui va s'exécuter à chaque caractère (facultatif)  
+`*block`|`Block`|Vous pouvez passer du code entre accolades qui va s'exécuter à chaque caractère (facultatif)  
 ##### text_rotate(id, speed)
 
 > Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)

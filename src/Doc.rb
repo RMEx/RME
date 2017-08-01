@@ -6804,7 +6804,7 @@ link_method_documentation 'Command.text_progressive',
 		:id => ["Id du champ de texte", :Fixnum],
 		:value => ["Texte a afficher", :String],
 		:delay => ["Durée (délai) entre chaque apparition de caractères", :Fixnum],
-		:"*block" => ["Vous pouvez passer du code entre { et } qui va s'exécuter à chaque caractère (facultatif)", :Block]
+		:"*block" => ["Vous pouvez passer du code entre accolades qui va s'exécuter à chaque caractère (facultatif)", :Block]
 
 	}
 register_command :text, 'Command.text_progressive' 
