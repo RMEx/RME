@@ -17,8 +17,10 @@ Commandes relatives aux évènements
 *    [event_move_away_from_event(id, target)](#event_move_away_from_eventid-target)
 *    [event_move_away_from_player(id)](#event_move_away_from_playerid)
 *    [event_move_away_from_position(id, x, y)](#event_move_away_from_positionid-x-y)
+*    [event_move_backward(id)](#event_move_backwardid)
 *    [event_move_diagonal(id, horizontal, vertical)](#event_move_diagonalid-horizontal-vertical)
 *    [event_move_down(id, *turn_ok)](#event_move_downid-turn_ok)
+*    [event_move_forward(id)](#event_move_forwardid)
 *    [event_move_frequency(ids, f)](#event_move_frequencyids-f)
 *    [event_move_left(id, *turn_ok)](#event_move_leftid-turn_ok)
 *    [event_move_lower_left(id)](#event_move_lower_leftid)
@@ -56,6 +58,10 @@ Commandes relatives aux évènements
 *    [event_transparent(id)](#event_transparentid)
 *    [event_transparent?(id)](#event_transparentid)
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
+*    [event_turn_down(id)](#event_turn_downid)
+*    [event_turn_left(id)](#event_turn_leftid)
+*    [event_turn_right(id)](#event_turn_rightid)
+*    [event_turn_up(id)](#event_turn_upid)
 *    [event_x(id)](#event_xid)
 *    [event_y(id)](#event_yid)
 *    [event_zoom(id, value)](#event_zoomid-value)
@@ -99,8 +105,10 @@ Commandes relatives aux évènements
 *    [player_in_screen?](#player_in_screen)
 *    [player_move_away_from_event(id)](#player_move_away_from_eventid)
 *    [player_move_away_from_position(x, y)](#player_move_away_from_positionx-y)
+*    [player_move_backward](#player_move_backward)
 *    [player_move_diagonal(horizontal, vertical)](#player_move_diagonalhorizontal-vertical)
 *    [player_move_down(*turn_ok)](#player_move_downturn_ok)
+*    [player_move_forward](#player_move_forward)
 *    [player_move_frequency(f)](#player_move_frequencyf)
 *    [player_move_left(*turn_ok)](#player_move_leftturn_ok)
 *    [player_move_lower_left](#player_move_lower_left)
@@ -135,6 +143,10 @@ Commandes relatives aux évènements
 *    [player_transfert(new_x, new_y)](#player_transfertnew_x-new_y)
 *    [player_transparent](#player_transparent)
 *    [player_transparent?](#player_transparent)
+*    [player_turn_down](#player_turn_down)
+*    [player_turn_left](#player_turn_left)
+*    [player_turn_right](#player_turn_right)
+*    [player_turn_up](#player_turn_up)
 *    [player_x](#player_x)
 *    [player_y](#player_y)
 *    [player_zoom(value)](#player_zoomvalue)
@@ -234,6 +246,14 @@ Nom|Type|Description
 `id`|`Fixnum`|ID de l'événement  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
+##### event_move_backward(id)
+
+> Déplace l'événement référencé par son ID d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
 ##### event_move_diagonal(id, horizontal, vertical)
 
 > Déplace un événement référencé par son ID d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
@@ -253,6 +273,14 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'événement  
 `*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+##### event_move_forward(id)
+
+> Déplace l'événement référencé par son ID d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id de l'événement devant effectuer le déplacement  
 ##### event_move_frequency(ids, f)
 
 > Modifie la fréquence des événements référencés par leurs Id
@@ -576,6 +604,38 @@ Nom|Type|Description
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `trigger`|`Fixnum`|Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID  
+##### event_turn_down(id)
+
+> Fait tourner un événement vers le bas
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_left(id)
+
+> Fait tourner un événement à gauche
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_right(id)
+
+> Fait tourner un événement à droite
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_up(id)
+
+> Fait tourner un événement vers le bas
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
 ##### event_x(id)
 
 > Renvoie la coordonnées X de la case sur laquelle se trouve l'évènement référencé par son ID
@@ -929,6 +989,11 @@ Nom|Type|Description
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
+##### player_move_backward
+
+> Déplace le héro d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.
+
+  
 ##### player_move_diagonal(horizontal, vertical)
 
 > Déplace le héro d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.
@@ -946,6 +1011,11 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*turn_ok`|`Boolean`|En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)  
+##### player_move_forward
+
+> Déplace le héro d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.
+
+  
 ##### player_move_frequency(f)
 
 > Modifie la fréquence du joueur
@@ -1181,6 +1251,26 @@ Nom|Type|Description
 ##### player_transparent?
 
 > Renvoi true si le joueur est transparent (false sinon)
+
+  
+##### player_turn_down
+
+> Fait tourner le héro vers le bas
+
+  
+##### player_turn_left
+
+> Fait tourner le héro à gauche
+
+  
+##### player_turn_right
+
+> Fait tourner le héro à droite
+
+  
+##### player_turn_up
+
+> Fait tourner le héro vers le bas
 
   
 ##### player_x

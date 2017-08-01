@@ -1754,6 +1754,19 @@ module RMECommands
     def player_move_backward; event_move_backward(0); end
 
 
+    def event_turn_down(id); event_direction(id, 2); end 
+    def player_turn_down; event_turn_down(0); end
+
+    def event_turn_left(id); event_direction(id, 4); end 
+    def player_turn_left; event_turn_left(0); end
+
+    def event_turn_right(id); event_direction(id, 6); end 
+    def player_turn_right; event_turn_right(0); end
+
+    def event_turn_up(id); event_direction(id, 8); end 
+    def player_turn_up; event_turn_up(0); end
+
+
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords

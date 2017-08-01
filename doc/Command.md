@@ -245,6 +245,10 @@ Collection des commandes EventExtender
 *    [Command.event_transparent(id)](#commandevent_transparentid)
 *    [Command.event_transparent?(id)](#commandevent_transparentid)
 *    [Command.event_trigger(ids, trigger)](#commandevent_triggerids-trigger)
+*    [Command.event_turn_down(id)](#commandevent_turn_downid)
+*    [Command.event_turn_left(id)](#commandevent_turn_leftid)
+*    [Command.event_turn_right(id)](#commandevent_turn_rightid)
+*    [Command.event_turn_up(id)](#commandevent_turn_upid)
 *    [Command.event_x(id)](#commandevent_xid)
 *    [Command.event_y(id)](#commandevent_yid)
 *    [Command.event_zoom(id, value)](#commandevent_zoomid-value)
@@ -536,6 +540,10 @@ Collection des commandes EventExtender
 *    [Command.player_transfert(new_x, new_y)](#commandplayer_transfertnew_x-new_y)
 *    [Command.player_transparent](#commandplayer_transparent)
 *    [Command.player_transparent?](#commandplayer_transparent)
+*    [Command.player_turn_down](#commandplayer_turn_down)
+*    [Command.player_turn_left](#commandplayer_turn_left)
+*    [Command.player_turn_right](#commandplayer_turn_right)
+*    [Command.player_turn_up](#commandplayer_turn_up)
 *    [Command.player_x](#commandplayer_x)
 *    [Command.player_y](#commandplayer_y)
 *    [Command.player_zoom(value)](#commandplayer_zoomvalue)
@@ -3666,6 +3674,54 @@ Nom|Type|Description
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `trigger`|`Fixnum`|Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID  
+
+
+
+
+##### Command.event_turn_down(id)
+
+> Fait tourner un événement vers le bas
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+
+
+
+
+##### Command.event_turn_left(id)
+
+> Fait tourner un événement à gauche
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+
+
+
+
+##### Command.event_turn_right(id)
+
+> Fait tourner un événement à droite
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+
+
+
+
+##### Command.event_turn_up(id)
+
+> Fait tourner un événement vers le bas
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
 
 
 
@@ -7269,6 +7325,42 @@ Nom|Type|Description
 ##### Command.player_transparent?
 
 > Renvoi true si le joueur est transparent (false sinon)
+
+  
+
+
+
+
+##### Command.player_turn_down
+
+> Fait tourner le héro vers le bas
+
+  
+
+
+
+
+##### Command.player_turn_left
+
+> Fait tourner le héro à gauche
+
+  
+
+
+
+
+##### Command.player_turn_right
+
+> Fait tourner le héro à droite
+
+  
+
+
+
+
+##### Command.player_turn_up
+
+> Fait tourner le héro vers le bas
 
   
 
