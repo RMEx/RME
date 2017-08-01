@@ -7,8 +7,8 @@ Il est le fruit du travail de plusieurs personnes et toute contribution est la b
 > Attention, RME n'est pas encore sorti en version beta. Tout ce qui est disponible ici est susceptible de changer dans les jours, semaines à venir.
 
 ***
-##[Manuel d'utilisation (Wiki)](https://github.com/RMEx/RME/wiki)
+## [Manuel d'utilisation (Wiki)](https://github.com/RMEx/RME/wiki)
 ***
-##[Documentation](http://rmex.github.io/RMEDoc/)
+## [Documentation](http://rmex.github.io/RMEDoc/)
 ***
-##[Contribuer au projet](https://github.com/RMEx/RME/wiki/Contribuer-au-projet)
+## [Contribuer au projet](https://github.com/RMEx/RME/wiki/Contribuer-au-projet)
