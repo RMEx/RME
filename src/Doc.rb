@@ -6812,6 +6812,12 @@ if $STAGING
     p "generate Self-contained RME"
     File.open('../src/package.rb', 'r') do |f|
       package = eval(f.read)
+
+      dump = package.components.reduce("") do |acc, n|
+        p "dump #{n}"
+        acc + "\n" + File.read("../src/#{n}")
+      end
+      File.open('../RME.rb', 'w+'){|rf| rf.write(dump)}
     end
     p "done! let's go !"
   end
