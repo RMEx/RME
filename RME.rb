@@ -7138,6 +7138,49 @@ class Game_Player
 end
 
 #==============================================================================
+# ** Sprite_Reflect
+#------------------------------------------------------------------------------
+#  This sprite is used to display characters's reflection
+#==============================================================================
+
+class Sprite_Reflect < Sprite_Character
+
+  def initialize(*args, id)
+    @id = id
+    @y_offset = 1    
+    super(*args)
+  end
+
+
+  def update_position
+    super()
+    self.angle = 180
+    self.mirror = true
+    self.z = -(50 + self.z)
+    update_effects
+  end
+
+  def update_effects 
+    update_wave
+  end
+
+  def update_wave
+    waves = $game_map.reflection_properties[:region_waves]
+    general =  $game_map.reflection_properties[:general_waves] || 0
+    return unless waves 
+    region = $game_map.region_id(@character.x, @character.y + @y_offset)
+    if waves.has_key?(region)
+      self.wave_amp = waves[region]
+    else 
+      self.wave_amp = general
+    end 
+  end
+
+
+end
+
+
+#==============================================================================
 # ** Sprite_Character
 #------------------------------------------------------------------------------
 #  This sprite is used to display characters. It observes an instance of the
@@ -8017,11 +8060,15 @@ class Game_Map
   attr_accessor :target_camera
   attr_accessor :tileset_id
   attr_accessor :map
+  attr_accessor :use_reflection
+  attr_accessor :reflection_properties
   alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
   def initialize
+    @use_reflection = false
+    @reflection_properties = {}
     @parallaxes = Game_Parallaxes.new
     rm_extender_initialize
   end
@@ -8771,6 +8818,35 @@ class Spriteset_Map
     rme_initialize
   end
   #--------------------------------------------------------------------------
+  # * Create Reflect
+  #--------------------------------------------------------------------------
+  def create_reflects
+    @reflect_sprites = []
+    return if not $game_map.use_reflection
+    cases = $game_map.reflection_properties[:cases] || {}
+    $game_map.events.values.each do |event|
+      next if cases.has_key?(event.id) && cases[event.id] == :ignored
+      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, event, event.id))
+    end
+    i = 0
+    $game_map.vehicles.each do |vehicle|
+      id =  [:vehicle, i]
+      next if cases.has_key?(id) && cases[id] == :ignored
+      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, vehicle, id))
+      i += 1
+    end
+    i = 0
+    $game_player.followers.reverse_each do |follower|
+      id =  [:vehicle, i]
+      next if cases.has_key?(id) && cases[id] == :ignored
+      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, follower, id))
+      i += 1
+    end
+    return if cases.has_key?(0) && cases[0] == :ignored
+    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, $game_player, 0))
+  end
+
+  #--------------------------------------------------------------------------
   # * Create Character Sprite
   #--------------------------------------------------------------------------
   def create_characters
@@ -8778,6 +8854,7 @@ class Spriteset_Map
     @character_sprites.each.with_index do |c, i|
       c.character.sprite_index = i
     end
+     create_reflects
   end
 
   #--------------------------------------------------------------------------
@@ -8792,6 +8869,13 @@ class Spriteset_Map
   def dispose
     rme_dispose
     dispose_texts
+    dispose_reflects
+  end
+  #--------------------------------------------------------------------------
+  # * Dispose reflects
+  #--------------------------------------------------------------------------
+  def dispose_reflects
+    @reflect_sprites.each {|sprite| sprite.update }
   end
   #--------------------------------------------------------------------------
   # * Free text
@@ -8805,7 +8889,15 @@ class Spriteset_Map
   def update
     update_texts
     rme_update
+    update_reflects
   end
+  #--------------------------------------------------------------------------
+  # * Update Reflects
+  #--------------------------------------------------------------------------
+  def update_reflects
+    @reflect_sprites.each {|sprite| sprite.update }
+  end
+
   #--------------------------------------------------------------------------
   # * Modification des texts
   #--------------------------------------------------------------------------
@@ -10690,6 +10782,11 @@ module RMECommands
 
     def get_random_square(region_id = 0)
       $game_map.random_square(region_id)
+    end
+
+    def use_reflection(properties)
+      $game_map.use_reflection = true
+      $game_map.reflection_properties = properties || {}
     end
 
 
