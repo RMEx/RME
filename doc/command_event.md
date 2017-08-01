@@ -58,8 +58,13 @@ Commandes relatives aux évènements
 *    [event_transparent(id)](#event_transparentid)
 *    [event_transparent?(id)](#event_transparentid)
 *    [event_trigger(ids, trigger)](#event_triggerids-trigger)
+*    [event_turn_180(id)](#event_turn_180id)
+*    [event_turn_90_left(id)](#event_turn_90_leftid)
+*    [event_turn_90_right(id)](#event_turn_90_rightid)
+*    [event_turn_90_right_or_left(id)](#event_turn_90_right_or_leftid)
 *    [event_turn_down(id)](#event_turn_downid)
 *    [event_turn_left(id)](#event_turn_leftid)
+*    [event_turn_random(id)](#event_turn_randomid)
 *    [event_turn_right(id)](#event_turn_rightid)
 *    [event_turn_up(id)](#event_turn_upid)
 *    [event_x(id)](#event_xid)
@@ -143,8 +148,13 @@ Commandes relatives aux évènements
 *    [player_transfert(new_x, new_y)](#player_transfertnew_x-new_y)
 *    [player_transparent](#player_transparent)
 *    [player_transparent?](#player_transparent)
+*    [player_turn_180](#player_turn_180)
+*    [player_turn_90_left](#player_turn_90_left)
+*    [player_turn_90_right](#player_turn_90_right)
+*    [player_turn_90_right_or_left](#player_turn_90_right_or_left)
 *    [player_turn_down](#player_turn_down)
 *    [player_turn_left](#player_turn_left)
+*    [player_turn_random](#player_turn_random)
 *    [player_turn_right](#player_turn_right)
 *    [player_turn_up](#player_turn_up)
 *    [player_x](#player_x)
@@ -604,6 +614,38 @@ Nom|Type|Description
 --- | --- | ---  
 `ids`|`Selector`|ID des événements  
 `trigger`|`Fixnum`|Type de déclenchement, si aucune priorité n'est donnée, la commande renverra la valeur du déclencheur de l'évènement référencé par son ID  
+##### event_turn_180(id)
+
+> Fait tourner un événement référencé par son ID de 180°
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_90_left(id)
+
+> Fait tourner un événement référencé par son ID de 90° par la gauche
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_90_right(id)
+
+> Fait tourner un événement référencé par son ID de 90° par la droite
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_90_right_or_left(id)
+
+> Fait tourner un événement référencé par son ID de 90° par la gauche ou par la droite (aléatoirement)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
 ##### event_turn_down(id)
 
 > Fait tourner un événement vers le bas
@@ -615,6 +657,14 @@ Nom|Type|Description
 ##### event_turn_left(id)
 
 > Fait tourner un événement à gauche
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'événement  
+##### event_turn_random(id)
+
+> Fait tourner un événement référencé par son ID dans une direction aléatoire
 
   
 Nom|Type|Description  
@@ -1253,6 +1303,26 @@ Nom|Type|Description
 > Renvoi true si le joueur est transparent (false sinon)
 
   
+##### player_turn_180
+
+> Fait tourner le héro de 180°
+
+  
+##### player_turn_90_left
+
+> Fait tourner le joueur de 90° par la gauche
+
+  
+##### player_turn_90_right
+
+> Fait tourner le joueur de 90° par la droite
+
+  
+##### player_turn_90_right_or_left
+
+> Fait tourner le héro de 90° par la gauche ou par la droite (aléatoirement)
+
+  
 ##### player_turn_down
 
 > Fait tourner le héro vers le bas
@@ -1261,6 +1331,11 @@ Nom|Type|Description
 ##### player_turn_left
 
 > Fait tourner le héro à gauche
+
+  
+##### player_turn_random
+
+> Fait tourner le héro dans une direction aléatoire
 
   
 ##### player_turn_right

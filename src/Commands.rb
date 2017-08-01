@@ -1767,6 +1767,16 @@ module RMECommands
     def player_turn_up; event_turn_up(0); end
 
 
+    def event_turn_90_left(id); event(id).turn_left_90; end
+    def player_turn_90_left; event_turn_90_left(0); end 
+    def event_turn_90_right(id); event(id).turn_right_90; end
+    def player_turn_90_right; event_turn_90_right(0); end
+    def event_turn_180(id); event.turn_180; end 
+    def player_turn_180; event_turn_180(0); end
+    def event_turn_90_right_or_left(id); event(id).turn_right_or_left_90; end
+    def player_turn_90_right_or_left; event_turn_90_right_or_left(0); end
+    def event_turn_random(id); event(id).turn_random; end 
+    def player_turn_random; event_turn_random(0); end
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
