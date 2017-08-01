@@ -679,7 +679,6 @@ Collection des commandes EventExtender
 *    [Command.text_opacity(id, *opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
 *    [Command.text_position(id, x, y, *duration, *wait_flag)](#commandtext_positionid-x-y-duration-wait_flag)
 *    [Command.text_profile(id, *profile)](#commandtext_profileid-profile)
-*    [Command.text_progressive(id, value, delay, *block)](#commandtext_progressiveid-value-delay-block)
 *    [Command.text_rotate(id, speed)](#commandtext_rotateid-speed)
 *    [Command.text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#commandtext_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.text_value(id)](#commandtext_valueid)
@@ -8984,21 +8983,6 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `*profile`|`String`|Nouveau profil  
-
-
-
-
-##### Command.text_progressive(id, value, delay, *block)
-
-> Affiche progressivement un texte (caractère par caractère)
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`id`|`Fixnum`|Id du champ de texte  
-`value`|`String`|Texte a afficher  
-`delay`|`Fixnum`|Durée (délai) entre chaque apparition de caractères  
-`*block`|`Block`|Vous pouvez passer du code entre accolades qui va s'exécuter à chaque caractère (facultatif)  
 
 
 
