@@ -48,6 +48,20 @@ module RMECommands
     $game_temp.reserve_common_event(id)
   end
 
+  def has_prefix?(string, prefix)
+    string.start_with?(prefix)
+  end
+
+  def has_suffix?(string, suffix)
+    string.end_with?(suffix)
+  end
+
+  def has_substring?(string, substring)
+    string.include?(substring)
+  end
+
+
+
   def max(a, b); [a, b].max; end
   def min(a, b); [a, b].min; end
   def screen; Game_Screen.get; end

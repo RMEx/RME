@@ -1534,12 +1534,14 @@ class Sprite_Reflect < Sprite_Character
     @cases = cases || {}
     @id = id
     @y_offset = @cases[:y_offset] || 1 
-    p [@y_offset, :yolo] if id == 0
+    @opacity = @cases[:opacity] || 255
+    @bush_depth = @cases[:bush_depth] ||0
+    @bush_opacity = @cases[:bush_opacity] || 128
     super(*args)
   end
 
 
-  def update_position
+  def update
     super()
     self.angle = 180
     self.mirror = true
@@ -1549,19 +1551,14 @@ class Sprite_Reflect < Sprite_Character
   end
 
   def update_effects 
-    update_wave
+    self.opacity = @opacity
+    self.bush_depth = @bush_depth
+    self.bush_depth = @bush_opacity
+    update_region
   end
 
-  def update_wave
-    waves = $game_map.reflection_properties[:region_waves]
-    general =  $game_map.reflection_properties[:general_waves] || 0
-    return unless waves 
-    region = $game_map.region_id(@character.x, @character.y + @y_offset)
-    if waves.has_key?(region)
-      self.wave_amp = waves[region]
-    else 
-      self.wave_amp = general
-    end 
+  def update_region
+    
   end
 
 
@@ -3213,26 +3210,44 @@ class Spriteset_Map
     return if not $game_map.use_reflection
     cases = $game_map.reflection_properties[:cases] || {}
     $game_map.events.values.each do |event|
-      next if cases.has_key?(event.id) && cases[event.id] == :ignored
-      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, event, event.id, cases[event.id]))
+      push_reflect(event.id, event)
     end
     i = 0
     $game_map.vehicles.each do |vehicle|
-      id =  [:vehicle, i]
-      next if cases.has_key?(id) && cases[id] == :ignored
-      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, vehicle, id, cases[id]))
+      id = [:vehicle, i]
+      push_reflect(id, vehicle)
       i += 1
     end
     i = 0
     $game_player.followers.reverse_each do |follower|
       id =  [:vehicle, i]
-      next if cases.has_key?(id) && cases[id] == :ignored
-      @reflect_sprites.push(Sprite_Reflect.new(@viewport1, follower, id, cases[id]))
+      push_reflect(id, follower)
       i += 1
     end
-    return if cases.has_key?(0) && cases[0] == :ignored
-    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, $game_player, 0, cases[0]))
+    push_reflect(0, $game_player)
   end
+
+  def push_reflect(id, char)
+    cases = $game_map.reflection_properties[:cases] || {}
+    case_for_id = cases[id]
+    return if case_for_id == :ignored
+    return @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, case_for_id)) if case_for_id
+    cases = $game_map.reflection_properties[:triggered_cases] || []
+    specifics = cases.reduce({}) do |accumulator, elt|
+      if elt[0].call(id)
+        if accumulator == :ignored || elt[1] == :ignored 
+          :ignored
+        else
+          accumulator.merge(elt[1])
+        end
+      else 
+        accumulator
+      end
+    end
+    return if specifics == :ignored
+    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, specifics))
+  end
+
 
   #--------------------------------------------------------------------------
   # * Create Character Sprite

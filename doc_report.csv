@@ -1,7 +1,10 @@
 Report,
-# Commandes documentées,759/760
+# Commandes documentées,759/763
 ,
 # Commandes non documentées,# Suggestion
 use_reflection,Aucune suggestion
+has_prefix?,Aucune suggestion
+has_suffix?,Aucune suggestion
+has_substring?,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion
