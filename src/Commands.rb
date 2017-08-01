@@ -1804,6 +1804,7 @@ module RMECommands
 
 
     def event_turn_away_from_position(id, x, y)
+      ev = event(id)
       ev.turn_away_from_xy(x, y)
     end
 
