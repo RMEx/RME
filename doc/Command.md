@@ -279,6 +279,7 @@ Collection des commandes EventExtender
 *    [Command.game_title](#commandgame_title)
 *    [Command.game_window_rect](#commandgame_window_rect)
 *    [Command.get(array, index)](#commandgetarray-index)
+*    [Command.get_random_square(*region_id)](#commandget_random_squareregion_id)
 *    [Command.get_tileset_id](#commandget_tileset_id)
 *    [Command.give_armor(id, amount, *include_equipement)](#commandgive_armorid-amount-include_equipement)
 *    [Command.give_item(id, amount)](#commandgive_itemid-amount)
@@ -4123,6 +4124,18 @@ Exemple
 ```ruby  
 Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule et que l'indexation des tableaux commence à 0)  
 ```
+
+
+
+##### Command.get_random_square(*region_id)
+
+> Renvoie un point aléatoire sur la carte, dont la région est référencée par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*region_id`|`Fixnum`|L'id de la région dans laquelle chercher une case aléatoire. Par défaut, elle vaut 0  
+
 
 
 

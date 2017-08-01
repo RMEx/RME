@@ -43,4 +43,8 @@ ASample.new('Afficher progressivement du texte',
 ['text_show', 'text_progressive'], 22)
 
 ASample.new('Afficher progressivement du texte en jouant un son à chaque caractère',
-['text_show', 'text_progressive'], 23)
+['text_show', 'text_progressive', 'se_play'], 23)
+
+
+ASample.new('Faire apparaitre des événéments dans une région',
+['get_random_square', 'id_at', 'invoke_event', 'fresh_event_id'], 24)
