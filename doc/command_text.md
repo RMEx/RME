@@ -14,6 +14,7 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 *    [text_opacity(id, *opacity, *duration, *wait_flag)](#text_opacityid-opacity-duration-wait_flag)
 *    [text_position(id, x, y, *duration, *wait_flag)](#text_positionid-x-y-duration-wait_flag)
 *    [text_profile(id, *profile)](#text_profileid-profile)
+*    [text_progressive(id, value, delay, *block)](#text_progressiveid-value-delay-block)
 *    [text_rotate(id, speed)](#text_rotateid-speed)
 *    [text_show(id, text, profile, x, y, *zoom_x, *zoom_y, *opacity, *blend_type, *origin)](#text_showid-text-profile-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [text_value(id)](#text_valueid)
@@ -100,6 +101,17 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
 `*profile`|`String`|Nouveau profil  
+##### text_progressive(id, value, delay, *block)
+
+> Affiche progressivement un texte (caractère par caractère)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|Id du champ de texte  
+`value`|`String`|Texte a afficher  
+`delay`|`Fixnum`|Durée (délai) entre chaque apparition de caractères  
+`*block`|`Block`|Vous pouvez passer du code entre { et } qui va s'exécuter à chaque caractère (facultatif)  
 ##### text_rotate(id, speed)
 
 > Fait tourner le texte (mettez une vitesse négative pour changer le sens de rotation)
