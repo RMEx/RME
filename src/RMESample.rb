@@ -42,5 +42,3 @@ ASample.new('Renvoyer l"id du tileset courant, et le changer',
 ASample.new('Afficher progressivement du texte a l\'écran',
 ['text_show', 'text_progressive'], 22)
 
-ASample.new('Afficher progressivement du texte a l\'écran en jouant un son à chaque caractère',
-['text_show', 'text_progressive'], 23)
