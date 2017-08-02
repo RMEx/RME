@@ -48,3 +48,6 @@ ASample.new('Afficher progressivement du texte en jouant un son à chaque caract
 
 ASample.new('Faire apparaitre des événéments dans une région',
 ['get_random_square', 'id_at', 'invoke_event', 'fresh_event_id'], 24)
+
+ASample.new('Flash des tile du même ID sur une carte',
+['get_squares_by_tile', 'mouse_click?', 'tile_id', 'mouse_square_x', 'mouse_square_y', 'length', 'get', 'flash_rect', 'unflash_rect'], 25)
