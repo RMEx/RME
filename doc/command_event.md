@@ -12,6 +12,7 @@ Commandes relatives aux évènements
 *    [event_direction(id, *value)](#event_directionid-value)
 *    [event_erase(id)](#event_eraseid)
 *    [event_erased?(id)](#event_erasedid)
+*    [event_flash(id, color, duration)](#event_flashid-color-duration)
 *    [event_in_screen?(id)](#event_in_screenid)
 *    [event_look_at?(idA, idB, scope, *metric)](#event_look_atida-idb-scope-metric)
 *    [event_move_away_from_event(id, target)](#event_move_away_from_eventid-target)
@@ -113,6 +114,7 @@ Commandes relatives aux évènements
 *    [pixels_between(idA, idB)](#pixels_betweenida-idb)
 *    [player_brutal_stop_trail](#player_brutal_stop_trail)
 *    [player_direction(*value)](#player_directionvalue)
+*    [player_flash(color, duration)](#player_flashcolor-duration)
 *    [player_in_screen?](#player_in_screen)
 *    [player_move_away_from_event(id)](#player_move_away_from_eventid)
 *    [player_move_away_from_position(x, y)](#player_move_away_from_positionx-y)
@@ -220,6 +222,16 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour le héro)  
+##### event_flash(id, color, duration)
+
+> Flash un événement (référencé par son ID) dans une couleur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|l'ID de l'événement cible  
+`color`|`Color`|La couleur du flash (vous pouvez utiliser la commande color ou via son profil dans la base de données)  
+`duration`|`Fixnum`|La durée du flash en frames  
 ##### event_in_screen?(id)
 
 > Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon
@@ -1081,6 +1093,15 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros  
+##### player_flash(color, duration)
+
+> Flash le hér dans une couleur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`color`|`Color`|La couleur du flash (vous pouvez utiliser la commande color ou via son profil dans la base de données)  
+`duration`|`Fixnum`|La durée du flash en frames  
 ##### player_in_screen?
 
 > Renvoie true si le joueur est visible à l'écran, false sinon

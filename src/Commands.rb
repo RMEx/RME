@@ -727,11 +727,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     def tile_id(x, y, layer, map_id = nil)
       return $game_map.tile_id(x, y, layer) unless map_id
-      if !Game_Temp.cached_map || Game_Temp.cached_map[0] != map_id
-        Game_Temp.cached_map =
-          [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
-      end
-      Game_Temp.cached_map[1].data[x, y, layer]
+      Cache.map(map_id).data[x, y, layer]
     end
 
     #--------------------------------------------------------------------------
@@ -771,6 +767,16 @@ module RMECommands
       (tile_id.between?(2816, 4351) && !table?(x,y)) ||
       (tile_id > 1663 && !stair?(x,y))
     end
+
+    def get_squares_by_region(region_id)
+      $game_map.squares_by_region(region_id)
+    end
+
+    def get_squares_by_tile(layer, tile_id)
+       $game_map.squares_by_tile(layer, tile_id)
+    end
+
+
 
     def get_random_square(region_id = 0)
       $game_map.random_square(region_id)
@@ -1350,6 +1356,15 @@ module RMECommands
       args = (ev1.x-ev2.x),(ev1.y-ev2.y) if flag == :square
       Math.hypot(*args).to_i
     end
+
+    def event_flash(id, color, duration)
+      event(id).k_sprite.flash(get_color("red"), 10)
+    end
+
+    def player_flash(color, duration)
+      event_flash(0, color, duration)
+    end
+    
     def between(x1, y1, x2, y2)
       a = x1 - x2
       b = y1 - y2

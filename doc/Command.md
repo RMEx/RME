@@ -199,6 +199,7 @@ Collection des commandes EventExtender
 *    [Command.event_direction(id, *value)](#commandevent_directionid-value)
 *    [Command.event_erase(id)](#commandevent_eraseid)
 *    [Command.event_erased?(id)](#commandevent_erasedid)
+*    [Command.event_flash(id, color, duration)](#commandevent_flashid-color-duration)
 *    [Command.event_in_screen?(id)](#commandevent_in_screenid)
 *    [Command.event_look_at?(idA, idB, scope, *metric)](#commandevent_look_atida-idb-scope-metric)
 *    [Command.event_move_away_from_event(id, target)](#commandevent_move_away_from_eventid-target)
@@ -280,6 +281,8 @@ Collection des commandes EventExtender
 *    [Command.game_window_rect](#commandgame_window_rect)
 *    [Command.get(array, index)](#commandgetarray-index)
 *    [Command.get_random_square(*region_id)](#commandget_random_squareregion_id)
+*    [Command.get_squares_by_region(region_id)](#commandget_squares_by_regionregion_id)
+*    [Command.get_squares_by_tile(layer, tile_id)](#commandget_squares_by_tilelayer-tile_id)
 *    [Command.get_tileset_id](#commandget_tileset_id)
 *    [Command.give_armor(id, amount, *include_equipement)](#commandgive_armorid-amount-include_equipement)
 *    [Command.give_item(id, amount)](#commandgive_itemid-amount)
@@ -288,6 +291,9 @@ Collection des commandes EventExtender
 *    [Command.ground?(x, y)](#commandgroundx-y)
 *    [Command.has_armor?(id, *include_equipement)](#commandhas_armorid-include_equipement)
 *    [Command.has_item?(id)](#commandhas_itemid)
+*    [Command.has_prefix?(string, prefix)](#commandhas_prefixstring-prefix)
+*    [Command.has_substring?(string, substring)](#commandhas_substringstring-substring)
+*    [Command.has_suffix?(string, suffix)](#commandhas_suffixstring-suffix)
 *    [Command.has_weapon?(id, *include_equipement)](#commandhas_weaponid-include_equipement)
 *    [Command.hypot(x, y)](#commandhypotx-y)
 *    [Command.id_at(x, y)](#commandid_atx-y)
@@ -511,6 +517,7 @@ Collection des commandes EventExtender
 *    [Command.play_time](#commandplay_time)
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
 *    [Command.player_direction(*value)](#commandplayer_directionvalue)
+*    [Command.player_flash(color, duration)](#commandplayer_flashcolor-duration)
 *    [Command.player_in_screen?](#commandplayer_in_screen)
 *    [Command.player_move_away_from_event(id)](#commandplayer_move_away_from_eventid)
 *    [Command.player_move_away_from_position(x, y)](#commandplayer_move_away_from_positionx-y)
@@ -3112,6 +3119,20 @@ Nom|Type|Description
 
 
 
+##### Command.event_flash(id, color, duration)
+
+> Flash un événement (référencé par son ID) dans une couleur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|l'ID de l'événement cible  
+`color`|`Color`|La couleur du flash (vous pouvez utiliser la commande color ou via son profil dans la base de données)  
+`duration`|`Fixnum`|La durée du flash en frames  
+
+
+
+
 ##### Command.event_in_screen?(id)
 
 > Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon
@@ -4139,6 +4160,31 @@ Nom|Type|Description
 
 
 
+##### Command.get_squares_by_region(region_id)
+
+> Renvoie un tableau de cases pour une région donnée.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`region_id`|`Fixnum`|l'ID de la région (entre 0 et 63)  
+
+
+
+
+##### Command.get_squares_by_tile(layer, tile_id)
+
+> Renvoie un tableau de cases pour un tile (et une couche) donnés.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`layer`|`Fixnum`|La couche (entre 0 et 2)  
+`tile_id`|`Fixnum`|L'ID du tile  
+
+
+
+
 ##### Command.get_tileset_id
 
 > Renvoie l' ID du tileset de la carte en cours
@@ -4232,6 +4278,45 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Id de l'objet  
+
+
+
+
+##### Command.has_prefix?(string, prefix)
+
+> Renvoie true si une chaine à le préfix donné, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`string`|`String`|La chaine de caractère à vérifier  
+`prefix`|`String`|Le préfix devant être contenu dans la chaine  
+
+
+
+
+##### Command.has_substring?(string, substring)
+
+> Renvoie true si une chaine contient une autre chaine donnée, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`string`|`String`|La chaine de caractère à vérifier  
+`substring`|`String`|La chaine devant être contenue dans la chaine  
+
+
+
+
+##### Command.has_suffix?(string, suffix)
+
+> Renvoie true si une chaine à le suffix donné, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`string`|`String`|La chaine de caractère à vérifier  
+`suffix`|`String`|Le suffix devant être contenu dans la chaine  
 
 
 
@@ -7049,6 +7134,19 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*value`|`Fixnum`|Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros  
+
+
+
+
+##### Command.player_flash(color, duration)
+
+> Flash le hér dans une couleur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`color`|`Color`|La couleur du flash (vous pouvez utiliser la commande color ou via son profil dans la base de données)  
+`duration`|`Fixnum`|La durée du flash en frames  
 
 
 

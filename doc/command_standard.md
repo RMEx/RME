@@ -15,6 +15,9 @@ Commandes standards
 *    [flash_rect(x, y, width, height, color)](#flash_rectx-y-width-height-color)
 *    [flash_square(x, y, color)](#flash_squarex-y-color)
 *    [get(array, index)](#getarray-index)
+*    [has_prefix?(string, prefix)](#has_prefixstring-prefix)
+*    [has_substring?(string, substring)](#has_substringstring-substring)
+*    [has_suffix?(string, suffix)](#has_suffixstring-suffix)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
 *    [message(value, *face_name, *face_index, *position, *background)](#messagevalue-face_name-face_index-position-background)
@@ -116,6 +119,33 @@ Nom|Type|Description
 --- | --- | ---  
 `array`|`Array`|Tableau  
 `index`|`Fixnum`|Index à trouver  
+##### has_prefix?(string, prefix)
+
+> Renvoie true si une chaine à le préfix donné, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`string`|`String`|La chaine de caractère à vérifier  
+`prefix`|`String`|Le préfix devant être contenu dans la chaine  
+##### has_substring?(string, substring)
+
+> Renvoie true si une chaine contient une autre chaine donnée, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`string`|`String`|La chaine de caractère à vérifier  
+`substring`|`String`|La chaine devant être contenue dans la chaine  
+##### has_suffix?(string, suffix)
+
+> Renvoie true si une chaine à le suffix donné, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`string`|`String`|La chaine de caractère à vérifier  
+`suffix`|`String`|Le suffix devant être contenu dans la chaine  
 ##### length(array)
 
 > Renvoie la taille d'un tableau

@@ -16,6 +16,27 @@
 #==============================================================================
 
 #==============================================================================
+# ** Cache
+#------------------------------------------------------------------------------
+#  This module loads graphics, creates bitmap objects, and retains them.
+# To speed up load times and conserve memory, this module holds the
+# created bitmap object in the internal hash, allowing the program to
+# return preexisting objects when the same bitmap is requested again.
+#==============================================================================
+
+module Cache
+  def self.map(map_id)
+    return $game_map.map if $game_map && $game_map.map_id == map_id
+    if !Game_Temp.cached_map || Game_Temp.cached_map[0] != map_id
+      Game_Temp.cached_map =
+        [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
+    end
+    return Game_Temp.cached_map[1]
+  end
+end
+
+
+#==============================================================================
 # ** L
 #------------------------------------------------------------------------------
 #  Label handling API
@@ -896,7 +917,7 @@ module Handler
     #--------------------------------------------------------------------------
     def k_sprite
       return nil unless SceneManager.scene.is_a?(Scene_Map)
-        return nil unless SceneManager.scene.spriteset
+      return nil unless SceneManager.scene.spriteset
       return nil unless @sprite_index
       SceneManager.scene.spriteset.character_sprites[@sprite_index]
     end
@@ -2448,6 +2469,8 @@ class Game_Map
   attr_accessor :map
   attr_accessor :use_reflection
   attr_accessor :reflection_properties
+  attr_accessor :region_mapper 
+  attr_accessor :tile_mapper
   alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
@@ -2469,14 +2492,21 @@ class Game_Map
     @target_camera = $game_player
     unflash_map
     setup_region_data
+    @max_event_id = events.keys.max
   end
   #--------------------------------------------------------------------------
   # * Setup Region Data
   #--------------------------------------------------------------------------
   def setup_region_data
     @region_mapper = Array.new(64) { Array.new }
+    @tile_mapper = [Hash.new, Hash.new, Hash.new]
     data.xsize.times do |x|
       data.ysize.times do |y|
+        3.times do |layer|
+          tile = tile_id(x, y, layer)
+          @tile_mapper[layer][tile] ||= Array.new 
+          @tile_mapper[layer][tile] << Point.new(x, y)
+        end
         @region_mapper[region_id(x, y)] << Point.new(x, y)
       end 
     end
@@ -2513,13 +2543,13 @@ class Game_Map
   # * Return Max Event Id
   #--------------------------------------------------------------------------
   def max_id
-    @events.keys.max
+    @max_event_id
   end
   #--------------------------------------------------------------------------
   # * Add event to map
   #--------------------------------------------------------------------------
   def add_event(map_id, event_id, new_id,x=nil,y=nil)
-    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+    map = Cache.map(map_id)
     return unless map
     event = map.events[event_id]
     return unless event
@@ -2531,6 +2561,7 @@ class Game_Map
     @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
+    @max_event_id = [@max_event_id, new_id].max
     SceneManager.scene.refresh_spriteset
   end
   #--------------------------------------------------------------------------
@@ -2564,6 +2595,20 @@ class Game_Map
     reg = @region_mapper[region_id] || []
     reg.sample
   end
+  #--------------------------------------------------------------------------
+  # * Get squares by region
+  #--------------------------------------------------------------------------
+  def squares_by_region(region_id)
+    @region_mapper[region_id] || []
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get squares by tile_id
+  #--------------------------------------------------------------------------
+  def squares_by_tile(layer, tile_id)
+    @tile_mapper[layer][tile_id] || []
+  end
+
   #--------------------------------------------------------------------------
   # * Get Array of Parallel Common Events
   #--------------------------------------------------------------------------
