@@ -776,10 +776,10 @@ module RMECommands
       $game_map.random_square(region_id)
     end
 
-    def use_reflection(properties)
-      $game_map.use_reflection = true
-      $game_map.reflection_properties = properties || {}
-    end
+    #def use_reflection(properties)
+     # $game_map.use_reflection = true
+     # $game_map.reflection_properties = properties || {}
+    #end
 
 
     #--------------------------------------------------------------------------

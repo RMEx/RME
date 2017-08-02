@@ -7146,15 +7146,18 @@ end
 class Sprite_Reflect < Sprite_Character
 
   def initialize(*args, id, cases)
-    @cases = cases || {}
     @id = id
-    @y_offset = @cases[:y_offset] || 1 
-    @opacity = @cases[:opacity] || 255
-    @bush_depth = @cases[:bush_depth] ||0
-    @bush_opacity = @cases[:bush_opacity] || 128
+    @y_offset = cases[:y_offset] || 1 
+    @cases = (cases || {}).map do |k, v|
+      [:"#{k}=", v] if respond_to?(:"#{k}=")
+    end.compact
     super(*args)
   end
 
+  def update_other
+  end
+  def setup_new_effect
+  end
 
   def update
     super()
@@ -7166,10 +7169,8 @@ class Sprite_Reflect < Sprite_Character
   end
 
   def update_effects 
-    self.opacity = @opacity
-    self.bush_depth = @bush_depth
-    self.bush_depth = @bush_opacity
-    update_wave
+    @cases.each {|k, v| send(k, v) }
+    update_region
   end
 
   def update_region
@@ -8822,6 +8823,7 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   def create_reflects
     @reflect_sprites = []
+    return 
     return if not $game_map.use_reflection
     cases = $game_map.reflection_properties[:cases] || {}
     $game_map.events.values.each do |event|
@@ -8843,6 +8845,7 @@ class Spriteset_Map
   end
 
   def push_reflect(id, char)
+    return unless char || !char.visible?
     cases = $game_map.reflection_properties[:cases] || {}
     case_for_id = cases[id]
     return if case_for_id == :ignored
@@ -10822,10 +10825,10 @@ module RMECommands
       $game_map.random_square(region_id)
     end
 
-    def use_reflection(properties)
-      $game_map.use_reflection = true
-      $game_map.reflection_properties = properties || {}
-    end
+    #def use_reflection(properties)
+     # $game_map.use_reflection = true
+     # $game_map.reflection_properties = properties || {}
+    #end
 
 
     #--------------------------------------------------------------------------
