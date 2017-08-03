@@ -1759,6 +1759,7 @@ module Draggable
       else
         o.x, o.y = nx, ny
       end
+      @picked.on_mouse_drag if @picked.respond_to?(:on_mouse_drag)
     end
     #--------------------------------------------------------------------------
     # * Drops the last picked Object
@@ -4952,6 +4953,7 @@ module Gui
     def on_mouse_trigger; on_mouse(:trigger); end
     def on_mouse_release; on_mouse(:release); end
     def on_mouse_click;   on_mouse(:click);   end
+    def on_mouse_drag;   on_mouse(:drag);   end
     def on_mouse(k)
       @style[k].call if @style[k].is_a? Proc
     end
@@ -5191,7 +5193,7 @@ module Gui
     # * Move bar to value
     #--------------------------------------------------------------------------
     def value=(v)
-      @bar.x = start + course.to_f * v.fbound(0, max_value) / max_value
+      @bar.x = (start + course.to_f * v.fbound(0, max_value) / max_value).to_i
     end
     #--------------------------------------------------------------------------
     # * Fit course to @max_value
@@ -7841,7 +7843,6 @@ class Window_EvSelectable < Window_Selectable
   def make_item_list
     @data = []
     @enumeration.each do |value|
-      p value
       @data.push(value)
     end
   end

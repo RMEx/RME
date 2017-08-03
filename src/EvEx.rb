@@ -2231,7 +2231,6 @@ class Window_EvSelectable < Window_Selectable
   def make_item_list
     @data = []
     @enumeration.each do |value|
-      p value
       @data.push(value)
     end
   end
