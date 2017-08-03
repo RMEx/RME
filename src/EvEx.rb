@@ -2542,10 +2542,18 @@ class Game_Map
     result
   end
   #--------------------------------------------------------------------------
-  # * Return Max Event Id
+  # * Returns Max Event Id
   #--------------------------------------------------------------------------
   def max_id
     @max_event_id
+  end
+
+  #--------------------------------------------------------------------------
+  # * Returns the first ID of an erased event
+  #--------------------------------------------------------------------------
+  def min_erased_id
+    e = events.find {|id, ev| ev.erased?}
+    (e) ? e[0] : nil
   end
 
   def super_page

@@ -843,7 +843,13 @@ module RMECommands
     # * Get the max Event ID
     #--------------------------------------------------------------------------
     def max_event_id; $game_map.max_id; end
-    def fresh_event_id; max_event_id + 1; end
+    def fresh_event_id(erased = false)
+      if erased
+        i = $game_map.min_erased_id
+        return i if i
+      end
+      max_event_id + 1
+    end
     #--------------------------------------------------------------------------
     # * Check if a page is runnable
     #--------------------------------------------------------------------------

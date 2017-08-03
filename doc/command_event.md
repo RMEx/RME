@@ -84,7 +84,7 @@ Commandes relatives aux évènements
 *    [events_collide?(idA, idB)](#events_collideida-idb)
 *    [followers_buzz(ids, *duration)](#followers_buzzids-duration)
 *    [followers_buzzer_properties(*ids, amplitude, length)](#followers_buzzer_propertiesids-amplitude-length)
-*    [fresh_event_id](#fresh_event_id)
+*    [fresh_event_id(*erased)](#fresh_event_iderased)
 *    [include_page(map_id, event_id, page_id, *runnable, *context)](#include_pagemap_id-event_id-page_id-runnable-context)
 *    [invoke_event(map_id, event_id, new_id, *x, *y)](#invoke_eventmap_id-event_id-new_id-x-y)
 *    [jump_to(id, x, y, *wait_flag)](#jump_toid-x-y-wait_flag)
@@ -852,11 +852,14 @@ Nom|Type|Description
 `*ids`|`ArgsList`|Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.  
 `amplitude`|`ArgType`|Amplitude du tressaillement  
 `length`|`Fixnum`|Taille du tressaillement  
-##### fresh_event_id
+##### fresh_event_id(*erased)
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
 
   
+Nom|Type|Description  
+--- | --- | ---  
+`*erased`|`Boolean`|Si cette valeur vaut true, la commande renverra le plus petit ID d'un événement supprimé  
 ##### include_page(map_id, event_id, page_id, *runnable, *context)
 
 > Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement

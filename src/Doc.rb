@@ -1196,7 +1196,7 @@ register_command :standard, 'Command.unflash_rect'
 
   link_method_documentation "Command.fresh_event_id",
                         "Renvoie un ID libre (utile en cas d'invocation d'évènement)",
-                        {}, true
+                        {"*erased".to_sym => ["Si cette valeur vaut true, la commande renverra le plus petit ID d'un événement supprimé", :Boolean]}, true
   register_command :event, "Command.fresh_event_id"
 
   link_method_documentation "Command.mouse_hover_event?",

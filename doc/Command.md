@@ -275,7 +275,7 @@ Collection des commandes EventExtender
 *    [Command.flash_square(x, y, color)](#commandflash_squarex-y-color)
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
-*    [Command.fresh_event_id](#commandfresh_event_id)
+*    [Command.fresh_event_id(*erased)](#commandfresh_event_iderased)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
 *    [Command.game_title](#commandgame_title)
 *    [Command.game_window_rect](#commandgame_window_rect)
@@ -4092,11 +4092,14 @@ Nom|Type|Description
 
 
 
-##### Command.fresh_event_id
+##### Command.fresh_event_id(*erased)
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
 
   
+Nom|Type|Description  
+--- | --- | ---  
+`*erased`|`Boolean`|Si cette valeur vaut true, la commande renverra le plus petit ID d'un événement supprimé  
 
 
 
