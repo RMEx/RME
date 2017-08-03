@@ -5655,7 +5655,7 @@ module Cache
       Game_Temp.cached_map =
         [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
     end
-    return Game_Temp.cached_map[1].custom_deep_clone
+    return Game_Temp.cached_map[1]
   end
 end
 
@@ -8169,13 +8169,32 @@ class Game_Map
   def max_id
     @max_event_id
   end
+
+  def super_page
+    page = RPG::Event::Page.new
+    page.trigger = 4
+    page.list = [RPG::EventCommand.new(123, 0, ['internal_rme_trigger', 0])]
+    page
+  end
+
+
+  def ev_format(event)
+    first = event.pages.first.condition
+    if !first.self_switch_valid
+      first.self_switch_valid = true 
+      first.self_switch_ch = 'internal_rme_trigger'
+      event.pages = [super_page] + event.pages 
+    end
+    event
+  end
+
   #--------------------------------------------------------------------------
   # * Add event to map
   #--------------------------------------------------------------------------
   def add_event(map_id, event_id, new_id,x=nil,y=nil)
-    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
+    map = Cache.map(map_id)
     return unless map
-    event = map.events.fetch(event_id, nil).custom_deep_clone
+    event = ev_format(map.events.fetch(event_id, nil).custom_deep_clone)
     return unless event
     event.id = new_id
     clone_events = @events.clone
@@ -8185,7 +8204,7 @@ class Game_Map
     @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
-    @max_event_id += 1
+    @max_event_id = [@max_event_id, new_id].max
     SceneManager.scene.refresh_spriteset
   end
   #--------------------------------------------------------------------------
