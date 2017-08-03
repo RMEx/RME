@@ -956,7 +956,7 @@ class String
     tokens = extract_tokens(i-1).map {|s| (!s) ? [s] : s.split(/\s/)}.flatten
     token = tokens[-1]
     return [] unless token
-    container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
+    container = Command.singleton_methods
     candidates = token.auto_complete(container)
     k = candidates.select { |e| token.damerau_levenshtein(e[0..(token.length-1)]) < 3 }
     return k[0..7].unshift(token)
