@@ -1666,7 +1666,8 @@ module Gui
       @title_label = Label.new(
         name: 'pannel_title',
         parent: self.outer,
-        value: @style[:title]
+        value: @style[:title],
+        z: self.z
         )
     end
     #--------------------------------------------------------------------------
