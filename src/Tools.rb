@@ -139,6 +139,7 @@ class Graphical_Eval
       title: "Ingame tester",
       x: 0, 
       y: @y, 
+      z: 4000,
       padding: 0,
       margin: 6,
       border_color: Color.new('#113F59')
@@ -147,12 +148,14 @@ class Graphical_Eval
       parent: @box.outer,
       x: 70.percent, 
       font: @font,
-      value: 'Copy as'
+      value: 'Copy as',
+      z: 4500
     )
     @run_lab = Gui::Label.new(
       parent: @box.outer,
       font: @font,
-      value: 'Run'
+      value: 'Run', 
+      z: 4500
     )
     @run_lab.set(
       x: @box.outer.width - @run_lab.width - 8
@@ -333,7 +336,7 @@ class Graphical_Eval
     @last_text_completed = @textfield.formatted_value
     @candidates = @candidates.rotate(@i)
     destroy_completion
-    @completion_list = Gui::Box.new(z: 500)
+    @completion_list = Gui::Box.new(z: 5000)
     @completion_candidates = []
     @candidates.each_index do |c|
       if (c == @candidates.length - 1)
