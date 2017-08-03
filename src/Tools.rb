@@ -45,12 +45,13 @@ class Scene_Map
   #--------------------------------------------------------------------------
   def update_eval
 
-    if !@box && Keyboard.trigger?(RME::Config::KEY_EVAL)
+    if (!@box || @box.disposed?)  &&Keyboard.trigger?(RME::Config::KEY_EVAL)
       @old_call_menu = $game_system.menu_disabled
       $game_system.menu_disabled = true
-      @box = Graphical_eval.new
+      @box = Graphical_Eval.new
     else
-      if @box && Keyboard.any?(:trigger?, RME::Config::KEY_EVAL, :esc)
+      if ((@box && !@box.disposed?) && Keyboard.any?(:trigger?, RME::Config::KEY_EVAL, :esc) && (
+        !@box.in_completion?))
         @box.dispose
         Game_Temp.in_game = true
         @box = nil
@@ -76,8 +77,8 @@ class Graphical_Eval
   class << self 
     
     attr_accessor :stack, :cursor
-    Graphical_Eval2.stack = Array.new
-    Graphical_Eval2.cursor = 0
+    Graphical_Eval.stack = Array.new
+    Graphical_Eval.cursor = 0
       
   end
 
@@ -85,6 +86,7 @@ class Graphical_Eval
   # * Build Object
   #--------------------------------------------------------------------------
   def initialize
+    @disposed = false
     init_fonts
     base_init
     create_box
@@ -359,8 +361,8 @@ class Graphical_Eval
     if Devices::Keys::Esc.trigger? || @textfield.formatted_value != @last_text_completed
       return destroy_completion 
     end
-    update_completion(@i + 1) if Devices::Keys::Tab.trigger? || Devices::Keys::Up.trigger?
-    update_completion(@i - 1) if Devices::Keys::Down.trigger?
+    update_completion(@i - 1) if Devices::Keys::Tab.trigger? || Devices::Keys::Up.trigger?
+    update_completion(@i + 1) if Devices::Keys::Down.trigger?
     if Devices::Keys::Enter.trigger?
       len = @token.length + 1
       new_value = @textfield.formatted_value[0..-len]
@@ -447,6 +449,23 @@ class Graphical_Eval
     end 
     build_failure
     msgbox(message)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Dispose
+  #--------------------------------------------------------------------------
+  def dispose 
+    @box.dispose
+    @run_lab.dispose
+    @title_lab.dispose
+    @disposed = true
+  end
+
+  #--------------------------------------------------------------------------
+  # * Disposed ? 
+  #--------------------------------------------------------------------------
+  def disposed? 
+    @disposed
   end
   
 end
