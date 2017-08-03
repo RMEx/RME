@@ -324,6 +324,9 @@ class Graphical_Eval2
   # * Draw completion box
   #--------------------------------------------------------------------------
   def draw_completion_box(i = 0)
+    fon = Font.new(Font.default_name, 16)
+    fon.color = Color.new('#113f59')
+    fon.outline = false
     @i = i % (@candidates.length)
     @last_text_completed = @textfield.formatted_value
     @candidates = @candidates.rotate(@i)
@@ -331,9 +334,15 @@ class Graphical_Eval2
     @completion_list = Gui::Box.new(z: 500)
     @completion_candidates = []
     @candidates.each_index do |c|
+      if (c == @candidates.length - 1)
+        fon.color = Color.new('#6a3639')
+        fon.bold = true
+      end
       @completion_candidates[c] = Gui::Label.new(
         parent: @completion_list,
-        value: @candidates[c], y: 18*c
+        value: @candidates[c],
+        y: 18*c,
+        font: fon
       )
     end
     @completion_list.set(
