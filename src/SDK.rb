@@ -1758,6 +1758,7 @@ module Draggable
       else
         o.x, o.y = nx, ny
       end
+      @picked.on_mouse_drag if @picked.respond_to?(:on_mouse_drag)
     end
     #--------------------------------------------------------------------------
     # * Drops the last picked Object
