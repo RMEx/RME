@@ -94,6 +94,7 @@ class Graphical_Eval2
     create_checkbox
     create_marker
     create_buttons
+    @candidates = nil
   end
   
   #--------------------------------------------------------------------------
@@ -301,33 +302,77 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def update
     update_cursor
-    execute_command if Devices::Keys::Enter.trigger?
+    execute_command if Devices::Keys::Enter.trigger? && !in_completion?
     a = @textfield.formatted_value
     @textfield.update
-    @completion_list.dispose if @completion_list && a != @textfield.formatted_value
-    update_completion if Devices::Keys::Tab.trigger? #a != @textfield.formatted_value# 
+    update_completion if Devices::Keys::Tab.trigger? && !in_completion?
+    update_completion_box
   end
   
   #--------------------------------------------------------------------------
   # * Update Autocompletion
   #--------------------------------------------------------------------------
-  def update_completion
-    candidates = completion_candidates.reverse
-    token = candidates.pop
-    return unless token
-    @completion_list.dispose if @completion_list
+  def update_completion(i = 0)
+    candidates = completion_candidates.reverse 
+    return if candidates.length < 2
+    @token = candidates.pop
+    @candidates = candidates
+    draw_completion_box(i)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Draw completion box
+  #--------------------------------------------------------------------------
+  def draw_completion_box(i = 0)
+    @i = i % (@candidates.length)
+    @last_text_completed = @textfield.formatted_value
+    @candidates = @candidates.rotate(@i)
+    destroy_completion
     @completion_list = Gui::Box.new(z: 500)
     @completion_candidates = []
-    candidates.each_index do |c|
+    @candidates.each_index do |c|
       @completion_candidates[c] = Gui::Label.new(
         parent: @completion_list,
-        value: candidates[c], y: 18*c
+        value: @candidates[c], y: 18*c
       )
     end
     @completion_list.set(
       x: @textfield.cursor_screen_x,
       y: @textfield.cursor_screen_y - @completion_list.height
     )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update completion
+  #-------------------------------------------------------------------------- 
+  def update_completion_box
+    return unless in_completion?
+    if Devices::Keys::Esc.trigger? || @textfield.formatted_value != @last_text_completed
+      return destroy_completion 
+    end
+    update_completion(@i + 1) if Devices::Keys::Tab.trigger? || Devices::Keys::Up.trigger?
+    update_completion(@i - 1) if Devices::Keys::Down.trigger?
+    if Devices::Keys::Enter.trigger?
+      len = @token.length + 1
+      new_value = @textfield.formatted_value[0..-len]
+      @textfield.value = new_value + @candidates.last.to_s
+      destroy_completion
+    end
+  end 
+
+
+  #--------------------------------------------------------------------------
+  # * Has completion_box
+  #--------------------------------------------------------------------------  
+  def in_completion?
+    @completion_list && !@completion_list.disposed?
+  end
+
+  #--------------------------------------------------------------------------
+  # * Destroy completion
+  #--------------------------------------------------------------------------  
+  def destroy_completion
+    @completion_list.dispose if @completion_list
   end
 
   #--------------------------------------------------------------------------
@@ -343,14 +388,12 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def update_cursor
     return if self.class.stack.length == 0
-    if (!@completion_list || @completion_list.disposed?)
+    if not in_completion?
       if (Devices::Keys::Up.trigger? || Devices::Keys::Down.trigger?)
         self.class.cursor += (Keys::Down.press?) ? 1 : -1 
         self.class.cursor = self.class.cursor % self.class.stack.length
         @textfield.value = self.class.stack[self.class.cursor]
       end
-    else 
-      # Here is the completion controller
     end
   end
   
