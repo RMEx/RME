@@ -314,7 +314,6 @@ class Graphical_Eval2
   def update_completion
     candidates = completion_candidates.reverse
     token = candidates.pop
-    p candidates
     return unless token
     @completion_list.dispose if @completion_list
     @completion_list = Gui::Box.new(z: 500)
@@ -344,11 +343,14 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def update_cursor
     return if self.class.stack.length == 0
-    if ((Devices::Keys::Up.trigger? || Devices::Keys::Down.trigger?) && (
-      !@completion_list || @completion_list.disposed?))
-      self.class.cursor += (Keys::Down.press?) ? 1 : -1 
-      self.class.cursor = self.class.cursor % self.class.stack.length
-      @textfield.value = self.class.stack[self.class.cursor]
+    if (!@completion_list || @completion_list.disposed?)
+      if (Devices::Keys::Up.trigger? || Devices::Keys::Down.trigger?)
+        self.class.cursor += (Keys::Down.press?) ? 1 : -1 
+        self.class.cursor = self.class.cursor % self.class.stack.length
+        @textfield.value = self.class.stack[self.class.cursor]
+      end
+    else 
+      # Here is the completion controller
     end
   end
   
