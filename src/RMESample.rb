@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 # Contient la liste des exemples
+
+ASample.new('Parcourir simplement un tableau en événement',
+['length', 'get'], 27)
+
 ASample.new('Informations sur la carte',
   ['map_id', 'map_name', 'map_width', 'map_height'], 9)
 
