@@ -53,4 +53,4 @@ ASample.new('Flash des tile du même ID sur une carte',
 ['get_squares_by_tile', 'mouse_click?', 'tile_id', 'mouse_square_x', 'mouse_square_y', 'length', 'get', 'flash_rect', 'unflash_rect'], 25)
 
 ASample.new('Flash des cases du même terrain_tag',
-['get_squares_by_terrain', 'length', 'get', 'flash_rect', 'unflash_rect'], 26)
+['get_squares_by_terrain', 'length', 'get', 'flash_square'], 26)
