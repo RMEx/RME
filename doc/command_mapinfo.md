@@ -11,6 +11,7 @@ Commandes relatives aux informations des cartes
 *    [delete_tiles(layer, id)](#delete_tileslayer-id)
 *    [get_random_square(*region_id)](#get_random_squareregion_id)
 *    [get_squares_by_region(region_id)](#get_squares_by_regionregion_id)
+*    [get_squares_by_terrain(terrain_tag)](#get_squares_by_terrainterrain_tag)
 *    [get_squares_by_tile(layer, tile_id)](#get_squares_by_tilelayer-tile_id)
 *    [get_tileset_id](#get_tileset_id)
 *    [ground?(x, y)](#groundx-y)
@@ -67,6 +68,14 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `region_id`|`Fixnum`|l'ID de la région (entre 0 et 63)  
+##### get_squares_by_terrain(terrain_tag)
+
+> Renvoie un tableau de cases pour un terrain_tag donné donnée.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`terrain_tag`|`Fixnum`|Le terrain tag (entre 0 et 7)  
 ##### get_squares_by_tile(layer, tile_id)
 
 > Renvoie un tableau de cases pour un tile (et une couche) donnés.

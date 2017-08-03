@@ -2499,6 +2499,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   def setup_region_data
     @region_mapper = Array.new(64) { Array.new }
+    @terrain_mapper = Array.new(8) { Array.new }
     @tile_mapper = [Hash.new, Hash.new, Hash.new]
     data.xsize.times do |x|
       data.ysize.times do |y|
@@ -2508,6 +2509,7 @@ class Game_Map
           @tile_mapper[layer][tile] << Point.new(x, y)
         end
         @region_mapper[region_id(x, y)] << Point.new(x, y)
+        @terrain_mapper[terrain_tag(x, y)] << Point.new(x, y)
       end 
     end
   end
@@ -2614,11 +2616,19 @@ class Game_Map
     reg = @region_mapper[region_id] || []
     reg.sample
   end
+
   #--------------------------------------------------------------------------
   # * Get squares by region
   #--------------------------------------------------------------------------
   def squares_by_region(region_id)
     @region_mapper[region_id] || []
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get squares by terrain tag
+  #--------------------------------------------------------------------------
+  def squares_by_terrain(terrain_tag)
+    @terrain_mapper[terrain_tag] || []
   end
 
   #--------------------------------------------------------------------------

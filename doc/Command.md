@@ -282,6 +282,7 @@ Collection des commandes EventExtender
 *    [Command.get(array, index)](#commandgetarray-index)
 *    [Command.get_random_square(*region_id)](#commandget_random_squareregion_id)
 *    [Command.get_squares_by_region(region_id)](#commandget_squares_by_regionregion_id)
+*    [Command.get_squares_by_terrain(terrain_tag)](#commandget_squares_by_terrainterrain_tag)
 *    [Command.get_squares_by_tile(layer, tile_id)](#commandget_squares_by_tilelayer-tile_id)
 *    [Command.get_tileset_id](#commandget_tileset_id)
 *    [Command.give_armor(id, amount, *include_equipement)](#commandgive_armorid-amount-include_equipement)
@@ -4168,6 +4169,18 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `region_id`|`Fixnum`|l'ID de la région (entre 0 et 63)  
+
+
+
+
+##### Command.get_squares_by_terrain(terrain_tag)
+
+> Renvoie un tableau de cases pour un terrain_tag donné donnée.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`terrain_tag`|`Fixnum`|Le terrain tag (entre 0 et 7)  
 
 
 
