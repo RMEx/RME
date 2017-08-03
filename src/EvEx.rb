@@ -2492,7 +2492,7 @@ class Game_Map
     @target_camera = $game_player
     unflash_map
     setup_region_data
-    @max_event_id = events.keys.max
+    @max_event_id = events.keys.max || 0
   end
   #--------------------------------------------------------------------------
   # * Setup Region Data
