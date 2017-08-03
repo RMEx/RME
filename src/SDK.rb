@@ -453,6 +453,15 @@ class Object
   end
 
   #--------------------------------------------------------------------------
+  # * Deep clone (to be improved)
+  #--------------------------------------------------------------------------
+  def custom_deep_clone
+    value = self.clone 
+    return Marshal.load(Marshal.dump(value))
+  end
+
+
+  #--------------------------------------------------------------------------
   # * Setup transition for the given method
   #--------------------------------------------------------------------------
   def set_transition(method, target, duration, easing = :linear)

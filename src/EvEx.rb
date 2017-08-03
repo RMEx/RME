@@ -31,7 +31,7 @@ module Cache
       Game_Temp.cached_map =
         [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
     end
-    return Game_Temp.cached_map[1]
+    return Game_Temp.cached_map[1].custom_deep_clone
   end
 end
 
@@ -2549,9 +2549,9 @@ class Game_Map
   # * Add event to map
   #--------------------------------------------------------------------------
   def add_event(map_id, event_id, new_id,x=nil,y=nil)
-    map = Cache.map(map_id)
+    map = load_data(sprintf("Data/Map%03d.rvdata2", map_id))
     return unless map
-    event = map.events[event_id]
+    event = map.events.fetch(event_id, nil).custom_deep_clone
     return unless event
     event.id = new_id
     clone_events = @events.clone
@@ -2561,7 +2561,7 @@ class Game_Map
     @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
-    @max_event_id = [@max_event_id, new_id].max
+    @max_event_id += 1
     SceneManager.scene.refresh_spriteset
   end
   #--------------------------------------------------------------------------
