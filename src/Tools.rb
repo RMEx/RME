@@ -333,7 +333,7 @@ class Graphical_Eval2
     @candidates.each_index do |c|
       @completion_candidates[c] = Gui::Label.new(
         parent: @completion_list,
-        value: @candidates[c], y: 18*c
+        value: @candidates[c], y: 18*c,
       )
     end
     @completion_list.set(
