@@ -953,28 +953,13 @@ class String
   # * Complete at point
   #--------------------------------------------------------------------------
   def complete_at_point(i)
-    tokens = extract_tokens(i-1).map {|s| (!s) ? [s] : s.split(/\.|\:\:/)}.flatten
+    tokens = extract_tokens(i-1).map {|s| (!s) ? [s] : s.split(/\s/)}.flatten
     token = tokens[-1]
     return [] unless token
-    if tokens[-2]
-      # Need a receiver
-      begin
-        receiver = eval(tokens[-2], $game_map.interpreter.get_binding)
-        container = receiver.methods
-        konst  = (receiver.respond_to?(:constants)) ? receiver.constants : []
-        candidates = token.auto_complete(container + konst)
-      rescue Exception => exc
-        return []
-      end
-    else
-      # Isolate token
-      container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
-      candidates = token.auto_complete(container)
-    end
-    k = candidates.select do |e|
-          token.damerau_levenshtein(e[0..(token.length-1)]) < 3
-        end
-    return k.length > 30 ? [] : k[0..7].unshift(token)
+    container = Command.singleton_methods + Object.constants + Kernel.methods + global_variables
+    candidates = token.auto_complete(container)
+    k = candidates.select { |e| token.damerau_levenshtein(e[0..(token.length-1)]) < 3 }
+    return k[0..7].unshift(token)
   end
 end
 

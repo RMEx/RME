@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Contient la liste des exemples
 
+if $STAGING
+
 ASample.new('Parcourir simplement un tableau en événement',
 ['length', 'get'], 27)
 
@@ -58,3 +60,5 @@ ASample.new('Flash des tile du même ID sur une carte',
 
 ASample.new('Flash des cases du même terrain_tag',
 ['get_squares_by_terrain', 'length', 'get', 'flash_square'], 26)
+
+end
