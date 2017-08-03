@@ -344,7 +344,8 @@ class Graphical_Eval2
   #--------------------------------------------------------------------------
   def update_cursor
     return if self.class.stack.length == 0
-    if Devices::Keys::Up.trigger? || Devices::Keys::Down.trigger?
+    if ((Devices::Keys::Up.trigger? || Devices::Keys::Down.trigger?) && (
+      !@completion_list || @completion_list.disposed?))
       self.class.cursor += (Keys::Down.press?) ? 1 : -1 
       self.class.cursor = self.class.cursor % self.class.stack.length
       @textfield.value = self.class.stack[self.class.cursor]
