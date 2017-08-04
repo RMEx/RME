@@ -7,8 +7,15 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID, comme les images.
 
 ## Liste des commandes
+*    [pixel_in_text?(id, x, y, *precise)](#pixel_in_textid-x-y-precise)
 *    [text_change(id, text)](#text_changeid-text)
 *    [text_erase(id)](#text_eraseid)
+*    [text_mouse_click?(id, *precise)](#text_mouse_clickid-precise)
+*    [text_mouse_hover?(id, *precise)](#text_mouse_hoverid-precise)
+*    [text_mouse_press?(id, *key, *precise)](#text_mouse_pressid-key-precise)
+*    [text_mouse_release?(id, *key, *precise)](#text_mouse_releaseid-key-precise)
+*    [text_mouse_repeat?(id, *key, *precise)](#text_mouse_repeatid-key-precise)
+*    [text_mouse_trigger?(id, *key, *precise)](#text_mouse_triggerid-key-precise)
 *    [text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#text_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [text_move?(id)](#text_moveid)
 *    [text_opacity(id, *opacity, *duration, *wait_flag)](#text_opacityid-opacity-duration-wait_flag)
@@ -27,6 +34,17 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 
 
 ## Description des commandes
+##### pixel_in_text?(id, x, y, *precise)
+
+> Vérifie que le x, y sont inscrit dans le texte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
 ##### text_change(id, text)
 
 > Change le texte affiché à l'écran
@@ -44,6 +62,64 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
+##### text_mouse_click?(id, *precise)
+
+> Renvoie true si la souris survole et clique le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_hover?(id, *precise)
+
+> Renvoie true si la souris survole le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_press?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse en continu la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_release?(id, *key, *precise)
+
+> Renvoie true si la souris survole et relâche la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_repeat?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse successivement la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_trigger?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
 ##### text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)
 
 > Déplace un texte affiché à l'écran
