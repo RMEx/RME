@@ -1675,6 +1675,13 @@ module Gui
       @right_button = Button.new(name:'right_button', parent:self, x:self.width-12,
       trigger: trigger{@bar.x = [@bar.x + 10, course + 12].min})
     end
+    #--------------------------------------------------------------------------
+    # * Set bar size
+    #--------------------------------------------------------------------------
+    def set_bar_size(windows_size, content_size)
+      @bar.width = @track.inner.width * windows_size / content_size
+      update_drag_restriction
+    end
 
   end
 
@@ -1696,6 +1703,13 @@ module Gui
       trigger: trigger{@bar.y = [@bar.y - 10, start].max})
       @down_button = Button.new(name:'down_button', parent:self, y:self.height-12,
       trigger: trigger{@bar.y = [@bar.y + 10, course + 12].min})
+    end
+    #--------------------------------------------------------------------------
+    # * Set bar size
+    #--------------------------------------------------------------------------
+    def set_bar_size(windows_size, content_size)
+      @bar.height = @track.inner.height * windows_size / content_size
+      update_drag_restriction
     end
 
   end
@@ -1978,12 +1992,12 @@ module CSS
     border: 0
 
   set '.track',
-    background_color: get_color('gray'),
+    background_color: Color.new('#113f59'),
     padding: 0
     
   set '.bar',
-    background_color: get_color('white'),
-    border_color: get_color('gray')
+    background_color: Color.new('#19bec0'),
+    border_color: Color.new('#113f59')
     
   #--------------------------------------------------------------------------
   # * Horizontal TrackBar
@@ -2020,13 +2034,14 @@ module CSS
   #--------------------------------------------------------------------------
   # * Horizontal Scrollbar
   #--------------------------------------------------------------------------
-  button_font = fon
+  button_font = fon.clone
   button_font.size = 8
-  button_font.color = get_color('gray')
+  button_font.color = Color.new('#113f59')
 
   set 'Gui::ScrollBar',
     width:  100.percent,
-    height: 12
+    height: 12,
+    max_value: 100
 
   set 'Gui::ScrollBar .track',
     width:  100.percent,
@@ -2044,8 +2059,8 @@ module CSS
     padding: 0,
     font: button_font,
     border: 1,
-    background_color: get_color('white'),
-    border_color: get_color('gray')
+    background_color: Color.new('#19bec0'),
+    border_color: Color.new('#113f59')
 
   set 'Gui::ScrollBar .right_button',
     title: '▶'
@@ -2058,7 +2073,8 @@ module CSS
   #--------------------------------------------------------------------------
   set 'Gui::VerticalScrollBar',
     width:  12,
-    height: 100.percent
+    height: 100.percent,
+    max_value: 100
 
   set 'Gui::VerticalScrollBar .track',
     width:  100.percent,
@@ -2076,8 +2092,8 @@ module CSS
     padding: 0,
     font: button_font,
     border: 1,
-    background_color: get_color('white'),
-    border_color: get_color('gray')
+    background_color: Color.new('#19bec0'),
+    border_color: Color.new('#113f59')
 
   set 'Gui::VerticalScrollBar .up_button',
     title: '▲'
