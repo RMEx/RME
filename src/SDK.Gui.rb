@@ -1550,7 +1550,7 @@ module Gui
     def initialize(args=nil)
       super(args)
       @track = Box.new(name:'track', parent:self)
-      @bar   = Box.new(name:'bar', parent:self)
+      @bar   = Box.new(name:'bar', parent:self, x:start)
       Draggable << @bar
       update_drag_restriction
     end
@@ -1604,7 +1604,32 @@ module Gui
   #  Vertical Trackbar
   #==============================================================================
 
-  class VerticalTrackBar < TrackBar
+  class VerticalTrackBar < Box
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :track, :bar
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = max_value:, value:, x:, y:, width:
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      @track = Box.new(name:'track', parent:self)
+      @bar   = Box.new(name:'bar', parent:self, y:start)
+      Draggable << @bar
+      update_drag_restriction
+    end
+    #--------------------------------------------------------------------------
+    # * Responsive computing
+    #--------------------------------------------------------------------------
+    def compute
+      return super unless @bar
+      v = value
+      super
+      self.value = v
+      update_drag_restriction
+    end
     #--------------------------------------------------------------------------
     # * Shortcuts
     #--------------------------------------------------------------------------
@@ -1637,7 +1662,21 @@ module Gui
   #  Horizontal ScrollBar
   #==============================================================================
 
-  class ScrollBar < TrackBar; ;end
+  class ScrollBar < TrackBar
+
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = max_value:, value:, x:, y:, width:
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      @left_button = Button.new(name:'left_button', parent:self,
+      trigger: trigger{@bar.x = [@bar.x - 10, start].max})
+      @right_button = Button.new(name:'right_button', parent:self, x:self.width-12,
+      trigger: trigger{@bar.x = [@bar.x + 10, course + 12].min})
+    end
+
+  end
 
   #==============================================================================
   # ** Gui::VerticalScrollBar
@@ -1645,7 +1684,21 @@ module Gui
   #  Vertical ScrollBar
   #==============================================================================
 
-  class VerticalScrollBar < VerticalTrackBar; ;end
+  class VerticalScrollBar < VerticalTrackBar
+  
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = max_value:, value:, x:, y:, width:
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      @up_button = Button.new(name:'up_button', parent:self,
+      trigger: trigger{@bar.y = [@bar.y - 10, start].max})
+      @down_button = Button.new(name:'down_button', parent:self, y:self.height-12,
+      trigger: trigger{@bar.y = [@bar.y + 10, course + 12].min})
+    end
+
+  end
 
   #==============================================================================
   # ** Gui::Pannel
@@ -1967,33 +2020,71 @@ module CSS
   #--------------------------------------------------------------------------
   # * Horizontal Scrollbar
   #--------------------------------------------------------------------------
+  button_font = fon
+  button_font.size = 8
+  button_font.color = get_color('gray')
+
   set 'Gui::ScrollBar',
     width:  100.percent,
-    height: 8
+    height: 12
 
   set 'Gui::ScrollBar .track',
     width:  100.percent,
-    height: 100.percent
+    height: 100.percent,
+    margin: [0,12],
+    border: 0
 
   set 'Gui::ScrollBar .bar',
-    width:  20,
+    width:  50.percent,
     height: 100.percent
+
+  set 'Gui::ScrollBar .right_button', 'Gui::ScrollBar .left_button',
+    width:  12,
+    height: 12,
+    padding: 0,
+    font: button_font,
+    border: 1,
+    background_color: get_color('white'),
+    border_color: get_color('gray')
+
+  set 'Gui::ScrollBar .right_button',
+    title: '▶'
+
+  set 'Gui::ScrollBar .left_button',
+    title: '◀'
 
   #--------------------------------------------------------------------------
   # * Vertical Scrollbar
   #--------------------------------------------------------------------------
   set 'Gui::VerticalScrollBar',
-    width:  8,
+    width:  12,
     height: 100.percent
 
   set 'Gui::VerticalScrollBar .track',
     width:  100.percent,
-    height: 100.percent
+    height: 100.percent,
+    margin: [12,0],
+    border: 0
     
   set 'Gui::VerticalScrollBar .bar',
     width:  100.percent,
-    height: 20
-  
+    height: 50.percent
+
+  set 'Gui::VerticalScrollBar .up_button', 'Gui::VerticalScrollBar .down_button',
+    width:  12,
+    height: 12,
+    padding: 0,
+    font: button_font,
+    border: 1,
+    background_color: get_color('white'),
+    border_color: get_color('gray')
+
+  set 'Gui::VerticalScrollBar .up_button',
+    title: '▲'
+
+  set 'Gui::VerticalScrollBar .down_button',
+    title: '▼'
+
 end
 
 end
