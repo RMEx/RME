@@ -13810,18 +13810,18 @@ class Graphical_Eval
     execute_command if Devices::Keys::Enter.trigger? && !in_completion?
     a = @textfield.formatted_value
     @textfield.update
-    update_completion if Devices::Keys::Tab.trigger? && !in_completion?
     update_completion_box
+    update_completion if Devices::Keys::Tab.trigger? && !in_completion?
   end
   
   #--------------------------------------------------------------------------
   # * Update Autocompletion
   #--------------------------------------------------------------------------
   def update_completion(i = 0)
-    candidates = completion_candidates.reverse 
+    candidates = completion_candidates
     return if candidates.length < 2
-    @token = candidates.pop
-    @candidates = candidates
+    @token = candidates.shift
+    @candidates = candidates.reverse
     draw_completion_box(i)
   end
 
@@ -13833,6 +13833,7 @@ class Graphical_Eval
     fon.color = Color.new('#113f59')
     fon.outline = false
     @i = i % (@candidates.length)
+    p [@i, @candidates]
     @last_text_completed = @textfield.formatted_value
     @candidates = @candidates.rotate(@i)
     destroy_completion
