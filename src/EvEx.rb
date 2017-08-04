@@ -2783,11 +2783,11 @@ class Sprite_Text < Sprite
     end
     width, height = widths.max, heights.max
     total_height = height * lines.length
-    self.bitmap = Bitmap.new(width+32, total_height)
+    self.bitmap = Bitmap.new(width, total_height)
     self.bitmap.font = font
     iterator = 0
     lines.each do |line|
-      self.bitmap.draw_text(0, iterator, width+32, height, line, 0)
+      self.bitmap.draw_text(0, iterator, width, height, line, 0)
       iterator += height
     end
   end
@@ -3275,6 +3275,7 @@ class Spriteset_Map
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :picture_sprites
+  attr_accessor :text_sprites
   attr_accessor :character_sprites
   attr_accessor :tilemap
   #--------------------------------------------------------------------------

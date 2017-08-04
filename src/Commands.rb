@@ -2298,6 +2298,33 @@ module RMECommands
     end
 
     #--------------------------------------------------------------------------
+    # * Point in text
+    #--------------------------------------------------------------------------
+    def pixel_in_text?(id, x, y, precise = false)
+      spr = spriteset.text_sprites[id]
+      return false unless spr
+      precise ? spr.precise_in?(x, y) : spr.in?(x, y)
+    end
+    def text_mouse_hover?(id, precise = false)
+      pixel_in_text?(id, Mouse.x, Mouse.y, precise)
+    end
+    def text_mouse_click?(id, precise = false)
+      text_mouse_hover?(id, precise) && Mouse.click?
+    end
+    def text_mouse_press?(id, key = :mouse_left, precise = false)
+      text_mouse_hover?(id, precise) && Mouse.press?(key)
+    end
+    def text_mouse_trigger?(id, key = :mouse_left, precise = false)
+      text_mouse_hover?(id, precise) && Mouse.trigger?(key)
+    end
+    def text_mouse_repeat?(id, key = :mouse_left, precise = false)
+      text_mouse_hover?(id, precise) && Mouse.repeat?(key)
+    end
+    def text_mouse_release?(id, key = :mouse_left, precise = false)
+      text_mouse_hover?(id, precise) && Mouse.release?(key)
+    end
+
+    #--------------------------------------------------------------------------
     # * Clear all texts
     #--------------------------------------------------------------------------
     def texts_clear; Game_Screen.get.clear_texts; end

@@ -25,6 +25,7 @@ Commandes standards
 *    [min(a, b)](#mina-b)
 *    [percent(value, max)](#percentvalue-max)
 *    [pick_random(*elts)](#pick_randomelts)
+*    [pixel_in_text?(id, x, y, *precise)](#pixel_in_textid-x-y-precise)
 *    [qte(key, time, *strict)](#qtekey-time-strict)
 *    [random(min, max)](#randommin-max)
 *    [random_combination(len, *keys)](#random_combinationlen-keys)
@@ -33,6 +34,12 @@ Commandes standards
 *    [session_username](#session_username)
 *    [split_each_char(str)](#split_each_charstr)
 *    [text_angle(id, *value)](#text_angleid-value)
+*    [text_mouse_click?(id, *precise)](#text_mouse_clickid-precise)
+*    [text_mouse_hover?(id, *precise)](#text_mouse_hoverid-precise)
+*    [text_mouse_press?(id, *key, *precise)](#text_mouse_pressid-key-precise)
+*    [text_mouse_release?(id, *key, *precise)](#text_mouse_releaseid-key-precise)
+*    [text_mouse_repeat?(id, *key, *precise)](#text_mouse_repeatid-key-precise)
+*    [text_mouse_trigger?(id, *key, *precise)](#text_mouse_triggerid-key-precise)
 *    [tone(red, green, blue, *gray)](#tonered-green-blue-gray)
 *    [unflash_rect(x, y, width, height)](#unflash_rectx-y-width-height)
 *    [unflash_square(x, y)](#unflash_squarex-y)
@@ -209,6 +216,17 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*elts`|`ArgsList`|éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])  
+##### pixel_in_text?(id, x, y, *precise)
+
+> Vérifie que le x, y sont inscrit dans le texte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
 ##### qte(key, time, *strict)
 
 > Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.
@@ -272,6 +290,64 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|Id du texte  
 `*value`|`Fixnum`|Nouvel angle (peut être vide)  
+##### text_mouse_click?(id, *precise)
+
+> Renvoie true si la souris survole et clique le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_hover?(id, *precise)
+
+> Renvoie true si la souris survole le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_press?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse en continu la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_release?(id, *key, *precise)
+
+> Renvoie true si la souris survole et relâche la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_repeat?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse successivement la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+##### text_mouse_trigger?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
 ##### tone(red, green, blue, *gray)
 
 > Renvoie une teinte

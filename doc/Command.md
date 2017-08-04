@@ -514,6 +514,7 @@ Collection des commandes EventExtender
 *    [Command.pixel_in_event?(id, x, y, *precise)](#commandpixel_in_eventid-x-y-precise)
 *    [Command.pixel_in_picture?(id, x, y, *precise)](#commandpixel_in_pictureid-x-y-precise)
 *    [Command.pixel_in_player?(x, y, *precise)](#commandpixel_in_playerx-y-precise)
+*    [Command.pixel_in_text?(id, x, y, *precise)](#commandpixel_in_textid-x-y-precise)
 *    [Command.pixels_between(idA, idB)](#commandpixels_betweenida-idb)
 *    [Command.play_time](#commandplay_time)
 *    [Command.player_brutal_stop_trail](#commandplayer_brutal_stop_trail)
@@ -683,6 +684,12 @@ Collection des commandes EventExtender
 *    [Command.text_angle(id, *value)](#commandtext_angleid-value)
 *    [Command.text_change(id, text)](#commandtext_changeid-text)
 *    [Command.text_erase(id)](#commandtext_eraseid)
+*    [Command.text_mouse_click?(id, *precise)](#commandtext_mouse_clickid-precise)
+*    [Command.text_mouse_hover?(id, *precise)](#commandtext_mouse_hoverid-precise)
+*    [Command.text_mouse_press?(id, *key, *precise)](#commandtext_mouse_pressid-key-precise)
+*    [Command.text_mouse_release?(id, *key, *precise)](#commandtext_mouse_releaseid-key-precise)
+*    [Command.text_mouse_repeat?(id, *key, *precise)](#commandtext_mouse_repeatid-key-precise)
+*    [Command.text_mouse_trigger?(id, *key, *precise)](#commandtext_mouse_triggerid-key-precise)
 *    [Command.text_move(id, duration, wait_flag, x, y, zoom_x, zoom_y, opacity, blend_type, origin)](#commandtext_moveid-duration-wait_flag-x-y-zoom_x-zoom_y-opacity-blend_type-origin)
 *    [Command.text_move?(id)](#commandtext_moveid)
 *    [Command.text_opacity(id, *opacity, *duration, *wait_flag)](#commandtext_opacityid-opacity-duration-wait_flag)
@@ -7111,6 +7118,21 @@ Nom|Type|Description
 
 
 
+##### Command.pixel_in_text?(id, x, y, *precise)
+
+> Vérifie que le x, y sont inscrit dans le texte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+
+
+
+
 ##### Command.pixels_between(idA, idB)
 
 > Renvoie le nombre de pixels entre deux évènements référencés par leurs ID's
@@ -9034,6 +9056,88 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|Identifiant du texte  
+
+
+
+
+##### Command.text_mouse_click?(id, *precise)
+
+> Renvoie true si la souris survole et clique le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+
+
+
+
+##### Command.text_mouse_hover?(id, *precise)
+
+> Renvoie true si la souris survole le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+
+
+
+
+##### Command.text_mouse_press?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse en continu la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+
+
+
+
+##### Command.text_mouse_release?(id, *key, *precise)
+
+> Renvoie true si la souris survole et relâche la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+
+
+
+
+##### Command.text_mouse_repeat?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse successivement la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
+
+
+
+
+##### Command.text_mouse_trigger?(id, *key, *precise)
+
+> Renvoie true si la souris survole et presse la touche référencée sur le texte référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du texte  
+`*key`|`Symbol`|Touche de la souris (par défaut, :mouse_left  
+`*precise`|`Boolean`|Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false  
 
 
 
