@@ -1635,6 +1635,7 @@ module Gui
     #--------------------------------------------------------------------------
     def start;  @track.inner.y; end
     def course; @track.inner.height - @bar.height; end
+    def max_value; @style[:max_value] || 255; end
     def value;  max_value.to_f * (@bar.y-start) / course; end
     #--------------------------------------------------------------------------
     # * Move bar to value
@@ -1674,11 +1675,14 @@ module Gui
       trigger: trigger{@bar.x = [@bar.x - 10, start].max})
       @right_button = Button.new(name:'right_button', parent:self, x:self.width-12,
       trigger: trigger{@bar.x = [@bar.x + 10, course + 12].min})
+      set_bar_size(@style[:windows_size], @style[:content_size])
     end
     #--------------------------------------------------------------------------
     # * Set bar size
     #--------------------------------------------------------------------------
     def set_bar_size(windows_size, content_size)
+      windows_size = windows_size || 50
+      content_size = content_size || 100
       @bar.width = @track.inner.width * windows_size / content_size
       update_drag_restriction
     end
@@ -1703,11 +1707,14 @@ module Gui
       trigger: trigger{@bar.y = [@bar.y - 10, start].max})
       @down_button = Button.new(name:'down_button', parent:self, y:self.height-12,
       trigger: trigger{@bar.y = [@bar.y + 10, course + 12].min})
+      set_bar_size(@style[:windows_size], @style[:content_size])
     end
     #--------------------------------------------------------------------------
     # * Set bar size
     #--------------------------------------------------------------------------
     def set_bar_size(windows_size, content_size)
+      windows_size = windows_size || 50
+      content_size = content_size || 100
       @bar.height = @track.inner.height * windows_size / content_size
       update_drag_restriction
     end
