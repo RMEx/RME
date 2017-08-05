@@ -1550,7 +1550,7 @@ module Gui
     def initialize(args=nil)
       super(args)
       @track = Box.new(name:'track', parent:self)
-      @bar   = Box.new(name:'bar', parent:self, x:start)
+      @bar   = Box.new(name:'bar', parent:self, x:start, drag: @style[:drag])
       Draggable << @bar
       update_drag_restriction
     end
@@ -1616,7 +1616,7 @@ module Gui
     def initialize(args=nil)
       super(args)
       @track = Box.new(name:'track', parent:self)
-      @bar   = Box.new(name:'bar', parent:self, y:start)
+      @bar   = Box.new(name:'bar', parent:self, y:start, drag: @style[:drag])
       Draggable << @bar
       update_drag_restriction
     end
@@ -1672,17 +1672,17 @@ module Gui
     def initialize(args=nil)
       super(args)
       @left_button = Button.new(name:'left_button', parent:self,
-      trigger: trigger{@bar.x = [@bar.x - 10, start].max})
+      trigger: trigger{@bar.x = [@bar.x - 10, start].max; @style[:drag].call if @style[:drag].is_a? Proc})
       @right_button = Button.new(name:'right_button', parent:self, x:self.width-12,
-      trigger: trigger{@bar.x = [@bar.x + 10, course + 12].min})
+      trigger: trigger{@bar.x = [@bar.x + 10, course + 12].min; @style[:drag].call if @style[:drag].is_a? Proc})
       set_bar_size(@style[:windows_size], @style[:content_size])
     end
     #--------------------------------------------------------------------------
     # * Set bar size
     #--------------------------------------------------------------------------
     def set_bar_size(windows_size, content_size)
-      windows_size = windows_size || 50
-      content_size = content_size || 100
+      windows_size ||= 50
+      content_size ||= 100
       @bar.width = @track.inner.width * windows_size / content_size
       update_drag_restriction
     end
@@ -1704,17 +1704,17 @@ module Gui
     def initialize(args=nil)
       super(args)
       @up_button = Button.new(name:'up_button', parent:self,
-      trigger: trigger{@bar.y = [@bar.y - 10, start].max})
+      trigger: trigger{@bar.y = [@bar.y - 10, start].max; @style[:drag].call if @style[:drag].is_a? Proc})
       @down_button = Button.new(name:'down_button', parent:self, y:self.height-12,
-      trigger: trigger{@bar.y = [@bar.y + 10, course + 12].min})
+      trigger: trigger{@bar.y = [@bar.y + 10, course + 12].min; @style[:drag].call if @style[:drag].is_a? Proc})
       set_bar_size(@style[:windows_size], @style[:content_size])
     end
     #--------------------------------------------------------------------------
     # * Set bar size
     #--------------------------------------------------------------------------
     def set_bar_size(windows_size, content_size)
-      windows_size = windows_size || 50
-      content_size = content_size || 100
+      windows_size ||= 50
+      content_size ||= 100
       @bar.height = @track.inner.height * windows_size / content_size
       update_drag_restriction
     end
