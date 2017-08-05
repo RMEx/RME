@@ -7,6 +7,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID, comme les images.
 
 ## Liste des commandes
+*    [fresh_text_id](#fresh_text_id)
 *    [pixel_in_text?(id, x, y, *precise)](#pixel_in_textid-x-y-precise)
 *    [text_change(id, text)](#text_changeid-text)
 *    [text_erase(id)](#text_eraseid)
@@ -34,6 +35,11 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 
 
 ## Description des commandes
+##### fresh_text_id
+
+> Génère un ID non utilisé pour un texte
+
+  
 ##### pixel_in_text?(id, x, y, *precise)
 
 > Vérifie que le x, y sont inscrit dans le texte

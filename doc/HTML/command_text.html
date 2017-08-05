@@ -1,6 +1,7 @@
 <!DOCTYPE html><html><head><meta charset='utf-8' /><title></title></head><h1>RME : RPG Maker Extender</h1>
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='Liste des commandes.html'>Index des commandes</a> > <strong>Textes</strong><hr /><h1>Textes</h1>
 Commandes pour afficher du texte à l'écran, les textes sont référencés par des ID, comme les images.<br /><br /><h2>Liste des commandes<ul></h2>
+<li><a href='#fresh_text_id'>fresh_text_id</a></li>
 <li><a href='#pixel_in_textid-x-y-precise'>pixel_in_text?(id, x, y, *precise)</a></li>
 <li><a href='#text_changeid-text'>text_change(id, text)</a></li>
 <li><a href='#text_eraseid'>text_erase(id)</a></li>
@@ -26,7 +27,8 @@ Commandes pour afficher du texte à l'écran, les textes sont référencés par 
 <li><a href='#text_zoom_yid-zoom_y-duration-wait_flag'>text_zoom_y(id, zoom_y, *duration, *wait_flag)</a></li>
 <li><a href='#texts_clear'>texts_clear</a></li>
 </ul><h2>Description des commandes</h2>
-<strong name='pixel_in_textid-x-y-precise' id='pixel_in_textid-x-y-precise'>pixel_in_text?(id, x, y, *precise)</strong><br /><br /><blockquote>Vérifie que le x, y sont inscrit dans le texte</blockquote>  
+<strong name='fresh_text_id' id='fresh_text_id'>fresh_text_id</strong><br /><br /><blockquote>Génère un ID non utilisé pour un texte</blockquote>  
+</table><strong name='pixel_in_textid-x-y-precise' id='pixel_in_textid-x-y-precise'>pixel_in_text?(id, x, y, *precise)</strong><br /><br /><blockquote>Vérifie que le x, y sont inscrit dans le texte</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID du texte</td></tr><tr><td><code>x</code></td><td><code>Fixnum</code></td><td>Coordonnées X</td></tr><tr><td><code>y</code></td><td><code>Fixnum</code></td><td>Coordonnées Y</td></tr><tr><td><code>*precise</code></td><td><code>Boolean</code></td><td>Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false</td></tr></table><strong name='text_changeid-text' id='text_changeid-text'>text_change(id, text)</strong><br /><br /><blockquote>Change le texte affiché à l'écran</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Identifiant du texte</td></tr><tr><td><code>text</code></td><td><code>String</code></td><td>Nouveau texte</td></tr></table><strong name='text_eraseid' id='text_eraseid'>text_erase(id)</strong><br /><br /><blockquote>Supprime le texte affiché à l'écran</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Identifiant du texte</td></tr></table><strong name='text_mouse_clickid-precise' id='text_mouse_clickid-precise'>text_mouse_click?(id, *precise)</strong><br /><br /><blockquote>Renvoie true si la souris survole et clique le texte référencé par son ID</blockquote>  

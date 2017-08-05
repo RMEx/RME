@@ -1179,7 +1179,7 @@ class Game_Text
   # * Check if a text is erased
   #--------------------------------------------------------------------------
   def erased? 
-    @profile
+    !@profile
   end
   #--------------------------------------------------------------------------
   # * Update frame
@@ -1246,8 +1246,8 @@ class Game_Texts
   # * Fresh id
   #--------------------------------------------------------------------------
   def fresh_id
-    i = @data.find_index {|text| !text || text.erased }
-    return i || @data.length
+    i = @data.find_index {|text| !text || text.erased? }
+    return (i || @data.length)
   end
   #--------------------------------------------------------------------------
   # * Get a text
