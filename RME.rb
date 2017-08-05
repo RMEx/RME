@@ -11983,7 +11983,8 @@ module RMECommands
       event_transfert(0, new_x, new_y)
     end
 
-    def player_teleport(map_id, x, y, direction, fade_type = 0)
+    def player_teleport(map_id, x, y, direction = nil, fade_type = 0)
+      direction ||= $game_player.direction
       $game_player.reserve_transfer(map_id, x, y, direction)
       $game_temp.fade_type = fade_type
       Fiber.yield while $game_player.transfer?
@@ -19602,7 +19603,7 @@ link_method_documentation 'Command.player_teleport',
 		:map_id => ["ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte", :Fixnum],
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
-		:direction => ["Nouvelle direction pour le héro (2,4,6 ou 8)", :Fixnum],
+		:"*direction" => ["Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction", :Fixnum],
     :"*fade_type" => ["Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné", :Fixnum]
 
 	}

@@ -1621,7 +1621,8 @@ module RMECommands
       event_transfert(0, new_x, new_y)
     end
 
-    def player_teleport(map_id, x, y, direction, fade_type = 0)
+    def player_teleport(map_id, x, y, direction = nil, fade_type = 0)
+      direction ||= $game_player.direction
       $game_player.reserve_transfer(map_id, x, y, direction)
       $game_temp.fade_type = fade_type
       Fiber.yield while $game_player.transfer?

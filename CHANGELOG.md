@@ -1,5 +1,6 @@
 # RME Changelog
 
+*  `4.3 => 06/08/2017 01:30` Direction facultative dans player_teleport (Nuki, reportée par Zer0zer0x)
 *  `4.3 => 06/08/2017 01:00` Retrait du DocGenerator du package.rb (Nuki)
 *  `4.2 => 05/08/2017 19:30` Ajout commandes fresh_quelquechose_id (Nuki, reporté par Husk)
 *  `4.1 => 04/08/2017 17:50` Ajout commandes d'intéraction texte/souris (Joke, reporté par Spyrojojo)

@@ -149,7 +149,7 @@ Commandes relatives aux évènements
 *    [player_screen_x](#player_screen_x)
 *    [player_screen_y](#player_screen_y)
 *    [player_stop_trail](#player_stop_trail)
-*    [player_teleport(map_id, x, y, direction, *fade_type)](#player_teleportmap_id-x-y-direction-fade_type)
+*    [player_teleport(map_id, x, y, *direction, *fade_type)](#player_teleportmap_id-x-y-direction-fade_type)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
 *    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
@@ -1337,7 +1337,7 @@ Nom|Type|Description
 > Arrête la traînée sur le joueur
 
   
-##### player_teleport(map_id, x, y, direction, *fade_type)
+##### player_teleport(map_id, x, y, *direction, *fade_type)
 
 > Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
 
@@ -1347,7 +1347,7 @@ Nom|Type|Description
 `map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
-`direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8)  
+`*direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction  
 `*fade_type`|`Fixnum`|Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné  
 ##### player_through(*flag)
 
