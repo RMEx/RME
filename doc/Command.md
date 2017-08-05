@@ -558,7 +558,7 @@ Collection des commandes EventExtender
 *    [Command.player_screen_x](#commandplayer_screen_x)
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_stop_trail](#commandplayer_stop_trail)
-*    [Command.player_teleport(map_id, x, y, direction, *fade_type)](#commandplayer_teleportmap_id-x-y-direction-fade_type)
+*    [Command.player_teleport(map_id, x, y, *direction, *fade_type)](#commandplayer_teleportmap_id-x-y-direction-fade_type)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
 *    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
@@ -7600,7 +7600,7 @@ Nom|Type|Description
 
 
 
-##### Command.player_teleport(map_id, x, y, direction, *fade_type)
+##### Command.player_teleport(map_id, x, y, *direction, *fade_type)
 
 > Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)
 
@@ -7610,7 +7610,7 @@ Nom|Type|Description
 `map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
-`direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8)  
+`*direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction  
 `*fade_type`|`Fixnum`|Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné  
 
 
