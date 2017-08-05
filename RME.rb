@@ -5162,7 +5162,7 @@ module Gui
     def initialize(args=nil)
       super(args)
       @track = Box.new(name:'track', parent:self)
-      @bar   = Box.new(name:'bar', parent:self)
+      @bar   = Box.new(name:'bar', parent:self, x:@track.inner.x)
       Draggable << @bar
       update_drag_restriction
     end
@@ -5249,7 +5249,23 @@ module Gui
   #  Horizontal ScrollBar
   #==============================================================================
 
-  class ScrollBar < TrackBar; ;end
+  class ScrollBar < TrackBar
+
+    #--------------------------------------------------------------------------
+    # * Public instances variables
+    #--------------------------------------------------------------------------
+    attr_accessor :track, :bar
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = max_value:, value:, x:, y:, width:
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      @left_button = Button.new(name:'left_button', parent:self)
+      @right_button = Button.new(name:'right_button', parent:self, x:(self.width-8))
+    end
+
+  end
 
   #==============================================================================
   # ** Gui::VerticalScrollBar
@@ -5585,11 +5601,16 @@ module CSS
 
   set 'Gui::ScrollBar .track',
     width:  100.percent,
-    height: 100.percent
+    height: 100.percent,
+    margin: [0,8]
 
   set 'Gui::ScrollBar .bar',
-    width:  20,
+    width:  40,
     height: 100.percent
+
+  set 'Gui::ScrollBar .left_button','Gui::ScrollBar .right_button',
+    width:  8,
+    height: 8
 
   #--------------------------------------------------------------------------
   # * Vertical Scrollbar
@@ -5604,7 +5625,7 @@ module CSS
     
   set 'Gui::VerticalScrollBar .bar',
     width:  100.percent,
-    height: 20
+    height: 40
   
 end
 
