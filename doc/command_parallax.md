@@ -7,11 +7,13 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives à la manipulation des panoramas
 
 ## Liste des commandes
+*    [fresh_parallax_id](#fresh_parallax_id)
 *    [parallax_autoscroll(id, speed_x, *duration, *wait_flag)](#parallax_autoscrollid-speed_x-duration-wait_flag)
 *    [parallax_autoscroll_x(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_xid-speed-duration-wait_flag-ease)
 *    [parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)](#parallax_autoscroll_yid-speed-duration-wait_flag-ease)
 *    [parallax_blend(id, blend_type)](#parallax_blendid-blend_type)
 *    [parallax_erase(id)](#parallax_eraseid)
+*    [parallax_erased?(id)](#parallax_erasedid)
 *    [parallax_opacity(id, opacity, *duration, *wait_flag, *ease)](#parallax_opacityid-opacity-duration-wait_flag-ease)
 *    [parallax_scroll(id, x, y)](#parallax_scrollid-x-y)
 *    [parallax_scroll_x(id, speed)](#parallax_scroll_xid-speed)
@@ -27,6 +29,11 @@ Commandes relatives à la manipulation des panoramas
 
 
 ## Description des commandes
+##### fresh_parallax_id
+
+> Génère un ID non utilisé pour une panorama
+
+  
 ##### parallax_autoscroll(id, speed_x, *duration, *wait_flag)
 
 > Défilement horizontal et vertical automatique d'un panorama
@@ -74,6 +81,14 @@ Nom|Type|Description
 ##### parallax_erase(id)
 
 > Supprime un panorama
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+##### parallax_erased?(id)
+
+> Renvoie true si le panorama référencé par son ID a été supprimé, false sinon
 
   
 Nom|Type|Description  

@@ -229,11 +229,17 @@ module RMECommands
       $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
     end
+    def fresh_parallax_id
+      $game_map.parallaxes.fresh_id
+    end
     #--------------------------------------------------------------------------
     # * Hide parallax
     #--------------------------------------------------------------------------
     def parallax_erase(id)
       $game_map.parallaxes[id].hide
+    end
+    def parallax_erased?(id)
+      $game_map.parallaxes[id].name.empty?
     end
     #--------------------------------------------------------------------------
     # * Hide all parallax
@@ -539,6 +545,11 @@ module RMECommands
     def picture_showed?(id)
       !picture_erased?(id)
     end
+
+    def fresh_picture_id
+      pictures.fresh_id
+    end
+
 
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
@@ -2144,6 +2155,13 @@ module RMECommands
   #==============================================================================
 
   module Texts
+
+    #--------------------------------------------------------------------------
+    # * Get a fresh text ID
+    #--------------------------------------------------------------------------
+    def fresh_text_id
+      Game_Screen.get.texts.fresh_id
+    end
 
     #--------------------------------------------------------------------------
     # * Display a text

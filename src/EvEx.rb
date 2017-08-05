@@ -1176,6 +1176,12 @@ class Game_Text
     @origin = 0
   end
   #--------------------------------------------------------------------------
+  # * Check if a text is erased
+  #--------------------------------------------------------------------------
+  def erased? 
+    !@profile
+  end
+  #--------------------------------------------------------------------------
   # * Update frame
   #--------------------------------------------------------------------------
   def update
@@ -1235,6 +1241,13 @@ class Game_Texts
   #--------------------------------------------------------------------------
   def initialize
     @data = []
+  end
+  #--------------------------------------------------------------------------
+  # * Fresh id
+  #--------------------------------------------------------------------------
+  def fresh_id
+    i = @data.find_index {|text| !text || text.erased? }
+    return (i || @data.length)
   end
   #--------------------------------------------------------------------------
   # * Get a text
@@ -2964,6 +2977,11 @@ class Game_Parallaxes
   def initialize
     @data = []
   end
+  # Returns a fresh picture id 
+  def fresh_id
+    i = @data.find_index {|parallax| !parallax || parallax.name.empty? }
+    return (i || @data.length)
+  end
   #--------------------------------------------------------------------------
   # * Get Picture
   #--------------------------------------------------------------------------
@@ -2990,6 +3008,11 @@ class Game_Pictures
   # cast to array
   def to_a
     return @data.compact
+  end
+  # Returns a fresh picture id 
+  def fresh_id
+    i = @data.find_index {|picture| !picture || picture.name.empty? }
+    return (i || @data.length)
   end
 end
 

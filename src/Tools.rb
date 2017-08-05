@@ -333,7 +333,6 @@ class Graphical_Eval
     fon.color = Color.new('#113f59')
     fon.outline = false
     @i = i % (@candidates.length)
-    p [@i, @candidates]
     @last_text_completed = @textfield.formatted_value
     @candidates = @candidates.rotate(@i)
     destroy_completion
