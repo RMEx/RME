@@ -20,7 +20,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Micro-événements](command_micro.md)
 *    [Souris](command_mouse.md)
 *    [Panoramas](command_parallax.md)
-*    [Parties](command_party.md)
+*    [Equipes](command_party.md)
 *    [Images](command_picture.md)
 *    [Sauvegardes](command_save.md)
 *    [Scenes](command_scene.md)
