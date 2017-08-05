@@ -229,11 +229,17 @@ module RMECommands
       $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
     end
+    def fresh_parallax_id
+      $game_map.parallaxes.fresh_id
+    end
     #--------------------------------------------------------------------------
     # * Hide parallax
     #--------------------------------------------------------------------------
     def parallax_erase(id)
       $game_map.parallaxes[id].hide
+    end
+    def parallax_erased?(id)
+      $game_map.parallaxes[id].name.empty?
     end
     #--------------------------------------------------------------------------
     # * Hide all parallax

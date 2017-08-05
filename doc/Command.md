@@ -276,6 +276,7 @@ Collection des commandes EventExtender
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
 *    [Command.fresh_event_id(*erased)](#commandfresh_event_iderased)
+*    [Command.fresh_parallax_id](#commandfresh_parallax_id)
 *    [Command.fresh_picture_id](#commandfresh_picture_id)
 *    [Command.fresh_text_id](#commandfresh_text_id)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
@@ -457,6 +458,7 @@ Collection des commandes EventExtender
 *    [Command.parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)](#commandparallax_autoscroll_yid-speed-duration-wait_flag-ease)
 *    [Command.parallax_blend(id, blend_type)](#commandparallax_blendid-blend_type)
 *    [Command.parallax_erase(id)](#commandparallax_eraseid)
+*    [Command.parallax_erased?(id)](#commandparallax_erasedid)
 *    [Command.parallax_opacity(id, opacity, *duration, *wait_flag, *ease)](#commandparallax_opacityid-opacity-duration-wait_flag-ease)
 *    [Command.parallax_scroll(id, x, y)](#commandparallax_scrollid-x-y)
 *    [Command.parallax_scroll_x(id, speed)](#commandparallax_scroll_xid-speed)
@@ -4113,6 +4115,15 @@ Nom|Type|Description
 
 
 
+##### Command.fresh_parallax_id
+
+> Génère un ID non utilisé pour une panorama
+
+  
+
+
+
+
 ##### Command.fresh_picture_id
 
 > Génère un ID non utilisé pour une picture
@@ -6269,6 +6280,18 @@ Nom|Type|Description
 ##### Command.parallax_erase(id)
 
 > Supprime un panorama
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID du panorama  
+
+
+
+
+##### Command.parallax_erased?(id)
+
+> Renvoie true si le panorama référencé par son ID a été supprimé, false sinon
 
   
 Nom|Type|Description  

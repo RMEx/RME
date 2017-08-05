@@ -2977,6 +2977,11 @@ class Game_Parallaxes
   def initialize
     @data = []
   end
+  # Returns a fresh picture id 
+  def fresh_id
+    i = @data.find_index {|parallax| !parallax || parallax.name.empty? }
+    return (i || @data.length)
+  end
   #--------------------------------------------------------------------------
   # * Get Picture
   #--------------------------------------------------------------------------
