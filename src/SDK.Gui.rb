@@ -403,7 +403,7 @@ class Viewport
   #--------------------------------------------------------------------------
   def compute_z
     if self.parent && self.parent.respond_to?(:z)
-      self.true_z = self.z + self.parent.true_z + 1
+      self.true_z = self.z + self.parent.true_z
     else
       self.true_z = self.z
     end
@@ -1664,7 +1664,6 @@ module Gui
   #==============================================================================
 
   class ScrollBar < TrackBar
-
     #--------------------------------------------------------------------------
     # * Object initialize
     # * optionnal named args = max_value:, value:, x:, y:, width:
@@ -1686,7 +1685,13 @@ module Gui
       @bar.width = @track.inner.width * windows_size / content_size
       update_drag_restriction
     end
-
+    #--------------------------------------------------------------------------
+    # * Responsive computing
+    #--------------------------------------------------------------------------
+    def compute
+      super
+      @right_button.x = self.width-12 if @right_button
+    end
   end
 
   #==============================================================================
@@ -1696,7 +1701,6 @@ module Gui
   #==============================================================================
 
   class VerticalScrollBar < VerticalTrackBar
-  
     #--------------------------------------------------------------------------
     # * Object initialize
     # * optionnal named args = max_value:, value:, x:, y:, width:
@@ -1718,7 +1722,87 @@ module Gui
       @bar.height = @track.inner.height * windows_size / content_size
       update_drag_restriction
     end
+    #--------------------------------------------------------------------------
+    # * Responsive computing
+    #--------------------------------------------------------------------------
+    def compute
+      super
+      @down_button.y = self.height-12 if @down_button
+    end
+  end
 
+  #==============================================================================
+  # ** Gui::ScrollableField
+  #------------------------------------------------------------------------------
+  #  Scrollable Field
+  #==============================================================================
+
+  class ScrollableField < Box
+    #--------------------------------------------------------------------------
+    # * Object initialize
+    # * optionnal named args = x:, y:, width:, height:
+    #--------------------------------------------------------------------------
+    def initialize(args=nil)
+      super(args)
+      @field = Box.new(name:'field', parent:self)
+      @content = Box.new(name:'content', parent:@field)
+    end
+    #--------------------------------------------------------------------------
+    # * Pushes other in self
+    #--------------------------------------------------------------------------
+    def <<(oth)
+      @content << oth
+      if @content.width > @field.width
+        create_horizontal_scrollbar
+      else
+        @scrollbar.dispose if @scrollbar
+        @field.height = self.height
+      end
+      if @content.height > @field.height
+        create_vertical_scrollbar
+      else
+        @verticalscrollbar.dispose if @verticalscrollbar
+        @field.width = self.width
+      end
+      oth
+    end
+    #--------------------------------------------------------------------------
+    # * Create horizontal scrollbar
+    #--------------------------------------------------------------------------
+    def create_horizontal_scrollbar
+      @scrollbar ||= ScrollBar.new(
+        parent: self,
+        y: @field.height - 12,
+        drag: trigger{scroll_horizontally}
+      )
+      @scrollbar.set_bar_size(@field.width, @content.width)
+      @field.height = self.height - 12
+      @scrollbar.width = @field.width - 12 if @content.height > @field.height
+    end
+    #--------------------------------------------------------------------------
+    # * Create vertical scrollbar
+    #--------------------------------------------------------------------------
+    def create_vertical_scrollbar
+      @verticalscrollbar ||= VerticalScrollBar.new(
+        parent: self,
+        x: @field.width - 12,
+        drag: trigger{scroll_vertically}
+      )
+      @scrollbar.set_bar_size(@field.height, @content.height)
+      @field.width = self.width - 12
+    end
+    #--------------------------------------------------------------------------
+    # * Scroll horizontally
+    #--------------------------------------------------------------------------
+    def scroll_horizontally
+      @content.x = - ((@content.width - @field.width) * @scrollbar.value / 100)
+    end
+    #--------------------------------------------------------------------------
+    # * Scroll vertycally
+    #--------------------------------------------------------------------------
+    def scroll_vertically
+      @content.y = - ((@content.height - @field.height) * @verticalscrollbar.value / 100)
+    end
   end
 
   #==============================================================================
@@ -2107,6 +2191,25 @@ module CSS
 
   set 'Gui::VerticalScrollBar .down_button',
     title: '▼'
+
+  #--------------------------------------------------------------------------
+  # * Scrollable Field
+  #--------------------------------------------------------------------------
+
+  set 'Gui::ScrollableField', 'Gui::ScrollableField .field',
+    background: :none,
+    padding: 0,
+    border: 0,
+    width: 100.percent,
+    height: 100.percent
+
+  set 'Gui::ScrollableField .content',
+    background: :none,
+    padding: 0,
+    border: 0,
+    width: :auto,
+    height: :auto
+
 
 end
 
