@@ -11788,6 +11788,7 @@ module RMECommands
     def events_collide?(ev1, ev2)
       event1 = event(ev1)
       event2 = event(ev2)
+      return true if event1.x == event2.x && event1.y == event2.y
       flag = case event1.direction
       when 2; event2.x == event1.x && event2.y == event1.y+1
       when 4; event2.x == event1.x-1 && event2.y == event1.y
