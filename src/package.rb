@@ -1,7 +1,7 @@
 # Package description
 Package.new(
   name: 'RME',
-  version: vsn(0, 4, 2),
+  version: vsn(0, 4, 3),
   authors: {
     'Nuki' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
@@ -20,7 +20,6 @@ Package.new(
     'Commands.rb',
     'Incubator.rb',
     'Tools.rb',
-    'DocGenerator.rb',
     'Doc.rb'
   ],
   description: 'RME is a powerful tool to improve your RPGMaker VXAce experience!'

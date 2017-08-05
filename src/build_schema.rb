@@ -12,5 +12,6 @@ $STAGING = true
     "../src/DocGenerator.rb",
     "../src/Doc.rb", 
     "../src/SDK.Gui.rb", 
-    "../src/Tools.rb"
+    "../src/Tools.rb", 
+    "../src/Process.Doc.rb"
 ].each {|file| Kernel.send(:load, file)}
