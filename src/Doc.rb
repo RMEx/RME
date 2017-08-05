@@ -636,7 +636,7 @@ module Command
   register_command_category :picture, "Images", "Commandes relatives à la manipulation des images"
   register_command_category :parallax, "Panoramas", "Commandes relatives à la manipulation des panoramas"
   register_command_category :micro, "Micro-événements", "Commandes relatives à la gestion des micro events"
-  register_command_category :party, "Parties", "Commande associées à la gestion de la partie"
+  register_command_category :party, "Equipes", "Commande associées à la gestion de l'équipe de héros"
   register_command_category :items, "Objets", "Commandes permettant d'obtenir ou de manipuler les objets"
   register_command_category :armors, "Armures", "Commandes permettant de manipuler les armures"
   register_command_category :weapons, "Armes", "Commandes permettant de manipuler les armes"
