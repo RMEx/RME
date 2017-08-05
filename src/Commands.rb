@@ -540,6 +540,11 @@ module RMECommands
       !picture_erased?(id)
     end
 
+    def fresh_picture_id
+      pictures.fresh_id
+    end
+
+
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------

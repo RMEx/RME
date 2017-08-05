@@ -276,6 +276,7 @@ Collection des commandes EventExtender
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
 *    [Command.fresh_event_id(*erased)](#commandfresh_event_iderased)
+*    [Command.fresh_picture_id](#commandfresh_picture_id)
 *    [Command.fresh_text_id](#commandfresh_text_id)
 *    [Command.gain_gold(amount)](#commandgain_goldamount)
 *    [Command.game_title](#commandgame_title)
@@ -4108,6 +4109,15 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `*erased`|`Boolean`|Si cette valeur vaut true, la commande renverra le plus petit ID d'un événement supprimé  
+
+
+
+
+##### Command.fresh_picture_id
+
+> Génère un ID non utilisé pour une picture
+
+  
 
 
 

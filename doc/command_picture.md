@@ -7,6 +7,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes relatives à la manipulation des images
 
 ## Liste des commandes
+*    [fresh_picture_id](#fresh_picture_id)
 *    [picture_angle(id, angle, *duration, *wait_flag, *ease)](#picture_angleid-angle-duration-wait_flag-ease)
 *    [picture_blend(Selector, mode)](#picture_blendselector-mode)
 *    [picture_dimension(id, w, h, *duration, *wait_flag, *ease)](#picture_dimensionid-w-h-duration-wait_flag-ease)
@@ -52,6 +53,11 @@ Commandes relatives à la manipulation des images
 
 
 ## Description des commandes
+##### fresh_picture_id
+
+> Génère un ID non utilisé pour une picture
+
+  
 ##### picture_angle(id, angle, *duration, *wait_flag, *ease)
 
 > Change l'angle de l'image

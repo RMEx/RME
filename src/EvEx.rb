@@ -3004,6 +3004,11 @@ class Game_Pictures
   def to_a
     return @data.compact
   end
+  # Returns a fresh picture id 
+  def fresh_id
+    i = @data.find_index {|picture| !picture || picture.name.empty? }
+    return (i || @data.length)
+  end
 end
 
 
