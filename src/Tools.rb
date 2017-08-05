@@ -440,11 +440,7 @@ class Graphical_Eval
       self.class.cursor = self.class.stack.length-1
       return
     rescue NameError => error
-      if error.instance_of?(NoMethodError)
-        message = filter(error.name, Exception.last_noMethod.methods)
-      else
-        message = filter(error.name, Command.singleton_methods)
-      end
+      message = filter(error.name, Command.singleton_methods)
     rescue SyntaxError => syntaxFailure 
       message = syntaxFailure.message.split(/\:\d+\:/)[-1].strip 
     rescue Exception => exc

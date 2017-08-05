@@ -1,0 +1,6 @@
+project/*/*
+!project/Data/CommonEvents.rvdata2
+
+project/Game.exe
+project/Game.ini
+project/Game.rvproj2
