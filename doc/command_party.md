@@ -1,10 +1,10 @@
 # RME : RPG Maker Extender
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)
 
-[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Parties**  
+[Documentation](README.md) > [Index des commandes](Liste%20des%20commandes.md) > **Equipes**  
 - - -  
-# Parties
-Commande associées à la gestion de la partie
+# Equipes
+Commande associées à la gestion de l'équipe de héros
 
 ## Liste des commandes
 *    [battle_count](#battle_count)
