@@ -1788,7 +1788,7 @@ module Gui
         x: @field.width - 12,
         drag: trigger{scroll_vertically}
       )
-      @scrollbar.set_bar_size(@field.height, @content.height)
+      @verticalscrollbar.set_bar_size(@field.height, @content.height)
       @field.width = self.width - 12
     end
     #--------------------------------------------------------------------------
