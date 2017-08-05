@@ -490,13 +490,7 @@ class Object
     instance_variable_set("@trans_t_#{m}", t + 1)
     method("#{m}=")[v]
   end
-
-  alias_method :rme_method_missing, :method_missing
-  def method_missing(*a)
-    Exception.last_noMethod = self
-    rme_method_missing(*a)
-  end
-
+  
 end # End of Object
 
 #==============================================================================
