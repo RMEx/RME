@@ -173,7 +173,7 @@ class Graphical_tone
       )
     )
     v = instance_variable_get("@#{kind}_field")
-    v.value = @current_tone.send(kind) + offset
+    v.value = @current_tone.send(kind)
   end
 
 
@@ -201,16 +201,14 @@ class Graphical_tone
   # * Update fields
   #--------------------------------------------------------------------------
   def update_fields
-    [ "red", "green", "blue", "gray"].each do |elt| 
+    [ "red", "green", "blue", "gray"].each do |elt|
       offset = (elt == "gray") ? 0 : 255
       field = instance_variable_get("@#{elt}_field")
       track = instance_variable_get("@#{elt}_track")
       field_value = field.formatted_value.to_i
       track_value = (track.value.to_i - offset)
-      if field_value != track_value
-        field.value = track_value if Mouse.dragging? 
-        track.value = (field_value + offset) if field.actived?
-      end 
+      field.value = track_value if Mouse.dragging? 
+      track.value = (field_value + offset) if field.actived?
       field.update 
     end
 

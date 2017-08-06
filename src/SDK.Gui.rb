@@ -1116,7 +1116,7 @@ module Gui
         unless [nil, ''].include?(c)
           delete(0)
           return unless (["+","-"] + ("0".."9").to_a).include?(c)
-          return if @value != "" && ["+","-"].include?(c)
+          return if @value != "" && ["+", "-"].include?(c)
           self.value = @value.insert_at(@virtual_position, c)
           @transformed = true
           go_right
@@ -1953,6 +1953,7 @@ module Gui
     delegate :@textfield, :activate
     delegate :@textfield, :deactivate
     delegate :@textfield, :formatted_value
+    delegate :@textfield, :value
     delegate :@textfield, :actived?
     #--------------------------------------------------------------------------
     # * Object initialize
