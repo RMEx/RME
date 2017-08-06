@@ -402,8 +402,13 @@ class Viewport
   # * Computes real z-coordinate from legacy rule
   #--------------------------------------------------------------------------
   def compute_z
+    @base_z ||= self.z
     if self.parent && self.parent.respond_to?(:z)
-      self.true_z = self.z + self.parent.true_z
+      begin 
+        self.true_z = self.z + self.parent.true_z
+      rescue 
+        self.true_z = @base_z
+      end
     else
       self.true_z = self.z
     end

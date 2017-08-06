@@ -77,11 +77,28 @@ class Graphical_tone
   # * Build Object
   #--------------------------------------------------------------------------
   def initialize
+    @disposed = false
     @base_tone = $game_map.screen.tone.clone
     @current_tone = $game_map.screen.tone.clone
     create_box
-    create_trackbars
+    create_components
     Draggable << @box
+  end
+
+  #--------------------------------------------------------------------------
+  # * Check if the box is disposed
+  #--------------------------------------------------------------------------
+  def disposed? 
+    @disposed
+  end 
+
+  #--------------------------------------------------------------------------
+  # * Dispose the box
+  #--------------------------------------------------------------------------
+  def dispose 
+    $game_map.screen.tone.set(@base_tone)
+    @box.dispose
+    @disposed = true
   end
 
   #--------------------------------------------------------------------------
@@ -125,19 +142,34 @@ class Graphical_tone
 
 
   #--------------------------------------------------------------------------
-  # * Create Trackbars
+  # * Create Trackbars and input text
   #--------------------------------------------------------------------------
-  def create_trackbars
+  def create_components
     ["red", "green", "blue", "gray"].each_with_index do |item, i|
       create_trackbar(item, i)
     end 
   end
 
-
   #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
+    return if disposed?
+    update_tone
+    update_input
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update input
+  #--------------------------------------------------------------------------
+  def update_input
+    return dispose if Key::Esc.trigger? 
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update tone
+  #--------------------------------------------------------------------------
+  def update_tone
     tone = Tone.new(
       @red_track.value - 255, 
       @green_track.value - 255, 
