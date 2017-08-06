@@ -65,6 +65,93 @@ class Scene_Map
   end
 end
 
+#==============================================================================
+# ** Graphical_tone
+#------------------------------------------------------------------------------
+#  Provide a Tone tester
+#==============================================================================
+
+class Graphical_tone 
+
+  #--------------------------------------------------------------------------
+  # * Build Object
+  #--------------------------------------------------------------------------
+  def initialize
+    @base_tone = $game_map.screen.tone.clone
+    @current_tone = $game_map.screen.tone.clone
+    create_box
+    create_trackbars
+    Draggable << @box
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create General Box
+  #--------------------------------------------------------------------------
+  def create_box
+    @box = Gui::Pannel.new(
+      width: 200, 
+      height: 200,
+      title: "Tone tester",
+      x: 10, 
+      y: 10, 
+      z: 4000,
+      padding: 0,
+      margin: 6,
+      border_color: Color.new('#113F59'),
+      background_color: Color.new(255, 255, 255)
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create a trackbar
+  #--------------------------------------------------------------------------
+  def create_trackbar(kind, i)
+    offset = (kind == "gray") ? 0 : 255
+    instance_variable_set(
+      "@#{kind}_track", 
+      Gui::TrackBar.new(
+        parent: @box, 
+        x: 10,
+        y: 10 + (i * 20),
+        width: 60.percent,
+        max_value: offset + 255, 
+      )
+    )
+
+    v = instance_variable_get("@#{kind}_track")
+    v.value = @current_tone.send(kind) + offset
+    v.bar.style_set(:background_color, get_color(kind))
+  end
+
+
+  #--------------------------------------------------------------------------
+  # * Create Trackbars
+  #--------------------------------------------------------------------------
+  def create_trackbars
+    ["red", "green", "blue", "gray"].each_with_index do |item, i|
+      create_trackbar(item, i)
+    end 
+  end
+
+
+  #--------------------------------------------------------------------------
+  # * Frame Update
+  #--------------------------------------------------------------------------
+  def update
+    tone = Tone.new(
+      @red_track.value - 255, 
+      @green_track.value - 255, 
+      @blue_track.value - 255,
+      @gray_track.value, 
+    )
+    return if @current_tone == tone
+    @current_tone = tone 
+    $game_map.screen.tone.set(@current_tone)
+  end
+
+
+end
+
 
 #==============================================================================
 # ** Graphical_eval
