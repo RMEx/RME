@@ -405,8 +405,8 @@ class Viewport
     @base_z ||= self.z
     if self.parent && self.parent.respond_to?(:z)
       begin 
-        self.true_z = self.z + self.parent.true_z
-      rescue 
+        self.true_z = @base_z + self.parent.true_z + 1
+      rescue # Souviens toi l'été dernier
         self.true_z = @base_z
       end
     else

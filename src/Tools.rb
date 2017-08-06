@@ -202,13 +202,15 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def update_fields
     [ "red", "green", "blue", "gray"].each do |elt|
-      offset = (elt == "gray") ? 0 : 255
       field = instance_variable_get("@#{elt}_field")
+=begin
+      offset = (elt == "gray") ? 0 : 255
       track = instance_variable_get("@#{elt}_track")
       field_value = field.formatted_value.to_i
       track_value = (track.value.to_i - offset)
       field.value = track_value if Mouse.dragging? 
       track.value = (field_value + offset) if field.actived?
+=end
       field.update 
     end
 
