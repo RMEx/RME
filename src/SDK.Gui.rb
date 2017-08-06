@@ -1125,7 +1125,7 @@ module Gui
     end
 
     #==============================================================================
-    # ** Int_Recorder
+    # ** Float_Recorder
     #------------------------------------------------------------------------------
     #  Record int state
     #==============================================================================
@@ -1953,21 +1953,26 @@ module Gui
     delegate :@textfield, :activate
     delegate :@textfield, :deactivate
     delegate :@textfield, :formatted_value
+    delegate :@textfield, :actived?
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
     def initialize_intern_components
       super
+
+      limit = @style[:range_value] || nil
+
       case @style[:format]
       when :int
-        @recorder = Components::Int_Recorder.new
+        @recorder = Components::Int_Recorder.new(0, limit)
       when :float
-        @recorder = Components::Float_Recorder.new
+        @recorder = Components::Float_Recorder.new(0.0, limit)
       else
-        @recorder = Components::Text_Recorder.new
+        @recorder = Components::Text_Recorder.new("", limit)
       end
       @textfield = Components::Text_Field.new(@recorder,
         0, 0, 0, @style[:font], false)
+
       @textfield >> self
     end
     #--------------------------------------------------------------------------
@@ -2009,7 +2014,7 @@ module Gui
     def value=(d)
       recorder.value = d 
       @textfield.refresh
-      recorder.cursor_jump(@textfield.formatted_value.length)
+      recorder.cursor_jump(@textfield.formatted_value.to_s.length)
     end
   end
   

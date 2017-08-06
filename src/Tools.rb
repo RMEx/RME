@@ -74,9 +74,22 @@ end
 class Graphical_tone 
 
   #--------------------------------------------------------------------------
+  # * Init fonts
+  #--------------------------------------------------------------------------
+  def init_fonts
+    @font = Font.new("Arial")
+    @font.color = Color.new(0, 0, 0)
+    @font.size = 10
+    @font.shadow = false 
+    @font.bold = false
+    @font.outline = false
+  end
+
+  #--------------------------------------------------------------------------
   # * Build Object
   #--------------------------------------------------------------------------
   def initialize
+    init_fonts
     @disposed = false
     @base_tone = $game_map.screen.tone.clone
     @current_tone = $game_map.screen.tone.clone
@@ -140,6 +153,29 @@ class Graphical_tone
     v.bar.style_set(:background_color, get_color(kind))
   end
 
+  #--------------------------------------------------------------------------
+  # * Create input text
+  #--------------------------------------------------------------------------
+  def create_fields(kind, i)
+    offset = (kind == "gray") ? 0 : 255
+    instance_variable_set(
+      "@#{kind}_field", 
+      Gui::TextField.new(
+        parent: @box, 
+        width: 30.percent, 
+        height: 30,
+        border: 0,
+        margin: 2,
+        x: 65.percent, 
+        y: 3 + (i * 20), 
+        format: :int, 
+        range_value: [-offset, 255]
+      )
+    )
+    v = instance_variable_get("@#{kind}_field")
+    v.value = @current_tone.send(kind) + offset
+  end
+
 
   #--------------------------------------------------------------------------
   # * Create Trackbars and input text
@@ -147,6 +183,7 @@ class Graphical_tone
   def create_components
     ["red", "green", "blue", "gray"].each_with_index do |item, i|
       create_trackbar(item, i)
+      create_fields(item, i)
     end 
   end
 
@@ -157,6 +194,26 @@ class Graphical_tone
     return if disposed?
     update_tone
     update_input
+    update_fields
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update fields
+  #--------------------------------------------------------------------------
+  def update_fields
+    [ "red", "green", "blue", "gray"].each do |elt| 
+      offset = (elt == "gray") ? 0 : 255
+      field = instance_variable_get("@#{elt}_field")
+      track = instance_variable_get("@#{elt}_track")
+      field_value = field.formatted_value.to_i
+      track_value = (track.value.to_i - offset)
+      if field_value != track_value
+        field.value = track_value if Mouse.dragging? 
+        track.value = (field_value + offset) if field.actived?
+      end 
+      field.update 
+    end
+
   end
 
   #--------------------------------------------------------------------------
