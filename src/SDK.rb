@@ -29,37 +29,6 @@ License coming soon
 #  Provide information about RME
 #==============================================================================
 
-class Package
-
-  attr_accessor :name
-  attr_accessor :version
-  attr_accessor :components
-  attr_accessor :dependancies
-  attr_accessor :exclude
-  attr_accessor :description
-  attr_accessor :authors
-  attr_accessor :uri
-  attr_accessor :schema
-  attr_accessor :assets
-
-  def initialize(hash)
-    @name         = hash[:name]
-    @version      = hash[:version]      || vsn
-    @components   = hash[:components]   || {}
-    @dependancies = hash[:dependancies] || []
-    @exclude      = hash[:exclude]      || []
-    @authors      = hash[:authors]      || {}
-    @description  = hash[:description]  || ""
-    @assets       = hash[:assets]       || {}
-  end
-
-  def serialize
-    "Package.new(name:#{@name}, version:#{@version}," +
-    " dependancies:#{@dependancies}, authors: #{@authors}," +
-    "description: #{@description})"
-  end
-end
-
 module RME
 
   module Config
@@ -2560,5 +2529,37 @@ if RME.unsafe?
       super(plane)
     end
 
+  end
+end
+
+
+class Package
+
+  attr_accessor :name
+  attr_accessor :version
+  attr_accessor :components
+  attr_accessor :dependancies
+  attr_accessor :exclude
+  attr_accessor :description
+  attr_accessor :authors
+  attr_accessor :uri
+  attr_accessor :schema
+  attr_accessor :assets
+
+  def initialize(hash)
+    @name         = hash[:name]
+    @version      = hash[:version]      || vsn
+    @components   = hash[:components]   || {}
+    @dependancies = hash[:dependancies] || []
+    @exclude      = hash[:exclude]      || []
+    @authors      = hash[:authors]      || {}
+    @description  = hash[:description]  || ""
+    @assets       = hash[:assets]       || {}
+  end
+
+  def serialize
+    "Package.new(name:#{@name}, version:#{@version}," +
+    " dependancies:#{@dependancies}, authors: #{@authors}," +
+    "description: #{@description})"
   end
 end
