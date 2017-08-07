@@ -940,7 +940,7 @@ class Scene_Commands < Scene_RME
     @left_pan = Gui::ScrollableField.new(
       parent: @pannel,
       width: 40.percent, 
-      height: 100.percent, 
+      height: 100.percent,
     )
     @left_pan_content = Gui::Box.new(
       parent: @left_pan,
