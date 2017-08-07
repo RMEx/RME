@@ -29,42 +29,12 @@ License coming soon
 #  Provide information about RME
 #==============================================================================
 
-class Package
-
-  attr_accessor :name
-  attr_accessor :version
-  attr_accessor :components
-  attr_accessor :dependancies
-  attr_accessor :exclude
-  attr_accessor :description
-  attr_accessor :authors
-  attr_accessor :uri
-  attr_accessor :schema
-  attr_accessor :assets
-
-  def initialize(hash)
-    @name         = hash[:name]
-    @version      = hash[:version]      || vsn
-    @components   = hash[:components]   || {}
-    @dependancies = hash[:dependancies] || []
-    @exclude      = hash[:exclude]      || []
-    @authors      = hash[:authors]      || {}
-    @description  = hash[:description]  || ""
-    @assets       = hash[:assets]       || {}
-  end
-
-  def serialize
-    "Package.new(name:#{@name}, version:#{@version}," +
-    " dependancies:#{@dependancies}, authors: #{@authors}," +
-    "description: #{@description})"
-  end
-end
-
 module RME
 
   module Config
 
     KEY_EVAL = :f3
+    KEY_TONE = :f4
     MAP_RELOAD = :f11
 
   end
@@ -1744,6 +1714,7 @@ module Draggable
     #--------------------------------------------------------------------------
     def drag
       return unless @picked
+      @picked.dragging = true
       @picked.drag_viewport_instead ? o = @picked.viewport : o = @picked
       nx, ny = @x_init + Mouse.drag.ox, @y_init + Mouse.drag.oy
       if r = @picked.drag_restriction
@@ -1758,6 +1729,7 @@ module Draggable
     # * Drops the last picked Object
     #--------------------------------------------------------------------------
     def drop
+      @picked.dragging = false if @picked
       @picked = nil
     end
   end
@@ -1767,6 +1739,8 @@ module Draggable
   #--------------------------------------------------------------------------
   attr_accessor :drag_viewport_instead
   attr_accessor :drag_restriction
+  attr_accessor :dragging
+  alias_method :dragging?, :dragging
 
 end
 
@@ -2556,5 +2530,37 @@ if RME.unsafe?
       super(plane)
     end
 
+  end
+end
+
+
+class Package
+
+  attr_accessor :name
+  attr_accessor :version
+  attr_accessor :components
+  attr_accessor :dependancies
+  attr_accessor :exclude
+  attr_accessor :description
+  attr_accessor :authors
+  attr_accessor :uri
+  attr_accessor :schema
+  attr_accessor :assets
+
+  def initialize(hash)
+    @name         = hash[:name]
+    @version      = hash[:version]      || vsn
+    @components   = hash[:components]   || {}
+    @dependancies = hash[:dependancies] || []
+    @exclude      = hash[:exclude]      || []
+    @authors      = hash[:authors]      || {}
+    @description  = hash[:description]  || ""
+    @assets       = hash[:assets]       || {}
+  end
+
+  def serialize
+    "Package.new(name:#{@name}, version:#{@version}," +
+    " dependancies:#{@dependancies}, authors: #{@authors}," +
+    "description: #{@description})"
   end
 end

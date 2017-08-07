@@ -402,8 +402,13 @@ class Viewport
   # * Computes real z-coordinate from legacy rule
   #--------------------------------------------------------------------------
   def compute_z
+    @base_z ||= self.z
     if self.parent && self.parent.respond_to?(:z)
-      self.true_z = self.z + self.parent.true_z
+      begin 
+        self.true_z = @base_z + self.parent.true_z + 1
+      rescue # Souviens toi l'été dernier
+        self.true_z = @base_z
+      end
     else
       self.true_z = self.z
     end
@@ -489,8 +494,8 @@ module Gui
           margin:           0,
           value:            " ",
           title:            " ",
-          checked_label:    "x",
-          unchecked_label:  " ",
+          checked_label:    "✓",
+          unchecked_label:  "  ",
           display:          :inline
       set args if args
     end
@@ -1092,7 +1097,7 @@ module Gui
       # * Value accessor
       #--------------------------------------------------------------------------
       def formatted_value;
-        self.value=@value
+        #self.value=@value
         @value.to_i
       end
       def value; @value; end
@@ -1111,7 +1116,7 @@ module Gui
         unless [nil, ''].include?(c)
           delete(0)
           return unless (["+","-"] + ("0".."9").to_a).include?(c)
-          return if @value != "" && ["+","-"].include?(c)
+          return if @value != "" && ["+", "-"].include?(c)
           self.value = @value.insert_at(@virtual_position, c)
           @transformed = true
           go_right
@@ -1120,7 +1125,7 @@ module Gui
     end
 
     #==============================================================================
-    # ** Int_Recorder
+    # ** Float_Recorder
     #------------------------------------------------------------------------------
     #  Record int state
     #==============================================================================
@@ -1948,21 +1953,27 @@ module Gui
     delegate :@textfield, :activate
     delegate :@textfield, :deactivate
     delegate :@textfield, :formatted_value
+    delegate :@textfield, :value
+    delegate :@textfield, :actived?
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
     def initialize_intern_components
       super
+
+      limit = @style[:range_value] || nil
+
       case @style[:format]
       when :int
-        @recorder = Components::Int_Recorder.new
+        @recorder = Components::Int_Recorder.new(0, limit)
       when :float
-        @recorder = Components::Float_Recorder.new
+        @recorder = Components::Float_Recorder.new(0.0, limit)
       else
-        @recorder = Components::Text_Recorder.new
+        @recorder = Components::Text_Recorder.new("", limit)
       end
       @textfield = Components::Text_Field.new(@recorder,
         0, 0, 0, @style[:font], false)
+
       @textfield >> self
     end
     #--------------------------------------------------------------------------
@@ -2004,7 +2015,7 @@ module Gui
     def value=(d)
       recorder.value = d 
       @textfield.refresh
-      recorder.cursor_jump(@textfield.formatted_value.length)
+      recorder.cursor_jump(@textfield.formatted_value.to_s.length)
     end
   end
   
