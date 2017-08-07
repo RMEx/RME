@@ -90,12 +90,14 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def initialize
     init_fonts
+    @last_y = 0
     @disposed = false
     @base_tone = $game_map.screen.tone.clone
     @current_tone = $game_map.screen.tone.clone
     create_box
     create_root
     create_components
+    create_simulator
     Draggable << @box
     @box.drag_restriction = Rect.new(
       0, 0, Graphics.width - @box.width, Graphics.height - @box.height
@@ -128,6 +130,7 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def dispose 
     $game_map.screen.tone.set(@base_tone)
+    @wait_label.dispose
     @box.dispose
     @disposed = true
   end
@@ -139,7 +142,7 @@ class Graphical_tone
     @box = Gui::Pannel.new(
       width: 175, 
       height: 200,
-      title: "Tone tester",
+      title: "Testeur de teintes",
       x: 10, 
       y: 10, 
       z: 4000,
@@ -176,6 +179,7 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def create_fields(kind, i)
     offset = (kind == "gray") ? 0 : 255
+    new_y =  4 + (i * 20)
     instance_variable_set(
       "@#{kind}_field", 
       Gui::TextField.new(
@@ -186,11 +190,12 @@ class Graphical_tone
         border_color: Color.new("#c0c0c0"),
         margin: 2,
         x: 68.percent, 
-        y: 4 + (i * 20), 
+        y: new_y, 
         format: :int, 
         range_value: [-offset, 255]
       )
     )
+    @last_y = new_y
     v = instance_variable_get("@#{kind}_field")
     v.value = @current_tone.send(kind)
   end
@@ -204,6 +209,26 @@ class Graphical_tone
       create_trackbar(item, i)
       create_fields(item, i)
     end 
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create Simulator
+  #--------------------------------------------------------------------------
+  def create_simulator
+    @last_y += 30
+    @checkbox = Gui::CheckBox.new(
+      y: @last_y,
+      x: 10,
+      border_color: Color.new('#c0c0c0'),
+      parent: @root,
+    )
+    @wait_label = Gui::Label.new(
+      parent: @root.outer,
+      value: 'Attendre la fin ?',
+      x: 32, 
+      y: @last_y,
+      z: 4500
+    )
   end
 
   #--------------------------------------------------------------------------
@@ -332,7 +357,7 @@ class Graphical_Eval
     @box = Gui::Pannel.new(
       width: 100.percent, 
       height: @height,
-      title: "Ingame tester",
+      title: "Testeur de commandes",
       x: 0, 
       y: @y, 
       z: 4000,
