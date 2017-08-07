@@ -257,7 +257,17 @@ class Graphical_tone
       width: 33.percent, 
       title: 'TXT',
       trigger: trigger do 
-          
+          text = sprintf(
+            "screen_tone(tone(%d,%d,%d,%d), %d, %s)",
+            @red_field.formatted_value.to_i,
+            @green_field.formatted_value.to_i,
+            @blue_field.formatted_value.to_i,
+            @gray_field.formatted_value.to_i,
+            @frames.formatted_value.to_i, 
+            @checkbox.checked?.to_s
+          )
+          Clipboard.push_text(text)
+          msgbox("La ligne de script a été collée dans le presse-papier")
         end
     )
     @copy_as_ev = Gui::Button.new(
@@ -268,7 +278,12 @@ class Graphical_tone
       title: 'EVT',
       x: 33.percent,
       trigger: trigger do 
-
+          set_tone
+          time = @frames.formatted_value.to_i
+          check = @checkbox.checked?
+          rpg_command =  RPG::EventCommand.new(223, 0, [@tone, time, check])
+          Clipboard.push_command(rpg_command)
+          msgbox("La commande événementielle a été collée dans le presse-papier")
         end
     ) 
     @run = Gui::Button.new(
@@ -565,7 +580,7 @@ class Graphical_Eval
       trigger: trigger do 
           unless @textfield.formatted_value.empty?
             Clipboard.push_text(@textfield.formatted_value)
-            msgbox("Script line pushed in the clipboard (as a text)")
+            msgbox("La ligne de script a été collée dans le presse-papier")
           end
         end
     )
@@ -580,7 +595,7 @@ class Graphical_Eval
           unless @textfield.formatted_value.empty?
             rpg_command = RPG::EventCommand.new(355, 0, [@textfield.formatted_value])
             Clipboard.push_command(rpg_command)
-            msgbox("Script line pushed in the clipboard (as an event's command)")
+            msgbox("La commande événementielle a été collée dans le presse-papier")
           end
         end
     ) 
