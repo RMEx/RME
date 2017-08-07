@@ -34,6 +34,7 @@ module RME
   module Config
 
     KEY_EVAL = :f3
+    KEY_TONE = :f4
     MAP_RELOAD = :f11
 
   end
