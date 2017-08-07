@@ -30,42 +30,12 @@ License coming soon
 #  Provide information about RME
 #==============================================================================
 
-class Package
-
-  attr_accessor :name
-  attr_accessor :version
-  attr_accessor :components
-  attr_accessor :dependancies
-  attr_accessor :exclude
-  attr_accessor :description
-  attr_accessor :authors
-  attr_accessor :uri
-  attr_accessor :schema
-  attr_accessor :assets
-
-  def initialize(hash)
-    @name         = hash[:name]
-    @version      = hash[:version]      || vsn
-    @components   = hash[:components]   || {}
-    @dependancies = hash[:dependancies] || []
-    @exclude      = hash[:exclude]      || []
-    @authors      = hash[:authors]      || {}
-    @description  = hash[:description]  || ""
-    @assets       = hash[:assets]       || {}
-  end
-
-  def serialize
-    "Package.new(name:#{@name}, version:#{@version}," +
-    " dependancies:#{@dependancies}, authors: #{@authors}," +
-    "description: #{@description})"
-  end
-end
-
 module RME
 
   module Config
 
     KEY_EVAL = :f3
+    KEY_TONE = :f4
     MAP_RELOAD = :f11
 
   end
@@ -1745,6 +1715,7 @@ module Draggable
     #--------------------------------------------------------------------------
     def drag
       return unless @picked
+      @picked.dragging = true
       @picked.drag_viewport_instead ? o = @picked.viewport : o = @picked
       nx, ny = @x_init + Mouse.drag.ox, @y_init + Mouse.drag.oy
       if r = @picked.drag_restriction
@@ -1759,6 +1730,7 @@ module Draggable
     # * Drops the last picked Object
     #--------------------------------------------------------------------------
     def drop
+      @picked.dragging = false if @picked
       @picked = nil
     end
   end
@@ -1768,6 +1740,8 @@ module Draggable
   #--------------------------------------------------------------------------
   attr_accessor :drag_viewport_instead
   attr_accessor :drag_restriction
+  attr_accessor :dragging
+  alias_method :dragging?, :dragging
 
 end
 
@@ -2560,6 +2534,37 @@ if RME.unsafe?
   end
 end
 
+
+class Package
+
+  attr_accessor :name
+  attr_accessor :version
+  attr_accessor :components
+  attr_accessor :dependancies
+  attr_accessor :exclude
+  attr_accessor :description
+  attr_accessor :authors
+  attr_accessor :uri
+  attr_accessor :schema
+  attr_accessor :assets
+
+  def initialize(hash)
+    @name         = hash[:name]
+    @version      = hash[:version]      || vsn
+    @components   = hash[:components]   || {}
+    @dependancies = hash[:dependancies] || []
+    @exclude      = hash[:exclude]      || []
+    @authors      = hash[:authors]      || {}
+    @description  = hash[:description]  || ""
+    @assets       = hash[:assets]       || {}
+  end
+
+  def serialize
+    "Package.new(name:#{@name}, version:#{@version}," +
+    " dependancies:#{@dependancies}, authors: #{@authors}," +
+    "description: #{@description})"
+  end
+end
 # -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Database
@@ -4008,8 +4013,13 @@ class Viewport
   # * Computes real z-coordinate from legacy rule
   #--------------------------------------------------------------------------
   def compute_z
+    @base_z ||= self.z
     if self.parent && self.parent.respond_to?(:z)
-      self.true_z = self.z + self.parent.true_z
+      begin 
+        self.true_z = @base_z + self.parent.true_z + 1
+      rescue # Souviens toi l'été dernier
+        self.true_z = @base_z
+      end
     else
       self.true_z = self.z
     end
@@ -4095,8 +4105,8 @@ module Gui
           margin:           0,
           value:            " ",
           title:            " ",
-          checked_label:    "x",
-          unchecked_label:  " ",
+          checked_label:    "✓",
+          unchecked_label:  "  ",
           display:          :inline
       set args if args
     end
@@ -4698,7 +4708,7 @@ module Gui
       # * Value accessor
       #--------------------------------------------------------------------------
       def formatted_value;
-        self.value=@value
+        #self.value=@value
         @value.to_i
       end
       def value; @value; end
@@ -4717,7 +4727,7 @@ module Gui
         unless [nil, ''].include?(c)
           delete(0)
           return unless (["+","-"] + ("0".."9").to_a).include?(c)
-          return if @value != "" && ["+","-"].include?(c)
+          return if @value != "" && ["+", "-"].include?(c)
           self.value = @value.insert_at(@virtual_position, c)
           @transformed = true
           go_right
@@ -4726,7 +4736,7 @@ module Gui
     end
 
     #==============================================================================
-    # ** Int_Recorder
+    # ** Float_Recorder
     #------------------------------------------------------------------------------
     #  Record int state
     #==============================================================================
@@ -5554,21 +5564,27 @@ module Gui
     delegate :@textfield, :activate
     delegate :@textfield, :deactivate
     delegate :@textfield, :formatted_value
+    delegate :@textfield, :value
+    delegate :@textfield, :actived?
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
     def initialize_intern_components
       super
+
+      limit = @style[:range_value] || nil
+
       case @style[:format]
       when :int
-        @recorder = Components::Int_Recorder.new
+        @recorder = Components::Int_Recorder.new(0, limit)
       when :float
-        @recorder = Components::Float_Recorder.new
+        @recorder = Components::Float_Recorder.new(0.0, limit)
       else
-        @recorder = Components::Text_Recorder.new
+        @recorder = Components::Text_Recorder.new("", limit)
       end
       @textfield = Components::Text_Field.new(@recorder,
         0, 0, 0, @style[:font], false)
+
       @textfield >> self
     end
     #--------------------------------------------------------------------------
@@ -5610,7 +5626,7 @@ module Gui
     def value=(d)
       recorder.value = d 
       @textfield.refresh
-      recorder.cursor_jump(@textfield.formatted_value.length)
+      recorder.cursor_jump(@textfield.formatted_value.to_s.length)
     end
   end
   
@@ -8565,6 +8581,12 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def update_texts
     @texts.each{|t|t.update}
+  end
+  #--------------------------------------------------------------------------
+  # * Update texts
+  #--------------------------------------------------------------------------
+  def tone_change? 
+    @tone_duration > 0
   end
 end
 
@@ -13811,40 +13833,406 @@ License coming soon
 #==============================================================================
 
 class Scene_Map
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
+
   alias_method :tools_update, :update
+
+  def update
+    tools_update
+    update_tools if $TEST
+  end
+
+  def eval_disposed?; !@eval || @eval.disposed?; end 
+  def tone_disposed?; !@tone || @tone.disposed?; end
+
+  def dispose_eval
+    @eval.dispose
+    Game_Temp.in_game = true
+    @eval = nil 
+    sleep(0.3)
+    $game_system.menu_disabled = @old_call_menu
+  end
+
+  def dispose_tone 
+    @tone.dispose
+    Game_Temp.in_game = true
+    @tone = nil 
+    sleep(0.3)
+    $game_system.menu_disabled = @old_call_menu
+  end
+
+  def update_tone
+    @tone.update if @tone
+  end 
+
+  def update_eval
+    @eval.update if @eval
+  end
+
+  def can_launch?(key)
+    tone_disposed? && eval_disposed? && Keyboard.trigger?(key)
+  end
+
+  def can_launch_tone?
+    can_launch?(RME::Config::KEY_TONE)
+  end
+
+  def can_launch_eval?
+    can_launch?(RME::Config::KEY_EVAL)
+  end
+
+  def must_dispose_tone?
+    !tone_disposed? && (Keyboard.trigger?(RME::Config::KEY_TONE) || Keyboard.trigger?(:esc))
+  end
+
+  def must_dispose_eval?
+    !eval_disposed? && (
+      Keyboard.trigger?(RME::Config::KEY_EVAL) || Keyboard.trigger?(:esc)
+      ) && ! @eval.in_completion?
+  end
+
+
+  def update_tools
+    update_tone
+    update_eval
+    if can_launch_eval? 
+      @old_call_menu = $game_system.menu_disabled
+      $game_system.menu_disabled = true
+      @eval = Graphical_Eval.new
+    elsif can_launch_tone?
+      @old_call_menu = $game_system.menu_disabled
+      $game_system.menu_disabled = true
+      @tone = Graphical_Tone.new
+    elsif must_dispose_eval?
+      dispose_eval
+    elsif must_dispose_tone?
+      dispose_tone   
+    end
+  end
+end
+
+#==============================================================================
+# ** Graphical_tone
+#------------------------------------------------------------------------------
+#  Provide a Tone tester
+#==============================================================================
+
+class Graphical_Tone 
+
+  #--------------------------------------------------------------------------
+  # * Init fonts
+  #--------------------------------------------------------------------------
+  def init_fonts
+    @font = Font.new("Arial")
+    @font.color = Color.new(0, 0, 0)
+    @font.size = 10
+    @font.shadow = false 
+    @font.bold = false
+    @font.outline = false
+  end
+
+  #--------------------------------------------------------------------------
+  # * Build Object
+  #--------------------------------------------------------------------------
+  def initialize
+    init_fonts
+    @changing = false
+    @last_y = 0
+    @disposed = false
+    @base_tone = $game_map.screen.tone.clone
+    @current_tone = $game_map.screen.tone.clone
+    create_box
+    create_root
+    create_components
+    create_simulator
+    create_buttons
+    Draggable << @box
+    @box.drag_restriction = Rect.new(
+      0, 0, Graphics.width - @box.width, Graphics.height - @box.height
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Check if the box is disposed
+  #--------------------------------------------------------------------------
+  def disposed? 
+    @disposed
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Create root
+  #--------------------------------------------------------------------------
+  def create_root
+    @root = Gui::Box.new(
+      width: 100.percent, 
+      height: 100.percent, 
+      border: 0,
+      parent: @box, 
+      padding: 4
+    )
+  end
+
+
+  #--------------------------------------------------------------------------
+  # * Dispose the box
+  #--------------------------------------------------------------------------
+  def dispose 
+    $game_map.screen.clear_tone
+    $game_map.screen.tone.set(@base_tone)
+    #@wait_label.dispose
+    @box.dispose
+    @disposed = true
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create General Box
+  #--------------------------------------------------------------------------
+  def create_box
+    @box = Gui::Pannel.new(
+      width: 175, 
+      height: 200,
+      title: "Testeur de teintes", 
+      y: 10, 
+      z: 4000,
+      padding: 0,
+      margin: 6,
+      border_color: Color.new('#113F59'),
+      background_color: Color.new(255, 255, 255)
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create a trackbar
+  #--------------------------------------------------------------------------
+  def create_trackbar(kind, i)
+    offset = (kind == "gray") ? 0 : 255
+    instance_variable_set(
+      "@#{kind}_track", 
+      Gui::TrackBar.new(
+        parent: @root, 
+        y: 10 + (i * 20),
+        width: 60.percent,
+        max_value: offset + 255, 
+      )
+    )
+
+    v = instance_variable_get("@#{kind}_track")
+    v.value = @current_tone.send(kind) + offset
+    v.bar.style_set(:background_color, get_color(kind))
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create input text
+  #--------------------------------------------------------------------------
+  def create_fields(kind, i)
+    offset = (kind == "gray") ? 0 : 255
+    new_y =  4 + (i * 20)
+    instance_variable_set(
+      "@#{kind}_field", 
+      Gui::TextField.new(
+        parent: @root, 
+        width: 32.percent, 
+        border: 1,
+        padding: 1,
+        border_color: Color.new("#c0c0c0"),
+        margin: 2,
+        x: 68.percent, 
+        y: new_y, 
+        format: :int, 
+        range_value: [-offset, 255]
+      )
+    )
+    @last_y = new_y
+    v = instance_variable_get("@#{kind}_field")
+    v.value = @current_tone.send(kind)
+  end
+
+
+  #--------------------------------------------------------------------------
+  # * Create Trackbars and input text
+  #--------------------------------------------------------------------------
+  def create_components
+    ["red", "green", "blue", "gray"].each_with_index do |item, i|
+      create_trackbar(item, i)
+      create_fields(item, i)
+    end 
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create Simulator
+  #--------------------------------------------------------------------------
+  def create_simulator
+    @last_y += 35
+    @checkbox = Gui::CheckBox.new(
+      y: @last_y,
+      border_color: Color.new('#c0c0c0'),
+      parent: @root,
+      x: 3,
+    )
+    @wait_label = Gui::Label.new(
+      parent: @root,
+      value: 'Attendre',
+      x: 38, 
+      y: @last_y,
+      z: 4500
+    )
+    @frames =Gui::TextField.new(
+      parent: @root, 
+      width: 32.percent, 
+      border: 1,
+      padding: 1,
+      border_color: Color.new("#c0c0c0"),
+      margin: 2,
+      x: 68.percent, 
+      y: @last_y-4, 
+      format: :int, 
+      range_value: [0, 600]
+    )
+    @frames.value = 60
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create Buttons
+  #--------------------------------------------------------------------------
+  def create_buttons
+    @last_y += 30
+    @copy_as_text = Gui::Button.new(
+      y: @last_y,
+      parent: @root, 
+      margin: 3, 
+      width: 33.percent, 
+      title: 'TXT',
+      trigger: trigger do 
+          text = sprintf(
+            "screen_tone(tone(%d,%d,%d,%d), %d, %s)",
+            @red_field.formatted_value.to_i,
+            @green_field.formatted_value.to_i,
+            @blue_field.formatted_value.to_i,
+            @gray_field.formatted_value.to_i,
+            @frames.formatted_value.to_i, 
+            @checkbox.checked?.to_s
+          )
+          Clipboard.push_text(text)
+          msgbox("La ligne de script a été collée dans le presse-papier")
+        end
+    )
+    @copy_as_ev = Gui::Button.new(
+      y: @last_y,
+      parent: @root, 
+      margin: 3, 
+      width: 33.percent, 
+      title: 'EVT',
+      x: 33.percent,
+      trigger: trigger do 
+          set_tone
+          time = @frames.formatted_value.to_i
+          check = @checkbox.checked?
+          rpg_command =  RPG::EventCommand.new(223, 0, [@tone, time, check])
+          Clipboard.push_command(rpg_command)
+          msgbox("La commande événementielle a été collée dans le presse-papier")
+        end
+    ) 
+    @run = Gui::Button.new(
+      y: @last_y,
+      parent: @root, 
+      margin: 3, 
+      width: 33.percent, 
+      title: '►',
+      x: 66.percent,
+      trigger: trigger do 
+        @changing = true
+        $game_map.screen.tone.set(@base_tone)
+        set_tone 
+         $game_map.screen.start_tone_change(
+           @tone, 
+           @frames.formatted_value.to_i
+          )
+      end
+    ) 
+  end
+
+
   #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
-    tools_update
-    update_eval if $TEST
-  end
-  #--------------------------------------------------------------------------
-  # * Update eval
-  #--------------------------------------------------------------------------
-  def update_eval
-
-    if (!@box || @box.disposed?)  &&Keyboard.trigger?(RME::Config::KEY_EVAL)
-      @old_call_menu = $game_system.menu_disabled
-      $game_system.menu_disabled = true
-      @box = Graphical_Eval.new
+    return if disposed?
+    if $game_map.screen.tone_change? 
+      update_fields_values
     else
-      if ((@box && !@box.disposed?) && Keyboard.any?(:trigger?, RME::Config::KEY_EVAL, :esc) && (
-        !@box.in_completion?))
-        @box.dispose
-        Game_Temp.in_game = true
-        @box = nil
-        sleep(0.5)
-        $game_system.menu_disabled = @old_call_menu
-        return
+      if @changing 
+        update_fields_values
+        @changing = false
       end
-      @box.update if @box
+      update_tone
+      update_fields 
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update fields values
+  #--------------------------------------------------------------------------
+  def update_fields_values 
+    [ "red", "green", "blue", "gray"].each do |elt|
+      field = instance_variable_get("@#{elt}_field")
+      offset = (elt == "gray") ? 0 : 255
+      track = instance_variable_get("@#{elt}_track")
+      value = $game_map.screen.tone.send(elt)
+      field.value = value.to_i
+      track.value = value.to_i + offset
+    end 
+  end 
+
+  #--------------------------------------------------------------------------
+  # * Update fields
+  #--------------------------------------------------------------------------
+  def update_fields
+    @frames.update
+    [ "red", "green", "blue", "gray"].each do |elt|
+      field = instance_variable_get("@#{elt}_field")
+      offset = (elt == "gray") ? 0 : 255
+      track = instance_variable_get("@#{elt}_track")
+      field_value = field.formatted_value.to_i
+      track_value = (track.value.to_i - offset)
+      if track.bar.dragging?
+        field.value = track_value
+      elsif field.actived?
+        track.value = (field_value + offset)     
+      end
+      field.update 
     end
 
   end
+
+  #--------------------------------------------------------------------------
+  # * Set current tone
+  #--------------------------------------------------------------------------
+  def set_tone
+    @tone = Tone.new(
+      @red_field.formatted_value, 
+      @green_field.formatted_value, 
+      @blue_field.formatted_value,
+      @gray_field.formatted_value, 
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update input
+  #--------------------------------------------------------------------------
+  def update_input
+    return dispose if Key::Esc.trigger? || Keyboard.trigger?(RME::Config::KEY_TONE)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Update tone
+  #--------------------------------------------------------------------------
+  def update_tone
+    set_tone
+    return if @current_tone == @tone
+    @current_tone = @tone
+    $game_map.screen.tone.set(@tone)
+  end
+
+
 end
 
 
@@ -13918,7 +14306,7 @@ class Graphical_Eval
     @box = Gui::Pannel.new(
       width: 100.percent, 
       height: @height,
-      title: "Ingame tester",
+      title: "Testeur de commandes",
       x: 0, 
       y: @y, 
       z: 4000,
@@ -13930,13 +14318,13 @@ class Graphical_Eval
       parent: @box.outer,
       x: 70.percent, 
       font: @font,
-      value: 'Copy as',
+      value: 'Copier',
       z: 4500
     )
     @run_lab = Gui::Label.new(
       parent: @box.outer,
       font: @font,
-      value: 'Run', 
+      value: 'Lancer', 
       z: 4500
     )
     @run_lab.set(
@@ -14003,8 +14391,8 @@ class Graphical_Eval
       border_color: Color.new(0, 0, 0, 0), 
       background_color: Color.new(0, 0, 0, 0), 
       font: @toolbox_font, 
-      checked_label: '[X] console output',
-      unchecked_label: '[  ] console output', 
+      checked_label: '[X] Afficher dans la console',
+      unchecked_label: '[  ] Afficher dans la console', 
       margin: 0, 
       padding: 0,
     )
@@ -14036,7 +14424,7 @@ class Graphical_Eval
       trigger: trigger do 
           unless @textfield.formatted_value.empty?
             Clipboard.push_text(@textfield.formatted_value)
-            msgbox("Script line pushed in the clipboard (as a text)")
+            msgbox("La ligne de script a été collée dans le presse-papier")
           end
         end
     )
@@ -14051,7 +14439,7 @@ class Graphical_Eval
           unless @textfield.formatted_value.empty?
             rpg_command = RPG::EventCommand.new(355, 0, [@textfield.formatted_value])
             Clipboard.push_command(rpg_command)
-            msgbox("Script line pushed in the clipboard (as an event's command)")
+            msgbox("La commande événementielle a été collée dans le presse-papier")
           end
         end
     ) 
