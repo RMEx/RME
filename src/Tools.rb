@@ -90,6 +90,7 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def initialize
     init_fonts
+    @changing = false
     @last_y = 0
     @disposed = false
     @base_tone = $game_map.screen.tone.clone
@@ -98,6 +99,7 @@ class Graphical_tone
     create_root
     create_components
     create_simulator
+    create_buttons
     Draggable << @box
     @box.drag_restriction = Rect.new(
       0, 0, Graphics.width - @box.width, Graphics.height - @box.height
@@ -120,7 +122,7 @@ class Graphical_tone
       height: 100.percent, 
       border: 0,
       parent: @box, 
-      padding: 0
+      padding: 4
     )
   end
 
@@ -129,8 +131,9 @@ class Graphical_tone
   # * Dispose the box
   #--------------------------------------------------------------------------
   def dispose 
+    $game_map.screen.clear_tone
     $game_map.screen.tone.set(@base_tone)
-    @wait_label.dispose
+    #@wait_label.dispose
     @box.dispose
     @disposed = true
   end
@@ -142,8 +145,7 @@ class Graphical_tone
     @box = Gui::Pannel.new(
       width: 175, 
       height: 200,
-      title: "Testeur de teintes",
-      x: 10, 
+      title: "Testeur de teintes", 
       y: 10, 
       z: 4000,
       padding: 0,
@@ -162,7 +164,6 @@ class Graphical_tone
       "@#{kind}_track", 
       Gui::TrackBar.new(
         parent: @root, 
-        x: 10,
         y: 10 + (i * 20),
         width: 60.percent,
         max_value: offset + 255, 
@@ -184,7 +185,7 @@ class Graphical_tone
       "@#{kind}_field", 
       Gui::TextField.new(
         parent: @root, 
-        width: 30.percent, 
+        width: 32.percent, 
         border: 1,
         padding: 1,
         border_color: Color.new("#c0c0c0"),
@@ -215,36 +216,118 @@ class Graphical_tone
   # * Create Simulator
   #--------------------------------------------------------------------------
   def create_simulator
-    @last_y += 30
+    @last_y += 35
     @checkbox = Gui::CheckBox.new(
       y: @last_y,
-      x: 10,
       border_color: Color.new('#c0c0c0'),
       parent: @root,
+      x: 3,
     )
     @wait_label = Gui::Label.new(
-      parent: @root.outer,
-      value: 'Attendre la fin ?',
-      x: 32, 
+      parent: @root,
+      value: 'Attendre',
+      x: 38, 
       y: @last_y,
       z: 4500
     )
+    @frames =Gui::TextField.new(
+      parent: @root, 
+      width: 32.percent, 
+      border: 1,
+      padding: 1,
+      border_color: Color.new("#c0c0c0"),
+      margin: 2,
+      x: 68.percent, 
+      y: @last_y-4, 
+      format: :int, 
+      range_value: [0, 600]
+    )
+    @frames.value = 60
   end
+
+  #--------------------------------------------------------------------------
+  # * Create Buttons
+  #--------------------------------------------------------------------------
+  def create_buttons
+    @last_y += 30
+    @copy_as_text = Gui::Button.new(
+      y: @last_y,
+      parent: @root, 
+      margin: 3, 
+      width: 33.percent, 
+      title: 'TXT',
+      trigger: trigger do 
+          
+        end
+    )
+    @copy_as_ev = Gui::Button.new(
+      y: @last_y,
+      parent: @root, 
+      margin: 3, 
+      width: 33.percent, 
+      title: 'EVT',
+      x: 33.percent,
+      trigger: trigger do 
+
+        end
+    ) 
+    @run = Gui::Button.new(
+      y: @last_y,
+      parent: @root, 
+      margin: 3, 
+      width: 33.percent, 
+      title: '►',
+      x: 66.percent,
+      trigger: trigger do 
+        @changing = true
+        $game_map.screen.tone.set(@base_tone)
+        set_tone 
+         $game_map.screen.start_tone_change(
+           @tone, 
+           @frames.formatted_value.to_i
+          )
+      end
+    ) 
+  end
+
 
   #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
     return if disposed?
-    update_tone
+    if $game_map.screen.tone_change? 
+      update_fields_values
+    else
+      if @changing 
+        update_fields_values
+        @changing = false
+      end
+      update_tone
+      update_fields 
+    end
     update_input
-    update_fields
   end
+
+  #--------------------------------------------------------------------------
+  # * Update fields values
+  #--------------------------------------------------------------------------
+  def update_fields_values 
+    [ "red", "green", "blue", "gray"].each do |elt|
+      field = instance_variable_get("@#{elt}_field")
+      offset = (elt == "gray") ? 0 : 255
+      track = instance_variable_get("@#{elt}_track")
+      value = $game_map.screen.tone.send(elt)
+      field.value = value.to_i
+      track.value = value.to_i + offset
+    end 
+  end 
 
   #--------------------------------------------------------------------------
   # * Update fields
   #--------------------------------------------------------------------------
   def update_fields
+    @frames.update
     [ "red", "green", "blue", "gray"].each do |elt|
       field = instance_variable_get("@#{elt}_field")
       offset = (elt == "gray") ? 0 : 255
@@ -262,6 +345,18 @@ class Graphical_tone
   end
 
   #--------------------------------------------------------------------------
+  # * Set current tone
+  #--------------------------------------------------------------------------
+  def set_tone
+    @tone = Tone.new(
+      @red_field.formatted_value, 
+      @green_field.formatted_value, 
+      @blue_field.formatted_value,
+      @gray_field.formatted_value, 
+    )
+  end
+
+  #--------------------------------------------------------------------------
   # * Update input
   #--------------------------------------------------------------------------
   def update_input
@@ -272,15 +367,10 @@ class Graphical_tone
   # * Update tone
   #--------------------------------------------------------------------------
   def update_tone
-    tone = Tone.new(
-      @red_field.formatted_value, 
-      @green_field.formatted_value, 
-      @blue_field.formatted_value,
-      @gray_field.formatted_value, 
-    )
-    return if @current_tone == tone
-    @current_tone = tone 
-    $game_map.screen.tone.set(@current_tone)
+    set_tone
+    return if @current_tone == @tone
+    @current_tone = @tone
+    $game_map.screen.tone.set(@tone)
   end
 
 

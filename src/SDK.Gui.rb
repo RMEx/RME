@@ -494,8 +494,8 @@ module Gui
           margin:           0,
           value:            " ",
           title:            " ",
-          checked_label:    "x",
-          unchecked_label:  " ",
+          checked_label:    "✓",
+          unchecked_label:  "  ",
           display:          :inline
       set args if args
     end
