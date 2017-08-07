@@ -1097,7 +1097,7 @@ module Gui
       # * Value accessor
       #--------------------------------------------------------------------------
       def formatted_value;
-        self.value=@value
+        #self.value=@value
         @value.to_i
       end
       def value; @value; end

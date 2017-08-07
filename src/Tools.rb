@@ -94,8 +94,12 @@ class Graphical_tone
     @base_tone = $game_map.screen.tone.clone
     @current_tone = $game_map.screen.tone.clone
     create_box
+    create_root
     create_components
     Draggable << @box
+    @box.drag_restriction = Rect.new(
+      0, 0, Graphics.width - @box.width, Graphics.height - @box.height
+    )
   end
 
   #--------------------------------------------------------------------------
@@ -103,7 +107,21 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def disposed? 
     @disposed
-  end 
+  end
+  
+  #--------------------------------------------------------------------------
+  # * Create root
+  #--------------------------------------------------------------------------
+  def create_root
+    @root = Gui::Box.new(
+      width: 100.percent, 
+      height: 100.percent, 
+      border: 0,
+      parent: @box, 
+      padding: 0
+    )
+  end
+
 
   #--------------------------------------------------------------------------
   # * Dispose the box
@@ -119,7 +137,7 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def create_box
     @box = Gui::Pannel.new(
-      width: 200, 
+      width: 175, 
       height: 200,
       title: "Tone tester",
       x: 10, 
@@ -140,7 +158,7 @@ class Graphical_tone
     instance_variable_set(
       "@#{kind}_track", 
       Gui::TrackBar.new(
-        parent: @box, 
+        parent: @root, 
         x: 10,
         y: 10 + (i * 20),
         width: 60.percent,
@@ -161,13 +179,14 @@ class Graphical_tone
     instance_variable_set(
       "@#{kind}_field", 
       Gui::TextField.new(
-        parent: @box, 
+        parent: @root, 
         width: 30.percent, 
-        height: 30,
-        border: 0,
+        border: 1,
+        padding: 1,
+        border_color: Color.new("#c0c0c0"),
         margin: 2,
-        x: 65.percent, 
-        y: 3 + (i * 20), 
+        x: 68.percent, 
+        y: 4 + (i * 20), 
         format: :int, 
         range_value: [-offset, 255]
       )
@@ -203,14 +222,15 @@ class Graphical_tone
   def update_fields
     [ "red", "green", "blue", "gray"].each do |elt|
       field = instance_variable_get("@#{elt}_field")
-=begin
       offset = (elt == "gray") ? 0 : 255
       track = instance_variable_get("@#{elt}_track")
       field_value = field.formatted_value.to_i
       track_value = (track.value.to_i - offset)
-      field.value = track_value if Mouse.dragging? 
-      track.value = (field_value + offset) if field.actived?
-=end
+      if track.bar.dragging?
+        field.value = track_value
+      elsif field.actived?
+        track.value = (field_value + offset)     
+      end
       field.update 
     end
 
@@ -228,10 +248,10 @@ class Graphical_tone
   #--------------------------------------------------------------------------
   def update_tone
     tone = Tone.new(
-      @red_track.value - 255, 
-      @green_track.value - 255, 
-      @blue_track.value - 255,
-      @gray_track.value, 
+      @red_field.formatted_value, 
+      @green_field.formatted_value, 
+      @blue_field.formatted_value,
+      @gray_field.formatted_value, 
     )
     return if @current_tone == tone
     @current_tone = tone 

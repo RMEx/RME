@@ -1,5 +1,6 @@
 # RME Changelog
 
+*  `4.4 => 04/08/2017 00:30` Implémentation du testeur de teinte (Joke et Nuki)
 *  `4.3 => 06/08/2017 01:30` Direction facultative dans player_teleport (Nuki, reportée par Zer0zer0x)
 *  `4.3 => 06/08/2017 01:00` Retrait du DocGenerator du package.rb (Nuki)
 *  `4.2 => 05/08/2017 19:30` Ajout commandes fresh_quelquechose_id (Nuki, reporté par Husk)
