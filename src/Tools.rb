@@ -29,39 +29,80 @@ License coming soon
 #==============================================================================
 
 class Scene_Map
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
+
   alias_method :tools_update, :update
-  #--------------------------------------------------------------------------
-  # * Frame Update
-  #--------------------------------------------------------------------------
+
   def update
     tools_update
-    update_eval if $TEST
+    update_tools if $TEST
   end
-  #--------------------------------------------------------------------------
-  # * Update eval
-  #--------------------------------------------------------------------------
-  def update_eval
 
-    if (!@box || @box.disposed?)  &&Keyboard.trigger?(RME::Config::KEY_EVAL)
+  def eval_disposed?; !@eval || @eval.disposed?; end 
+  def tone_disposed?; !@tone || @tone.disposed?; end
+
+  def dispose_eval
+    @eval.dispose
+    Game_Temp.in_game = true
+    @eval = nil 
+    sleep(0.3)
+    $game_system.menu_disabled = @old_call_menu
+  end
+
+  def dispose_tone 
+    @tone.dispose
+    Game_Temp.in_game = true
+    @tone = nil 
+    sleep(0.3)
+    $game_system.menu_disabled = @old_call_menu
+  end
+
+  def update_tone
+    @tone.update if @tone
+  end 
+
+  def update_eval
+    @eval.update if @eval
+  end
+
+  def can_launch?(key)
+    tone_disposed? && eval_disposed? && Keyboard.trigger?(key)
+  end
+
+  def can_launch_tone?
+    can_launch?(RME::Config::KEY_TONE)
+  end
+
+  def can_launch_eval?
+    can_launch?(RME::Config::KEY_EVAL)
+  end
+
+  def must_dispose_tone?
+    !tone_disposed? && (Keyboard.trigger?(RME::Config::KEY_TONE) || Keyboard.trigger?(:esc))
+  end
+
+  def must_dispose_eval?
+    !eval_disposed? && (
+      Keyboard.trigger?(RME::Config::KEY_EVAL) || Keyboard.trigger?(:esc)
+      ) && ! @eval.in_completion?
+  end
+
+
+  def update_tools
+    update_tone
+    update_eval
+    if can_launch_eval? 
       @old_call_menu = $game_system.menu_disabled
       $game_system.menu_disabled = true
-      @box = Graphical_Eval.new
-    else
-      if ((@box && !@box.disposed?) && Keyboard.any?(:trigger?, RME::Config::KEY_EVAL, :esc) && (
-        !@box.in_completion?))
-        @box.dispose
-        Game_Temp.in_game = true
-        @box = nil
-        sleep(0.5)
-        $game_system.menu_disabled = @old_call_menu
-        return
-      end
-      @box.update if @box
+      @eval = Graphical_Eval.new
+    elsif can_launch_tone?
+      @old_call_menu = $game_system.menu_disabled
+      $game_system.menu_disabled = true
+      @tone = Graphical_Tone.new
+    elsif must_dispose_eval?
+      dispose_eval
+    elsif must_dispose_tone?
+      dispose_tone   
     end
-
   end
 end
 
@@ -71,7 +112,7 @@ end
 #  Provide a Tone tester
 #==============================================================================
 
-class Graphical_tone 
+class Graphical_Tone 
 
   #--------------------------------------------------------------------------
   # * Init fonts
@@ -321,7 +362,6 @@ class Graphical_tone
       update_tone
       update_fields 
     end
-    update_input
   end
 
   #--------------------------------------------------------------------------
@@ -375,7 +415,7 @@ class Graphical_tone
   # * Update input
   #--------------------------------------------------------------------------
   def update_input
-    return dispose if Key::Esc.trigger? 
+    return dispose if Key::Esc.trigger? || Keyboard.trigger?(RME::Config::KEY_TONE)
   end
 
   #--------------------------------------------------------------------------
