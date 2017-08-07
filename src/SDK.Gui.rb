@@ -1743,6 +1743,8 @@ module Gui
   #==============================================================================
 
   class ScrollableField < Box
+
+    attr_accessor :content, :field
     #--------------------------------------------------------------------------
     # * Object initialize
     # * optionnal named args = x:, y:, width:, height:

@@ -868,7 +868,8 @@ class Scene_RME < Scene_Base
       height: height,
       title: title,
       border_color: Color.new('#113F59'),
-      background_color: Color.new(255, 255, 255)
+      background_color: Color.new(255, 255, 255), 
+      padding: 0
     )
   end
 
@@ -920,7 +921,41 @@ class Scene_Commands < Scene_RME
   #--------------------------------------------------------------------------
   def start
     super
+    SceneManager.clear
     create_pannel("Menu des commandes")
+    create_viewports
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create Viewports
+  #--------------------------------------------------------------------------
+  def create_viewports
+    create_left_pan
+  end
+
+  #--------------------------------------------------------------------------
+  # * Create LeftPan
+  #--------------------------------------------------------------------------
+  def create_left_pan
+    @left_pan = Gui::ScrollableField.new(
+      parent: @pannel,
+      width: 40.percent, 
+      height: 100.percent, 
+    )
+    @left_pan_content = Gui::Box.new(
+      parent: @left_pan,
+      width: 100.percent + 80, 
+      height: 100.percent,
+      background_color: Color.new('#113F59'),
+      border: 0,
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Dispose viewports
+  #--------------------------------------------------------------------------
+  def dispose_viewports
+    @left_pan.dispose
   end
 
   #--------------------------------------------------------------------------
@@ -928,6 +963,7 @@ class Scene_Commands < Scene_RME
   #--------------------------------------------------------------------------
   def terminate
     super
+    dispose_viewports
     dispose_pannel
   end
 
