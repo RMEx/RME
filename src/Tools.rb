@@ -369,13 +369,13 @@ class Graphical_Eval
       parent: @box.outer,
       x: 70.percent, 
       font: @font,
-      value: 'Copy as',
+      value: 'Copier',
       z: 4500
     )
     @run_lab = Gui::Label.new(
       parent: @box.outer,
       font: @font,
-      value: 'Run', 
+      value: 'Lancer', 
       z: 4500
     )
     @run_lab.set(
@@ -442,8 +442,8 @@ class Graphical_Eval
       border_color: Color.new(0, 0, 0, 0), 
       background_color: Color.new(0, 0, 0, 0), 
       font: @toolbox_font, 
-      checked_label: '[X] console output',
-      unchecked_label: '[  ] console output', 
+      checked_label: '[X] Afficher dans la console',
+      unchecked_label: '[  ] Afficher dans la console', 
       margin: 0, 
       padding: 0,
     )
