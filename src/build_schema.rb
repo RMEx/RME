@@ -1,4 +1,4 @@
-$STAGING = true
+$STAGING = false
 [
     "../src/Event_printer.rb",
     "../src/SDK.Sample.rb",
