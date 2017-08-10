@@ -937,6 +937,7 @@ class Scene_Commands < Scene_RME
   #--------------------------------------------------------------------------
   def start
     super 
+    @size = 0
     create_main_viewport
   end
 
