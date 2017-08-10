@@ -1759,6 +1759,13 @@ module Gui
     #--------------------------------------------------------------------------
     def <<(oth)
       @content << oth
+      compute_scrolling
+      oth
+    end
+    #--------------------------------------------------------------------------
+    # * Recompute Scrollbar
+    #--------------------------------------------------------------------------
+    def compute_scrolling
       if @content.width > @field.width
         create_horizontal_scrollbar
       else
@@ -1771,8 +1778,8 @@ module Gui
         @verticalscrollbar.dispose if @verticalscrollbar
         @field.width = self.width
       end
-      oth
     end
+
     #--------------------------------------------------------------------------
     # * Create horizontal scrollbar
     #--------------------------------------------------------------------------

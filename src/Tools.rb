@@ -905,4 +905,46 @@ class Scene_RME < Scene_Base
     dispose_background
   end
 
+  #--------------------------------------------------------------------------
+  # * Create a viewport to the whole content
+  #--------------------------------------------------------------------------
+  def create_main_viewport
+    @main_viewport = Gui::ScrollableField.new(
+      width: width, 
+      height: height
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Dispose Main viewport
+  #--------------------------------------------------------------------------
+  def dispose_main_viewport
+    @main_viewport.dispose
+  end
+
+end
+
+#==============================================================================
+# ** Scene_Commands
+#------------------------------------------------------------------------------
+#  This scene provides tools to build commands
+#==============================================================================
+
+class Scene_Commands < Scene_RME
+
+  #--------------------------------------------------------------------------
+  # * General start
+  #--------------------------------------------------------------------------
+  def start
+    super 
+    create_main_viewport
+  end
+
+  #--------------------------------------------------------------------------
+  # * Termination Processing
+  #--------------------------------------------------------------------------
+  def terminate
+    super
+    dispose_main_viewport
+  end
 end
