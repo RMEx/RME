@@ -2014,6 +2014,10 @@ module Kernel
     [a, b, c]
   end
 
+  alias_method :after, :lambda
+  alias_method :before, :lambda
+  alias_method :during, :lambda
+
 end
 
 #==============================================================================

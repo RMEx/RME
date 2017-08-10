@@ -7,6 +7,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 Commandes pour manipuler l'écran (teintes, vibrations etc)
 
 ## Liste des commandes
+*    [perform_transition(transition, duration, before, during, after, *vague)](#perform_transitiontransition-duration-before-during-after-vague)
 *    [screen_blur(radius, *duration, *wait_flag, *ease)](#screen_blurradius-duration-wait_flag-ease)
 *    [screen_fadein(duration)](#screen_fadeinduration)
 *    [screen_fadeout(duration)](#screen_fadeoutduration)
@@ -19,6 +20,19 @@ Commandes pour manipuler l'écran (teintes, vibrations etc)
 
 
 ## Description des commandes
+##### perform_transition(transition, duration, before, during, after, *vague)
+
+> Effectue une transition à l'écran
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`transition`|`String`|Image où se trouve la transition  
+`duration`|`Fixnum`|Durée de la transition  
+`before`|`Block`|Fonction à exécuter avant la transition  
+`during`|`Block`|Fonction à exécuter pendant la transition  
+`after`|`Block`|Fonction à exécuter après la transition  
+`*vague`|`Fixnum`|Ambiguité (par défaut, 40)  
 ##### screen_blur(radius, *duration, *wait_flag, *ease)
 
 > Applique un flou gaussien sur tout l'écran en temps réel, sauf les windows (dialogues, etc.). Attention, cette commande peut faire baisser le FPS.

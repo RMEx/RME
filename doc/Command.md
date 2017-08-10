@@ -472,6 +472,7 @@ Collection des commandes EventExtender
 *    [Command.parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)](#commandparallax_zoom_yid-zoom-duration-wait_flag-ease)
 *    [Command.parallaxes_clear](#commandparallaxes_clear)
 *    [Command.percent(value, max)](#commandpercentvalue-max)
+*    [Command.perform_transition(transition, duration, before, during, after, *vague)](#commandperform_transitiontransition-duration-before-during-after-vague)
 *    [Command.pi](#commandpi)
 *    [Command.pick_random(*elts)](#commandpick_randomelts)
 *    [Command.picture_angle(id, angle, *duration, *wait_flag, *ease)](#commandpicture_angleid-angle-duration-wait_flag-ease)
@@ -559,6 +560,7 @@ Collection des commandes EventExtender
 *    [Command.player_screen_y](#commandplayer_screen_y)
 *    [Command.player_stop_trail](#commandplayer_stop_trail)
 *    [Command.player_teleport(map_id, x, y, *direction, *fade_type)](#commandplayer_teleportmap_id-x-y-direction-fade_type)
+*    [Command.player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)](#commandplayer_teleport_with_transitionmap_id-x-y-transition-duration-vague-direction)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
 *    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
@@ -6503,6 +6505,23 @@ Command.percent(40, 80) # Renvoie 50 (parce que 40 = 50% de 80)
 
 
 
+##### Command.perform_transition(transition, duration, before, during, after, *vague)
+
+> Effectue une transition à l'écran
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`transition`|`String`|Image où se trouve la transition  
+`duration`|`Fixnum`|Durée de la transition  
+`before`|`Block`|Fonction à exécuter avant la transition  
+`during`|`Block`|Fonction à exécuter pendant la transition  
+`after`|`Block`|Fonction à exécuter après la transition  
+`*vague`|`Fixnum`|Ambiguité (par défaut, 40)  
+
+
+
+
 ##### Command.pi
 
 > Renvoie une approximation de PI
@@ -7612,6 +7631,24 @@ Nom|Type|Description
 `y`|`Fixnum`|Coordonnées Y  
 `*direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction  
 `*fade_type`|`Fixnum`|Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné  
+
+
+
+
+##### Command.player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)
+
+> Effectue une téléportation avec une image comme transition
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`transition`|`String`|Image où se trouve la transition  
+`duration`|`Fixnum`|Durée de la transition  
+`*vague`|`Fixnum`|Ambiguité (par défaut, 40)  
+`*direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction  
 
 
 
