@@ -61,4 +61,10 @@ ASample.new('Flash des tile du même ID sur une carte',
 ASample.new('Flash des cases du même terrain_tag',
 ['get_squares_by_terrain', 'length', 'get', 'flash_square'], 26)
 
+ASample.new('Une téléportation stylée',
+['perform_transition', 'tone', 'screen_tone', 'wait'], 28)
+
+ASample.new('Une téléportation stylée',
+['player_teleport_with_transition'], 29)
+
 end

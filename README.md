@@ -1,3 +1,5 @@
+[Rejoignez-nous sur Discord !](https://discord.gg/yRUZcdQ)
+
 # [![RMEx](http://rmex.github.io/images/rmex-shortcut.png)](http://rmex.github.io) [RME : RPG Maker Extender](https://github.com/RMEx/RME/wiki)
 
 **RME** est le successeur de l'**[Event Extender](http://funkywork.github.io/EE)**.
