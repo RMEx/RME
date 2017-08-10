@@ -150,6 +150,7 @@ Commandes relatives aux évènements
 *    [player_screen_y](#player_screen_y)
 *    [player_stop_trail](#player_stop_trail)
 *    [player_teleport(map_id, x, y, *direction, *fade_type)](#player_teleportmap_id-x-y-direction-fade_type)
+*    [player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)](#player_teleport_with_transitionmap_id-x-y-transition-duration-vague-direction)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
 *    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
@@ -1349,6 +1350,20 @@ Nom|Type|Description
 `y`|`Fixnum`|Coordonnées Y  
 `*direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction  
 `*fade_type`|`Fixnum`|Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné  
+##### player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)
+
+> Effectue une téléportation avec une image comme transition
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`map_id`|`Fixnum`|ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte  
+`x`|`Fixnum`|Coordonnées X  
+`y`|`Fixnum`|Coordonnées Y  
+`transition`|`String`|Image où se trouve la transition  
+`duration`|`Fixnum`|Durée de la transition  
+`*vague`|`Fixnum`|Ambiguité (par défaut, 40)  
+`*direction`|`Fixnum`|Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction  
 ##### player_through(*flag)
 
 > Change le mode de traversée du joueur

@@ -1628,6 +1628,23 @@ module RMECommands
       Fiber.yield while $game_player.transfer?
     end
 
+    def player_teleport_with_transition(map_id, x, y, transition, duration, vague=40, direction = nil)
+      direction ||= $game_player.direction
+      Graphics.freeze
+      $game_player.reserve_transfer(map_id, x, y, direction)
+      wait(1)
+      Graphics.transition(duration, "Graphics/#{transition}", vague)
+    end
+
+    def perform_transition(duration, transition, before, during, after, vague = 40)
+      Graphics.freeze
+      before.()
+      wait(1)
+      during.()
+      Graphics.transition(duration, "Graphics/#{transition}", vague)
+      after.()
+    end
+
     def event_transparent?(id)
       event(id).transparent
     end

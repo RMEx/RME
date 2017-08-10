@@ -2483,6 +2483,7 @@ class Game_Map
   attr_accessor :reflection_properties
   attr_accessor :region_mapper 
   attr_accessor :tile_mapper
+  attr_accessor :scroll_speed
   alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
