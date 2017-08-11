@@ -749,6 +749,7 @@ Collection des commandes EventExtender
 *    [Command.troop_size(id)](#commandtroop_sizeid)
 *    [Command.unflash_rect(x, y, width, height)](#commandunflash_rectx-y-width-height)
 *    [Command.unflash_square(x, y)](#commandunflash_squarex-y)
+*    [Command.use_reflection(properties)](#commanduse_reflectionproperties)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
 *    [Command.wait_release(key)](#commandwait_releasekey)
@@ -9917,6 +9918,18 @@ Nom|Type|Description
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+##### Command.use_reflection(properties)
+
+> Active la réflexion sur une surface. Regardez l'exemple pour comprendre son fonctionnement
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`properties`|`Hash`|L'ensemble des propriétés  
 
 
 
