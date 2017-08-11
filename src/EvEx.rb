@@ -1566,34 +1566,65 @@ class Sprite_Reflect < Sprite_Character
 
   def initialize(*args, id, cases)
     @id = id
-    @y_offset = cases[:y_offset] || 1 
-    @cases = (cases || {}).map do |k, v|
-      [:"#{k}=", v] if respond_to?(:"#{k}=")
-    end.compact
+    @y_offset = compute_y_offset
+    @base_opacity = 255
+    @cases = cases
     super(*args)
   end
 
-  def update_other
+  def compute_y_offset
+    return 0 unless @character
+    return 1 if @character.priority_type != 2
+    ev = $game_map.events_xy(@character.x, @character.y + 1)
+    return 3 if !ev.empty? && ev[0].priority_type == 0 
+    2
   end
-  def setup_new_effect
+
+  def update_other; end
+  def setup_new_effect; end
+
+  def y_rect 
+    return 8 if src_rect.height > 32 
+    0
+  end
+
+  def need_erased?
+    @character.transparent || @cases[:excluded].include?(@id)
   end
 
   def update
+    if need_erased?
+      self.visible = false 
+      return
+    end
+    self.visible = true
+    @y_offset = compute_y_offset
     super()
     self.angle = 180
     self.mirror = true
-    self.z = -(50 + self.z)
-    self.y = @character.screen_y + ((@y_offset - 1) * 32)
-    update_effects
+    self.z = -100
+    self.y = @character.screen_y + ((@y_offset - 1) * 32) - 2 - y_rect
+    update_sprite_effect
+    update_for(:terrains, :terrain_tag)
+    update_for(:regions, :region_id)
   end
 
-  def update_effects 
-    @cases.each {|k, v| send(k, v) }
-    update_region
+  def update_sprite_effect
+    self.wave_amp = @cases[:wave_amp]
+    self.wave_speed = @cases[:wave_speed]
+    self.opacity = @cases[:opacity]
+    self.tone = @cases[:tone]
   end
 
-  def update_region
-    
+  def update_for(key, method)
+    id = $game_map.send(method, @character.x, @character.y + @y_offset)
+    if @cases[key].has_key?(id)
+      reg = @cases[key][id]
+      self.wave_amp = reg[:wave_amp] || @cases[:wave_amp]
+      self.wave_speed = reg[:wave_speed] || @cases[:wave_speed]
+      self.opacity = reg[:opacity] || @cases[:opacity]
+      self.tone =  reg[:tone] || @cases[:tone]
+    end
   end
 
 
@@ -3320,9 +3351,7 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   def create_reflects
     @reflect_sprites = []
-    return 
     return if not $game_map.use_reflection
-    cases = $game_map.reflection_properties[:cases] || {}
     $game_map.events.values.each do |event|
       push_reflect(event.id, event)
     end
@@ -3334,7 +3363,7 @@ class Spriteset_Map
     end
     i = 0
     $game_player.followers.reverse_each do |follower|
-      id =  [:vehicle, i]
+      id =  [:follower, i]
       push_reflect(id, follower)
       i += 1
     end
@@ -3342,25 +3371,16 @@ class Spriteset_Map
   end
 
   def push_reflect(id, char)
-    return unless char || !char.visible?
-    cases = $game_map.reflection_properties[:cases] || {}
-    case_for_id = cases[id]
-    return if case_for_id == :ignored
-    return @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, case_for_id)) if case_for_id
-    cases = $game_map.reflection_properties[:triggered_cases] || []
-    specifics = cases.reduce({}) do |accumulator, elt|
-      if elt[0].call(id)
-        if accumulator == :ignored || elt[1] == :ignored 
-          :ignored
-        else
-          accumulator.merge(elt[1])
-        end
-      else 
-        accumulator
-      end
-    end
-    return if specifics == :ignored
-    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, specifics))
+    return unless char
+    return if $game_map.reflection_properties[:excluded].include?(id)
+    @reflect_sprites.push(
+      Sprite_Reflect.new(
+        @viewport1, 
+        char, 
+        id, 
+        $game_map.reflection_properties
+        )
+      )
   end
 
 
