@@ -1566,10 +1566,7 @@ class Sprite_Reflect < Sprite_Character
 
   def initialize(*args, id, cases)
     @id = id
-    @y_offset = cases[:y_offset] || 1 
-    @cases = (cases || {}).map do |k, v|
-      [:"#{k}=", v] if respond_to?(:"#{k}=")
-    end.compact
+    @y_offset = 1
     super(*args)
   end
 
@@ -1580,6 +1577,7 @@ class Sprite_Reflect < Sprite_Character
 
   def update
     super()
+
     self.angle = 180
     self.mirror = true
     self.z = -(50 + self.z)
@@ -1588,7 +1586,6 @@ class Sprite_Reflect < Sprite_Character
   end
 
   def update_effects 
-    @cases.each {|k, v| send(k, v) }
     update_region
   end
 
@@ -3320,9 +3317,7 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   def create_reflects
     @reflect_sprites = []
-    return 
     return if not $game_map.use_reflection
-    cases = $game_map.reflection_properties[:cases] || {}
     $game_map.events.values.each do |event|
       push_reflect(event.id, event)
     end
@@ -3343,24 +3338,8 @@ class Spriteset_Map
 
   def push_reflect(id, char)
     return unless char || !char.visible?
-    cases = $game_map.reflection_properties[:cases] || {}
-    case_for_id = cases[id]
-    return if case_for_id == :ignored
-    return @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, case_for_id)) if case_for_id
-    cases = $game_map.reflection_properties[:triggered_cases] || []
-    specifics = cases.reduce({}) do |accumulator, elt|
-      if elt[0].call(id)
-        if accumulator == :ignored || elt[1] == :ignored 
-          :ignored
-        else
-          accumulator.merge(elt[1])
-        end
-      else 
-        accumulator
-      end
-    end
-    return if specifics == :ignored
-    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, specifics))
+    return if char.is_a?(Game_Vehicle) && char.transparent 
+    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, {}))
   end
 
 

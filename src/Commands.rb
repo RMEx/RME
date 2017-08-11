@@ -797,10 +797,10 @@ module RMECommands
       $game_map.random_square(region_id)
     end
 
-    def use_reflection(properties)
+    def use_reflection(properties = nil)
       $game_map.use_reflection = true
       $game_map.reflection_properties = {}
-      return unless properties || !properties.is_a?(Hash)
+      return unless properties && !properties.is_a?(Hash)
       $game_map.reflection_properties = properties
       $game_map.reflection_properties[:excluded] ||= []
       $game_map.reflection_properties[:wave_amp] ||= 0
