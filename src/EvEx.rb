@@ -1567,30 +1567,21 @@ class Sprite_Reflect < Sprite_Character
   def initialize(*args, id, cases)
     @id = id
     @y_offset = 1
+    @base_opacity = 255
     super(*args)
   end
 
-  def update_other
-  end
-  def setup_new_effect
-  end
+  def update_other; end
+  def setup_new_effect; end
 
   def update
     super()
 
     self.angle = 180
     self.mirror = true
-    self.z = -(50 + self.z)
+    self.z = -100
     self.y = @character.screen_y + ((@y_offset - 1) * 32)
-    update_effects
-  end
-
-  def update_effects 
-    update_region
-  end
-
-  def update_region
-    
+    self.opacity = @character.transparent ? 0 : @base_opacity
   end
 
 
