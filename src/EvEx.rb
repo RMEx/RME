@@ -1569,6 +1569,7 @@ class Sprite_Reflect < Sprite_Character
     @y_offset = 1
     @base_opacity = 255
     @cases = cases
+
     super(*args)
   end
 
@@ -1580,13 +1581,37 @@ class Sprite_Reflect < Sprite_Character
   end
 
   def update
-    self.opacity = need_erased? ? 0 : @base_opacity
-    return if @character.transparent
+    if need_erased?
+      self.visible = false 
+      return
+    end
+    self.visible = true
     super()
     self.angle = 180
     self.mirror = true
     self.z = -100
     self.y = @character.screen_y + ((@y_offset - 1) * 32)
+    update_sprite_effect
+    update_for(:terrains, :terrain_tag)
+    update_for(:regions, :region_id)
+  end
+
+  def update_sprite_effect
+    self.wave_amp = @cases[:wave_amp]
+    self.wave_speed = @cases[:wave_speed]
+    self.opacity = @cases[:opacity]
+    self.tone = @cases[:tone]
+  end
+
+  def update_for(key, method)
+    id = $game_map.send(method, @character.x, @character.y + @y_offset)
+    if @cases[key].has_key?(id)
+      reg = @cases[key][id]
+      self.wave_amp = reg[:wave_amp] || @cases[:wave_amp]
+      self.wave_speed = reg[:wave_speed] || @cases[:wave_speed]
+      self.opacity = reg[:opacity] || @cases[:opacity]
+      self.tone =  reg[:tone] || @cases[:tone]
+    end
   end
 
 

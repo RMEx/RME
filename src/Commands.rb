@@ -806,8 +806,8 @@ module RMECommands
       $game_map.reflection_properties[:wave_speed] ||= 360
       $game_map.reflection_properties[:opacity] ||= 255
       $game_map.reflection_properties[:tone] ||= Tone.new(0, 0, 0, 0)
-      $game_map.reflection_properties[:terrain] ||= {}
-      $game_map.reflection_properties[:region] ||= {}
+      $game_map.reflection_properties[:terrains] ||= {}
+      $game_map.reflection_properties[:regions] ||= {}
     end
 
 
