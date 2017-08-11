@@ -1,5 +1,6 @@
 # RME Changelog
 
+*  `4.6 => 11/08/2017 05:00` Implémentation de la réflexion d'événements sur une surface (Nuki)
 *  `4.5 => 11/08/2017 01:00` Ajout des transitions en image (Nuki)
 *  `4.4 => 04/08/2017 00:30` Implémentation du testeur de teinte (Joke et Nuki)
 *  `4.3 => 06/08/2017 01:30` Direction facultative dans player_teleport (Nuki, reportée par Zer0zer0x)
