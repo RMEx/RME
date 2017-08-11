@@ -3333,8 +3333,16 @@ class Spriteset_Map
   end
 
   def push_reflect(id, char)
-    return unless char && !$game_map.reflection_properties[:excluded].include?(id)
-    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, $game_map.reflection_properties))
+    return unless char
+    return if $game_map.reflection_properties[:excluded].include?(id)
+    @reflect_sprites.push(
+      Sprite_Reflect.new(
+        @viewport1, 
+        char, 
+        id, 
+        $game_map.reflection_properties
+        )
+      )
   end
 
 
