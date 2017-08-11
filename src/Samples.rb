@@ -67,4 +67,7 @@ ASample.new('Une téléportation stylée',
 ASample.new('Une téléportation stylée',
 ['player_teleport_with_transition'], 29)
 
+ASample.new('Crée un effet de réflexion sur les événements (eau et glace)',
+['use_reflection', 'tone'], 30)
+
 end

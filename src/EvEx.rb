@@ -1566,15 +1566,27 @@ class Sprite_Reflect < Sprite_Character
 
   def initialize(*args, id, cases)
     @id = id
-    @y_offset = 1
+    @y_offset = compute_y_offset
     @base_opacity = 255
     @cases = cases
-
     super(*args)
+  end
+
+  def compute_y_offset
+    return 0 unless @character
+    return 1 if @character.priority_type != 2
+    ev = $game_map.events_xy(@character.x, @character.y + 1)
+    return 3 if !ev.empty? && ev[0].priority_type == 0 
+    2
   end
 
   def update_other; end
   def setup_new_effect; end
+
+  def y_rect 
+    return 8 if src_rect.height > 32 
+    0
+  end
 
   def need_erased?
     @character.transparent || @cases[:excluded].include?(@id)
@@ -1586,11 +1598,12 @@ class Sprite_Reflect < Sprite_Character
       return
     end
     self.visible = true
+    @y_offset = compute_y_offset
     super()
     self.angle = 180
     self.mirror = true
     self.z = -100
-    self.y = @character.screen_y + ((@y_offset - 1) * 32)
+    self.y = @character.screen_y + ((@y_offset - 1) * 32) - 2 - y_rect
     update_sprite_effect
     update_for(:terrains, :terrain_tag)
     update_for(:regions, :region_id)
