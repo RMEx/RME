@@ -1568,20 +1568,25 @@ class Sprite_Reflect < Sprite_Character
     @id = id
     @y_offset = 1
     @base_opacity = 255
+    @cases = cases
     super(*args)
   end
 
   def update_other; end
   def setup_new_effect; end
 
-  def update
-    super()
+  def need_erased?
+    @character.transparent || @cases[:excluded].include?(@id)
+  end
 
+  def update
+    self.opacity = need_erased? ? 0 : @base_opacity
+    return if @character.transparent
+    super()
     self.angle = 180
     self.mirror = true
     self.z = -100
     self.y = @character.screen_y + ((@y_offset - 1) * 32)
-    self.opacity = @character.transparent ? 0 : @base_opacity
   end
 
 
@@ -3320,7 +3325,7 @@ class Spriteset_Map
     end
     i = 0
     $game_player.followers.reverse_each do |follower|
-      id =  [:vehicle, i]
+      id =  [:follower, i]
       push_reflect(id, follower)
       i += 1
     end
@@ -3328,9 +3333,8 @@ class Spriteset_Map
   end
 
   def push_reflect(id, char)
-    return unless char || !char.visible?
-    return if char.is_a?(Game_Vehicle) && char.transparent 
-    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, {}))
+    return unless char && !$game_map.reflection_properties[:excluded].include?(id)
+    @reflect_sprites.push(Sprite_Reflect.new(@viewport1, char, id, $game_map.reflection_properties))
   end
 
 
