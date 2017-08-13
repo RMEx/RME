@@ -10975,7 +10975,7 @@ module RMECommands
     # * Shake the picture
     #--------------------------------------------------------------------------
     def picture_shake(ids, power, speed, duration)
-      ids.each do |id|
+      select_pictures(ids).each do |id|
         pictures[id].start_shake(power, speed, duration)
       end
     end
