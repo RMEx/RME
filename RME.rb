@@ -9483,6 +9483,8 @@ class Game_Event
   # * Determine if the first command is a Trigger
   #--------------------------------------------------------------------------
   def first_is_trigger?(page)
+    return false unless $game_map.events.has_key?(self.id)
+    p :lol
     return false unless page || page.list || page.list[0]
     return false unless page.list[0].code == 355
     script = page.list[0].parameters[0] + "\n"
