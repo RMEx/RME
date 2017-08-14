@@ -1537,11 +1537,13 @@ module Devices
     attr_reader :last_rect
     attr_reader :dragging
     attr_reader :drag
+    attr_reader :moving
 
     #--------------------------------------------------------------------------
     # * Alias
     #--------------------------------------------------------------------------
     alias_method :dragging?, :dragging
+    alias_method :moving?, :moving
 
     #--------------------------------------------------------------------------
     # * Delegate process
@@ -1556,6 +1558,8 @@ module Devices
     # * Object Initialization
     #--------------------------------------------------------------------------
     def initialize
+      @moving       = false
+      @last_point   = Point.new(0, 0)
       @point        = Point.new(0, 0)
       @square       = Point.new(0, 0)
       @last_rect    = false
@@ -1581,6 +1585,9 @@ module Devices
       update_position
       update_drag
       update_interaction
+      @moving = @last_point != @point
+      @last_point.x = @point.x
+      @last_point.y = @point.y
     end
 
     #--------------------------------------------------------------------------
@@ -7250,12 +7257,23 @@ class Game_CharacterBase
   def center(x, y)
     $game_map.set_display_pos(x - center_x, y - center_y)
   end
+
+  #--------------------------------------------------------------------------
+  # * Check if the event is adjacent to the map's border
+  #--------------------------------------------------------------------------
+  def adjacent_of_map_border?
+    w = $game_map.width -1 
+    h = $game_map.height -1
+    (self.x == 0 or self.x == w) or (self.y == 0 or self.y == h)
+  end
+
   #--------------------------------------------------------------------------
   # * Move to x y coord
   #--------------------------------------------------------------------------
-  def move_to_position(x, y, wait=false, no_through = false)
-    return unless $game_map.passable?(x,y,0)
-    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, no_through)
+  def move_to_position(sx, sy, wait=false, no_through = false)
+    return unless $game_map.passable?(sx,sy,0)
+    self.move_toward_xy(sx, sy)
+    route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
   end
@@ -9472,6 +9490,7 @@ class Game_Event
   # * Determine if the first command is a Trigger
   #--------------------------------------------------------------------------
   def first_is_trigger?(page)
+    return false unless $game_map.events.has_key?(self.id)
     return false unless page || page.list || page.list[0]
     return false unless page.list[0].code == 355
     script = page.list[0].parameters[0] + "\n"
@@ -10004,7 +10023,6 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Constants
   #--------------------------------------------------------------------------
-  Goal = Struct.new(:x, :y)
   ROUTE_MOVE_DOWN = 1
   ROUTE_MOVE_LEFT = 2
   ROUTE_MOVE_RIGHT = 3
@@ -10020,9 +10038,9 @@ module Pathfinder
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
-    def initialize(x, y, p, goal = Goal.new(0,0))
+    def initialize(x, y, xy, goal = ::Point.new(0,0))
       @goal = goal
-      @x, @y, @parent = x, y, p
+      @x, @y, @parent = x, y, xy
       self.score(@parent)
     end
     #--------------------------------------------------------------------------
@@ -10071,55 +10089,56 @@ module Pathfinder
     end
     e.passable?(x, y, dir)
   end
+
+  #--------------------------------------------------------------------------
+  # * Complete passability
+  #--------------------------------------------------------------------------
+  def check_passability?(event, current, elt, no_through, x, y, cl)
+    passable?(event, current.x, current.y, elt, no_through) && !has_key?(x, y, cl)
+  end
+
   #--------------------------------------------------------------------------
   # * Check closed_list
   #--------------------------------------------------------------------------
   def has_key?(x, y, l)
     l.has_key?(id(x, y))
   end
+
+  #--------------------------------------------------------------------------
+  # * Check if unbounded
+  #--------------------------------------------------------------------------
+  def unbounded?(x, y) 
+    (x < 0 or x > $game_map.width) or (y < 0 or y > $game_map.height)
+  end
+
   #--------------------------------------------------------------------------
   # * Create a path
   #--------------------------------------------------------------------------
   def create_path(goal, event, no_through = false)
+
     open_list, closed_list = Hash.new, Hash.new
     current = Point.new(event.x, event.y, nil, goal)
     open_list[current.id] = current
-    while !has_key?(goal.x, goal.y, closed_list)&& !open_list.empty?
+
+    while !has_key?(goal.x, goal.y, closed_list) && !open_list.empty?
+
       current = open_list.values.min{|point1, point2|point1.f <=> point2.f}
+      p [current.x, current.y]
       open_list.delete(current.id)
       closed_list[current.id] = current
-      args = current.x, current.y+1
-      if passable?(event, current.x, current.y, 2, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
+
+      [[0, 1, 8], [-1, 0, 4], [1, 0, 6], [0, -1, 2]].each do | elt |
+        args = current.x + elt[0], current.y + elt[1]
+        next if unbounded?(*args)
+        if check_passability?(event, current, elt[2], no_through, *args, closed_list)
+          if !has_key?(*args, open_list)
+            open_list[id(*args)] = Point.new(*args, current, goal)
+          else
+            open_list[id(*args)].score(current)
+          end
         end
       end
-      args = current.x-1, current.y
-      if passable?(event, current.x, current.y, 4, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
-        end
-      end
-      args = current.x+1, current.y
-      if passable?(event, current.x, current.y, 4, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
-        end
-      end
-      args = current.x, current.y-1
-      if passable?(event, current.x, current.y, 2, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
-        end
-      end
+
     end
     move_route = RPG::MoveRoute.new
     if has_key?(goal.x, goal.y, closed_list)
@@ -10130,9 +10149,11 @@ module Pathfinder
         current = current.parent
       end
     end
+
     move_route.skippable = true
     move_route.repeat = false
     return move_route
+
   end
 end
 
@@ -10975,7 +10996,7 @@ module RMECommands
     # * Shake the picture
     #--------------------------------------------------------------------------
     def picture_shake(ids, power, speed, duration)
-      ids.each do |id|
+      select_pictures(ids).each do |id|
         pictures[id].start_shake(power, speed, duration)
       end
     end
@@ -11060,7 +11081,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = Sprite_Picture.swap_cache(pict.name)
+        bmp = sprite_picture(id).swap_cache
         return (((bmp.width * pict.zoom_x))/100.0).to_i
       end
       zoom = Command.percent(v, picture_width(id))
@@ -11074,7 +11095,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = Sprite_Picture.swap_cache(pict.name)
+        bmp = sprite_picture(id).swap_cache
         return (((bmp.height * pict.zoom_y))/100.0).to_i
       end
       zoom = Command.percent(v, picture_height(id))
@@ -11387,6 +11408,7 @@ module RMECommands
     def mouse_square_y;     Mouse.square_y;                 end
     def mouse_rect;         Mouse.rect;                     end
     def mouse_last_rect;    Mouse.last_rect;                end
+    def mouse_moving?;      Mouse.moving?;                  end
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
@@ -20680,6 +20702,12 @@ link_method_documentation 'Command.player_opaque',
 	'Rend le joueur opaque',
  	{}
 register_command :event, 'Command.player_opaque'
+
+# AUTOGenerated for mouse_moving?
+link_method_documentation 'Command.mouse_moving?', 
+	'Renvoie true si la souris bouge, false sinon',
+ 	{}, true # Maybe changed
+register_command :mouse, 'Command.mouse_moving?' 
 
 # AUTOGenerated for get_tileset_id
 link_method_documentation 'Command.get_tileset_id',

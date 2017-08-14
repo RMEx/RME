@@ -564,7 +564,7 @@ module RMECommands
     # * Shake the picture
     #--------------------------------------------------------------------------
     def picture_shake(ids, power, speed, duration)
-      ids.each do |id|
+      select_pictures(ids).each do |id|
         pictures[id].start_shake(power, speed, duration)
       end
     end
@@ -649,7 +649,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = Sprite_Picture.swap_cache(pict.name)
+        bmp = sprite_picture(id).swap_cache
         return (((bmp.width * pict.zoom_x))/100.0).to_i
       end
       zoom = Command.percent(v, picture_width(id))
@@ -663,7 +663,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = Sprite_Picture.swap_cache(pict.name)
+        bmp = sprite_picture(id).swap_cache
         return (((bmp.height * pict.zoom_y))/100.0).to_i
       end
       zoom = Command.percent(v, picture_height(id))
@@ -976,6 +976,7 @@ module RMECommands
     def mouse_square_y;     Mouse.square_y;                 end
     def mouse_rect;         Mouse.rect;                     end
     def mouse_last_rect;    Mouse.last_rect;                end
+    def mouse_moving?;      Mouse.moving?;                  end
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end

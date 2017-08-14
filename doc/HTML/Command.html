@@ -410,6 +410,7 @@ Collection des commandes EventExtender<br /><br /><h2>Liste des méthodes<ul></h
 <li><a href='#commandmouse_hover_square_areaarea'>Command.mouse_hover_square_area?(area)</a></li>
 <li><a href='#commandmouse_inrectangle'>Command.mouse_in?(rectangle)</a></li>
 <li><a href='#commandmouse_last_rect'>Command.mouse_last_rect</a></li>
+<li><a href='#commandmouse_moving'>Command.mouse_moving?</a></li>
 <li><a href='#commandmouse_point'>Command.mouse_point</a></li>
 <li><a href='#commandmouse_presskey'>Command.mouse_press?(key)</a></li>
 <li><a href='#commandmouse_press_areaarea-key'>Command.mouse_press_area?(area, *key)</a></li>
@@ -1198,6 +1199,7 @@ Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule 
 </table><br /><br /><br /><br /><strong name='commandmouse_hover_square_areaarea' id='commandmouse_hover_square_areaarea'>Command.mouse_hover_square_area?(area)</strong><br /><br /><blockquote>Renvoie true si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>area</code></td><td><code>Area</code></td><td>Zone à vérifier</td></tr></table><br /><br /><br /><br /><strong name='commandmouse_inrectangle' id='commandmouse_inrectangle'>Command.mouse_in?(rectangle)</strong><br /><br /><blockquote>Renvoie true si la souris se trouve dans le rectangle passé en argument</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>rectangle</code></td><td><code>Rect</code></td><td>Rectangle à vérifier</td></tr></table><br /><br /><br /><br /><strong name='commandmouse_last_rect' id='commandmouse_last_rect'>Command.mouse_last_rect</strong><br /><br /><blockquote>Renvoie le dernier rectangle de sélection de la souris effectué</blockquote>  
+</table><br /><br /><br /><br /><strong name='commandmouse_moving' id='commandmouse_moving'>Command.mouse_moving?</strong><br /><br /><blockquote>Renvoie true si la souris bouge, false sinon</blockquote>  
 </table><br /><br /><br /><br /><strong name='commandmouse_point' id='commandmouse_point'>Command.mouse_point</strong><br /><br /><blockquote>Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran</blockquote>  
 </table><br /><br /><br /><br /><strong name='commandmouse_presskey' id='commandmouse_presskey'>Command.mouse_press?(key)</strong><br /><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table><br /><br /><br /><br /><strong name='commandmouse_press_areaarea-key' id='commandmouse_press_areaarea-key'>Command.mouse_press_area?(area, *key)</strong><br /><br /><blockquote>Renvoie true si la souris survole et clique en continu sur la zone passée en argument au moment de l'appel, false sinon</blockquote>  

@@ -416,6 +416,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_hover_square_area?(area)](#commandmouse_hover_square_areaarea)
 *    [Command.mouse_in?(rectangle)](#commandmouse_inrectangle)
 *    [Command.mouse_last_rect](#commandmouse_last_rect)
+*    [Command.mouse_moving?](#commandmouse_moving)
 *    [Command.mouse_point](#commandmouse_point)
 *    [Command.mouse_press?(key)](#commandmouse_presskey)
 *    [Command.mouse_press_area?(area, *key)](#commandmouse_press_areaarea-key)
@@ -5764,6 +5765,15 @@ Nom|Type|Description
 ##### Command.mouse_last_rect
 
 > Renvoie le dernier rectangle de sélection de la souris effectué
+
+  
+
+
+
+
+##### Command.mouse_moving?
+
+> Renvoie true si la souris bouge, false sinon
 
   
 

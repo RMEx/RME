@@ -1536,11 +1536,13 @@ module Devices
     attr_reader :last_rect
     attr_reader :dragging
     attr_reader :drag
+    attr_reader :moving
 
     #--------------------------------------------------------------------------
     # * Alias
     #--------------------------------------------------------------------------
     alias_method :dragging?, :dragging
+    alias_method :moving?, :moving
 
     #--------------------------------------------------------------------------
     # * Delegate process
@@ -1555,6 +1557,8 @@ module Devices
     # * Object Initialization
     #--------------------------------------------------------------------------
     def initialize
+      @moving       = false
+      @last_point   = Point.new(0, 0)
       @point        = Point.new(0, 0)
       @square       = Point.new(0, 0)
       @last_rect    = false
@@ -1580,6 +1584,9 @@ module Devices
       update_position
       update_drag
       update_interaction
+      @moving = @last_point != @point
+      @last_point.x = @point.x
+      @last_point.y = @point.y
     end
 
     #--------------------------------------------------------------------------
