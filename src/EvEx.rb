@@ -1264,6 +1264,24 @@ class Game_Texts
 end
 
 #==============================================================================
+# ** Light_Source
+#------------------------------------------------------------------------------
+#  The Abstract representation of a lightsource
+#==============================================================================
+
+class Light_Source 
+
+  attr_accessor :rayon, :intensity, :excluded
+
+  def initialize(rayon, intensity, excluded = [])
+    @rayon = rayon
+    @intensity = intensity
+    @excluded = excluded
+  end
+
+end
+
+#==============================================================================
 # ** Game_CharacterBase
 #------------------------------------------------------------------------------
 #  This base class handles characters. It retains basic information, such as
@@ -1301,6 +1319,7 @@ class Game_CharacterBase
   attr_accessor :opacity
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
+
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1323,6 +1342,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
+    
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index

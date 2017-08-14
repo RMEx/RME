@@ -11242,6 +11242,10 @@ module RMECommands
       $game_map.reflection_properties[:regions] ||= {}
     end
 
+    def create_light_source(id, rayon, intensity, excluded = [], fx = {})
+  
+    end
+
 
     #--------------------------------------------------------------------------
     # * Get Region ID from coords
