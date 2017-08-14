@@ -810,8 +810,17 @@ module RMECommands
       $game_map.reflection_properties[:regions] ||= {}
     end
 
-    def create_light_source(id, rayon, intensity, excluded = [], fx = {})
-      event(id).light_emitter = Light_Emitter.new(rayon, intensity, excluded, fx)
+    def create_light_emitters(hash)
+      hash.each do |key, value|
+        event(id).light_emitter = Light_Emitter.new(
+          value[:rayon],
+          value[:intensity],
+          value[:excluded] || [], 
+          value[:fx] || {}
+        )
+      end
+      $game_map.need_refresh = true 
+      SceneManager.scene.refresh_spriteset
     end
 
 

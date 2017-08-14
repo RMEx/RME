@@ -7450,6 +7450,16 @@ class Game_Player
 end
 
 #==============================================================================
+# ** Sprite_Shadow
+#------------------------------------------------------------------------------
+#  This sprite is used to display characters's Shadow
+#==============================================================================
+
+class Sprite_Shadow < Sprite_Character
+
+end
+
+#==============================================================================
 # ** Sprite_Reflect
 #------------------------------------------------------------------------------
 #  This sprite is used to display characters's reflection
@@ -11274,6 +11284,8 @@ module RMECommands
 
     def create_light_source(id, rayon, intensity, excluded = [], fx = {})
       event(id).light_emitter = Light_Emitter.new(rayon, intensity, excluded, fx)
+      $game_map.need_refresh = true 
+      SceneManager.scene.refresh_spriteset
     end
 
 
