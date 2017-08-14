@@ -1264,19 +1264,20 @@ class Game_Texts
 end
 
 #==============================================================================
-# ** Light_Source
+# ** Light_Emitter
 #------------------------------------------------------------------------------
 #  The Abstract representation of a lightsource
 #==============================================================================
 
-class Light_Source 
+class Light_Emitter
 
-  attr_accessor :rayon, :intensity, :excluded
+  attr_accessor :rayon, :intensity, :excluded, :fx
 
-  def initialize(rayon, intensity, excluded = [])
+  def initialize(rayon, intensity, excluded = [], fx = {})
     @rayon = rayon
     @intensity = intensity
     @excluded = excluded
+    @fx = fx
   end
 
 end
