@@ -1410,7 +1410,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def move_to_position(x, y, wait=false, no_through = false)
     return unless $game_map.passable?(x,y,0)
-    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, no_through)
+    route = Pathfinder.create_path(Point.new(x, y), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
   end
@@ -4159,7 +4159,6 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Constants
   #--------------------------------------------------------------------------
-  Goal = Struct.new(:x, :y)
   ROUTE_MOVE_DOWN = 1
   ROUTE_MOVE_LEFT = 2
   ROUTE_MOVE_RIGHT = 3
@@ -4175,9 +4174,9 @@ module Pathfinder
     #--------------------------------------------------------------------------
     # * Object initialize
     #--------------------------------------------------------------------------
-    def initialize(x, y, p, goal = Goal.new(0,0))
+    def initialize(x, y, xy, goal = ::Point.new(0,0))
       @goal = goal
-      @x, @y, @parent = x, y, p
+      @x, @y, @parent = x, y, xy
       self.score(@parent)
     end
     #--------------------------------------------------------------------------
@@ -4239,42 +4238,22 @@ module Pathfinder
     open_list, closed_list = Hash.new, Hash.new
     current = Point.new(event.x, event.y, nil, goal)
     open_list[current.id] = current
-    while !has_key?(goal.x, goal.y, closed_list)&& !open_list.empty?
+    while !has_key?(goal.x, goal.y, closed_list) && !open_list.empty?
       current = open_list.values.min{|point1, point2|point1.f <=> point2.f}
       open_list.delete(current.id)
       closed_list[current.id] = current
-      args = current.x, current.y+1
-      if passable?(event, current.x, current.y, 2, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
+      
+      [[0, 1, 2], [-1, 0, 4], [1, 0, 4], [0, -1, 2]].each do | elt |
+        args = current.x + elt[0], current.y + elt[1]
+        if passable?(event, current.x, current.y, elt[2], no_through) && !has_key?(*args, closed_list)
+          if !has_key?(*args, open_list)
+            open_list[id(*args)] = Point.new(*args, current, goal)
+          else
+            open_list[id(*args)].score(current)
+          end
         end
       end
-      args = current.x-1, current.y
-      if passable?(event, current.x, current.y, 4, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
-        end
-      end
-      args = current.x+1, current.y
-      if passable?(event, current.x, current.y, 4, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
-        end
-      end
-      args = current.x, current.y-1
-      if passable?(event, current.x, current.y, 2, no_through) && !has_key?(*args, closed_list)
-        if !has_key?(*args, open_list)
-          open_list[id(*args)] = Point.new(*args, current, goal)
-        else
-          open_list[id(*args)].score(current)
-        end
-      end
+
     end
     move_route = RPG::MoveRoute.new
     if has_key?(goal.x, goal.y, closed_list)
