@@ -1410,6 +1410,7 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def move_to_position(x, y, wait=false, no_through = false)
     return unless $game_map.passable?(x,y,0)
+    self.move_toward_xy(x, y)
     route = Pathfinder.create_path(Point.new(x, y), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
@@ -4225,27 +4226,48 @@ module Pathfinder
     end
     e.passable?(x, y, dir)
   end
+
+  #--------------------------------------------------------------------------
+  # * Complete passability
+  #--------------------------------------------------------------------------
+  def check_passability?(event, current, elt, no_through, x, y, cl)
+    passable?(event, current.x, current.y, elt, no_through) && !has_key?(x, y, cl)
+  end
+
   #--------------------------------------------------------------------------
   # * Check closed_list
   #--------------------------------------------------------------------------
   def has_key?(x, y, l)
     l.has_key?(id(x, y))
   end
+
+  #--------------------------------------------------------------------------
+  # * Check if unbounded
+  #--------------------------------------------------------------------------
+  def unbounded?(x, y) 
+    (x < 0 or x > $game_map.width) or (y < 0 or y > $game_map.height)
+  end
+
   #--------------------------------------------------------------------------
   # * Create a path
   #--------------------------------------------------------------------------
   def create_path(goal, event, no_through = false)
+
     open_list, closed_list = Hash.new, Hash.new
     current = Point.new(event.x, event.y, nil, goal)
     open_list[current.id] = current
+
     while !has_key?(goal.x, goal.y, closed_list) && !open_list.empty?
+
       current = open_list.values.min{|point1, point2|point1.f <=> point2.f}
+      p [current.x, current.y]
       open_list.delete(current.id)
       closed_list[current.id] = current
-      
-      [[0, 1, 2], [-1, 0, 4], [1, 0, 4], [0, -1, 2]].each do | elt |
+
+      [[0, 1, 8], [-1, 0, 4], [1, 0, 6], [0, -1, 2]].each do | elt |
         args = current.x + elt[0], current.y + elt[1]
-        if passable?(event, current.x, current.y, elt[2], no_through) && !has_key?(*args, closed_list)
+        next if unbounded?(*args)
+        if check_passability?(event, current, elt[2], no_through, *args, closed_list)
           if !has_key?(*args, open_list)
             open_list[id(*args)] = Point.new(*args, current, goal)
           else
@@ -4264,9 +4286,11 @@ module Pathfinder
         current = current.parent
       end
     end
+
     move_route.skippable = true
     move_route.repeat = false
     return move_route
+
   end
 end
 
