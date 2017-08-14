@@ -30,7 +30,6 @@ Commandes relatives aux informations des cartes
 *    [table?(x, y)](#tablex-y)
 *    [terrain_tag(x, y)](#terrain_tagx-y)
 *    [tile_id(x, y, layer, *map_id)](#tile_idx-y-layer-map_id)
-*    [use_reflection(properties)](#use_reflectionproperties)
 *    [wall?(x, y)](#wallx-y)
 
 
@@ -224,14 +223,6 @@ Nom|Type|Description
 `y`|`Fixnum`|Coordonnées Y de la case  
 `layer`|`Fixnum`|Numéro de la couche  
 `*map_id`|`Fixnum`|ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante  
-##### use_reflection(properties)
-
-> Active la réflexion sur une surface. Regardez l'exemple pour comprendre son fonctionnement
-
-  
-Nom|Type|Description  
---- | --- | ---  
-`properties`|`Hash`|L'ensemble des propriétés  
 ##### wall?(x, y)
 
 > Renvoie true si les coordonnées sont sur un mur, false sinon

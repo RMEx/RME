@@ -810,8 +810,8 @@ module RMECommands
       $game_map.reflection_properties[:regions] ||= {}
     end
 
-    def create_light_source(id, rayon, intensity, excluded = [])
-
+    def create_light_source(id, rayon, intensity, excluded = [], fx = {})
+      event(id).light_emitter = Light_Emitter.new(rayon, intensity, excluded, fx)
     end
 
 

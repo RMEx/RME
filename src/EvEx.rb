@@ -1320,6 +1320,7 @@ class Game_CharacterBase
   attr_accessor :opacity
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
+  attr_accessor :light_emitter
 
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
@@ -1343,11 +1344,19 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
-    
+    @light_emitter = nil
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index
   end
+
+  #--------------------------------------------------------------------------
+  # * Remove Emitter
+  #--------------------------------------------------------------------------
+  def remove_light_emitter
+    @light_emitter = nil
+  end
+
   #--------------------------------------------------------------------------
   # * restore ox oy
   #--------------------------------------------------------------------------
@@ -1586,6 +1595,16 @@ class Game_Player
     rme_refresh
     restore_oxy
   end
+end
+
+#==============================================================================
+# ** Sprite_Shadow
+#------------------------------------------------------------------------------
+#  This sprite is used to display characters's Shadow
+#==============================================================================
+
+class Sprite_Shadow < Sprite_Character
+
 end
 
 #==============================================================================
