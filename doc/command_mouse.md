@@ -16,6 +16,7 @@ Commande relatives à la gestion de la souris
 *    [mouse_dragging?](#mouse_dragging)
 *    [mouse_in?(rectangle)](#mouse_inrectangle)
 *    [mouse_last_rect](#mouse_last_rect)
+*    [mouse_moving?](#mouse_moving)
 *    [mouse_point](#mouse_point)
 *    [mouse_press?(key)](#mouse_presskey)
 *    [mouse_rect](#mouse_rect)
@@ -92,6 +93,11 @@ Nom|Type|Description
 ##### mouse_last_rect
 
 > Renvoie le dernier rectangle de sélection de la souris effectué
+
+  
+##### mouse_moving?
+
+> Renvoie true si la souris bouge, false sinon
 
   
 ##### mouse_point

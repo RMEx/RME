@@ -10,6 +10,7 @@ Commande relatives à la gestion de la souris<br /><br /><h2>Liste des commandes
 <li><a href='#mouse_dragging'>mouse_dragging?</a></li>
 <li><a href='#mouse_inrectangle'>mouse_in?(rectangle)</a></li>
 <li><a href='#mouse_last_rect'>mouse_last_rect</a></li>
+<li><a href='#mouse_moving'>mouse_moving?</a></li>
 <li><a href='#mouse_point'>mouse_point</a></li>
 <li><a href='#mouse_presskey'>mouse_press?(key)</a></li>
 <li><a href='#mouse_rect'>mouse_rect</a></li>
@@ -30,6 +31,7 @@ Commande relatives à la gestion de la souris<br /><br /><h2>Liste des commandes
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>method</code></td><td><code>Symbol</code></td><td>Méthode d'activation (:press?, :release?, :trigger? etc.)</td></tr></table><strong name='mouse_dragging' id='mouse_dragging'>mouse_dragging?</strong><br /><br /><blockquote>Renvoie true si la souris est en train de sélectionner (cliquer/glisser) à l'écran</blockquote>  
 </table><strong name='mouse_inrectangle' id='mouse_inrectangle'>mouse_in?(rectangle)</strong><br /><br /><blockquote>Renvoie true si la souris se trouve dans le rectangle passé en argument</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>rectangle</code></td><td><code>Rect</code></td><td>Rectangle à vérifier</td></tr></table><strong name='mouse_last_rect' id='mouse_last_rect'>mouse_last_rect</strong><br /><br /><blockquote>Renvoie le dernier rectangle de sélection de la souris effectué</blockquote>  
+</table><strong name='mouse_moving' id='mouse_moving'>mouse_moving?</strong><br /><br /><blockquote>Renvoie true si la souris bouge, false sinon</blockquote>  
 </table><strong name='mouse_point' id='mouse_point'>mouse_point</strong><br /><br /><blockquote>Renvoie un point (possédant les attributs x, y) référençant la position de la souris en pixels par rapport à l'écran</blockquote>  
 </table><strong name='mouse_presskey' id='mouse_presskey'>mouse_press?(key)</strong><br /><br /><blockquote>Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>key</code></td><td><code>Symbol</code></td><td>Symbole référençant une touche (cf:attributs)</td></tr></table><strong name='mouse_rect' id='mouse_rect'>mouse_rect</strong><br /><br /><blockquote>Renvoie le rectangle de sélection de la souris (tracé en cours)</blockquote>  
