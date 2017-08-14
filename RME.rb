@@ -7250,13 +7250,23 @@ class Game_CharacterBase
   def center(x, y)
     $game_map.set_display_pos(x - center_x, y - center_y)
   end
+
+  #--------------------------------------------------------------------------
+  # * Check if the event is adjacent to the map's border
+  #--------------------------------------------------------------------------
+  def adjacent_of_map_border?
+    w = $game_map.width -1 
+    h = $game_map.height -1
+    (self.x == 0 or self.x == w) or (self.y == 0 or self.y == h)
+  end
+
   #--------------------------------------------------------------------------
   # * Move to x y coord
   #--------------------------------------------------------------------------
-  def move_to_position(x, y, wait=false, no_through = false)
-    return unless $game_map.passable?(x,y,0)
-    self.move_toward_xy(x, y)
-    route = Pathfinder.create_path(Point.new(x, y), self, no_through)
+  def move_to_position(sx, sy, wait=false, no_through = false)
+    return unless $game_map.passable?(sx,sy,0)
+    self.move_toward_xy(sx, sy)
+    route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
   end
