@@ -9250,9 +9250,9 @@ class Spriteset_Map
     rme_initialize
   end
   #--------------------------------------------------------------------------
-  # * Create Reflect
+  # * Create Reflect and shadows
   #--------------------------------------------------------------------------
-  def create_reflects
+  def create_effects
     @reflect_sprites = []
     return if not $game_map.use_reflection
     $game_map.events.values.each do |event|
@@ -9295,7 +9295,7 @@ class Spriteset_Map
     @character_sprites.each.with_index do |c, i|
       c.character.sprite_index = i
     end
-     create_reflects
+     create_effects
   end
 
   #--------------------------------------------------------------------------
@@ -11263,8 +11263,6 @@ module RMECommands
        $game_map.squares_by_tile(layer, tile_id)
     end
 
-
-
     def get_random_square(region_id = 0)
       $game_map.random_square(region_id)
     end
@@ -11282,8 +11280,15 @@ module RMECommands
       $game_map.reflection_properties[:regions] ||= {}
     end
 
-    def create_light_source(id, rayon, intensity, excluded = [], fx = {})
-      event(id).light_emitter = Light_Emitter.new(rayon, intensity, excluded, fx)
+    def create_light_emitters(hash)
+      hash.each do |key, value|
+        event(id).light_emitter = Light_Emitter.new(
+          value[:rayon],
+          value[:intensity],
+          value[:excluded] || [], 
+          value[:fx] || {}
+        )
+      end
       $game_map.need_refresh = true 
       SceneManager.scene.refresh_spriteset
     end

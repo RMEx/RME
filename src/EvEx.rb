@@ -3398,9 +3398,9 @@ class Spriteset_Map
     rme_initialize
   end
   #--------------------------------------------------------------------------
-  # * Create Reflect
+  # * Create Reflect and shadows
   #--------------------------------------------------------------------------
-  def create_reflects
+  def create_effects
     @reflect_sprites = []
     return if not $game_map.use_reflection
     $game_map.events.values.each do |event|
@@ -3443,7 +3443,7 @@ class Spriteset_Map
     @character_sprites.each.with_index do |c, i|
       c.character.sprite_index = i
     end
-     create_reflects
+     create_effects
   end
 
   #--------------------------------------------------------------------------

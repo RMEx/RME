@@ -791,8 +791,6 @@ module RMECommands
        $game_map.squares_by_tile(layer, tile_id)
     end
 
-
-
     def get_random_square(region_id = 0)
       $game_map.random_square(region_id)
     end
