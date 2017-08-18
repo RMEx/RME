@@ -7302,7 +7302,6 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def move_to_position(sx, sy, wait=false, no_through = false)
     return unless $game_map.passable?(sx,sy,0)
-    self.move_toward_xy(sx, sy)
     route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
@@ -10148,7 +10147,7 @@ module Pathfinder
   # * Check if unbounded
   #--------------------------------------------------------------------------
   def unbounded?(x, y) 
-    (x < 0 or x > $game_map.width) or (y < 0 or y > $game_map.height)
+    (x < 0 or x >= $game_map.width) or (y < 0 or y >= $game_map.height)
   end
 
   #--------------------------------------------------------------------------
