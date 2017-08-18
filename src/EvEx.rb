@@ -1264,6 +1264,25 @@ class Game_Texts
 end
 
 #==============================================================================
+# ** Light_Emitter
+#------------------------------------------------------------------------------
+#  The Abstract representation of a lightsource
+#==============================================================================
+
+class Light_Emitter
+
+  attr_accessor :rayon, :intensity, :excluded, :fx
+
+  def initialize(rayon, intensity, excluded = [], fx = {})
+    @rayon = rayon
+    @intensity = intensity
+    @excluded = excluded
+    @fx = fx
+  end
+
+end
+
+#==============================================================================
 # ** Game_CharacterBase
 #------------------------------------------------------------------------------
 #  This base class handles characters. It retains basic information, such as
@@ -1301,6 +1320,8 @@ class Game_CharacterBase
   attr_accessor :opacity
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
+  attr_accessor :light_emitter
+
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1323,10 +1344,19 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
+    @light_emitter = nil
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index
   end
+
+  #--------------------------------------------------------------------------
+  # * Remove Emitter
+  #--------------------------------------------------------------------------
+  def remove_light_emitter
+    @light_emitter = nil
+  end
+
   #--------------------------------------------------------------------------
   # * restore ox oy
   #--------------------------------------------------------------------------
@@ -1420,7 +1450,6 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def move_to_position(sx, sy, wait=false, no_through = false)
     return unless $game_map.passable?(sx,sy,0)
-    self.move_toward_xy(sx, sy)
     route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
@@ -1565,6 +1594,16 @@ class Game_Player
     rme_refresh
     restore_oxy
   end
+end
+
+#==============================================================================
+# ** Sprite_Shadow
+#------------------------------------------------------------------------------
+#  This sprite is used to display characters's Shadow
+#==============================================================================
+
+class Sprite_Shadow < Sprite_Character
+
 end
 
 #==============================================================================
@@ -3358,9 +3397,9 @@ class Spriteset_Map
     rme_initialize
   end
   #--------------------------------------------------------------------------
-  # * Create Reflect
+  # * Create Reflect and shadows
   #--------------------------------------------------------------------------
-  def create_reflects
+  def create_effects
     @reflect_sprites = []
     return if not $game_map.use_reflection
     $game_map.events.values.each do |event|
@@ -3403,7 +3442,7 @@ class Spriteset_Map
     @character_sprites.each.with_index do |c, i|
       c.character.sprite_index = i
     end
-     create_reflects
+     create_effects
   end
 
   #--------------------------------------------------------------------------
@@ -4242,7 +4281,7 @@ module Pathfinder
   # * Complete passability
   #--------------------------------------------------------------------------
   def check_passability?(event, current, elt, no_through, x, y, cl)
-    passable?(event, current.x, current.y, elt, no_through) && !has_key?(x, y, cl)
+    passable?(event, x, y, elt, no_through) && !has_key?(x, y, cl)
   end
 
   #--------------------------------------------------------------------------
@@ -4256,7 +4295,7 @@ module Pathfinder
   # * Check if unbounded
   #--------------------------------------------------------------------------
   def unbounded?(x, y) 
-    (x < 0 or x > $game_map.width) or (y < 0 or y > $game_map.height)
+    (x < 0 or x >= $game_map.width) or (y < 0 or y >= $game_map.height)
   end
 
   #--------------------------------------------------------------------------
@@ -4271,23 +4310,26 @@ module Pathfinder
     while !has_key?(goal.x, goal.y, closed_list) && !open_list.empty?
 
       current = open_list.values.min{|point1, point2|point1.f <=> point2.f}
-      p [current.x, current.y]
       open_list.delete(current.id)
       closed_list[current.id] = current
 
-      [[0, 1, 8], [-1, 0, 4], [1, 0, 6], [0, -1, 2]].each do | elt |
+
+      [[0, 1], [-1, 0], [1, 0], [0, -1]].each do | elt |
         args = current.x + elt[0], current.y + elt[1]
         next if unbounded?(*args)
-        if check_passability?(event, current, elt[2], no_through, *args, closed_list)
-          if !has_key?(*args, open_list)
-            open_list[id(*args)] = Point.new(*args, current, goal)
-          else
-            open_list[id(*args)].score(current)
+        [2, 4, 6, 8].each do |d|
+          if check_passability?(event, current, d, no_through, *args, closed_list)
+            if !has_key?(*args, open_list)
+              open_list[id(*args)] = Point.new(*args, current, goal)
+            else
+              open_list[id(*args)].score(current)
+            end
           end
         end
       end
 
     end
+
     move_route = RPG::MoveRoute.new
     if has_key?(goal.x, goal.y, closed_list)
       current = closed_list[id(goal.x, goal.y)]
