@@ -7116,6 +7116,25 @@ class Game_Texts
 end
 
 #==============================================================================
+# ** Light_Emitter
+#------------------------------------------------------------------------------
+#  The Abstract representation of a lightsource
+#==============================================================================
+
+class Light_Emitter
+
+  attr_accessor :rayon, :intensity, :excluded, :fx
+
+  def initialize(rayon, intensity, excluded = [], fx = {})
+    @rayon = rayon
+    @intensity = intensity
+    @excluded = excluded
+    @fx = fx
+  end
+
+end
+
+#==============================================================================
 # ** Game_CharacterBase
 #------------------------------------------------------------------------------
 #  This base class handles characters. It retains basic information, such as
@@ -7153,6 +7172,8 @@ class Game_CharacterBase
   attr_accessor :opacity
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
+  attr_accessor :light_emitter
+
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -7175,10 +7196,19 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def initialize
     rm_extender_initialize
+    @light_emitter = nil
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index
   end
+
+  #--------------------------------------------------------------------------
+  # * Remove Emitter
+  #--------------------------------------------------------------------------
+  def remove_light_emitter
+    @light_emitter = nil
+  end
+
   #--------------------------------------------------------------------------
   # * restore ox oy
   #--------------------------------------------------------------------------
@@ -7272,7 +7302,6 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   def move_to_position(sx, sy, wait=false, no_through = false)
     return unless $game_map.passable?(sx,sy,0)
-    self.move_toward_xy(sx, sy)
     route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
     self.force_move_route(route)
     Fiber.yield while self.move_route_forcing if wait
@@ -7417,6 +7446,16 @@ class Game_Player
     rme_refresh
     restore_oxy
   end
+end
+
+#==============================================================================
+# ** Sprite_Shadow
+#------------------------------------------------------------------------------
+#  This sprite is used to display characters's Shadow
+#==============================================================================
+
+class Sprite_Shadow < Sprite_Character
+
 end
 
 #==============================================================================
@@ -9210,9 +9249,9 @@ class Spriteset_Map
     rme_initialize
   end
   #--------------------------------------------------------------------------
-  # * Create Reflect
+  # * Create Reflect and shadows
   #--------------------------------------------------------------------------
-  def create_reflects
+  def create_effects
     @reflect_sprites = []
     return if not $game_map.use_reflection
     $game_map.events.values.each do |event|
@@ -9255,7 +9294,7 @@ class Spriteset_Map
     @character_sprites.each.with_index do |c, i|
       c.character.sprite_index = i
     end
-     create_reflects
+     create_effects
   end
 
   #--------------------------------------------------------------------------
@@ -10108,7 +10147,7 @@ module Pathfinder
   # * Check if unbounded
   #--------------------------------------------------------------------------
   def unbounded?(x, y) 
-    (x < 0 or x > $game_map.width) or (y < 0 or y > $game_map.height)
+    (x < 0 or x >= $game_map.width) or (y < 0 or y >= $game_map.height)
   end
 
   #--------------------------------------------------------------------------
@@ -11223,8 +11262,6 @@ module RMECommands
        $game_map.squares_by_tile(layer, tile_id)
     end
 
-
-
     def get_random_square(region_id = 0)
       $game_map.random_square(region_id)
     end
@@ -11240,6 +11277,19 @@ module RMECommands
       $game_map.reflection_properties[:tone] ||= Tone.new(0, 0, 0, 0)
       $game_map.reflection_properties[:terrains] ||= {}
       $game_map.reflection_properties[:regions] ||= {}
+    end
+
+    def create_light_emitters(hash)
+      hash.each do |key, value|
+        event(id).light_emitter = Light_Emitter.new(
+          value[:rayon],
+          value[:intensity],
+          value[:excluded] || [], 
+          value[:fx] || {}
+        )
+      end
+      $game_map.need_refresh = true 
+      SceneManager.scene.refresh_spriteset
     end
 
 
@@ -15448,6 +15498,7 @@ module Command
   register_command_category :screen, "Ecran", "Commandes pour manipuler l'écran (teintes, vibrations etc)"
   register_command_category :window, "Fenêtres", "Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez du texte, utilisez de préférence les apostrophes comme séparateur. Cette collection de commande est documentée dans le Wiki!"
   register_command_category :game_window, "Fenêtre de jeu", "Commandes de manipulation de la fenêtre de jeu"
+  register_command_category :fx, "Effets spéciaux", "Effets spéciaux sur la carte"
 
   link_class_documentation "Collection des commandes EventExtender"
 
@@ -20178,7 +20229,7 @@ link_method_documentation 'Command.use_reflection',
 		:properties => ["L'ensemble des propriétés", :Hash],
 
 	}
-register_command :mapinfo, 'Command.use_reflection' 
+register_command :fx, 'Command.use_reflection' 
 
 
 # AUTOGenerated for event_move_speed_frequency
