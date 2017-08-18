@@ -71,7 +71,7 @@ module RMECommands
   def tilemap; spriteset.tilemap; end
   def wait(d); d.times { Fiber.yield}; end
   def session_username; USERNAME; end
-  def length(a); a.length; end
+  def length(a); a.to_a.length; end
   def get(a, i); a[i]; end
   def event(id)
     if id.is_a?(Array)
