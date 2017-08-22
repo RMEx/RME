@@ -79,11 +79,11 @@ module RMECommands
         e = $game_player.followers[id[1]]
         return e if e
         raise sprintf("Follower n° %d doesn't exist", id)
-      else id[0] == :vehicle 
+      else id[0] == :vehicle
         e =  $game_map.vehicles[id[1]]
         return e if e
         raise sprintf("Vehicle n° %d doesn't exist", id)
-      end 
+      end
     end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
@@ -813,11 +813,11 @@ module RMECommands
         event(id).light_emitter = Light_Emitter.new(
           value[:rayon],
           value[:intensity],
-          value[:excluded] || [], 
+          value[:excluded] || [],
           value[:fx] || {}
         )
       end
-      $game_map.need_refresh = true 
+      $game_map.need_refresh = true
       SceneManager.scene.refresh_spriteset
     end
 
@@ -991,8 +991,8 @@ module RMECommands
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
-    def cursor_system(m)
-      flag = (!!flag) ? 1 : 0
+    def cursor_system(b)
+      flag = (!!b) ? 1 : 0
       Externlib::ShowCursor.(flag)
     end
 
@@ -1405,7 +1405,7 @@ module RMECommands
     def player_flash(color, duration)
       event_flash(0, color, duration)
     end
-    
+
     def between(x1, y1, x2, y2)
       a = x1 - x2
       b = y1 - y2
@@ -1770,7 +1770,7 @@ module RMECommands
     def player_move_right(turn_ok = true); event_move_right(0, turn_ok); end
     def player_move_up(turn_ok = true); event_move_up(0, turn_ok); end
 
-    def event_move_random(id); event(id).move_random; end 
+    def event_move_random(id); event(id).move_random; end
     def player_move_random; event_move_random(0); end
 
     def event_move_diagonal(id, horizontal, vertical)
@@ -1790,7 +1790,7 @@ module RMECommands
 
     def player_move_lower_left; event_move_lower_left(0); end
     def player_move_lower_right; event_move_lower_right(0); end
-    def player_move_upper_left; event_move_upper_left(0); end 
+    def player_move_upper_left; event_move_upper_left(0); end
     def player_move_upper_right; event_move_upper_right(0); end
 
     def event_move_toward_position(id, x, y)
@@ -1803,7 +1803,7 @@ module RMECommands
       event_move_toward_position(0, x, y)
     end
 
-    def event_move_toward_event(id, target) 
+    def event_move_toward_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.move_toward_character(tr)
@@ -1812,7 +1812,7 @@ module RMECommands
 
     def event_move_toward_player(id)
       event_move_toward_event(id, 0)
-    end 
+    end
 
     def player_move_toward_event(id)
       event_move_toward_event(0, id)
@@ -1829,7 +1829,7 @@ module RMECommands
       event_move_away_from_position(0, x, y)
     end
 
-    def event_move_away_from_event(id, target) 
+    def event_move_away_from_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.move_away_from_character(tr)
@@ -1838,7 +1838,7 @@ module RMECommands
 
     def event_move_away_from_player(id)
       event_move_away_from_event(id, 0)
-    end 
+    end
 
     def player_move_away_from_event(id)
       event_move_away_from_event(0, id)
@@ -1859,31 +1859,31 @@ module RMECommands
     def player_move_backward; event_move_backward(0); end
 
 
-    def event_turn_down(id); event_direction(id, 2); end 
+    def event_turn_down(id); event_direction(id, 2); end
     def player_turn_down; event_turn_down(0); end
 
-    def event_turn_left(id); event_direction(id, 4); end 
+    def event_turn_left(id); event_direction(id, 4); end
     def player_turn_left; event_turn_left(0); end
 
-    def event_turn_right(id); event_direction(id, 6); end 
+    def event_turn_right(id); event_direction(id, 6); end
     def player_turn_right; event_turn_right(0); end
 
-    def event_turn_up(id); event_direction(id, 8); end 
+    def event_turn_up(id); event_direction(id, 8); end
     def player_turn_up; event_turn_up(0); end
 
 
     def event_turn_90_left(id); event(id).turn_left_90; end
-    def player_turn_90_left; event_turn_90_left(0); end 
+    def player_turn_90_left; event_turn_90_left(0); end
     def event_turn_90_right(id); event(id).turn_right_90; end
     def player_turn_90_right; event_turn_90_right(0); end
-    def event_turn_180(id); event.turn_180; end 
+    def event_turn_180(id); event.turn_180; end
     def player_turn_180; event_turn_180(0); end
     def event_turn_90_right_or_left(id); event(id).turn_right_or_left_90; end
     def player_turn_90_right_or_left; event_turn_90_right_or_left(0); end
-    def event_turn_random(id); event(id).turn_random; end 
+    def event_turn_random(id); event(id).turn_random; end
     def player_turn_random; event_turn_random(0); end
 
-    
+
     def event_turn_toward_position(id, x, y)
       ev = event(id)
       ev.turn_toward_xy(x, y)
@@ -1893,7 +1893,7 @@ module RMECommands
       event_turn_toward_position(0, x, y)
     end
 
-    def event_turn_toward_event(id, target) 
+    def event_turn_toward_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.turn_toward_character(tr)
@@ -1901,7 +1901,7 @@ module RMECommands
 
     def event_turn_toward_player(id)
       event_turn_toward_event(id, 0)
-    end 
+    end
 
     def player_turn_toward_event(id)
       event_turn_toward_event(0, id)
@@ -1917,7 +1917,7 @@ module RMECommands
       event_turn_away_from_position(0, x, y)
     end
 
-    def event_turn_away_from_event(id, target) 
+    def event_turn_away_from_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.turn_away_from_character(tr)
@@ -1925,7 +1925,7 @@ module RMECommands
 
     def event_turn_away_from_player(id)
       event_turn_away_from_event(id, 0)
-    end 
+    end
 
     def player_turn_away_from_event(id)
       event_turn_away_from_event(0, id)
@@ -2347,11 +2347,11 @@ module RMECommands
     end
 
     def text_progressive(id, value, delay)
-      value.each_char do |ch| 
+      value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)
         wait(delay)
-      end 
+      end
     end
 
     #--------------------------------------------------------------------------
