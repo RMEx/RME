@@ -991,8 +991,8 @@ module RMECommands
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
-    def cursor_system(m)
-      flag = (!!flag) ? 1 : 0
+    def cursor_system(b)
+      flag = (!!b) ? 1 : 0
       Externlib::ShowCursor.(flag)
     end
 
