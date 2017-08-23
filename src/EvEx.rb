@@ -2509,6 +2509,7 @@ class Game_Map
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_setup_events, :setup_events
   alias_method :rm_extender_pc, :parallel_common_events
+  alias_method :rm_extender_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2565,7 +2566,6 @@ class Game_Map
   attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
-  alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2626,7 +2626,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update_scroll
     return if @fixed
-    rme_update_scroll
+    rm_extender_update_scroll
   end
   #--------------------------------------------------------------------------
   # * Get each events
