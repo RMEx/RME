@@ -2914,6 +2914,11 @@ module RMECommands
       $game_map.start_scroll(direction, distance, speed)
     end
 
+    def camera_scroll_towards(x, y, nb_steps)
+      Fiber.yield while $game_map.scrolling?
+      $game_map.start_scroll_towards(x, y, nb_steps)
+    end
+
     def camera_move_on(x, y)
       $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
     end
