@@ -2508,6 +2508,7 @@ class Game_Map
   alias_method :rm_extender_setup, :setup
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_setup_events, :setup_events
+  alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
   alias_method :rm_extender_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
@@ -2626,7 +2627,40 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update_scroll
     return if @fixed
-    rm_extender_update_scroll
+
+    if @scroll_steps.empty?
+      rm_extender_update_scroll
+    else
+      target = @scroll_steps.shift
+      @display_x = target.x
+      @display_y = target.y
+      @scroll_rest -= 1
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll straight towards the given point (x, y)
+  #--------------------------------------------------------------------------
+  def start_scroll_towards(x, y, nb_steps)
+    initial_point  = Point.new(@display_x, @display_y)
+    targeted_point = Point.new(x, y)
+
+    return if initial_point.eql? targeted_point
+
+    delta_x = (targeted_point.x - initial_point.x).abs / nb_steps
+    delta_x = -delta_x if targeted_point.x < initial_point.x
+
+    linear_interpolant = Point.linear_interpolant(initial_point, targeted_point)
+
+    @scroll_steps = Array.new
+    nb_steps.times do |i|
+      step_x = initial_point.x + i * delta_x
+      step_y = linear_interpolant.call(step_x)
+
+      @scroll_steps << Point.new(step_x % @map.width, step_y % @map.height)
+    end
+
+    @scroll_steps << targeted_point
+    @scroll_rest = nb_steps
   end
   #--------------------------------------------------------------------------
   # * Get each events
@@ -2710,6 +2744,13 @@ class Game_Map
   def setup_events
     rm_extender_setup_events
     @common_events.each {|event| event.refresh }
+  end
+  #--------------------------------------------------------------------------
+  # * Event Setup
+  #--------------------------------------------------------------------------
+  def setup_scroll
+    rm_extender_setup_scroll
+    @scroll_steps = Array.new
   end
   #--------------------------------------------------------------------------
   # * Get Random Square of the map
