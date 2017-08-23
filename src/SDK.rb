@@ -1008,6 +1008,23 @@ class Point < Struct.new(:x, :y)
     self.x = self.y = 0
   end
 
+	#--------------------------------------------------------------------------
+	# * Linear interpolant between the two given points
+	# @param a [Point] the first point
+	# @param b [Point] the second point (whose x-coordinate should be below
+	#                  the first one)
+	# @return [Lambda(Fixnum): Fixnum] a function which corresponds to the
+	#         linear interpolent between the two points
+	#--------------------------------------------------------------------------
+	def self.linear_interpolant(a, b)
+		linear_interpolant(b, a) if a.x > b.x
+
+		slope = (b.y - a.y) / (b.x - a.x)
+		y_intercept = a.y - slope * a.x
+
+		lambda { |x| slope * x + y_intercept }
+	end
+
 end
 
 #==============================================================================
