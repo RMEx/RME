@@ -2628,13 +2628,14 @@ class Game_Map
   def update_scroll
     return if @fixed
 
-    if @scroll_steps.empty?
+    if @scroll_function.nil?
       rm_extender_update_scroll
     else
-      target = @scroll_steps.shift
+      target = @scroll_function.call(@scroll_rest)
       @display_x = target.x
       @display_y = target.y
       @scroll_rest -= 1
+      @scroll_function = nil if (0 >= @scroll_rest)
     end
   end
   #--------------------------------------------------------------------------
@@ -2651,15 +2652,18 @@ class Game_Map
 
     linear_interpolant = Point.linear_interpolant(initial_point, targeted_point)
 
-    @scroll_steps = Array.new
-    nb_steps.times do |i|
-      step_x = initial_point.x + i * delta_x
-      step_y = linear_interpolant.call(step_x)
+    linear_variation = lambda { |i| initial_point.x + i * delta_x }
 
-      @scroll_steps << Point.new(step_x % @map.width, step_y % @map.height)
+    @scroll_function = lambda do |nb_steps_still|
+      return targeted_point if (0 >= nb_steps_still)
+
+      i = nb_steps - nb_steps_still
+      x = linear_variation.call(i)
+      y = linear_interpolant.call(x)
+
+      Point.new(x % @map.width, y % @map.height)
     end
 
-    @scroll_steps << targeted_point
     @scroll_rest = nb_steps
   end
   #--------------------------------------------------------------------------
@@ -2750,7 +2754,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   def setup_scroll
     rm_extender_setup_scroll
-    @scroll_steps = Array.new
+    @scroll_function = nil
   end
   #--------------------------------------------------------------------------
   # * Get Random Square of the map
