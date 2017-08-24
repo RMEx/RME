@@ -426,7 +426,7 @@ class Object
   # * Deep clone (to be improved)
   #--------------------------------------------------------------------------
   def custom_deep_clone
-    value = self.clone 
+    value = self.clone
     return Marshal.load(Marshal.dump(value))
   end
 
@@ -460,7 +460,7 @@ class Object
     instance_variable_set("@trans_t_#{m}", t + 1)
     method("#{m}=")[v]
   end
-  
+
 end # End of Object
 
 #==============================================================================
