@@ -293,43 +293,6 @@ end
 class Object
 
   #--------------------------------------------------------------------------
-  # * Easing functions
-  #--------------------------------------------------------------------------
-  e = {
-    'Linear'  => proc{|t| t },
-    'Quad'    => proc{|t| t**2 },
-    'Cubic'   => proc{|t| t**3 },
-    'Quart'   => proc{|t| t**4 },
-    'Quint'   => proc{|t| t**5 },
-    'Sine'    => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
-    'Expo'    => proc{|t| 2**(10*(t - 1)) },
-    'Circ'    => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
-    'Back'    => proc{|t| t**2*((1.7+1)*t - 1.7) },
-    'Elastic' => proc do |t|
-      -(2**(-10*(1-t)) * Math.sin(((1-t)-0.3/4)*(2*Math::PI)/0.3))
-    end,
-    'Bounce'  => proc do |t|
-      if (1-t) < 1.0/2.75
-        1 - 7.5625*(1-t)**2
-      elsif (1-t) < 2.0/2.75
-        1 - (7.5625*((1-t)-(1.5/2.75))**2 + 0.75)
-      elsif (1-t) < 2.5/2.75
-        1 - (7.5625*((1-t)-(2.25/2.75))**2 + 0.9375)
-      else
-        1 - (7.5625*((1-t)-(2.625/2.75))**2 + 0.984375)
-      end
-    end
-  }
-  EasingFunctions = Hash.new
-  e.keys.each do |k|
-    EasingFunctions[('In'   + k).to_sym] = e[k]
-    EasingFunctions[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
-    EasingFunctions[('InOut'+ k).to_sym] = proc do |t|
-      t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
-    end
-  end
-
-  #--------------------------------------------------------------------------
   # * Eigenclass
   #--------------------------------------------------------------------------
   class << self
@@ -434,7 +397,7 @@ class Object
   #--------------------------------------------------------------------------
   # * Setup transition for the given method
   #--------------------------------------------------------------------------
-  def set_transition(method, target, duration, easing = :linear)
+  def set_transition(method, target, duration, easing = :InLinear)
     m = method
     return method("#{m}=")[target] if duration == 0
     return if (base = method(m).call).nil? || base == target
@@ -455,7 +418,7 @@ class Object
     b = instance_variable_get("@trans_b_#{m}")
     c = instance_variable_get("@trans_c_#{m}")
     f = instance_variable_get("@trans_f_#{m}")
-    f = EasingFunctions[f]
+    f = Easing::FUNCTIONS[f]
     v = t==0 ? b : t==d ? b + c : b + c*f[t/d]
     instance_variable_set("@trans_t_#{m}", t + 1)
     method("#{m}=")[v]
@@ -1024,6 +987,61 @@ class Point < Struct.new(:x, :y)
     y_intercept = a.y - slope * a.x
 
     lambda { |x| slope * x + y_intercept }
+  end
+
+end
+
+#==============================================================================
+# ** Easing modules
+#------------------------------------------------------------------------------
+# Easing functions specify the rate of change of a paremeter over time.
+# It is mainly used to animate things (transitions).
+#
+# Basically, these functions are cubic Bézier curves defined by an interval of
+# `n` points starting from P0(0, 0) to Pn(1, 1).
+# All points in between -- formally represented by Px(x, y) -- should comply
+# with the following criteria:
+#   - `x` is a real number and should belong to the [0, 1]'s interval
+#   - `y` is any real number
+#==============================================================================
+module Easing
+
+  #--------------------------------------------------------------------------
+  # * Easing functions
+  #--------------------------------------------------------------------------
+  e = {
+    'Linear'  => proc{|t| t },
+    'Quad'    => proc{|t| t**2 },
+    'Cubic'   => proc{|t| t**3 },
+    'Quart'   => proc{|t| t**4 },
+    'Quint'   => proc{|t| t**5 },
+    'Sine'    => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
+    'Expo'    => proc{|t| 2**(10*(t - 1)) },
+    'Circ'    => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
+    'Back'    => proc{|t| t**2*((1.7+1)*t - 1.7) },
+    'Elastic' => proc do |t|
+      -(2**(-10*(1-t)) * Math.sin(((1-t)-0.3/4)*(2*Math::PI)/0.3))
+    end,
+    'Bounce'  => proc do |t|
+      if (1-t) < 1.0/2.75
+        1 - 7.5625*(1-t)**2
+      elsif (1-t) < 2.0/2.75
+        1 - (7.5625*((1-t)-(1.5/2.75))**2 + 0.75)
+      elsif (1-t) < 2.5/2.75
+        1 - (7.5625*((1-t)-(2.25/2.75))**2 + 0.9375)
+      else
+        1 - (7.5625*((1-t)-(2.625/2.75))**2 + 0.984375)
+      end
+    end
+  }
+
+  FUNCTIONS = Hash.new
+  e.keys.each do |k|
+    FUNCTIONS[('In'   + k).to_sym] = e[k]
+    FUNCTIONS[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
+    FUNCTIONS[('InOut'+ k).to_sym] = proc do |t|
+      t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
+    end
   end
 
 end
