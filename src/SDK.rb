@@ -293,7 +293,7 @@ end
 class Object
 
   #--------------------------------------------------------------------------
-  # * Eeasing functions
+  # * Easing functions
   #--------------------------------------------------------------------------
   e = {
     'Quad'    => proc{|t| t**2 },
@@ -319,15 +319,14 @@ class Object
       end
     end
   }
+  EasingFunctions = Hash.new
   e.keys.each do |k|
-    e[('In'   + k).to_sym] = e[k]
-    e[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
-    e[('InOut'+ k).to_sym] = proc do |t|
+    EasingFunctions[('In'   + k).to_sym] = e[k]
+    EasingFunctions[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
+    EasingFunctions[('InOut'+ k).to_sym] = proc do |t|
       t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
     end
   end
-  e.default = proc{|t| t }
-  EasingFunctions = e
 
   #--------------------------------------------------------------------------
   # * Eigenclass
