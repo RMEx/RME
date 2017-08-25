@@ -1044,6 +1044,28 @@ module Easing
     end
   end
 
+  #--------------------------------------------------------------------------
+  # * Interval's 'tweening with easing functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Computes `nb_steps` of steps -- according to the provided easing function
+  # (`easing_function`) -- to cross the given interval from the start (`from`)
+  # to its end (`end`).
+  # @param from [Fixnum] the interval's start
+  # @param to [Fixnum] the interval's end
+  # @param nb_steps [Fixnum] the number of steps to compute in [`from`, `to`]
+  # @param easing_function [Lambda(Float): Float] the easing function used to
+  #        compute steps
+  # @return [Lambda(Fixnum): Float] a function which returns the step's value
+  #         thanks to the provided step's index.
+  #--------------------------------------------------------------------------
+  def self.tween(from, to, nb_steps, easing_function = FUNCTIONS[:InLinear])
+    distance = to - from
+    lambda do |x|
+      completion = x.fdiv(nb_steps.to_i)
+      from + distance * easing_function.call(completion)
+    end
+  end
+
 end
 
 #==============================================================================
