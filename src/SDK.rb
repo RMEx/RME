@@ -296,6 +296,7 @@ class Object
   # * Easing functions
   #--------------------------------------------------------------------------
   e = {
+    'Linear'  => proc{|t| t },
     'Quad'    => proc{|t| t**2 },
     'Cubic'   => proc{|t| t**3 },
     'Quart'   => proc{|t| t**4 },
