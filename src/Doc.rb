@@ -5714,7 +5714,9 @@ link_method_documentation 'Command.camera_scroll_towards',
 		:x => ["L'abscisse du point cible", :Fixnum],
 		:y => ["L'ordonnée du point cible", :Fixnum],
 		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum]
-		:easing_function => []
+		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]]
+		:"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
+
 	}
 register_command :camera,'Command.camera_scroll_towards'
 
