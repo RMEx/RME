@@ -2635,30 +2635,34 @@ class Game_Map
       @display_x = target.x
       @display_y = target.y
       @scroll_rest -= 1
+
       @scroll_function = nil if (0 >= @scroll_rest)
     end
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
   #--------------------------------------------------------------------------
-  def start_scroll_towards(x, y, nb_steps)
+  def start_scroll_towards(x, y, nb_steps, easing_function)
     initial_point  = Point.new(@display_x, @display_y)
     targeted_point = Point.new(x, y)
 
     return if initial_point.eql? targeted_point
 
-    delta_x = (targeted_point.x - initial_point.x).abs / nb_steps
-    delta_x = -delta_x if targeted_point.x < initial_point.x
+    nb_steps += 1
 
     linear_interpolant = Point.linear_interpolant(initial_point, targeted_point)
-
-    linear_variation = lambda { |i| initial_point.x + i * delta_x }
+    direction = (targeted_point.x < initial_point.x) ? -1 : 1
+    distance = (initial_point.x - targeted_point.x).abs
+    x_step_variation = Easing.tween(0, distance, nb_steps, easing_function)
+    x_variation = lambda do |i|
+      initial_point.x + direction * x_step_variation.call(i)
+    end
 
     @scroll_function = lambda do |nb_steps_still|
-      return targeted_point if (0 >= nb_steps_still)
+      return targeted_point if (1 >= nb_steps_still)
 
       i = nb_steps - nb_steps_still
-      x = linear_variation.call(i)
+      x = x_variation.call(i)
       y = linear_interpolant.call(x)
 
       Point.new(x % @map.width, y % @map.height)

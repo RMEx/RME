@@ -2914,9 +2914,9 @@ module RMECommands
       $game_map.start_scroll(direction, distance, speed)
     end
 
-    def camera_scroll_towards(x, y, nb_steps)
+    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear)
       Fiber.yield while $game_map.scrolling?
-      $game_map.start_scroll_towards(x, y, nb_steps)
+      $game_map.start_scroll_towards(x, y, nb_steps, Easing::FUNCTIONS[easing])
     end
 
     def camera_move_on(x, y)

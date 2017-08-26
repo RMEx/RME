@@ -44,7 +44,7 @@ module Doc
     :undocumented => "Commandes non documentées",
     :orphans      => "Commandes inconnues",
     :suggest      => "Suggestion",
-    :ease_desc    => "Fonction à utiliser pour effectuer la transition. :linear par défaut."
+    :ease_desc    => "Fonction à utiliser pour effectuer la transition. :InLinear par défaut."
   }
   documentation_add_link "GitHub", "https://github.com/RMEx/RME"
   documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/RMEx/RME/wiki"
@@ -5714,7 +5714,7 @@ link_method_documentation 'Command.camera_scroll_towards',
 		:x => ["L'abscisse du point cible", :Fixnum],
 		:y => ["L'ordonnée du point cible", :Fixnum],
 		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum]
-
+		:easing_function => []
 	}
 register_command :camera,'Command.camera_scroll_towards'
 
