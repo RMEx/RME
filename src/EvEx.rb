@@ -2643,33 +2643,48 @@ class Game_Map
   # * Scroll straight towards the given point (x, y)
   #--------------------------------------------------------------------------
   def start_scroll_towards(x, y, nb_steps, easing_function)
-    initial_point  = Point.new(@display_x, @display_y)
-    targeted_point = Point.new(x, y)
+    initial = Point.new(@display_x, @display_y)
+    target  = Point.new(x, y)
 
-    return if initial_point.eql? targeted_point
+    return if initial.eql? target
 
     nb_steps += 1
 
-    linear_interpolant = Point.linear_interpolant(initial_point, targeted_point)
-    direction = (targeted_point.x < initial_point.x) ? -1 : 1
-    distance = (initial_point.x - targeted_point.x).abs
-    x_step_variation = Easing.tween(0, distance, nb_steps, easing_function)
-    x_variation = lambda do |i|
-      initial_point.x + direction * x_step_variation.call(i)
-    end
+    if (initial.x == target.x)
+      step_variation = Easing.tween(initial.y, target.y,
+                                    nb_steps, easing_function)
+      @scroll_function = build_scroll_function(target, nb_steps) do |i|
+        Point.new(initial.x, step_variation.call(i))
+      end
+    else
+      linear_interpolant = Point.linear_interpolant(initial, target)
+      direction = (target.x < initial.x) ? -1 : 1
+      distance = (initial.x - target.x).abs
+      x_step = Easing.tween(0, distance, nb_steps, easing_function)
+      x_variation = lambda { |i| initial.x + direction * x_step.call(i) }
 
-    @scroll_function = lambda do |nb_steps_still|
-      return targeted_point if (1 >= nb_steps_still)
-
-      i = nb_steps - nb_steps_still
-      x = x_variation.call(i)
-      y = linear_interpolant.call(x)
-
-      Point.new(x % @map.width, y % @map.height)
+      @scroll_function = build_scroll_function(target, nb_steps) do |i|
+        x = x_variation.call(i)
+        y = linear_interpolant.call(x)
+        Point.new(x, y)
+      end
     end
 
     @scroll_rest = nb_steps
   end
+
+  def build_scroll_function(target, nb_steps)
+    lambda do |nb_steps_still|
+      return target if (1 >= nb_steps_still)
+
+      i = nb_steps - nb_steps_still
+      p = yield i
+      Point.new(p.x % @map.width, p.y % @map.height)
+    end
+  end
+
+  private :build_scroll_function
+
   #--------------------------------------------------------------------------
   # * Get each events
   #--------------------------------------------------------------------------
