@@ -2946,13 +2946,7 @@ module RMECommands
 
     def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :top_left)
       Fiber.yield while $game_map.scrolling?
-      _x, _y = POSITION[position].call(x, y)
-      puts "target: (#{x}, #{y})"
-      puts "translated: (#{_x}, #{_y})"
-      puts "max_width = #{$game_map.width}"
-      puts "max_height = #{$game_map.height}"
-
-      $game_map.start_scroll_towards(_x, _y,
+      $game_map.start_scroll_towards(*POSITION[position].call(x, y),
                                      nb_steps,
                                      Easing::FUNCTIONS[easing])
     end
