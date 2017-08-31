@@ -2293,6 +2293,9 @@ class Window_EvSelectable < Window_Selectable
     activate if @activation
   end
 
+  #--------------------------------------------------------------------------
+  # * item
+  #--------------------------------------------------------------------------
   def item(id)
     @enumeration[id] || nil
   end
@@ -2309,6 +2312,13 @@ class Window_EvSelectable < Window_Selectable
   #--------------------------------------------------------------------------
   def enabled?(index)
     instance_exec(index, &@enabled_callback)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Activation State of Selection Item
+  #--------------------------------------------------------------------------
+  def current_item_enabled?
+    enabled?(index)
   end
 
   #--------------------------------------------------------------------------
@@ -2336,10 +2346,18 @@ class Window_EvSelectable < Window_Selectable
     change_color(normal_color, enabled?(index))
     draw_text(item_rect_for_text(index), s.to_s, align)
   end
+
+  #--------------------------------------------------------------------------
+  # * Draw text with number
+  #--------------------------------------------------------------------------
   def write_with_number(index, s, n)
     write_text(index, s)
     write_text(index, n, 2)
   end
+  
+  #--------------------------------------------------------------------------
+  # * Draw text with icon (and number)
+  #--------------------------------------------------------------------------
   def write_with_icon(index, s, icon, n = nil)
     rect = item_rect_for_text(index)
     rect.width -= 20
