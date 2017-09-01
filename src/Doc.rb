@@ -2130,6 +2130,11 @@ link_method_documentation "Command.team_size",
                         {}, true
 register_command :party, "Command.team_size"
 
+link_method_documentation "Command.team_members",
+                        "Renvoie un tableau avec les id de tous les membres de l'équipe",
+                        {}, true
+register_command :party, "Command.team_members"
+
 link_method_documentation "Command.team_member",
                         "Renvoie l'id du membre de l'équipe à la position spécifiée (1 pour le premier membre)",
                         {
