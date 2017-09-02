@@ -1019,6 +1019,8 @@ module RMECommands
     # * Party data
     #--------------------------------------------------------------------------
     def team_size; $game_party.members.size; end
+    def team_members; $game_party.members.map(&:id); end
+    def team_member(pos); $game_party.members[pos - 1].id; end
     def gold; $game_party.gold; end
     def steps; $game_party.steps; end
     def play_time; (Graphics.frame_count / Graphics.frame_rate); end
