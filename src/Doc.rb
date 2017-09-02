@@ -2138,7 +2138,7 @@ register_command :party, "Command.team_members"
 link_method_documentation "Command.team_member",
                         "Renvoie l'id du membre de l'équipe à la position spécifiée (1 pour le premier membre)",
                         {
-                          :pos => ["Position du membre de l'équipe", Fixnum]
+                          :pos => ["Position du membre de l'équipe", :Fixnum]
                         }, true
 register_command :party, "Command.team_member"
 
