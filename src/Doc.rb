@@ -5726,7 +5726,7 @@ link_method_documentation 'Command.camera_scroll_towards',
 		:x => ["L'abscisse du point cible", :Fixnum],
 		:y => ["L'ordonnée du point cible", :Fixnum],
 		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
-		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]],
+		:"*easing_function" => [RME::Doc.vocab[:ease_desc], :Symbol],
 		:"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
 
 	}
@@ -5738,7 +5738,7 @@ link_method_documentation 'Command.camera_scroll_towards_event',
 	{
 		:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
 		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
-		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]],
+		:"*easing_function" => [RME::Doc.vocab[:ease_desc], :Symbol],
 		:"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
 
 	}
@@ -5749,7 +5749,7 @@ link_method_documentation 'Command.camera_scroll_towards_player',
 	'Fait défiler la caméra vers le joueur. (Par défaut, le joueur sera situé dans le coin haut-gauche de l\'écran une fois le défilement terminé)',
 	{
 		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
-		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]],
+		:"*easing_function" => [RME::Doc.vocab[:ease_desc], :Symbol],
 		:"*position" => ["Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
 
 	}

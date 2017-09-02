@@ -28,11 +28,11 @@ module DocGenerator
         json_data =
           [
             "{\"name\":\"#{data[:name]}\",\"desc\":\"#{data[:desc]}\",",
-            "\"commands\":[#{rdoc(data[:commands])}]}"
+            "\"commands\":[\n#{rdoc(data[:commands])}\n]}"
           ].join('')
         result << json_data
       end
-      a  = "var documentation = [" + result.join(',') + "];\n"
+      a  = "var documentation = [\n" + result.join(",\n") + "\n];\n"
       puts "Generate Samples"
       a += 'var rme_samples = ' + ASample.to_json + ";\n"
     end
@@ -53,7 +53,7 @@ module DocGenerator
         f = '}'
         res << h + f
       end
-      res.join(',')
+      res.join(",\n")
     end
 
     def params(parameters)
@@ -61,7 +61,7 @@ module DocGenerator
       parameters.each do |name, t|
         res << "{\"name\":\"#{name}\", \"desc\":\"#{t[0]}\", \"type\":\"#{t[1]}\"}"
       end
-      return res.join(',')
+      return res.join(",\n")
     end
   end
 
