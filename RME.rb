@@ -294,43 +294,6 @@ end
 class Object
 
   #--------------------------------------------------------------------------
-  # * Eeasing functions
-  #--------------------------------------------------------------------------
-  e = {
-    'Quad'    => proc{|t| t**2 },
-    'Cubic'   => proc{|t| t**3 },
-    'Quart'   => proc{|t| t**4 },
-    'Quint'   => proc{|t| t**5 },
-    'Sine'    => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
-    'Expo'    => proc{|t| 2**(10*(t - 1)) },
-    'Circ'    => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
-    'Back'    => proc{|t| t**2*((1.7+1)*t - 1.7) },
-    'Elastic' => proc do |t|
-      -(2**(-10*(1-t)) * Math.sin(((1-t)-0.3/4)*(2*Math::PI)/0.3))
-    end,
-    'Bounce'  => proc do |t|
-      if (1-t) < 1.0/2.75
-        1 - 7.5625*(1-t)**2
-      elsif (1-t) < 2.0/2.75
-        1 - (7.5625*((1-t)-(1.5/2.75))**2 + 0.75)
-      elsif (1-t) < 2.5/2.75
-        1 - (7.5625*((1-t)-(2.25/2.75))**2 + 0.9375)
-      else
-        1 - (7.5625*((1-t)-(2.625/2.75))**2 + 0.984375)
-      end
-    end
-  }
-  e.keys.each do |k|
-    e[('In'   + k).to_sym] = e[k]
-    e[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
-    e[('InOut'+ k).to_sym] = proc do |t|
-      t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
-    end
-  end
-  e.default = proc{|t| t }
-  EasingFunctions = e
-
-  #--------------------------------------------------------------------------
   # * Eigenclass
   #--------------------------------------------------------------------------
   class << self
@@ -427,7 +390,7 @@ class Object
   # * Deep clone (to be improved)
   #--------------------------------------------------------------------------
   def custom_deep_clone
-    value = self.clone 
+    value = self.clone
     return Marshal.load(Marshal.dump(value))
   end
 
@@ -435,7 +398,7 @@ class Object
   #--------------------------------------------------------------------------
   # * Setup transition for the given method
   #--------------------------------------------------------------------------
-  def set_transition(method, target, duration, easing = :linear)
+  def set_transition(method, target, duration, easing = :InLinear)
     m = method
     return method("#{m}=")[target] if duration == 0
     return if (base = method(m).call).nil? || base == target
@@ -456,12 +419,12 @@ class Object
     b = instance_variable_get("@trans_b_#{m}")
     c = instance_variable_get("@trans_c_#{m}")
     f = instance_variable_get("@trans_f_#{m}")
-    f = EasingFunctions[f]
+    f = Easing::FUNCTIONS[f]
     v = t==0 ? b : t==d ? b + c : b + c*f[t/d]
     instance_variable_set("@trans_t_#{m}", t + 1)
     method("#{m}=")[v]
   end
-  
+
 end # End of Object
 
 #==============================================================================
@@ -1007,6 +970,101 @@ class Point < Struct.new(:x, :y)
   #--------------------------------------------------------------------------
   def null!
     self.x = self.y = 0
+  end
+
+  #--------------------------------------------------------------------------
+  # * Linear interpolant between the two given points
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # @param a [Point] the first point
+  # @param b [Point] the second point (whose x-coordinate should be below
+  #                  the first one)
+  # @return [Lambda(Float): Float] a function which corresponds to the
+  #         linear interpolant between the two points
+  #--------------------------------------------------------------------------
+  def self.linear_interpolant(a, b)
+    linear_interpolant(b, a) if a.x > b.x
+
+    slope = (b.y - a.y).fdiv(b.x - a.x)
+    y_intercept = a.y - slope * a.x
+
+    lambda { |x| slope * x + y_intercept }
+  end
+
+end
+
+#==============================================================================
+# ** Easing modules
+#------------------------------------------------------------------------------
+# Easing functions specify the rate of change of a paremeter over time.
+# It is mainly used to animate things (transitions).
+#
+# Basically, these functions are cubic Bézier curves defined by an interval of
+# `n` points starting from P0(0, 0) to Pn(1, 1).
+# All points in between -- formally represented by Px(x, y) -- should comply
+# with the following criteria:
+#   - `x` is a real number and should belong to the [0, 1]'s interval
+#   - `y` is any real number
+#==============================================================================
+module Easing
+
+  #--------------------------------------------------------------------------
+  # * Easing functions
+  #--------------------------------------------------------------------------
+  e = {
+    'Linear'  => proc{|t| t },
+    'Quad'    => proc{|t| t**2 },
+    'Cubic'   => proc{|t| t**3 },
+    'Quart'   => proc{|t| t**4 },
+    'Quint'   => proc{|t| t**5 },
+    'Sine'    => proc{|t| 1 - Math.cos(t*(Math::PI/2)) },
+    'Expo'    => proc{|t| 2**(10*(t - 1)) },
+    'Circ'    => proc{|t| -(Math.sqrt(1 - t**2) - 1) },
+    'Back'    => proc{|t| t**2*((1.7+1)*t - 1.7) },
+    'Elastic' => proc do |t|
+      -(2**(-10*(1-t)) * Math.sin(((1-t)-0.3/4)*(2*Math::PI)/0.3))
+    end,
+    'Bounce'  => proc do |t|
+      if (1-t) < 1.0/2.75
+        1 - 7.5625*(1-t)**2
+      elsif (1-t) < 2.0/2.75
+        1 - (7.5625*((1-t)-(1.5/2.75))**2 + 0.75)
+      elsif (1-t) < 2.5/2.75
+        1 - (7.5625*((1-t)-(2.25/2.75))**2 + 0.9375)
+      else
+        1 - (7.5625*((1-t)-(2.625/2.75))**2 + 0.984375)
+      end
+    end
+  }
+
+  FUNCTIONS = Hash.new
+  e.keys.each do |k|
+    FUNCTIONS[('In'   + k).to_sym] = e[k]
+    FUNCTIONS[('Out'  + k).to_sym] = proc{|t| 1 - e[k][1 - t] }
+    FUNCTIONS[('InOut'+ k).to_sym] = proc do |t|
+      t < 0.5 ? e[k][t*2]/2 : 1 - e[k][(1-t)*2]/2
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Interval's 'tweening with easing functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Computes `nb_steps` of steps -- according to the provided easing function
+  # (`easing_function`) -- to cross the given interval from the start (`from`)
+  # to its end (`end`).
+  # @param from [Fixnum] the interval's start
+  # @param to [Fixnum] the interval's end
+  # @param nb_steps [Fixnum] the number of steps to compute in [`from`, `to`]
+  # @param easing_function [Lambda(Float): Float] the easing function used to
+  #        compute steps
+  # @return [Lambda(Fixnum): Float] a function which returns the step's value
+  #         thanks to the provided step's index.
+  #--------------------------------------------------------------------------
+  def self.tween(from, to, nb_steps, easing_function = FUNCTIONS[:InLinear])
+    distance = to - from
+    lambda do |x|
+      completion = x.fdiv(nb_steps.to_i)
+      from + distance * easing_function.call(completion)
+    end
   end
 
 end
@@ -2576,6 +2634,7 @@ class Package
     "description: #{@description})"
   end
 end
+
 # -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Database
@@ -7030,7 +7089,7 @@ class Game_Text
   #--------------------------------------------------------------------------
   # * Check if a text is erased
   #--------------------------------------------------------------------------
-  def erased? 
+  def erased?
     !@profile
   end
   #--------------------------------------------------------------------------
@@ -7292,7 +7351,7 @@ class Game_CharacterBase
   # * Check if the event is adjacent to the map's border
   #--------------------------------------------------------------------------
   def adjacent_of_map_border?
-    w = $game_map.width -1 
+    w = $game_map.width -1
     h = $game_map.height -1
     (self.x == 0 or self.x == w) or (self.y == 0 or self.y == h)
   end
@@ -7478,15 +7537,15 @@ class Sprite_Reflect < Sprite_Character
     return 0 unless @character
     return 1 if @character.priority_type != 2
     ev = $game_map.events_xy(@character.x, @character.y + 1)
-    return 3 if !ev.empty? && ev[0].priority_type == 0 
+    return 3 if !ev.empty? && ev[0].priority_type == 0
     2
   end
 
   def update_other; end
   def setup_new_effect; end
 
-  def y_rect 
-    return 8 if src_rect.height > 32 
+  def y_rect
+    return 8 if src_rect.height > 32
     0
   end
 
@@ -7496,7 +7555,7 @@ class Sprite_Reflect < Sprite_Character
 
   def update
     if need_erased?
-      self.visible = false 
+      self.visible = false
       return
     end
     self.visible = true
@@ -8145,6 +8204,9 @@ class Window_EvSelectable < Window_Selectable
     activate if @activation
   end
 
+  #--------------------------------------------------------------------------
+  # * item
+  #--------------------------------------------------------------------------
   def item(id)
     @enumeration[id] || nil
   end
@@ -8161,6 +8223,13 @@ class Window_EvSelectable < Window_Selectable
   #--------------------------------------------------------------------------
   def enabled?(index)
     instance_exec(index, &@enabled_callback)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Activation State of Selection Item
+  #--------------------------------------------------------------------------
+  def current_item_enabled?
+    enabled?(index)
   end
 
   #--------------------------------------------------------------------------
@@ -8188,10 +8257,18 @@ class Window_EvSelectable < Window_Selectable
     change_color(normal_color, enabled?(index))
     draw_text(item_rect_for_text(index), s.to_s, align)
   end
+
+  #--------------------------------------------------------------------------
+  # * Draw text with number
+  #--------------------------------------------------------------------------
   def write_with_number(index, s, n)
     write_text(index, s)
     write_text(index, n, 2)
   end
+  
+  #--------------------------------------------------------------------------
+  # * Draw text with icon (and number)
+  #--------------------------------------------------------------------------
   def write_with_icon(index, s, icon, n = nil)
     rect = item_rect_for_text(index)
     rect.width -= 20
@@ -8360,7 +8437,9 @@ class Game_Map
   alias_method :rm_extender_setup, :setup
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_setup_events, :setup_events
+  alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
+  alias_method :rm_extender_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -8414,10 +8493,9 @@ class Game_Map
   attr_accessor :map
   attr_accessor :use_reflection
   attr_accessor :reflection_properties
-  attr_accessor :region_mapper 
+  attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
-  alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -8451,12 +8529,12 @@ class Game_Map
       data.ysize.times do |y|
         3.times do |layer|
           tile = tile_id(x, y, layer)
-          @tile_mapper[layer][tile] ||= Array.new 
+          @tile_mapper[layer][tile] ||= Array.new
           @tile_mapper[layer][tile] << Point.new(x, y)
         end
         @region_mapper[region_id(x, y)] << Point.new(x, y)
         @terrain_mapper[terrain_tag(x, y)] << Point.new(x, y)
-      end 
+      end
     end
   end
   #--------------------------------------------------------------------------
@@ -8478,8 +8556,64 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update_scroll
     return if @fixed
-    rme_update_scroll
+
+    if @scroll_function.nil?
+      rm_extender_update_scroll
+    else
+      target = @scroll_function.call(@scroll_rest)
+      @display_x = target.x
+      @display_y = target.y
+      @scroll_rest -= 1
+
+      @scroll_function = nil if (0 >= @scroll_rest)
+    end
   end
+  #--------------------------------------------------------------------------
+  # * Scroll straight towards the given point (x, y)
+  #--------------------------------------------------------------------------
+  def start_scroll_towards(x, y, nb_steps, easing_function)
+    initial = Point.new(@display_x, @display_y)
+    target  = Point.new(x, y)
+
+    return if initial.eql? target
+
+    nb_steps += 1
+
+    if (initial.x == target.x)
+      step_variation = Easing.tween(initial.y, target.y,
+                                    nb_steps, easing_function)
+      @scroll_function = build_scroll_function(target, nb_steps) do |i|
+        Point.new(initial.x, step_variation.call(i))
+      end
+    else
+      linear_interpolant = Point.linear_interpolant(initial, target)
+      direction = (target.x < initial.x) ? -1 : 1
+      distance = (initial.x - target.x).abs
+      x_step = Easing.tween(0, distance, nb_steps, easing_function)
+      x_variation = lambda { |i| initial.x + direction * x_step.call(i) }
+
+      @scroll_function = build_scroll_function(target, nb_steps) do |i|
+        x = x_variation.call(i)
+        y = linear_interpolant.call(x)
+        Point.new(x, y)
+      end
+    end
+
+    @scroll_rest = nb_steps
+  end
+
+  def build_scroll_function(target, nb_steps)
+    lambda do |nb_steps_still|
+      return target if (1 >= nb_steps_still)
+
+      i = nb_steps - nb_steps_still
+      p = yield i
+      Point.new(p.x % @map.width, p.y % @map.height)
+    end
+  end
+
+  private :build_scroll_function
+
   #--------------------------------------------------------------------------
   # * Get each events
   #--------------------------------------------------------------------------
@@ -8513,9 +8647,9 @@ class Game_Map
   def ev_format(event)
     first = event.pages.first.condition
     if !first.self_switch_valid
-      first.self_switch_valid = true 
+      first.self_switch_valid = true
       first.self_switch_ch = 'internal_rme_trigger'
-      event.pages = [super_page] + event.pages 
+      event.pages = [super_page] + event.pages
     end
     event
   end
@@ -8562,6 +8696,13 @@ class Game_Map
   def setup_events
     rm_extender_setup_events
     @common_events.each {|event| event.refresh }
+  end
+  #--------------------------------------------------------------------------
+  # * Event Setup
+  #--------------------------------------------------------------------------
+  def setup_scroll
+    rm_extender_setup_scroll
+    @scroll_function = nil
   end
   #--------------------------------------------------------------------------
   # * Get Random Square of the map
@@ -8680,7 +8821,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Update texts
   #--------------------------------------------------------------------------
-  def tone_change? 
+  def tone_change?
     @tone_duration > 0
   end
 end
@@ -8917,7 +9058,7 @@ class Game_Parallaxes
   def initialize
     @data = []
   end
-  # Returns a fresh picture id 
+  # Returns a fresh picture id
   def fresh_id
     i = @data.find_index {|parallax| !parallax || parallax.name.empty? }
     return (i || @data.length)
@@ -8949,7 +9090,7 @@ class Game_Pictures
   def to_a
     return @data.compact
   end
-  # Returns a fresh picture id 
+  # Returns a fresh picture id
   def fresh_id
     i = @data.find_index {|picture| !picture || picture.name.empty? }
     return (i || @data.length)
@@ -9277,9 +9418,9 @@ class Spriteset_Map
     return if $game_map.reflection_properties[:excluded].include?(id)
     @reflect_sprites.push(
       Sprite_Reflect.new(
-        @viewport1, 
-        char, 
-        id, 
+        @viewport1,
+        char,
+        id,
         $game_map.reflection_properties
         )
       )
@@ -9390,7 +9531,7 @@ class Sprite_Picture
     if name == :screenshot
       return self.bitmap if @old_snap
       @old_snap = true
-      return Graphics.snap_to_bitmap.clone 
+      return Graphics.snap_to_bitmap.clone
     end
 
     @old_snap = false
@@ -10133,7 +10274,7 @@ module Pathfinder
   # * Complete passability
   #--------------------------------------------------------------------------
   def check_passability?(event, current, elt, no_through, x, y, cl)
-    passable?(event, current.x, current.y, elt, no_through) && !has_key?(x, y, cl)
+    passable?(event, x, y, elt, no_through) && !has_key?(x, y, cl)
   end
 
   #--------------------------------------------------------------------------
@@ -10146,7 +10287,7 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check if unbounded
   #--------------------------------------------------------------------------
-  def unbounded?(x, y) 
+  def unbounded?(x, y)
     (x < 0 or x >= $game_map.width) or (y < 0 or y >= $game_map.height)
   end
 
@@ -10162,23 +10303,26 @@ module Pathfinder
     while !has_key?(goal.x, goal.y, closed_list) && !open_list.empty?
 
       current = open_list.values.min{|point1, point2|point1.f <=> point2.f}
-      p [current.x, current.y]
       open_list.delete(current.id)
       closed_list[current.id] = current
 
-      [[0, 1, 8], [-1, 0, 4], [1, 0, 6], [0, -1, 2]].each do | elt |
+
+      [[0, 1], [-1, 0], [1, 0], [0, -1]].each do | elt |
         args = current.x + elt[0], current.y + elt[1]
         next if unbounded?(*args)
-        if check_passability?(event, current, elt[2], no_through, *args, closed_list)
-          if !has_key?(*args, open_list)
-            open_list[id(*args)] = Point.new(*args, current, goal)
-          else
-            open_list[id(*args)].score(current)
+        [2, 4, 6, 8].each do |d|
+          if check_passability?(event, current, d, no_through, *args, closed_list)
+            if !has_key?(*args, open_list)
+              open_list[id(*args)] = Point.new(*args, current, goal)
+            else
+              open_list[id(*args)].score(current)
+            end
           end
         end
       end
 
     end
+
     move_route = RPG::MoveRoute.new
     if has_key?(goal.x, goal.y, closed_list)
       current = closed_list[id(goal.x, goal.y)]
@@ -10542,7 +10686,7 @@ module RMECommands
   def tilemap; spriteset.tilemap; end
   def wait(d); d.times { Fiber.yield}; end
   def session_username; USERNAME; end
-  def length(a); a.length; end
+  def length(a); a.to_a.length; end
   def get(a, i); a[i]; end
   def event(id)
     if id.is_a?(Array)
@@ -10550,11 +10694,11 @@ module RMECommands
         e = $game_player.followers[id[1]]
         return e if e
         raise sprintf("Follower n° %d doesn't exist", id)
-      else id[0] == :vehicle 
+      else id[0] == :vehicle
         e =  $game_map.vehicles[id[1]]
         return e if e
         raise sprintf("Vehicle n° %d doesn't exist", id)
-      end 
+      end
     end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
@@ -11284,11 +11428,11 @@ module RMECommands
         event(id).light_emitter = Light_Emitter.new(
           value[:rayon],
           value[:intensity],
-          value[:excluded] || [], 
+          value[:excluded] || [],
           value[:fx] || {}
         )
       end
-      $game_map.need_refresh = true 
+      $game_map.need_refresh = true
       SceneManager.scene.refresh_spriteset
     end
 
@@ -11462,8 +11606,8 @@ module RMECommands
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
-    def cursor_system(m)
-      flag = (!!flag) ? 1 : 0
+    def cursor_system(b)
+      flag = (!!b) ? 1 : 0
       Externlib::ShowCursor.(flag)
     end
 
@@ -11490,6 +11634,8 @@ module RMECommands
     # * Party data
     #--------------------------------------------------------------------------
     def team_size; $game_party.members.size; end
+    def team_members; $game_party.members.map(&:id); end
+    def team_member(pos); $game_party.members[pos - 1].id; end
     def gold; $game_party.gold; end
     def steps; $game_party.steps; end
     def play_time; (Graphics.frame_count / Graphics.frame_rate); end
@@ -11876,7 +12022,7 @@ module RMECommands
     def player_flash(color, duration)
       event_flash(0, color, duration)
     end
-    
+
     def between(x1, y1, x2, y2)
       a = x1 - x2
       b = y1 - y2
@@ -12241,7 +12387,7 @@ module RMECommands
     def player_move_right(turn_ok = true); event_move_right(0, turn_ok); end
     def player_move_up(turn_ok = true); event_move_up(0, turn_ok); end
 
-    def event_move_random(id); event(id).move_random; end 
+    def event_move_random(id); event(id).move_random; end
     def player_move_random; event_move_random(0); end
 
     def event_move_diagonal(id, horizontal, vertical)
@@ -12261,7 +12407,7 @@ module RMECommands
 
     def player_move_lower_left; event_move_lower_left(0); end
     def player_move_lower_right; event_move_lower_right(0); end
-    def player_move_upper_left; event_move_upper_left(0); end 
+    def player_move_upper_left; event_move_upper_left(0); end
     def player_move_upper_right; event_move_upper_right(0); end
 
     def event_move_toward_position(id, x, y)
@@ -12274,7 +12420,7 @@ module RMECommands
       event_move_toward_position(0, x, y)
     end
 
-    def event_move_toward_event(id, target) 
+    def event_move_toward_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.move_toward_character(tr)
@@ -12283,7 +12429,7 @@ module RMECommands
 
     def event_move_toward_player(id)
       event_move_toward_event(id, 0)
-    end 
+    end
 
     def player_move_toward_event(id)
       event_move_toward_event(0, id)
@@ -12300,7 +12446,7 @@ module RMECommands
       event_move_away_from_position(0, x, y)
     end
 
-    def event_move_away_from_event(id, target) 
+    def event_move_away_from_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.move_away_from_character(tr)
@@ -12309,7 +12455,7 @@ module RMECommands
 
     def event_move_away_from_player(id)
       event_move_away_from_event(id, 0)
-    end 
+    end
 
     def player_move_away_from_event(id)
       event_move_away_from_event(0, id)
@@ -12330,31 +12476,31 @@ module RMECommands
     def player_move_backward; event_move_backward(0); end
 
 
-    def event_turn_down(id); event_direction(id, 2); end 
+    def event_turn_down(id); event_direction(id, 2); end
     def player_turn_down; event_turn_down(0); end
 
-    def event_turn_left(id); event_direction(id, 4); end 
+    def event_turn_left(id); event_direction(id, 4); end
     def player_turn_left; event_turn_left(0); end
 
-    def event_turn_right(id); event_direction(id, 6); end 
+    def event_turn_right(id); event_direction(id, 6); end
     def player_turn_right; event_turn_right(0); end
 
-    def event_turn_up(id); event_direction(id, 8); end 
+    def event_turn_up(id); event_direction(id, 8); end
     def player_turn_up; event_turn_up(0); end
 
 
     def event_turn_90_left(id); event(id).turn_left_90; end
-    def player_turn_90_left; event_turn_90_left(0); end 
+    def player_turn_90_left; event_turn_90_left(0); end
     def event_turn_90_right(id); event(id).turn_right_90; end
     def player_turn_90_right; event_turn_90_right(0); end
-    def event_turn_180(id); event.turn_180; end 
+    def event_turn_180(id); event.turn_180; end
     def player_turn_180; event_turn_180(0); end
     def event_turn_90_right_or_left(id); event(id).turn_right_or_left_90; end
     def player_turn_90_right_or_left; event_turn_90_right_or_left(0); end
-    def event_turn_random(id); event(id).turn_random; end 
+    def event_turn_random(id); event(id).turn_random; end
     def player_turn_random; event_turn_random(0); end
 
-    
+
     def event_turn_toward_position(id, x, y)
       ev = event(id)
       ev.turn_toward_xy(x, y)
@@ -12364,7 +12510,7 @@ module RMECommands
       event_turn_toward_position(0, x, y)
     end
 
-    def event_turn_toward_event(id, target) 
+    def event_turn_toward_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.turn_toward_character(tr)
@@ -12372,7 +12518,7 @@ module RMECommands
 
     def event_turn_toward_player(id)
       event_turn_toward_event(id, 0)
-    end 
+    end
 
     def player_turn_toward_event(id)
       event_turn_toward_event(0, id)
@@ -12388,7 +12534,7 @@ module RMECommands
       event_turn_away_from_position(0, x, y)
     end
 
-    def event_turn_away_from_event(id, target) 
+    def event_turn_away_from_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.turn_away_from_character(tr)
@@ -12396,7 +12542,7 @@ module RMECommands
 
     def event_turn_away_from_player(id)
       event_turn_away_from_event(id, 0)
-    end 
+    end
 
     def player_turn_away_from_event(id)
       event_turn_away_from_event(0, id)
@@ -12818,11 +12964,11 @@ module RMECommands
     end
 
     def text_progressive(id, value, delay)
-      value.each_char do |ch| 
+      value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)
         wait(delay)
-      end 
+      end
     end
 
     #--------------------------------------------------------------------------
@@ -13380,9 +13526,54 @@ module RMECommands
     CENTER_X = (Graphics.width / 32 - 1) / 2.0
     CENTER_Y = (Graphics.height / 32 - 1) / 2.0
 
+    POSITION = {
+      :centered        => lambda { |x, y| [center_x(x), center_y(y)] },
+      :centered_left   => lambda { |x, y| [left_x(x), center_y(y)] },
+      :centered_right  => lambda { |x, y| [right_x(x), center_y(y)] },
+      :centered_top    => lambda { |x, y| [center_x(x), top_y(y)] },
+      :centered_bottom => lambda { |x, y| [center_x(x), bottom_y(y)] },
+      :top_left        => lambda { |x, y| [left_x(x), top_y(y)] },
+      :top_right       => lambda { |x, y| [right_x(x), top_y(y)] },
+      :bottom_left     => lambda { |x, y| [left_x(x), bottom_y(y)] },
+      :bottom_right    => lambda { |x, y| [right_x(x), bottom_y(y)] }
+    }
+
+    def self.limit_within_range(x, min, max)
+      min if (x < min)
+      max if (x > max)
+      x
+    end
+
+    def self.left_x(x); limit_within_range(x, 0, $game_map.width); end
+    def self.center_x(x); limit_within_range(x - CENTER_X, 0, $game_map.width); end
+    def self.right_x(x); limit_within_range(x - 2 * CENTER_X, 0, $game_map.width); end
+
+    def self.top_y(y); limit_within_range(y, 0, $game_map.height); end
+    def self.center_y(y); limit_within_range(y - CENTER_Y, 0, $game_map.height); end
+    def self.bottom_y(y); limit_within_range(y - 2 * CENTER_Y, 0, $game_map.height); end
+
+    private_class_method :left_x, :center_x, :right_x,
+                         :top_y, :center_y, :bottom_y,
+                         :limit_within_range
+
     def camera_scroll(direction, distance, speed)
       Fiber.yield while $game_map.scrolling?
       $game_map.start_scroll(direction, distance, speed)
+    end
+
+    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :top_left)
+      Fiber.yield while $game_map.scrolling?
+      $game_map.start_scroll_towards(*POSITION[position].call(x, y),
+                                     nb_steps,
+                                     Easing::FUNCTIONS[easing])
+    end
+
+    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :top_left)
+      camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
+    end
+
+    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :top_left)
+      camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
     end
 
     def camera_move_on(x, y)
@@ -13390,9 +13581,7 @@ module RMECommands
     end
 
     def camera_scroll_on(x, y, speed)
-      Fiber.yield while $game_map.scrolling?
       camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
-      Fiber.yield while $game_map.scrolling?
       camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
     end
 
@@ -14881,7 +15070,7 @@ module Doc
     :undocumented => "Commandes non documentées",
     :orphans      => "Commandes inconnues",
     :suggest      => "Suggestion",
-    :ease_desc    => "Fonction à utiliser pour effectuer la transition. :linear par défaut."
+    :ease_desc    => "Fonction à utiliser pour effectuer la transition. :InLinear par défaut."
   }
   documentation_add_link "GitHub", "https://github.com/RMEx/RME"
   documentation_add_link "Manuel d'utilisation (Wiki)", "https://github.com/RMEx/RME/wiki"
@@ -16966,6 +17155,18 @@ link_method_documentation "Command.team_size",
                         "Renvoie la taille de l'équipe",
                         {}, true
 register_command :party, "Command.team_size"
+
+link_method_documentation "Command.team_members",
+                        "Renvoie un tableau avec les id de tous les membres de l'équipe",
+                        {}, true
+register_command :party, "Command.team_members"
+
+link_method_documentation "Command.team_member",
+                        "Renvoie l'id du membre de l'équipe à la position spécifiée (1 pour le premier membre)",
+                        {
+                          :pos => ["Position du membre de l'équipe", :Fixnum]
+                        }, true
+register_command :party, "Command.team_member"
 
 link_method_documentation "Command.gold",
                         "Renvoie l'argent possédé",
@@ -20535,14 +20736,50 @@ register_command :event, 'Command.event_trigger'
 
 # AUTOGenerated for camera_scroll
 link_method_documentation 'Command.camera_scroll',
-	'Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse',
+	'Fait défiler la caméra dans une direction sur une distance (en cases) à une certaine vitesse',
  	{
 		:direction => ["Direction (2=bas, 4=gauche, 6=droite, 8=haut)",  :Fixnum],
-		:distance => ["Nombre de case à défiler",  :Fixnum],
+		:distance => ["Nombre de cases à défiler",  :Fixnum],
 		:speed => ["Vitesse du défilement",  :Fixnum],
 
 	}
 register_command :camera,'Command.camera_scroll'
+
+#AUTOGenerated for camera_scroll_towards
+link_method_documentation 'Command.camera_scroll_towards',
+	'Fait défiler la caméra vers le point de coordonnées (x, y). (Par défaut, ce point sera celui situé dans le coin haut-gauche de l\'écran une fois le défilement terminé)',
+	{
+		:x => ["L'abscisse du point cible", :Fixnum],
+		:y => ["L'ordonnée du point cible", :Fixnum],
+		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
+		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]],
+		:"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
+
+	}
+register_command :camera,'Command.camera_scroll_towards'
+
+#AUTOGenerated for camera_scroll_towards_event
+link_method_documentation 'Command.camera_scroll_towards_event',
+	'Fait défiler la caméra vers l\'événement spécifié. (Par défaut, l\'événement sera situé dans le coin haut-gauche de l\'écran une fois le défilement terminé)',
+	{
+		:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
+		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
+		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]],
+		:"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
+
+	}
+register_command :camera,'Command.camera_scroll_towards_event'
+
+#AUTOGenerated for camera_scroll_towards_player
+link_method_documentation 'Command.camera_scroll_towards_player',
+	'Fait défiler la caméra vers le joueur. (Par défaut, le joueur sera situé dans le coin haut-gauche de l\'écran une fois le défilement terminé)',
+	{
+		:nb_steps => ["Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
+		:"*easing_function" => [[RME::Doc.vocab[:ease_desc], :Symbol]],
+		:"*position" => ["Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut", :Symbol]
+
+	}
+register_command :camera,'Command.camera_scroll_towards_player'
 
 # AUTOGenerated for camera_move_on
 link_method_documentation 'Command.camera_move_on',

@@ -79,11 +79,11 @@ module RMECommands
         e = $game_player.followers[id[1]]
         return e if e
         raise sprintf("Follower n° %d doesn't exist", id)
-      else id[0] == :vehicle 
+      else id[0] == :vehicle
         e =  $game_map.vehicles[id[1]]
         return e if e
         raise sprintf("Vehicle n° %d doesn't exist", id)
-      end 
+      end
     end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
@@ -813,11 +813,11 @@ module RMECommands
         event(id).light_emitter = Light_Emitter.new(
           value[:rayon],
           value[:intensity],
-          value[:excluded] || [], 
+          value[:excluded] || [],
           value[:fx] || {}
         )
       end
-      $game_map.need_refresh = true 
+      $game_map.need_refresh = true
       SceneManager.scene.refresh_spriteset
     end
 
@@ -991,8 +991,8 @@ module RMECommands
     def click_time(k);      Mouse.time(k);                  end
     def mouse_in?(rect);    Mouse.in?(rect);                end
     def mouse_current_key(*m)   Mouse.current_key(*m);      end
-    def cursor_system(m)
-      flag = (!!flag) ? 1 : 0
+    def cursor_system(b)
+      flag = (!!b) ? 1 : 0
       Externlib::ShowCursor.(flag)
     end
 
@@ -1019,6 +1019,8 @@ module RMECommands
     # * Party data
     #--------------------------------------------------------------------------
     def team_size; $game_party.members.size; end
+    def team_members; $game_party.members.map(&:id); end
+    def team_member(pos); $game_party.members[pos - 1].id; end
     def gold; $game_party.gold; end
     def steps; $game_party.steps; end
     def play_time; (Graphics.frame_count / Graphics.frame_rate); end
@@ -1405,7 +1407,7 @@ module RMECommands
     def player_flash(color, duration)
       event_flash(0, color, duration)
     end
-    
+
     def between(x1, y1, x2, y2)
       a = x1 - x2
       b = y1 - y2
@@ -1770,7 +1772,7 @@ module RMECommands
     def player_move_right(turn_ok = true); event_move_right(0, turn_ok); end
     def player_move_up(turn_ok = true); event_move_up(0, turn_ok); end
 
-    def event_move_random(id); event(id).move_random; end 
+    def event_move_random(id); event(id).move_random; end
     def player_move_random; event_move_random(0); end
 
     def event_move_diagonal(id, horizontal, vertical)
@@ -1790,7 +1792,7 @@ module RMECommands
 
     def player_move_lower_left; event_move_lower_left(0); end
     def player_move_lower_right; event_move_lower_right(0); end
-    def player_move_upper_left; event_move_upper_left(0); end 
+    def player_move_upper_left; event_move_upper_left(0); end
     def player_move_upper_right; event_move_upper_right(0); end
 
     def event_move_toward_position(id, x, y)
@@ -1803,7 +1805,7 @@ module RMECommands
       event_move_toward_position(0, x, y)
     end
 
-    def event_move_toward_event(id, target) 
+    def event_move_toward_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.move_toward_character(tr)
@@ -1812,7 +1814,7 @@ module RMECommands
 
     def event_move_toward_player(id)
       event_move_toward_event(id, 0)
-    end 
+    end
 
     def player_move_toward_event(id)
       event_move_toward_event(0, id)
@@ -1829,7 +1831,7 @@ module RMECommands
       event_move_away_from_position(0, x, y)
     end
 
-    def event_move_away_from_event(id, target) 
+    def event_move_away_from_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.move_away_from_character(tr)
@@ -1838,7 +1840,7 @@ module RMECommands
 
     def event_move_away_from_player(id)
       event_move_away_from_event(id, 0)
-    end 
+    end
 
     def player_move_away_from_event(id)
       event_move_away_from_event(0, id)
@@ -1859,31 +1861,31 @@ module RMECommands
     def player_move_backward; event_move_backward(0); end
 
 
-    def event_turn_down(id); event_direction(id, 2); end 
+    def event_turn_down(id); event_direction(id, 2); end
     def player_turn_down; event_turn_down(0); end
 
-    def event_turn_left(id); event_direction(id, 4); end 
+    def event_turn_left(id); event_direction(id, 4); end
     def player_turn_left; event_turn_left(0); end
 
-    def event_turn_right(id); event_direction(id, 6); end 
+    def event_turn_right(id); event_direction(id, 6); end
     def player_turn_right; event_turn_right(0); end
 
-    def event_turn_up(id); event_direction(id, 8); end 
+    def event_turn_up(id); event_direction(id, 8); end
     def player_turn_up; event_turn_up(0); end
 
 
     def event_turn_90_left(id); event(id).turn_left_90; end
-    def player_turn_90_left; event_turn_90_left(0); end 
+    def player_turn_90_left; event_turn_90_left(0); end
     def event_turn_90_right(id); event(id).turn_right_90; end
     def player_turn_90_right; event_turn_90_right(0); end
-    def event_turn_180(id); event.turn_180; end 
+    def event_turn_180(id); event.turn_180; end
     def player_turn_180; event_turn_180(0); end
     def event_turn_90_right_or_left(id); event(id).turn_right_or_left_90; end
     def player_turn_90_right_or_left; event_turn_90_right_or_left(0); end
-    def event_turn_random(id); event(id).turn_random; end 
+    def event_turn_random(id); event(id).turn_random; end
     def player_turn_random; event_turn_random(0); end
 
-    
+
     def event_turn_toward_position(id, x, y)
       ev = event(id)
       ev.turn_toward_xy(x, y)
@@ -1893,7 +1895,7 @@ module RMECommands
       event_turn_toward_position(0, x, y)
     end
 
-    def event_turn_toward_event(id, target) 
+    def event_turn_toward_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.turn_toward_character(tr)
@@ -1901,7 +1903,7 @@ module RMECommands
 
     def event_turn_toward_player(id)
       event_turn_toward_event(id, 0)
-    end 
+    end
 
     def player_turn_toward_event(id)
       event_turn_toward_event(0, id)
@@ -1917,7 +1919,7 @@ module RMECommands
       event_turn_away_from_position(0, x, y)
     end
 
-    def event_turn_away_from_event(id, target) 
+    def event_turn_away_from_event(id, target)
       ev = event(id)
       tr = event(target)
       ev.turn_away_from_character(tr)
@@ -1925,7 +1927,7 @@ module RMECommands
 
     def event_turn_away_from_player(id)
       event_turn_away_from_event(id, 0)
-    end 
+    end
 
     def player_turn_away_from_event(id)
       event_turn_away_from_event(0, id)
@@ -2347,11 +2349,11 @@ module RMECommands
     end
 
     def text_progressive(id, value, delay)
-      value.each_char do |ch| 
+      value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)
         wait(delay)
-      end 
+      end
     end
 
     #--------------------------------------------------------------------------
@@ -2909,9 +2911,54 @@ module RMECommands
     CENTER_X = (Graphics.width / 32 - 1) / 2.0
     CENTER_Y = (Graphics.height / 32 - 1) / 2.0
 
+    POSITION = {
+      :centered        => lambda { |x, y| [center_x(x), center_y(y)] },
+      :centered_left   => lambda { |x, y| [left_x(x), center_y(y)] },
+      :centered_right  => lambda { |x, y| [right_x(x), center_y(y)] },
+      :centered_top    => lambda { |x, y| [center_x(x), top_y(y)] },
+      :centered_bottom => lambda { |x, y| [center_x(x), bottom_y(y)] },
+      :top_left        => lambda { |x, y| [left_x(x), top_y(y)] },
+      :top_right       => lambda { |x, y| [right_x(x), top_y(y)] },
+      :bottom_left     => lambda { |x, y| [left_x(x), bottom_y(y)] },
+      :bottom_right    => lambda { |x, y| [right_x(x), bottom_y(y)] }
+    }
+
+    def self.limit_within_range(x, min, max)
+      min if (x < min)
+      max if (x > max)
+      x
+    end
+
+    def self.left_x(x); limit_within_range(x, 0, $game_map.width); end
+    def self.center_x(x); limit_within_range(x - CENTER_X, 0, $game_map.width); end
+    def self.right_x(x); limit_within_range(x - 2 * CENTER_X, 0, $game_map.width); end
+
+    def self.top_y(y); limit_within_range(y, 0, $game_map.height); end
+    def self.center_y(y); limit_within_range(y - CENTER_Y, 0, $game_map.height); end
+    def self.bottom_y(y); limit_within_range(y - 2 * CENTER_Y, 0, $game_map.height); end
+
+    private_class_method :left_x, :center_x, :right_x,
+                         :top_y, :center_y, :bottom_y,
+                         :limit_within_range
+
     def camera_scroll(direction, distance, speed)
       Fiber.yield while $game_map.scrolling?
       $game_map.start_scroll(direction, distance, speed)
+    end
+
+    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :top_left)
+      Fiber.yield while $game_map.scrolling?
+      $game_map.start_scroll_towards(*POSITION[position].call(x, y),
+                                     nb_steps,
+                                     Easing::FUNCTIONS[easing])
+    end
+
+    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :top_left)
+      camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
+    end
+
+    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :top_left)
+      camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
     end
 
     def camera_move_on(x, y)
@@ -2919,9 +2966,7 @@ module RMECommands
     end
 
     def camera_scroll_on(x, y, speed)
-      Fiber.yield while $game_map.scrolling?
       camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
-      Fiber.yield while $game_map.scrolling?
       camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
     end
 

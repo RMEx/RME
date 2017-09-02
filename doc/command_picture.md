@@ -69,7 +69,7 @@ Nom|Type|Description
 `angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_blend(Selector, mode)
 
 > Change le mode de fusion d'une image
@@ -91,7 +91,7 @@ Nom|Type|Description
 `h`|`Fixnum`|Hauteur à modifier  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_erase(Selector)
 
 > Efface l'image
@@ -127,7 +127,7 @@ Nom|Type|Description
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_mouse_click?(id, *precise)
 
 > Renvoie true si la souris survol et est cliquée l'image référencée par son ID
@@ -203,7 +203,7 @@ Nom|Type|Description
 `*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son mode de fusion du moment  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son origine du moment  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_move?(id)
 
 > Renvoie true si l'image référencée par son ID est en mouvement, false sinon
@@ -232,7 +232,7 @@ Nom|Type|Description
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_origin(id, origin)
 
 > Change l'origine d'une image
@@ -264,7 +264,7 @@ Nom|Type|Description
 `y`|`Fixnum`|Position en y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_rotate(Selector, speed)
 
 > Fait tourner l'image
@@ -372,7 +372,7 @@ Nom|Type|Description
 `tone`|`Tone`|Teinte de l'image (utilisez la commande tone)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_unpin(Selector)
 
 > Arrête de faire défiler une image avec la carte
@@ -402,7 +402,7 @@ Nom|Type|Description
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_x(id, x, *duration, *wait_flag, *ease)
 
 > Change l'axe X d'une image
@@ -414,7 +414,7 @@ Nom|Type|Description
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_y(id, y, *duration, *wait_flag, *ease)
 
 > Change l'axe Y d'une image
@@ -426,7 +426,7 @@ Nom|Type|Description
 `y`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_zoom(Selector, zoom_x, *zoom_y, *duration, *wait_flag, *ease)
 
 > Change la taille d'une image
@@ -439,7 +439,7 @@ Nom|Type|Description
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
 > Change la largeur d'une image
@@ -451,7 +451,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### picture_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
 > Change la hauteur d'une image
@@ -463,7 +463,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### pictures_clear
 
 > Efface toutes les images

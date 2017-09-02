@@ -1178,7 +1178,7 @@ class Game_Text
   #--------------------------------------------------------------------------
   # * Check if a text is erased
   #--------------------------------------------------------------------------
-  def erased? 
+  def erased?
     !@profile
   end
   #--------------------------------------------------------------------------
@@ -1440,7 +1440,7 @@ class Game_CharacterBase
   # * Check if the event is adjacent to the map's border
   #--------------------------------------------------------------------------
   def adjacent_of_map_border?
-    w = $game_map.width -1 
+    w = $game_map.width -1
     h = $game_map.height -1
     (self.x == 0 or self.x == w) or (self.y == 0 or self.y == h)
   end
@@ -1626,15 +1626,15 @@ class Sprite_Reflect < Sprite_Character
     return 0 unless @character
     return 1 if @character.priority_type != 2
     ev = $game_map.events_xy(@character.x, @character.y + 1)
-    return 3 if !ev.empty? && ev[0].priority_type == 0 
+    return 3 if !ev.empty? && ev[0].priority_type == 0
     2
   end
 
   def update_other; end
   def setup_new_effect; end
 
-  def y_rect 
-    return 8 if src_rect.height > 32 
+  def y_rect
+    return 8 if src_rect.height > 32
     0
   end
 
@@ -1644,7 +1644,7 @@ class Sprite_Reflect < Sprite_Character
 
   def update
     if need_erased?
-      self.visible = false 
+      self.visible = false
       return
     end
     self.visible = true
@@ -2293,6 +2293,9 @@ class Window_EvSelectable < Window_Selectable
     activate if @activation
   end
 
+  #--------------------------------------------------------------------------
+  # * item
+  #--------------------------------------------------------------------------
   def item(id)
     @enumeration[id] || nil
   end
@@ -2309,6 +2312,13 @@ class Window_EvSelectable < Window_Selectable
   #--------------------------------------------------------------------------
   def enabled?(index)
     instance_exec(index, &@enabled_callback)
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get Activation State of Selection Item
+  #--------------------------------------------------------------------------
+  def current_item_enabled?
+    enabled?(index)
   end
 
   #--------------------------------------------------------------------------
@@ -2336,10 +2346,18 @@ class Window_EvSelectable < Window_Selectable
     change_color(normal_color, enabled?(index))
     draw_text(item_rect_for_text(index), s.to_s, align)
   end
+
+  #--------------------------------------------------------------------------
+  # * Draw text with number
+  #--------------------------------------------------------------------------
   def write_with_number(index, s, n)
     write_text(index, s)
     write_text(index, n, 2)
   end
+  
+  #--------------------------------------------------------------------------
+  # * Draw text with icon (and number)
+  #--------------------------------------------------------------------------
   def write_with_icon(index, s, icon, n = nil)
     rect = item_rect_for_text(index)
     rect.width -= 20
@@ -2508,7 +2526,9 @@ class Game_Map
   alias_method :rm_extender_setup, :setup
   alias_method :rm_extender_update, :update
   alias_method :rm_extender_setup_events, :setup_events
+  alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
+  alias_method :rm_extender_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2562,10 +2582,9 @@ class Game_Map
   attr_accessor :map
   attr_accessor :use_reflection
   attr_accessor :reflection_properties
-  attr_accessor :region_mapper 
+  attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
-  alias_method :rme_update_scroll, :update_scroll
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2599,12 +2618,12 @@ class Game_Map
       data.ysize.times do |y|
         3.times do |layer|
           tile = tile_id(x, y, layer)
-          @tile_mapper[layer][tile] ||= Array.new 
+          @tile_mapper[layer][tile] ||= Array.new
           @tile_mapper[layer][tile] << Point.new(x, y)
         end
         @region_mapper[region_id(x, y)] << Point.new(x, y)
         @terrain_mapper[terrain_tag(x, y)] << Point.new(x, y)
-      end 
+      end
     end
   end
   #--------------------------------------------------------------------------
@@ -2626,8 +2645,64 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update_scroll
     return if @fixed
-    rme_update_scroll
+
+    if @scroll_function.nil?
+      rm_extender_update_scroll
+    else
+      target = @scroll_function.call(@scroll_rest)
+      @display_x = target.x
+      @display_y = target.y
+      @scroll_rest -= 1
+
+      @scroll_function = nil if (0 >= @scroll_rest)
+    end
   end
+  #--------------------------------------------------------------------------
+  # * Scroll straight towards the given point (x, y)
+  #--------------------------------------------------------------------------
+  def start_scroll_towards(x, y, nb_steps, easing_function)
+    initial = Point.new(@display_x, @display_y)
+    target  = Point.new(x, y)
+
+    return if initial.eql? target
+
+    nb_steps += 1
+
+    if (initial.x == target.x)
+      step_variation = Easing.tween(initial.y, target.y,
+                                    nb_steps, easing_function)
+      @scroll_function = build_scroll_function(target, nb_steps) do |i|
+        Point.new(initial.x, step_variation.call(i))
+      end
+    else
+      linear_interpolant = Point.linear_interpolant(initial, target)
+      direction = (target.x < initial.x) ? -1 : 1
+      distance = (initial.x - target.x).abs
+      x_step = Easing.tween(0, distance, nb_steps, easing_function)
+      x_variation = lambda { |i| initial.x + direction * x_step.call(i) }
+
+      @scroll_function = build_scroll_function(target, nb_steps) do |i|
+        x = x_variation.call(i)
+        y = linear_interpolant.call(x)
+        Point.new(x, y)
+      end
+    end
+
+    @scroll_rest = nb_steps
+  end
+
+  def build_scroll_function(target, nb_steps)
+    lambda do |nb_steps_still|
+      return target if (1 >= nb_steps_still)
+
+      i = nb_steps - nb_steps_still
+      p = yield i
+      Point.new(p.x % @map.width, p.y % @map.height)
+    end
+  end
+
+  private :build_scroll_function
+
   #--------------------------------------------------------------------------
   # * Get each events
   #--------------------------------------------------------------------------
@@ -2661,9 +2736,9 @@ class Game_Map
   def ev_format(event)
     first = event.pages.first.condition
     if !first.self_switch_valid
-      first.self_switch_valid = true 
+      first.self_switch_valid = true
       first.self_switch_ch = 'internal_rme_trigger'
-      event.pages = [super_page] + event.pages 
+      event.pages = [super_page] + event.pages
     end
     event
   end
@@ -2710,6 +2785,13 @@ class Game_Map
   def setup_events
     rm_extender_setup_events
     @common_events.each {|event| event.refresh }
+  end
+  #--------------------------------------------------------------------------
+  # * Event Setup
+  #--------------------------------------------------------------------------
+  def setup_scroll
+    rm_extender_setup_scroll
+    @scroll_function = nil
   end
   #--------------------------------------------------------------------------
   # * Get Random Square of the map
@@ -2828,7 +2910,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Update texts
   #--------------------------------------------------------------------------
-  def tone_change? 
+  def tone_change?
     @tone_duration > 0
   end
 end
@@ -3065,7 +3147,7 @@ class Game_Parallaxes
   def initialize
     @data = []
   end
-  # Returns a fresh picture id 
+  # Returns a fresh picture id
   def fresh_id
     i = @data.find_index {|parallax| !parallax || parallax.name.empty? }
     return (i || @data.length)
@@ -3097,7 +3179,7 @@ class Game_Pictures
   def to_a
     return @data.compact
   end
-  # Returns a fresh picture id 
+  # Returns a fresh picture id
   def fresh_id
     i = @data.find_index {|picture| !picture || picture.name.empty? }
     return (i || @data.length)
@@ -3425,9 +3507,9 @@ class Spriteset_Map
     return if $game_map.reflection_properties[:excluded].include?(id)
     @reflect_sprites.push(
       Sprite_Reflect.new(
-        @viewport1, 
-        char, 
-        id, 
+        @viewport1,
+        char,
+        id,
         $game_map.reflection_properties
         )
       )
@@ -3538,7 +3620,7 @@ class Sprite_Picture
     if name == :screenshot
       return self.bitmap if @old_snap
       @old_snap = true
-      return Graphics.snap_to_bitmap.clone 
+      return Graphics.snap_to_bitmap.clone
     end
 
     @old_snap = false
@@ -4294,7 +4376,7 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check if unbounded
   #--------------------------------------------------------------------------
-  def unbounded?(x, y) 
+  def unbounded?(x, y)
     (x < 0 or x >= $game_map.width) or (y < 0 or y >= $game_map.height)
   end
 

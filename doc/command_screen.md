@@ -43,7 +43,7 @@ Nom|Type|Description
 `radius`|`ArgType`|Radius du flou gaussien. (0 = pas de flou)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### screen_fadein(duration)
 
 > Affiche l'écran en fondu (de manière moins radicale que la commande fadein)
@@ -85,7 +85,7 @@ Nom|Type|Description
 `pixelation`|`ArgType`|Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### screen_shake(power, speed, duration, *wait_flag)
 
 > Fait trembler l'écran pendant une durée déterminée

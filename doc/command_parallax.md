@@ -56,7 +56,7 @@ Nom|Type|Description
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_autoscroll_y(id, speed, *duration, *wait_flag, *ease)
 
 > Défilement vertical automatique d'un panorama
@@ -68,7 +68,7 @@ Nom|Type|Description
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_blend(id, blend_type)
 
 > Change le mode de fusion d'un panorama
@@ -105,7 +105,7 @@ Nom|Type|Description
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_scroll(id, x, y)
 
 > Change la vitesse de défilement d' un panorama référencé par son ID
@@ -164,7 +164,7 @@ Nom|Type|Description
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_transform(id, duration, *wait_flag, *zoom_x, *zoom_y, *opacity, *tone, *ease)
 
 > Transforme un panorama durant une période
@@ -179,7 +179,7 @@ Nom|Type|Description
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_z(id, z)
 
 > Change l'axe Z du panorama
@@ -200,7 +200,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_zoom_x(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom horizontal d'un panorama
@@ -212,7 +212,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallax_zoom_y(id, zoom, *duration, *wait_flag, *ease)
 
 > Zoom vertical d'un panorama
@@ -224,7 +224,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### parallaxes_clear
 
 > Supprime tous les panoramas
