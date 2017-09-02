@@ -1,5 +1,6 @@
 # RME Changelog
 
+*  `5.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
 *  `4.9 => 18/08/2017 01:00` Correction de la commande length (Nuki)
 *  `4.8 => 18/08/2017 05:00` Correction du move_to (enfin) ! (Nuki)
 *  `4.7 => 14/08/2017 05:00` Corrections de beaucoup de bugs et ajout de mouse_moving? (Nuki)

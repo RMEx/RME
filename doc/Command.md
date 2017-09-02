@@ -136,6 +136,9 @@ Collection des commandes EventExtender
 *    [Command.camera_move_on(x, y)](#commandcamera_move_onx-y)
 *    [Command.camera_scroll(direction, distance, speed)](#commandcamera_scrolldirection-distance-speed)
 *    [Command.camera_scroll_on(x, y, speed)](#commandcamera_scroll_onx-y-speed)
+*    [Command.camera_scroll_towards(x, y, nb_steps, *easing_function, *position)](#commandcamera_scroll_towardsx-y-nb_steps-easing_function-position)
+*    [Command.camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_eventid-nb_steps-easing_function-position)
+*    [Command.camera_scroll_towards_player(nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_playernb_steps-easing_function-position)
 *    [Command.camera_unlock](#commandcamera_unlock)
 *    [Command.camera_zoom(zoom, *duration, *wait_flag, *ease)](#commandcamera_zoomzoom-duration-wait_flag-ease)
 *    [Command.caps_lock?](#commandcaps_lock)
@@ -686,6 +689,8 @@ Collection des commandes EventExtender
 *    [Command.table?(x, y)](#commandtablex-y)
 *    [Command.tan(x)](#commandtanx)
 *    [Command.tanh(x)](#commandtanhx)
+*    [Command.team_member(pos)](#commandteam_memberpos)
+*    [Command.team_members](#commandteam_members)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
 *    [Command.text_angle(id, *value)](#commandtext_angleid-value)
@@ -2315,7 +2320,7 @@ Nom|Type|Description
 `attenuation`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -2335,13 +2340,13 @@ Nom|Type|Description
 
 ##### Command.camera_scroll(direction, distance, speed)
 
-> Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse
+> Fait défiler la caméra dans une direction sur une distance (en cases) à une certaine vitesse
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `direction`|`Fixnum`|Direction (2=bas, 4=gauche, 6=droite, 8=haut)  
-`distance`|`Fixnum`|Nombre de case à défiler  
+`distance`|`Fixnum`|Nombre de cases à défiler  
 `speed`|`Fixnum`|Vitesse du défilement  
 
 
@@ -2357,6 +2362,51 @@ Nom|Type|Description
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `speed`|`Fixnum`|Vitesse de défilement  
+
+
+
+
+##### Command.camera_scroll_towards(x, y, nb_steps, *easing_function, *position)
+
+> Fait défiler la caméra vers le point de coordonnées (x, y). (Par défaut, ce point sera celui situé dans le coin haut-gauche de l'écran une fois le défilement terminé)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|L'abscisse du point cible  
+`y`|`Fixnum`|L'ordonnée du point cible  
+`nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
+`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*position`|`Symbol`|Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
+
+
+
+
+##### Command.camera_scroll_towards_event(id, nb_steps, *easing_function, *position)
+
+> Fait défiler la caméra vers l'événement spécifié. (Par défaut, l'événement sera situé dans le coin haut-gauche de l'écran une fois le défilement terminé)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
+`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*position`|`Symbol`|Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
+
+
+
+
+##### Command.camera_scroll_towards_player(nb_steps, *easing_function, *position)
+
+> Fait défiler la caméra vers le joueur. (Par défaut, le joueur sera situé dans le coin haut-gauche de l'écran une fois le défilement terminé)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
+`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*position`|`Symbol`|Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
 
 
 
@@ -2380,7 +2430,7 @@ Nom|Type|Description
 `zoom`|`ArgType`|Valeur de zoom, supérieur à 100  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6256,7 +6306,7 @@ Nom|Type|Description
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6272,7 +6322,7 @@ Nom|Type|Description
 `speed`|`Fixnum`|Vitesse de défilement  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6325,7 +6375,7 @@ Nom|Type|Description
 `opacity`|`Fixnum`|valeur de l'opacité (0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6404,7 +6454,7 @@ Nom|Type|Description
 `tone`|`Tone`|teinte du panorama (utilisez la commande tone des commandes standards)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6423,7 +6473,7 @@ Nom|Type|Description
 `*zoom_y`|`Fixnum`|Zoom vertical (par défaut 100)  
 `*opacity`|`Fixnum`|Opacité, entre 0 et 255. (par défaut 255)  
 `*tone`|`Tone`|Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6452,7 +6502,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6468,7 +6518,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6484,7 +6534,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|taille en pourcentage  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6565,7 +6615,7 @@ Nom|Type|Description
 `angle`|`Fixnum`|Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6595,7 +6645,7 @@ Nom|Type|Description
 `h`|`Fixnum`|Hauteur à modifier  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6647,7 +6697,7 @@ Nom|Type|Description
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6751,7 +6801,7 @@ Nom|Type|Description
 `*opacity`|`Fixnum`|Opacité (de 0 à 255) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son opacité actuelle  
 `*blend_type`|`Fixnum`|Mode de fusion (0, 1, 2) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son mode de fusion du moment  
 `*origin`|`Fixnum`|Origine que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son origine du moment  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6792,7 +6842,7 @@ Nom|Type|Description
 `opacity`|`Fixnum`|valeur de l'opacité (de 0 à 255)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6836,7 +6886,7 @@ Nom|Type|Description
 `y`|`Fixnum`|Position en y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -6984,7 +7034,7 @@ Nom|Type|Description
 `tone`|`Tone`|Teinte de l'image (utilisez la commande tone)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -7026,7 +7076,7 @@ Nom|Type|Description
 `*v`|`Fixnum`|Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -7042,7 +7092,7 @@ Nom|Type|Description
 `x`|`Fixnum`|Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -7058,7 +7108,7 @@ Nom|Type|Description
 `y`|`Fixnum`|Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -7075,7 +7125,7 @@ Nom|Type|Description
 `*zoom_y`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -7091,7 +7141,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -7107,7 +7157,7 @@ Nom|Type|Description
 `zoom`|`Fixnum`|Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -8138,7 +8188,7 @@ Nom|Type|Description
 `radius`|`ArgType`|Radius du flou gaussien. (0 = pas de flou)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -8200,7 +8250,7 @@ Nom|Type|Description
 `pixelation`|`ArgType`|Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -9087,6 +9137,27 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `x`|`Numeric`|Valeur numérique  
+
+
+
+
+##### Command.team_member(pos)
+
+> Renvoie l'id du membre de l'équipe à la position spécifiée (1 pour le premier membre)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`pos`|`Fixnum`|Position du membre de l'équipe  
+
+
+
+
+##### Command.team_members
+
+> Renvoie un tableau avec les id de tous les membres de l'équipe
+
+  
 
 
 

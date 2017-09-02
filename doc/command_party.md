@@ -14,6 +14,8 @@ Commande associées à la gestion de l'équipe de héros
 *    [play_time](#play_time)
 *    [save_count](#save_count)
 *    [steps](#steps)
+*    [team_member(pos)](#team_memberpos)
+*    [team_members](#team_members)
 *    [team_size](#team_size)
 *    [timer](#timer)
 
@@ -58,6 +60,19 @@ Nom|Type|Description
 ##### steps
 
 > Renvoie le nombre de pas effectués par l'équipe
+
+  
+##### team_member(pos)
+
+> Renvoie l'id du membre de l'équipe à la position spécifiée (1 pour le premier membre)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`pos`|`Fixnum`|Position du membre de l'équipe  
+##### team_members
+
+> Renvoie un tableau avec les id de tous les membres de l'équipe
 
   
 ##### team_size

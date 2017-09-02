@@ -13,6 +13,9 @@ Commandes relatives à la manipulation de la caméra (scrolling de la carte)
 *    [camera_move_on(x, y)](#camera_move_onx-y)
 *    [camera_scroll(direction, distance, speed)](#camera_scrolldirection-distance-speed)
 *    [camera_scroll_on(x, y, speed)](#camera_scroll_onx-y-speed)
+*    [camera_scroll_towards(x, y, nb_steps, *easing_function, *position)](#camera_scroll_towardsx-y-nb_steps-easing_function-position)
+*    [camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#camera_scroll_towards_eventid-nb_steps-easing_function-position)
+*    [camera_scroll_towards_player(nb_steps, *easing_function, *position)](#camera_scroll_towards_playernb_steps-easing_function-position)
 *    [camera_unlock](#camera_unlock)
 *    [camera_zoom(zoom, *duration, *wait_flag, *ease)](#camera_zoomzoom-duration-wait_flag-ease)
 
@@ -41,7 +44,7 @@ Nom|Type|Description
 `attenuation`|`ArgType`|Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### camera_move_on(x, y)
 
 > Place la caméra sur un point de la carte
@@ -53,13 +56,13 @@ Nom|Type|Description
 `y`|`Fixnum`|Coordonnées Y  
 ##### camera_scroll(direction, distance, speed)
 
-> Fait défiler la carte dans une direction sur une distance (en cases) à une certaine vitesse
+> Fait défiler la caméra dans une direction sur une distance (en cases) à une certaine vitesse
 
   
 Nom|Type|Description  
 --- | --- | ---  
 `direction`|`Fixnum`|Direction (2=bas, 4=gauche, 6=droite, 8=haut)  
-`distance`|`Fixnum`|Nombre de case à défiler  
+`distance`|`Fixnum`|Nombre de cases à défiler  
 `speed`|`Fixnum`|Vitesse du défilement  
 ##### camera_scroll_on(x, y, speed)
 
@@ -71,6 +74,39 @@ Nom|Type|Description
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `speed`|`Fixnum`|Vitesse de défilement  
+##### camera_scroll_towards(x, y, nb_steps, *easing_function, *position)
+
+> Fait défiler la caméra vers le point de coordonnées (x, y). (Par défaut, ce point sera celui situé dans le coin haut-gauche de l'écran une fois le défilement terminé)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`x`|`Fixnum`|L'abscisse du point cible  
+`y`|`Fixnum`|L'ordonnée du point cible  
+`nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
+`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*position`|`Symbol`|Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
+##### camera_scroll_towards_event(id, nb_steps, *easing_function, *position)
+
+> Fait défiler la caméra vers l'événement spécifié. (Par défaut, l'événement sera situé dans le coin haut-gauche de l'écran une fois le défilement terminé)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
+`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*position`|`Symbol`|Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
+##### camera_scroll_towards_player(nb_steps, *easing_function, *position)
+
+> Fait défiler la caméra vers le joueur. (Par défaut, le joueur sera situé dans le coin haut-gauche de l'écran une fois le défilement terminé)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
+`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*position`|`Symbol`|Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
 ##### camera_unlock
 
 > Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
@@ -86,4 +122,4 @@ Nom|Type|Description
 `zoom`|`ArgType`|Valeur de zoom, supérieur à 100  
 `*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
 `*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut true  
-`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :linear par défaut.  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
