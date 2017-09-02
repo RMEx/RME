@@ -84,7 +84,7 @@ Nom|Type|Description
 `x`|`Fixnum`|L'abscisse du point cible  
 `y`|`Fixnum`|L'ordonnée du point cible  
 `nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
-`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*easing_function`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 `*position`|`Symbol`|Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
 ##### camera_scroll_towards_event(id, nb_steps, *easing_function, *position)
 
@@ -95,7 +95,7 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 `nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
-`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*easing_function`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 `*position`|`Symbol`|Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
 ##### camera_scroll_towards_player(nb_steps, *easing_function, *position)
 
@@ -105,7 +105,7 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
-`*easing_function`|``|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.|Symbol  
+`*easing_function`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 `*position`|`Symbol`|Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
 ##### camera_unlock
 
