@@ -3004,11 +3004,11 @@ module RMECommands
 
     def window_closed?(id); SceneManager.scene.windows[id].close?; end
     def window_opened?(id)
-      return false if !window_exist?(id)
+      return false if !window_exists?(id)
       SceneManager.scene.windows[id].open?
     end
     
-    def window_exist?(id)
+    def window_exists?(id)
       SceneManager.scene.windows[id].to_bool
     end
 
