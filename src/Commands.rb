@@ -3084,9 +3084,13 @@ module RMECommands
       SceneManager.scene.windows[id].open if SceneManager.scene.windows[id]
     end
 
-    def window_closed?(id); SceneManager.scene.windows[id].close?; end
+    def window_closed?(id)
+      return false unless window_exists?(id)
+      SceneManager.scene.windows[id].close?
+    end
+    
     def window_opened?(id)
-      return false if !window_exists?(id)
+      return false unless window_exists?(id)
       SceneManager.scene.windows[id].open?
     end
     
