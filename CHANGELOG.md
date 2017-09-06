@@ -4,6 +4,7 @@
 ## Prochaine release
 
 *  Ajout de `window_exists?` : Par @hinola, reviewé par @xvw
+*  Correction de armor/weapon_possed : Par @hinola, reviewé par @BastienDuplessier
 
 ## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
