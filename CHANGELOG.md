@@ -1,5 +1,11 @@
 # RME Changelog
 
+
+## Prochaine release
+
+*  Ajout de `window_exists?` : Par @hinola, reviewé par @xvw
+
+## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
 *  `0.4.9 => 18/08/2017 01:00` Correction de la commande length (Nuki)
 *  `0.4.8 => 18/08/2017 05:00` Correction du move_to (enfin) ! (Nuki)
