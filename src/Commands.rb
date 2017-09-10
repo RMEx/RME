@@ -1219,6 +1219,8 @@ module RMECommands
     #     element_rate(item.damage.element_id)
     #   end
     # end
+    
+    def last_used_item(); $game_temp.last_used_item; end
 
     append_commands
   end

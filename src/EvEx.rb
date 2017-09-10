@@ -297,6 +297,7 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
+    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
@@ -351,6 +352,27 @@ class Game_CommonEvent
   def active?
     return extender_active? if not in_battle?
     @event.for_battle? && @event.battle_trigger.call()
+  end
+end
+
+#==============================================================================
+# ** Game_Battler
+#------------------------------------------------------------------------------
+#  A battler class with methods for sprites and actions added. This class 
+# is used as a super class of the Game_Actor class and Game_Enemy class.
+#==============================================================================
+
+class Game_Battler < Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :old_use_item, :use_item
+  #--------------------------------------------------------------------------
+  # * Memorize item ID
+  #--------------------------------------------------------------------------
+  def use_item(item)
+    $game_temp.last_used_item = item.id
+    old_use_item(item)
   end
 end
 
