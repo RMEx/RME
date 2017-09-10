@@ -821,6 +821,19 @@ module RMECommands
       SceneManager.scene.refresh_spriteset
     end
 
+    #--------------------------------------------------------------------------
+    # * Disable dimness on weather
+    #--------------------------------------------------------------------------
+    def disable_weather_dimness
+      $game_system.weather_no_dimness = true
+    end
+
+    #--------------------------------------------------------------------------
+    # * Enable dimness on weather
+    #--------------------------------------------------------------------------
+    def enable_weather_dimness
+      $game_system.weather_no_dimness = false
+    end
 
     #--------------------------------------------------------------------------
     # * Get Region ID from coords
