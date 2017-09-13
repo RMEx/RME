@@ -1,8 +1,10 @@
 # RME Changelog
 
 
-## Prochaine release
+## Prochaine release (1.0.1)
 
+*  Ajout de la commande `last_used_item` : Par @hinola, reportée par @Zer0xZer0x
+*  Ajout des commandes `*_weather_dimness` : Par @BastienDuplessier, reportée par @Zer0xZer0x
 *  Ajout de `window_exists?` : Par @hinola, reviewé par @xvw
 *  Correction de armor/weapon_possed : Par @hinola, reviewé par @BastienDuplessier
 
