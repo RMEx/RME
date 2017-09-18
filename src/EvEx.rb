@@ -2551,6 +2551,10 @@ class Game_Map
   alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
   alias_method :rm_extender_update_scroll, :update_scroll
+  alias_method :rm_extender_scroll_up, :scroll_up
+  alias_method :rm_extender_scroll_down, :scroll_down
+  alias_method :rm_extender_scroll_left, :scroll_left
+  alias_method :rm_extender_scroll_right, :scroll_right
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2680,6 +2684,36 @@ class Game_Map
 
       @scroll_function = nil if (0 >= @scroll_rest)
     end
+  end
+  
+
+  #--------------------------------------------------------------------------
+  # * Scroll Down
+  #--------------------------------------------------------------------------
+  def scroll_down(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_down(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Left
+  #--------------------------------------------------------------------------
+  def scroll_left(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_left(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Right
+  #--------------------------------------------------------------------------
+  def scroll_right(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_right(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Up
+  #--------------------------------------------------------------------------
+  def scroll_up(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_up(distance)
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
