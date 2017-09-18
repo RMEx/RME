@@ -2600,6 +2600,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
   attr_accessor :target_camera
+  attr_accessor :camera_lock
   attr_accessor :tileset_id
   attr_accessor :map
   attr_accessor :use_reflection
@@ -2625,6 +2626,7 @@ class Game_Map
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
+    @camera_lock = []
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
