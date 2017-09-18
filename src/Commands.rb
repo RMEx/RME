@@ -2988,6 +2988,12 @@ module RMECommands
 
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
+  
+    def camera_lock_x; $game_map.camera_lock << :x; end
+    def camera_unlock_x; $game_map.camera_lock.delete(:x); end
+      
+    def camera_lock_y; $game_map.camera_lock << :y; end
+    def camera_unlock_y; $game_map.camera_lock.delete(:y); end
 
     def camera_change_focus(event_id)
       e = event(event_id)
