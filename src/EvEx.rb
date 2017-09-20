@@ -2551,6 +2551,10 @@ class Game_Map
   alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
   alias_method :rm_extender_update_scroll, :update_scroll
+  alias_method :rm_extender_scroll_up, :scroll_up
+  alias_method :rm_extender_scroll_down, :scroll_down
+  alias_method :rm_extender_scroll_left, :scroll_left
+  alias_method :rm_extender_scroll_right, :scroll_right
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2600,6 +2604,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
   attr_accessor :target_camera
+  attr_accessor :camera_lock
   attr_accessor :tileset_id
   attr_accessor :map
   attr_accessor :use_reflection
@@ -2625,6 +2630,7 @@ class Game_Map
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
+    @camera_lock = []
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
@@ -2678,6 +2684,36 @@ class Game_Map
 
       @scroll_function = nil if (0 >= @scroll_rest)
     end
+  end
+  
+
+  #--------------------------------------------------------------------------
+  # * Scroll Down
+  #--------------------------------------------------------------------------
+  def scroll_down(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_down(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Left
+  #--------------------------------------------------------------------------
+  def scroll_left(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_left(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Right
+  #--------------------------------------------------------------------------
+  def scroll_right(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_right(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Up
+  #--------------------------------------------------------------------------
+  def scroll_up(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_up(distance)
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
