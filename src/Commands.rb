@@ -3154,6 +3154,14 @@ module RMECommands
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
     end
+    
+    #--------------------------------------------------------------------------
+    # * Point in window
+    #--------------------------------------------------------------------------
+    
+    def mouse_hover_window?(id)
+      SceneManager.scene.windows[id].mouse_hover? if SceneManager.scene.windows[id]
+    end
 
     append_commands
   end
