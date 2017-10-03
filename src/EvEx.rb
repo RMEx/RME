@@ -2005,6 +2005,16 @@ class Window_Base
   # * Include Window movement
   #--------------------------------------------------------------------------
   include Window_Movement
+  #--------------------------------------------------------------------------
+  # * mouse_hover?
+  #--------------------------------------------------------------------------
+  def mouse_hover?
+    posX = Mouse.x - self.x
+    posY = Mouse.y - self.y
+    posX -= viewport.x if (viewport)
+    posY -= viewport.y if (viewport)
+    return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
+  end
 end
 
 #==============================================================================
