@@ -1,12 +1,14 @@
 # RME Changelog
 
 
-## Prochaine release (1.0.1)
+## Prochaine release (1.1.0)
 
 *  Ajout de la commande `last_used_item` : Par @hinola, reportée par @Zer0xZer0x
 *  Ajout des commandes `*_weather_dimness` : Par @BastienDuplessier, reportée par @Zer0xZer0x
 *  Ajout de `window_exists?` : Par @hinola, reviewé par @xvw
-*  Correction de armor/weapon_possed : Par @hinola, reviewé par @BastienDuplessier
+*  Correction de `armor/weapon_possed` : Par @hinola, reviewé par @BastienDuplessier
+*  Ajout de `disable_weather_dimness` et `enable_weather_dimness` par @BastienDuplessier, Reporté par @Zer0xZer0x,
+*  Ajout de `camera_locked?`, `camera_(un)lock_(x|y)` par @BastienDuplessier, reporté par @lunri, reviewé par @xvw
 
 ## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
