@@ -4534,6 +4534,14 @@ module DataManager
     alias_method :rm_extender_create_game_objects, :create_game_objects
     alias_method :rm_extender_make_save_contents, :make_save_contents
     alias_method :rm_extender_extract_save_contents, :extract_save_contents
+    alias_method :rm_extender_init, :init
+    #--------------------------------------------------------------------------
+    # * Reinitialize the DataManager
+    #--------------------------------------------------------------------------
+    def init
+      rm_extender_init
+      Window_Message.line_number = 4
+    end
     #--------------------------------------------------------------------------
     # * Creates the objects of the game
     #--------------------------------------------------------------------------

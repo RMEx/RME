@@ -45,6 +45,7 @@ Commandes permettant d'obtenir ou de manipuler les objets<br /><br /><h2>Liste d
 <li><a href='#item_success_rateid'>item_success_rate(id)</a></li>
 <li><a href='#item_tp_gainid'>item_tp_gain(id)</a></li>
 <li><a href='#items_possessed'>items_possessed</a></li>
+<li><a href='#last_used_item'>last_used_item</a></li>
 </ul><h2>Description des commandes</h2>
 <strong name='give_itemid-amount' id='give_itemid-amount'>give_item(id, amount)</strong><br /><br /><blockquote>Fait gagner à l'équipe l'objet référencé par son ID</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr><tr><td><code>amount</code></td><td><code>Fixnum</code></td><td>Nombre à donner. Si le nombre est négatif, l'objet sera retiré</td></tr></table><strong name='has_itemid' id='has_itemid'>has_item?(id)</strong><br /><br /><blockquote>Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon</blockquote>  
@@ -90,4 +91,5 @@ Commandes permettant d'obtenir ou de manipuler les objets<br /><br /><h2>Liste d
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table><strong name='item_success_rateid' id='item_success_rateid'>item_success_rate(id)</strong><br /><br /><blockquote>Renvoie la probabilité de succès de l'objet référencé par son ID</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table><strong name='item_tp_gainid' id='item_tp_gainid'>item_tp_gain(id)</strong><br /><br /><blockquote>Renvoie le gain de TP que l'objet référencé par son ID apporte une fois utilisé en combat</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>Id de l'objet</td></tr></table><strong name='items_possessed' id='items_possessed'>items_possessed</strong><br /><br /><blockquote>Renvoie la liste des objets possédés</blockquote>  
+</table><strong name='last_used_item' id='last_used_item'>last_used_item</strong><br /><br /><blockquote>Renvoie l'id du dernier objet utilisé</blockquote>  
 </table></body></html>

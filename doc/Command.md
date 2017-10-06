@@ -132,6 +132,9 @@ Collection des commandes EventExtender
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.camera_change_focus(event_id)](#commandcamera_change_focusevent_id)
 *    [Command.camera_lock](#commandcamera_lock)
+*    [Command.camera_lock_x](#commandcamera_lock_x)
+*    [Command.camera_lock_y](#commandcamera_lock_y)
+*    [Command.camera_locked?](#commandcamera_locked)
 *    [Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)](#commandcamera_motion_blurattenuation-duration-wait_flag-ease)
 *    [Command.camera_move_on(x, y)](#commandcamera_move_onx-y)
 *    [Command.camera_scroll(direction, distance, speed)](#commandcamera_scrolldirection-distance-speed)
@@ -140,6 +143,10 @@ Collection des commandes EventExtender
 *    [Command.camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_eventid-nb_steps-easing_function-position)
 *    [Command.camera_scroll_towards_player(nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_playernb_steps-easing_function-position)
 *    [Command.camera_unlock](#commandcamera_unlock)
+*    [Command.camera_unlock_x](#commandcamera_unlock_x)
+*    [Command.camera_unlock_y](#commandcamera_unlock_y)
+*    [Command.camera_x_locked?](#commandcamera_x_locked)
+*    [Command.camera_y_locked?](#commandcamera_y_locked)
 *    [Command.camera_zoom(zoom, *duration, *wait_flag, *ease)](#commandcamera_zoomzoom-duration-wait_flag-ease)
 *    [Command.caps_lock?](#commandcaps_lock)
 *    [Command.click_time(key)](#commandclick_timekey)
@@ -165,6 +172,8 @@ Collection des commandes EventExtender
 *    [Command.cursor_system(flag)](#commandcursor_systemflag)
 *    [Command.damage_floor?(x, y)](#commanddamage_floorx-y)
 *    [Command.delete_tiles(layer, id)](#commanddelete_tileslayer-id)
+*    [Command.disable_weather_dimness](#commanddisable_weather_dimness)
+*    [Command.enable_weather_dimness](#commandenable_weather_dimness)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -370,6 +379,7 @@ Collection des commandes EventExtender
 *    [Command.last_released_event](#commandlast_released_event)
 *    [Command.last_repeated_event](#commandlast_repeated_event)
 *    [Command.last_triggered_event](#commandlast_triggered_event)
+*    [Command.last_used_item](#commandlast_used_item)
 *    [Command.length(array)](#commandlengtharray)
 *    [Command.load_game(index, *time)](#commandload_gameindex-time)
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
@@ -417,6 +427,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_hover_event?(events, *precise)](#commandmouse_hover_eventevents-precise)
 *    [Command.mouse_hover_player?](#commandmouse_hover_player)
 *    [Command.mouse_hover_square_area?(area)](#commandmouse_hover_square_areaarea)
+*    [Command.mouse_hover_window?(id)](#commandmouse_hover_windowid)
 *    [Command.mouse_in?(rectangle)](#commandmouse_inrectangle)
 *    [Command.mouse_last_rect](#commandmouse_last_rect)
 *    [Command.mouse_moving?](#commandmouse_moving)
@@ -786,6 +797,7 @@ Collection des commandes EventExtender
 *    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
 *    [Command.window_deactivate(id)](#commandwindow_deactivateid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
+*    [Command.window_exists?(id)](#commandwindow_existsid)
 *    [Command.window_height(id)](#commandwindow_heightid)
 *    [Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
@@ -2310,6 +2322,33 @@ Nom|Type|Description
 
 
 
+##### Command.camera_lock_x
+
+> Verrouille la position de la caméra sur l'axe X
+
+  
+
+
+
+
+##### Command.camera_lock_y
+
+> Verrouille la position de la caméra sur l'axe Y
+
+  
+
+
+
+
+##### Command.camera_locked?
+
+> Renovie true si la camera est verrouillée
+
+  
+
+
+
+
 ##### Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)
 
 > Atténue le raffraichissement de l'écran. Rend plus diffus les mouvements de caméra, et mouvements à l'écran.
@@ -2414,6 +2453,42 @@ Nom|Type|Description
 ##### Command.camera_unlock
 
 > Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
+
+  
+
+
+
+
+##### Command.camera_unlock_x
+
+> Déverrouille la position de la caméra sur l'axe X
+
+  
+
+
+
+
+##### Command.camera_unlock_y
+
+> Déverrouille la position de la caméra sur l'axe Y
+
+  
+
+
+
+
+##### Command.camera_x_locked?
+
+> Renovie true si la camera est verrouillée en X
+
+  
+
+
+
+
+##### Command.camera_y_locked?
+
+> Renovie true si la camera est verrouillée en Y
 
   
 
@@ -2736,6 +2811,24 @@ Nom|Type|Description
 --- | --- | ---  
 `layer`|`Fixnum`|Numéro de la couche  
 `id`|`Fixnum`|Id du tile à supprimer  
+
+
+
+
+##### Command.disable_weather_dimness
+
+> Désactive l'obscurité lors d'un changement climatique
+
+  
+
+
+
+
+##### Command.enable_weather_dimness
+
+> Active l'obscurité lors d'un changement climatique
+
+  
 
 
 
@@ -5251,6 +5344,15 @@ Nom|Type|Description
 
 
 
+##### Command.last_used_item
+
+> Renvoie l'id du dernier objet utilisé
+
+  
+
+
+
+
 ##### Command.length(array)
 
 > Renvoie la taille d'un tableau
@@ -5796,6 +5898,18 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
+
+
+
+
+##### Command.mouse_hover_window?(id)
+
+> Renvoie true si la souris survole la fenêtre, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 
@@ -10374,6 +10488,18 @@ Nom|Type|Description
 `height`|`Fixnum`|Hauteur de la fenêtre  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+##### Command.window_exists?(id)
+
+> Renvoie true si la fenêtre référencée par son ID a été créée, false sinon
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 

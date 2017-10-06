@@ -2374,6 +2374,31 @@ class Game_Temp
 end
 
 #==============================================================================
+# ** Game_System
+#------------------------------------------------------------------------------
+#  This class handles system data. It saves the disable state of saving and 
+# menus. Instances of this class are referenced by $game_system.
+#==============================================================================
+
+class Game_System
+  #--------------------------------------------------------------------------
+  # * Aliases
+  #--------------------------------------------------------------------------
+  alias_method :rme_initialize, :initialize
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor   :weather_no_dimness   # Disable automatic dimness with weather
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize
+    rme_initialize
+    @weather_no_dimness = false
+  end
+end
+
+#==============================================================================
 # ** Command
 #------------------------------------------------------------------------------
 #  Command container
@@ -5440,6 +5465,13 @@ module Gui
     #--------------------------------------------------------------------------
     def <<(oth)
       @content << oth
+      compute_scrolling
+      oth
+    end
+    #--------------------------------------------------------------------------
+    # * Recompute Scrollbar
+    #--------------------------------------------------------------------------
+    def compute_scrolling
       if @content.width > @field.width
         create_horizontal_scrollbar
       else
@@ -5452,8 +5484,8 @@ module Gui
         @verticalscrollbar.dispose if @verticalscrollbar
         @field.width = self.width
       end
-      oth
     end
+
     #--------------------------------------------------------------------------
     # * Create horizontal scrollbar
     #--------------------------------------------------------------------------
@@ -6208,6 +6240,7 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
+    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
@@ -6262,6 +6295,27 @@ class Game_CommonEvent
   def active?
     return extender_active? if not in_battle?
     @event.for_battle? && @event.battle_trigger.call()
+  end
+end
+
+#==============================================================================
+# ** Game_Battler
+#------------------------------------------------------------------------------
+#  A battler class with methods for sprites and actions added. This class 
+# is used as a super class of the Game_Actor class and Game_Enemy class.
+#==============================================================================
+
+class Game_Battler < Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :old_use_item, :use_item
+  #--------------------------------------------------------------------------
+  # * Memorize item ID
+  #--------------------------------------------------------------------------
+  def use_item(item)
+    $game_temp.last_used_item = item.id
+    old_use_item(item)
   end
 end
 
@@ -7894,6 +7948,16 @@ class Window_Base
   # * Include Window movement
   #--------------------------------------------------------------------------
   include Window_Movement
+  #--------------------------------------------------------------------------
+  # * mouse_hover?
+  #--------------------------------------------------------------------------
+  def mouse_hover?
+    posX = Mouse.x - self.x
+    posY = Mouse.y - self.y
+    posX -= viewport.x if (viewport)
+    posY -= viewport.y if (viewport)
+    return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
+  end
 end
 
 #==============================================================================
@@ -8440,6 +8504,10 @@ class Game_Map
   alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
   alias_method :rm_extender_update_scroll, :update_scroll
+  alias_method :rm_extender_scroll_up, :scroll_up
+  alias_method :rm_extender_scroll_down, :scroll_down
+  alias_method :rm_extender_scroll_left, :scroll_left
+  alias_method :rm_extender_scroll_right, :scroll_right
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -8489,6 +8557,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
   attr_accessor :target_camera
+  attr_accessor :camera_lock
   attr_accessor :tileset_id
   attr_accessor :map
   attr_accessor :use_reflection
@@ -8514,6 +8583,7 @@ class Game_Map
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
+    @camera_lock = []
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
@@ -8567,6 +8637,36 @@ class Game_Map
 
       @scroll_function = nil if (0 >= @scroll_rest)
     end
+  end
+  
+
+  #--------------------------------------------------------------------------
+  # * Scroll Down
+  #--------------------------------------------------------------------------
+  def scroll_down(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_down(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Left
+  #--------------------------------------------------------------------------
+  def scroll_left(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_left(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Right
+  #--------------------------------------------------------------------------
+  def scroll_right(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_right(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Up
+  #--------------------------------------------------------------------------
+  def scroll_up(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_up(distance)
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
@@ -9613,6 +9713,26 @@ class Sprite_Picture
   end
 end
 
+  #==============================================================================
+  # ** Spriteset_Weather
+  #------------------------------------------------------------------------------
+  #  A class for weather effects (rain, storm, and snow). It is used within the
+  # Spriteset_Map class.
+  #==============================================================================
+
+  class Spriteset_Weather
+    #--------------------------------------------------------------------------
+    # * Aliases
+    #--------------------------------------------------------------------------
+    alias_method :rme_dimness, :dimness
+    #--------------------------------------------------------------------------
+    # * Get Dimness
+    #--------------------------------------------------------------------------
+    def dimness
+      $game_system.weather_no_dimness ? 0 : rme_dimness
+    end
+  end
+
 #==============================================================================
 # ** Game_Actor
 #------------------------------------------------------------------------------
@@ -10357,6 +10477,14 @@ module DataManager
     alias_method :rm_extender_create_game_objects, :create_game_objects
     alias_method :rm_extender_make_save_contents, :make_save_contents
     alias_method :rm_extender_extract_save_contents, :extract_save_contents
+    alias_method :rm_extender_init, :init
+    #--------------------------------------------------------------------------
+    # * Reinitialize the DataManager
+    #--------------------------------------------------------------------------
+    def init
+      rm_extender_init
+      Window_Message.line_number = 4
+    end
     #--------------------------------------------------------------------------
     # * Creates the objects of the game
     #--------------------------------------------------------------------------
@@ -11436,6 +11564,19 @@ module RMECommands
       SceneManager.scene.refresh_spriteset
     end
 
+    #--------------------------------------------------------------------------
+    # * Disable dimness on weather
+    #--------------------------------------------------------------------------
+    def disable_weather_dimness
+      $game_system.weather_no_dimness = true
+    end
+
+    #--------------------------------------------------------------------------
+    # * Enable dimness on weather
+    #--------------------------------------------------------------------------
+    def enable_weather_dimness
+      $game_system.weather_no_dimness = false
+    end
 
     #--------------------------------------------------------------------------
     # * Get Region ID from coords
@@ -11651,10 +11792,10 @@ module RMECommands
       $game_party.items.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
     def armors_possessed
-      $game_party.weapons.map {|i| [i.id] * $game_party.item_number(i)}.flatten
+      $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
     def weapons_possessed
-      $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
+      $game_party.weapons.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
     def item_count(id); $game_party.item_number($data_items[id]); end
     def weapon_count(id); $game_party.item_number($data_weapons[id]); end
@@ -11834,6 +11975,8 @@ module RMECommands
     #     element_rate(item.damage.element_id)
     #   end
     # end
+    
+    def last_used_item(); $game_temp.last_used_item; end
 
     append_commands
   end
@@ -12015,8 +12158,9 @@ module RMECommands
       Math.hypot(*args).to_i
     end
 
-    def event_flash(id, color, duration)
-      event(id).k_sprite.flash(get_color("red"), 10)
+    def event_flash(id, _color, duration)
+      color = _color.is_a?(String) ? get_color(_color) : _color
+      event(id).k_sprite.flash(color, duration)
     end
 
     def player_flash(color, duration)
@@ -13587,6 +13731,15 @@ module RMECommands
 
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
+    def camera_locked?; $game_map.target_camera.nil?; end
+  
+    def camera_lock_x; $game_map.camera_lock << :x; end
+    def camera_unlock_x; $game_map.camera_lock.delete(:x); end
+    def camera_x_locked?; $game_map.camera_lock.include?(:x); end
+      
+    def camera_lock_y; $game_map.camera_lock << :y; end
+    def camera_unlock_y; $game_map.camera_lock.delete(:y); end
+    def camera_y_locked?; $game_map.camera_lock.include?(:y); end
 
     def camera_change_focus(event_id)
       e = event(event_id)
@@ -13699,8 +13852,19 @@ module RMECommands
       SceneManager.scene.windows[id].open if SceneManager.scene.windows[id]
     end
 
-    def window_closed?(id); SceneManager.scene.windows[id].close?; end
-    def window_opened?(id); SceneManager.scene.windows[id].open?; end
+    def window_closed?(id)
+      return false unless window_exists?(id)
+      SceneManager.scene.windows[id].close?
+    end
+    
+    def window_opened?(id)
+      return false unless window_exists?(id)
+      SceneManager.scene.windows[id].open?
+    end
+    
+    def window_exists?(id)
+      SceneManager.scene.windows[id].to_bool
+    end
 
     def window_content(id, content = nil, resize = false)
       return SceneManager.scene.windows[id].content unless content
@@ -13766,6 +13930,14 @@ module RMECommands
     def window_y(id, y = nil)
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
+    end
+    
+    #--------------------------------------------------------------------------
+    # * Point in window
+    #--------------------------------------------------------------------------
+    
+    def mouse_hover_window?(id)
+      SceneManager.scene.windows[id].mouse_hover? if SceneManager.scene.windows[id]
     end
 
     append_commands
@@ -15022,8 +15194,50 @@ class Scene_RME < Scene_Base
     dispose_background
   end
 
+  #--------------------------------------------------------------------------
+  # * Create a viewport to the whole content
+  #--------------------------------------------------------------------------
+  def create_main_viewport
+    @main_viewport = Gui::ScrollableField.new(
+      width: width, 
+      height: height
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Dispose Main viewport
+  #--------------------------------------------------------------------------
+  def dispose_main_viewport
+    @main_viewport.dispose
+  end
+
 end
 
+#==============================================================================
+# ** Scene_Commands
+#------------------------------------------------------------------------------
+#  This scene provides tools to build commands
+#==============================================================================
+
+class Scene_Commands < Scene_RME
+
+  #--------------------------------------------------------------------------
+  # * General start
+  #--------------------------------------------------------------------------
+  def start
+    super 
+    @size = 0
+    create_main_viewport
+  end
+
+  #--------------------------------------------------------------------------
+  # * Termination Processing
+  #--------------------------------------------------------------------------
+  def terminate
+    super
+    dispose_main_viewport
+  end
+end
 # -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Doc
@@ -17197,6 +17411,11 @@ link_method_documentation "Command.battle_count",
                         "Renvoie le nombre de combats effectués par partie",
                         {}, true
 register_command :party, "Command.battle_count"
+	
+link_method_documentation 'Command.last_used_item',
+	'Renvoie l\'id du dernier objet utilisé',
+ 	{}, true
+register_command :items, 'Command.last_used_item'
 
 # AUTOGenerated for items_possessed
 link_method_documentation 'Command.items_possessed',
@@ -20432,6 +20651,13 @@ link_method_documentation 'Command.use_reflection',
 	}
 register_command :fx, 'Command.use_reflection' 
 
+link_method_documentation 'Command.disable_weather_dimness',
+'Désactive l\'obscurité lors d\'un changement climatique', {}
+register_command :fx, 'Command.disable_weather_dimness'
+
+link_method_documentation 'Command.enable_weather_dimness',
+'Active l\'obscurité lors d\'un changement climatique', {}
+register_command :fx, 'Command.enable_weather_dimness'
 
 # AUTOGenerated for event_move_speed_frequency
 link_method_documentation 'Command.event_move_speed_frequency',
@@ -20814,6 +21040,41 @@ link_method_documentation 'Command.camera_unlock',
  	{}
 register_command :camera,'Command.camera_unlock'
 
+link_method_documentation 'Command.camera_locked?',
+	'Renovie true si la camera est verrouillée',
+ 	{}
+register_command :camera,'Command.camera_locked?'
+
+link_method_documentation 'Command.camera_lock_x',
+	'Verrouille la position de la caméra sur l\'axe X',
+ 	{}
+register_command :camera,'Command.camera_lock_x'
+
+link_method_documentation 'Command.camera_unlock_x',
+	'Déverrouille la position de la caméra sur l\'axe X',
+ 	{}
+register_command :camera,'Command.camera_unlock_x'
+
+link_method_documentation 'Command.camera_x_locked?',
+	'Renovie true si la camera est verrouillée en X',
+ 	{}
+register_command :camera,'Command.camera_x_locked?'
+
+link_method_documentation 'Command.camera_lock_y',
+	'Verrouille la position de la caméra sur l\'axe Y',
+ 	{}
+register_command :camera,'Command.camera_lock_y'
+
+link_method_documentation 'Command.camera_unlock_y',
+	'Déverrouille la position de la caméra sur l\'axe Y',
+ 	{}
+register_command :camera,'Command.camera_unlock_y'
+
+link_method_documentation 'Command.camera_y_locked?',
+	'Renovie true si la camera est verrouillée en Y',
+ 	{}
+register_command :camera,'Command.camera_y_locked?'
+
 # AUTOGenerated for camera_change_focus
 link_method_documentation 'Command.camera_change_focus',
 	'Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre évènement',
@@ -21139,6 +21400,24 @@ link_method_documentation 'Command.window_opened?',
 
 	}, true # Maybe changed
 register_command :window, 'Command.window_opened?'
+	
+# AUTOGenerated for window_exists?
+link_method_documentation 'Command.window_exists?',
+	'Renvoie true si la fenêtre référencée par son ID a été créée, false sinon',
+ 	{
+		:id => ["ID de la fenêtre", :Fixnum],
+
+	}, true # Maybe changed
+register_command :window, 'Command.window_exists?'
+
+# AUTOGenerated for window_exists?
+link_method_documentation 'Command.window_exists?',
+	'Renvoie true si la fenêtre référencée par son ID a été créée, false sinon',
+ 	{
+		:id => ["ID de la fenêtre", :Fixnum],
+
+	}, true # Maybe changed
+register_command :window, 'Command.window_exists?'
 
 # AUTOGenerated for window_content
 link_method_documentation 'Command.window_content',
@@ -21345,6 +21624,11 @@ link_method_documentation 'Command.window_y',
     :"*y" => ["Coordonnée Y de la fenêtre", :Fixnum],
 	}, true # Maybe changed
 register_command :window, 'Command.window_y'
+	
+link_method_documentation 'Command.mouse_hover_window?',
+	'Renvoie true si la souris survole la fenêtre, false sinon.',
+ 	{:id => ["ID de la fenêtre", :Fixnum]}, true
+register_command :window, 'Command.mouse_hover_window?'
 
 link_method_documentation 'Command.between',
 	'Donne la distance entre deux points',

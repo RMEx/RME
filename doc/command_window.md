@@ -12,6 +12,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [create_horizontal_commands_window(id, x, y, hash, row)](#create_horizontal_commands_windowid-x-y-hash-row)
 *    [create_selectable_window(id, x, y, width, height, hash)](#create_selectable_windowid-x-y-width-height-hash)
 *    [create_text_window(id, content, x, y, *w, *h)](#create_text_windowid-content-x-y-w-h)
+*    [mouse_hover_window?(id)](#mouse_hover_windowid)
 *    [open_window(id)](#open_windowid)
 *    [remove_all_windows](#remove_all_windows)
 *    [remove_window(id)](#remove_windowid)
@@ -21,6 +22,7 @@ Commandes pour créer/modifier des fenêtres. Attention, lorsque vous utilisez d
 *    [window_current_symbol(id)](#window_current_symbolid)
 *    [window_deactivate(id)](#window_deactivateid)
 *    [window_dimension(id, width, height, *duration, *wait_flag)](#window_dimensionid-width-height-duration-wait_flag)
+*    [window_exists?(id)](#window_existsid)
 *    [window_height(id)](#window_heightid)
 *    [window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#window_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [window_moveto(id, x, y, *duration, *wait_flag)](#window_movetoid-x-y-duration-wait_flag)
@@ -91,6 +93,14 @@ Nom|Type|Description
 `y`|`Fixnum`|Position Y de la fenêtre  
 `*w`|`Fixnum`|Largeur de la fenêtre, utilisez 'nil' pour que la largeur de la fenêtre soit calculée  
 `*h`|`Fixnum`|Hauteur de la fenêtre, utilisez 'nil' pour que la hauteur de la fenêtre soit calculée  
+##### mouse_hover_window?(id)
+
+> Renvoie true si la souris survole la fenêtre, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 ##### open_window(id)
 
 > Ouvre la fenêtre référencée par son ID
@@ -166,6 +176,14 @@ Nom|Type|Description
 `height`|`Fixnum`|Hauteur de la fenêtre  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+##### window_exists?(id)
+
+> Renvoie true si la fenêtre référencée par son ID a été créée, false sinon
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 ##### window_height(id)
 
 > Renvoie la hauteur de la fenêtre référencée par son ID
