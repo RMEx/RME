@@ -16,6 +16,7 @@
 *  Bugfix des textes avec des contours par @xvw
 *  Ajout `choice` et `last_choice` par @xvw
 *  Bugfix des images (et des interpolations) par @xvw, reporté par @hiinola
+*  Ajout de `dash_activate`, `dash_deactivate`, `dash_(de)activate?`, par @xvw, reportée par @Zer0xZer0x
 
 
 ## Avant la version 1.0.0

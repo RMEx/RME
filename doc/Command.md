@@ -172,6 +172,11 @@ Collection des commandes EventExtender
 *    [Command.current_troop](#commandcurrent_troop)
 *    [Command.cursor_system(flag)](#commandcursor_systemflag)
 *    [Command.damage_floor?(x, y)](#commanddamage_floorx-y)
+*    [Command.dash_activate](#commanddash_activate)
+*    [Command.dash_activate?](#commanddash_activate)
+*    [Command.dash_activation(flag)](#commanddash_activationflag)
+*    [Command.dash_deactivate](#commanddash_deactivate)
+*    [Command.dash_deactivate?](#commanddash_deactivate)
 *    [Command.delete_tiles(layer, id)](#commanddelete_tileslayer-id)
 *    [Command.disable_weather_dimness](#commanddisable_weather_dimness)
 *    [Command.enable_weather_dimness](#commandenable_weather_dimness)
@@ -2818,6 +2823,54 @@ Nom|Type|Description
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+
+
+
+
+##### Command.dash_activate
+
+> Active la course sur la map en cours
+
+  
+
+
+
+
+##### Command.dash_activate?
+
+> Renvoie true si la course est activée pour la map en cours, false sinon
+
+  
+
+
+
+
+##### Command.dash_activation(flag)
+
+> Active ou désactive la course sur la map en cours
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`flag`|`Boolean`|true pour l'activer, false pour la désactiver  
+
+
+
+
+##### Command.dash_deactivate
+
+> Désactive la course pour la map en cours
+
+  
+
+
+
+
+##### Command.dash_deactivate?
+
+> Renvoie true si la course est désactivée pour la map en cours, false sinon
+
+  
 
 
 
