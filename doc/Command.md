@@ -149,6 +149,7 @@ Collection des commandes EventExtender
 *    [Command.camera_y_locked?](#commandcamera_y_locked)
 *    [Command.camera_zoom(zoom, *duration, *wait_flag, *ease)](#commandcamera_zoomzoom-duration-wait_flag-ease)
 *    [Command.caps_lock?](#commandcaps_lock)
+*    [Command.choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)](#commandchoicearray-index_if_cancelled-value-face_name-face_index-position-background)
 *    [Command.click_time(key)](#commandclick_timekey)
 *    [Command.clipboard_get_text](#commandclipboard_get_text)
 *    [Command.clipboard_push_command(cmd)](#commandclipboard_push_commandcmd)
@@ -373,6 +374,7 @@ Collection des commandes EventExtender
 *    [Command.keyboard_any?(method, keys)](#commandkeyboard_anymethod-keys)
 *    [Command.keyboard_current_char](#commandkeyboard_current_char)
 *    [Command.keyboard_current_digit](#commandkeyboard_current_digit)
+*    [Command.last_choice](#commandlast_choice)
 *    [Command.last_clicked_event](#commandlast_clicked_event)
 *    [Command.last_hovered_event](#commandlast_hovered_event)
 *    [Command.last_pressed_event](#commandlast_pressed_event)
@@ -2515,6 +2517,24 @@ Nom|Type|Description
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
   
+
+
+
+
+##### Command.choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)
+
+> Affiche un choix (potentiellement de plus de 4 options) et retourne la valeur du choix (1 pour le premier)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|List des possibilité, par exemple ['oui', 'non', 'autre']  
+`index_if_cancelled`|`Fixnum`|Valeur a attribuer si l'utilisateur annule, si ce paramètre vaut 0, il sera impossible d'annuler le choix et ça peut être une autre valeur, par exemple 100 :)  
+`*value`|`String`|Message à afficer  
+`*face_name`|`String`|Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \n pour afficher plusieurs lignes  
+`*face_index`|`Fixnum`|Index du faceset (ne sert à rien si aucun faceset n'est donnée)  
+`*position`|`Fixnum`|Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2  
+`*background`|`Fixnum`|Fond du message, 0 normal, 1 sombre, 2 transparent  
 
 
 
@@ -5284,6 +5304,15 @@ Nom|Type|Description
 ##### Command.keyboard_current_digit
 
 > Renvoie le chiffre actuel pressé par le clavier
+
+  
+
+
+
+
+##### Command.last_choice
+
+> Commande pour récupérer le dernier choix effectué
 
   
 
