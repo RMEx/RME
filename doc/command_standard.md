@@ -9,6 +9,7 @@ Commandes standards
 ## Liste des commandes
 *    [apply_percent(percent, max)](#apply_percentpercent-max)
 *    [call_common_event(id)](#call_common_eventid)
+*    [choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)](#choicearray-index_if_cancelled-value-face_name-face_index-position-background)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
@@ -18,6 +19,7 @@ Commandes standards
 *    [has_prefix?(string, prefix)](#has_prefixstring-prefix)
 *    [has_substring?(string, substring)](#has_substringstring-substring)
 *    [has_suffix?(string, suffix)](#has_suffixstring-suffix)
+*    [last_choice](#last_choice)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
 *    [message(value, *face_name, *face_index, *position, *background)](#messagevalue-face_name-face_index-position-background)
@@ -61,6 +63,20 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'événement commun à exécuter  
+##### choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)
+
+> Affiche un choix (potentiellement de plus de 4 options) et retourne la valeur du choix (1 pour le premier)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|List des possibilité, par exemple ['oui', 'non', 'autre']  
+`index_if_cancelled`|`Fixnum`|Valeur a attribuer si l'utilisateur annule, si ce paramètre vaut 0, il sera impossible d'annuler le choix et ça peut être une autre valeur, par exemple 100 :)  
+`*value`|`String`|Message à afficer  
+`*face_name`|`String`|Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \n pour afficher plusieurs lignes  
+`*face_index`|`Fixnum`|Index du faceset (ne sert à rien si aucun faceset n'est donnée)  
+`*position`|`Fixnum`|Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2  
+`*background`|`Fixnum`|Fond du message, 0 normal, 1 sombre, 2 transparent  
 ##### color(red, green, blue, *alpha)
 
 > Renvoie une couleur
@@ -146,6 +162,11 @@ Nom|Type|Description
 --- | --- | ---  
 `string`|`String`|La chaine de caractère à vérifier  
 `suffix`|`String`|Le suffix devant être contenu dans la chaine  
+##### last_choice
+
+> Commande pour récupérer le dernier choix effectué
+
+  
 ##### length(array)
 
 > Renvoie la taille d'un tableau

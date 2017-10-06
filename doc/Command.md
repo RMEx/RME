@@ -132,6 +132,9 @@ Collection des commandes EventExtender
 *    [Command.call_title_screen](#commandcall_title_screen)
 *    [Command.camera_change_focus(event_id)](#commandcamera_change_focusevent_id)
 *    [Command.camera_lock](#commandcamera_lock)
+*    [Command.camera_lock_x](#commandcamera_lock_x)
+*    [Command.camera_lock_y](#commandcamera_lock_y)
+*    [Command.camera_locked?](#commandcamera_locked)
 *    [Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)](#commandcamera_motion_blurattenuation-duration-wait_flag-ease)
 *    [Command.camera_move_on(x, y)](#commandcamera_move_onx-y)
 *    [Command.camera_scroll(direction, distance, speed)](#commandcamera_scrolldirection-distance-speed)
@@ -140,8 +143,13 @@ Collection des commandes EventExtender
 *    [Command.camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_eventid-nb_steps-easing_function-position)
 *    [Command.camera_scroll_towards_player(nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_playernb_steps-easing_function-position)
 *    [Command.camera_unlock](#commandcamera_unlock)
+*    [Command.camera_unlock_x](#commandcamera_unlock_x)
+*    [Command.camera_unlock_y](#commandcamera_unlock_y)
+*    [Command.camera_x_locked?](#commandcamera_x_locked)
+*    [Command.camera_y_locked?](#commandcamera_y_locked)
 *    [Command.camera_zoom(zoom, *duration, *wait_flag, *ease)](#commandcamera_zoomzoom-duration-wait_flag-ease)
 *    [Command.caps_lock?](#commandcaps_lock)
+*    [Command.choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)](#commandchoicearray-index_if_cancelled-value-face_name-face_index-position-background)
 *    [Command.click_time(key)](#commandclick_timekey)
 *    [Command.clipboard_get_text](#commandclipboard_get_text)
 *    [Command.clipboard_push_command(cmd)](#commandclipboard_push_commandcmd)
@@ -164,7 +172,14 @@ Collection des commandes EventExtender
 *    [Command.current_troop](#commandcurrent_troop)
 *    [Command.cursor_system(flag)](#commandcursor_systemflag)
 *    [Command.damage_floor?(x, y)](#commanddamage_floorx-y)
+*    [Command.dash_activate](#commanddash_activate)
+*    [Command.dash_activate?](#commanddash_activate)
+*    [Command.dash_activation(flag)](#commanddash_activationflag)
+*    [Command.dash_deactivate](#commanddash_deactivate)
+*    [Command.dash_deactivate?](#commanddash_deactivate)
 *    [Command.delete_tiles(layer, id)](#commanddelete_tileslayer-id)
+*    [Command.disable_weather_dimness](#commanddisable_weather_dimness)
+*    [Command.enable_weather_dimness](#commandenable_weather_dimness)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -364,12 +379,14 @@ Collection des commandes EventExtender
 *    [Command.keyboard_any?(method, keys)](#commandkeyboard_anymethod-keys)
 *    [Command.keyboard_current_char](#commandkeyboard_current_char)
 *    [Command.keyboard_current_digit](#commandkeyboard_current_digit)
+*    [Command.last_choice](#commandlast_choice)
 *    [Command.last_clicked_event](#commandlast_clicked_event)
 *    [Command.last_hovered_event](#commandlast_hovered_event)
 *    [Command.last_pressed_event](#commandlast_pressed_event)
 *    [Command.last_released_event](#commandlast_released_event)
 *    [Command.last_repeated_event](#commandlast_repeated_event)
 *    [Command.last_triggered_event](#commandlast_triggered_event)
+*    [Command.last_used_item](#commandlast_used_item)
 *    [Command.length(array)](#commandlengtharray)
 *    [Command.load_game(index, *time)](#commandload_gameindex-time)
 *    [Command.lose_gold(amount)](#commandlose_goldamount)
@@ -417,6 +434,7 @@ Collection des commandes EventExtender
 *    [Command.mouse_hover_event?(events, *precise)](#commandmouse_hover_eventevents-precise)
 *    [Command.mouse_hover_player?](#commandmouse_hover_player)
 *    [Command.mouse_hover_square_area?(area)](#commandmouse_hover_square_areaarea)
+*    [Command.mouse_hover_window?(id)](#commandmouse_hover_windowid)
 *    [Command.mouse_in?(rectangle)](#commandmouse_inrectangle)
 *    [Command.mouse_last_rect](#commandmouse_last_rect)
 *    [Command.mouse_moving?](#commandmouse_moving)
@@ -786,6 +804,7 @@ Collection des commandes EventExtender
 *    [Command.window_current_symbol(id)](#commandwindow_current_symbolid)
 *    [Command.window_deactivate(id)](#commandwindow_deactivateid)
 *    [Command.window_dimension(id, width, height, *duration, *wait_flag)](#commandwindow_dimensionid-width-height-duration-wait_flag)
+*    [Command.window_exists?(id)](#commandwindow_existsid)
 *    [Command.window_height(id)](#commandwindow_heightid)
 *    [Command.window_move(id, x, y, w, h, opacity, *duration, *wait_flag)](#commandwindow_moveid-x-y-w-h-opacity-duration-wait_flag)
 *    [Command.window_moveto(id, x, y, *duration, *wait_flag)](#commandwindow_movetoid-x-y-duration-wait_flag)
@@ -2310,6 +2329,33 @@ Nom|Type|Description
 
 
 
+##### Command.camera_lock_x
+
+> Verrouille la position de la caméra sur l'axe X
+
+  
+
+
+
+
+##### Command.camera_lock_y
+
+> Verrouille la position de la caméra sur l'axe Y
+
+  
+
+
+
+
+##### Command.camera_locked?
+
+> Renovie true si la camera est verrouillée
+
+  
+
+
+
+
 ##### Command.camera_motion_blur(attenuation, *duration, *wait_flag, *ease)
 
 > Atténue le raffraichissement de l'écran. Rend plus diffus les mouvements de caméra, et mouvements à l'écran.
@@ -2420,6 +2466,42 @@ Nom|Type|Description
 
 
 
+##### Command.camera_unlock_x
+
+> Déverrouille la position de la caméra sur l'axe X
+
+  
+
+
+
+
+##### Command.camera_unlock_y
+
+> Déverrouille la position de la caméra sur l'axe Y
+
+  
+
+
+
+
+##### Command.camera_x_locked?
+
+> Renovie true si la camera est verrouillée en X
+
+  
+
+
+
+
+##### Command.camera_y_locked?
+
+> Renovie true si la camera est verrouillée en Y
+
+  
+
+
+
+
 ##### Command.camera_zoom(zoom, *duration, *wait_flag, *ease)
 
 > Zoom tout l'écran en temps réel, sauf les windows (dialogues, etc.)
@@ -2440,6 +2522,24 @@ Nom|Type|Description
 > Renvoie true si le clavier est en mode CAPS_LOCK au moment de l'appel, false sinon
 
   
+
+
+
+
+##### Command.choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)
+
+> Affiche un choix (potentiellement de plus de 4 options) et retourne la valeur du choix (1 pour le premier)
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`array`|`Array`|List des possibilité, par exemple ['oui', 'non', 'autre']  
+`index_if_cancelled`|`Fixnum`|Valeur a attribuer si l'utilisateur annule, si ce paramètre vaut 0, il sera impossible d'annuler le choix et ça peut être une autre valeur, par exemple 100 :)  
+`*value`|`String`|Message à afficer  
+`*face_name`|`String`|Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \n pour afficher plusieurs lignes  
+`*face_index`|`Fixnum`|Index du faceset (ne sert à rien si aucun faceset n'est donnée)  
+`*position`|`Fixnum`|Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2  
+`*background`|`Fixnum`|Fond du message, 0 normal, 1 sombre, 2 transparent  
 
 
 
@@ -2727,6 +2827,54 @@ Nom|Type|Description
 
 
 
+##### Command.dash_activate
+
+> Active la course sur la map en cours
+
+  
+
+
+
+
+##### Command.dash_activate?
+
+> Renvoie true si la course est activée pour la map en cours, false sinon
+
+  
+
+
+
+
+##### Command.dash_activation(flag)
+
+> Active ou désactive la course sur la map en cours
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`flag`|`Boolean`|true pour l'activer, false pour la désactiver  
+
+
+
+
+##### Command.dash_deactivate
+
+> Désactive la course pour la map en cours
+
+  
+
+
+
+
+##### Command.dash_deactivate?
+
+> Renvoie true si la course est désactivée pour la map en cours, false sinon
+
+  
+
+
+
+
 ##### Command.delete_tiles(layer, id)
 
 > Supprime tous les tiles référencés par un ID et un layer
@@ -2736,6 +2884,24 @@ Nom|Type|Description
 --- | --- | ---  
 `layer`|`Fixnum`|Numéro de la couche  
 `id`|`Fixnum`|Id du tile à supprimer  
+
+
+
+
+##### Command.disable_weather_dimness
+
+> Désactive l'obscurité lors d'un changement climatique
+
+  
+
+
+
+
+##### Command.enable_weather_dimness
+
+> Active l'obscurité lors d'un changement climatique
+
+  
 
 
 
@@ -5197,6 +5363,15 @@ Nom|Type|Description
 
 
 
+##### Command.last_choice
+
+> Commande pour récupérer le dernier choix effectué
+
+  
+
+
+
+
 ##### Command.last_clicked_event
 
 > Renvoie le dernier event cliqué par la souris, nil si aucun évènement n'a été cliqué
@@ -5245,6 +5420,15 @@ Nom|Type|Description
 ##### Command.last_triggered_event
 
 > Renvoie le dernier event appuyé une fois (avec :mouse_left) par la souris, nil si aucun évènement n'a été triggeré
+
+  
+
+
+
+
+##### Command.last_used_item
+
+> Renvoie l'id du dernier objet utilisé
 
   
 
@@ -5796,6 +5980,18 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `area`|`Area`|Zone à vérifier  
+
+
+
+
+##### Command.mouse_hover_window?(id)
+
+> Renvoie true si la souris survole la fenêtre, false sinon.
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 
@@ -10374,6 +10570,18 @@ Nom|Type|Description
 `height`|`Fixnum`|Hauteur de la fenêtre  
 `*duration`|`Fixnum`|Durée du déplacement  
 `*wait_flag`|`Boolean`|si cet argument vaut true, on attendra la fin du déplacement  
+
+
+
+
+##### Command.window_exists?(id)
+
+> Renvoie true si la fenêtre référencée par son ID a été créée, false sinon
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de la fenêtre  
 
 
 

@@ -2374,6 +2374,31 @@ class Game_Temp
 end
 
 #==============================================================================
+# ** Game_System
+#------------------------------------------------------------------------------
+#  This class handles system data. It saves the disable state of saving and 
+# menus. Instances of this class are referenced by $game_system.
+#==============================================================================
+
+class Game_System
+  #--------------------------------------------------------------------------
+  # * Aliases
+  #--------------------------------------------------------------------------
+  alias_method :rme_initialize, :initialize
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor   :weather_no_dimness   # Disable automatic dimness with weather
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize
+    rme_initialize
+    @weather_no_dimness = false
+  end
+end
+
+#==============================================================================
 # ** Command
 #------------------------------------------------------------------------------
 #  Command container
@@ -5440,6 +5465,13 @@ module Gui
     #--------------------------------------------------------------------------
     def <<(oth)
       @content << oth
+      compute_scrolling
+      oth
+    end
+    #--------------------------------------------------------------------------
+    # * Recompute Scrollbar
+    #--------------------------------------------------------------------------
+    def compute_scrolling
       if @content.width > @field.width
         create_horizontal_scrollbar
       else
@@ -5452,8 +5484,8 @@ module Gui
         @verticalscrollbar.dispose if @verticalscrollbar
         @field.width = self.width
       end
-      oth
     end
+
     #--------------------------------------------------------------------------
     # * Create horizontal scrollbar
     #--------------------------------------------------------------------------
@@ -6208,6 +6240,7 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
+    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
@@ -6262,6 +6295,27 @@ class Game_CommonEvent
   def active?
     return extender_active? if not in_battle?
     @event.for_battle? && @event.battle_trigger.call()
+  end
+end
+
+#==============================================================================
+# ** Game_Battler
+#------------------------------------------------------------------------------
+#  A battler class with methods for sprites and actions added. This class 
+# is used as a super class of the Game_Actor class and Game_Enemy class.
+#==============================================================================
+
+class Game_Battler < Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :old_use_item, :use_item
+  #--------------------------------------------------------------------------
+  # * Memorize item ID
+  #--------------------------------------------------------------------------
+  def use_item(item)
+    $game_temp.last_used_item = item.id
+    old_use_item(item)
   end
 end
 
@@ -7894,6 +7948,16 @@ class Window_Base
   # * Include Window movement
   #--------------------------------------------------------------------------
   include Window_Movement
+  #--------------------------------------------------------------------------
+  # * mouse_hover?
+  #--------------------------------------------------------------------------
+  def mouse_hover?
+    posX = Mouse.x - self.x
+    posY = Mouse.y - self.y
+    posX -= viewport.x if (viewport)
+    posY -= viewport.y if (viewport)
+    return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
+  end
 end
 
 #==============================================================================
@@ -8440,6 +8504,10 @@ class Game_Map
   alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
   alias_method :rm_extender_update_scroll, :update_scroll
+  alias_method :rm_extender_scroll_up, :scroll_up
+  alias_method :rm_extender_scroll_down, :scroll_down
+  alias_method :rm_extender_scroll_left, :scroll_left
+  alias_method :rm_extender_scroll_right, :scroll_right
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -8489,6 +8557,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
   attr_accessor :target_camera
+  attr_accessor :camera_lock
   attr_accessor :tileset_id
   attr_accessor :map
   attr_accessor :use_reflection
@@ -8496,6 +8565,7 @@ class Game_Map
   attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
+  attr_accessor :can_dash
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -8514,9 +8584,17 @@ class Game_Map
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
+    @camera_lock = []
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
+    @can_dash = !@map.disable_dashing
+  end
+  #--------------------------------------------------------------------------
+  # * Get Whether Dash is Disabled
+  #--------------------------------------------------------------------------
+  def disable_dash?
+    !can_dash
   end
   #--------------------------------------------------------------------------
   # * Setup Region Data
@@ -8567,6 +8645,36 @@ class Game_Map
 
       @scroll_function = nil if (0 >= @scroll_rest)
     end
+  end
+  
+
+  #--------------------------------------------------------------------------
+  # * Scroll Down
+  #--------------------------------------------------------------------------
+  def scroll_down(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_down(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Left
+  #--------------------------------------------------------------------------
+  def scroll_left(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_left(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Right
+  #--------------------------------------------------------------------------
+  def scroll_right(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_right(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Up
+  #--------------------------------------------------------------------------
+  def scroll_up(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_up(distance)
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
@@ -8753,6 +8861,7 @@ class Game_Message
   # * Public Instance Variables
   #--------------------------------------------------------------------------
   attr_accessor :call_event
+  attr_accessor :last_choice
 end
 
 #==============================================================================
@@ -8875,7 +8984,7 @@ class Sprite_Text < Sprite
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max + font.size, heights.max + font.size
     total_height = height * lines.length
     self.bitmap = Bitmap.new(width, total_height)
     self.bitmap.font = font
@@ -8987,7 +9096,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * move
   #--------------------------------------------------------------------------
-  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :linear)
+  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :InLinear)
     set_transition('zoom_x',  zoom_x,  duration, ease)
     set_transition('zoom_y',  zoom_y,  duration, ease)
     set_transition('opacity', opacity, duration, ease)
@@ -8996,7 +9105,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease = :linear)
+  def start_tone_change(tone, duration, ease = :InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -9149,7 +9258,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Move Picture
   #--------------------------------------------------------------------------
-  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:linear)
+  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:InLinear)
     @origin = origin
     @blend_type = blend_type
     set_transition('x', x, duration, ease)
@@ -9174,7 +9283,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease=:linear)
+  def start_tone_change(tone, duration, ease=:InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -9612,6 +9721,26 @@ class Sprite_Picture
     end
   end
 end
+
+  #==============================================================================
+  # ** Spriteset_Weather
+  #------------------------------------------------------------------------------
+  #  A class for weather effects (rain, storm, and snow). It is used within the
+  # Spriteset_Map class.
+  #==============================================================================
+
+  class Spriteset_Weather
+    #--------------------------------------------------------------------------
+    # * Aliases
+    #--------------------------------------------------------------------------
+    alias_method :rme_dimness, :dimness
+    #--------------------------------------------------------------------------
+    # * Get Dimness
+    #--------------------------------------------------------------------------
+    def dimness
+      $game_system.weather_no_dimness ? 0 : rme_dimness
+    end
+  end
 
 #==============================================================================
 # ** Game_Actor
@@ -10357,6 +10486,14 @@ module DataManager
     alias_method :rm_extender_create_game_objects, :create_game_objects
     alias_method :rm_extender_make_save_contents, :make_save_contents
     alias_method :rm_extender_extract_save_contents, :extract_save_contents
+    alias_method :rm_extender_init, :init
+    #--------------------------------------------------------------------------
+    # * Reinitialize the DataManager
+    #--------------------------------------------------------------------------
+    def init
+      rm_extender_init
+      Window_Message.line_number = 4
+    end
     #--------------------------------------------------------------------------
     # * Creates the objects of the game
     #--------------------------------------------------------------------------
@@ -10787,6 +10924,33 @@ module RMECommands
     scene.refresh_message if scene.respond_to?(:refresh_message)
   end
 
+  def choice(array, index_if_cancelled, value = nil, face_name = nil, face_index = 0, position = 2, background = 0)
+    if value 
+      if face_name
+        $game_message.face_name = face_name
+        $game_message.face_index = face_index
+      end
+      $game_message.position = position
+      $game_message.background = background
+      $game_message.add(value)
+    else 
+      wait_for_message
+    end
+    setup_choices([array, index_if_cancelled])
+    $game_message.choice_cancel_type = index_if_cancelled
+    $game_message.choice_proc = Proc.new {|n| $game_message.last_choice = n+1}
+    if value
+      wait_for_message 
+    else 
+      Fiber.yield while $game_message.choice?
+    end
+    return $game_message.last_choice
+  end
+
+  def last_choice
+    $game_message.last_choice
+  end
+
   def message(value, face_name = nil, face_index = 0, position = 2, background = 0)
     if face_name
       $game_message.face_name = face_name
@@ -10839,7 +11003,7 @@ module RMECommands
         zoom_y = 100,
         opacity = 255,
         tone = nil,
-        ease = :linear
+        ease = :InLinear
       )
       $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
@@ -10871,21 +11035,21 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change autospeed_x
     #--------------------------------------------------------------------------
-    def parallax_autoscroll_x(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_autoscroll_x(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('autospeed_x', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change autospeed_x
     #--------------------------------------------------------------------------
-    def parallax_autoscroll_y(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_autoscroll_y(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('autospeed_y', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change autospeed
     #--------------------------------------------------------------------------
-    def parallax_autoscroll(id, x, y, d = 0, wf = false, ease = :linear)
+    def parallax_autoscroll(id, x, y, d = 0, wf = false, ease = :InLinear)
       parallax_autoscroll_x(id, x, d, false, ease)
       parallax_autoscroll_y(id, y, d, wf, ease)
     end
@@ -10917,35 +11081,35 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change zoom_x
     #--------------------------------------------------------------------------
-    def parallax_zoom_x(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_zoom_x(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('zoom_x', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change zoom_y
     #--------------------------------------------------------------------------
-    def parallax_zoom_y(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_zoom_y(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('zoom_y', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change zoom
     #--------------------------------------------------------------------------
-    def parallax_zoom(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_zoom(id, v, duration = 0, wf = false, ease = :InLinear)
       parallax_zoom_x(id, v, duration, false, ease)
       parallax_zoom_y(id, v, duration, wf, ease)
     end
     #--------------------------------------------------------------------------
     # * Change tone
     #--------------------------------------------------------------------------
-    def parallax_tone(id, tone, duration = 0, wf = false, ease = :linear)
+    def parallax_tone(id, tone, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].start_tone_change(tone, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change opacity
     #--------------------------------------------------------------------------
-    def parallax_opacity(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_opacity(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('opacity', v, duration, ease)
       wait(duration) if wf
     end
@@ -11006,7 +11170,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
-    def picture_x(id, x=false, duration = 0, wf = false, ease = :linear)
+    def picture_x(id, x=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].x unless x
       pictures[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
@@ -11014,7 +11178,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
-    def picture_y(id, y=false, duration = 0, wf = false, ease = :linear)
+    def picture_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].y unless y
       pictures[id].set_transition('y', y, duration, ease)
       wait(duration) if wf
@@ -11022,7 +11186,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify position
     #--------------------------------------------------------------------------
-    def picture_position(ids, x, y, duration = 0, wf = false, ease = :linear)
+    def picture_position(ids, x, y, duration = 0, wf = false, ease = :InLinear)
       ids = select_pictures(ids)
       ids.each do |id|
         picture_x(id, x, duration, false, ease)
@@ -11033,7 +11197,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Move picture
     #--------------------------------------------------------------------------
-    def picture_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :linear)
+    def picture_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :InLinear)
       ids = select_pictures(ids)
       ids.each do |id|
         p = pictures[id]
@@ -11066,7 +11230,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify Angle
     #--------------------------------------------------------------------------
-    def picture_angle(id, angle=false, duration = 0, wf = false, ease = :linear)
+    def picture_angle(id, angle=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].angle unless angle
       pictures[id].set_transition('angle', angle, duration, ease)
       wait(duration) if wf
@@ -11083,7 +11247,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom X
     #--------------------------------------------------------------------------
-    def picture_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :linear)
+    def picture_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].zoom_x unless zoom_x
       pictures[id].set_transition('zoom_x', zoom_x, duration, ease)
       wait(duration) if wf
@@ -11091,7 +11255,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom Y
     #--------------------------------------------------------------------------
-    def picture_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :linear)
+    def picture_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].zoom_y unless zoom_y
       pictures[id].set_transition('zoom_y', zoom_y, duration, ease)
       wait(duration) if wf
@@ -11099,7 +11263,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :linear)
+    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :InLinear)
       select_pictures(ids).each do |id|
         picture_zoom_x(id, zoom_x, duration, false, ease)
         picture_zoom_y(id, zoom_y, duration, false, ease)
@@ -11109,7 +11273,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Tone
     #--------------------------------------------------------------------------
-    def picture_tone(id, tone, d = 0, wf = false, ease = :linear)
+    def picture_tone(id, tone, d = 0, wf = false, ease = :InLinear)
       if d.is_a?(Fixnum)
         pictures[id].start_tone_change(tone, d, ease)
         wait(d) if wf
@@ -11169,7 +11333,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
-    def picture_opacity(ids, value, duration = 0, wf = false, ease = :linear)
+    def picture_opacity(ids, value, duration = 0, wf = false, ease = :InLinear)
       select_pictures(ids).each do |id|
         pictures[id].set_transition('opacity', value, duration, ease)
       end
@@ -11260,7 +11424,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_width(id, v = nil, duration = 0, wf = false, ease = :linear)
+    def picture_width(id, v = nil, duration = 0, wf = false, ease = :InLinear)
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
@@ -11274,7 +11438,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_height(id, v = nil, duration = 0, wf = false, ease = :linear)
+    def picture_height(id, v = nil, duration = 0, wf = false, ease = :InLinear)
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
@@ -11288,7 +11452,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * set pictures dimension
     #--------------------------------------------------------------------------
-    def picture_dimension(id, w, h, duration = 0, wf = false, ease = :linear)
+    def picture_dimension(id, w, h, duration = 0, wf = false, ease = :InLinear)
       picture_width(id, w, duration, false, ease)
       picture_height(id, h, duration, wf, ease)
     end
@@ -11436,6 +11600,19 @@ module RMECommands
       SceneManager.scene.refresh_spriteset
     end
 
+    #--------------------------------------------------------------------------
+    # * Disable dimness on weather
+    #--------------------------------------------------------------------------
+    def disable_weather_dimness
+      $game_system.weather_no_dimness = true
+    end
+
+    #--------------------------------------------------------------------------
+    # * Enable dimness on weather
+    #--------------------------------------------------------------------------
+    def enable_weather_dimness
+      $game_system.weather_no_dimness = false
+    end
 
     #--------------------------------------------------------------------------
     # * Get Region ID from coords
@@ -11651,10 +11828,10 @@ module RMECommands
       $game_party.items.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
     def armors_possessed
-      $game_party.weapons.map {|i| [i.id] * $game_party.item_number(i)}.flatten
+      $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
     def weapons_possessed
-      $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
+      $game_party.weapons.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
     def item_count(id); $game_party.item_number($data_items[id]); end
     def weapon_count(id); $game_party.item_number($data_weapons[id]); end
@@ -11834,6 +12011,8 @@ module RMECommands
     #     element_rate(item.damage.element_id)
     #   end
     # end
+    
+    def last_used_item(); $game_temp.last_used_item; end
 
     append_commands
   end
@@ -12015,8 +12194,29 @@ module RMECommands
       Math.hypot(*args).to_i
     end
 
-    def event_flash(id, color, duration)
-      event(id).k_sprite.flash(get_color("red"), 10)
+    def dash_activate?
+      $game_map.can_dash
+    end
+
+    def dash_deactivate?
+      !dash_activate
+    end
+
+    def dash_activation(flag)
+      $game_map.can_dash = !!flag
+    end
+
+    def dash_activate 
+      dash_activation(true)
+    end
+
+    def dash_deactivate
+      dash_activation(false)
+    end
+
+    def event_flash(id, _color, duration)
+      color = _color.is_a?(String) ? get_color(_color) : _color
+      event(id).k_sprite.flash(color, duration)
     end
 
     def player_flash(color, duration)
@@ -13587,6 +13787,15 @@ module RMECommands
 
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
+    def camera_locked?; $game_map.target_camera.nil?; end
+  
+    def camera_lock_x; $game_map.camera_lock << :x; end
+    def camera_unlock_x; $game_map.camera_lock.delete(:x); end
+    def camera_x_locked?; $game_map.camera_lock.include?(:x); end
+      
+    def camera_lock_y; $game_map.camera_lock << :y; end
+    def camera_unlock_y; $game_map.camera_lock.delete(:y); end
+    def camera_y_locked?; $game_map.camera_lock.include?(:y); end
 
     def camera_change_focus(event_id)
       e = event(event_id)
@@ -13594,11 +13803,11 @@ module RMECommands
       $game_map.target_camera = e
     end
 
-    def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :linear)
+    def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('zoom', zoom, duration, ease)
       wait(duration) if wait_flag
     end
-    def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :linear)
+    def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('motion_blur', v, duration, ease)
       wait(duration) if wait_flag
     end
@@ -13643,11 +13852,11 @@ module RMECommands
     def screen_width; Graphics.width; end
     def screen_height; Graphics.height; end
 
-    def screen_pixelation(v, duration = 0, wait_flag = false, ease = :linear)
+    def screen_pixelation(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('pixelation', v, duration, ease)
       wait(duration) if wait_flag
     end
-    def screen_blur(v, duration = 0, wait_flag = false, ease = :linear)
+    def screen_blur(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('blur', v, duration, ease)
       wait(duration) if wait_flag
     end
@@ -13699,8 +13908,19 @@ module RMECommands
       SceneManager.scene.windows[id].open if SceneManager.scene.windows[id]
     end
 
-    def window_closed?(id); SceneManager.scene.windows[id].close?; end
-    def window_opened?(id); SceneManager.scene.windows[id].open?; end
+    def window_closed?(id)
+      return false unless window_exists?(id)
+      SceneManager.scene.windows[id].close?
+    end
+    
+    def window_opened?(id)
+      return false unless window_exists?(id)
+      SceneManager.scene.windows[id].open?
+    end
+    
+    def window_exists?(id)
+      SceneManager.scene.windows[id].to_bool
+    end
 
     def window_content(id, content = nil, resize = false)
       return SceneManager.scene.windows[id].content unless content
@@ -13766,6 +13986,14 @@ module RMECommands
     def window_y(id, y = nil)
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
+    end
+    
+    #--------------------------------------------------------------------------
+    # * Point in window
+    #--------------------------------------------------------------------------
+    
+    def mouse_hover_window?(id)
+      SceneManager.scene.windows[id].mouse_hover? if SceneManager.scene.windows[id]
     end
 
     append_commands
@@ -15022,8 +15250,50 @@ class Scene_RME < Scene_Base
     dispose_background
   end
 
+  #--------------------------------------------------------------------------
+  # * Create a viewport to the whole content
+  #--------------------------------------------------------------------------
+  def create_main_viewport
+    @main_viewport = Gui::ScrollableField.new(
+      width: width, 
+      height: height
+    )
+  end
+
+  #--------------------------------------------------------------------------
+  # * Dispose Main viewport
+  #--------------------------------------------------------------------------
+  def dispose_main_viewport
+    @main_viewport.dispose
+  end
+
 end
 
+#==============================================================================
+# ** Scene_Commands
+#------------------------------------------------------------------------------
+#  This scene provides tools to build commands
+#==============================================================================
+
+class Scene_Commands < Scene_RME
+
+  #--------------------------------------------------------------------------
+  # * General start
+  #--------------------------------------------------------------------------
+  def start
+    super 
+    @size = 0
+    create_main_viewport
+  end
+
+  #--------------------------------------------------------------------------
+  # * Termination Processing
+  #--------------------------------------------------------------------------
+  def terminate
+    super
+    dispose_main_viewport
+  end
+end
 # -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Doc
@@ -15724,6 +15994,27 @@ link_method_documentation 'Command.message',
 
 	}
 register_command :standard, 'Command.message'
+
+# AUTOGenerated for choice
+link_method_documentation 'Command.choice', 
+'Affiche un choix (potentiellement de plus de 4 options) et retourne la valeur du choix (1 pour le premier)',
+ {
+  :array => ["List des possibilité, par exemple ['oui', 'non', 'autre']", :Array],
+  :index_if_cancelled => ["Valeur a attribuer si l'utilisateur annule, si ce paramètre vaut 0, il sera impossible d'annuler le choix et ça peut être une autre valeur, par exemple 100 :)", :Fixnum],
+  :"*value" => ["Message à afficer", :String],
+  :"*face_name" => ["Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \\n pour afficher plusieurs lignes", :String],
+  :"*face_index" => ["Index du faceset (ne sert à rien si aucun faceset n'est donnée)", :Fixnum],
+  :"*position" => ["Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2", :Fixnum],
+  :"*background" => ["Fond du message, 0 normal, 1 sombre, 2 transparent", :Fixnum],
+
+}, true # Maybe changed
+register_command :standard, 'Command.choice' 
+
+# AUTOGenerated for last_choice
+link_method_documentation 'Command.last_choice', 
+'Commande pour récupérer le dernier choix effectué',
+ {}, true # Maybe changed
+register_command :standard, 'Command.last_choice' 
 
 link_method_documentation 'Command.game_window_rect',
 	'Renvoie le rectangle correspondant à la fenêtre de jeu',
@@ -17197,6 +17488,11 @@ link_method_documentation "Command.battle_count",
                         "Renvoie le nombre de combats effectués par partie",
                         {}, true
 register_command :party, "Command.battle_count"
+	
+link_method_documentation 'Command.last_used_item',
+	'Renvoie l\'id du dernier objet utilisé',
+ 	{}, true
+register_command :items, 'Command.last_used_item'
 
 # AUTOGenerated for items_possessed
 link_method_documentation 'Command.items_possessed',
@@ -20432,6 +20728,13 @@ link_method_documentation 'Command.use_reflection',
 	}
 register_command :fx, 'Command.use_reflection' 
 
+link_method_documentation 'Command.disable_weather_dimness',
+'Désactive l\'obscurité lors d\'un changement climatique', {}
+register_command :fx, 'Command.disable_weather_dimness'
+
+link_method_documentation 'Command.enable_weather_dimness',
+'Active l\'obscurité lors d\'un changement climatique', {}
+register_command :fx, 'Command.enable_weather_dimness'
 
 # AUTOGenerated for event_move_speed_frequency
 link_method_documentation 'Command.event_move_speed_frequency',
@@ -20814,6 +21117,41 @@ link_method_documentation 'Command.camera_unlock',
  	{}
 register_command :camera,'Command.camera_unlock'
 
+link_method_documentation 'Command.camera_locked?',
+	'Renovie true si la camera est verrouillée',
+ 	{}
+register_command :camera,'Command.camera_locked?'
+
+link_method_documentation 'Command.camera_lock_x',
+	'Verrouille la position de la caméra sur l\'axe X',
+ 	{}
+register_command :camera,'Command.camera_lock_x'
+
+link_method_documentation 'Command.camera_unlock_x',
+	'Déverrouille la position de la caméra sur l\'axe X',
+ 	{}
+register_command :camera,'Command.camera_unlock_x'
+
+link_method_documentation 'Command.camera_x_locked?',
+	'Renovie true si la camera est verrouillée en X',
+ 	{}
+register_command :camera,'Command.camera_x_locked?'
+
+link_method_documentation 'Command.camera_lock_y',
+	'Verrouille la position de la caméra sur l\'axe Y',
+ 	{}
+register_command :camera,'Command.camera_lock_y'
+
+link_method_documentation 'Command.camera_unlock_y',
+	'Déverrouille la position de la caméra sur l\'axe Y',
+ 	{}
+register_command :camera,'Command.camera_unlock_y'
+
+link_method_documentation 'Command.camera_y_locked?',
+	'Renovie true si la camera est verrouillée en Y',
+ 	{}
+register_command :camera,'Command.camera_y_locked?'
+
 # AUTOGenerated for camera_change_focus
 link_method_documentation 'Command.camera_change_focus',
 	'Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre évènement',
@@ -21003,6 +21341,39 @@ link_method_documentation 'Command.get_tileset_id',
  	{}, true # Maybe changed
 register_command :mapinfo, 'Command.get_tileset_id'
 
+# AUTOGenerated for dash_activate?
+link_method_documentation 'Command.dash_activate?', 
+'Renvoie true si la course est activée pour la map en cours, false sinon',
+ {}, true # Maybe changed
+register_command :mapinfo, 'Command.dash_activate?' 
+
+# AUTOGenerated for dash_deactivate?
+link_method_documentation 'Command.dash_deactivate?', 
+'Renvoie true si la course est désactivée pour la map en cours, false sinon',
+ {}, true # Maybe changed
+register_command :mapinfo, 'Command.dash_deactivate?' 
+
+# AUTOGenerated for dash_activation
+link_method_documentation 'Command.dash_activation', 
+'Active ou désactive la course sur la map en cours',
+ {
+  :flag => ["true pour l'activer, false pour la désactiver", :Boolean],
+
+}
+register_command :mapinfo, 'Command.dash_activation' 
+
+# AUTOGenerated for dash_activate
+link_method_documentation 'Command.dash_activate', 
+'Active la course sur la map en cours',
+ {}
+register_command :mapinfo, 'Command.dash_activate' 
+
+# AUTOGenerated for dash_deactivate
+link_method_documentation 'Command.dash_deactivate', 
+'Désactive la course pour la map en cours',
+ {}
+register_command :mapinfo, 'Command.dash_deactivate' 
+
 # AUTOGenerated for switch_tileset
 link_method_documentation 'Command.switch_tileset',
 	'Change le tileset de la carte en cours',
@@ -21139,6 +21510,24 @@ link_method_documentation 'Command.window_opened?',
 
 	}, true # Maybe changed
 register_command :window, 'Command.window_opened?'
+	
+# AUTOGenerated for window_exists?
+link_method_documentation 'Command.window_exists?',
+	'Renvoie true si la fenêtre référencée par son ID a été créée, false sinon',
+ 	{
+		:id => ["ID de la fenêtre", :Fixnum],
+
+	}, true # Maybe changed
+register_command :window, 'Command.window_exists?'
+
+# AUTOGenerated for window_exists?
+link_method_documentation 'Command.window_exists?',
+	'Renvoie true si la fenêtre référencée par son ID a été créée, false sinon',
+ 	{
+		:id => ["ID de la fenêtre", :Fixnum],
+
+	}, true # Maybe changed
+register_command :window, 'Command.window_exists?'
 
 # AUTOGenerated for window_content
 link_method_documentation 'Command.window_content',
@@ -21345,6 +21734,11 @@ link_method_documentation 'Command.window_y',
     :"*y" => ["Coordonnée Y de la fenêtre", :Fixnum],
 	}, true # Maybe changed
 register_command :window, 'Command.window_y'
+	
+link_method_documentation 'Command.mouse_hover_window?',
+	'Renvoie true si la souris survole la fenêtre, false sinon.',
+ 	{:id => ["ID de la fenêtre", :Fixnum]}, true
+register_command :window, 'Command.mouse_hover_window?'
 
 link_method_documentation 'Command.between',
 	'Donne la distance entre deux points',

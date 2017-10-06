@@ -51,6 +51,7 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_success_rate(id)](#item_success_rateid)
 *    [item_tp_gain(id)](#item_tp_gainid)
 *    [items_possessed](#items_possessed)
+*    [last_used_item](#last_used_item)
 
 
 ## Description des commandes
@@ -402,5 +403,10 @@ Nom|Type|Description
 ##### items_possessed
 
 > Renvoie la liste des objets possédés
+
+  
+##### last_used_item
+
+> Renvoie l'id du dernier objet utilisé
 
   

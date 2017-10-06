@@ -9,6 +9,9 @@ Commandes relatives à la manipulation de la caméra (scrolling de la carte)
 ## Liste des commandes
 *    [camera_change_focus(event_id)](#camera_change_focusevent_id)
 *    [camera_lock](#camera_lock)
+*    [camera_lock_x](#camera_lock_x)
+*    [camera_lock_y](#camera_lock_y)
+*    [camera_locked?](#camera_locked)
 *    [camera_motion_blur(attenuation, *duration, *wait_flag, *ease)](#camera_motion_blurattenuation-duration-wait_flag-ease)
 *    [camera_move_on(x, y)](#camera_move_onx-y)
 *    [camera_scroll(direction, distance, speed)](#camera_scrolldirection-distance-speed)
@@ -17,6 +20,10 @@ Commandes relatives à la manipulation de la caméra (scrolling de la carte)
 *    [camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#camera_scroll_towards_eventid-nb_steps-easing_function-position)
 *    [camera_scroll_towards_player(nb_steps, *easing_function, *position)](#camera_scroll_towards_playernb_steps-easing_function-position)
 *    [camera_unlock](#camera_unlock)
+*    [camera_unlock_x](#camera_unlock_x)
+*    [camera_unlock_y](#camera_unlock_y)
+*    [camera_x_locked?](#camera_x_locked)
+*    [camera_y_locked?](#camera_y_locked)
 *    [camera_zoom(zoom, *duration, *wait_flag, *ease)](#camera_zoomzoom-duration-wait_flag-ease)
 
 
@@ -32,6 +39,21 @@ Nom|Type|Description
 ##### camera_lock
 
 > Verrouille la position de la caméra
+
+  
+##### camera_lock_x
+
+> Verrouille la position de la caméra sur l'axe X
+
+  
+##### camera_lock_y
+
+> Verrouille la position de la caméra sur l'axe Y
+
+  
+##### camera_locked?
+
+> Renovie true si la camera est verrouillée
 
   
 ##### camera_motion_blur(attenuation, *duration, *wait_flag, *ease)
@@ -110,6 +132,26 @@ Nom|Type|Description
 ##### camera_unlock
 
 > Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
+
+  
+##### camera_unlock_x
+
+> Déverrouille la position de la caméra sur l'axe X
+
+  
+##### camera_unlock_y
+
+> Déverrouille la position de la caméra sur l'axe Y
+
+  
+##### camera_x_locked?
+
+> Renovie true si la camera est verrouillée en X
+
+  
+##### camera_y_locked?
+
+> Renovie true si la camera est verrouillée en Y
 
   
 ##### camera_zoom(zoom, *duration, *wait_flag, *ease)

@@ -297,6 +297,7 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
+    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
@@ -351,6 +352,27 @@ class Game_CommonEvent
   def active?
     return extender_active? if not in_battle?
     @event.for_battle? && @event.battle_trigger.call()
+  end
+end
+
+#==============================================================================
+# ** Game_Battler
+#------------------------------------------------------------------------------
+#  A battler class with methods for sprites and actions added. This class 
+# is used as a super class of the Game_Actor class and Game_Enemy class.
+#==============================================================================
+
+class Game_Battler < Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # * Alias
+  #--------------------------------------------------------------------------
+  alias_method :old_use_item, :use_item
+  #--------------------------------------------------------------------------
+  # * Memorize item ID
+  #--------------------------------------------------------------------------
+  def use_item(item)
+    $game_temp.last_used_item = item.id
+    old_use_item(item)
   end
 end
 
@@ -1983,6 +2005,16 @@ class Window_Base
   # * Include Window movement
   #--------------------------------------------------------------------------
   include Window_Movement
+  #--------------------------------------------------------------------------
+  # * mouse_hover?
+  #--------------------------------------------------------------------------
+  def mouse_hover?
+    posX = Mouse.x - self.x
+    posY = Mouse.y - self.y
+    posX -= viewport.x if (viewport)
+    posY -= viewport.y if (viewport)
+    return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
+  end
 end
 
 #==============================================================================
@@ -2529,6 +2561,10 @@ class Game_Map
   alias_method :rm_extender_setup_scroll, :setup_scroll
   alias_method :rm_extender_pc, :parallel_common_events
   alias_method :rm_extender_update_scroll, :update_scroll
+  alias_method :rm_extender_scroll_up, :scroll_up
+  alias_method :rm_extender_scroll_down, :scroll_down
+  alias_method :rm_extender_scroll_left, :scroll_left
+  alias_method :rm_extender_scroll_right, :scroll_right
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2578,6 +2614,7 @@ class Game_Map
   #--------------------------------------------------------------------------
   attr_accessor :parallaxes
   attr_accessor :target_camera
+  attr_accessor :camera_lock
   attr_accessor :tileset_id
   attr_accessor :map
   attr_accessor :use_reflection
@@ -2585,6 +2622,7 @@ class Game_Map
   attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
+  attr_accessor :can_dash
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2603,9 +2641,17 @@ class Game_Map
     Game_Map.eval_proc(:all)
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
+    @camera_lock = []
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
+    @can_dash = !@map.disable_dashing
+  end
+  #--------------------------------------------------------------------------
+  # * Get Whether Dash is Disabled
+  #--------------------------------------------------------------------------
+  def disable_dash?
+    !can_dash
   end
   #--------------------------------------------------------------------------
   # * Setup Region Data
@@ -2656,6 +2702,36 @@ class Game_Map
 
       @scroll_function = nil if (0 >= @scroll_rest)
     end
+  end
+  
+
+  #--------------------------------------------------------------------------
+  # * Scroll Down
+  #--------------------------------------------------------------------------
+  def scroll_down(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_down(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Left
+  #--------------------------------------------------------------------------
+  def scroll_left(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_left(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Right
+  #--------------------------------------------------------------------------
+  def scroll_right(distance)
+    return if @camera_lock.include?(:x)
+    rm_extender_scroll_right(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Scroll Up
+  #--------------------------------------------------------------------------
+  def scroll_up(distance)
+    return if @camera_lock.include?(:y)
+    rm_extender_scroll_up(distance)
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
@@ -2842,6 +2918,7 @@ class Game_Message
   # * Public Instance Variables
   #--------------------------------------------------------------------------
   attr_accessor :call_event
+  attr_accessor :last_choice
 end
 
 #==============================================================================
@@ -2964,7 +3041,7 @@ class Sprite_Text < Sprite
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max + font.size, heights.max + font.size
     total_height = height * lines.length
     self.bitmap = Bitmap.new(width, total_height)
     self.bitmap.font = font
@@ -3076,7 +3153,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * move
   #--------------------------------------------------------------------------
-  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :linear)
+  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :InLinear)
     set_transition('zoom_x',  zoom_x,  duration, ease)
     set_transition('zoom_y',  zoom_y,  duration, ease)
     set_transition('opacity', opacity, duration, ease)
@@ -3085,7 +3162,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease = :linear)
+  def start_tone_change(tone, duration, ease = :InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -3238,7 +3315,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Move Picture
   #--------------------------------------------------------------------------
-  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:linear)
+  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:InLinear)
     @origin = origin
     @blend_type = blend_type
     set_transition('x', x, duration, ease)
@@ -3263,7 +3340,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease=:linear)
+  def start_tone_change(tone, duration, ease=:InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -3701,6 +3778,26 @@ class Sprite_Picture
     end
   end
 end
+
+  #==============================================================================
+  # ** Spriteset_Weather
+  #------------------------------------------------------------------------------
+  #  A class for weather effects (rain, storm, and snow). It is used within the
+  # Spriteset_Map class.
+  #==============================================================================
+
+  class Spriteset_Weather
+    #--------------------------------------------------------------------------
+    # * Aliases
+    #--------------------------------------------------------------------------
+    alias_method :rme_dimness, :dimness
+    #--------------------------------------------------------------------------
+    # * Get Dimness
+    #--------------------------------------------------------------------------
+    def dimness
+      $game_system.weather_no_dimness ? 0 : rme_dimness
+    end
+  end
 
 #==============================================================================
 # ** Game_Actor
@@ -4446,6 +4543,14 @@ module DataManager
     alias_method :rm_extender_create_game_objects, :create_game_objects
     alias_method :rm_extender_make_save_contents, :make_save_contents
     alias_method :rm_extender_extract_save_contents, :extract_save_contents
+    alias_method :rm_extender_init, :init
+    #--------------------------------------------------------------------------
+    # * Reinitialize the DataManager
+    #--------------------------------------------------------------------------
+    def init
+      rm_extender_init
+      Window_Message.line_number = 4
+    end
     #--------------------------------------------------------------------------
     # * Creates the objects of the game
     #--------------------------------------------------------------------------

@@ -8,6 +8,11 @@ Commandes relatives aux informations des cartes
 
 ## Liste des commandes
 *    [damage_floor?(x, y)](#damage_floorx-y)
+*    [dash_activate](#dash_activate)
+*    [dash_activate?](#dash_activate)
+*    [dash_activation(flag)](#dash_activationflag)
+*    [dash_deactivate](#dash_deactivate)
+*    [dash_deactivate?](#dash_deactivate)
 *    [delete_tiles(layer, id)](#delete_tileslayer-id)
 *    [get_random_square(*region_id)](#get_random_squareregion_id)
 *    [get_squares_by_region(region_id)](#get_squares_by_regionregion_id)
@@ -43,6 +48,34 @@ Nom|Type|Description
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X de la case  
 `y`|`Fixnum`|Coordonnées Y de la case  
+##### dash_activate
+
+> Active la course sur la map en cours
+
+  
+##### dash_activate?
+
+> Renvoie true si la course est activée pour la map en cours, false sinon
+
+  
+##### dash_activation(flag)
+
+> Active ou désactive la course sur la map en cours
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`flag`|`Boolean`|true pour l'activer, false pour la désactiver  
+##### dash_deactivate
+
+> Désactive la course pour la map en cours
+
+  
+##### dash_deactivate?
+
+> Renvoie true si la course est désactivée pour la map en cours, false sinon
+
+  
 ##### delete_tiles(layer, id)
 
 > Supprime tous les tiles référencés par un ID et un layer

@@ -1,5 +1,38 @@
 # RME Changelog
 
+
+## Prochaine Release
+
+## Release (1.1.0)
+
+### Commandes ajoutées
+
+*  `last_used_item`, (@hinola, reporté par @Zer0xZer0x)
+*  `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reporté par @Zer0xZer0x)
+*  `window_exists?` (@hinola)
+*    - `camera_locked?` 
+     - `camera_lock_x`
+     - `camera_lock_y`
+     - `camera_unlock_x`
+     -  `camera_unlock_y` 
+     (@BastienDuplessier, reporté par @lunri)
+*  `mouse_hover_window?` (@hinola)
+*  `choice` + `last_choice` (@xvw reporté par @Zer0xZer0x)
+*  - `dash_activation`
+   - `dash_activate`
+   - `dash_deactivate`
+   - `dash_activate?`
+   - `dash_deactivate?`
+   (@xvw, reporté par @Zer0xZer0x)
+
+### Corrections de bogues
+*  Correction des commandes `armors_possessed` et `armors_possessed` (@hinola)
+*  Corrections des commandes `event_flash` et `player_flash` (@BastienDuplessier)
+*  Correction de l'afficheur de texte (profil avec contours) (@xvw reporté par @jauke)
+*  Correction des interpolations linéaires (@xvw reporté par @hinola)
+
+
+## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
 *  `0.4.9 => 18/08/2017 01:00` Correction de la commande length (Nuki)
 *  `0.4.8 => 18/08/2017 05:00` Correction du move_to (enfin) ! (Nuki)
