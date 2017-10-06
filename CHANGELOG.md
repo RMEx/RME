@@ -10,6 +10,8 @@
 *  Ajout de `disable_weather_dimness` et `enable_weather_dimness` par @BastienDuplessier, Reporté par @Zer0xZer0x,
 *  Ajout de `camera_locked?`, `camera_(un)lock_(x|y)` par @BastienDuplessier, reporté par @lunri, reviewé par @xvw
 *  Ajout de `mouse_hover_window?` par @hinola, reviewé par @xvw
+*  Bugfix `flash_event|flash_player` par @BastienDuplessier
+*  Bugfix des textes avec des contours par @xvw
 
 ## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
