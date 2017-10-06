@@ -3145,7 +3145,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * move
   #--------------------------------------------------------------------------
-  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :linear)
+  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :InLinear)
     set_transition('zoom_x',  zoom_x,  duration, ease)
     set_transition('zoom_y',  zoom_y,  duration, ease)
     set_transition('opacity', opacity, duration, ease)
@@ -3154,7 +3154,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease = :linear)
+  def start_tone_change(tone, duration, ease = :InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -3307,7 +3307,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Move Picture
   #--------------------------------------------------------------------------
-  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:linear)
+  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:InLinear)
     @origin = origin
     @blend_type = blend_type
     set_transition('x', x, duration, ease)
@@ -3332,7 +3332,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease=:linear)
+  def start_tone_change(tone, duration, ease=:InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)

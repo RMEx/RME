@@ -9088,7 +9088,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * move
   #--------------------------------------------------------------------------
-  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :linear)
+  def move(duration, zoom_x, zoom_y, opacity, tone = nil, ease = :InLinear)
     set_transition('zoom_x',  zoom_x,  duration, ease)
     set_transition('zoom_y',  zoom_y,  duration, ease)
     set_transition('opacity', opacity, duration, ease)
@@ -9097,7 +9097,7 @@ class Game_Parallax
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease = :linear)
+  def start_tone_change(tone, duration, ease = :InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -9250,7 +9250,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Move Picture
   #--------------------------------------------------------------------------
-  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:linear)
+  def move(origin, x, y, zoom_x, zoom_y, opacity, blend_type, duration, ease=:InLinear)
     @origin = origin
     @blend_type = blend_type
     set_transition('x', x, duration, ease)
@@ -9275,7 +9275,7 @@ class Game_Picture
   #--------------------------------------------------------------------------
   # * Start Changing Color Tone
   #--------------------------------------------------------------------------
-  def start_tone_change(tone, duration, ease=:linear)
+  def start_tone_change(tone, duration, ease=:InLinear)
     @tone.set_transition('red',   tone.red,   duration, ease)
     @tone.set_transition('green', tone.green, duration, ease)
     @tone.set_transition('blue',  tone.blue,  duration, ease)
@@ -10995,7 +10995,7 @@ module RMECommands
         zoom_y = 100,
         opacity = 255,
         tone = nil,
-        ease = :linear
+        ease = :InLinear
       )
       $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
@@ -11027,21 +11027,21 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change autospeed_x
     #--------------------------------------------------------------------------
-    def parallax_autoscroll_x(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_autoscroll_x(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('autospeed_x', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change autospeed_x
     #--------------------------------------------------------------------------
-    def parallax_autoscroll_y(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_autoscroll_y(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('autospeed_y', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change autospeed
     #--------------------------------------------------------------------------
-    def parallax_autoscroll(id, x, y, d = 0, wf = false, ease = :linear)
+    def parallax_autoscroll(id, x, y, d = 0, wf = false, ease = :InLinear)
       parallax_autoscroll_x(id, x, d, false, ease)
       parallax_autoscroll_y(id, y, d, wf, ease)
     end
@@ -11073,35 +11073,35 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change zoom_x
     #--------------------------------------------------------------------------
-    def parallax_zoom_x(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_zoom_x(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('zoom_x', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change zoom_y
     #--------------------------------------------------------------------------
-    def parallax_zoom_y(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_zoom_y(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('zoom_y', v, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change zoom
     #--------------------------------------------------------------------------
-    def parallax_zoom(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_zoom(id, v, duration = 0, wf = false, ease = :InLinear)
       parallax_zoom_x(id, v, duration, false, ease)
       parallax_zoom_y(id, v, duration, wf, ease)
     end
     #--------------------------------------------------------------------------
     # * Change tone
     #--------------------------------------------------------------------------
-    def parallax_tone(id, tone, duration = 0, wf = false, ease = :linear)
+    def parallax_tone(id, tone, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].start_tone_change(tone, duration, ease)
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
     # * Change opacity
     #--------------------------------------------------------------------------
-    def parallax_opacity(id, v, duration = 0, wf = false, ease = :linear)
+    def parallax_opacity(id, v, duration = 0, wf = false, ease = :InLinear)
       $game_map.parallaxes[id].set_transition('opacity', v, duration, ease)
       wait(duration) if wf
     end
@@ -11162,7 +11162,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify x position
     #--------------------------------------------------------------------------
-    def picture_x(id, x=false, duration = 0, wf = false, ease = :linear)
+    def picture_x(id, x=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].x unless x
       pictures[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
@@ -11170,7 +11170,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
-    def picture_y(id, y=false, duration = 0, wf = false, ease = :linear)
+    def picture_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].y unless y
       pictures[id].set_transition('y', y, duration, ease)
       wait(duration) if wf
@@ -11178,7 +11178,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify position
     #--------------------------------------------------------------------------
-    def picture_position(ids, x, y, duration = 0, wf = false, ease = :linear)
+    def picture_position(ids, x, y, duration = 0, wf = false, ease = :InLinear)
       ids = select_pictures(ids)
       ids.each do |id|
         picture_x(id, x, duration, false, ease)
@@ -11189,7 +11189,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Move picture
     #--------------------------------------------------------------------------
-    def picture_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :linear)
+    def picture_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :InLinear)
       ids = select_pictures(ids)
       ids.each do |id|
         p = pictures[id]
@@ -11222,7 +11222,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Modify Angle
     #--------------------------------------------------------------------------
-    def picture_angle(id, angle=false, duration = 0, wf = false, ease = :linear)
+    def picture_angle(id, angle=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].angle unless angle
       pictures[id].set_transition('angle', angle, duration, ease)
       wait(duration) if wf
@@ -11239,7 +11239,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom X
     #--------------------------------------------------------------------------
-    def picture_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :linear)
+    def picture_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].zoom_x unless zoom_x
       pictures[id].set_transition('zoom_x', zoom_x, duration, ease)
       wait(duration) if wf
@@ -11247,7 +11247,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom Y
     #--------------------------------------------------------------------------
-    def picture_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :linear)
+    def picture_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :InLinear)
       return pictures[id].zoom_y unless zoom_y
       pictures[id].set_transition('zoom_y', zoom_y, duration, ease)
       wait(duration) if wf
@@ -11255,7 +11255,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :linear)
+    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :InLinear)
       select_pictures(ids).each do |id|
         picture_zoom_x(id, zoom_x, duration, false, ease)
         picture_zoom_y(id, zoom_y, duration, false, ease)
@@ -11265,7 +11265,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Tone
     #--------------------------------------------------------------------------
-    def picture_tone(id, tone, d = 0, wf = false, ease = :linear)
+    def picture_tone(id, tone, d = 0, wf = false, ease = :InLinear)
       if d.is_a?(Fixnum)
         pictures[id].start_tone_change(tone, d, ease)
         wait(d) if wf
@@ -11325,7 +11325,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change Picture Opacity
     #--------------------------------------------------------------------------
-    def picture_opacity(ids, value, duration = 0, wf = false, ease = :linear)
+    def picture_opacity(ids, value, duration = 0, wf = false, ease = :InLinear)
       select_pictures(ids).each do |id|
         pictures[id].set_transition('opacity', value, duration, ease)
       end
@@ -11416,7 +11416,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_width(id, v = nil, duration = 0, wf = false, ease = :linear)
+    def picture_width(id, v = nil, duration = 0, wf = false, ease = :InLinear)
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
@@ -11430,7 +11430,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get pictures dimension
     #--------------------------------------------------------------------------
-    def picture_height(id, v = nil, duration = 0, wf = false, ease = :linear)
+    def picture_height(id, v = nil, duration = 0, wf = false, ease = :InLinear)
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
@@ -11444,7 +11444,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * set pictures dimension
     #--------------------------------------------------------------------------
-    def picture_dimension(id, w, h, duration = 0, wf = false, ease = :linear)
+    def picture_dimension(id, w, h, duration = 0, wf = false, ease = :InLinear)
       picture_width(id, w, duration, false, ease)
       picture_height(id, h, duration, wf, ease)
     end
@@ -13775,11 +13775,11 @@ module RMECommands
       $game_map.target_camera = e
     end
 
-    def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :linear)
+    def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('zoom', zoom, duration, ease)
       wait(duration) if wait_flag
     end
-    def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :linear)
+    def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('motion_blur', v, duration, ease)
       wait(duration) if wait_flag
     end
@@ -13824,11 +13824,11 @@ module RMECommands
     def screen_width; Graphics.width; end
     def screen_height; Graphics.height; end
 
-    def screen_pixelation(v, duration = 0, wait_flag = false, ease = :linear)
+    def screen_pixelation(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('pixelation', v, duration, ease)
       wait(duration) if wait_flag
     end
-    def screen_blur(v, duration = 0, wait_flag = false, ease = :linear)
+    def screen_blur(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('blur', v, duration, ease)
       wait(duration) if wait_flag
     end
