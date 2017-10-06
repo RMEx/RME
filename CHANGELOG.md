@@ -1,8 +1,5 @@
 # RME Changelog
 
-
-## Prochaine Release
-
 ## Release (1.1.0)
 
 ### Commandes ajoutées
