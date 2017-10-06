@@ -77,6 +77,6 @@ ASample.new('Choix + Message',
 ['choice', 'last_choice'], 32)
 
 ASample.new('Désactive la course quand le joueur est sur la zone 7',
-['dash_activate', 'dash_deactivate', 'dash_activate?', 'dash_deactivated?'], 33)
+['dash_activate', 'dash_deactivate', 'dash_activate?', 'dash_deactivate?'], 33)
 
 end
