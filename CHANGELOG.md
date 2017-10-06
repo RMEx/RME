@@ -5,18 +5,31 @@
 
 ## Release (1.1.0)
 
-*  Ajout de la commande `last_used_item` : Par @hinola, reportée par @Zer0xZer0x
-*  Ajout des commandes `*_weather_dimness` : Par @BastienDuplessier, reportée par @Zer0xZer0x
-*  Ajout de `window_exists?` : Par @hinola, reviewé par @xvw
-*  Correction de `armor/weapon_possed` : Par @hinola, reviewé par @BastienDuplessier
-*  Ajout de `disable_weather_dimness` et `enable_weather_dimness` par @BastienDuplessier, Reporté par @Zer0xZer0x,
-*  Ajout de `camera_locked?`, `camera_(un)lock_(x|y)` par @BastienDuplessier, reporté par @lunri, reviewé par @xvw
-*  Ajout de `mouse_hover_window?` par @hinola, reviewé par @xvw
-*  Bugfix `flash_event|flash_player` par @BastienDuplessier
-*  Bugfix des textes avec des contours par @xvw
-*  Ajout `choice` et `last_choice` par @xvw
-*  Bugfix des images (et des interpolations) par @xvw, reporté par @hiinola
-*  Ajout de `dash_activate`, `dash_deactivate`, `dash_(de)activate?`, par @xvw, reportée par @Zer0xZer0x
+### Commandes ajoutées
+
+*  `last_used_item`, (@hinola, reporté par @Zer0xZer0x)
+*  `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reporté par @Zer0xZer0x)
+*  `window_exists?` (@hinola)
+*    - `camera_locked?` 
+     - `camera_lock_x`
+     - `camera_lock_y`
+     - `camera_unlock_x`
+     -  `camera_unlock_y` 
+     (@BastienDuplessier, reporté par @lunri)
+*  `mouse_hover_window?` (@hinola)
+*  `choice` + `last_choice` (@xvw reporté par @Zer0xZer0x)
+*  - `dash_activation`
+   - `dash_activate`
+   - `dash_deactivate`
+   - `dash_activate?`
+   - `dash_deactivate?`
+   (@xvw, reporté par @Zer0xZer0x)
+
+### Corrections de bogues
+*  Correction des commandes `armors_possessed` et `armors_possessed` (@hinola)
+*  Corrections des commandes `event_flash` et `player_flash` (@BastienDuplessier)
+*  Correction de l'afficheur de texte (profil avec contours) (@xvw reporté par @jauke)
+*  Correction des interpolations linéaires (@xvw reporté par @hinola)
 
 
 ## Avant la version 1.0.0
