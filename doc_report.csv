@@ -1,7 +1,9 @@
 Report,
-# Commandes documentées,799/800
+# Commandes documentées,799/802
 ,
 # Commandes non documentées,# Suggestion
 create_light_emitters,Aucune suggestion
+choice,Aucune suggestion
+last_choice,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion

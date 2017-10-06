@@ -172,6 +172,33 @@ module RMECommands
     scene.refresh_message if scene.respond_to?(:refresh_message)
   end
 
+  def choice(array, index_if_cancelled, value = nil, face_name = nil, face_index = 0, position = 2, background = 0)
+    if value 
+      if face_name
+        $game_message.face_name = face_name
+        $game_message.face_index = face_index
+      end
+      $game_message.position = position
+      $game_message.background = background
+      $game_message.add(value)
+    else 
+      wait_for_message
+    end
+    setup_choices([array, index_if_cancelled])
+    $game_message.choice_cancel_type = index_if_cancelled
+    $game_message.choice_proc = Proc.new {|n| $game_message.last_choice = n+1}
+    if value
+      wait_for_message 
+    else 
+      Fiber.yield while $game_message.choice?
+    end
+    return $game_message.last_choice
+  end
+
+  def last_choice
+    $game_message.last_choice
+  end
+
   def message(value, face_name = nil, face_index = 0, position = 2, background = 0)
     if face_name
       $game_message.face_name = face_name

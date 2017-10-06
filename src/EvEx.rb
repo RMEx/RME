@@ -2910,6 +2910,7 @@ class Game_Message
   # * Public Instance Variables
   #--------------------------------------------------------------------------
   attr_accessor :call_event
+  attr_accessor :last_choice
 end
 
 #==============================================================================
