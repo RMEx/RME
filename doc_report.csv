@@ -1,7 +1,12 @@
 Report,
-# Commandes documentées,801/802
+# Commandes documentées,801/807
 ,
 # Commandes non documentées,# Suggestion
+dash_activate?,Aucune suggestion
+dash_deactivate?,Aucune suggestion
+dash_activation,Aucune suggestion
+dash_activate,Aucune suggestion
+dash_deactivate,Aucune suggestion
 create_light_emitters,Aucune suggestion
 ,
 # Commandes inconnues,# Suggestion

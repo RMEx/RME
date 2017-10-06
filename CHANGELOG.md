@@ -1,7 +1,9 @@
 # RME Changelog
 
 
-## Prochaine release (1.1.0)
+## Prochaine Release
+
+## Release (1.1.0)
 
 *  Ajout de la commande `last_used_item` : Par @hinola, reportée par @Zer0xZer0x
 *  Ajout des commandes `*_weather_dimness` : Par @BastienDuplessier, reportée par @Zer0xZer0x
@@ -13,6 +15,8 @@
 *  Bugfix `flash_event|flash_player` par @BastienDuplessier
 *  Bugfix des textes avec des contours par @xvw
 *  Ajout `choice` et `last_choice` par @xvw
+*  Bugfix des images (et des interpolations) par @xvw, reporté par @hiinola
+
 
 ## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.

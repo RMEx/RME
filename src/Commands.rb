@@ -1442,6 +1442,26 @@ module RMECommands
       Math.hypot(*args).to_i
     end
 
+    def dash_activate?
+      $game_map.can_dash
+    end
+
+    def dash_deactivate?
+      !dash_activate
+    end
+
+    def dash_activation(flag)
+      $game_map.can_dash = !!flag
+    end
+
+    def dash_activate 
+      dash_activation(true)
+    end
+
+    def dash_deactivate
+      dash_activation(false)
+    end
+
     def event_flash(id, _color, duration)
       color = _color.is_a?(String) ? get_color(_color) : _color
       event(id).k_sprite.flash(color, duration)

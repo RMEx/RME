@@ -2622,6 +2622,7 @@ class Game_Map
   attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
+  attr_accessor :can_dash
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2644,6 +2645,13 @@ class Game_Map
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
+    @can_dash = !@map.disable_dashing
+  end
+  #--------------------------------------------------------------------------
+  # * Get Whether Dash is Disabled
+  #--------------------------------------------------------------------------
+  def disable_dash?
+    !can_dash
   end
   #--------------------------------------------------------------------------
   # * Setup Region Data

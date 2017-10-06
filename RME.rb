@@ -8565,6 +8565,7 @@ class Game_Map
   attr_accessor :region_mapper
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
+  attr_accessor :can_dash
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -8587,6 +8588,13 @@ class Game_Map
     unflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
+    @can_dash = !@map.disable_dashing
+  end
+  #--------------------------------------------------------------------------
+  # * Get Whether Dash is Disabled
+  #--------------------------------------------------------------------------
+  def disable_dash?
+    !can_dash
   end
   #--------------------------------------------------------------------------
   # * Setup Region Data
@@ -12184,6 +12192,26 @@ module RMECommands
       args = (ev1.screen_x-ev2.screen_x),(ev1.screen_y-ev2.screen_y)
       args = (ev1.x-ev2.x),(ev1.y-ev2.y) if flag == :square
       Math.hypot(*args).to_i
+    end
+
+    def dash_activate?
+      $game_map.can_dash
+    end
+
+    def dash_deactivate?
+      !dash_activate
+    end
+
+    def dash_activation(flag)
+      $game_map.can_dash = !!flag
+    end
+
+    def dash_activate 
+      dash_activation(true)
+    end
+
+    def dash_deactivate
+      dash_activation(false)
     end
 
     def event_flash(id, _color, duration)
