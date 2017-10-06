@@ -12,6 +12,7 @@
 *  Ajout de `mouse_hover_window?` par @hinola, reviewé par @xvw
 *  Bugfix `flash_event|flash_player` par @BastienDuplessier
 *  Bugfix des textes avec des contours par @xvw
+*  Ajout `choice` et `last_choice` par @xvw
 
 ## Avant la version 1.0.0
 *  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
