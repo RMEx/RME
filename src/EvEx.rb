@@ -3032,7 +3032,7 @@ class Sprite_Text < Sprite
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max + font.size, heights.max + font.size
     total_height = height * lines.length
     self.bitmap = Bitmap.new(width, total_height)
     self.bitmap.font = font
