@@ -6384,6 +6384,11 @@ link_method_documentation 'Command.window_y',
     :"*y" => ["Coordonnée Y de la fenêtre", :Fixnum],
 	}, true # Maybe changed
 register_command :window, 'Command.window_y'
+	
+link_method_documentation 'Command.mouse_hover_window?',
+	'Renvoie true si la souris survole la fenêtre, false sinon.',
+ 	{:id => ["ID de la fenêtre", :Fixnum]}, true
+register_command :window, 'Command.mouse_hover_window?'
 
 link_method_documentation 'Command.between',
 	'Donne la distance entre deux points',
