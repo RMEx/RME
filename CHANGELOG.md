@@ -23,7 +23,7 @@
    (@xvw, reporté par @Zer0xZer0x)
 
 ### Corrections de bogues
-*  Correction des commandes `armors_possessed` et `armors_possessed` (@hinola)
+*  Correction des commandes `armors_possessed` et `weapons_possessed` (@hinola)
 *  Corrections des commandes `event_flash` et `player_flash` (@BastienDuplessier)
 *  Correction de l'afficheur de texte (profil avec contours) (@xvw reporté par @jauke)
 *  Correction des interpolations linéaires (@xvw reporté par @hinola)
