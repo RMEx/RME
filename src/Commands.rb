@@ -1428,6 +1428,11 @@ module RMECommands
       return event(id).direction unless value
       event(id).set_direction(value)
     end
+    def event_change_character(id, character_name, character_index)
+      event(id).set_graphic(character_name, character_index)
+    end
+    def event_character_name(id); event(id).character_name; end
+    def event_character_index(id); event(id).character_index; end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
