@@ -1310,6 +1310,23 @@ register_command :standard, 'Command.unflash_rect'
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_pixel_y"
 
+  link_method_documentation "Command.event_change_character",
+                        "Change l\'apparence d'un évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
+                         :character_name => ["Nom du caractère", :String],
+                         :character_index => ["ID du caractère", :Fixnum]}, true
+  register_command :event, 'Command.event_change_character'
+
+  link_method_documentation "Command.event_character_name",
+                        "Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_character_name"
+
+  link_method_documentation "Command.event_character_index",
+                        "Renvoie l'ID du character sur le charset l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_character_index"
+
   link_method_documentation "Command.event_direction",
                         "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
