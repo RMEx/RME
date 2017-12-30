@@ -954,6 +954,7 @@ module RMECommands
     def flash_square(x, y, color)
       tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
       tilemap.flash_data[x, y] = color.to_hex
+      $game_system.flashed_data[$game_map.map_id] = tilemap.flash_data
     end
     #--------------------------------------------------------------------------
     # * UnFlash a square
