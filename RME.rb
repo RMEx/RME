@@ -8626,10 +8626,7 @@ class Game_Map
     return unless SceneManager.scene.is_a?(Scene_Map)
     tilemap = SceneManager.scene.spriteset.tilemap
     old_flash = $game_system.flashed_data[map_id]
-    p tilemap 
-    p $game_system.flashed_data
     if tilemap && old_flash
-      p :b
       tilemap.flash_data = old_flash
     end
   end
