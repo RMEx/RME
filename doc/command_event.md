@@ -229,7 +229,7 @@ Nom|Type|Description
 `id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 ##### event_direction(id, *value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
+> Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
 
   
 Nom|Type|Description  
@@ -1120,7 +1120,7 @@ Nom|Type|Description
   
 ##### player_direction(*value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur
+> Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) du joueur
 
   
 Nom|Type|Description  
