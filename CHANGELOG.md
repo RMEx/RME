@@ -7,6 +7,11 @@
 * `event_character_name`, (@BastienDuplessier)
 * `event_character_index`, (@BastienDuplessier)
 * `event_change_character`, (@BastienDuplessier)
+*    - `menu_enabled?|disabled?` 
+     - `save_enabled?|disabled?`
+     - `formation_enabled?|disabled?`
+     - `encounter_enabled?|disabled?`
+     (@xvw, reporté par Zer0xZer0x)
 
 ### Corrections de bogues
 
