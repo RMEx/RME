@@ -2389,12 +2389,14 @@ class Game_System
   # * Public Instance Variables
   #--------------------------------------------------------------------------
   attr_accessor   :weather_no_dimness   # Disable automatic dimness with weather
+  attr_accessor   :flashed_data
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
   def initialize
     rme_initialize
     @weather_no_dimness = false
+    @flashed_data = {}
   end
 end
 
@@ -8405,6 +8407,7 @@ class Scene_Map
     @textfields = Hash.new
     @windows = Hash.new
     extender_start
+    $game_map.reflash_map
   end
   #--------------------------------------------------------------------------
   # * Erase a Window
@@ -8508,6 +8511,7 @@ class Game_Map
   alias_method :rm_extender_scroll_down, :scroll_down
   alias_method :rm_extender_scroll_left, :scroll_left
   alias_method :rm_extender_scroll_right, :scroll_right
+  alias_method :rm_extender_refresh, :refresh
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -8585,7 +8589,7 @@ class Game_Map
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
     @camera_lock = []
-    unflash_map
+    reflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
     @can_dash = !@map.disable_dashing
@@ -8616,18 +8620,24 @@ class Game_Map
     end
   end
   #--------------------------------------------------------------------------
-  # * Unflash all squares
+  # * reflash all squares
   #--------------------------------------------------------------------------
-  def unflash_map
+  def reflash_map
     return unless SceneManager.scene.is_a?(Scene_Map)
     tilemap = SceneManager.scene.spriteset.tilemap
-    if tilemap.flash_data
-      height.times do |y|
-        width.times do |x|
-          tilemap.flash_data[x, y] = Color.new(0, 0, 0).to_hex
-        end
-      end
+    old_flash = $game_system.flashed_data[map_id]
+    p tilemap 
+    p $game_system.flashed_data
+    if tilemap && old_flash
+      p :b
+      tilemap.flash_data = old_flash
     end
+  end
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh
+    rm_extender_refresh
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
@@ -8849,6 +8859,7 @@ class Game_Map
   end
 end
 
+
 #==============================================================================
 # ** Game_Message
 #------------------------------------------------------------------------------
@@ -8891,8 +8902,8 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias :displaytext_initialize :initialize
-  alias :displaytext_update     :update
+  alias_method :displaytext_initialize, :initialize
+  alias_method :displaytext_update,     :update
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
@@ -11707,6 +11718,7 @@ module RMECommands
     def flash_square(x, y, color)
       tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
       tilemap.flash_data[x, y] = color.to_hex
+      $game_system.flashed_data[$game_map.map_id] = tilemap.flash_data
     end
     #--------------------------------------------------------------------------
     # * UnFlash a square

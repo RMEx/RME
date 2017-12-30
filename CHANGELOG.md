@@ -1,5 +1,18 @@
 # RME Changelog
 
+## Release (1.2.0)
+
+### Commandes ajoutées
+
+* `event_character_name`, (@BastienDuplessier)
+* `event_character_index`, (@BastienDuplessier)
+* `event_change_character`, (@BastienDuplessier)
+
+### Corrections de bogues
+
+* Correction des commandes pour flasher les cases (@xvw)
+* Correction de la commande `picture_zoom` (@xvw)
+
 ## Release (1.1.0)
 
 ### Commandes ajoutées
@@ -11,7 +24,7 @@
      - `camera_lock_x`
      - `camera_lock_y`
      - `camera_unlock_x`
-     -  `camera_unlock_y` 
+     - `camera_unlock_y` 
      (@BastienDuplessier, reporté par @lunri)
 *  `mouse_hover_window?` (@hinola)
 *  `choice` + `last_choice` (@xvw reporté par @Zer0xZer0x)
