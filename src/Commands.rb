@@ -511,7 +511,8 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :InLinear)
+    def picture_zoom(ids, zoom_x, zoom_y = false, duration = 0, wf = false, ease = :InLinear)
+      zoom_y ||= zoom_x
       select_pictures(ids).each do |id|
         picture_zoom_x(id, zoom_x, duration, false, ease)
         picture_zoom_y(id, zoom_y, duration, false, ease)

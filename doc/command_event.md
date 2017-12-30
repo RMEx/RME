@@ -9,6 +9,9 @@ Commandes relatives aux évènements
 ## Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
 *    [event_brutal_stop_trail(ids)](#event_brutal_stop_trailids)
+*    [event_change_character(id, character_name, character_index)](#event_change_characterid-character_name-character_index)
+*    [event_character_index(id)](#event_character_indexid)
+*    [event_character_name(id)](#event_character_nameid)
 *    [event_direction(id, *value)](#event_directionid-value)
 *    [event_erase(id)](#event_eraseid)
 *    [event_erased?(id)](#event_erasedid)
@@ -198,6 +201,32 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
+##### event_change_character(id, character_name, character_index)
+
+> Change l'apparence d'un évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+##### event_character_index(id)
+
+> Renvoie l'ID du character sur le charset l'évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+##### event_character_name(id)
+
+> Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 ##### event_direction(id, *value)
 
 > Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID

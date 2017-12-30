@@ -214,6 +214,9 @@ Collection des commandes EventExtender
 *    [Command.enemy_tp_charge_rate(position)](#commandenemy_tp_charge_rateposition)
 *    [Command.enemy_tp_regeneration_rate(position)](#commandenemy_tp_regeneration_rateposition)
 *    [Command.event_brutal_stop_trail(ids)](#commandevent_brutal_stop_trailids)
+*    [Command.event_change_character(id, character_name, character_index)](#commandevent_change_characterid-character_name-character_index)
+*    [Command.event_character_index(id)](#commandevent_character_indexid)
+*    [Command.event_character_name(id)](#commandevent_character_nameid)
 *    [Command.event_direction(id, *value)](#commandevent_directionid-value)
 *    [Command.event_erase(id)](#commandevent_eraseid)
 *    [Command.event_erased?(id)](#commandevent_erasedid)
@@ -3310,6 +3313,44 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
+
+
+
+
+##### Command.event_change_character(id, character_name, character_index)
+
+> Change l'apparence d'un évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+
+
+
+
+##### Command.event_character_index(id)
+
+> Renvoie l'ID du character sur le charset l'évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+
+
+
+
+##### Command.event_character_name(id)
+
+> Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 
 
 
