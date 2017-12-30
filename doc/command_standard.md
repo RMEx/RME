@@ -52,6 +52,8 @@ Commandes standards
 *    [wait_trigger(key)](#wait_triggerkey)
 *    [wait_with(time, &block)](#wait_withtime-&block)
 *    [website(url)](#websiteurl)
+*    [windowskin_opacity(*value)](#windowskin_opacityvalue)
+*    [windowskin_tone(*tone)](#windowskin_tonetone)
 
 
 ## Description des commandes
@@ -422,3 +424,19 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `url`|`String`|Url à charger  
+##### windowskin_opacity(*value)
+
+> Change l'opacité du windowSkin. Si aucune valeur n'est donnée, la commande renverra l'opacité
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
+##### windowskin_tone(*tone)
+
+> Change la teinte du windowSkin. Si aucune valeur n'est donnée, la commande renverra la teinte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*tone`|`Tone`|Teinte du WindowSkin (utilisez la commande tone)  

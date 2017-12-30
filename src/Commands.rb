@@ -60,6 +60,15 @@ module RMECommands
     string.include?(substring)
   end
 
+  def windowskin_tone(tone = nil)
+    $game_system.window_tone = tone if tone
+    $game_system.window_tone
+  end
+
+  def windowskin_opacity(opacity = nil)
+    $game_system.window_opacity = opacity if opacity
+    $game_system.window_opacity
+  end
 
   def menu_disabled?
     $game_system.menu_disabled

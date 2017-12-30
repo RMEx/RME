@@ -827,6 +827,8 @@ Collection des commandes EventExtender
 *    [Command.window_width(id)](#commandwindow_widthid)
 *    [Command.window_x(id, *x)](#commandwindow_xid-x)
 *    [Command.window_y(id, *y)](#commandwindow_yid-y)
+*    [Command.windowskin_opacity(*value)](#commandwindowskin_opacityvalue)
+*    [Command.windowskin_tone(*tone)](#commandwindowskin_tonetone)
 
 
 ## Description des méthodes
@@ -10861,6 +10863,30 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*y`|`Fixnum`|Coordonnée Y de la fenêtre  
+
+
+
+
+##### Command.windowskin_opacity(*value)
+
+> Change l'opacité du windowSkin. Si aucune valeur n'est donnée, la commande renverra l'opacité
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
+
+
+
+
+##### Command.windowskin_tone(*tone)
+
+> Change la teinte du windowSkin. Si aucune valeur n'est donnée, la commande renverra la teinte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*tone`|`Tone`|Teinte du WindowSkin (utilisez la commande tone)  
 
 
 

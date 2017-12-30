@@ -104,6 +104,8 @@ var documentation = [
 {"name":"max", "desc":"Valeur maximum", "type":"Fixnum"}]},
 {"name":"apply_percent", "description":"Applique percent à max", "returnable":true,"parameters":[{"name":"percent", "desc":"Valeur à appliquer", "type":"Fixnum"},
 {"name":"max", "desc":"Valeur maximum", "type":"Fixnum"}]},
+{"name":"windowskin_tone", "description":"Change la teinte du windowSkin. Si aucune valeur n'est donnée, la commande renverra la teinte", "returnable":true,"parameters":[{"name":"*tone", "desc":"Teinte du WindowSkin (utilisez la commande tone)", "type":"Tone"}]},
+{"name":"windowskin_opacity", "description":"Change l'opacité du windowSkin. Si aucune valeur n'est donnée, la commande renverra l'opacité", "returnable":true,"parameters":[{"name":"*value", "desc":"Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.", "type":"Fixnum"}]},
 {"name":"text_angle", "description":"Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte", "returnable":true,"parameters":[{"name":"id", "desc":"Id du texte", "type":"Fixnum"},
 {"name":"*value", "desc":"Nouvel angle (peut être vide)", "type":"Fixnum"}]},
 {"name":"wait_with", "description":"Attend en exécutant une action", "returnable":false,"parameters":[{"name":"time", "desc":"Temps d'attente", "type":"Fixnum"},

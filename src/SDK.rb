@@ -2389,10 +2389,12 @@ class Game_System
   #--------------------------------------------------------------------------
   attr_accessor   :weather_no_dimness   # Disable automatic dimness with weather
   attr_accessor   :flashed_data
+  attr_accessor   :window_opacity
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
   def initialize
+    @window_opacity = 255
     rme_initialize
     @weather_no_dimness = false
     @flashed_data = {}

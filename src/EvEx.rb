@@ -2002,6 +2002,7 @@ class Window_Base
   def initialize(*args)
     rm_extender_initialize(*args)
     init_target
+    self.opacity = $game_system.window_opacity
   end
   #--------------------------------------------------------------------------
   # * Frame update
@@ -2466,6 +2467,13 @@ class Window_Message
   #--------------------------------------------------------------------------
   def visible_line_number
     Window_Message.line_number
+  end
+  #--------------------------------------------------------------------------
+  # * Update Window Background
+  #--------------------------------------------------------------------------
+  def update_background
+    @background = $game_message.background
+    self.opacity = @background == 0 ? $game_system.window_opacity : 0
   end
 end
 
