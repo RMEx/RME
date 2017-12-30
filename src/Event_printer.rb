@@ -360,7 +360,7 @@ if $TEST
       def replace_link(x)
         #DocGenerator::Checker.documented_methods.each do |meth|
         #  x = x.gsub(/(\W)(#{meth.to_s})(\W+)/m, '\1<a data-cmd=\'\2\' class=\'btn_go\' href=\'#\2\'>\2</a>\3')
-        #  x = x.gsub(/^(#{meth.to_s})(\W+)/m, '<a data-cmd=\'\1\' class=\'btn_go\' href=\'#\1\'>\1</a>\2')
+        #  x = x.gsub(/(#{meth.to_s})/m, '<a data-cmd=\'\1\' class=\'btn_go\' href=\'#\1\'>\1</a>\2')
         #end
         return x
       end

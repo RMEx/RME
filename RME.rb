@@ -11263,7 +11263,8 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :InLinear)
+    def picture_zoom(ids, zoom_x, zoom_y = false, duration = 0, wf = false, ease = :InLinear)
+      zoom_y ||= zoom_x
       select_pictures(ids).each do |id|
         picture_zoom_x(id, zoom_x, duration, false, ease)
         picture_zoom_y(id, zoom_y, duration, false, ease)
@@ -12180,6 +12181,11 @@ module RMECommands
       return event(id).direction unless value
       event(id).set_direction(value)
     end
+    def event_change_character(id, character_name, character_index)
+      event(id).set_graphic(character_name, character_index)
+    end
+    def event_character_name(id); event(id).character_name; end
+    def event_character_index(id); event(id).character_index; end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
@@ -16605,6 +16611,23 @@ register_command :standard, 'Command.unflash_rect'
                         "Renvoie la coordonnée Y de l'évènement référencé par son ID en pixel sur la carte",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_pixel_y"
+
+  link_method_documentation "Command.event_change_character",
+                        "Change l\'apparence d'un évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
+                         :character_name => ["Nom du caractère", :String],
+                         :character_index => ["ID du caractère", :Fixnum]}, true
+  register_command :event, 'Command.event_change_character'
+
+  link_method_documentation "Command.event_character_name",
+                        "Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_character_name"
+
+  link_method_documentation "Command.event_character_index",
+                        "Renvoie l'ID du character sur le charset l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_character_index"
 
   link_method_documentation "Command.event_direction",
                         "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",
