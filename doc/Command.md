@@ -162,6 +162,7 @@ Collection des commandes EventExtender
 *    [Command.create_commands_window(id, x, y, w, hash, *h)](#commandcreate_commands_windowid-x-y-w-hash-h)
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
 *    [Command.create_horizontal_commands_window(id, x, y, hash, row)](#commandcreate_horizontal_commands_windowid-x-y-hash-row)
+*    [Command.create_light_emitters(hash)](#commandcreate_light_emittershash)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.create_selectable_window(id, x, y, width, height, hash)](#commandcreate_selectable_windowid-x-y-width-height-hash)
@@ -180,6 +181,8 @@ Collection des commandes EventExtender
 *    [Command.delete_tiles(layer, id)](#commanddelete_tileslayer-id)
 *    [Command.disable_weather_dimness](#commanddisable_weather_dimness)
 *    [Command.enable_weather_dimness](#commandenable_weather_dimness)
+*    [Command.encounter_disabled?](#commandencounter_disabled)
+*    [Command.encounter_enabled?](#commandencounter_enabled)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -296,6 +299,8 @@ Collection des commandes EventExtender
 *    [Command.flash_square(x, y, color)](#commandflash_squarex-y-color)
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
+*    [Command.formation_disabled?](#commandformation_disabled)
+*    [Command.formation_enabled?](#commandformation_enabled)
 *    [Command.fresh_event_id(*erased)](#commandfresh_event_iderased)
 *    [Command.fresh_parallax_id](#commandfresh_parallax_id)
 *    [Command.fresh_picture_id](#commandfresh_picture_id)
@@ -403,6 +408,8 @@ Collection des commandes EventExtender
 *    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
 *    [Command.me_play(name, *volume, *pitch)](#commandme_playname-volume-pitch)
 *    [Command.me_stop](#commandme_stop)
+*    [Command.menu_disabled?](#commandmenu_disabled)
+*    [Command.menu_enabled?](#commandmenu_enabled)
 *    [Command.message(value, *face_name, *face_index, *position, *background)](#commandmessagevalue-face_name-face_index-position-background)
 *    [Command.message_height(n)](#commandmessage_heightn)
 *    [Command.min(a, b)](#commandmina-b)
@@ -623,6 +630,8 @@ Collection des commandes EventExtender
 *    [Command.save_bgm](#commandsave_bgm)
 *    [Command.save_count](#commandsave_count)
 *    [Command.save_delete(index)](#commandsave_deleteindex)
+*    [Command.save_disabled?](#commandsave_disabled)
+*    [Command.save_enabled?](#commandsave_enabled)
 *    [Command.save_exists?(index)](#commandsave_existsindex)
 *    [Command.save_game(index)](#commandsave_gameindex)
 *    [Command.scene_call(scene)](#commandscene_callscene)
@@ -2705,6 +2714,18 @@ Nom|Type|Description
 
 
 
+##### Command.create_light_emitters(hash)
+
+> Your description
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`hash`|`ArgType`|Args description  
+
+
+
+
 ##### Command.create_polygon_area(points)
 
 > Crée et renvoie une zone polygonale (le dernier point est relié avec le premier)
@@ -2903,6 +2924,24 @@ Nom|Type|Description
 ##### Command.enable_weather_dimness
 
 > Active l'obscurité lors d'un changement climatique
+
+  
+
+
+
+
+##### Command.encounter_disabled?
+
+> Renvoie true si les rencontres sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.encounter_enabled?
+
+> Renvoie true si les rencontres sont activés, false sinon
 
   
 
@@ -4364,6 +4403,24 @@ Nom|Type|Description
 
 
 
+##### Command.formation_disabled?
+
+> Renvoie true si les formations sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.formation_enabled?
+
+> Renvoie true si les formations sont activés, false sinon
+
+  
+
+
+
+
 ##### Command.fresh_event_id(*erased)
 
 > Renvoie un ID libre (utile en cas d'invocation d'évènement)
@@ -5613,6 +5670,24 @@ Nom|Type|Description
 ##### Command.me_stop
 
 > Stoppe le ME en cours
+
+  
+
+
+
+
+##### Command.menu_disabled?
+
+> Renvoie true si les accès aux menus sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.menu_enabled?
+
+> Renvoie true si les accès aux menus sont activés, false sinon
 
   
 
@@ -8345,6 +8420,24 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
+
+
+
+
+##### Command.save_disabled?
+
+> Renvoie true si les accès aux sauvegardes sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.save_enabled?
+
+> Renvoie true si les accès aux sauvegardes sont activés, false sinon
+
+  
 
 
 

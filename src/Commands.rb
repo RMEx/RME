@@ -61,6 +61,38 @@ module RMECommands
   end
 
 
+  def menu_disabled?
+    $game_system.menu_disabled
+  end
+
+  def menu_enabled?
+    !menu_disabled?
+  end
+
+  def save_enabled? 
+    !save_disabled?
+  end
+
+  def save_disabled?
+    $game_system.save_disabled
+  end
+
+  def encounter_disabled? 
+    $game_system.encounter_disabled
+  end
+
+  def encounter_enabled?
+    !encounter_disabled?
+  end
+
+  def formation_disabled? 
+    $game_system.formation_disabled
+  end
+
+  def formation_enabled?
+    !formation_disabled?
+  end
+
 
   def max(a, b); [a, b].max; end
   def min(a, b); [a, b].min; end

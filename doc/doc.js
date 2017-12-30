@@ -127,7 +127,16 @@ var documentation = [
 {"name":"has_suffix?", "description":"Renvoie true si une chaine à le suffix donné, false sinon.", "returnable":true,"parameters":[{"name":"string", "desc":"La chaine de caractère à vérifier", "type":"String"},
 {"name":"suffix", "desc":"Le suffix devant être contenu dans la chaine", "type":"String"}]},
 {"name":"has_substring?", "description":"Renvoie true si une chaine contient une autre chaine donnée, false sinon.", "returnable":true,"parameters":[{"name":"string", "desc":"La chaine de caractère à vérifier", "type":"String"},
-{"name":"substring", "desc":"La chaine devant être contenue dans la chaine", "type":"String"}]}
+{"name":"substring", "desc":"La chaine devant être contenue dans la chaine", "type":"String"}]},
+{"name":"create_light_emitters", "description":"Your description", "returnable":true,"parameters":[{"name":"hash", "desc":"Args description", "type":"ArgType"}]},
+{"name":"menu_disabled?", "description":"Renvoie true si les accès aux menus sont désactivés, false sinon", "returnable":true,"parameters":[]},
+{"name":"menu_enabled?", "description":"Renvoie true si les accès aux menus sont activés, false sinon", "returnable":true,"parameters":[]},
+{"name":"save_enabled?", "description":"Renvoie true si les accès aux sauvegardes sont activés, false sinon", "returnable":true,"parameters":[]},
+{"name":"save_disabled?", "description":"Renvoie true si les accès aux sauvegardes sont désactivés, false sinon", "returnable":true,"parameters":[]},
+{"name":"encounter_disabled?", "description":"Renvoie true si les rencontres sont désactivés, false sinon", "returnable":true,"parameters":[]},
+{"name":"encounter_enabled?", "description":"Renvoie true si les rencontres sont activés, false sinon", "returnable":true,"parameters":[]},
+{"name":"formation_disabled?", "description":"Renvoie true si les formations sont désactivés, false sinon", "returnable":true,"parameters":[]},
+{"name":"formation_enabled?", "description":"Renvoie true si les formations sont activés, false sinon", "returnable":true,"parameters":[]}
 ]},
 {"name":"Evénements","desc":"Commandes relatives aux évènements","commands":[
 {"name":"include_page", "description":"Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement", "returnable":false,"parameters":[{"name":"map_id", "desc":"ID de la map où chercher l'évènement à inclure", "type":"Fixnum"},
