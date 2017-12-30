@@ -1343,6 +1343,7 @@ class Game_CharacterBase
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
   attr_accessor :light_emitter
+  attr_accessor :tone
 
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
@@ -1370,6 +1371,16 @@ class Game_CharacterBase
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index
+    init_tone
+  end
+
+  #--------------------------------------------------------------------------
+  # * Initialize Color Tone
+  #--------------------------------------------------------------------------
+  def init_tone
+    @tone = Tone.new
+    @tone_target = Tone.new
+    @tone_duration = 0
   end
 
   #--------------------------------------------------------------------------
@@ -1424,6 +1435,25 @@ class Game_CharacterBase
     Game_CharacterBase.last_released = @id if release?
     Game_CharacterBase.last_repeated = @id if repeat?
     Game_CharacterBase.last_pressed = @id if press?
+    update_tone_change
+  end
+  #--------------------------------------------------------------------------
+  # * Start Changing Color Tone
+  #--------------------------------------------------------------------------
+  def start_tone_change(tone, duration, ease=:InLinear)
+    @tone.set_transition('red',   tone.red,   duration, ease)
+    @tone.set_transition('green', tone.green, duration, ease)
+    @tone.set_transition('blue',  tone.blue,  duration, ease)
+    @tone.set_transition('gray',  tone.gray,  duration, ease)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Color Tone Change
+  #--------------------------------------------------------------------------
+  def update_tone_change
+    @tone.update_transition('red')
+    @tone.update_transition('green')
+    @tone.update_transition('blue')
+    @tone.update_transition('gray')
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
@@ -1768,6 +1798,7 @@ class Sprite_Character
     update_zooms
     update_buzzer
     update_trails
+    self.tone.set(character.tone)
   end
   #--------------------------------------------------------------------------
   # * Frame Update zoom

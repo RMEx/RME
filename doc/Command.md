@@ -265,6 +265,7 @@ Collection des commandes EventExtender
 *    [Command.event_stop_trail(ids)](#commandevent_stop_trailids)
 *    [Command.event_through(id, *flag)](#commandevent_throughid-flag)
 *    [Command.event_through?(id)](#commandevent_throughid)
+*    [Command.event_tone(ids, tone, *duration, *wait_flag, *ease)](#commandevent_toneids-tone-duration-wait_flag-ease)
 *    [Command.event_trail(ids, len, *mode)](#commandevent_trailids-len-mode)
 *    [Command.event_transfert(id, new_x, new_y)](#commandevent_transfertid-new_x-new_y)
 *    [Command.event_transparent(id)](#commandevent_transparentid)
@@ -595,6 +596,7 @@ Collection des commandes EventExtender
 *    [Command.player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)](#commandplayer_teleport_with_transitionmap_id-x-y-transition-duration-vague-direction)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
+*    [Command.player_tone(tone, *duration, *wait_flag, *ease)](#commandplayer_tonetone-duration-wait_flag-ease)
 *    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
 *    [Command.player_transfert(new_x, new_y)](#commandplayer_transfertnew_x-new_y)
 *    [Command.player_transparent](#commandplayer_transparent)
@@ -3964,6 +3966,22 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
+
+
+
+
+##### Command.event_tone(ids, tone, *duration, *wait_flag, *ease)
+
+> Change la teinte d'un événement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Id de l'évènement  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 
@@ -8043,6 +8061,21 @@ Nom|Type|Description
 > Renvoie true si le joueur est en mode 'traverse tout', false sinon
 
   
+
+
+
+
+##### Command.player_tone(tone, *duration, *wait_flag, *ease)
+
+> Change la teinte du joueur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 
 
 

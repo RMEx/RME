@@ -57,6 +57,7 @@ Commandes relatives aux évènements
 *    [event_stop_trail(ids)](#event_stop_trailids)
 *    [event_through(id, *flag)](#event_throughid-flag)
 *    [event_through?(id)](#event_throughid)
+*    [event_tone(ids, tone, *duration, *wait_flag, *ease)](#event_toneids-tone-duration-wait_flag-ease)
 *    [event_trail(ids, len, *mode)](#event_trailids-len-mode)
 *    [event_transfert(id, new_x, new_y)](#event_transfertid-new_x-new_y)
 *    [event_transparent(id)](#event_transparentid)
@@ -156,6 +157,7 @@ Commandes relatives aux évènements
 *    [player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)](#player_teleport_with_transitionmap_id-x-y-transition-duration-vague-direction)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
+*    [player_tone(tone, *duration, *wait_flag, *ease)](#player_tonetone-duration-wait_flag-ease)
 *    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
 *    [player_transfert(new_x, new_y)](#player_transfertnew_x-new_y)
 *    [player_transparent](#player_transparent)
@@ -621,6 +623,18 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
+##### event_tone(ids, tone, *duration, *wait_flag, *ease)
+
+> Change la teinte d'un événement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Id de l'évènement  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### event_trail(ids, len, *mode)
 
 > Applique une traînée sur un sélecteur d'évènements
@@ -1406,6 +1420,17 @@ Nom|Type|Description
 > Renvoie true si le joueur est en mode 'traverse tout', false sinon
 
   
+##### player_tone(tone, *duration, *wait_flag, *ease)
+
+> Change la teinte du joueur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### player_trail(len, *mode, *tone)
 
 > Applique une traînée sur le joueur
