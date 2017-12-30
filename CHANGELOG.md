@@ -4,6 +4,7 @@
 
 ### Commandes ajoutées
 
+* `event_tone` et `player_tone` (@xvw, reporté par @Zer0xZer0x)
 * `event_character_name`, (@BastienDuplessier)
 * `event_character_index`, (@BastienDuplessier)
 * `event_change_character`, (@BastienDuplessier)
