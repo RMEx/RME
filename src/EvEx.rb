@@ -2606,6 +2606,7 @@ class Game_Map
   alias_method :rm_extender_scroll_left, :scroll_left
   alias_method :rm_extender_scroll_right, :scroll_right
   alias_method :rm_extender_refresh, :refresh
+
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2664,7 +2665,7 @@ class Game_Map
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
   attr_accessor :can_dash
-  attr_accessor :scrolling
+  attr_accessor :scrolling_activate
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2748,7 +2749,6 @@ class Game_Map
       @scroll_function = nil if (0 >= @scroll_rest)
     end
   end
-
 
   #--------------------------------------------------------------------------
   # * Scroll Down
@@ -2895,6 +2895,9 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update(main = false)
     setup(@map_id) if $TEST && Keyboard.trigger?(RME::Config::MAP_RELOAD)
+    @scrolling_activate = (@l_display_y != @display_y) || (@l_display_x != @display_x)
+    @l_display_x = @display_x
+    @l_display_y = @display_y
     Game_Map.eval_proc(:all, Game_Map.running_proc)
     Game_Map.eval_proc(map_id, Game_Map.running_proc)
     @parallaxes.each {|parallax| parallax.update}

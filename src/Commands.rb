@@ -3093,7 +3093,7 @@ module RMECommands
     end
 
     def camera_scrolling?
-      $game_map.scrolling?
+      $game_map.scrolling? || $game_map.scrolling_activate
     end
 
     def camera_scroll_on(x, y, speed)
