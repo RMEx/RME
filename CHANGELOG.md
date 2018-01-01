@@ -19,6 +19,7 @@
      - `formation_enabled?|disabled?`
      - `encounter_enabled?|disabled?`
      (@xvw, reporté par Zer0Zer0x)
+* `current_event_id` et `me` (déplacement de EvEx vers Command), (@BastienDuplessier)
 
 ### Corrections de bogues
 
