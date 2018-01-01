@@ -170,7 +170,13 @@ module SV
   def []=(*args, id, value)
     ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_vars[[map_id, ev_id, id]] = value
+    if id.is_a?(Range)
+      id.each do |k|
+        $game_self_vars[[map_id, ev_id, k]] = value
+      end
+    else
+      $game_self_vars[[map_id, ev_id, id]] = value
+    end
     $game_map.need_refresh = true
   end
 end

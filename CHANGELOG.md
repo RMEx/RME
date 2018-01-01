@@ -2,6 +2,10 @@
 
 ## Release (1.2.0)
 
+### Ajouts généraux
+
+* Gestion des Intervalles dans les variables locales : `SV[1, 2, 1..18] = 10` (par exemple)
+
 ### Commandes ajoutées
 
 * `camera_scrolling?` (@xvw, reporté par @Zer0Zer0x)
