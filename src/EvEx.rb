@@ -4012,12 +4012,6 @@ class Game_Interpreter
     end
 
   end
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
-  def me 
-    Game_Interpreter.current_id
-  end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105

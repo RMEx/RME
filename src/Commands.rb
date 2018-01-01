@@ -1476,6 +1476,8 @@ module RMECommands
     end
     def event_character_name(id); event(id).character_name; end
     def event_character_index(id); event(id).character_index; end
+    def current_event_id; me; end
+    def me; Game_Interpreter.current_id; end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
