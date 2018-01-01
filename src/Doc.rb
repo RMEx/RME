@@ -1354,9 +1354,14 @@ register_command :event, 'Command.player_tone'
   register_command :event, "Command.event_character_index"
 
   link_method_documentation "Command.current_event_id",
-                        "Renvoie l'ID de l'évènement en cours",
+                        "Renvoie l'ID de l'évènement en cours, alias : me",
                         {:id => ["ID de l'évènement", :Fixnum]}, true
   register_command :event, "Command.current_event_id"
+
+  link_method_documentation "Command.me",
+                        "Renvoie l'ID de l'évènement en cours, alias : current_event_id",
+                        {:id => ["ID de l'évènement", :Fixnum]}, true
+  register_command :event, "Command.me"
 
   link_method_documentation "Command.event_direction",
                         "Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",
