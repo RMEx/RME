@@ -1358,6 +1358,7 @@ var documentation = [
 {"name":"replay_bgm", "description":"Reprend le BGM mémorisé", "returnable":false,"parameters":[]}
 ]},
 {"name":"Caméra","desc":"Commandes relatives à la manipulation de la caméra (scrolling de la carte)","commands":[
+{"name":"camera_scrolling?", "description":"Renvoie true si la camera est en train de défiler, false sinon", "returnable":true,"parameters":[]},
 {"name":"camera_scroll", "description":"Fait défiler la caméra dans une direction sur une distance (en cases) à une certaine vitesse", "returnable":false,"parameters":[{"name":"direction", "desc":"Direction (2=bas, 4=gauche, 6=droite, 8=haut)", "type":"Fixnum"},
 {"name":"distance", "desc":"Nombre de cases à défiler", "type":"Fixnum"},
 {"name":"speed", "desc":"Vitesse du défilement", "type":"Fixnum"}]},

@@ -4,6 +4,7 @@
 
 ### Commandes ajoutées
 
+* `camera_scrolling?` (@xvw, reporté par @Zer0xZer0x)
 * `windowskin_tone` et `windowskin_opacity` (@xvw, reporté par @YendaHusk)
 * `event_tone` et `player_tone` (@xvw, reporté par @Zer0xZer0x)
 * `event_character_name`, (@BastienDuplessier)

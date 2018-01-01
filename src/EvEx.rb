@@ -358,7 +358,7 @@ end
 #==============================================================================
 # ** Game_Battler
 #------------------------------------------------------------------------------
-#  A battler class with methods for sprites and actions added. This class 
+#  A battler class with methods for sprites and actions added. This class
 # is used as a super class of the Game_Actor class and Game_Enemy class.
 #==============================================================================
 
@@ -2418,7 +2418,7 @@ class Window_EvSelectable < Window_Selectable
     write_text(index, s)
     write_text(index, n, 2)
   end
-  
+
   #--------------------------------------------------------------------------
   # * Draw text with icon (and number)
   #--------------------------------------------------------------------------
@@ -2664,6 +2664,7 @@ class Game_Map
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
   attr_accessor :can_dash
+  attr_accessor :scrolling
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2747,7 +2748,7 @@ class Game_Map
       @scroll_function = nil if (0 >= @scroll_rest)
     end
   end
-  
+
 
   #--------------------------------------------------------------------------
   # * Scroll Down

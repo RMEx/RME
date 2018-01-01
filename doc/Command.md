@@ -142,6 +142,7 @@ Collection des commandes EventExtender
 *    [Command.camera_scroll_towards(x, y, nb_steps, *easing_function, *position)](#commandcamera_scroll_towardsx-y-nb_steps-easing_function-position)
 *    [Command.camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_eventid-nb_steps-easing_function-position)
 *    [Command.camera_scroll_towards_player(nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_playernb_steps-easing_function-position)
+*    [Command.camera_scrolling?](#commandcamera_scrolling)
 *    [Command.camera_unlock](#commandcamera_unlock)
 *    [Command.camera_unlock_x](#commandcamera_unlock_x)
 *    [Command.camera_unlock_y](#commandcamera_unlock_y)
@@ -2469,6 +2470,15 @@ Nom|Type|Description
 `nb_steps`|`Fixnum`|Le nombre d'étapes lors du défilement (plus il y en a, plus le temps de défilement sera long)  
 `*easing_function`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 `*position`|`Symbol`|Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:top_left par défaut  
+
+
+
+
+##### Command.camera_scrolling?
+
+> Renvoie true si la camera est en train de défiler, false sinon
+
+  
 
 
 

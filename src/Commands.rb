@@ -78,7 +78,7 @@ module RMECommands
     !menu_disabled?
   end
 
-  def save_enabled? 
+  def save_enabled?
     !save_disabled?
   end
 
@@ -86,7 +86,7 @@ module RMECommands
     $game_system.save_disabled
   end
 
-  def encounter_disabled? 
+  def encounter_disabled?
     $game_system.encounter_disabled
   end
 
@@ -94,7 +94,7 @@ module RMECommands
     !encounter_disabled?
   end
 
-  def formation_disabled? 
+  def formation_disabled?
     $game_system.formation_disabled
   end
 
@@ -214,7 +214,7 @@ module RMECommands
   end
 
   def choice(array, index_if_cancelled, value = nil, face_name = nil, face_index = 0, position = 2, background = 0)
-    if value 
+    if value
       if face_name
         $game_message.face_name = face_name
         $game_message.face_index = face_index
@@ -222,15 +222,15 @@ module RMECommands
       $game_message.position = position
       $game_message.background = background
       $game_message.add(value)
-    else 
+    else
       wait_for_message
     end
     setup_choices([array, index_if_cancelled])
     $game_message.choice_cancel_type = index_if_cancelled
     $game_message.choice_proc = Proc.new {|n| $game_message.last_choice = n+1}
     if value
-      wait_for_message 
-    else 
+      wait_for_message
+    else
       Fiber.yield while $game_message.choice?
     end
     return $game_message.last_choice
@@ -1302,7 +1302,7 @@ module RMECommands
     #     element_rate(item.damage.element_id)
     #   end
     # end
-    
+
     def last_used_item(); $game_temp.last_used_item; end
 
     append_commands
@@ -1502,7 +1502,7 @@ module RMECommands
       $game_map.can_dash = !!flag
     end
 
-    def dash_activate 
+    def dash_activate
       dash_activation(true)
     end
 
@@ -3092,6 +3092,10 @@ module RMECommands
       $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
     end
 
+    def camera_scrolling?
+      $game_map.scrolling?
+    end
+
     def camera_scroll_on(x, y, speed)
       camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
       camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
@@ -3100,11 +3104,11 @@ module RMECommands
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
     def camera_locked?; $game_map.target_camera.nil?; end
-  
+
     def camera_lock_x; $game_map.camera_lock << :x; end
     def camera_unlock_x; $game_map.camera_lock.delete(:x); end
     def camera_x_locked?; $game_map.camera_lock.include?(:x); end
-      
+
     def camera_lock_y; $game_map.camera_lock << :y; end
     def camera_unlock_y; $game_map.camera_lock.delete(:y); end
     def camera_y_locked?; $game_map.camera_lock.include?(:y); end
@@ -3224,12 +3228,12 @@ module RMECommands
       return false unless window_exists?(id)
       SceneManager.scene.windows[id].close?
     end
-    
+
     def window_opened?(id)
       return false unless window_exists?(id)
       SceneManager.scene.windows[id].open?
     end
-    
+
     def window_exists?(id)
       SceneManager.scene.windows[id].to_bool
     end
@@ -3299,11 +3303,11 @@ module RMECommands
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
     end
-    
+
     #--------------------------------------------------------------------------
     # * Point in window
     #--------------------------------------------------------------------------
-    
+
     def mouse_hover_window?(id)
       SceneManager.scene.windows[id].mouse_hover? if SceneManager.scene.windows[id]
     end
