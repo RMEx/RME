@@ -4,9 +4,9 @@
 
 ### Commandes ajoutées
 
-* `camera_scrolling?` (@xvw, reporté par @Zer0xZer0x)
+* `camera_scrolling?` (@xvw, reporté par @Zer0Zer0x)
 * `windowskin_tone` et `windowskin_opacity` (@xvw, reporté par @YendaHusk)
-* `event_tone` et `player_tone` (@xvw, reporté par @Zer0xZer0x)
+* `event_tone` et `player_tone` (@xvw, reporté par @Zer0Zer0x)
 * `event_character_name`, (@BastienDuplessier)
 * `event_character_index`, (@BastienDuplessier)
 * `event_change_character`, (@BastienDuplessier)
@@ -14,10 +14,11 @@
      - `save_enabled?|disabled?`
      - `formation_enabled?|disabled?`
      - `encounter_enabled?|disabled?`
-     (@xvw, reporté par Zer0xZer0x)
+     (@xvw, reporté par Zer0Zer0x)
 
 ### Corrections de bogues
 
+* Correction de `me` dans les trajectoire d'événement (@xvw, reporté par @Zer0Zer0x)
 * Correction des commandes pour flasher les cases (@xvw)
 * Correction de la commande `picture_zoom` (@xvw)
 
@@ -25,8 +26,8 @@
 
 ### Commandes ajoutées
 
-*  `last_used_item`, (@hinola, reporté par @Zer0xZer0x)
-*  `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reporté par @Zer0xZer0x)
+*  `last_used_item`, (@hinola, reporté par @Zer0Zer0x)
+*  `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reporté par @Zer0Zer0x)
 *  `window_exists?` (@hinola)
 *    - `camera_locked?` 
      - `camera_lock_x`
@@ -35,13 +36,13 @@
      - `camera_unlock_y` 
      (@BastienDuplessier, reporté par @lunri)
 *  `mouse_hover_window?` (@hinola)
-*  `choice` + `last_choice` (@xvw reporté par @Zer0xZer0x)
+*  `choice` + `last_choice` (@xvw reporté par @Zer0Zer0x)
 *  - `dash_activation`
    - `dash_activate`
    - `dash_deactivate`
    - `dash_activate?`
    - `dash_deactivate?`
-   (@xvw, reporté par @Zer0xZer0x)
+   (@xvw, reporté par @Zer0Zer0x)
 
 ### Corrections de bogues
 *  Correction des commandes `armors_possessed` et `weapons_possessed` (@hinola)
