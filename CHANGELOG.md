@@ -4,7 +4,7 @@
 
 ### Ajouts généraux
 
-* Gestion des Intervalles dans les variables locales : `SV[1, 2, 1..18] = 10` (par exemple)
+* Gestion des Intervalles dans les variables locales : `SV[1, 2, 1..18] = 10` (par exemple) par @xvw
 
 ### Commandes ajoutées
 
