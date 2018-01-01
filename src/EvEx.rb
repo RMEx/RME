@@ -1344,6 +1344,7 @@ class Game_CharacterBase
   attr_accessor :move_succeed
   attr_accessor :light_emitter
   attr_accessor :tone
+  attr_reader :id
 
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
@@ -1366,6 +1367,7 @@ class Game_CharacterBase
   # * Object initialize
   #--------------------------------------------------------------------------
   def initialize
+    @id = 0
     rm_extender_initialize
     @light_emitter = nil
     @zoom_x = @zoom_y = 100.0
@@ -4007,7 +4009,9 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  def me; @event_id; end
+  def me 
+    Game_Interpreter.current_id
+  end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
