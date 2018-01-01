@@ -358,7 +358,7 @@ end
 #==============================================================================
 # ** Game_Battler
 #------------------------------------------------------------------------------
-#  A battler class with methods for sprites and actions added. This class 
+#  A battler class with methods for sprites and actions added. This class
 # is used as a super class of the Game_Actor class and Game_Enemy class.
 #==============================================================================
 
@@ -1343,6 +1343,8 @@ class Game_CharacterBase
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
   attr_accessor :light_emitter
+  attr_accessor :tone
+  attr_reader :id
 
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
@@ -1365,11 +1367,22 @@ class Game_CharacterBase
   # * Object initialize
   #--------------------------------------------------------------------------
   def initialize
+    @id = 0
     rm_extender_initialize
     @light_emitter = nil
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index
+    init_tone
+  end
+
+  #--------------------------------------------------------------------------
+  # * Initialize Color Tone
+  #--------------------------------------------------------------------------
+  def init_tone
+    @tone = Tone.new
+    @tone_target = Tone.new
+    @tone_duration = 0
   end
 
   #--------------------------------------------------------------------------
@@ -1424,6 +1437,25 @@ class Game_CharacterBase
     Game_CharacterBase.last_released = @id if release?
     Game_CharacterBase.last_repeated = @id if repeat?
     Game_CharacterBase.last_pressed = @id if press?
+    update_tone_change
+  end
+  #--------------------------------------------------------------------------
+  # * Start Changing Color Tone
+  #--------------------------------------------------------------------------
+  def start_tone_change(tone, duration, ease=:InLinear)
+    @tone.set_transition('red',   tone.red,   duration, ease)
+    @tone.set_transition('green', tone.green, duration, ease)
+    @tone.set_transition('blue',  tone.blue,  duration, ease)
+    @tone.set_transition('gray',  tone.gray,  duration, ease)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Color Tone Change
+  #--------------------------------------------------------------------------
+  def update_tone_change
+    @tone.update_transition('red')
+    @tone.update_transition('green')
+    @tone.update_transition('blue')
+    @tone.update_transition('gray')
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
@@ -1768,6 +1800,7 @@ class Sprite_Character
     update_zooms
     update_buzzer
     update_trails
+    self.tone.set(character.tone)
   end
   #--------------------------------------------------------------------------
   # * Frame Update zoom
@@ -1971,6 +2004,7 @@ class Window_Base
   def initialize(*args)
     rm_extender_initialize(*args)
     init_target
+    self.opacity = $game_system.window_opacity
   end
   #--------------------------------------------------------------------------
   # * Frame update
@@ -2386,7 +2420,7 @@ class Window_EvSelectable < Window_Selectable
     write_text(index, s)
     write_text(index, n, 2)
   end
-  
+
   #--------------------------------------------------------------------------
   # * Draw text with icon (and number)
   #--------------------------------------------------------------------------
@@ -2435,6 +2469,13 @@ class Window_Message
   #--------------------------------------------------------------------------
   def visible_line_number
     Window_Message.line_number
+  end
+  #--------------------------------------------------------------------------
+  # * Update Window Background
+  #--------------------------------------------------------------------------
+  def update_background
+    @background = $game_message.background
+    self.opacity = @background == 0 ? $game_system.window_opacity : 0
   end
 end
 
@@ -2567,6 +2608,7 @@ class Game_Map
   alias_method :rm_extender_scroll_left, :scroll_left
   alias_method :rm_extender_scroll_right, :scroll_right
   alias_method :rm_extender_refresh, :refresh
+
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -2625,6 +2667,7 @@ class Game_Map
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
   attr_accessor :can_dash
+  attr_accessor :scrolling_activate
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2708,7 +2751,6 @@ class Game_Map
       @scroll_function = nil if (0 >= @scroll_rest)
     end
   end
-  
 
   #--------------------------------------------------------------------------
   # * Scroll Down
@@ -2855,6 +2897,9 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update(main = false)
     setup(@map_id) if $TEST && Keyboard.trigger?(RME::Config::MAP_RELOAD)
+    @scrolling_activate = (@l_display_y != @display_y) || (@l_display_x != @display_x)
+    @l_display_x = @display_x
+    @l_display_y = @display_y
     Game_Map.eval_proc(:all, Game_Map.running_proc)
     Game_Map.eval_proc(map_id, Game_Map.running_proc)
     @parallaxes.each {|parallax| parallax.update}
@@ -3964,7 +4009,9 @@ class Game_Interpreter
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  def me; @event_id; end
+  def me 
+    Game_Interpreter.current_id
+  end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105

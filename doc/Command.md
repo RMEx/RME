@@ -142,6 +142,7 @@ Collection des commandes EventExtender
 *    [Command.camera_scroll_towards(x, y, nb_steps, *easing_function, *position)](#commandcamera_scroll_towardsx-y-nb_steps-easing_function-position)
 *    [Command.camera_scroll_towards_event(id, nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_eventid-nb_steps-easing_function-position)
 *    [Command.camera_scroll_towards_player(nb_steps, *easing_function, *position)](#commandcamera_scroll_towards_playernb_steps-easing_function-position)
+*    [Command.camera_scrolling?](#commandcamera_scrolling)
 *    [Command.camera_unlock](#commandcamera_unlock)
 *    [Command.camera_unlock_x](#commandcamera_unlock_x)
 *    [Command.camera_unlock_y](#commandcamera_unlock_y)
@@ -162,6 +163,7 @@ Collection des commandes EventExtender
 *    [Command.create_commands_window(id, x, y, w, hash, *h)](#commandcreate_commands_windowid-x-y-w-hash-h)
 *    [Command.create_ellipse_area(x, y, width, height)](#commandcreate_ellipse_areax-y-width-height)
 *    [Command.create_horizontal_commands_window(id, x, y, hash, row)](#commandcreate_horizontal_commands_windowid-x-y-hash-row)
+*    [Command.create_light_emitters(hash)](#commandcreate_light_emittershash)
 *    [Command.create_polygon_area(points)](#commandcreate_polygon_areapoints)
 *    [Command.create_rect_area(x, y, width, height)](#commandcreate_rect_areax-y-width-height)
 *    [Command.create_selectable_window(id, x, y, width, height, hash)](#commandcreate_selectable_windowid-x-y-width-height-hash)
@@ -180,6 +182,8 @@ Collection des commandes EventExtender
 *    [Command.delete_tiles(layer, id)](#commanddelete_tileslayer-id)
 *    [Command.disable_weather_dimness](#commanddisable_weather_dimness)
 *    [Command.enable_weather_dimness](#commandenable_weather_dimness)
+*    [Command.encounter_disabled?](#commandencounter_disabled)
+*    [Command.encounter_enabled?](#commandencounter_enabled)
 *    [Command.enemy_agility(position)](#commandenemy_agilityposition)
 *    [Command.enemy_attack(position)](#commandenemy_attackposition)
 *    [Command.enemy_counter_attack_rate(position)](#commandenemy_counter_attack_rateposition)
@@ -262,6 +266,7 @@ Collection des commandes EventExtender
 *    [Command.event_stop_trail(ids)](#commandevent_stop_trailids)
 *    [Command.event_through(id, *flag)](#commandevent_throughid-flag)
 *    [Command.event_through?(id)](#commandevent_throughid)
+*    [Command.event_tone(ids, tone, *duration, *wait_flag, *ease)](#commandevent_toneids-tone-duration-wait_flag-ease)
 *    [Command.event_trail(ids, len, *mode)](#commandevent_trailids-len-mode)
 *    [Command.event_transfert(id, new_x, new_y)](#commandevent_transfertid-new_x-new_y)
 *    [Command.event_transparent(id)](#commandevent_transparentid)
@@ -296,6 +301,8 @@ Collection des commandes EventExtender
 *    [Command.flash_square(x, y, color)](#commandflash_squarex-y-color)
 *    [Command.followers_buzz(ids, *duration)](#commandfollowers_buzzids-duration)
 *    [Command.followers_buzzer_properties(*ids, amplitude, length)](#commandfollowers_buzzer_propertiesids-amplitude-length)
+*    [Command.formation_disabled?](#commandformation_disabled)
+*    [Command.formation_enabled?](#commandformation_enabled)
 *    [Command.fresh_event_id(*erased)](#commandfresh_event_iderased)
 *    [Command.fresh_parallax_id](#commandfresh_parallax_id)
 *    [Command.fresh_picture_id](#commandfresh_picture_id)
@@ -403,6 +410,8 @@ Collection des commandes EventExtender
 *    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
 *    [Command.me_play(name, *volume, *pitch)](#commandme_playname-volume-pitch)
 *    [Command.me_stop](#commandme_stop)
+*    [Command.menu_disabled?](#commandmenu_disabled)
+*    [Command.menu_enabled?](#commandmenu_enabled)
 *    [Command.message(value, *face_name, *face_index, *position, *background)](#commandmessagevalue-face_name-face_index-position-background)
 *    [Command.message_height(n)](#commandmessage_heightn)
 *    [Command.min(a, b)](#commandmina-b)
@@ -588,6 +597,7 @@ Collection des commandes EventExtender
 *    [Command.player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)](#commandplayer_teleport_with_transitionmap_id-x-y-transition-duration-vague-direction)
 *    [Command.player_through(*flag)](#commandplayer_throughflag)
 *    [Command.player_through?](#commandplayer_through)
+*    [Command.player_tone(tone, *duration, *wait_flag, *ease)](#commandplayer_tonetone-duration-wait_flag-ease)
 *    [Command.player_trail(len, *mode, *tone)](#commandplayer_traillen-mode-tone)
 *    [Command.player_transfert(new_x, new_y)](#commandplayer_transfertnew_x-new_y)
 *    [Command.player_transparent](#commandplayer_transparent)
@@ -623,6 +633,8 @@ Collection des commandes EventExtender
 *    [Command.save_bgm](#commandsave_bgm)
 *    [Command.save_count](#commandsave_count)
 *    [Command.save_delete(index)](#commandsave_deleteindex)
+*    [Command.save_disabled?](#commandsave_disabled)
+*    [Command.save_enabled?](#commandsave_enabled)
 *    [Command.save_exists?(index)](#commandsave_existsindex)
 *    [Command.save_game(index)](#commandsave_gameindex)
 *    [Command.scene_call(scene)](#commandscene_callscene)
@@ -816,6 +828,8 @@ Collection des commandes EventExtender
 *    [Command.window_width(id)](#commandwindow_widthid)
 *    [Command.window_x(id, *x)](#commandwindow_xid-x)
 *    [Command.window_y(id, *y)](#commandwindow_yid-y)
+*    [Command.windowskin_opacity(*value)](#commandwindowskin_opacityvalue)
+*    [Command.windowskin_tone(*tone)](#commandwindowskin_tonetone)
 
 
 ## Description des méthodes
@@ -2460,6 +2474,15 @@ Nom|Type|Description
 
 
 
+##### Command.camera_scrolling?
+
+> Renvoie true si la camera est en train de défiler, false sinon
+
+  
+
+
+
+
 ##### Command.camera_unlock
 
 > Déverrouille la position de la caméra (et reprend le héros comme plan de référence)
@@ -2705,6 +2728,18 @@ Nom|Type|Description
 
 
 
+##### Command.create_light_emitters(hash)
+
+> Your description
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`hash`|`ArgType`|Args description  
+
+
+
+
 ##### Command.create_polygon_area(points)
 
 > Crée et renvoie une zone polygonale (le dernier point est relié avec le premier)
@@ -2903,6 +2938,24 @@ Nom|Type|Description
 ##### Command.enable_weather_dimness
 
 > Active l'obscurité lors d'un changement climatique
+
+  
+
+
+
+
+##### Command.encounter_disabled?
+
+> Renvoie true si les rencontres sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.encounter_enabled?
+
+> Renvoie true si les rencontres sont activés, false sinon
 
   
 
@@ -3357,7 +3410,7 @@ Nom|Type|Description
 
 ##### Command.event_direction(id, *value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
+> Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
 
   
 Nom|Type|Description  
@@ -3929,6 +3982,22 @@ Nom|Type|Description
 
 
 
+##### Command.event_tone(ids, tone, *duration, *wait_flag, *ease)
+
+> Change la teinte d'un événement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Id de l'évènement  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
+
+
+
+
 ##### Command.event_trail(ids, len, *mode)
 
 > Applique une traînée sur un sélecteur d'évènements
@@ -4360,6 +4429,24 @@ Nom|Type|Description
 `*ids`|`ArgsList`|Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.  
 `amplitude`|`ArgType`|Amplitude du tressaillement  
 `length`|`Fixnum`|Taille du tressaillement  
+
+
+
+
+##### Command.formation_disabled?
+
+> Renvoie true si les formations sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.formation_enabled?
+
+> Renvoie true si les formations sont activés, false sinon
+
+  
 
 
 
@@ -5613,6 +5700,24 @@ Nom|Type|Description
 ##### Command.me_stop
 
 > Stoppe le ME en cours
+
+  
+
+
+
+
+##### Command.menu_disabled?
+
+> Renvoie true si les accès aux menus sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.menu_enabled?
+
+> Renvoie true si les accès aux menus sont activés, false sinon
 
   
 
@@ -7526,7 +7631,7 @@ Nom|Type|Description
 
 ##### Command.player_direction(*value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur
+> Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) du joueur
 
   
 Nom|Type|Description  
@@ -7972,6 +8077,21 @@ Nom|Type|Description
 
 
 
+##### Command.player_tone(tone, *duration, *wait_flag, *ease)
+
+> Change la teinte du joueur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
+
+
+
+
 ##### Command.player_trail(len, *mode, *tone)
 
 > Applique une traînée sur le joueur
@@ -8345,6 +8465,24 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `index`|`Fixnum`|Numéro de la sauvegarde  
+
+
+
+
+##### Command.save_disabled?
+
+> Renvoie true si les accès aux sauvegardes sont désactivés, false sinon
+
+  
+
+
+
+
+##### Command.save_enabled?
+
+> Renvoie true si les accès aux sauvegardes sont activés, false sinon
+
+  
 
 
 
@@ -10735,6 +10873,30 @@ Nom|Type|Description
 --- | --- | ---  
 `id`|`Fixnum`|ID de la fenêtre  
 `*y`|`Fixnum`|Coordonnée Y de la fenêtre  
+
+
+
+
+##### Command.windowskin_opacity(*value)
+
+> Change l'opacité du windowSkin. Si aucune valeur n'est donnée, la commande renverra l'opacité
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
+
+
+
+
+##### Command.windowskin_tone(*tone)
+
+> Change la teinte du windowSkin. Si aucune valeur n'est donnée, la commande renverra la teinte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*tone`|`Tone`|Teinte du WindowSkin (utilisez la commande tone)  
 
 
 
