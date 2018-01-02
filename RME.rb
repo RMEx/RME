@@ -12531,6 +12531,7 @@ module RMECommands
       end
     end
 
+
     def show_animation(ids, id_animation, wait_flag=false)
       character = nil
       select_events(ids).each do |id_event|
