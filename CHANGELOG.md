@@ -20,6 +20,8 @@
      - `encounter_enabled?|disabled?`
      (@xvw, reporté par Zer0Zer0x)
 * `current_event_id` et `me` (déplacement de EvEx vers Command), (@BastienDuplessier)
+* `use_item`, (@BastienDuplessier)
+* `test_item`, (@BastienDuplessier)
 
 ### Corrections de bogues
 
