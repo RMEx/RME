@@ -634,6 +634,7 @@ module Command
   register_command_category :keyboard, "Clavier", "Commandes relatives au clavier"
   register_command_category :mouse, "Souris", "Commande relatives à la gestion de la souris"
   register_command_category :picture, "Images", "Commandes relatives à la manipulation des images"
+  register_command_category :spritesheet, "Spritesheet", "Commandes relatives à la manipulation des feuilles de Sprites"
   register_command_category :parallax, "Panoramas", "Commandes relatives à la manipulation des panoramas"
   register_command_category :micro, "Micro-événements", "Commandes relatives à la gestion des micro events"
   register_command_category :party, "Equipes", "Commande associées à la gestion de l'équipe de héros"
