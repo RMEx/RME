@@ -28,6 +28,7 @@
 * Correction de `me` dans les trajectoire d'événement (@xvw, reporté par @Zer0Zer0x)
 * Correction des commandes pour flasher les cases (@xvw)
 * Correction de la commande `picture_zoom` (@xvw)
+* Correction de la commande `event_priority` (@xvw, reporté par @Zer0Zer0x)
 
 ## Release (1.1.0)
 
