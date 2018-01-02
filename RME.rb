@@ -2389,12 +2389,16 @@ class Game_System
   # * Public Instance Variables
   #--------------------------------------------------------------------------
   attr_accessor   :weather_no_dimness   # Disable automatic dimness with weather
+  attr_accessor   :flashed_data
+  attr_accessor   :window_opacity
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
   def initialize
+    @window_opacity = 255
     rme_initialize
     @weather_no_dimness = false
+    @flashed_data = {}
   end
 end
 
@@ -6113,7 +6117,13 @@ module SV
   def []=(*args, id, value)
     ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_vars[[map_id, ev_id, id]] = value
+    if id.is_a?(Range)
+      id.each do |k|
+        $game_self_vars[[map_id, ev_id, k]] = value
+      end
+    else
+      $game_self_vars[[map_id, ev_id, id]] = value
+    end
     $game_map.need_refresh = true
   end
 end
@@ -6240,10 +6250,10 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
-    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
+  attr_accessor :last_used_item
 end
 
 
@@ -6301,7 +6311,7 @@ end
 #==============================================================================
 # ** Game_Battler
 #------------------------------------------------------------------------------
-#  A battler class with methods for sprites and actions added. This class 
+#  A battler class with methods for sprites and actions added. This class
 # is used as a super class of the Game_Actor class and Game_Enemy class.
 #==============================================================================
 
@@ -7286,6 +7296,8 @@ class Game_CharacterBase
   attr_accessor :ox, :oy, :zoom_x, :zoom_y
   attr_accessor :move_succeed
   attr_accessor :light_emitter
+  attr_accessor :tone
+  attr_reader :id
 
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
@@ -7308,11 +7320,22 @@ class Game_CharacterBase
   # * Object initialize
   #--------------------------------------------------------------------------
   def initialize
+    @id = 0
     rm_extender_initialize
     @light_emitter = nil
     @zoom_x = @zoom_y = 100.0
     @rect = Rect.new(0,0,0,0)
     @sprite_index
+    init_tone
+  end
+
+  #--------------------------------------------------------------------------
+  # * Initialize Color Tone
+  #--------------------------------------------------------------------------
+  def init_tone
+    @tone = Tone.new
+    @tone_target = Tone.new
+    @tone_duration = 0
   end
 
   #--------------------------------------------------------------------------
@@ -7367,6 +7390,25 @@ class Game_CharacterBase
     Game_CharacterBase.last_released = @id if release?
     Game_CharacterBase.last_repeated = @id if repeat?
     Game_CharacterBase.last_pressed = @id if press?
+    update_tone_change
+  end
+  #--------------------------------------------------------------------------
+  # * Start Changing Color Tone
+  #--------------------------------------------------------------------------
+  def start_tone_change(tone, duration, ease=:InLinear)
+    @tone.set_transition('red',   tone.red,   duration, ease)
+    @tone.set_transition('green', tone.green, duration, ease)
+    @tone.set_transition('blue',  tone.blue,  duration, ease)
+    @tone.set_transition('gray',  tone.gray,  duration, ease)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Color Tone Change
+  #--------------------------------------------------------------------------
+  def update_tone_change
+    @tone.update_transition('red')
+    @tone.update_transition('green')
+    @tone.update_transition('blue')
+    @tone.update_transition('gray')
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
@@ -7711,6 +7753,7 @@ class Sprite_Character
     update_zooms
     update_buzzer
     update_trails
+    self.tone.set(character.tone)
   end
   #--------------------------------------------------------------------------
   # * Frame Update zoom
@@ -7914,6 +7957,7 @@ class Window_Base
   def initialize(*args)
     rm_extender_initialize(*args)
     init_target
+    self.opacity = $game_system.window_opacity
   end
   #--------------------------------------------------------------------------
   # * Frame update
@@ -8329,7 +8373,7 @@ class Window_EvSelectable < Window_Selectable
     write_text(index, s)
     write_text(index, n, 2)
   end
-  
+
   #--------------------------------------------------------------------------
   # * Draw text with icon (and number)
   #--------------------------------------------------------------------------
@@ -8379,6 +8423,13 @@ class Window_Message
   def visible_line_number
     Window_Message.line_number
   end
+  #--------------------------------------------------------------------------
+  # * Update Window Background
+  #--------------------------------------------------------------------------
+  def update_background
+    @background = $game_message.background
+    self.opacity = @background == 0 ? $game_system.window_opacity : 0
+  end
 end
 
 #==============================================================================
@@ -8405,6 +8456,7 @@ class Scene_Map
     @textfields = Hash.new
     @windows = Hash.new
     extender_start
+    $game_map.reflash_map
   end
   #--------------------------------------------------------------------------
   # * Erase a Window
@@ -8508,6 +8560,8 @@ class Game_Map
   alias_method :rm_extender_scroll_down, :scroll_down
   alias_method :rm_extender_scroll_left, :scroll_left
   alias_method :rm_extender_scroll_right, :scroll_right
+  alias_method :rm_extender_refresh, :refresh
+
   #--------------------------------------------------------------------------
   # * Singleton
   #--------------------------------------------------------------------------
@@ -8566,6 +8620,7 @@ class Game_Map
   attr_accessor :tile_mapper
   attr_accessor :scroll_speed
   attr_accessor :can_dash
+  attr_accessor :scrolling_activate
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -8585,7 +8640,7 @@ class Game_Map
     Game_Map.eval_proc(map_id)
     @target_camera = $game_player
     @camera_lock = []
-    unflash_map
+    reflash_map
     setup_region_data
     @max_event_id = events.keys.max || 0
     @can_dash = !@map.disable_dashing
@@ -8616,18 +8671,21 @@ class Game_Map
     end
   end
   #--------------------------------------------------------------------------
-  # * Unflash all squares
+  # * reflash all squares
   #--------------------------------------------------------------------------
-  def unflash_map
+  def reflash_map
     return unless SceneManager.scene.is_a?(Scene_Map)
     tilemap = SceneManager.scene.spriteset.tilemap
-    if tilemap.flash_data
-      height.times do |y|
-        width.times do |x|
-          tilemap.flash_data[x, y] = Color.new(0, 0, 0).to_hex
-        end
-      end
+    old_flash = $game_system.flashed_data[map_id]
+    if tilemap && old_flash
+      tilemap.flash_data = old_flash
     end
+  end
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh
+    rm_extender_refresh
   end
   #--------------------------------------------------------------------------
   # * Scroll Processing
@@ -8646,7 +8704,6 @@ class Game_Map
       @scroll_function = nil if (0 >= @scroll_rest)
     end
   end
-  
 
   #--------------------------------------------------------------------------
   # * Scroll Down
@@ -8793,6 +8850,9 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update(main = false)
     setup(@map_id) if $TEST && Keyboard.trigger?(RME::Config::MAP_RELOAD)
+    @scrolling_activate = (@l_display_y != @display_y) || (@l_display_x != @display_x)
+    @l_display_x = @display_x
+    @l_display_y = @display_y
     Game_Map.eval_proc(:all, Game_Map.running_proc)
     Game_Map.eval_proc(map_id, Game_Map.running_proc)
     @parallaxes.each {|parallax| parallax.update}
@@ -8849,6 +8909,7 @@ class Game_Map
   end
 end
 
+
 #==============================================================================
 # ** Game_Message
 #------------------------------------------------------------------------------
@@ -8891,8 +8952,8 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias :displaytext_initialize :initialize
-  alias :displaytext_update     :update
+  alias_method :displaytext_initialize, :initialize
+  alias_method :displaytext_update,     :update
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
@@ -9203,6 +9264,27 @@ class Game_Pictures
   def fresh_id
     i = @data.find_index {|picture| !picture || picture.name.empty? }
     return (i || @data.length)
+  end
+end
+
+#==============================================================================
+# ** Game_Spritesheet
+#------------------------------------------------------------------------------
+#  Spritesheet ingame
+#==============================================================================
+
+class Game_Spritesheet < Game_Picture
+
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :cell_x, :cell_y, :index
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(number)
+    super(number)
+    @cell_x = @cell_y = @index = 0
   end
 end
 
@@ -9898,10 +9980,6 @@ class Game_Interpreter
     end
 
   end
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
-  def me; @event_id; end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
@@ -10812,6 +10890,47 @@ module RMECommands
     string.include?(substring)
   end
 
+  def windowskin_tone(tone = nil)
+    $game_system.window_tone = tone if tone
+    $game_system.window_tone
+  end
+
+  def windowskin_opacity(opacity = nil)
+    $game_system.window_opacity = opacity if opacity
+    $game_system.window_opacity
+  end
+
+  def menu_disabled?
+    $game_system.menu_disabled
+  end
+
+  def menu_enabled?
+    !menu_disabled?
+  end
+
+  def save_enabled?
+    !save_disabled?
+  end
+
+  def save_disabled?
+    $game_system.save_disabled
+  end
+
+  def encounter_disabled?
+    $game_system.encounter_disabled
+  end
+
+  def encounter_enabled?
+    !encounter_disabled?
+  end
+
+  def formation_disabled?
+    $game_system.formation_disabled
+  end
+
+  def formation_enabled?
+    !formation_disabled?
+  end
 
 
   def max(a, b); [a, b].max; end
@@ -10925,7 +11044,7 @@ module RMECommands
   end
 
   def choice(array, index_if_cancelled, value = nil, face_name = nil, face_index = 0, position = 2, background = 0)
-    if value 
+    if value
       if face_name
         $game_message.face_name = face_name
         $game_message.face_index = face_index
@@ -10933,15 +11052,15 @@ module RMECommands
       $game_message.position = position
       $game_message.background = background
       $game_message.add(value)
-    else 
+    else
       wait_for_message
     end
     setup_choices([array, index_if_cancelled])
     $game_message.choice_cancel_type = index_if_cancelled
     $game_message.choice_proc = Proc.new {|n| $game_message.last_choice = n+1}
     if value
-      wait_for_message 
-    else 
+      wait_for_message
+    else
       Fiber.yield while $game_message.choice?
     end
     return $game_message.last_choice
@@ -11263,7 +11382,8 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :InLinear)
+    def picture_zoom(ids, zoom_x, zoom_y = false, duration = 0, wf = false, ease = :InLinear)
+      zoom_y ||= zoom_x
       select_pictures(ids).each do |id|
         picture_zoom_x(id, zoom_x, duration, false, ease)
         picture_zoom_y(id, zoom_y, duration, false, ease)
@@ -11706,6 +11826,7 @@ module RMECommands
     def flash_square(x, y, color)
       tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
       tilemap.flash_data[x, y] = color.to_hex
+      $game_system.flashed_data[$game_map.map_id] = tilemap.flash_data
     end
     #--------------------------------------------------------------------------
     # * UnFlash a square
@@ -11824,6 +11945,25 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Items
     #--------------------------------------------------------------------------
+    def use_item(item_id, actor_id)
+      return false unless test_item(item_id, actor_id)
+      item = $data_items[item_id]
+      user = $game_party.movable_members.max_by {|member| member.pha }
+      target = $game_actors[actor_id]
+      return false unless item && user && target
+
+      user.use_item(item)
+      item.repeats.times { target.item_apply(user, item) }
+      true
+    end
+    def test_item(item_id, actor_id)
+      item = $data_items[item_id]
+      user = $game_party.movable_members.max_by {|member| member.pha }
+      target = $game_actors[actor_id]
+
+      target.item_test(user, item)
+    end
+
     def items_possessed
       $game_party.items.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
@@ -12011,7 +12151,7 @@ module RMECommands
     #     element_rate(item.damage.element_id)
     #   end
     # end
-    
+
     def last_used_item(); $game_temp.last_used_item; end
 
     append_commands
@@ -12180,6 +12320,13 @@ module RMECommands
       return event(id).direction unless value
       event(id).set_direction(value)
     end
+    def event_change_character(id, character_name, character_index)
+      event(id).set_graphic(character_name, character_index)
+    end
+    def event_character_name(id); event(id).character_name; end
+    def event_character_index(id); event(id).character_index; end
+    def current_event_id; me; end
+    def me; Game_Interpreter.current_id; end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
@@ -12206,7 +12353,7 @@ module RMECommands
       $game_map.can_dash = !!flag
     end
 
-    def dash_activate 
+    def dash_activate
       dash_activation(true)
     end
 
@@ -12384,6 +12531,7 @@ module RMECommands
       end
     end
 
+
     def show_animation(ids, id_animation, wait_flag=false)
       character = nil
       select_events(ids).each do |id_event|
@@ -12437,14 +12585,14 @@ module RMECommands
     end
 
     def event_priority(ids, priority = nil)
-      return event(ids).priority_type unless !priority && ids.is_a?(Fixnum)
+      return event(ids).priority_type if !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
       event(id_event).priority_type = priority
     end
     end
 
     def event_trigger(ids, trigger = nil)
-      return event(ids).trigger unless !trigger && ids.is_a?(Fixnum)
+      return event(ids).trigger if !trigger && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
         event(id_event).trigger = trigger
       end
@@ -12535,6 +12683,22 @@ module RMECommands
       select_events(ids).each do |id_event|
         event(id_event).opacity = value
       end
+    end
+
+    #--------------------------------------------------------------------------
+    # * change Tone
+    #--------------------------------------------------------------------------
+    def event_tone(ids, tone, d = 0, wf = false, ease = :InLinear)
+      select_events(ids).each do |id_event|
+        event(id_event).start_tone_change(tone, d, ease)
+      end
+      if d.is_a?(Fixnum) && wf
+        wait(d)
+      end
+    end
+
+    def player_tone(tone, d = 0, wf = false, ease = :InLinear)
+      event_tone(0, tone, d, wf, ease)
     end
 
     def player_opacity(value = nil)
@@ -13780,6 +13944,10 @@ module RMECommands
       $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
     end
 
+    def camera_scrolling?
+      $game_map.scrolling? || $game_map.scrolling_activate
+    end
+
     def camera_scroll_on(x, y, speed)
       camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
       camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
@@ -13788,11 +13956,11 @@ module RMECommands
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
     def camera_locked?; $game_map.target_camera.nil?; end
-  
+
     def camera_lock_x; $game_map.camera_lock << :x; end
     def camera_unlock_x; $game_map.camera_lock.delete(:x); end
     def camera_x_locked?; $game_map.camera_lock.include?(:x); end
-      
+
     def camera_lock_y; $game_map.camera_lock << :y; end
     def camera_unlock_y; $game_map.camera_lock.delete(:y); end
     def camera_y_locked?; $game_map.camera_lock.include?(:y); end
@@ -13912,12 +14080,12 @@ module RMECommands
       return false unless window_exists?(id)
       SceneManager.scene.windows[id].close?
     end
-    
+
     def window_opened?(id)
       return false unless window_exists?(id)
       SceneManager.scene.windows[id].open?
     end
-    
+
     def window_exists?(id)
       SceneManager.scene.windows[id].to_bool
     end
@@ -13987,11 +14155,11 @@ module RMECommands
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
     end
-    
+
     #--------------------------------------------------------------------------
     # * Point in window
     #--------------------------------------------------------------------------
-    
+
     def mouse_hover_window?(id)
       SceneManager.scene.windows[id].mouse_hover? if SceneManager.scene.windows[id]
     end
@@ -15930,6 +16098,7 @@ module Command
   register_command_category :keyboard, "Clavier", "Commandes relatives au clavier"
   register_command_category :mouse, "Souris", "Commande relatives à la gestion de la souris"
   register_command_category :picture, "Images", "Commandes relatives à la manipulation des images"
+  register_command_category :spritesheet, "Spritesheet", "Commandes relatives à la manipulation des feuilles de Sprites"
   register_command_category :parallax, "Panoramas", "Commandes relatives à la manipulation des panoramas"
   register_command_category :micro, "Micro-événements", "Commandes relatives à la gestion des micro events"
   register_command_category :party, "Equipes", "Commande associées à la gestion de l'équipe de héros"
@@ -15996,7 +16165,7 @@ link_method_documentation 'Command.message',
 register_command :standard, 'Command.message'
 
 # AUTOGenerated for choice
-link_method_documentation 'Command.choice', 
+link_method_documentation 'Command.choice',
 'Affiche un choix (potentiellement de plus de 4 options) et retourne la valeur du choix (1 pour le premier)',
  {
   :array => ["List des possibilité, par exemple ['oui', 'non', 'autre']", :Array],
@@ -16008,18 +16177,18 @@ link_method_documentation 'Command.choice',
   :"*background" => ["Fond du message, 0 normal, 1 sombre, 2 transparent", :Fixnum],
 
 }, true # Maybe changed
-register_command :standard, 'Command.choice' 
+register_command :standard, 'Command.choice'
 
 # AUTOGenerated for last_choice
-link_method_documentation 'Command.last_choice', 
+link_method_documentation 'Command.last_choice',
 'Commande pour récupérer le dernier choix effectué',
  {}, true # Maybe changed
-register_command :standard, 'Command.last_choice' 
+register_command :standard, 'Command.last_choice'
 
 link_method_documentation 'Command.game_window_rect',
 	'Renvoie le rectangle correspondant à la fenêtre de jeu',
  	{}, true # Maybe changed
-register_command :game_window, 'Command.game_window_rect' 
+register_command :game_window, 'Command.game_window_rect'
 
 # AUTOGenerated for flash_square
 link_method_documentation 'Command.flash_square',
@@ -16323,6 +16492,32 @@ register_command :standard, 'Command.unflash_rect'
   	}, true # Maybe changed
   register_command :event, 'Command.event_opacity'
 
+  # AUTOGenerated for event_tone
+link_method_documentation 'Command.event_tone',
+'Change la teinte d\'un événement référencé par son ID',
+ {
+  :ids => ["Id de l'évènement", :Selector],
+  :tone => ["Teinte de l'évènement (utilisez la commande tone)", :Tone],
+  :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+  :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
+  :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+
+}, false # Maybe changed
+register_command :event, 'Command.event_tone'
+
+# AUTOGenerated for player_tone
+link_method_documentation 'Command.player_tone',
+'Change la teinte du joueur',
+ {
+  :tone => ["Teinte de l'évènement (utilisez la commande tone)", :Tone],
+  :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
+  :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
+  :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+
+}, false # Maybe changed
+register_command :event, 'Command.player_tone'
+
+
   # AUTOGenerated for player_opacity
   link_method_documentation 'Command.player_opacity',
   	'Modifie (ou retourne) l\'opacité du héros',
@@ -16606,8 +16801,33 @@ register_command :standard, 'Command.unflash_rect'
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_pixel_y"
 
+  link_method_documentation "Command.event_change_character",
+                        "Change l\'apparence d'un évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
+                         :character_name => ["Nom du caractère", :String],
+                         :character_index => ["ID du caractère", :Fixnum]}, true
+  register_command :event, 'Command.event_change_character'
+
+  link_method_documentation "Command.event_character_name",
+                        "Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_character_name"
+
+  link_method_documentation "Command.event_character_index",
+                        "Renvoie l'ID du character sur le charset l'évènement référencé par son ID",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_character_index"
+
+  link_method_documentation "Command.current_event_id",
+                        "Renvoie l'ID de l'évènement en cours, alias : me", {}, true
+  register_command :event, "Command.current_event_id"
+
+  link_method_documentation "Command.me",
+                        "Renvoie l'ID de l'évènement en cours, alias : current_event_id", {}, true
+  register_command :event, "Command.me"
+
   link_method_documentation "Command.event_direction",
-                        "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",
+                        "Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
                           :"*value" => ["Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.", :Fixnum]}, true
   register_command :event, "Command.event_direction"
@@ -16643,7 +16863,7 @@ register_command :standard, 'Command.unflash_rect'
   register_command :event, "Command.player_pixel_y"
 
   link_method_documentation "Command.player_direction",
-                        "Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur",
+                        "Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) du joueur",
                         {:"*value" => ["Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros", :Fixnum]}, true
   register_command :event, "Command.player_direction"
 
@@ -17166,6 +17386,26 @@ register_command :standard, 'Command.unflash_rect'
                           }
   register_command :picture, "Command.picture_tone"
 
+  # AUTOGenerated for windowskin_tone
+link_method_documentation 'Command.windowskin_tone',
+'Change la teinte du windowSkin. Si aucune valeur n\'est donnée, la commande renverra la teinte',
+ {
+  :"*tone" => ["Teinte du WindowSkin (utilisez la commande tone)", :Tone],
+
+}, true # Maybe changed
+register_command :standard, 'Command.windowskin_tone'
+
+# AUTOGenerated for windowskin_opacity
+link_method_documentation 'Command.windowskin_opacity',
+'Change l\'opacité du windowSkin. Si aucune valeur n\'est donnée, la commande renverra l\'opacité',
+ {
+  :"*value" => ["Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.", :Fixnum],
+
+}, true # Maybe changed
+register_command :standard, 'Command.windowskin_opacity'
+
+
+
   link_method_documentation "Command.picture_blend",
                           "Change le mode de fusion d'une image",
                           {
@@ -17488,11 +17728,23 @@ link_method_documentation "Command.battle_count",
                         "Renvoie le nombre de combats effectués par partie",
                         {}, true
 register_command :party, "Command.battle_count"
-	
+
 link_method_documentation 'Command.last_used_item',
 	'Renvoie l\'id du dernier objet utilisé',
  	{}, true
 register_command :items, 'Command.last_used_item'
+
+link_method_documentation "Command.use_item",
+                        "Utilise un objet sur un héros, renvoie true ou false selon si l'utilisation a réussi ou échoué",
+                        {:item_id => ["ID de l'objet à utiliser", :Fixnum],
+                         :actor_id => ["ID du héros sur lequel l'objet sera utilisé", :Fixnum]}, true
+register_command :items, "Command.use_item"
+
+link_method_documentation "Command.test_item",
+                        "Renvoie true ou false selon si l'utilisation d'un objet sur un héros va réussir ou échouer",
+                        {:item_id => ["ID de l'objet à utiliser", :Fixnum],
+                         :actor_id => ["ID du héros sur lequel l'objet sera utilisé", :Fixnum]}, true
+register_command :items, "Command.test_item"
 
 # AUTOGenerated for items_possessed
 link_method_documentation 'Command.items_possessed',
@@ -18009,6 +18261,11 @@ link_method_documentation "Command.item_tp_gain",
                           :id => ["Id de l'objet", :Fixnum],
                         }, true
 register_command :items, "Command.item_tp_gain"
+
+link_method_documentation 'Command.camera_scrolling?',
+	'Renvoie true si la camera est en train de défiler, false sinon',
+ 	{}, true # Maybe changed
+register_command :camera, 'Command.camera_scrolling?' 
 
 link_method_documentation "Command.game_title",
                         "Renvoie le titre du jeu",
@@ -20692,7 +20949,7 @@ link_method_documentation 'Command.player_teleport',
 register_command :event, 'Command.player_teleport'
 
 # AUTOGenerated for player_teleport_with_transition
-link_method_documentation 'Command.player_teleport_with_transition', 
+link_method_documentation 'Command.player_teleport_with_transition',
 	'Effectue une téléportation avec une image comme transition',
  	{
 		:map_id => ["ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte", :Fixnum],
@@ -20704,10 +20961,10 @@ link_method_documentation 'Command.player_teleport_with_transition',
 		:"*direction" => ["Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction", :Fixnum],
 
 	}
-register_command :event, 'Command.player_teleport_with_transition' 
+register_command :event, 'Command.player_teleport_with_transition'
 
 # AUTOGenerated for perform_transition
-link_method_documentation 'Command.perform_transition', 
+link_method_documentation 'Command.perform_transition',
 	'Effectue une transition à l\'écran',
  	{
 		:transition => ["Image où se trouve la transition", :String],
@@ -20718,15 +20975,15 @@ link_method_documentation 'Command.perform_transition',
 		:"*vague" => ["Ambiguité (par défaut, 40)", :Fixnum],
 
 	}
-register_command :screen, 'Command.perform_transition' 
+register_command :screen, 'Command.perform_transition'
 
-link_method_documentation 'Command.use_reflection', 
+link_method_documentation 'Command.use_reflection',
 	'Active la réflexion sur une surface. Regardez l\'exemple pour comprendre son fonctionnement',
  	{
 		:properties => ["L'ensemble des propriétés", :Hash],
 
 	}
-register_command :fx, 'Command.use_reflection' 
+register_command :fx, 'Command.use_reflection'
 
 link_method_documentation 'Command.disable_weather_dimness',
 'Désactive l\'obscurité lors d\'un changement climatique', {}
@@ -21330,10 +21587,10 @@ link_method_documentation 'Command.player_opaque',
 register_command :event, 'Command.player_opaque'
 
 # AUTOGenerated for mouse_moving?
-link_method_documentation 'Command.mouse_moving?', 
+link_method_documentation 'Command.mouse_moving?',
 	'Renvoie true si la souris bouge, false sinon',
  	{}, true # Maybe changed
-register_command :mouse, 'Command.mouse_moving?' 
+register_command :mouse, 'Command.mouse_moving?'
 
 # AUTOGenerated for get_tileset_id
 link_method_documentation 'Command.get_tileset_id',
@@ -21342,37 +21599,37 @@ link_method_documentation 'Command.get_tileset_id',
 register_command :mapinfo, 'Command.get_tileset_id'
 
 # AUTOGenerated for dash_activate?
-link_method_documentation 'Command.dash_activate?', 
+link_method_documentation 'Command.dash_activate?',
 'Renvoie true si la course est activée pour la map en cours, false sinon',
  {}, true # Maybe changed
-register_command :mapinfo, 'Command.dash_activate?' 
+register_command :mapinfo, 'Command.dash_activate?'
 
 # AUTOGenerated for dash_deactivate?
-link_method_documentation 'Command.dash_deactivate?', 
+link_method_documentation 'Command.dash_deactivate?',
 'Renvoie true si la course est désactivée pour la map en cours, false sinon',
  {}, true # Maybe changed
-register_command :mapinfo, 'Command.dash_deactivate?' 
+register_command :mapinfo, 'Command.dash_deactivate?'
 
 # AUTOGenerated for dash_activation
-link_method_documentation 'Command.dash_activation', 
+link_method_documentation 'Command.dash_activation',
 'Active ou désactive la course sur la map en cours',
  {
   :flag => ["true pour l'activer, false pour la désactiver", :Boolean],
 
 }
-register_command :mapinfo, 'Command.dash_activation' 
+register_command :mapinfo, 'Command.dash_activation'
 
 # AUTOGenerated for dash_activate
-link_method_documentation 'Command.dash_activate', 
+link_method_documentation 'Command.dash_activate',
 'Active la course sur la map en cours',
  {}
-register_command :mapinfo, 'Command.dash_activate' 
+register_command :mapinfo, 'Command.dash_activate'
 
 # AUTOGenerated for dash_deactivate
-link_method_documentation 'Command.dash_deactivate', 
+link_method_documentation 'Command.dash_deactivate',
 'Désactive la course pour la map en cours',
  {}
-register_command :mapinfo, 'Command.dash_deactivate' 
+register_command :mapinfo, 'Command.dash_deactivate'
 
 # AUTOGenerated for switch_tileset
 link_method_documentation 'Command.switch_tileset',
@@ -21510,7 +21767,7 @@ link_method_documentation 'Command.window_opened?',
 
 	}, true # Maybe changed
 register_command :window, 'Command.window_opened?'
-	
+
 # AUTOGenerated for window_exists?
 link_method_documentation 'Command.window_exists?',
 	'Renvoie true si la fenêtre référencée par son ID a été créée, false sinon',
@@ -21734,7 +21991,7 @@ link_method_documentation 'Command.window_y',
     :"*y" => ["Coordonnée Y de la fenêtre", :Fixnum],
 	}, true # Maybe changed
 register_command :window, 'Command.window_y'
-	
+
 link_method_documentation 'Command.mouse_hover_window?',
 	'Renvoie true si la souris survole la fenêtre, false sinon.',
  	{:id => ["ID de la fenêtre", :Fixnum]}, true
@@ -21769,67 +22026,67 @@ register_command :text, 'Command.texts_clear'
 
 
 # AUTOGenerated for event_move_down
-link_method_documentation 'Command.event_move_down', 
+link_method_documentation 'Command.event_move_down',
 	'Fait bouger l\'événement référencé par son ID d\'une case vers le bas. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{
     :id => ["Id de l'événement", :Fixnum],
     :"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean],
 	}
-register_command :event, 'Command.event_move_down' 
+register_command :event, 'Command.event_move_down'
 
 # AUTOGenerated for event_move_left
-link_method_documentation 'Command.event_move_left', 
+link_method_documentation 'Command.event_move_left',
 	'Fait bouger l\'événement référencé par son ID d\'une case vers la gauche. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{
 		:id => ["Id de l'événement", :Fixnum],
     :"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean],
 	}
-register_command :event, 'Command.event_move_left' 
+register_command :event, 'Command.event_move_left'
 
 # AUTOGenerated for event_move_right
-link_method_documentation 'Command.event_move_right', 
+link_method_documentation 'Command.event_move_right',
 	'Fait bouger l\'événement référencé par son ID d\'une case vers la droite. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{
 		:id => ["Id de l'événement", :Fixnum],
     :"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean],
 	}
-register_command :event, 'Command.event_move_right' 
+register_command :event, 'Command.event_move_right'
 
 # AUTOGenerated for event_move_up
-link_method_documentation 'Command.event_move_up', 
-  'Fait bouger l\'événement référencé par son ID d\'une case vers le haut. Renvoie true si le déplacement s\'est effectué, false sinon.',  
+link_method_documentation 'Command.event_move_up',
+  'Fait bouger l\'événement référencé par son ID d\'une case vers le haut. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{
 		:id => ["Id de l'événement", :Fixnum],
     :"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean],
 	}
-register_command :event, 'Command.event_move_up' 
+register_command :event, 'Command.event_move_up'
 
 # AUTOGenerated for player_move_down
-link_method_documentation 'Command.player_move_down', 
+link_method_documentation 'Command.player_move_down',
 	'Fait bouger le joueur d\'une case vers le bas',
  	{:"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean]}
-register_command :event, 'Command.player_move_down' 
+register_command :event, 'Command.player_move_down'
 
 # AUTOGenerated for player_move_left
-link_method_documentation 'Command.player_move_left', 
+link_method_documentation 'Command.player_move_left',
 	'Fait bouger le joueur d\'une case vers la gauche. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{:"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean]}
-register_command :event, 'Command.player_move_left' 
+register_command :event, 'Command.player_move_left'
 
 # AUTOGenerated for player_move_right
-link_method_documentation 'Command.player_move_right', 
+link_method_documentation 'Command.player_move_right',
 	'Fait bouger le joueur d\'une case vers la droite. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{:"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean]}
-register_command :event, 'Command.player_move_right' 
+register_command :event, 'Command.player_move_right'
 
 # AUTOGenerated for player_move_up
-link_method_documentation 'Command.player_move_up', 
+link_method_documentation 'Command.player_move_up',
 	'Fait bouger le joueur d\'une case vers le haut. Renvoie true si le déplacement s\'est effectué, false sinon.',
  	{:"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean]}
-register_command :event, 'Command.player_move_up' 
+register_command :event, 'Command.player_move_up'
 
 # AUTOGenerated for event_move_straight
-link_method_documentation 'Command.event_move_straight', 
+link_method_documentation 'Command.event_move_straight',
 	'Déplace un événement référencé par son ID d\'une case dans une direction. La commande renvoie true ou false si le déplacement a réussi ou non.',
  	{
 		:id => ["Id de l'événement", :Fixnum],
@@ -21837,34 +22094,34 @@ link_method_documentation 'Command.event_move_straight',
 		:"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_straight' 
+register_command :event, 'Command.event_move_straight'
 
 # AUTOGenerated for player_move_straight
-link_method_documentation 'Command.player_move_straight', 
+link_method_documentation 'Command.player_move_straight',
 	'Déplace un événement référencé par son ID d\'une case dans une direction. La commande renvoie true ou false si le déplacement a réussi ou non.',
  	{
 		:value => ["Valeur, 2 pour bas, 4 pour gauche, 6 pour droite et 8 pour bas", :Fixnum],
 		:"*turn_ok" => ["En cas d'échec de déplacement, si turn_ok vaut true, l'événement se tournera dans la direction du mouvement. (par défaut, true)", :Boolean],
 
 	}, true # Maybe changed
-register_command :event, 'Command.player_move_straight' 
+register_command :event, 'Command.player_move_straight'
 
 # AUTOGenerated for event_move_random
-link_method_documentation 'Command.event_move_random', 
+link_method_documentation 'Command.event_move_random',
 	'Déplace un événement d\' une case aléatoire.',
  	{
 		:id => ["Id de l'événement", :Fixnum],
 	}
-register_command :event, 'Command.event_move_random' 
+register_command :event, 'Command.event_move_random'
 
 # AUTOGenerated for player_move_random
-link_method_documentation 'Command.player_move_random', 
+link_method_documentation 'Command.player_move_random',
 	'Déplacele héro d\' une case aléatoire.',
  	{}
 register_command :event, 'Command.player_move_random'
 
 # AUTOGenerated for event_move_diagonal
-link_method_documentation 'Command.event_move_diagonal', 
+link_method_documentation 'Command.event_move_diagonal',
 	"Déplace un événement référencé par son ID d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.",
  	{
 		:id => ["Id de l'événement", :Fixnum],
@@ -21872,80 +22129,80 @@ link_method_documentation 'Command.event_move_diagonal',
 		:vertical => ["Direction verticale (2 pour bas, 8 pour haut)", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_diagonal' 
+register_command :event, 'Command.event_move_diagonal'
 
 # AUTOGenerated for player_move_diagonal
-link_method_documentation 'Command.player_move_diagonal', 
+link_method_documentation 'Command.player_move_diagonal',
 	"Déplace le héro d'une case en diagonale. Renvoie true si le mouvement à réussi, false sinon.",
  	{
 		:horizontal => ["Direction horizontale (4 pour gauche, 6 pour droite)", :Fixnum],
 		:vertical => ["Direction verticale (2 pour bas, 8 pour haut)", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.player_move_diagonal' 
+register_command :event, 'Command.player_move_diagonal'
 
 # AUTOGenerated for event_move_lower_left
-link_method_documentation 'Command.event_move_lower_left', 
+link_method_documentation 'Command.event_move_lower_left',
 	"Déplacement l'événement référencé par son ID d'une case en diagonale bas-gauche. Renvoie true si le déplacement à réussi, false sinon.",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_lower_left' 
+register_command :event, 'Command.event_move_lower_left'
 
 # AUTOGenerated for event_move_lower_right
-link_method_documentation 'Command.event_move_lower_right', 
+link_method_documentation 'Command.event_move_lower_right',
 	"Déplacement l'événement référencé par son ID d'une case en diagonale bas-droite. Renvoie true si le déplacement à réussi, false sinon.",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_lower_right' 
+register_command :event, 'Command.event_move_lower_right'
 
 # AUTOGenerated for event_move_upper_left
-link_method_documentation 'Command.event_move_upper_left', 
+link_method_documentation 'Command.event_move_upper_left',
 	"Déplacement l'événement référencé par son ID d'une case en diagonale haut-gauche. Renvoie true si le déplacement à réussi, false sinon.",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_upper_left' 
+register_command :event, 'Command.event_move_upper_left'
 
 # AUTOGenerated for event_move_upper_right
-link_method_documentation 'Command.event_move_upper_right', 
+link_method_documentation 'Command.event_move_upper_right',
 	"Déplacement l'événement référencé par son ID d'une case en diagonale haut-droite. Renvoie true si le déplacement à réussi, false sinon.",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_upper_right' 
+register_command :event, 'Command.event_move_upper_right'
 
 # AUTOGenerated for player_move_lower_left
-link_method_documentation 'Command.player_move_lower_left', 
+link_method_documentation 'Command.player_move_lower_left',
 	"Déplacement  le héro d'une case en diagonale bas-gauche. Renvoie true si le déplacement à réussi, false sinon.",
  	{}, true # Maybe changed
-register_command :event, 'Command.player_move_lower_left' 
+register_command :event, 'Command.player_move_lower_left'
 
 # AUTOGenerated for player_move_lower_right
-link_method_documentation 'Command.player_move_lower_right', 
+link_method_documentation 'Command.player_move_lower_right',
 	"Déplacement  le héro d'une case en diagonale bas-droite. Renvoie true si le déplacement à réussi, false sinon.",
  	{}, true # Maybe changed
-register_command :event, 'Command.player_move_lower_right' 
+register_command :event, 'Command.player_move_lower_right'
 
 # AUTOGenerated for player_move_upper_left
-link_method_documentation 'Command.player_move_upper_left', 
+link_method_documentation 'Command.player_move_upper_left',
 	"Déplacement  le héro d'une case en diagonale haut-gauche. Renvoie true si le déplacement à réussi, false sinon.",
  	{}, true # Maybe changed
-register_command :event, 'Command.player_move_upper_left' 
+register_command :event, 'Command.player_move_upper_left'
 
 # AUTOGenerated for player_move_upper_right
-link_method_documentation 'Command.player_move_upper_right', 
+link_method_documentation 'Command.player_move_upper_right',
 	"Déplacement  le héro d'une case en diagonale haut-droite. Renvoie true si le déplacement à réussi, false sinon.",
  	{}, true # Maybe changed
-register_command :event, 'Command.player_move_upper_right' 
+register_command :event, 'Command.player_move_upper_right'
 
 # AUTOGenerated for event_move_toward_position
-link_method_documentation 'Command.event_move_toward_position', 
+link_method_documentation 'Command.event_move_toward_position',
 	'Déplace un événement référencé par son ID d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["ID de l'événement", :Fixnum],
@@ -21953,49 +22210,49 @@ link_method_documentation 'Command.event_move_toward_position',
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_toward_position' 
+register_command :event, 'Command.event_move_toward_position'
 
 # AUTOGenerated for player_move_toward_position
-link_method_documentation 'Command.player_move_toward_position', 
+link_method_documentation 'Command.player_move_toward_position',
 	'Déplace le héro d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.player_move_toward_position' 
+register_command :event, 'Command.player_move_toward_position'
 
 # AUTOGenerated for event_move_toward_event
-link_method_documentation 'Command.event_move_toward_event', 
+link_method_documentation 'Command.event_move_toward_event',
 	'Déplace un événement référencé par son ID d\'une case en direction d\'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 		:target => ["Id de l'événement cible", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_toward_event' 
+register_command :event, 'Command.event_move_toward_event'
 
 # AUTOGenerated for event_move_toward_player
-link_method_documentation 'Command.event_move_toward_player', 
+link_method_documentation 'Command.event_move_toward_player',
 	'Déplace un événement référencé par son ID d\'une case en direction du héro. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_toward_player' 
+register_command :event, 'Command.event_move_toward_player'
 
 # AUTOGenerated for player_move_toward_event
-link_method_documentation 'Command.player_move_toward_event', 
+link_method_documentation 'Command.player_move_toward_event',
 	'Déplace le héro d\'une case en direction d\'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement cible", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.player_move_toward_event' 
+register_command :event, 'Command.player_move_toward_event'
 
 
 # AUTOGenerated for event_move_away_from_position
-link_method_documentation 'Command.event_move_away_from_position', 
+link_method_documentation 'Command.event_move_away_from_position',
 	'Déplace un événement référencé par son ID d\'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["ID de l'événement", :Fixnum],
@@ -22003,215 +22260,215 @@ link_method_documentation 'Command.event_move_away_from_position',
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_away_from_position' 
+register_command :event, 'Command.event_move_away_from_position'
 
 # AUTOGenerated for player_move_away_from_position
-link_method_documentation 'Command.player_move_away_from_position', 
+link_method_documentation 'Command.player_move_away_from_position',
 	'Déplace le héro d\'une case dans la direction opposée d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.player_move_away_from_position' 
+register_command :event, 'Command.player_move_away_from_position'
 
 # AUTOGenerated for event_move_away_from_event
-link_method_documentation 'Command.event_move_away_from_event', 
+link_method_documentation 'Command.event_move_away_from_event',
 	'Déplace un événement référencé par son ID d\'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 		:target => ["Id de l'événement cible", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_away_from_event' 
+register_command :event, 'Command.event_move_away_from_event'
 
 # AUTOGenerated for event_move_away_from_player
-link_method_documentation 'Command.event_move_away_from_player', 
+link_method_documentation 'Command.event_move_away_from_player',
 	'Déplace un événement référencé par son ID d\'une case en direction opposée au héro. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_away_from_player' 
+register_command :event, 'Command.event_move_away_from_player'
 
 # AUTOGenerated for player_move_away_from_event
-link_method_documentation 'Command.player_move_away_from_event', 
+link_method_documentation 'Command.player_move_away_from_event',
 	'Déplace le héro d\'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement cible", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.player_move_away_from_event' 
+register_command :event, 'Command.player_move_away_from_event'
 
 # AUTOGenerated for event_move_forward
-link_method_documentation 'Command.event_move_forward', 
+link_method_documentation 'Command.event_move_forward',
 	"Déplace l'événement référencé par son ID d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.",
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_forward' 
+register_command :event, 'Command.event_move_forward'
 
 # AUTOGenerated for player_move_forward
-link_method_documentation 'Command.player_move_forward', 
+link_method_documentation 'Command.player_move_forward',
 	"Déplace le héro d'une case en avant. Renvoie true si le mouvement a réussi, false sinon.",
  	{}, true # Maybe changed
-register_command :event, 'Command.player_move_forward' 
+register_command :event, 'Command.player_move_forward'
 
 # AUTOGenerated for event_move_backward
-link_method_documentation 'Command.event_move_backward', 
+link_method_documentation 'Command.event_move_backward',
 	"Déplace l'événement référencé par son ID d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.",
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 
 	}, true # Maybe changed
-register_command :event, 'Command.event_move_backward' 
+register_command :event, 'Command.event_move_backward'
 
 # AUTOGenerated for player_move_backward
-link_method_documentation 'Command.player_move_backward', 
+link_method_documentation 'Command.player_move_backward',
 	"Déplace le héro d'une case en arrière. Renvoie true si le mouvement a réussi, false sinon.",
  	{}, true # Maybe changed
-register_command :event, 'Command.player_move_backward' 
+register_command :event, 'Command.player_move_backward'
 
 # AUTOGenerated for event_turn_down
-link_method_documentation 'Command.event_turn_down', 
+link_method_documentation 'Command.event_turn_down',
 	"Fait tourner un événement vers le bas",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_down' 
+register_command :event, 'Command.event_turn_down'
 
 # AUTOGenerated for player_turn_down
-link_method_documentation 'Command.player_turn_down', 
+link_method_documentation 'Command.player_turn_down',
 	"Fait tourner le héro vers le bas",
  	{}
-register_command :event, 'Command.player_turn_down' 
+register_command :event, 'Command.player_turn_down'
 
 # AUTOGenerated for event_turn_left
-link_method_documentation 'Command.event_turn_left', 
+link_method_documentation 'Command.event_turn_left',
 	"Fait tourner un événement à gauche",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_left' 
+register_command :event, 'Command.event_turn_left'
 
 # AUTOGenerated for player_turn_left
-link_method_documentation 'Command.player_turn_left', 
+link_method_documentation 'Command.player_turn_left',
 	"Fait tourner le héro à gauche",
  	{}
-register_command :event, 'Command.player_turn_left' 
+register_command :event, 'Command.player_turn_left'
 
 # AUTOGenerated for event_turn_right
-link_method_documentation 'Command.event_turn_right', 
+link_method_documentation 'Command.event_turn_right',
 	"Fait tourner un événement à droite",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_right' 
+register_command :event, 'Command.event_turn_right'
 
 # AUTOGenerated for player_turn_right
-link_method_documentation 'Command.player_turn_right', 
+link_method_documentation 'Command.player_turn_right',
 	"Fait tourner le héro à droite",
  	{}
-register_command :event, 'Command.player_turn_right' 
+register_command :event, 'Command.player_turn_right'
 
 # AUTOGenerated for event_turn_up
-link_method_documentation 'Command.event_turn_up', 
+link_method_documentation 'Command.event_turn_up',
 	"Fait tourner un événement vers le bas",
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_up' 
+register_command :event, 'Command.event_turn_up'
 
 # AUTOGenerated for player_turn_up
-link_method_documentation 'Command.player_turn_up', 
+link_method_documentation 'Command.player_turn_up',
 	"Fait tourner le héro vers le bas",
  	{}
-register_command :event, 'Command.player_turn_up' 
+register_command :event, 'Command.player_turn_up'
 
 
 # AUTOGenerated for event_turn_90_left
-link_method_documentation 'Command.event_turn_90_left', 
+link_method_documentation 'Command.event_turn_90_left',
 	'Fait tourner un événement référencé par son ID de 90° par la gauche',
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_90_left' 
+register_command :event, 'Command.event_turn_90_left'
 
 # AUTOGenerated for player_turn_90_left
-link_method_documentation 'Command.player_turn_90_left', 
+link_method_documentation 'Command.player_turn_90_left',
 	'Fait tourner le joueur de 90° par la gauche',
  	{}
-register_command :event, 'Command.player_turn_90_left' 
+register_command :event, 'Command.player_turn_90_left'
 
 # AUTOGenerated for event_turn_90_right
-link_method_documentation 'Command.event_turn_90_right', 
+link_method_documentation 'Command.event_turn_90_right',
 	'Fait tourner un événement référencé par son ID de 90° par la droite',
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_90_right' 
+register_command :event, 'Command.event_turn_90_right'
 
 # AUTOGenerated for player_turn_90_right
-link_method_documentation 'Command.player_turn_90_right', 
+link_method_documentation 'Command.player_turn_90_right',
 	'Fait tourner le joueur de 90° par la droite',
  	{}
-register_command :event, 'Command.player_turn_90_right' 
+register_command :event, 'Command.player_turn_90_right'
 
 # AUTOGenerated for event_turn_180
-link_method_documentation 'Command.event_turn_180', 
+link_method_documentation 'Command.event_turn_180',
 	'Fait tourner un événement référencé par son ID de 180°',
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_180' 
+register_command :event, 'Command.event_turn_180'
 
 # AUTOGenerated for player_turn_180
-link_method_documentation 'Command.player_turn_180', 
+link_method_documentation 'Command.player_turn_180',
 	'Fait tourner le héro de 180°',
  	{}
-register_command :event, 'Command.player_turn_180' 
+register_command :event, 'Command.player_turn_180'
 
 # AUTOGenerated for event_turn_90_right_or_left
-link_method_documentation 'Command.event_turn_90_right_or_left', 
+link_method_documentation 'Command.event_turn_90_right_or_left',
 	'Fait tourner un événement référencé par son ID de 90° par la gauche ou par la droite (aléatoirement)',
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_90_right_or_left' 
+register_command :event, 'Command.event_turn_90_right_or_left'
 
 # AUTOGenerated for player_turn_90_right_or_left
-link_method_documentation 'Command.player_turn_90_right_or_left', 
+link_method_documentation 'Command.player_turn_90_right_or_left',
 	'Fait tourner le héro de 90° par la gauche ou par la droite (aléatoirement)',
  	{}
-register_command :event, 'Command.player_turn_90_right_or_left' 
+register_command :event, 'Command.player_turn_90_right_or_left'
 
 # AUTOGenerated for event_turn_random
-link_method_documentation 'Command.event_turn_random', 
+link_method_documentation 'Command.event_turn_random',
 	'Fait tourner un événement référencé par son ID dans une direction aléatoire',
  	{
 		:id => ["ID de l'événement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_random' 
+register_command :event, 'Command.event_turn_random'
 
 # AUTOGenerated for player_turn_random
-link_method_documentation 'Command.player_turn_random', 
+link_method_documentation 'Command.player_turn_random',
 	'Fait tourner le héro dans une direction aléatoire',
  	{}
-register_command :event, 'Command.player_turn_random' 
+register_command :event, 'Command.player_turn_random'
 
 
 # AUTOGenerated for event_turn_toward_position
-link_method_documentation 'Command.event_turn_toward_position', 
+link_method_documentation 'Command.event_turn_toward_position',
 	'Tourne un événement référencé par son ID d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["ID de l'événement", :Fixnum],
@@ -22219,49 +22476,49 @@ link_method_documentation 'Command.event_turn_toward_position',
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_toward_position' 
+register_command :event, 'Command.event_turn_toward_position'
 
 # AUTOGenerated for player_turn_toward_position
-link_method_documentation 'Command.player_turn_toward_position', 
+link_method_documentation 'Command.player_turn_toward_position',
 	'Tourne le héro d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}
-register_command :event, 'Command.player_turn_toward_position' 
+register_command :event, 'Command.player_turn_toward_position'
 
 # AUTOGenerated for event_turn_toward_event
-link_method_documentation 'Command.event_turn_toward_event', 
+link_method_documentation 'Command.event_turn_toward_event',
 	'Tourne un événement référencé par son ID d\'une case en direction d\'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 		:target => ["Id de l'événement cible", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_toward_event' 
+register_command :event, 'Command.event_turn_toward_event'
 
 # AUTOGenerated for event_turn_toward_player
-link_method_documentation 'Command.event_turn_toward_player', 
+link_method_documentation 'Command.event_turn_toward_player',
 	'Tourne un événement référencé par son ID d\'une case en direction du héro. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_toward_player' 
+register_command :event, 'Command.event_turn_toward_player'
 
 # AUTOGenerated for player_turn_toward_event
-link_method_documentation 'Command.player_turn_toward_event', 
+link_method_documentation 'Command.player_turn_toward_event',
 	'Tourne le héro d\'une case en direction d\'un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement cible", :Fixnum],
 
 	}
-register_command :event, 'Command.player_turn_toward_event' 
+register_command :event, 'Command.player_turn_toward_event'
 
 
 # AUTOGenerated for event_turn_away_from_position
-link_method_documentation 'Command.event_turn_away_from_position', 
+link_method_documentation 'Command.event_turn_away_from_position',
 	'Tourne un événement référencé par son ID d\'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["ID de l'événement", :Fixnum],
@@ -22269,39 +22526,39 @@ link_method_documentation 'Command.event_turn_away_from_position',
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_away_from_position' 
+register_command :event, 'Command.event_turn_away_from_position'
 
 # AUTOGenerated for player_turn_away_from_position
-link_method_documentation 'Command.player_turn_away_from_position', 
+link_method_documentation 'Command.player_turn_away_from_position',
 	'Tourne le héro d\'une case dans la direction opposée d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:x => ["Coordonnées X", :Fixnum],
 		:y => ["Coordonnées Y", :Fixnum],
 
 	}
-register_command :event, 'Command.player_turn_away_from_position' 
+register_command :event, 'Command.player_turn_away_from_position'
 
 # AUTOGenerated for event_turn_away_from_event
-link_method_documentation 'Command.event_turn_away_from_event', 
+link_method_documentation 'Command.event_turn_away_from_event',
 	'Tourne un événement référencé par son ID d\'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 		:target => ["Id de l'événement cible", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_away_from_event' 
+register_command :event, 'Command.event_turn_away_from_event'
 
 # AUTOGenerated for event_turn_away_from_player
-link_method_documentation 'Command.event_turn_away_from_player', 
+link_method_documentation 'Command.event_turn_away_from_player',
 	'Tourne un événement référencé par son ID d\'une case en direction opposée au héro. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement devant effectuer le déplacement", :Fixnum],
 
 	}
-register_command :event, 'Command.event_turn_away_from_player' 
+register_command :event, 'Command.event_turn_away_from_player'
 
 # AUTOGenerated for player_turn_away_from_event
-link_method_documentation 'Command.player_turn_away_from_event', 
+link_method_documentation 'Command.player_turn_away_from_event',
 	'Tourne le héro d\'une case dans la direction opposée à un autre événément référencé par son ID. Renvoie true si le mouvement a réussi, false sinon.',
  	{
 		:id => ["Id de l'événement cible", :Fixnum],
@@ -22310,7 +22567,7 @@ link_method_documentation 'Command.player_turn_away_from_event',
 register_command :event, 'Command.player_turn_away_from_event'
 
 # AUTOGenerated for text_progressive
-link_method_documentation 'Command.text_progressive', 
+link_method_documentation 'Command.text_progressive',
 	'Affiche progressivement un texte (caractère par caractère)',
  	{
 		:id => ["Id du champ de texte", :Fixnum],
@@ -22319,68 +22576,68 @@ link_method_documentation 'Command.text_progressive',
 		:"*block" => ["Vous pouvez passer du code entre accolades qui va s'exécuter à chaque caractère (facultatif)", :Block]
 
 	}
-register_command :text, 'Command.text_progressive' 
+register_command :text, 'Command.text_progressive'
 
 # AUTOGenerated for get_random_square
-link_method_documentation 'Command.get_random_square', 
+link_method_documentation 'Command.get_random_square',
 	'Renvoie un point aléatoire sur la carte, dont la région est référencée par son ID',
  	{
 		:"*region_id" => ["L'id de la région dans laquelle chercher une case aléatoire. Par défaut, elle vaut 0", :Fixnum],
 
 	}, true # Maybe changed
-register_command :mapinfo, 'Command.get_random_square' 
+register_command :mapinfo, 'Command.get_random_square'
 
 # AUTOGenerated for get_squares_by_region
-link_method_documentation 'Command.get_squares_by_region', 
+link_method_documentation 'Command.get_squares_by_region',
 	'Renvoie un tableau de cases pour une région donnée.',
  	{
 		:region_id => ["l'ID de la région (entre 0 et 63)", :Fixnum],
 
 	}, true # Maybe changed
-register_command :mapinfo, 'Command.get_squares_by_region' 
+register_command :mapinfo, 'Command.get_squares_by_region'
 
 # AUTOGenerated for get_squares_by_tile
-link_method_documentation 'Command.get_squares_by_tile', 
+link_method_documentation 'Command.get_squares_by_tile',
 	'Renvoie un tableau de cases pour un tile (et une couche) donnés.',
  	{
 		:layer => ["La couche (entre 0 et 2)", :Fixnum],
 		:tile_id => ["L'ID du tile", :Fixnum],
 
 	}, true # Maybe changed
-register_command :mapinfo, 'Command.get_squares_by_tile' 
+register_command :mapinfo, 'Command.get_squares_by_tile'
 
 # AUTOGenerated for has_prefix?
-link_method_documentation 'Command.has_prefix?', 
+link_method_documentation 'Command.has_prefix?',
 	'Renvoie true si une chaine à le préfix donné, false sinon.',
  	{
 		:string => ["La chaine de caractère à vérifier", :String],
 		:prefix => ["Le préfix devant être contenu dans la chaine", :String],
 
 	}, true # Maybe changed
-register_command :standard, 'Command.has_prefix?' 
+register_command :standard, 'Command.has_prefix?'
 
 # AUTOGenerated for has_suffix?
-link_method_documentation 'Command.has_suffix?', 
+link_method_documentation 'Command.has_suffix?',
 	'Renvoie true si une chaine à le suffix donné, false sinon.',
  	{
 		:string => ["La chaine de caractère à vérifier", :String],
 		:suffix => ["Le suffix devant être contenu dans la chaine", :String],
 
 	}, true # Maybe changed
-register_command :standard, 'Command.has_suffix?' 
+register_command :standard, 'Command.has_suffix?'
 
 # AUTOGenerated for has_substring?
-link_method_documentation 'Command.has_substring?', 
+link_method_documentation 'Command.has_substring?',
 	'Renvoie true si une chaine contient une autre chaine donnée, false sinon.',
  	{
 		:string => ["La chaine de caractère à vérifier", :String],
 		:substring => ["La chaine devant être contenue dans la chaine", :String],
 
 	}, true # Maybe changed
-register_command :standard, 'Command.has_substring?' 
+register_command :standard, 'Command.has_substring?'
 
 # AUTOGenerated for event_flash
-link_method_documentation 'Command.event_flash', 
+link_method_documentation 'Command.event_flash',
 	'Flash un événement (référencé par son ID) dans une couleur',
  	{
 		:id => ["l'ID de l'événement cible", :Fixnum],
@@ -22388,29 +22645,29 @@ link_method_documentation 'Command.event_flash',
 		:duration => ["La durée du flash en frames", :Fixnum],
 
 	}
-register_command :event, 'Command.event_flash' 
+register_command :event, 'Command.event_flash'
 
 # AUTOGenerated for player_flash
-link_method_documentation 'Command.player_flash', 
+link_method_documentation 'Command.player_flash',
 	'Flash le hér dans une couleur',
  	{
 		:color => ["La couleur du flash (vous pouvez utiliser la commande color ou via son profil dans la base de données)", :Color],
 		:duration => ["La durée du flash en frames", :Fixnum],
 
 	}
-register_command :event, 'Command.player_flash' 
+register_command :event, 'Command.player_flash'
 
 # AUTOGenerated for get_squares_by_terrain
-link_method_documentation 'Command.get_squares_by_terrain', 
+link_method_documentation 'Command.get_squares_by_terrain',
 	'Renvoie un tableau de cases pour un terrain_tag donné donnée.',
  	{
 		:terrain_tag => ["Le terrain tag (entre 0 et 7)", :Fixnum],
 
 	}, true # Maybe changed
-register_command :mapinfo, 'Command.get_squares_by_terrain' 
+register_command :mapinfo, 'Command.get_squares_by_terrain'
 
 # AUTOGenerated for pixel_in_text?
-link_method_documentation 'Command.pixel_in_text?', 
+link_method_documentation 'Command.pixel_in_text?',
 	'Vérifie que le x, y sont inscrit dans le texte',
  	{
 		:id => ["ID du texte", :Fixnum],
@@ -22419,30 +22676,30 @@ link_method_documentation 'Command.pixel_in_text?',
 		:"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
 	}, true # Maybe changed
-register_command :text, 'Command.pixel_in_text?' 
+register_command :text, 'Command.pixel_in_text?'
 
 # AUTOGenerated for text_mouse_hover?
-link_method_documentation 'Command.text_mouse_hover?', 
+link_method_documentation 'Command.text_mouse_hover?',
 	'Renvoie true si la souris survole le texte référencé par son ID',
  	{
 		:id => ["ID du texte", :Fixnum],
 		:"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
 	}, true # Maybe changed
-register_command :text, 'Command.text_mouse_hover?' 
+register_command :text, 'Command.text_mouse_hover?'
 
 # AUTOGenerated for text_mouse_click?
-link_method_documentation 'Command.text_mouse_click?', 
+link_method_documentation 'Command.text_mouse_click?',
 	'Renvoie true si la souris survole et clique le texte référencé par son ID',
  	{
 		:id => ["ID du texte", :Fixnum],
 		:"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
 	}, true # Maybe changed
-register_command :text, 'Command.text_mouse_click?' 
+register_command :text, 'Command.text_mouse_click?'
 
 # AUTOGenerated for text_mouse_press?
-link_method_documentation 'Command.text_mouse_press?', 
+link_method_documentation 'Command.text_mouse_press?',
 	'Renvoie true si la souris survole et presse en continu la touche référencée sur le texte référencé par son ID',
  	{
 		:id => ["ID du texte", :Fixnum],
@@ -22450,10 +22707,10 @@ link_method_documentation 'Command.text_mouse_press?',
 		:"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
 	}, true # Maybe changed
-register_command :text, 'Command.text_mouse_press?' 
+register_command :text, 'Command.text_mouse_press?'
 
 # AUTOGenerated for text_mouse_trigger?
-link_method_documentation 'Command.text_mouse_trigger?', 
+link_method_documentation 'Command.text_mouse_trigger?',
 	'Renvoie true si la souris survole et presse la touche référencée sur le texte référencé par son ID',
  	{
 		:id => ["ID du texte", :Fixnum],
@@ -22461,10 +22718,10 @@ link_method_documentation 'Command.text_mouse_trigger?',
 		:"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
 	}, true # Maybe changed
-register_command :text, 'Command.text_mouse_trigger?' 
+register_command :text, 'Command.text_mouse_trigger?'
 
 # AUTOGenerated for text_mouse_repeat?
-link_method_documentation 'Command.text_mouse_repeat?', 
+link_method_documentation 'Command.text_mouse_repeat?',
 	'Renvoie true si la souris survole et presse successivement la touche référencée sur le texte référencé par son ID',
  	{
 		:id => ["ID du texte", :Fixnum],
@@ -22472,10 +22729,10 @@ link_method_documentation 'Command.text_mouse_repeat?',
 		:"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
 	}, true # Maybe changed
-register_command :text, 'Command.text_mouse_repeat?' 
+register_command :text, 'Command.text_mouse_repeat?'
 
 # AUTOGenerated for text_mouse_release?
-link_method_documentation 'Command.text_mouse_release?', 
+link_method_documentation 'Command.text_mouse_release?',
 	'Renvoie true si la souris survole et relâche la touche référencée sur le texte référencé par son ID',
  	{
 		:id => ["ID du texte", :Fixnum],
@@ -22486,31 +22743,90 @@ link_method_documentation 'Command.text_mouse_release?',
 register_command :text, 'Command.text_mouse_release?'
 
 # AUTOGenerated for fresh_text_id
-link_method_documentation 'Command.fresh_text_id', 
+link_method_documentation 'Command.fresh_text_id',
 	'Génère un ID non utilisé pour un texte',
  	{}, true # Maybe changed
 register_command :text, 'Command.fresh_text_id'
 
 # AUTOGenerated for fresh_picture_id
-link_method_documentation 'Command.fresh_picture_id', 
+link_method_documentation 'Command.fresh_picture_id',
 	'Génère un ID non utilisé pour une picture',
  	{}, true # Maybe changed
-register_command :picture, 'Command.fresh_picture_id' 
+register_command :picture, 'Command.fresh_picture_id'
 
 # AUTOGenerated for fresh_parallax_id
-link_method_documentation 'Command.fresh_parallax_id', 
+link_method_documentation 'Command.fresh_parallax_id',
 	'Génère un ID non utilisé pour une panorama',
  	{}, true # Maybe changed
-register_command :parallax, 'Command.fresh_parallax_id' 
+register_command :parallax, 'Command.fresh_parallax_id'
 
 # AUTOGenerated for parallax_erased?
-link_method_documentation 'Command.parallax_erased?', 
+link_method_documentation 'Command.parallax_erased?',
 	'Renvoie true si le panorama référencé par son ID a été supprimé, false sinon',
  	{
 		:id => ["ID du panorama", :Fixnum],
 
 	}
-register_command :parallax, 'Command.parallax_erased?' 
+register_command :parallax, 'Command.parallax_erased?'
+
+# AUTOGenerated for create_light_emitters
+link_method_documentation 'Command.create_light_emitters',
+	'Your description',
+ 	{
+		:hash => ["Args description", :ArgType],
+
+	}, true # Maybe changed
+register_command :standard, 'Command.create_light_emitters'
+
+# AUTOGenerated for menu_disabled?
+link_method_documentation 'Command.menu_disabled?',
+	'Renvoie true si les accès aux menus sont désactivés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.menu_disabled?'
+
+# AUTOGenerated for menu_enabled?
+link_method_documentation 'Command.menu_enabled?',
+'Renvoie true si les accès aux menus sont activés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.menu_enabled?'
+
+# AUTOGenerated for save_enabled?
+link_method_documentation 'Command.save_enabled?',
+  'Renvoie true si les accès aux sauvegardes sont activés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.save_enabled?'
+
+# AUTOGenerated for save_disabled?
+link_method_documentation 'Command.save_disabled?',
+  'Renvoie true si les accès aux sauvegardes sont désactivés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.save_disabled?'
+
+# AUTOGenerated for encounter_disabled?
+link_method_documentation 'Command.encounter_disabled?',
+  'Renvoie true si les rencontres sont désactivés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.encounter_disabled?'
+
+# AUTOGenerated for encounter_enabled?
+link_method_documentation 'Command.encounter_enabled?',
+  'Renvoie true si les rencontres sont activés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.encounter_enabled?'
+
+# AUTOGenerated for formation_disabled?
+link_method_documentation 'Command.formation_disabled?',
+'Renvoie true si les formations sont désactivés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.formation_disabled?'
+
+# AUTOGenerated for formation_enabled?
+link_method_documentation 'Command.formation_enabled?',
+  'Renvoie true si les formations sont activés, false sinon',
+ 	{}, true # Maybe changed
+register_command :standard, 'Command.formation_enabled?'
+
+
 
 
 

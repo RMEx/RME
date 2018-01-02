@@ -11,10 +11,15 @@ Commandes standards
 *    [call_common_event(id)](#call_common_eventid)
 *    [choice(array, index_if_cancelled, *value, *face_name, *face_index, *position, *background)](#choicearray-index_if_cancelled-value-face_name-face_index-position-background)
 *    [color(red, green, blue, *alpha)](#colorred-green-blue-alpha)
+*    [create_light_emitters(hash)](#create_light_emittershash)
+*    [encounter_disabled?](#encounter_disabled)
+*    [encounter_enabled?](#encounter_enabled)
 *    [fadein(*time)](#fadeintime)
 *    [fadeout(*time)](#fadeouttime)
 *    [flash_rect(x, y, width, height, color)](#flash_rectx-y-width-height-color)
 *    [flash_square(x, y, color)](#flash_squarex-y-color)
+*    [formation_disabled?](#formation_disabled)
+*    [formation_enabled?](#formation_enabled)
 *    [get(array, index)](#getarray-index)
 *    [has_prefix?(string, prefix)](#has_prefixstring-prefix)
 *    [has_substring?(string, substring)](#has_substringstring-substring)
@@ -22,6 +27,8 @@ Commandes standards
 *    [last_choice](#last_choice)
 *    [length(array)](#lengtharray)
 *    [max(a, b)](#maxa-b)
+*    [menu_disabled?](#menu_disabled)
+*    [menu_enabled?](#menu_enabled)
 *    [message(value, *face_name, *face_index, *position, *background)](#messagevalue-face_name-face_index-position-background)
 *    [message_height(n)](#message_heightn)
 *    [min(a, b)](#mina-b)
@@ -32,6 +39,8 @@ Commandes standards
 *    [random_combination(len, *keys)](#random_combinationlen-keys)
 *    [random_figures(x)](#random_figuresx)
 *    [rm_kill](#rm_kill)
+*    [save_disabled?](#save_disabled)
+*    [save_enabled?](#save_enabled)
 *    [session_username](#session_username)
 *    [split_each_char(str)](#split_each_charstr)
 *    [text_angle(id, *value)](#text_angleid-value)
@@ -43,6 +52,8 @@ Commandes standards
 *    [wait_trigger(key)](#wait_triggerkey)
 *    [wait_with(time, &block)](#wait_withtime-&block)
 *    [website(url)](#websiteurl)
+*    [windowskin_opacity(*value)](#windowskin_opacityvalue)
+*    [windowskin_tone(*tone)](#windowskin_tonetone)
 
 
 ## Description des commandes
@@ -88,6 +99,24 @@ Nom|Type|Description
 `green`|`Fixnum`|Valeur de vert  
 `blue`|`Fixnum`|Valeur de bleu  
 `*alpha`|`Fixnum`|Opacité, par défaut 255!  
+##### create_light_emitters(hash)
+
+> Your description
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`hash`|`ArgType`|Args description  
+##### encounter_disabled?
+
+> Renvoie true si les rencontres sont désactivés, false sinon
+
+  
+##### encounter_enabled?
+
+> Renvoie true si les rencontres sont activés, false sinon
+
+  
 ##### fadein(*time)
 
 > Affiche l'écran en fondu
@@ -126,6 +155,16 @@ Nom|Type|Description
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
 `color`|`Color`|Couleur du flash (utilisez la commande color)  
+##### formation_disabled?
+
+> Renvoie true si les formations sont désactivés, false sinon
+
+  
+##### formation_enabled?
+
+> Renvoie true si les formations sont activés, false sinon
+
+  
 ##### get(array, index)
 
 > Renvoie la cellule à la valeur donnée d'un tableau
@@ -184,6 +223,16 @@ Nom|Type|Description
 --- | --- | ---  
 `a`|`Object`|Valeur de A  
 `b`|`Object`|Valeur de B  
+##### menu_disabled?
+
+> Renvoie true si les accès aux menus sont désactivés, false sinon
+
+  
+##### menu_enabled?
+
+> Renvoie true si les accès aux menus sont activés, false sinon
+
+  
 ##### message(value, *face_name, *face_index, *position, *background)
 
 > Affiche un message à l'écran
@@ -269,6 +318,16 @@ Nom|Type|Description
 ##### rm_kill
 
 > Quitte le jeu... d'un coup sec... TCHAK
+
+  
+##### save_disabled?
+
+> Renvoie true si les accès aux sauvegardes sont désactivés, false sinon
+
+  
+##### save_enabled?
+
+> Renvoie true si les accès aux sauvegardes sont activés, false sinon
 
   
 ##### session_username
@@ -365,3 +424,19 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `url`|`String`|Url à charger  
+##### windowskin_opacity(*value)
+
+> Change l'opacité du windowSkin. Si aucune valeur n'est donnée, la commande renverra l'opacité
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*value`|`Fixnum`|Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.  
+##### windowskin_tone(*tone)
+
+> Change la teinte du windowSkin. Si aucune valeur n'est donnée, la commande renverra la teinte
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`*tone`|`Tone`|Teinte du WindowSkin (utilisez la commande tone)  

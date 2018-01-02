@@ -60,6 +60,47 @@ module RMECommands
     string.include?(substring)
   end
 
+  def windowskin_tone(tone = nil)
+    $game_system.window_tone = tone if tone
+    $game_system.window_tone
+  end
+
+  def windowskin_opacity(opacity = nil)
+    $game_system.window_opacity = opacity if opacity
+    $game_system.window_opacity
+  end
+
+  def menu_disabled?
+    $game_system.menu_disabled
+  end
+
+  def menu_enabled?
+    !menu_disabled?
+  end
+
+  def save_enabled?
+    !save_disabled?
+  end
+
+  def save_disabled?
+    $game_system.save_disabled
+  end
+
+  def encounter_disabled?
+    $game_system.encounter_disabled
+  end
+
+  def encounter_enabled?
+    !encounter_disabled?
+  end
+
+  def formation_disabled?
+    $game_system.formation_disabled
+  end
+
+  def formation_enabled?
+    !formation_disabled?
+  end
 
 
   def max(a, b); [a, b].max; end
@@ -173,7 +214,7 @@ module RMECommands
   end
 
   def choice(array, index_if_cancelled, value = nil, face_name = nil, face_index = 0, position = 2, background = 0)
-    if value 
+    if value
       if face_name
         $game_message.face_name = face_name
         $game_message.face_index = face_index
@@ -181,15 +222,15 @@ module RMECommands
       $game_message.position = position
       $game_message.background = background
       $game_message.add(value)
-    else 
+    else
       wait_for_message
     end
     setup_choices([array, index_if_cancelled])
     $game_message.choice_cancel_type = index_if_cancelled
     $game_message.choice_proc = Proc.new {|n| $game_message.last_choice = n+1}
     if value
-      wait_for_message 
-    else 
+      wait_for_message
+    else
       Fiber.yield while $game_message.choice?
     end
     return $game_message.last_choice
@@ -511,7 +552,8 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * change Zoom
     #--------------------------------------------------------------------------
-    def picture_zoom(ids, zoom_x, zoom_y, duration = 0, wf = false, ease = :InLinear)
+    def picture_zoom(ids, zoom_x, zoom_y = false, duration = 0, wf = false, ease = :InLinear)
+      zoom_y ||= zoom_x
       select_pictures(ids).each do |id|
         picture_zoom_x(id, zoom_x, duration, false, ease)
         picture_zoom_y(id, zoom_y, duration, false, ease)
@@ -954,6 +996,7 @@ module RMECommands
     def flash_square(x, y, color)
       tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
       tilemap.flash_data[x, y] = color.to_hex
+      $game_system.flashed_data[$game_map.map_id] = tilemap.flash_data
     end
     #--------------------------------------------------------------------------
     # * UnFlash a square
@@ -1072,6 +1115,25 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Items
     #--------------------------------------------------------------------------
+    def use_item(item_id, actor_id)
+      return false unless test_item(item_id, actor_id)
+      item = $data_items[item_id]
+      user = $game_party.movable_members.max_by {|member| member.pha }
+      target = $game_actors[actor_id]
+      return false unless item && user && target
+
+      user.use_item(item)
+      item.repeats.times { target.item_apply(user, item) }
+      true
+    end
+    def test_item(item_id, actor_id)
+      item = $data_items[item_id]
+      user = $game_party.movable_members.max_by {|member| member.pha }
+      target = $game_actors[actor_id]
+
+      target.item_test(user, item)
+    end
+
     def items_possessed
       $game_party.items.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
@@ -1259,7 +1321,7 @@ module RMECommands
     #     element_rate(item.damage.element_id)
     #   end
     # end
-    
+
     def last_used_item(); $game_temp.last_used_item; end
 
     append_commands
@@ -1428,6 +1490,13 @@ module RMECommands
       return event(id).direction unless value
       event(id).set_direction(value)
     end
+    def event_change_character(id, character_name, character_index)
+      event(id).set_graphic(character_name, character_index)
+    end
+    def event_character_name(id); event(id).character_name; end
+    def event_character_index(id); event(id).character_index; end
+    def current_event_id; me; end
+    def me; Game_Interpreter.current_id; end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
@@ -1454,7 +1523,7 @@ module RMECommands
       $game_map.can_dash = !!flag
     end
 
-    def dash_activate 
+    def dash_activate
       dash_activation(true)
     end
 
@@ -1632,6 +1701,7 @@ module RMECommands
       end
     end
 
+
     def show_animation(ids, id_animation, wait_flag=false)
       character = nil
       select_events(ids).each do |id_event|
@@ -1685,14 +1755,14 @@ module RMECommands
     end
 
     def event_priority(ids, priority = nil)
-      return event(ids).priority_type unless !priority && ids.is_a?(Fixnum)
+      return event(ids).priority_type if !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
       event(id_event).priority_type = priority
     end
     end
 
     def event_trigger(ids, trigger = nil)
-      return event(ids).trigger unless !trigger && ids.is_a?(Fixnum)
+      return event(ids).trigger if !trigger && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
         event(id_event).trigger = trigger
       end
@@ -1783,6 +1853,22 @@ module RMECommands
       select_events(ids).each do |id_event|
         event(id_event).opacity = value
       end
+    end
+
+    #--------------------------------------------------------------------------
+    # * change Tone
+    #--------------------------------------------------------------------------
+    def event_tone(ids, tone, d = 0, wf = false, ease = :InLinear)
+      select_events(ids).each do |id_event|
+        event(id_event).start_tone_change(tone, d, ease)
+      end
+      if d.is_a?(Fixnum) && wf
+        wait(d)
+      end
+    end
+
+    def player_tone(tone, d = 0, wf = false, ease = :InLinear)
+      event_tone(0, tone, d, wf, ease)
     end
 
     def player_opacity(value = nil)
@@ -3028,6 +3114,10 @@ module RMECommands
       $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
     end
 
+    def camera_scrolling?
+      $game_map.scrolling? || $game_map.scrolling_activate
+    end
+
     def camera_scroll_on(x, y, speed)
       camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
       camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
@@ -3036,11 +3126,11 @@ module RMECommands
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
     def camera_locked?; $game_map.target_camera.nil?; end
-  
+
     def camera_lock_x; $game_map.camera_lock << :x; end
     def camera_unlock_x; $game_map.camera_lock.delete(:x); end
     def camera_x_locked?; $game_map.camera_lock.include?(:x); end
-      
+
     def camera_lock_y; $game_map.camera_lock << :y; end
     def camera_unlock_y; $game_map.camera_lock.delete(:y); end
     def camera_y_locked?; $game_map.camera_lock.include?(:y); end
@@ -3160,12 +3250,12 @@ module RMECommands
       return false unless window_exists?(id)
       SceneManager.scene.windows[id].close?
     end
-    
+
     def window_opened?(id)
       return false unless window_exists?(id)
       SceneManager.scene.windows[id].open?
     end
-    
+
     def window_exists?(id)
       SceneManager.scene.windows[id].to_bool
     end
@@ -3235,11 +3325,11 @@ module RMECommands
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
     end
-    
+
     #--------------------------------------------------------------------------
     # * Point in window
     #--------------------------------------------------------------------------
-    
+
     def mouse_hover_window?(id)
       SceneManager.scene.windows[id].mouse_hover? if SceneManager.scene.windows[id]
     end

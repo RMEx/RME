@@ -29,6 +29,7 @@ Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour
 *    [Techniques](command_skills.md)
 *    [Client-Serveur](command_socket.md)
 *    [Sons](command_sound.md)
+*    [Spritesheet](command_spritesheet.md)
 *    [Standards](command_standard.md)
 *    [Systèmes](command_system.md)
 *    [Textes](command_text.md)

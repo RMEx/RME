@@ -4,3 +4,5 @@ project/*/*
 project/Game.exe
 project/Game.ini
 project/Game.rvproj2
+doc_generated.rb
+doc_report.csv

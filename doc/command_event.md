@@ -8,7 +8,11 @@ Commandes relatives aux évènements
 
 ## Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
+*    [current_event_id](#current_event_id)
 *    [event_brutal_stop_trail(ids)](#event_brutal_stop_trailids)
+*    [event_change_character(id, character_name, character_index)](#event_change_characterid-character_name-character_index)
+*    [event_character_index(id)](#event_character_indexid)
+*    [event_character_name(id)](#event_character_nameid)
 *    [event_direction(id, *value)](#event_directionid-value)
 *    [event_erase(id)](#event_eraseid)
 *    [event_erased?(id)](#event_erasedid)
@@ -54,6 +58,7 @@ Commandes relatives aux évènements
 *    [event_stop_trail(ids)](#event_stop_trailids)
 *    [event_through(id, *flag)](#event_throughid-flag)
 *    [event_through?(id)](#event_throughid)
+*    [event_tone(ids, tone, *duration, *wait_flag, *ease)](#event_toneids-tone-duration-wait_flag-ease)
 *    [event_trail(ids, len, *mode)](#event_trailids-len-mode)
 *    [event_transfert(id, new_x, new_y)](#event_transfertid-new_x-new_y)
 *    [event_transparent(id)](#event_transparentid)
@@ -95,6 +100,7 @@ Commandes relatives aux évènements
 *    [last_repeated_event](#last_repeated_event)
 *    [last_triggered_event](#last_triggered_event)
 *    [max_event_id](#max_event_id)
+*    [me](#me)
 *    [mouse_click_event?(events, *precise)](#mouse_click_eventevents-precise)
 *    [mouse_click_player?](#mouse_click_player)
 *    [mouse_hover_event?(events, *precise)](#mouse_hover_eventevents-precise)
@@ -153,6 +159,7 @@ Commandes relatives aux évènements
 *    [player_teleport_with_transition(map_id, x, y, transition, duration, *vague, *direction)](#player_teleport_with_transitionmap_id-x-y-transition-duration-vague-direction)
 *    [player_through(*flag)](#player_throughflag)
 *    [player_through?](#player_through)
+*    [player_tone(tone, *duration, *wait_flag, *ease)](#player_tonetone-duration-wait_flag-ease)
 *    [player_trail(len, *mode, *tone)](#player_traillen-mode-tone)
 *    [player_transfert(new_x, new_y)](#player_transfertnew_x-new_y)
 *    [player_transparent](#player_transparent)
@@ -190,6 +197,11 @@ Nom|Type|Description
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+##### current_event_id
+
+> Renvoie l'ID de l'évènement en cours, alias : me
+
+  
 ##### event_brutal_stop_trail(ids)
 
 > Arrête brutalement la traînée sur un sélecteur d'évènements
@@ -198,9 +210,35 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `ids`|`Selector`|Sélecteur d'évènements à qui attribuer une traînée  
+##### event_change_character(id, character_name, character_index)
+
+> Change l'apparence d'un évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+`character_name`|`String`|Nom du caractère  
+`character_index`|`Fixnum`|ID du caractère  
+##### event_character_index(id)
+
+> Renvoie l'ID du character sur le charset l'évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
+##### event_character_name(id)
+
+> Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`id`|`Fixnum`|ID de l'évènement (0 pour héros)  
 ##### event_direction(id, *value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
+> Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID
 
   
 Nom|Type|Description  
@@ -592,6 +630,18 @@ Nom|Type|Description
 Nom|Type|Description  
 --- | --- | ---  
 `id`|`Fixnum`|ID de l'évènement  
+##### event_tone(ids, tone, *duration, *wait_flag, *ease)
+
+> Change la teinte d'un événement référencé par son ID
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`ids`|`Selector`|Id de l'évènement  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### event_trail(ids, len, *mode)
 
 > Applique une traînée sur un sélecteur d'évènements
@@ -931,6 +981,11 @@ Nom|Type|Description
 > Renvoie le plus grand ID d'évènement occupé sur la carte
 
   
+##### me
+
+> Renvoie l'ID de l'évènement en cours, alias : current_event_id
+
+  
 ##### mouse_click_event?(events, *precise)
 
 > Renvoie true si la souris clique sur un évènement du sélecteur passé en argument
@@ -1091,7 +1146,7 @@ Nom|Type|Description
   
 ##### player_direction(*value)
 
-> Renvoie (ou change) la direction (2 pour le haut, 8, pour le bas, 4 pour la gauche , 6 pour la droite ) du joueur
+> Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) du joueur
 
   
 Nom|Type|Description  
@@ -1377,6 +1432,17 @@ Nom|Type|Description
 > Renvoie true si le joueur est en mode 'traverse tout', false sinon
 
   
+##### player_tone(tone, *duration, *wait_flag, *ease)
+
+> Change la teinte du joueur
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`tone`|`Tone`|Teinte de l'évènement (utilisez la commande tone)  
+`*duration`|`Fixnum`|Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif  
+`*wait_flag`|`Boolean`|Attend la fin du déplacement, par défaut false  
+`*ease`|`Symbol`|Fonction à utiliser pour effectuer la transition. :InLinear par défaut.  
 ##### player_trail(len, *mode, *tone)
 
 > Applique une traînée sur le joueur
