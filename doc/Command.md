@@ -728,6 +728,7 @@ Collection des commandes EventExtender
 *    [Command.team_members](#commandteam_members)
 *    [Command.team_size](#commandteam_size)
 *    [Command.terrain_tag(x, y)](#commandterrain_tagx-y)
+*    [Command.test_item(item_id, actor_id)](#commandtest_itemitem_id-actor_id)
 *    [Command.text_angle(id, *value)](#commandtext_angleid-value)
 *    [Command.text_change(id, text)](#commandtext_changeid-text)
 *    [Command.text_erase(id)](#commandtext_eraseid)
@@ -790,6 +791,7 @@ Collection des commandes EventExtender
 *    [Command.troop_size(id)](#commandtroop_sizeid)
 *    [Command.unflash_rect(x, y, width, height)](#commandunflash_rectx-y-width-height)
 *    [Command.unflash_square(x, y)](#commandunflash_squarex-y)
+*    [Command.use_item(item_id, actor_id)](#commanduse_itemitem_id-actor_id)
 *    [Command.use_reflection(properties)](#commanduse_reflectionproperties)
 *    [Command.version_id](#commandversion_id)
 *    [Command.wait(duration)](#commandwaitduration)
@@ -9579,6 +9581,19 @@ Nom|Type|Description
 
 
 
+##### Command.test_item(item_id, actor_id)
+
+> Renvoie true ou false selon si l'utilisation d'un objet sur un héros va réussir ou échouer
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`item_id`|`Fixnum`|ID de l'objet à utiliser  
+`actor_id`|`Fixnum`|ID du héros sur lequel l'objet sera utilisé  
+
+
+
+
 ##### Command.text_angle(id, *value)
 
 > Change l'angle d'un texte, si aucun angle n'est donné, la commande renverra la valeur de l'angle du texte
@@ -10394,6 +10409,19 @@ Nom|Type|Description
 --- | --- | ---  
 `x`|`Fixnum`|Coordonnées X  
 `y`|`Fixnum`|Coordonnées Y  
+
+
+
+
+##### Command.use_item(item_id, actor_id)
+
+> Utilise un objet sur un héros, renvoie true ou false selon si l'utilisation a réussi ou échoué
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`item_id`|`Fixnum`|ID de l'objet à utiliser  
+`actor_id`|`Fixnum`|ID du héros sur lequel l'objet sera utilisé  
 
 
 

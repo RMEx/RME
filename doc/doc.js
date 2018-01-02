@@ -645,6 +645,9 @@ var documentation = [
 {"name":"idB", "desc":"ID de la seconde image", "type":"Fixnum"}]},
 {"name":"fresh_picture_id", "description":"Génère un ID non utilisé pour une picture", "returnable":true,"parameters":[]}
 ]},
+{"name":"Spritesheet","desc":"Commandes relatives à la manipulation des feuilles de Sprites","commands":[
+
+]},
 {"name":"Panoramas","desc":"Commandes relatives à la manipulation des panoramas","commands":[
 {"name":"parallax_show", "description":"Affiche un panorama", "returnable":false,"parameters":[{"name":"id", "desc":"ID du panorama", "type":"Fixnum"},
 {"name":"name", "desc":"Nom du panorama", "type":"String"},
@@ -739,6 +742,10 @@ var documentation = [
 ]},
 {"name":"Objets","desc":"Commandes permettant d'obtenir ou de manipuler les objets","commands":[
 {"name":"last_used_item", "description":"Renvoie l'id du dernier objet utilisé", "returnable":true,"parameters":[]},
+{"name":"use_item", "description":"Utilise un objet sur un héros, renvoie true ou false selon si l'utilisation a réussi ou échoué", "returnable":true,"parameters":[{"name":"item_id", "desc":"ID de l'objet à utiliser", "type":"Fixnum"},
+{"name":"actor_id", "desc":"ID du héros sur lequel l'objet sera utilisé", "type":"Fixnum"}]},
+{"name":"test_item", "description":"Renvoie true ou false selon si l'utilisation d'un objet sur un héros va réussir ou échouer", "returnable":true,"parameters":[{"name":"item_id", "desc":"ID de l'objet à utiliser", "type":"Fixnum"},
+{"name":"actor_id", "desc":"ID du héros sur lequel l'objet sera utilisé", "type":"Fixnum"}]},
 {"name":"items_possessed", "description":"Renvoie la liste des objets possédés", "returnable":true,"parameters":[]},
 {"name":"item_count", "description":"Renvoie le nombre d'objets (référencés par un ID) possédés par l'équipe", "returnable":true,"parameters":[{"name":"id", "desc":"Id de l'objet à compter", "type":"Fixnum"}]},
 {"name":"item_name", "description":"Renvoie le nom de l'objet référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de l'objet", "type":"Fixnum"}]},

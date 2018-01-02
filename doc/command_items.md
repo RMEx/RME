@@ -52,6 +52,8 @@ Commandes permettant d'obtenir ou de manipuler les objets
 *    [item_tp_gain(id)](#item_tp_gainid)
 *    [items_possessed](#items_possessed)
 *    [last_used_item](#last_used_item)
+*    [test_item(item_id, actor_id)](#test_itemitem_id-actor_id)
+*    [use_item(item_id, actor_id)](#use_itemitem_id-actor_id)
 
 
 ## Description des commandes
@@ -410,3 +412,21 @@ Nom|Type|Description
 > Renvoie l'id du dernier objet utilisé
 
   
+##### test_item(item_id, actor_id)
+
+> Renvoie true ou false selon si l'utilisation d'un objet sur un héros va réussir ou échouer
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`item_id`|`Fixnum`|ID de l'objet à utiliser  
+`actor_id`|`Fixnum`|ID du héros sur lequel l'objet sera utilisé  
+##### use_item(item_id, actor_id)
+
+> Utilise un objet sur un héros, renvoie true ou false selon si l'utilisation a réussi ou échoué
+
+  
+Nom|Type|Description  
+--- | --- | ---  
+`item_id`|`Fixnum`|ID de l'objet à utiliser  
+`actor_id`|`Fixnum`|ID du héros sur lequel l'objet sera utilisé  

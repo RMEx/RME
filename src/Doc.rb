@@ -2277,7 +2277,7 @@ link_method_documentation "Command.use_item",
 register_command :items, "Command.use_item"
 
 link_method_documentation "Command.test_item",
-                        "Renvoie true ou false selon si l'utilisation d'un objet sur un héros va réussir ou échouer"
+                        "Renvoie true ou false selon si l'utilisation d'un objet sur un héros va réussir ou échouer",
                         {:item_id => ["ID de l'objet à utiliser", :Fixnum],
                          :actor_id => ["ID du héros sur lequel l'objet sera utilisé", :Fixnum]}, true
 register_command :items, "Command.test_item"
