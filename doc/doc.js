@@ -234,6 +234,8 @@ var documentation = [
 {"name":"character_index", "desc":"ID du caractère", "type":"Fixnum"}]},
 {"name":"event_character_name", "description":"Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"}]},
 {"name":"event_character_index", "description":"Renvoie l'ID du character sur le charset l'évènement référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"}]},
+{"name":"current_event_id", "description":"Renvoie l'ID de l'évènement en cours, alias : me", "returnable":true,"parameters":[]},
+{"name":"me", "description":"Renvoie l'ID de l'évènement en cours, alias : current_event_id", "returnable":true,"parameters":[]},
 {"name":"event_direction", "description":"Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"},
 {"name":"*value", "desc":"Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.", "type":"Fixnum"}]},
 {"name":"player_x", "description":"Renvoie la coordonnée X de la case sur laquelle est le joueur", "returnable":true,"parameters":[]},

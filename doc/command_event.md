@@ -8,6 +8,7 @@ Commandes relatives aux évènements
 
 ## Liste des commandes
 *    [angle_between(idA, idB)](#angle_betweenida-idb)
+*    [current_event_id](#current_event_id)
 *    [event_brutal_stop_trail(ids)](#event_brutal_stop_trailids)
 *    [event_change_character(id, character_name, character_index)](#event_change_characterid-character_name-character_index)
 *    [event_character_index(id)](#event_character_indexid)
@@ -99,6 +100,7 @@ Commandes relatives aux évènements
 *    [last_repeated_event](#last_repeated_event)
 *    [last_triggered_event](#last_triggered_event)
 *    [max_event_id](#max_event_id)
+*    [me](#me)
 *    [mouse_click_event?(events, *precise)](#mouse_click_eventevents-precise)
 *    [mouse_click_player?](#mouse_click_player)
 *    [mouse_hover_event?(events, *precise)](#mouse_hover_eventevents-precise)
@@ -195,6 +197,11 @@ Nom|Type|Description
 --- | --- | ---  
 `idA`|`Fixnum`|ID de l'évènement A (0 pour héros)  
 `idB`|`Fixnum`|ID de l'évènement B (0 pour héros)  
+##### current_event_id
+
+> Renvoie l'ID de l'évènement en cours, alias : me
+
+  
 ##### event_brutal_stop_trail(ids)
 
 > Arrête brutalement la traînée sur un sélecteur d'évènements
@@ -972,6 +979,11 @@ Nom|Type|Description
 ##### max_event_id
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
+
+  
+##### me
+
+> Renvoie l'ID de l'évènement en cours, alias : current_event_id
 
   
 ##### mouse_click_event?(events, *precise)

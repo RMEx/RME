@@ -6117,7 +6117,13 @@ module SV
   def []=(*args, id, value)
     ev_id = args[-1] || Game_Interpreter.current_id
     map_id = args[-2] || Game_Interpreter.current_map_id
-    $game_self_vars[[map_id, ev_id, id]] = value
+    if id.is_a?(Range)
+      id.each do |k|
+        $game_self_vars[[map_id, ev_id, k]] = value
+      end
+    else
+      $game_self_vars[[map_id, ev_id, id]] = value
+    end
     $game_map.need_refresh = true
   end
 end
@@ -9953,12 +9959,6 @@ class Game_Interpreter
     end
 
   end
-  #--------------------------------------------------------------------------
-  # * Alias
-  #--------------------------------------------------------------------------
-  def me 
-    Game_Interpreter.current_id
-  end
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
@@ -12285,6 +12285,8 @@ module RMECommands
     end
     def event_character_name(id); event(id).character_name; end
     def event_character_index(id); event(id).character_index; end
+    def current_event_id; me; end
+    def me; Game_Interpreter.current_id; end
     def player_x; event(0).x; end
     def player_y; event(0).y; end
     def player_screen_x; event(0).screen_x; end
@@ -12542,7 +12544,7 @@ module RMECommands
     end
 
     def event_priority(ids, priority = nil)
-      return event(ids).priority_type unless !priority && ids.is_a?(Fixnum)
+      return event(ids).priority_type if !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
       event(id_event).priority_type = priority
     end
@@ -16773,6 +16775,14 @@ register_command :event, 'Command.player_tone'
                         "Renvoie l'ID du character sur le charset l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_character_index"
+
+  link_method_documentation "Command.current_event_id",
+                        "Renvoie l'ID de l'évènement en cours, alias : me", {}, true
+  register_command :event, "Command.current_event_id"
+
+  link_method_documentation "Command.me",
+                        "Renvoie l'ID de l'évènement en cours, alias : current_event_id", {}, true
+  register_command :event, "Command.me"
 
   link_method_documentation "Command.event_direction",
                         "Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) de l'évènement référencé par son ID",

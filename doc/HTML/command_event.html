@@ -2,6 +2,7 @@
 Outil d'extension de RPG Maker (les objets étendus ne sont documentés que pour les ajouts.)<br /><br /><a href='index.html'>Documentation</a> > <a href='Liste des commandes.html'>Index des commandes</a> > <strong>Evénements</strong><hr /><h1>Evénements</h1>
 Commandes relatives aux évènements<br /><br /><h2>Liste des commandes<ul></h2>
 <li><a href='#angle_betweenida-idb'>angle_between(idA, idB)</a></li>
+<li><a href='#current_event_id'>current_event_id</a></li>
 <li><a href='#event_brutal_stop_trailids'>event_brutal_stop_trail(ids)</a></li>
 <li><a href='#event_change_characterid-character_name-character_index'>event_change_character(id, character_name, character_index)</a></li>
 <li><a href='#event_character_indexid'>event_character_index(id)</a></li>
@@ -93,6 +94,7 @@ Commandes relatives aux évènements<br /><br /><h2>Liste des commandes<ul></h2>
 <li><a href='#last_repeated_event'>last_repeated_event</a></li>
 <li><a href='#last_triggered_event'>last_triggered_event</a></li>
 <li><a href='#max_event_id'>max_event_id</a></li>
+<li><a href='#me'>me</a></li>
 <li><a href='#mouse_click_eventevents-precise'>mouse_click_event?(events, *precise)</a></li>
 <li><a href='#mouse_click_player'>mouse_click_player?</a></li>
 <li><a href='#mouse_hover_eventevents-precise'>mouse_hover_event?(events, *precise)</a></li>
@@ -179,7 +181,8 @@ Commandes relatives aux évènements<br /><br /><h2>Liste des commandes<ul></h2>
 <li><a href='#squares_betweenida-idb'>squares_between(idA, idB)</a></li>
 </ul><h2>Description des commandes</h2>
 <strong name='angle_betweenida-idb' id='angle_betweenida-idb'>angle_between(idA, idB)</strong><br /><br /><blockquote>Renvoie l'angle entre deux événements référencés par leurs ID's</blockquote>  
-<table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>idA</code></td><td><code>Fixnum</code></td><td>ID de l'évènement A (0 pour héros)</td></tr><tr><td><code>idB</code></td><td><code>Fixnum</code></td><td>ID de l'évènement B (0 pour héros)</td></tr></table><strong name='event_brutal_stop_trailids' id='event_brutal_stop_trailids'>event_brutal_stop_trail(ids)</strong><br /><br /><blockquote>Arrête brutalement la traînée sur un sélecteur d'évènements</blockquote>  
+<table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>idA</code></td><td><code>Fixnum</code></td><td>ID de l'évènement A (0 pour héros)</td></tr><tr><td><code>idB</code></td><td><code>Fixnum</code></td><td>ID de l'évènement B (0 pour héros)</td></tr></table><strong name='current_event_id' id='current_event_id'>current_event_id</strong><br /><br /><blockquote>Renvoie l'ID de l'évènement en cours, alias : me</blockquote>  
+</table><strong name='event_brutal_stop_trailids' id='event_brutal_stop_trailids'>event_brutal_stop_trail(ids)</strong><br /><br /><blockquote>Arrête brutalement la traînée sur un sélecteur d'évènements</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>ids</code></td><td><code>Selector</code></td><td>Sélecteur d'évènements à qui attribuer une traînée</td></tr></table><strong name='event_change_characterid-character_name-character_index' id='event_change_characterid-character_name-character_index'>event_change_character(id, character_name, character_index)</strong><br /><br /><blockquote>Change l'apparence d'un évènement référencé par son ID</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'évènement (0 pour héros)</td></tr><tr><td><code>character_name</code></td><td><code>String</code></td><td>Nom du caractère</td></tr><tr><td><code>character_index</code></td><td><code>Fixnum</code></td><td>ID du caractère</td></tr></table><strong name='event_character_indexid' id='event_character_indexid'>event_character_index(id)</strong><br /><br /><blockquote>Renvoie l'ID du character sur le charset l'évènement référencé par son ID</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>id</code></td><td><code>Fixnum</code></td><td>ID de l'évènement (0 pour héros)</td></tr></table><strong name='event_character_nameid' id='event_character_nameid'>event_character_name(id)</strong><br /><br /><blockquote>Renvoie le nom du charset utilisé pour l'apparence de l'évènement référencé par son ID</blockquote>  
@@ -270,6 +273,7 @@ Commandes relatives aux évènements<br /><br /><h2>Liste des commandes<ul></h2>
 </table><strong name='last_repeated_event' id='last_repeated_event'>last_repeated_event</strong><br /><br /><blockquote>Renvoie le dernier event cliqué en continu (avec :mouse_left) par la souris, nil si aucun évènement n'a été cliqué en continu</blockquote>  
 </table><strong name='last_triggered_event' id='last_triggered_event'>last_triggered_event</strong><br /><br /><blockquote>Renvoie le dernier event appuyé une fois (avec :mouse_left) par la souris, nil si aucun évènement n'a été triggeré</blockquote>  
 </table><strong name='max_event_id' id='max_event_id'>max_event_id</strong><br /><br /><blockquote>Renvoie le plus grand ID d'évènement occupé sur la carte</blockquote>  
+</table><strong name='me' id='me'>me</strong><br /><br /><blockquote>Renvoie l'ID de l'évènement en cours, alias : current_event_id</blockquote>  
 </table><strong name='mouse_click_eventevents-precise' id='mouse_click_eventevents-precise'>mouse_click_event?(events, *precise)</strong><br /><br /><blockquote>Renvoie true si la souris clique sur un évènement du sélecteur passé en argument</blockquote>  
 <table border='1'><tr><th>Nom</th><th>Type</th><th>Description</th></tr><tr><td><code>events</code></td><td><code>Selectors</code></td><td>Selecteur d'évènements</td></tr><tr><td><code>*precise</code></td><td><code>Boolean</code></td><td>Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false </td></tr></table><strong name='mouse_click_player' id='mouse_click_player'>mouse_click_player?</strong><br /><br /><blockquote>Renvoie true si la souris clique sur l'image du joueur</blockquote>  
 </table><strong name='mouse_hover_eventevents-precise' id='mouse_hover_eventevents-precise'>mouse_hover_event?(events, *precise)</strong><br /><br /><blockquote>Renvoie true si la souris survole un évènement du sélecteur passé en argument</blockquote>  

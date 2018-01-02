@@ -171,6 +171,7 @@ Collection des commandes EventExtender
 *    [Command.ctrl?(key)](#commandctrlkey)
 *    [Command.currency](#commandcurrency)
 *    [Command.current_enemies](#commandcurrent_enemies)
+*    [Command.current_event_id](#commandcurrent_event_id)
 *    [Command.current_troop](#commandcurrent_troop)
 *    [Command.cursor_system(flag)](#commandcursor_systemflag)
 *    [Command.damage_floor?(x, y)](#commanddamage_floorx-y)
@@ -407,6 +408,7 @@ Collection des commandes EventExtender
 *    [Command.map_width](#commandmap_width)
 *    [Command.max(a, b)](#commandmaxa-b)
 *    [Command.max_event_id](#commandmax_event_id)
+*    [Command.me](#commandme)
 *    [Command.me_fade(wait, *frame)](#commandme_fadewait-frame)
 *    [Command.me_play(name, *volume, *pitch)](#commandme_playname-volume-pitch)
 *    [Command.me_stop](#commandme_stop)
@@ -2825,6 +2827,15 @@ Nom|Type|Description
 ##### Command.current_enemies
 
 > Renvoie un tableau contenant les ID des ennemis en cours de combat
+
+  
+
+
+
+
+##### Command.current_event_id
+
+> Renvoie l'ID de l'évènement en cours, alias : me
 
   
 
@@ -5664,6 +5675,15 @@ Nom|Type|Description
 ##### Command.max_event_id
 
 > Renvoie le plus grand ID d'évènement occupé sur la carte
+
+  
+
+
+
+
+##### Command.me
+
+> Renvoie l'ID de l'évènement en cours, alias : current_event_id
 
   
 

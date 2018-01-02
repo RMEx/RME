@@ -1735,7 +1735,7 @@ module RMECommands
     end
 
     def event_priority(ids, priority = nil)
-      return event(ids).priority_type unless !priority && ids.is_a?(Fixnum)
+      return event(ids).priority_type if !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
       event(id_event).priority_type = priority
     end
