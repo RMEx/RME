@@ -1762,7 +1762,7 @@ module RMECommands
     end
 
     def event_trigger(ids, trigger = nil)
-      return event(ids).trigger unless !trigger && ids.is_a?(Fixnum)
+      return event(ids).trigger if !trigger && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
         event(id_event).trigger = trigger
       end

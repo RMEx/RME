@@ -29,6 +29,7 @@
 * Correction des commandes pour flasher les cases (@xvw)
 * Correction de la commande `picture_zoom` (@xvw)
 * Correction de la commande `event_priority` (@xvw, reporté par @Zer0Zer0x)
+* Correction de la commande `event_trigger` (@xvw)
 
 ## Release (1.1.0)
 
