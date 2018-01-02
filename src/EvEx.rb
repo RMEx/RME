@@ -303,10 +303,10 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
-    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
+  attr_accessor :last_used_item
 end
 
 
