@@ -303,10 +303,10 @@ class Game_Temp
     attr_accessor :in_battle
     attr_accessor :current_troop
     attr_accessor :cached_map
-    attr_accessor :last_used_item
     Game_Temp.in_battle = false
     Game_Temp.current_troop = 0
   end
+  attr_accessor :last_used_item
 end
 
 
@@ -3317,6 +3317,27 @@ class Game_Pictures
   def fresh_id
     i = @data.find_index {|picture| !picture || picture.name.empty? }
     return (i || @data.length)
+  end
+end
+
+#==============================================================================
+# ** Game_Spritesheet
+#------------------------------------------------------------------------------
+#  Spritesheet ingame
+#==============================================================================
+
+class Game_Spritesheet < Game_Picture
+
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :cell_x, :cell_y, :index
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(number)
+    super(number)
+    @cell_x = @cell_y = @index = 0
   end
 end
 

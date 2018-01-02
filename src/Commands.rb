@@ -1115,6 +1115,25 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Items
     #--------------------------------------------------------------------------
+    def use_item(item_id, actor_id)
+      return false unless test_item(item_id, actor_id)
+      item = $data_items[item_id]
+      user = $game_party.movable_members.max_by {|member| member.pha }
+      target = $game_actors[actor_id]
+      return false unless item && user && target
+
+      user.use_item(item)
+      item.repeats.times { target.item_apply(user, item) }
+      true
+    end
+    def test_item(item_id, actor_id)
+      item = $data_items[item_id]
+      user = $game_party.movable_members.max_by {|member| member.pha }
+      target = $game_actors[actor_id]
+
+      target.item_test(user, item)
+    end
+
     def items_possessed
       $game_party.items.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end

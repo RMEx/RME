@@ -4,7 +4,7 @@
 
 ### Ajouts généraux
 
-* Gestion des Intervalles dans les variables locales : `SV[1, 2, 1..18] = 10` (par exemple)
+* Gestion des Intervalles dans les variables locales : `SV[1, 2, 1..18] = 10` (par exemple) par @xvw
 
 ### Commandes ajoutées
 
@@ -19,6 +19,9 @@
      - `formation_enabled?|disabled?`
      - `encounter_enabled?|disabled?`
      (@xvw, reporté par Zer0Zer0x)
+* `current_event_id` et `me` (déplacement de EvEx vers Command), (@BastienDuplessier)
+* `use_item`, (@BastienDuplessier)
+* `test_item`, (@BastienDuplessier)
 
 ### Corrections de bogues
 
