@@ -1354,11 +1354,11 @@ register_command :event, 'Command.player_tone'
   register_command :event, "Command.event_character_index"
 
   link_method_documentation "Command.current_event_id",
-                        "Renvoie l'ID de l'évènement en cours, alias : me", true
+                        "Renvoie l'ID de l'évènement en cours, alias : me", {}, true
   register_command :event, "Command.current_event_id"
 
   link_method_documentation "Command.me",
-                        "Renvoie l'ID de l'évènement en cours, alias : current_event_id", true
+                        "Renvoie l'ID de l'évènement en cours, alias : current_event_id", {}, true
   register_command :event, "Command.me"
 
   link_method_documentation "Command.event_direction",
