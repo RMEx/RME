@@ -242,6 +242,7 @@ module Externlib
   GetKeyboardState        = Win32API.new('user32', 'GetKeyboardState', 'p', 'i')
   GetPrivateProfileStringA= Win32API.new('kernel32', 'GetPrivateProfileStringA', 'pppplp', 'l')
   GetWindowRect           = Win32API.new('user32', 'GetWindowRect', 'lp', 'i')
+  GetClientRect           = Win32API.new('user32', 'GetClientRect', 'ip', 'i')
   GlobalAlloc             = Win32API.new('kernel32', 'GlobalAlloc', 'ii', 'i')
   GlobalFree              = Win32API.new('kernel32', 'GlobalFree', 'i', 'i')
   GlobalLock              = Win32API.new('kernel32', 'GlobalLock', 'i', 'l')
@@ -260,6 +261,7 @@ module Externlib
   ScreenToClient          = Win32API.new('user32', 'ScreenToClient', 'ip', 'i')
   Send                    = Win32API.new('ws2_32', 'send', 'ppll', 'l')
   SetClipboardData        = Win32API.new('user32', 'SetClipboardData', 'ii', 'i')
+  SetWindowPos 	          = Win32API.new('user32', 'SetWindowPos', 'iiiiiii', 'i')
   ShowCursor              = Win32API.new('user32', 'ShowCursor','i', 'i')
   Shutdown                = Win32API.new('ws2_32', 'shutdown', 'pl', 'l')
   Socket                  = Win32API.new('ws2_32', 'socket', 'lll', 'l')
@@ -992,6 +994,56 @@ class Point < Struct.new(:x, :y)
 end
 
 #==============================================================================
+# ** Game_Window
+#------------------------------------------------------------------------------
+#  The window of the game
+#==============================================================================
+
+module Game_Window
+  extend self
+  #--------------------------------------------------------------------------
+  # * Get the window frame
+  #--------------------------------------------------------------------------
+  def rect
+    Externlib::GetWindowRect.call(HWND, wr = [0, 0, 0, 0].pack('l4'))
+    wr = wrect.unpack('l4')
+    Rect.new(wr[0], wr[1], wr[2] - wr[0], wr[3] - wr[1])
+  end
+  #--------------------------------------------------------------------------
+  # * Get the dimensions of the window, excluding the frame
+  #--------------------------------------------------------------------------
+  def client_rect
+    Externlib::GetClientRect.call(HWND, cr = [0, 0, 0, 0].pack('l4'))
+    cr = cr.unpack('l4')
+    Rect.new(*cr)
+  end
+  #--------------------------------------------------------------------------
+  # * Set the position of the window (specify x, y, or Point)
+  #--------------------------------------------------------------------------
+  def set_position(x, y)
+    Externlib::SetWindowPos.call(HWND, 0, x, y, 0, 0, 0x0201)
+  end
+  #--------------------------------------------------------------------------
+  # * Get the ratio of the display
+  #--------------------------------------------------------------------------
+  def ratio
+    client_rect.width.to_f / Graphics.width
+  end
+  #--------------------------------------------------------------------------
+  # * Set the ratio of the display
+  #--------------------------------------------------------------------------
+  def ratio=(v)
+    wr = rect
+    cr = client_rect
+    w = (Graphics.width  * v).to_i + wr.width  - cr.width
+    h = (Graphics.height * v).to_i + wr.height - cr.height
+    x = wr.x - (w - wr.width ) / 2
+    y = wr.y - (h - wr.height) / 2
+    Externlib::SetWindowPos.call(HWND, 0, x, y, w, h, 0x0200)
+  end
+end
+
+#==============================================================================
 # ** Easing modules
 #------------------------------------------------------------------------------
 # Easing functions specify the rate of change of a paremeter over time.
@@ -1654,7 +1706,9 @@ module Devices
       buffer = [0,0].pack('l2')
       cursor_position(buffer)
       screen_to_client(HWND, buffer)
+      r = Game_Window.ratio
       @point.x, @point.y = *buffer.unpack('l2')
+      @point.x, @point.y = (@point.x / r).to_i, (@point.y / r).to_i
       @square.null!
       update_square if SceneManager.scene.is_a?(Scene_Map)
     end

@@ -13,7 +13,7 @@ if $STAGING
 
       dump = package.components.reduce("") do |acc, n|
         p "dump #{n}"
-        acc + "\n" + File.read("../src/#{n}")
+        acc + File.read("../src/#{n}") + "\n"
       end
       File.open('../RME.rb', 'w+'){|rf| rf.write(dump)}
     end
