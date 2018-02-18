@@ -4553,18 +4553,18 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check the passability
   #--------------------------------------------------------------------------
-  def passable?(e, x, y, dir, s = false);
-    if s and e.through
+  def passable?(e, x, y, current, dir, no_through = false)
+    if no_through && e.through
       return $game_map.passable?(x, y, dir)
     end
-    e.passable?(x, y, dir)
+    e.passable?(current.x, current.y, dir)
   end
 
   #--------------------------------------------------------------------------
   # * Complete passability
   #--------------------------------------------------------------------------
-  def check_passability?(event, current, elt, no_through, x, y, cl)
-    passable?(event, x, y, elt, no_through) && !has_key?(x, y, cl)
+  def check_passability?(event, current, dir, no_through, x, y, cl)
+    passable?(event, x, y, current, dir, no_through) && !has_key?(x, y, cl)
   end
 
   #--------------------------------------------------------------------------
@@ -4596,21 +4596,17 @@ module Pathfinder
       open_list.delete(current.id)
       closed_list[current.id] = current
 
-
-      [[0, 1], [-1, 0], [1, 0], [0, -1]].each do | elt |
+      {2 => [0, 1], 4 => [-1, 0], 6 => [1, 0], 8 => [0, -1]}.each do | dir, elt |
         args = current.x + elt[0], current.y + elt[1]
         next if unbounded?(*args)
-        [2, 4, 6, 8].each do |d|
-          if check_passability?(event, current, d, no_through, *args, closed_list)
-            if !has_key?(*args, open_list)
-              open_list[id(*args)] = Point.new(*args, current, goal)
-            else
-              open_list[id(*args)].score(current)
-            end
+        if check_passability?(event, current, dir, no_through, *args, closed_list)
+          if !has_key?(*args, open_list)
+            open_list[id(*args)] = Point.new(*args, current, goal)
+          else
+            open_list[id(*args)].score(current)
           end
         end
       end
-
     end
 
     move_route = RPG::MoveRoute.new
