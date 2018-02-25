@@ -7,7 +7,7 @@ All the scripts here stands in three categories:
 ### RME
 > the actual RME
 - `SDK.rb` => development kit + defines the version, the configuration
-- `Database.rb` => provides two customs databases
+- `Database.rb` => provides two custom databases
 - `Internal.rb` => internals data structures
 - `EvEx.rb` => classes/modules that extends RM, used with RME commands
 - `Commands.rb` => all the commands
