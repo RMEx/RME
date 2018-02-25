@@ -1,27 +1,49 @@
 # -*- coding: utf-8 -*-
-
 #==============================================================================
 # ** RME
 #------------------------------------------------------------------------------
 #  With :
 # Grim (original project)
 # Nuki (a lot of things)
+# Joke (a quite lot of things)
 # Raho (general reformulation)
 # Zeus81 (a lot of help)
 # Hiino (some help and GUI Components)
-# Joke (some help)
 # Zangther (some help)
 # XHTMLBoy (koffie)
 # Fabien (Buzzer)
 # Kaelar (Improvement)
-#
+#------------------------------------------------------------------------------
+#  RME is the successor of Event Extender. It offers a collection of tools to
+# promote the personalization of an RPG Maker VX Ace project. It is the result
+# of the work of many people and any contribution is welcome.
+#------------------------------------------------------------------------------
+#  GitHub: https://github.com/RMEx/RME
 #==============================================================================
 
-=begin
+=begin # MIT License
 
-License coming soon
+Copyright (c) 2012-2018 RMEx
 
-=end
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+=end # MIT License
 
 #==============================================================================
 # ** RME

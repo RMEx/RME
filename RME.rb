@@ -1,27 +1,49 @@
 # -*- coding: utf-8 -*-
-
 #==============================================================================
 # ** RME v1.3.0
 #------------------------------------------------------------------------------
 #  With :
 # Grim (original project)
 # Nuki (a lot of things)
+# Joke (a quite lot of things)
 # Raho (general reformulation)
 # Zeus81 (a lot of help)
 # Hiino (some help and GUI Components)
-# Joke (some help)
 # Zangther (some help)
 # XHTMLBoy (koffie)
 # Fabien (Buzzer)
 # Kaelar (Improvement)
-#
+#------------------------------------------------------------------------------
+#  RME is the successor of Event Extender. It offers a collection of tools to
+# promote the personalization of an RPG Maker VX Ace project. It is the result
+# of the work of many people and any contribution is welcome.
+#------------------------------------------------------------------------------
+#  GitHub: https://github.com/RMEx/RME
 #==============================================================================
 
-=begin
+=begin # MIT License
 
-License coming soon
+Copyright (c) 2012-2018 RMEx
 
-=end
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+=end # MIT License
 
 #==============================================================================
 # ** RME
@@ -2717,7 +2739,6 @@ class Package
   end
 end
 
-# -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Database
 #------------------------------------------------------------------------------
@@ -2726,7 +2747,6 @@ end
 #------------------------------------------------------------------------------
 # Provide two customs databases
 #==============================================================================
-
 
 #==============================================================================
 # ** Object
@@ -3487,7 +3507,6 @@ if $TEST
   Dir.mkdir(path+"/tables/", 0777) unless Dir.exists?(path+"/tables/")
 end
 
-# -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Internal
 #------------------------------------------------------------------------------
@@ -3761,7 +3780,6 @@ module Kernel
 
 end
 
-# -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Gui
 #------------------------------------------------------------------------------
@@ -3769,16 +3787,9 @@ end
 # Joke
 # Grim
 # Nuki
-#
 #------------------------------------------------------------------------------
 # Graphical User Interface SDK for RME's tools
 #==============================================================================
-
-=begin
-
-License coming soon
-
-=end
 
 if RME.gui_enabled?
 
@@ -5998,7 +6009,6 @@ end
 
 end
 
-# -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Evex
 #------------------------------------------------------------------------------
@@ -10881,7 +10891,6 @@ module Graphics
   end
 end
 
-# -*- coding: utf-8 -*-
 #==============================================================================
 # ** RME Commands
 #------------------------------------------------------------------------------
@@ -14222,64 +14231,16 @@ module RMECommands
 
 end
 
-#
-# Cette partie concerne les scripts expérimentaux
-#
-
-=begin
-Implémentation de trucs potentiellement cool pour la future GUI
-état tout à fait incumbatif, bien naturellement : c'est dans l'incubator.
-=end
-
 #==============================================================================
-# ** Bilou
+# ** RME Incubator
 #------------------------------------------------------------------------------
-#  Bilou is the best example for anything
+#  With :
+# Raho
+# Grim
+# Anybody
+#------------------------------------------------------------------------------
+# Experimenting before integration
 #==============================================================================
-
-class Bilou < Viewport
-  def initialize(x,y,w,h,c,draggable=false)
-    super(x,y,w,h)
-    Draggable << self if draggable
-    self.color = c
-  end
-end
-
-class SuperBilou < Viewport
-  attr_accessor :inner, :style
-  def initialize(x,y,w,h)
-    super(x,y,w,h)
-    @x,@y,@width,@height = x,y,w,h
-    @style = Gui::Style.new
-    Gui::CSS.apply_to(self)
-    @background = Sprite.new(self)
-    @inner = Rect.new
-    @inner >> rect
-    update_background
-    Draggable << self
-  end
-  def update_background
-    @background.bitmap = Bitmap.new(self.width, self.height)
-    r = Rect.new(0, 0, self.width, self.height)
-    @style.contract_with(:margin, r)
-    @background.bitmap.fill_rect(r, @style[:border_color])
-    @style.contract_with(:border, r)
-    @background.bitmap.fill_rect(r, @style[:background_color])
-    @style.contract_with(:padding, r)
-    @inner.set(r)
-  end
-  def compute_self
-    super
-    update_background
-  end
-end
-
-class GrosTest
-  def initialize
-    @viewport = Viewport.new(50,50,300,300)
-  end
-end
-
 
 =begin
 Implémentation du mode large (actuellement bloqué dans l'incubator, en mode Unsafe)
@@ -14564,29 +14525,15 @@ if RME.unsafe?
 
 end
 
-# -*- coding: utf-8 -*-
 #==============================================================================
-# ** RME
+# ** RME Tools
 #------------------------------------------------------------------------------
 #  With :
-# Grim (original project)
-# Nuki (a lot of things)
-# Raho (general reformulation)
-# Zeus81 (a lot of help)
-# Hiino (some help and GUI Components)
-# Joke (some help)
-# Zangther (some help)
-# XHTMLBoy (koffie)
-# Fabien (Buzzer)
-# Kaelar (Improvement)
-#
+# Nuki
+# Joke
+#------------------------------------------------------------------------------
+#  Gui-based tools for users (command-tester, tone-tester...)
 #==============================================================================
-
-=begin
-
-License coming soon
-
-=end
 
 #==============================================================================
 # ** Scene_Map
