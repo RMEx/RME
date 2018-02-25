@@ -24,8 +24,7 @@ Package.new(
     'EvEx.rb',
     'Commands.rb',
     'Incubator.rb',
-    'Tools.rb',
-    'Doc.rb'
+    'Tools.rb'
   ],
   description: 'RME is a powerful tool to improve your RPGMaker VXAce experience!'
 )
