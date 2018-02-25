@@ -1,10 +1,11 @@
 # Notice for contributors
 
-RME is released as one single file (`RME.rb`, but we work on a divided version of it.
+RME is released as one single file (`RME.rb`), but we work on a divided version of it.
 
 All the scripts here stands in three categories:
 
-## RME => the actual RME
+### RME
+> the actual RME
 - `SDK.rb` => development kit + defines the version, the configuration
 - `Database.rb` => provides two customs databases
 - `Internal.rb` => internals data structures
@@ -13,26 +14,26 @@ All the scripts here stands in three categories:
 - `Incubator.rb` => experimenting weird stuffs here before integration
 - `SDK.Gui.rb` => development kit for gui-based tools
 - `Tools.rb` => gui-based tools (command-tester, tone-tester...)
-
-## samples => generates samples for documentation
+### samples
+> generates samples for documentation
 - `Event_printer.rb` => converts events to HTML and BBcode
 - `SDK.Sample.rb` => development kit for samples
 - `Samples.rb` => declares the common events to use as sample in documentation
-
-## doc => generates documentation
+### documentation
+> generates documentation
 - `DocGenerator.rb` => used to generate the documentation
 - `Doc.rb` => here we write the documentation
 - `Process.Doc.rb` => generates `doc.js`, `doc_report.csv`, `RME.rb`
 
-**`RME.rb` is generated from the RME scripts, excluding the sample and doc scripts that stands for developers and contributors**
+**`RME.rb` is generated from the RME scripts, excluding the *samples* and *documentation* scripts that only stands for developers and contributors**
 
-To work on all this stuff, we each create one VXAce project in the GitHub RME folder, called "project"
+To work on all this stuff, we each create one VXAce project, called "**project**", in our RME folder cloned from GitHub
 
-The `.gitignore` serve to only pull and push the `project/Data/CommonEvents.rvdata2`, not the hole project.
+The `.gitignore` serve to only pull and push the `project/Data/CommonEvents.rvdata2`, not the hole **project**.
 
 **Be careful not to overwrite this file!**
 
-# How to initialize your own VX Ace "project" and load all the RME dev scripts
+# How to initialize your own RME dev *"project"* and quick load all the scripts
 
 ## Create the project
 - Go in VX Ace, File > New project
@@ -54,4 +55,6 @@ The `.gitignore` serve to only pull and push the `project/Data/CommonEvents.rvda
   $STAGING = true
   LOAD_FROM = "../src"
   ```
-- That's all.
+That's all.
+
+***Thanks for contributing to RME!***
