@@ -33,7 +33,9 @@ The `.gitignore` serve to only pull and push the `project/Data/CommonEvents.rvda
 
 **Be careful not to overwrite this file!**
 
-# How to initialize your own RME dev *"project"* and quick load all the scripts
+***
+
+# How to initialize your own RME dev *"project"*
 
 ## Create the project
 - Go in VX Ace, File > New project
