@@ -10706,7 +10706,7 @@ module SceneManager
       Game_Temp.in_game = true
       DataManager.init_cst_db
       data = skip_title_data
-      if !data.activate || !map_exists?(data.map_id)
+      if !data.activate || !map_exists?(data.map_id) || $BTEST
         skip_ee_run
         return
       end
