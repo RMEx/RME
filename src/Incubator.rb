@@ -1,61 +1,14 @@
-#
-# Cette partie concerne les scripts expérimentaux
-#
-
-=begin
-Implémentation de trucs potentiellement cool pour la future GUI
-état tout à fait incumbatif, bien naturellement : c'est dans l'incubator.
-=end
-
+# -*- coding: utf-8 -*-
 #==============================================================================
-# ** Bilou
+# ** RME Incubator
 #------------------------------------------------------------------------------
-#  Bilou is the best example for anything
+#  With :
+# Raho
+# Grim
+# Anybody
+#------------------------------------------------------------------------------
+# Experimenting before integration
 #==============================================================================
-
-class Bilou < Viewport
-  def initialize(x,y,w,h,c,draggable=false)
-    super(x,y,w,h)
-    Draggable << self if draggable
-    self.color = c
-  end
-end
-
-class SuperBilou < Viewport
-  attr_accessor :inner, :style
-  def initialize(x,y,w,h)
-    super(x,y,w,h)
-    @x,@y,@width,@height = x,y,w,h
-    @style = Gui::Style.new
-    Gui::CSS.apply_to(self)
-    @background = Sprite.new(self)
-    @inner = Rect.new
-    @inner >> rect
-    update_background
-    Draggable << self
-  end
-  def update_background
-    @background.bitmap = Bitmap.new(self.width, self.height)
-    r = Rect.new(0, 0, self.width, self.height)
-    @style.contract_with(:margin, r)
-    @background.bitmap.fill_rect(r, @style[:border_color])
-    @style.contract_with(:border, r)
-    @background.bitmap.fill_rect(r, @style[:background_color])
-    @style.contract_with(:padding, r)
-    @inner.set(r)
-  end
-  def compute_self
-    super
-    update_background
-  end
-end
-
-class GrosTest
-  def initialize
-    @viewport = Viewport.new(50,50,300,300)
-  end
-end
-
 
 =begin
 Implémentation du mode large (actuellement bloqué dans l'incubator, en mode Unsafe)

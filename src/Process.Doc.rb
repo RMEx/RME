@@ -16,6 +16,8 @@ if $STAGING
       end
       dump = dump.split("\n")
       dump[dump.index("# ** RME")] = "# ** RME v" + RME.version.to_s
+      dump.delete("# -*- coding: utf-8 -*-")
+      dump.insert(0, "# -*- coding: utf-8 -*-")
       dump = dump.join("\n")
       File.open('../RME.rb', 'w+'){|rf| rf.write(dump)}
     end
