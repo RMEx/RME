@@ -3,7 +3,7 @@ Package.new(
   name: 'RME',
   version: vsn(1, 2, 0),
   authors: {
-    'Nuki' => 'xaviervdw@gmail.com',
+    'xvw' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
     'Raho' => '',
     'Hiino' => '',
