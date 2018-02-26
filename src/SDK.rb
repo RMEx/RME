@@ -3,16 +3,22 @@
 # ** RME
 #------------------------------------------------------------------------------
 #  With :
-# Grim (original project)
-# Nuki (a lot of things)
-# Joke (a quite lot of things)
-# Raho (general reformulation)
-# Zeus81 (a lot of help)
-# Hiino (some help and GUI Components)
-# Zangther (some help)
-# XHTMLBoy (koffie)
-# Fabien (Buzzer)
-# Kaelar (Improvement)
+# xvw
+# Joke
+# Grim
+# Raho
+# Zeus81
+# Hiino
+# Zangther
+# Fabien
+# Kaelar
+# Spyrojojo
+# Boubou le hibou
+# FalconPilot
+# Husk
+# Hinola
+# Ulis
+# msp
 #------------------------------------------------------------------------------
 #  RME is the successor of Event Extender. It offers a collection of tools to
 # promote the personalization of an RPG Maker VX Ace project. It is the result
@@ -2548,7 +2554,7 @@ end
 # ** Socket
 #------------------------------------------------------------------------------
 # Adds the possibility to send/receive messages to/from a server
-# Big thanks to Zeus81 (and to Nuki, too)
+# Big thanks to Zeus81 (and to xvw, too)
 #==============================================================================
 
 class Socket

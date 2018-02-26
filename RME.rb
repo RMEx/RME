@@ -3,16 +3,22 @@
 # ** RME v1.3.0
 #------------------------------------------------------------------------------
 #  With :
-# Grim (original project)
-# Nuki (a lot of things)
-# Joke (a quite lot of things)
-# Raho (general reformulation)
-# Zeus81 (a lot of help)
-# Hiino (some help and GUI Components)
-# Zangther (some help)
-# XHTMLBoy (koffie)
-# Fabien (Buzzer)
-# Kaelar (Improvement)
+# xvw
+# Joke
+# Grim
+# Raho
+# Zeus81
+# Hiino
+# Zangther
+# Fabien
+# Kaelar
+# Spyrojojo
+# Boubou le hibou
+# FalconPilot
+# Husk
+# Hinola
+# Ulis
+# msp
 #------------------------------------------------------------------------------
 #  RME is the successor of Event Extender. It offers a collection of tools to
 # promote the personalization of an RPG Maker VX Ace project. It is the result
@@ -2548,7 +2554,7 @@ end
 # ** Socket
 #------------------------------------------------------------------------------
 # Adds the possibility to send/receive messages to/from a server
-# Big thanks to Zeus81 (and to Nuki, too)
+# Big thanks to Zeus81 (and to xvw, too)
 #==============================================================================
 
 class Socket
@@ -2743,7 +2749,7 @@ end
 # ** RME Database
 #------------------------------------------------------------------------------
 #  With :
-# Nuki
+# xvw
 #------------------------------------------------------------------------------
 # Provide two customs databases
 #==============================================================================
@@ -3511,7 +3517,7 @@ end
 # ** RME Internal
 #------------------------------------------------------------------------------
 #  With :
-# Nuki
+# xvw
 #------------------------------------------------------------------------------
 # Internals DataStructures
 #==============================================================================
@@ -3786,7 +3792,7 @@ end
 #  With :
 # Joke
 # Grim
-# Nuki
+# xvw
 #------------------------------------------------------------------------------
 # Graphical User Interface SDK for RME's tools
 #==============================================================================
@@ -6014,7 +6020,7 @@ end
 #------------------------------------------------------------------------------
 #  With :
 # Grim (original project)
-# Nuki
+# xvw
 # Raho
 #  Help :
 # Fabien
@@ -6093,7 +6099,7 @@ end
 
 
 #==============================================================================
-# ** V (special thanks to Nuki)
+# ** V (special thanks to xvw)
 #------------------------------------------------------------------------------
 #  Variable handling API
 #==============================================================================
@@ -6125,7 +6131,7 @@ module V
 end
 
 #==============================================================================
-# ** S (special thanks to Nuki)
+# ** S (special thanks to xvw)
 #------------------------------------------------------------------------------
 # Switch handling API
 #==============================================================================
@@ -10896,7 +10902,7 @@ end
 #------------------------------------------------------------------------------
 #  With :
 # Grim (original project)
-# Nuki
+# xvw
 # Raho
 #  Help :
 # Fabien
@@ -14529,7 +14535,7 @@ end
 # ** RME Tools
 #------------------------------------------------------------------------------
 #  With :
-# Nuki
+# xvw
 # Joke
 #------------------------------------------------------------------------------
 #  Gui-based tools for users (command-tester, tone-tester...)
