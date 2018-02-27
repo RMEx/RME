@@ -4,6 +4,9 @@
 # * RPG Maker (VX / VX.ACE) Extender
 # ------------------------------------------------------------------------------
 # Internal definition of how to declare a command.
+#
+# [Dependency]
+#   - `internal_documentation.rb`
 # ==============================================================================
 module RME
 
@@ -125,9 +128,6 @@ module RME
     # * Declares a new RME Command.
     # ----------------------------------------------------------------------
     def self.declare(cmd)
-      # Documenting method
-      # TODO
-
       # Selecting namespace under which the command will be declared
       namespace =
         if cmd[:namespace].is_a? Module
@@ -135,6 +135,15 @@ module RME
         else
           self
         end
+
+      # Documenting method
+      # TODO
+      doc_parameters = Array.new
+      cmd[:parameters].each do |p|
+        doc_parameters << RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
+      end
+      Doc::describe_method(namespace,
+                           RME::Doc::Command.new(cmd[:name], doc_parameters))
 
       # Generating method
       namespace.define_singleton_method(cmd[:name]) do |*args|

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Dependencies' declaration
+require_relative 'internal_documentation'
 require_relative 'internal_commands'
 
 # Declaring a dummy commands' category
@@ -14,7 +15,7 @@ module RME
                         :parameters => [
                           {:name        => :id,
                            :description => "Event-to-move's identifier",
-                           :type        => RME::Command::ParameterType::PositiveInteger},
+                           :type        => ParameterType::PositiveInteger},
                           {:name        => :x,
                            :description => "Targeted x coordinate",
                            :type        => RME::Command::ParameterType::Coordinate},
@@ -30,6 +31,10 @@ module RME
   end
 end
 
-# Command's declaration's illustration
+# Command's invocation's illustration
 RME::Command::Event::move_to(11, 27, 32)
+
+puts "\n\n"
+puts "RME::Command::Event's documentation :\n"
+puts "#{RME::Doc.schema[RME::Command::Event]}\n"
 
