@@ -47,14 +47,14 @@ In this release, we decided to use English as the main language.
      - Add command `camera_unlock_x`
      - Add command `camera_unlock_y` 
      (@BastienDuplessier, reported by @lunri)
-*  `mouse_hover_window?` (@hinola)
-*  `choice` + `last_choice` (@xvw, reported by @Zer0Zer0x)
+*  Add command `mouse_hover_window?` (@hinola)
+*  Add commands `choice` and `last_choice` (@xvw, reported by @Zer0Zer0x)
 *  - Add command `dash_activation`
-   - Add command`dash_activate`
-   - Add command`dash_deactivate`
-   - Add command`dash_activate?`
-   - Add command`dash_deactivate?`
-   (@xvw, reported par @Zer0Zer0x)
+   - Add command `dash_activate`
+   - Add command `dash_deactivate`
+   - Add command `dash_activate?`
+   - Add command `dash_deactivate?`
+   (@xvw, reported by @Zer0Zer0x)
 
 ### Bug fixes
 *  Fix commands `armors_possessed` and `weapons_possessed` (@hinola)
