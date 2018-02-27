@@ -38,3 +38,6 @@ puts "\n\n"
 puts "RME::Command::Event's documentation :\n"
 puts "#{RME::Doc.schema[RME::Command::Event]}\n"
 
+puts "\n\n"
+puts "'doc.Coordinate.description' => #{RME::Doc.default_translation['doc.Coordinate.description']}\n"
+
