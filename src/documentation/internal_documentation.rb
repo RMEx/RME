@@ -8,6 +8,50 @@
 module RME
 
   # ============================================================================
+  # ** Simple representation of a properties' file, in a Ruby context.
+  # ============================================================================
+  class Configuration
+
+    # --------------------------------------------------------------------------
+    # * Constructs a new `Configuration object` based on the properties
+    #   written down in the given file.
+    #   - `filename` the properties' filename                             String
+    #   - `fallback` a configuration object to use as fallback     Configuration
+    # --------------------------------------------------------------------------
+    def initialize(filename, fallback = nil)
+      @properties = eval(File.open(filename) { |f| f.read })
+      @fallback = fallback
+    end
+
+    # --------------------------------------------------------------------------
+    # * Returns the value registered under the given `key` in the associated
+    #   configuration file. If this configuration has been initialized with
+    #   a fallback, the latter will be looked after if the `key` was not
+    #   registered.
+    #   - `key` the property whose value should be retrived               String
+    # -> the value registered under the given `key`;
+    #    `nil` otherwise.
+    # --------------------------------------------------------------------------
+    def [](key)
+      return @properties[key] if (@properties.key? key)
+      return @fallback[key] if fallback?
+      nil
+    end
+
+    # --------------------------------------------------------------------------
+    # * Tells whether this configuration object has been initialized with
+    #   a fallback one or not.
+    # -> `true` if a fallback has been registred;
+    #    `false` otherwise.
+    # --------------------------------------------------------------------------
+    def fallback?
+      @fallback.nil?
+    end
+
+  end
+
+
+  # ============================================================================
   # ** Documentation module
   # ============================================================================
   module Doc
