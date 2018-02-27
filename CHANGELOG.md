@@ -17,11 +17,10 @@ In this release, we decided to use English as the main language.
 * Add command `event_character_name` (@BastienDuplessier)
 * Add command `event_character_index` (@BastienDuplessier)
 * Add command `event_change_character` (@BastienDuplessier)
-     - Add command `menu_enabled?|disabled?`
-     - Add command `save_enabled?|disabled?`
-     - Add command `formation_enabled?|disabled?`
-     - Add command `encounter_enabled?|disabled?`
-     (@xvw, reported by Zer0Zer0x)
+* Add command `menu_enabled?|disabled?` (@xvw, reported by Zer0Zer0x)
+* Add command `save_enabled?|disabled?` (@xvw, reported by Zer0Zer0x)
+* Add command `formation_enabled?|disabled?` (@xvw, reported by Zer0Zer0x)
+* Add command `encounter_enabled?|disabled?` (@xvw, reported by Zer0Zer0x)
 * Move command `current_event_id` and `me` from EvEx to Commands (@BastienDuplessier)
 * Add command `use_item` (@BastienDuplessier)
 * Add command `test_item` (@BastienDuplessier)
@@ -36,23 +35,21 @@ In this release, we decided to use English as the main language.
 ## Release (1.1.0)
 
 ### Additions
-*  Add command `last_used_item`, (@hinola, reported by @Zer0Zer0x)
-*  Add command `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reported by @Zer0Zer0x)
-*  Add command `window_exists?` (@hinola)
-     - Add command `camera_locked?`
-     - Add command `camera_lock_x`
-     - Add command `camera_lock_y`
-     - Add command `camera_unlock_x`
-     - Add command `camera_unlock_y`
-     (@BastienDuplessier, reported by @lunri)
-*  Add command `mouse_hover_window?` (@hinola)
-*  Add commands `choice` and `last_choice` (@xvw, reported by @Zer0Zer0x)
-    - Add command `dash_activation`
-    - Add command `dash_activate`
-    - Add command `dash_deactivate`
-    - Add command `dash_activate?`
-    - Add command `dash_deactivate?`
-    (@xvw, reported by @Zer0Zer0x)
+* Add command `last_used_item`, (@hinola, reported by @Zer0Zer0x)
+* Add command `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reported by @Zer0Zer0x)
+* Add command `window_exists?` (@hinola)
+* Add command `camera_locked?` (@BastienDuplessier, reported by @lunri)
+* Add command `camera_lock_x` (@BastienDuplessier, reported by @lunri)
+* Add command `camera_lock_y` (@BastienDuplessier, reported by @lunri)
+* Add command `camera_unlock_x` (@BastienDuplessier, reported by @lunri)
+* Add command `camera_unlock_y` (@BastienDuplessier, reported by @lunri)
+* Add command `mouse_hover_window?` (@hinola)
+* Add commands `choice` and `last_choice` (@xvw, reported by @Zer0Zer0x)
+* Add command `dash_activation` (@xvw, reported by @Zer0Zer0x)
+* Add command `dash_activate` (@xvw, reported by @Zer0Zer0x)
+* Add command `dash_deactivate` (@xvw, reported by @Zer0Zer0x)
+* Add command `dash_activate?` (@xvw, reported by @Zer0Zer0x)
+* Add command `dash_deactivate?` (@xvw, reported by @Zer0Zer0x)
 
 ### Bug fixes
 *  Fix commands `armors_possessed` and `weapons_possessed` (@hinola)
