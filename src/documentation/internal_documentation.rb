@@ -59,7 +59,10 @@ module RME
     # Eigenclass
     class << self
       attr_accessor :schema
+      attr_accessor :default_translation
+
       Doc.schema ||= Hash.new
+      Doc.default_translation ||= Configuration.new('doc.properties.rb')
     end
 
     # ==========================================================================
