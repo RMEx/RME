@@ -90,7 +90,17 @@ module RME
       end
 
       # Domain's constructor
-      Constructor = Struct.new(:description, :domain)
+      Constructor = Struct.new(:internal_description, :domain)
+
+      # Common domains' definitions
+      Coordinate      = Constructor.new("Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
+                                        ClosedInterval.new(0, 999))
+      Boolean         = Constructor.new("Boolean value",
+                                        Set.new(true, false))
+      PositiveInteger = Constructor.new("Positive integer",
+                                        Domain.new(lambda { |x| (x.is_a? Integer) and (0 <= x) }))
+
+      # TODO: add other domains' definition
 
     end
 
@@ -127,7 +137,7 @@ module RME
           unless expected[:type][:domain].valid? args[i]
             arg_value = (args[i].nil?) ? "nil (i.e.: not provided)." : args[i]
             raise "Invalid parameter: #{expected[:name]} " +
-                  "(should be a #{expected[:type][:description]}). " +
+                  "(should be a #{expected[:type][:internal_description]}). " +
                   "Actual value is #{arg_value}"
           end
 
