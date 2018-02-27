@@ -2,86 +2,63 @@
 
 ## Release (1.3.0)
 
-### Ajouts généraux 
-### Commandes ajoutées
+In this release, we decided to use English as the main language.
 
-### Corrections de bogues
+### additions
 
-- Correction du `SkipTitle` en cas de "test de combat" (@Jauke)
+### Bug fixes
+- Fix `SkipTitle` in the "battle-test-case" (@Jauke)
 
 ## Release (1.2.0)
 
-### Ajouts généraux
+### additions
+* Add range support in the syntax shortcuts for variables : `SV[1, 2, 1..18] = 10` (for example) (@xvw)
+* Add command `camera_scrolling?` (@xvw, reported by @Zer0Zer0x)
+* Add commandsn `windowskin_tone` and `windowskin_opacity` (@xvw, reported by @YendaHusk)
+* Add commands `event_tone` and `player_tone` (@xvw, reported by @Zer0Zer0x)
+* Add command `event_character_name` (@BastienDuplessier)
+* Add command `event_character_index` (@BastienDuplessier)
+* Add command `event_change_character` (@BastienDuplessier)
+*    - Add command `menu_enabled?|disabled?` 
+     - Add command `save_enabled?|disabled?`
+     - Add command `formation_enabled?|disabled?`
+     - Add command `encounter_enabled?|disabled?`
+     (@xvw, reported by Zer0Zer0x)
+* Move command `current_event_id` and `me` from EvEx to Commands (@BastienDuplessier)
+* Add command `use_item` (@BastienDuplessier)
+* Add command `test_item` (@BastienDuplessier)
 
-* Gestion des Intervalles dans les variables locales : `SV[1, 2, 1..18] = 10` (par exemple) par @xvw
-
-### Commandes ajoutées
-
-* `camera_scrolling?` (@xvw, reporté par @Zer0Zer0x)
-* `windowskin_tone` et `windowskin_opacity` (@xvw, reporté par @YendaHusk)
-* `event_tone` et `player_tone` (@xvw, reporté par @Zer0Zer0x)
-* `event_character_name`, (@BastienDuplessier)
-* `event_character_index`, (@BastienDuplessier)
-* `event_change_character`, (@BastienDuplessier)
-*    - `menu_enabled?|disabled?` 
-     - `save_enabled?|disabled?`
-     - `formation_enabled?|disabled?`
-     - `encounter_enabled?|disabled?`
-     (@xvw, reporté par Zer0Zer0x)
-* `current_event_id` et `me` (déplacement de EvEx vers Command), (@BastienDuplessier)
-* `use_item`, (@BastienDuplessier)
-* `test_item`, (@BastienDuplessier)
-
-### Corrections de bogues
-
-* Correction de `me` dans les trajectoire d'événement (@xvw, reporté par @Zer0Zer0x)
-* Correction des commandes pour flasher les cases (@xvw)
-* Correction de la commande `picture_zoom` (@xvw)
-* Correction de la commande `event_priority` (@xvw, reporté par @Zer0Zer0x)
-* Correction de la commande `event_trigger` (@xvw)
+### Bug fixes
+* Fix `me` on event's trips (@xvw, reported by @Zer0Zer0x)
+* Fix `flash_*` commands (@xvw)
+* Fix command `picture_zoom` (@xvw)
+* Fix command `event_priority` (@xvw, reported by @Zer0Zer0x)
+* Fix command `event_trigger` (@xvw)
 
 ## Release (1.1.0)
 
-### Commandes ajoutées
-
-*  `last_used_item`, (@hinola, reporté par @Zer0Zer0x)
-*  `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reporté par @Zer0Zer0x)
-*  `window_exists?` (@hinola)
-*    - `camera_locked?` 
-     - `camera_lock_x`
-     - `camera_lock_y`
-     - `camera_unlock_x`
-     - `camera_unlock_y` 
-     (@BastienDuplessier, reporté par @lunri)
+### additions
+*  Add command `last_used_item`, (@hinola, reported by @Zer0Zer0x)
+*  Add command `disable_weather_dimness`+ `disable_weather_dimness` (@BastienDuplessier, reported by @Zer0Zer0x)
+*  Add command `window_exists?` (@hinola)
+*    - Add command `camera_locked?` 
+     - Add command `camera_lock_x`
+     - Add command `camera_lock_y`
+     - Add command `camera_unlock_x`
+     - Add command `camera_unlock_y` 
+     (@BastienDuplessier, reported by @lunri)
 *  `mouse_hover_window?` (@hinola)
-*  `choice` + `last_choice` (@xvw reporté par @Zer0Zer0x)
-*  - `dash_activation`
-   - `dash_activate`
-   - `dash_deactivate`
-   - `dash_activate?`
-   - `dash_deactivate?`
-   (@xvw, reporté par @Zer0Zer0x)
+*  `choice` + `last_choice` (@xvw, reported by @Zer0Zer0x)
+*  - Add command `dash_activation`
+   - Add command`dash_activate`
+   - Add command`dash_deactivate`
+   - Add command`dash_activate?`
+   - Add command`dash_deactivate?`
+   (@xvw, reported par @Zer0Zer0x)
 
-### Corrections de bogues
-*  Correction des commandes `armors_possessed` et `weapons_possessed` (@hinola)
-*  Corrections des commandes `event_flash` et `player_flash` (@BastienDuplessier)
-*  Correction de l'afficheur de texte (profil avec contours) (@xvw reporté par @jauke)
-*  Correction des interpolations linéaires (@xvw reporté par @hinola)
+### Bug fixes
+*  Fix commands `armors_possessed` and `weapons_possessed` (@hinola)
+*  Fix commands `event_flash` and `player_flash` (@BastienDuplessier)
+*  Fix on the `displayText` (profiles with outlines) (@xvw reported by @jauke)
+*  Fix on linear interpolation (@xvw, reported by @hinola)
 
-
-## Avant la version 1.0.0
-*  `1.0.0 => 02/09/2017 22:00` Ajout de commandes pour la caméra (Al Rind), Débogage des fenêtres (Zangther) et ajouts de fonctions relatives à l'équipe (Zangther). **A partir de maintenant, on passe en versionnement sémantique**.
-*  `0.4.9 => 18/08/2017 01:00` Correction de la commande length (Nuki)
-*  `0.4.8 => 18/08/2017 05:00` Correction du move_to (enfin) ! (Nuki)
-*  `0.4.7 => 14/08/2017 05:00` Corrections de beaucoup de bugs et ajout de mouse_moving? (Nuki)
-*  `0.4.6 => 11/08/2017 05:00` Implémentation de la réflexion d'événements sur une surface (Nuki)
-*  `0.4.5 => 11/08/2017 01:00` Ajout des transitions en image (Nuki)
-*  `0.4.4 => 04/08/2017 00:30` Implémentation du testeur de teinte (Joke et Nuki)
-*  `0.4.3 => 06/08/2017 01:30` Direction facultative dans player_teleport (Nuki, reportée par Zer0zer0x)
-*  `0.4.3 => 06/08/2017 01:00` Retrait du DocGenerator du package.rb (Nuki)
-*  `0.4.2 => 05/08/2017 19:30` Ajout commandes fresh_quelquechose_id (Nuki, reporté par Husk)
-*  `0.4.1 => 04/08/2017 17:50` Ajout commandes d'intéraction texte/souris (Joke, reporté par Spyrojojo)
-*  `0.4.0 => 04/08/2017 02:00` Modification de l'algorithme de complétion pour le testeur de scripts (Nuki)
-*  `0.3.9 => 04/08/2017 01:30` Ajout d'un paramètre à fresh_event_id (Nuki, reporté par Husk)
-*  `0.3.8 => 04/08/2017 00:45` Correction du "testeur" (Joke et Nuki, reporté par Spyrojojo)
-*  `0.3.7 => 04/08/2017 00:30` Changement du "testeur de script en jeu" (Joke et Nuki)
