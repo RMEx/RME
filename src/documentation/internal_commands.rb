@@ -90,15 +90,31 @@ module RME
       end
 
       # Domain's constructor
-      Constructor = Struct.new(:internal_description, :domain)
+      # [! This constructor should not be used: instead use `::declare` !]
+      Constructor = Struct.new(:name, :internal_description, :domain)
+
+      # ------------------------------------------------------------------------
+      # * Registers a new type of command's parameter under `ParameterType`.
+      #   - `name` the type's name                                 Symbol/String
+      #   - `internal_description` the type's description                 String
+      #     for developers only (not the one documented)
+      #   - `domain` the type's domain of definition                      Domain
+      # ------------------------------------------------------------------------
+      def self.declare(name, internal_description, domain)
+        type = Constructor.new(name, internal_description, domain)
+        self.const_set(name, type)
+      end
 
       # Common domains' definitions
-      Coordinate      = Constructor.new("Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
-                                        ClosedInterval.new(0, 999))
-      Boolean         = Constructor.new("Boolean value",
-                                        Set.new(true, false))
-      PositiveInteger = Constructor.new("Positive integer",
-                                        Domain.new(lambda { |x| (x.is_a? Integer) and (0 <= x) }))
+      ParameterType::declare(:Coordinate,
+                             "Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
+                             ClosedInterval.new(0, 999))
+      ParameterType::declare(:Boolean,
+                             "Boolean value",
+                             Set.new(true, false))
+      ParameterType::declare(:PositiveInteger,
+                             "Positive integer",
+                             Domain.new(lambda { |x| (x.is_a? Integer) and (0 <= x) }))
 
       # TODO: add other domains' definition
 
