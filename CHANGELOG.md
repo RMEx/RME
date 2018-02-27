@@ -1,5 +1,14 @@
 # RME Changelog
 
+## Release (1.3.0)
+
+### Ajouts généraux 
+### Commandes ajoutées
+
+### Corrections de bogues
+
+- Correction du `SkipTitle` en cas de "test de combat" (@Jauke)
+
 ## Release (1.2.0)
 
 ### Ajouts généraux
