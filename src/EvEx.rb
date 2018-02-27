@@ -33,6 +33,34 @@ module Cache
     end
     return Game_Temp.cached_map[1]
   end
+
+  def self.swap(name)
+    if name == :screenshot
+      return Graphics.snap_to_bitmap.clone
+    end
+    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+      return Cache.picture($2)
+    end
+    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+      return Cache.battler($2, 0)
+    end
+    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+      return Cache.battleback1($2)
+    end
+    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+      return Cache.battleback2($2)
+    end
+    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+      return Cache.parallax($2)
+    end
+    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+      return Cache.title1($2)
+    end
+    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+      return Cache.title2($2)
+    end
+    return Cache.picture(name)
+  end
 end
 
 
@@ -3779,28 +3807,7 @@ class Sprite_Picture
     end
 
     @old_snap = false
-    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
-      return Cache.picture($2)
-    end
-    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
-      return Cache.battler($2, 0)
-    end
-    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
-      return Cache.battleback1($2)
-    end
-    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
-      return Cache.battleback2($2)
-    end
-    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
-      return Cache.parallax($2)
-    end
-    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
-      return Cache.title1($2)
-    end
-    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
-      return Cache.title2($2)
-    end
-    return Cache.picture(name)
+    return Cache.swap(@picture.name)
   end
   #--------------------------------------------------------------------------
   # * Alias

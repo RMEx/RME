@@ -718,7 +718,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = sprite_picture(id).swap_cache
+        bmp = Cache.swap(pict.name)
         return (((bmp.width * pict.zoom_x))/100.0).to_i
       end
       zoom = Command.percent(v, picture_width(id))
@@ -732,7 +732,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = sprite_picture(id).swap_cache
+        bmp = Cache.swap(pict.name)
         return (((bmp.height * pict.zoom_y))/100.0).to_i
       end
       zoom = Command.percent(v, picture_height(id))
