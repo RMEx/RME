@@ -2443,7 +2443,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Change text scroll speed
     #--------------------------------------------------------------------------
-    def text_scroll(id, xvalue, yvalue = value)
+    def text_scroll(id, xvalue, yvalue = xvalue)
       yvalue ||= xvalue
       text_scroll_speed_x(id, xvalue)
       text_scroll_speed_y(id, yvalue)
