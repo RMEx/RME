@@ -97,6 +97,16 @@ module RME
     def gui_enabled?
       true
     end
+    #--------------------------------------------------------------------------
+    # * Deprecation
+    #--------------------------------------------------------------------------
+    def deprecated(message)
+      puts "[deprecated] #{message}"
+    end
+
+    def deprecated_command(command, message = "this command is deprecated")
+      puts "[deprecated command '#{command}'] #{message}"
+    end
   end
 
   #==============================================================================
@@ -6049,6 +6059,34 @@ module Cache
     end
     return Game_Temp.cached_map[1]
   end
+
+  def self.swap(name)
+    if name == :screenshot
+      return Graphics.snap_to_bitmap.clone
+    end
+    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+      return Cache.picture($2)
+    end
+    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+      return Cache.battler($2, 0)
+    end
+    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+      return Cache.battleback1($2)
+    end
+    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+      return Cache.battleback2($2)
+    end
+    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+      return Cache.parallax($2)
+    end
+    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+      return Cache.title1($2)
+    end
+    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+      return Cache.title2($2)
+    end
+    return Cache.picture(name)
+  end
 end
 
 
@@ -7634,7 +7672,6 @@ class Game_Character
       set_direction(sy > 0 ? 2 : 8)
     end
   end
-
 end
 
 
@@ -9795,28 +9832,7 @@ class Sprite_Picture
     end
 
     @old_snap = false
-    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
-      return Cache.picture($2)
-    end
-    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
-      return Cache.battler($2, 0)
-    end
-    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
-      return Cache.battleback1($2)
-    end
-    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
-      return Cache.battleback2($2)
-    end
-    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
-      return Cache.parallax($2)
-    end
-    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
-      return Cache.title1($2)
-    end
-    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
-      return Cache.title2($2)
-    end
-    return Cache.picture(name)
+    return Cache.swap(@picture.name)
   end
   #--------------------------------------------------------------------------
   # * Alias
@@ -11616,7 +11632,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = sprite_picture(id).swap_cache
+        bmp = Cache.swap(pict.name)
         return (((bmp.width * pict.zoom_x))/100.0).to_i
       end
       zoom = Command.percent(v, picture_width(id))
@@ -11630,7 +11646,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = sprite_picture(id).swap_cache
+        bmp = Cache.swap(pict.name)
         return (((bmp.height * pict.zoom_y))/100.0).to_i
       end
       zoom = Command.percent(v, picture_height(id))
@@ -12980,16 +12996,61 @@ module RMECommands
       event_turn_away_from_event(0, id)
     end
 
+    def event_jump(id, x_plus, y_plus)
+      event(id).jump(x_plus, y_plus)
+    end
+
+    def player_jump(x_plus, y_plus)
+      event_jump(0, x_plus, y_plus)
+    end
+
+    def event_jump_x(id, x_plus)
+      event_jump(id, x_plus, 0)
+    end
+
+    def event_jump_y(id, y_plus)
+      event_jump(id, 0, y_plus)
+    end
+
+    def player_jump_x(x_plus)
+      event_jump(0, x_plus, 0)
+    end
+
+    def player_jump_y(y_plus)
+      event_jump(0, 0, y_plus)
+    end
+
+    def event_move_to(id, x, y, w=false, no_t = false)
+      event(id).move_to_position(x, y, w, no_t)
+    end
+
+    def player_move_to(x, y, w=false, no_t = false)
+      event(0).move_to_position(x, y, w, no_t)
+    end
+
+    def event_jump_to(id, x, y, w=true)
+      event(id).jump_to(x, y, w)
+    end
+
+    def player_jump_to(x, y, w=true)
+      event(0).jump_to(x, y, w)
+    end
 
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
-    def move_to(id, x, y, w=false, no_t = false); event(id).move_to_position(x, y, w, no_t); end
+    def move_to(id, x, y, w=false, no_t = false)
+      RME::deprecated_command("move_to", "use 'event_move_to' or 'player_move_to'")
+      event(id).move_to_position(x, y, w, no_t)
+    end
     #--------------------------------------------------------------------------
     # * Jump event to x, y coords
     #--------------------------------------------------------------------------
-    def jump_to(id, x, y, w=true); event(id).jump_to(x, y, w); end
+    def jump_to(id, x, y, w=true)
+      RME::deprecated_command("jump_to", "use 'event_jump_to' or 'player_jump_to'")
+      event(id).jump_to(x, y, w)
+    end
 
     # Fix for EE4
     alias_method :collide?, :events_collide?
