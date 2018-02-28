@@ -78,20 +78,26 @@ module RME
       attr_reader :description
       attr_reader :parameters
       attr_reader :deprecated_since
+      attr_reader :see_also
 
       # ------------------------------------------------------------------------
       # * Constructs a new `Command` based on the given parameters.
       #   - `name` the command's symbol                            Symbol/String
       #   - `description` the command's description                       String
       #   - `parameters` the command's parameters               Array[Parameter]
+      #   - `see_also` the list of similar commands         Array[Symbol/String]
       #   - `deprecated_since` the version at which this                  String
       #     command started to be considered as deprecated
       # ------------------------------------------------------------------------
-      def initialize(name, description, parameters, deprecated_since)
+      def initialize(name, description, parameters, see_also, deprecated_since)
         @name = name
         @description = description
         @parameters = parameters
+        @see_also = see_also
         @deprecated_since = deprecated_since
+
+        (@parameters ||= Array.new).compact!
+        (@see_also ||= Array.new).compact!
       end
 
       # ------------------------------------------------------------------------
@@ -119,6 +125,14 @@ module RME
       def to_json(translator)
         parameters = @parameters.map{|p| p.to_json(translator)}.join(",")
         description_key = "doc.cmd.#{@description}"
+        see_also =
+          unless @see_also.empty?
+            commands_to_see = @see_also.map{|c| "\"#{c}\"" }.join(",")
+            "," + "\"see\": [#{commands_to_see}]"
+          else
+            ""
+          end
+
         deprecation =
           if deprecated?
             "," + "\"deprecatedSince\": \"#{@deprecated_since}\""
@@ -131,6 +145,7 @@ module RME
           "\"description\": \"#{translator[description_key]}\"," +
           "\"parameters\": [#{parameters}]" +
           deprecation +
+          see_also +
         "}"
       end
 

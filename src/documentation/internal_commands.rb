@@ -146,6 +146,7 @@ module RME
                            RME::Doc::Command.new(cmd[:name],
                                                  cmd[:description],
                                                  doc_parameters,
+                                                 cmd[:see],
                                                  cmd[:deprecated_since]))
 
       # Generating method
