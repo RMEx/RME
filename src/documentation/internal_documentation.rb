@@ -364,6 +364,26 @@ module RME
 
     end
 
+
+    # --------------------------------------------------------------------------
+    # * Retrieves the parameters which have already been defined in the given
+    #   section.
+    # -> Hash[Symbol/String => Parameter]
+    # --------------------------------------------------------------------------
+    def self.defined_parameters(section)
+      parameters = Hash.new
+
+      if Doc.schema.key? section
+        Doc.schema[section].each do |c_name, c|
+          c.parameters.each do |p|
+            parameters[p.name] = p
+          end
+        end
+      end
+
+      parameters
+    end
+
   end
 
 end
