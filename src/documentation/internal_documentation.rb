@@ -350,13 +350,13 @@ module RME
         section_documentation = generate_section_documentation(section_name,
                                                                commands,
                                                                translator)
-        File.open("#{section_dir}.json", 'w') do |f|
+        File.open("#{section_dir}.json", 'w:UTF-8') do |f|
           f.write(section_documentation)
         end
 
         # Generating section's commands' documentation files
         commands.each do |name, c|
-          File.open("#{section_dir}/#{name}.json", 'w') do |f|
+          File.open("#{section_dir}/#{name}.json", 'w:UTF-8') do |f|
             f.write(c.to_json(translator))
           end
         end
