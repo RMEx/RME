@@ -128,22 +128,22 @@ module RME
         see_also =
           unless @see_also.empty?
             commands_to_see = @see_also.map{|c| "\"#{c}\"" }.join(",")
-            "," + "\"see\": [#{commands_to_see}]"
+            "," + "\"see\":[#{commands_to_see}]"
           else
             ""
           end
 
         deprecation =
           if deprecated?
-            "," + "\"deprecatedSince\": \"#{@deprecated_since}\""
+            "," + "\"deprecatedSince\":\"#{@deprecated_since}\""
           else
             ""
           end
 
         "{" +
-          "\"name\": \"#{@name}\"," +
-          "\"description\": \"#{translator[description_key]}\"," +
-          "\"parameters\": [#{parameters}]" +
+          "\"name\":\"#{@name}\"," +
+          "\"description\":\"#{translator[description_key]}\"," +
+          "\"parameters\":[#{parameters}]" +
           deprecation +
           see_also +
         "}"
@@ -205,7 +205,7 @@ module RME
       def to_json(translator)
         default_value_property =
           if optional?
-            ",\"defaultValue\": \"#{@default_value}\""
+            ",\"defaultValue\":\"#{@default_value}\""
           else
             ""
           end
@@ -213,9 +213,9 @@ module RME
         description_key = "doc.parameter.#{@description}.description"
 
         "{" +
-          "\"name\": \"#{@name}\"," +
-          "\"description\": \"#{translator[description_key]}\"," +
-          "\"type\": #{@type.to_json(translator)}" +
+          "\"name\":\"#{@name}\"," +
+          "\"description\":\"#{translator[description_key]}\"," +
+          "\"type\":#{@type.to_json(translator)}" +
           default_value_property +
         "}"
       end
@@ -257,10 +257,10 @@ module RME
             ""
           elsif domain.is_a? RME::Command::ParameterType::Set
             available_values = domain.elements.map {|x| "\"#{x}\""}.join(",")
-            "," + "\"availableValues\": [#{available_values}]"
+            "," + "\"availableValues\":[#{available_values}]"
           elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
             "," + "\"min\":\"#{domain.range.min}\"" +
-            "," + "\"max\": \"#{domain.range.max}\""
+            "," + "\"max\":\"#{domain.range.max}\""
           else
             ""
           end
@@ -296,9 +296,9 @@ module RME
       commands_name = commands.keys.map {|c| "\"#{c}\""}.join(",")
 
       "{" +
-        "\"name\": \"#{section_name}\"," +
-        "\"description\": \"#{translator[section_description_key]}\"," +
-        "\"commands\": [#{commands_name}]" +
+        "\"name\":\"#{section_name}\"," +
+        "\"description\":\"#{translator[section_description_key]}\"," +
+        "\"commands\":[#{commands_name}]" +
       "}"
     end
     private_class_method :generate_section_documentation
