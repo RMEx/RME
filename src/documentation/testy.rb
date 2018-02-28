@@ -14,16 +14,16 @@ module RME
                         :namespace => self,
                         :parameters => [
                           {:name        => :id,
-                           :description => "Event-to-move's identifier",
+                           :description => 'event.eventId',
                            :type        => ParameterType::PositiveInteger},
                           {:name        => :x,
-                           :description => "Targeted x coordinate",
+                           :description => 'event.x',
                            :type        => RME::Command::ParameterType::Coordinate},
                           {:name        => :y,
-                           :description => "Targeted y coordinate",
+                           :description => 'event.y',
                            :type        => RME::Command::ParameterType::Coordinate},
                           {:name        => :ghostly,
-                           :description => "Tells whether the event can move through anything or not",
+                           :description => 'event.ghostly',
                            :type        => RME::Command::ParameterType::Boolean,
                            :default     => false}
                         ]}) { |id, x, y, ghostly| puts "Moving event n°#{id} to (#{x}, #{y}) (ghostly? #{ghostly})" }
@@ -32,12 +32,12 @@ module RME
 end
 
 # Command's invocation's illustration
+puts "Command's invocation (Event::move_to):\n"
 RME::Command::Event::move_to(11, 27, 32)
 
-puts "\n\n"
-puts "RME::Command::Event's documentation :\n"
-puts "#{RME::Doc.schema[RME::Command::Event]}\n"
+puts "\n"
 
-puts "\n\n"
-puts "'doc.Coordinate.description' => #{RME::Doc.default_translation['doc.Coordinate.description']}\n"
+# Commands' documentation's generation
+puts "RME commands' documentation in JSON:\n"
+puts "#{RME::Doc::generate}\n"
 
