@@ -109,6 +109,9 @@ module RME
       end
 
       # Common domains' definitions
+      ParameterType::declare(:Object,
+                             "Object type (it the default parameter type and means that none were provided)",
+                             Domain.new(lambda { |x| true }))
       ParameterType::declare(:Coordinate,
                              "Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
                              ClosedInterval.new(0, 999))
