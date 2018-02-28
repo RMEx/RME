@@ -14,6 +14,7 @@ module RME
                         :section => self,
                         :description => 'Event.move_to',
                         :deprecated_since => "1.2.3",
+                        :see => [:move_player_to, :move_up, :move_down],
                         :parameters => [
                           {:name        => :id,
                            :description => 'Event.eventId',
