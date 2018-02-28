@@ -213,12 +213,29 @@ module RME
       # * Serializes this `ParameterType` into JSON.
       # ------------------------------------------------------------------------
       def to_json(translator)
+
+        # Serializing specific types {Predicate-based, Set@Enum, Intervals}
+        domain = @raw_type.domain
+        additional_info =
+          if domain.is_a? RME::Command::ParameterType::Domain
+            # TODO
+            ""
+          elsif domain.is_a? RME::Command::ParameterType::Set
+            available_values = domain.elements.map {|x| "\"#{x}\""}.join(",")
+            "," + "\"availableValues\": [#{available_values}]"
+          elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
+            "," + "\"min\":\"#{domain.range.min}\"" + "," + "\"max\": \"#{domain.range.max}\""
+          else
+            ""
+          end
+
+
         "{" +
           "\"description\":\"#{translator[@description]}\"," +
           "\"name\":\"#{@raw_type.name}\"" +
+          additional_info +
         "}"
 
-        # TODO: Serializes specific types {Predicate-based, Set@Enum, Intervals}
       end
 
     end
