@@ -224,7 +224,8 @@ module RME
             available_values = domain.elements.map {|x| "\"#{x}\""}.join(",")
             "," + "\"availableValues\": [#{available_values}]"
           elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
-            "," + "\"min\":\"#{domain.range.min}\"" + "," + "\"max\": \"#{domain.range.max}\""
+            "," + "\"min\":\"#{domain.range.min}\"" +
+            "," + "\"max\": \"#{domain.range.max}\""
           else
             ""
           end
@@ -240,20 +241,20 @@ module RME
 
     end
 
-    # ----------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     # * Describes one method explicitely.
-    #   - `section` the module under which the command               Symbol/String
+    #   - `section` the module under which the command             Symbol/String
     #     should be located
-    #   - `command` the documented command                                 Command
-    # ----------------------------------------------------------------------------
+    #   - `command` the documented command                               Command
+    # --------------------------------------------------------------------------
     def self.describe_method(section, command)
       Doc.schema[section] ||= Hash.new
       Doc.schema[section][command.name] = command
     end
 
     # --------------------------------------------------------------------------
-    # * Generates the JSON documentation which corresponds to the given
-    #   section.
+    # * Generates the JSON documentation which corresponds     [Internal method]
+    #   to the given section.
     # --------------------------------------------------------------------------
     def self.generate_section_documentation(section_name, commands, translator)
       section_description_key = "doc.section.#{section_name}"
@@ -303,7 +304,9 @@ module RME
       Doc.schema.each do |section, commands|
 
         # TODO: Revise this way of removing a prefix
-        section_name = section.name.reverse.chomp("RME::Command::".reverse).reverse
+        section_name = section.name.reverse
+                                   .chomp("RME::Command::".reverse)
+                                   .reverse
 
         section_dir = "#{output_dir}/#{section_name}"
         full_mkdir(section_dir)
