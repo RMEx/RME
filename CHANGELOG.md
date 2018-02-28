@@ -4,9 +4,25 @@
 
 In this release, we decided to use English as the main language.
 
+### Additions
+- Add command `player_jump_y` (@Grimimi, reported by @xvw)
+- Add command `player_jump_x` (@Grimimi, reported by @xvw)
+- Add command `event_jump_y` (@Grimimi, reported by @xvw)
+- Add command `event_jump_x` (@Grimimi, reported by @xvw)
+- Add command `player_jump` (@Grimimi, reported by @xvw)
+- Add command `event_jump` (@Grimimi, reported by @xvw)
+- Add command `player_move_to` (@Grimimi)
+- Add command `player_jump_to` (@Grimimi)
+- Add command `event_move_to` (@Grimimi)
+- Add command `event_jump_to` (@Grimimi)
+
 ### Bug fixes
 - Fix commands `picture_width` and `picture_height` (@Grimimi, reported by @Jauke)
 - Fix `SkipTitle` in the "battle-test-case" (@Jauke)
+
+### Deprecates
+- `move_to` : use `event_move_to` instead (@Grimimi)
+- `jump_to` : use `event_jump_to` instead (@Grimimi)
 
 ## Release (1.2.0)
 

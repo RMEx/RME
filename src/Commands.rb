@@ -2082,16 +2082,61 @@ module RMECommands
       event_turn_away_from_event(0, id)
     end
 
+    def event_jump(id, x_plus, y_plus)
+      event(id).jump(x_plus, y_plus)
+    end
+
+    def player_jump(x_plus, y_plus)
+      event_jump(0, x_plus, y_plus)
+    end
+
+    def event_jump_x(id, x_plus)
+      event_jump(id, x_plus, 0)
+    end
+
+    def event_jump_y(id, y_plus)
+      event_jump(id, 0, y_plus)
+    end
+
+    def player_jump_x(x_plus)
+      event_jump(0, x_plus, 0)
+    end
+
+    def player_jump_y(y_plus)
+      event_jump(0, 0, y_plus)
+    end
+
+    def event_move_to(id, x, y, w=false, no_t = false)
+      event(id).move_to_position(x, y, w, no_t)
+    end
+
+    def player_move_to(x, y, w=false, no_t = false)
+      event(0).move_to_position(x, y, w, no_t)
+    end
+
+    def event_jump_to(id, x, y, w=true)
+      event(id).jump_to(x, y, w)
+    end
+
+    def player_jump_to(x, y, w=true)
+      event(0).jump_to(x, y, w)
+    end
 
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
-    def move_to(id, x, y, w=false, no_t = false); event(id).move_to_position(x, y, w, no_t); end
+    def move_to(id, x, y, w=false, no_t = false)
+      RME::deprecated_command("move_to", "use 'event_move_to' or 'player_move_to'")
+      event(id).move_to_position(x, y, w, no_t)
+    end
     #--------------------------------------------------------------------------
     # * Jump event to x, y coords
     #--------------------------------------------------------------------------
-    def jump_to(id, x, y, w=true); event(id).jump_to(x, y, w); end
+    def jump_to(id, x, y, w=true)
+      RME::deprecated_command("jump_to", "use 'event_jump_to' or 'player_jump_to'")
+      event(id).jump_to(x, y, w)
+    end
 
     # Fix for EE4
     alias_method :collide?, :events_collide?

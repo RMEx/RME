@@ -1646,7 +1646,6 @@ class Game_Character
       set_direction(sy > 0 ? 2 : 8)
     end
   end
-
 end
 
 

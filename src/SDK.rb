@@ -97,6 +97,16 @@ module RME
     def gui_enabled?
       true
     end
+    #--------------------------------------------------------------------------
+    # * Deprecation
+    #--------------------------------------------------------------------------
+    def deprecated(message)
+      puts "[deprecated] #{message}"
+    end
+
+    def deprecated_command(command, message = "this command is deprecated")
+      puts "[deprecated command '#{command}'] #{message}"
+    end
   end
 
   #==============================================================================
