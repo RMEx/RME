@@ -139,11 +139,12 @@ module RME
           self
         end
 
+      # Validating command
+      cmd[:parameters].each { |p| p[:type] ||= ParameterType::Object }
+
       # Documenting method
-      # TODO
-      doc_parameters = Array.new
-      cmd[:parameters].each do |p|
-        doc_parameters << RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
+      doc_parameters = cmd[:parameters].map do |p|
+        RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
       end
       Doc::describe_method(section,
                            RME::Doc::Command.new(cmd[:name],

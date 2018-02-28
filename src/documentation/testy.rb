@@ -30,6 +30,15 @@ module RME
                            :type        => RME::Command::ParameterType::Boolean,
                            :default     => false}
                         ]}) { |id, x, y, ghostly| puts "Moving event n°#{id} to (#{x}, #{y}) (ghostly? #{ghostly})" }
+
+      Command::declare({:name => :move_player_to,
+                        :section => self,
+                        :description => 'Event.move_player_to',
+                        :parameters => [
+                          {:name => :x},
+                          {:name => :y},
+                          {:name => :ghostly}
+                        ]}) { |x, y, ghostly| puts "Moving player to (#{x}, #{y}) (ghostly? #{ghostly})" }
     end
   end
 end
