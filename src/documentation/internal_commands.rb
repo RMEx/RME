@@ -128,10 +128,10 @@ module RME
     # * Declares a new RME Command.
     # ----------------------------------------------------------------------
     def self.declare(cmd)
-      # Selecting namespace under which the command will be declared
-      namespace =
-        if cmd[:namespace].is_a? Module
-          cmd[:namespace]
+      # Selecting section (namespace) under which the command will be declared
+      section =
+        if cmd[:section].is_a? Module
+          cmd[:section]
         else
           self
         end
@@ -142,11 +142,11 @@ module RME
       cmd[:parameters].each do |p|
         doc_parameters << RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
       end
-      Doc::describe_method(namespace,
+      Doc::describe_method(section,
                            RME::Doc::Command.new(cmd[:name], cmd[:description], doc_parameters))
 
       # Generating method
-      namespace.define_singleton_method(cmd[:name]) do |*args|
+      section.define_singleton_method(cmd[:name]) do |*args|
 
         # Validating each parameter
         cmd[:parameters].each_with_index do |expected, i |

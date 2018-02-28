@@ -242,13 +242,13 @@ module RME
 
     # ----------------------------------------------------------------------------
     # * Describes one method explicitely.
-    #   - `namespace` the module under which the command             Symbol/String
+    #   - `section` the module under which the command               Symbol/String
     #     should be located
     #   - `command` the documented command                                 Command
     # ----------------------------------------------------------------------------
-    def self.describe_method(namespace, command)
-      Doc.schema[namespace] ||= Hash.new
-      Doc.schema[namespace][command.name] = command
+    def self.describe_method(section, command)
+      Doc.schema[section] ||= Hash.new
+      Doc.schema[section][command.name] = command
     end
 
 
@@ -266,13 +266,16 @@ module RME
           Doc.default_translation
         end
 
-      # Generating modules' documentation
-      documented_namespaces = Doc.schema.map do |namespace, commands|
+      # Generating each sections' documentation
+      documented_sections = Doc.schema.map do |section, commands|
+        # TODO: Revise this way of removing a prefix :/
+        section_name = section.name.reverse.chomp("RME::Command::".reverse).reverse
+
         documented_commands = commands.map{|name, c| c.to_json(translator)}.join(",")
-        "\"#{namespace}\": [#{documented_commands}]"
+        "\"#{section_name}\": [#{documented_commands}]"
       end
 
-      "{#{documented_namespaces.join(",")}}"
+      "{#{documented_sections.join(",")}}"
     end
 
   end
