@@ -87,6 +87,18 @@ module RME
         @parameters = parameters
       end
 
+      # ------------------------------------------------------------------------
+      # * Serializes this `Command` into JSON.
+      # ------------------------------------------------------------------------
+      def to_json(translator)
+        parameters = @parameters.map{|p| p.to_json(translator)}.join(",")
+
+        "{" +
+          "\"name\": \"#{@name}\"," +
+          "\"parameters\": [#{parameters}]" +
+        "}"
+      end
+
     end
 
     # ==========================================================================
@@ -137,6 +149,27 @@ module RME
         not @default_value.nil?
       end
 
+      # ------------------------------------------------------------------------
+      # * Serializes this `Parameter` into JSON.
+      # ------------------------------------------------------------------------
+      def to_json(translator)
+        default_value_property =
+          if optional?
+            ",\"defaultValue\": \"#{@default_value}\""
+          else
+            ""
+          end
+
+        description_key = "doc.parameter.#{@description}.description"
+
+        "{" +
+          "\"name\": \"#{@name}\"," +
+          "\"description\": \"#{translator[description_key]}\"," +
+          "\"type\": #{@type.to_json(translator)}" +
+          default_value_property +
+        "}"
+      end
+
     end
 
     # ==========================================================================
@@ -159,6 +192,18 @@ module RME
       def initialize(raw_type)
         @raw_type = raw_type
         @description = "doc.#{raw_type.name}.description"
+      end
+
+      # ------------------------------------------------------------------------
+      # * Serializes this `ParameterType` into JSON.
+      # ------------------------------------------------------------------------
+      def to_json(translator)
+        "{" +
+          "\"description\":\"#{translator[@description]}\"," +
+          "\"name\":\"#{@raw_type.name}\"" +
+        "}"
+
+        # TODO: Serializes specific types {Predicate-based, Set@Enum, Intervals}
       end
 
     end
