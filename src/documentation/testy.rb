@@ -12,19 +12,19 @@ module RME
 
       Command::declare({:name => :move_to,
                         :section => self,
-                        :description => 'event.move_to',
+                        :description => 'Event.move_to',
                         :parameters => [
                           {:name        => :id,
-                           :description => 'event.eventId',
+                           :description => 'Event.eventId',
                            :type        => ParameterType::PositiveInteger},
                           {:name        => :x,
-                           :description => 'event.x',
+                           :description => 'Event.x',
                            :type        => RME::Command::ParameterType::Coordinate},
                           {:name        => :y,
-                           :description => 'event.y',
+                           :description => 'Event.y',
                            :type        => RME::Command::ParameterType::Coordinate},
                           {:name        => :ghostly,
-                           :description => 'event.ghostly',
+                           :description => 'Event.ghostly',
                            :type        => RME::Command::ParameterType::Boolean,
                            :default     => false}
                         ]}) { |id, x, y, ghostly| puts "Moving event n°#{id} to (#{x}, #{y}) (ghostly? #{ghostly})" }
@@ -37,4 +37,11 @@ puts "Command's invocation (Event::move_to):\n"
 RME::Command::Event::move_to(11, 27, 32)
 
 puts "\n"
+
+# Commands' documentation's generation
+puts "Generating RME commands' documentation (JSON) in english..."
+RME::Doc::generate('sample-doc/en')
+
+puts "Generating RME commands' documentation (JSON) in french..."
+RME::Doc::generate('sample-doc/fr', 'fr')
 
