@@ -143,7 +143,10 @@ module RME
         doc_parameters << RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
       end
       Doc::describe_method(section,
-                           RME::Doc::Command.new(cmd[:name], cmd[:description], doc_parameters))
+                           RME::Doc::Command.new(cmd[:name],
+                                                 cmd[:description],
+                                                 doc_parameters,
+                                                 cmd[:deprecated_since]))
 
       # Generating method
       section.define_singleton_method(cmd[:name]) do |*args|

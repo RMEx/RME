@@ -77,21 +77,25 @@ module RME
       attr_reader :name
       attr_reader :description
       attr_reader :parameters
+      attr_reader :deprecated_since
 
       # ------------------------------------------------------------------------
       # * Constructs a new `Command` based on the given parameters.
       #   - `name` the command's symbol                            Symbol/String
       #   - `description` the command's description                       String
       #   - `parameters` the command's parameters               Array[Parameter]
+      #   - `deprecated_since` the version at which this                  String
+      #     command started to be considered as deprecated
       # ------------------------------------------------------------------------
-      def initialize(name, description, parameters)
+      def initialize(name, description, parameters, deprecated_since)
         @name = name
         @description = description
         @parameters = parameters
+        @deprecated_since = deprecated_since
       end
 
       # ------------------------------------------------------------------------
-      # * Tells whether this command is explicetely documented or not.
+      # * Tells whether this command is explicitely documented or not.
       # -> `true` if this command is correctly documented;
       #    `false` otherwise.
       # TODO: Revise this implementation
@@ -101,16 +105,32 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Tells whether this command is explicitely deprecated or not.
+      # -> `true` if this command is deprecated;
+      #    `false` otherwise.
+      # ------------------------------------------------------------------------
+      def deprecated?
+        not @deprecated_since.nil?
+      end
+
+      # ------------------------------------------------------------------------
       # * Serializes this `Command` into JSON.
       # ------------------------------------------------------------------------
       def to_json(translator)
         parameters = @parameters.map{|p| p.to_json(translator)}.join(",")
         description_key = "doc.cmd.#{@description}"
+        deprecation =
+          if deprecated?
+            "," + "\"deprecatedSince\": \"#{@deprecated_since}\""
+          else
+            ""
+          end
 
         "{" +
           "\"name\": \"#{@name}\"," +
           "\"description\": \"#{translator[description_key]}\"," +
           "\"parameters\": [#{parameters}]" +
+          deprecation +
         "}"
       end
 
