@@ -5,6 +5,9 @@
 In this release, we decided to use English as the main language.
 
 ### Additions
+- Add command `import_variable_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
+- Add command `import_label_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
+- Add command `import_switch_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
 - Add command `file_append` (@Grimimi)
 - Add command `file_write` (@Grimimi)
 - Add command `file_read` (@Grimimi)
