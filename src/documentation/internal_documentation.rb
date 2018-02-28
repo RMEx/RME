@@ -219,6 +219,30 @@ module RME
       Doc.schema[namespace][command.name] = command
     end
 
+
+    # --------------------------------------------------------------------------
+    # * Generates the JSON documentation of commands.
+    #   - `lang` the language in which the documentation                  String
+    #     should be written
+    # --------------------------------------------------------------------------
+    def self.generate(lang = "en")
+      # Selecting properties' file for translations
+      translator =
+        unless "en".eql? lang
+          Configuration.new("doc_#{lang}.properties.rb", Doc.default_translation)
+        else
+          Doc.default_translation
+        end
+
+      # Generating modules' documentation
+      documented_namespaces = Doc.schema.map do |namespace, commands|
+        documented_commands = commands.map{|name, c| c.to_json(translator)}.join(",")
+        "\"#{namespace}\": [#{documented_commands}]"
+      end
+
+      "{#{documented_namespaces.join(",")}}"
+    end
+
   end
 
 end
