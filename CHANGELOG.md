@@ -5,6 +5,12 @@
 In this release, we decided to use English as the main language.
 
 ### Additions
+- Add command `text_unpin` (@Grimimi, reported by @Princesseuh)
+- Add command `text_pinned?` (@Grimimi, reported by @Princesseuh)
+- Add command `text_pin` (@Grimimi, reported by @Princesseuh)
+- Add command `text_scroll_y` (@Grimimi)
+- Add command `text_scroll_x` (@Grimimi)
+- Add command `text_scroll` (@Grimimi)
 - Add command `player_jump_y` (@Grimimi, reported by @xvw)
 - Add command `player_jump_x` (@Grimimi, reported by @xvw)
 - Add command `event_jump_y` (@Grimimi, reported by @xvw)
