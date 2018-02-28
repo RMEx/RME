@@ -5,6 +5,13 @@
 In this release, we decided to use English as the main language.
 
 ### Additions
+- Add command `file_append` (@Grimimi)
+- Add command `file_write` (@Grimimi)
+- Add command `file_read` (@Grimimi)
+- Add command `file_delete` (@Grimimi)
+- Add command `file_exists?` (@Grimimi)
+- Add command `load_game_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
+- Add command `save_game_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
 - Add command `text_unpin` (@Grimimi, reported by @Princesseuh)
 - Add command `text_pinned?` (@Grimimi, reported by @Princesseuh)
 - Add command `text_pin` (@Grimimi, reported by @Princesseuh)
