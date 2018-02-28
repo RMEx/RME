@@ -45,7 +45,7 @@ module RME
     #    `false` otherwise.
     # --------------------------------------------------------------------------
     def fallback?
-      @fallback.nil?
+      not @fallback.nil?
     end
 
   end
@@ -125,7 +125,7 @@ module RME
       # TODO: Revise this implementation
       # ------------------------------------------------------------------------
       def documented?
-        nil.eql? @description
+        not @description.nil?
       end
 
       # ------------------------------------------------------------------------
@@ -134,7 +134,7 @@ module RME
       #    `false` otherwise.
       # ------------------------------------------------------------------------
       def optional?
-        nil.eql? @default_value
+        not @default_value.nil?
       end
 
     end
