@@ -13887,6 +13887,10 @@ module RMECommands
     def import_switch(ids, idswitch); DataManager.export(ids-1)[:switches][idswitch]; end
     def import_label(ids, idlabel); DataManager.export(ids-1)[:labels][idlabel]; end
 
+    def import_variable_with_free_name(ids, idvar); DataManager.export(ids)[:variables][idvar]; end
+    def import_switch_with_free_name(ids, idswitch); DataManager.export(ids)[:switches][idswitch]; end
+    def import_label_with_free_name(ids, idlabel); DataManager.export(ids)[:labels][idlabel]; end
+
     # Fix for EE4
     alias_method :delete_save, :save_delete
 
