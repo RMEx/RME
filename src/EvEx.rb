@@ -2823,12 +2823,19 @@ class Game_Map
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
   end
+
+  #--------------------------------------------------------------------------
+  # * Get the map rectangle
+  #--------------------------------------------------------------------------
+  def rect
+    Rect.new(0, 0, self.width * 32, self.height * 32)
+  end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
   #--------------------------------------------------------------------------
   def start_scroll_towards(x, y, nb_steps, easing_function)
-    initial = Point.new(@display_x, @display_y)
-    target  = Point.new(x, y)
+    initial = Point.new(@display_x, @display_y, self.rect)
+    target  = Point.new(x, y, self.rect)
 
     return if initial.eql? target
 
@@ -2838,7 +2845,7 @@ class Game_Map
       step_variation = Easing.tween(initial.y, target.y,
                                     nb_steps, easing_function)
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
-        Point.new(initial.x, step_variation.call(i))
+        Point.new(initial.x, step_variation.call(i), rect)
       end
     else
       linear_interpolant = Point.linear_interpolant(initial, target)
@@ -2850,7 +2857,7 @@ class Game_Map
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
         x = x_variation.call(i)
         y = linear_interpolant.call(x)
-        Point.new(x, y)
+        Point.new(x, y, rect)
       end
     end
 

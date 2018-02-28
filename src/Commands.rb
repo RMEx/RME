@@ -3191,18 +3191,18 @@ module RMECommands
       $game_map.start_scroll(direction, distance, speed)
     end
 
-    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :centered)
       Fiber.yield while $game_map.scrolling?
       $game_map.start_scroll_towards(*POSITION[position].call(x, y),
                                      nb_steps,
                                      Easing::FUNCTIONS[easing])
     end
 
-    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
     end
 
-    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
     end
 
