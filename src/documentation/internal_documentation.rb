@@ -251,13 +251,46 @@ module RME
       Doc.schema[section][command.name] = command
     end
 
+    # --------------------------------------------------------------------------
+    # * Generates the JSON documentation which corresponds to the given
+    #   section.
+    # --------------------------------------------------------------------------
+    def self.generate_section_documentation(section_name, commands, translator)
+      section_description_key = "doc.section.#{section_name}"
+      commands_name = commands.keys.map {|c| "\"#{c}\""}.join(",")
+
+      "{" +
+        "\"name\": \"#{section_name}\"," +
+        "\"description\": \"#{translator[section_description_key]}\"," +
+        "\"commands\": [#{commands_name}]" +
+      "}"
+    end
+    private_class_method :generate_section_documentation
 
     # --------------------------------------------------------------------------
-    # * Generates the JSON documentation of commands.
+    # * Mimics `FileTools.mkdir_p` which is available          [Internal method]
+    #   in newer Ruby versions (>= 1.9.3).
+    #   - `path` the full directory's path to create if                   String
+    #     if it does not exist yet
+    # --------------------------------------------------------------------------
+    def self.full_mkdir(path)
+      fragments = path.split(/[\/\\]/)
+
+      1.upto(fragments.size) do |i|
+        current_directory = fragments[0...i].join("/")
+        Dir.mkdir(current_directory) unless Dir.exist?(current_directory)
+      end
+    end
+    private_class_method :full_mkdir
+
+    # --------------------------------------------------------------------------
+    # * Generates the JSON documentation of commands into files.
+    #   - `output_dir` the directory under which the produced             String
+    #     documentation files should be placed
     #   - `lang` the language in which the documentation                  String
     #     should be written
     # --------------------------------------------------------------------------
-    def self.generate(lang = "en")
+    def self.generate(output_dir, lang = "en")
       # Selecting properties' file for translations
       translator =
         unless "en".eql? lang
@@ -266,16 +299,31 @@ module RME
           Doc.default_translation
         end
 
-      # Generating each sections' documentation
-      documented_sections = Doc.schema.map do |section, commands|
-        # TODO: Revise this way of removing a prefix :/
+      # Generating sections' related documentation
+      Doc.schema.each do |section, commands|
+
+        # TODO: Revise this way of removing a prefix
         section_name = section.name.reverse.chomp("RME::Command::".reverse).reverse
 
-        documented_commands = commands.map{|name, c| c.to_json(translator)}.join(",")
-        "\"#{section_name}\": [#{documented_commands}]"
+        section_dir = "#{output_dir}/#{section_name}"
+        full_mkdir(section_dir)
+
+        # Generating section's documentation file
+        section_documentation = generate_section_documentation(section_name,
+                                                               commands,
+                                                               translator)
+        File.open("#{section_dir}.json", 'w') do |f|
+          f.write(section_documentation)
+        end
+
+        # Generating section's commands' documentation files
+        commands.each do |name, c|
+          File.open("#{section_dir}/#{name}.json", 'w') do |f|
+            f.write(c.to_json(translator))
+          end
+        end
       end
 
-      "{#{documented_sections.join(",")}}"
     end
 
   end
