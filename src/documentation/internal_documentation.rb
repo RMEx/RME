@@ -75,16 +75,29 @@ module RME
 
       # Attributes
       attr_reader :name
+      attr_reader :description
       attr_reader :parameters
 
       # ------------------------------------------------------------------------
       # * Constructs a new `Command` based on the given parameters.
       #   - `name` the command's symbol                            Symbol/String
+      #   - `description` the command's description                       String
       #   - `parameters` the command's parameters               Array[Parameter]
       # ------------------------------------------------------------------------
-      def initialize(name, parameters)
+      def initialize(name, description, parameters)
         @name = name
+        @description = description
         @parameters = parameters
+      end
+
+      # ------------------------------------------------------------------------
+      # * Tells whether this command is explicetely documented or not.
+      # -> `true` if this command is correctly documented;
+      #    `false` otherwise.
+      # TODO: Revise this implementation
+      # ------------------------------------------------------------------------
+      def documented?
+        not @description.nil?
       end
 
       # ------------------------------------------------------------------------
@@ -92,9 +105,11 @@ module RME
       # ------------------------------------------------------------------------
       def to_json(translator)
         parameters = @parameters.map{|p| p.to_json(translator)}.join(",")
+        description_key = "doc.cmd.#{@description}"
 
         "{" +
           "\"name\": \"#{@name}\"," +
+          "\"description\": \"#{translator[description_key]}\"," +
           "\"parameters\": [#{parameters}]" +
         "}"
       end

@@ -143,7 +143,7 @@ module RME
         doc_parameters << RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
       end
       Doc::describe_method(namespace,
-                           RME::Doc::Command.new(cmd[:name], doc_parameters))
+                           RME::Doc::Command.new(cmd[:name], cmd[:description], doc_parameters))
 
       # Generating method
       namespace.define_singleton_method(cmd[:name]) do |*args|
