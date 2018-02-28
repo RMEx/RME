@@ -11,7 +11,6 @@ All the scripts here stands in three categories:
 - `Internal.rb` => internals data structures
 - `EvEx.rb` => classes/modules that extends RM, used with RME commands
 - `Commands.rb` => all the commands
-- `Incubator.rb` => experimenting weird stuffs here before integration
 - `SDK.Gui.rb` => development kit for gui-based tools
 - `Tools.rb` => gui-based tools (command-tester, tone-tester...)
 ### samples
@@ -24,6 +23,8 @@ All the scripts here stands in three categories:
 - `DocGenerator.rb` => used to generate the documentation
 - `Doc.rb` => here we write the documentation
 - `Process.Doc.rb` => generates `doc.js`, `doc_report.csv`, `RME.rb`
+### incubator
+> see [Incubator/README.md](src/Incubator/README.md)
 
 **`RME.rb` is generated from the RME scripts, excluding the *samples* and *documentation* scripts that only stands for developers and contributors**
 
