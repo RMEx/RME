@@ -7168,6 +7168,8 @@ class Game_Text
   attr_accessor :target_opacity
   attr_accessor :duration
   attr_accessor :opacity_duration
+  attr_accessor :pin
+  attr_accessor  :scroll_speed_x, :scroll_speed_y
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
@@ -7189,6 +7191,8 @@ class Game_Text
   # * Init basic values
   #--------------------------------------------------------------------------
   def init_basic
+    @pin = false
+    @scroll_speed_y = @scroll_speed_x = 2
     @text_value = ""
     @origin = @x = @y = 0
     @zoom_x = @zoom_y = 100.0
@@ -7308,6 +7312,12 @@ class Game_Text
   #--------------------------------------------------------------------------
   def move?
     return @moving
+  end
+  #--------------------------------------------------------------------------
+  # * Text is pinned ?
+  #--------------------------------------------------------------------------
+  def pinned?
+    @pin
   end
 end
 
@@ -9195,8 +9205,15 @@ class Sprite_Text < Sprite
   # * Update Position
   #--------------------------------------------------------------------------
   def update_position
-    self.x = @text.x
-    self.y = @text.y
+    if @text.pinned?
+      x_s = 16 * @text.scroll_speed_x
+      y_s = 16 * @text.scroll_speed_y
+      self.x = @text.x - ($game_map.display_x * x_s)
+      self.y = @text.y - ($game_map.display_y * y_s)
+    else
+      self.x = @text.x
+      self.y = @text.y
+    end
     self.z = @text.number
   end
   #--------------------------------------------------------------------------
@@ -13310,6 +13327,57 @@ module RMECommands
     #--------------------------------------------------------------------------
     def fresh_text_id
       Game_Screen.get.texts.fresh_id
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll_x(id, value = nil)
+      Game_Screen.get.texts[id].scroll_speed_x = value if value
+      Game_Screen.get.texts[id].scroll_speed_x
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll_y(id, value = nil)
+      Game_Screen.get.texts[id].scroll_speed_y = value if value
+      Game_Screen.get.texts[id].scroll_speed_y
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll(id, xvalue, yvalue = value)
+      yvalue ||= xvalue
+      text_scroll_speed_x(id, xvalue)
+      text_scroll_speed_y(id, yvalue)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Pin text
+    #--------------------------------------------------------------------------
+    def text_pin(id, x = nil, y = nil)
+      text =  Game_Screen.get.texts[id]
+      unless x
+        x_s = 16 * text.scroll_speed_x
+        x = text_x(id) + $game_map.display_x * x_s
+      end
+      unless y
+        y_s = 16 * text.scroll_speed_y
+        y = text_y(id) + $game_map.display_y * y_s
+      end
+      text_x(id, x)
+      text_y(id, y)
+      text.pin = true
+    end
+
+    def text_unpin(id)
+      Game_Screen.get.texts[id].pin = false
+    end
+
+    def text_pinned?(id)
+      Game_Screen.get.texts[id].pin
     end
 
     #--------------------------------------------------------------------------

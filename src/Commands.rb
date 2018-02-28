@@ -2399,6 +2399,57 @@ module RMECommands
     end
 
     #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll_x(id, value = nil)
+      Game_Screen.get.texts[id].scroll_speed_x = value if value
+      Game_Screen.get.texts[id].scroll_speed_x
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll_y(id, value = nil)
+      Game_Screen.get.texts[id].scroll_speed_y = value if value
+      Game_Screen.get.texts[id].scroll_speed_y
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll(id, xvalue, yvalue = value)
+      yvalue ||= xvalue
+      text_scroll_speed_x(id, xvalue)
+      text_scroll_speed_y(id, yvalue)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Pin text
+    #--------------------------------------------------------------------------
+    def text_pin(id, x = nil, y = nil)
+      text =  Game_Screen.get.texts[id]
+      unless x
+        x_s = 16 * text.scroll_speed_x
+        x = text_x(id) + $game_map.display_x * x_s
+      end
+      unless y
+        y_s = 16 * text.scroll_speed_y
+        y = text_y(id) + $game_map.display_y * y_s
+      end
+      text_x(id, x)
+      text_y(id, y)
+      text.pin = true
+    end
+
+    def text_unpin(id)
+      Game_Screen.get.texts[id].pin = false
+    end
+
+    def text_pinned?(id)
+      Game_Screen.get.texts[id].pin
+    end
+
+    #--------------------------------------------------------------------------
     # * Display a text
     #--------------------------------------------------------------------------
     def text_show(id, *args)

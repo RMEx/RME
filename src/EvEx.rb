@@ -1142,6 +1142,8 @@ class Game_Text
   attr_accessor :target_opacity
   attr_accessor :duration
   attr_accessor :opacity_duration
+  attr_accessor :pin
+  attr_accessor  :scroll_speed_x, :scroll_speed_y
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
@@ -1163,6 +1165,8 @@ class Game_Text
   # * Init basic values
   #--------------------------------------------------------------------------
   def init_basic
+    @pin = false
+    @scroll_speed_y = @scroll_speed_x = 2
     @text_value = ""
     @origin = @x = @y = 0
     @zoom_x = @zoom_y = 100.0
@@ -1282,6 +1286,12 @@ class Game_Text
   #--------------------------------------------------------------------------
   def move?
     return @moving
+  end
+  #--------------------------------------------------------------------------
+  # * Text is pinned ?
+  #--------------------------------------------------------------------------
+  def pinned?
+    @pin
   end
 end
 
@@ -3169,8 +3179,15 @@ class Sprite_Text < Sprite
   # * Update Position
   #--------------------------------------------------------------------------
   def update_position
-    self.x = @text.x
-    self.y = @text.y
+    if @text.pinned?
+      x_s = 16 * @text.scroll_speed_x
+      y_s = 16 * @text.scroll_speed_y
+      self.x = @text.x - ($game_map.display_x * x_s)
+      self.y = @text.y - ($game_map.display_y * y_s)
+    else
+      self.x = @text.x
+      self.y = @text.y
+    end
     self.z = @text.number
   end
   #--------------------------------------------------------------------------
