@@ -4,7 +4,6 @@ Database
 Internal 
 EvEx 
 Commands 
-Incubator
 SDK.Gui 
 Tools
 # samples
@@ -15,3 +14,5 @@ Samples
 DocGenerator
 Doc 
 Process.Doc
+# work-in-progress-things (see Incubator/README.md)
+Incubator/
