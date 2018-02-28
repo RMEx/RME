@@ -13,6 +13,7 @@ module RME
       Command::declare({:name => :move_to,
                         :section => self,
                         :description => 'Event.move_to',
+                        :deprecated_since => "1.2.3",
                         :parameters => [
                           {:name        => :id,
                            :description => 'Event.eventId',
