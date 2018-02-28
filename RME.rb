@@ -937,14 +937,42 @@ end
 #  Point(x, y) representation
 #==============================================================================
 
-class Point < Struct.new(:x, :y)
+class Point
+
+  attr_reader :x, :y
+  attr_accessor :rect
+
+  #--------------------------------------------------------------------------
+  # * Initialize
+  #--------------------------------------------------------------------------
+  def initialize(x, y, rect = nil)
+    @rect = rect
+    set(x, y, rect)
+  end
 
   #--------------------------------------------------------------------------
   # * Set coords
   #--------------------------------------------------------------------------
-  def set(x, y)
+  def set(x, y, rect = nil)
+    @rect ||= rect
     self.x = x
     self.y = y
+  end
+
+  #--------------------------------------------------------------------------
+  # * x accessor
+  #--------------------------------------------------------------------------
+  def x=(new_x)
+    new_x = new_x.bound(@rect.x, @rect.x + @rect.width) if @rect
+    @x = new_x
+  end
+
+  #--------------------------------------------------------------------------
+  # * y accessor
+  #--------------------------------------------------------------------------
+  def y=(new_y)
+    new_y = new_y.bound(@rect.y, @rect.y + @rect.height) if @rect
+    @y = new_y
   end
 
   #--------------------------------------------------------------------------
@@ -1008,7 +1036,7 @@ class Point < Struct.new(:x, :y)
   # * Restart
   #--------------------------------------------------------------------------
   def null!
-    self.x = self.y = 0
+    set(0, 0)
   end
 
   #--------------------------------------------------------------------------
@@ -8849,12 +8877,19 @@ class Game_Map
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
   end
+
+  #--------------------------------------------------------------------------
+  # * Get the map rectangle
+  #--------------------------------------------------------------------------
+  def rect
+    Rect.new(0, 0, self.width * 32, self.height * 32)
+  end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
   #--------------------------------------------------------------------------
   def start_scroll_towards(x, y, nb_steps, easing_function)
-    initial = Point.new(@display_x, @display_y)
-    target  = Point.new(x, y)
+    initial = Point.new(@display_x, @display_y, self.rect)
+    target  = Point.new(x, y, self.rect)
 
     return if initial.eql? target
 
@@ -8864,7 +8899,7 @@ class Game_Map
       step_variation = Easing.tween(initial.y, target.y,
                                     nb_steps, easing_function)
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
-        Point.new(initial.x, step_variation.call(i))
+        Point.new(initial.x, step_variation.call(i), rect)
       end
     else
       linear_interpolant = Point.linear_interpolant(initial, target)
@@ -8876,7 +8911,7 @@ class Game_Map
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
         x = x_variation.call(i)
         y = linear_interpolant.call(x)
-        Point.new(x, y)
+        Point.new(x, y, rect)
       end
     end
 
@@ -14122,18 +14157,18 @@ module RMECommands
       $game_map.start_scroll(direction, distance, speed)
     end
 
-    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :centered)
       Fiber.yield while $game_map.scrolling?
       $game_map.start_scroll_towards(*POSITION[position].call(x, y),
                                      nb_steps,
                                      Easing::FUNCTIONS[easing])
     end
 
-    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
     end
 
-    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
     end
 
