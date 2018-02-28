@@ -5,6 +5,7 @@
 In this release, we decided to use English as the main language.
 
 ### Bug fixes
+- Fix commands `picture_width` and `picture_height` (@Grimimi, reported by @Jauke)
 - Fix `SkipTitle` in the "battle-test-case" (@Jauke)
 
 ## Release (1.2.0)
@@ -12,7 +13,7 @@ In this release, we decided to use English as the main language.
 ### Additions
 * Add range support in the syntax shortcuts for variables : `SV[1, 2, 1..18] = 10` (for example) (@xvw)
 * Add command `camera_scrolling?` (@xvw, reported by @Zer0Zer0x)
-* Add commandsn `windowskin_tone` and `windowskin_opacity` (@xvw, reported by @YendaHusk)
+* Add commands `windowskin_tone` and `windowskin_opacity` (@xvw, reported by @YendaHusk)
 * Add commands `event_tone` and `player_tone` (@xvw, reported by @Zer0Zer0x)
 * Add command `event_character_name` (@BastienDuplessier)
 * Add command `event_character_index` (@BastienDuplessier)
