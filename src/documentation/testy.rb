@@ -39,6 +39,9 @@ RME::Command::Event::move_to(11, 27, 32)
 puts "\n"
 
 # Commands' documentation's generation
-puts "RME commands' documentation in JSON:\n"
-puts "#{RME::Doc::generate}\n"
+puts "RME commands' documentation (JSON) in english:\n"
+puts "#{RME::Doc::generate}\n\n"
+
+puts "RME commands' documentation (JSON) in french:\n"
+puts "#{RME::Doc::generate('fr')}\n"
 
