@@ -110,7 +110,7 @@ module RME
 
       # Common domains' definitions
       ParameterType::declare(:Object,
-                             "Object type (it the default parameter type and means that none were provided)",
+                             "Object type (it is the default parameter type and means that none were provided)",
                              Domain.new(lambda { |x| true }))
       ParameterType::declare(:Coordinate,
                              "Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
