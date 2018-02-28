@@ -4648,6 +4648,7 @@ module DataManager
     alias_method :rm_extender_make_save_contents, :make_save_contents
     alias_method :rm_extender_extract_save_contents, :extract_save_contents
     alias_method :rm_extender_init, :init
+    alias_method :rm_save_game_without_rescue, :save_game_without_rescue
     #--------------------------------------------------------------------------
     # * Reinitialize the DataManager
     #--------------------------------------------------------------------------
@@ -4707,6 +4708,25 @@ module DataManager
         datas[:self_labels]     = contents[:self_labels]
       end
       return datas
+    end
+
+    #--------------------------------------------------------------------------
+    # * Create Filename
+    #     index : File Index
+    #--------------------------------------------------------------------------
+    def make_filename(index)
+      return sprintf("Save%02d.rvdata2", index + 1) if index.is_a?(Fixnum)
+      "#{index}.rvdata2"
+    end
+
+    #--------------------------------------------------------------------------
+    # * Execute Save (No Exception Processing)
+    #--------------------------------------------------------------------------
+    def save_game_without_rescue(name)
+      last_index = @last_savefile_index
+      trace = rm_save_game_without_rescue(name)
+      @last_savefile_index = last_index unless name.is_a?(Fixnum)
+      trace
     end
 
   end

@@ -158,6 +158,32 @@ module RMECommands
     return false
   end
 
+  def file_exists?(filename)
+    File.exists?(filename)
+  end
+
+  def file_delete(filename)
+    File.delete(filename)
+  end
+
+  def file_read(filename)
+    begin
+      File.open(filename, "r") {|f| f.read}
+    rescue
+      ""
+    end
+  end
+
+  def file_write(filename, content)
+    File.open(filename, "w") {|f| f.write(content)}
+    content
+  end
+
+  def file_append(filename, content)
+    File.open(filename, "a+") {|f| f.write(content)}
+    content
+  end
+
   def random_combination(len, *keys)
     Array.new(len) {keys[Kernel.rand(keys.length)]}
   end
@@ -2823,11 +2849,25 @@ module RMECommands
       DataManager.save_game(index - 1)
     end
 
+    def save_game_with_free_name(name)
+      DataManager.save_game(name)
+    end
+
     #--------------------------------------------------------------------------
     # * Load Game
     #--------------------------------------------------------------------------
     def load_game(index, time=100)
       DataManager.load_game(index-1)
+      fadeout(time)
+      $game_system.on_after_load
+      SceneManager.goto(Scene_Map)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Load Game
+    #--------------------------------------------------------------------------
+    def load_game_with_free_name(name, time=100)
+      DataManager.load_game(name)
       fadeout(time)
       $game_system.on_after_load
       SceneManager.goto(Scene_Map)
