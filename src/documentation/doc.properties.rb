@@ -6,5 +6,7 @@
   'doc.parameter.event.eventId.description' => "Event-to-move's identifier",
   'doc.parameter.event.x.description' => 'Targeted x coordinate',
   'doc.parameter.event.y.description' => 'Targeted y coordinate',
-  'doc.parameter.event.ghostly.description' => 'Tells whether the event can move through anything or not'
+  'doc.parameter.event.ghostly.description' => 'Tells whether the event can move through anything or not',
+
+  'doc.cmd.event.move_to' => "Moves the event towards the given coordinates"
 }

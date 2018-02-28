@@ -12,6 +12,7 @@ module RME
 
       Command::declare({:name => :move_to,
                         :namespace => self,
+                        :description => 'event.move_to',
                         :parameters => [
                           {:name        => :id,
                            :description => 'event.eventId',
