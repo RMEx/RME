@@ -23,6 +23,7 @@ In this release, we decided to use English as the main language.
 - Add command `event_jump_to` (@Grimimi)
 
 ### Bug fixes
+- Change default parameters of `camera_*` (use `centered` instead of `top_left`) (@Grimimi, reported by @Jauke)
 - Fix commands `picture_width` and `picture_height` (@Grimimi, reported by @Jauke)
 - Fix `SkipTitle` in the "battle-test-case" (@Jauke)
 

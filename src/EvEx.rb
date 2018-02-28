@@ -2827,15 +2827,15 @@ class Game_Map
   #--------------------------------------------------------------------------
   # * Get the map rectangle
   #--------------------------------------------------------------------------
-  def rect
+  def scrollable_rect
     Rect.new(0, 0, self.width * 32, self.height * 32)
   end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
   #--------------------------------------------------------------------------
   def start_scroll_towards(x, y, nb_steps, easing_function)
-    initial = Point.new(@display_x, @display_y, self.rect)
-    target  = Point.new(x, y, self.rect)
+    initial = Point.new(@display_x, @display_y, scrollable_rect)
+    target  = Point.new(x, y, scrollable_rect)
 
     return if initial.eql? target
 
@@ -2845,7 +2845,7 @@ class Game_Map
       step_variation = Easing.tween(initial.y, target.y,
                                     nb_steps, easing_function)
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
-        Point.new(initial.x, step_variation.call(i), rect)
+        Point.new(initial.x, step_variation.call(i), scrollable_rect)
       end
     else
       linear_interpolant = Point.linear_interpolant(initial, target)
@@ -2857,7 +2857,7 @@ class Game_Map
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
         x = x_variation.call(i)
         y = linear_interpolant.call(x)
-        Point.new(x, y, rect)
+        Point.new(x, y, scrollable_rect)
       end
     end
 
