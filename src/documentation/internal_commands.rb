@@ -140,7 +140,21 @@ module RME
         end
 
       # Validating command
-      cmd[:parameters].each { |p| p[:type] ||= ParameterType::Object }
+      cmd[:parameters].each do |p|
+
+        if p[:name].nil? or p[:name].empty?
+          raise "Invalid parameter's definition for command: #{cmd[:name]} !"
+        else
+          similar = RME::Doc::defined_parameters(section)[p[:name]]
+
+          unless similar.nil?
+            p[:type] = similar.type.raw_type if p[:type].nil?
+            p[:description] = similar.description if p[:description].nil?
+          end
+
+          p[:type] ||= ParameterType::Object
+        end
+      end
 
       # Documenting method
       doc_parameters = cmd[:parameters].map do |p|
