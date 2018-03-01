@@ -1,6 +1,7 @@
 # Wip Joke
 # Issue:  https://github.com/RMEx/RME/issues/276
 
+=begin #sample of patch
 module RMECommands::Camera
 
   alias_method :camera_moving?, :camera_scrolling?
@@ -10,3 +11,4 @@ module RMECommands::Camera
   end
 
 end
+=end #sample of patch
