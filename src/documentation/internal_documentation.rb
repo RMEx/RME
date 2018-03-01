@@ -28,7 +28,7 @@ module RME
     #   configuration file. If this configuration has been initialized with
     #   a fallback, the latter will be looked after if the `key` was not
     #   registered.
-    #   - `key` the property whose value should be retrived               String
+    #   - `key` the property whose value should be retrieved              String
     # -> the value registered under the given `key`;
     #    `nil` otherwise.
     # --------------------------------------------------------------------------
