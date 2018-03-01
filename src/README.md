@@ -24,7 +24,7 @@ All the scripts here stands in three categories:
 - `Doc.rb` => here we write the documentation
 - `Process.Doc.rb` => generates `doc.js`, `doc_report.csv`, `RME.rb`
 ### incubator
-> see [Incubator/README.md](src/Incubator/README.md)
+> confers [Incubator/README.md](Incubator/README.md)
 
 **`RME.rb` is generated from the RME scripts, excluding the *samples* and *documentation* scripts that only stands for developers and contributors**
 
