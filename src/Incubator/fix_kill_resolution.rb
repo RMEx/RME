@@ -1,7 +1,3 @@
-# Wip Grim
-# Issues: https://github.com/RMEx/RME/issues/276
-#         https://github.com/RMEx/RME/issues/115
-
 if RME.unsafe?
 
   #==============================================================================
@@ -28,6 +24,94 @@ if RME.unsafe?
     end
   end
 
+  #==============================================================================
+  # ** Graphics
+  #------------------------------------------------------------------------------
+  #  Ugly Graphics Monkeypatch
+  #==============================================================================
+  module Graphics
+
+    #------------------------------------------------------------------------
+    # * Singleton
+    #------------------------------------------------------------------------
+    class << self
+
+      #------------------------------------------------------------------------
+      # * Public instance variables
+      #------------------------------------------------------------------------
+      attr_accessor :overlayer
+
+      #------------------------------------------------------------------------
+      # * Retreive bitmap
+      #------------------------------------------------------------------------
+      def retreive_bitmap
+        black = Color.new(0,0,0,255)
+        Graphics.overlayer.bitmap = Bitmap.new(Graphics.width, Graphics.height)
+        r = Rect.new(0,0,Graphics.width, Graphics.height)
+        Graphics.overlayer.bitmap.fill_rect(r, black)
+      end
+
+      #------------------------------------------------------------------------
+      # * Freezes the current screen in preparation for transitions.
+      #------------------------------------------------------------------------
+      def freeze
+        Graphics.overlayer.bitmap = snap_to_bitmap
+      end
+
+      #------------------------------------------------------------------------
+      # * Performs a fade-out of the screen.
+      #------------------------------------------------------------------------
+      def fadeout(frames)
+        steps = 255.0/frames.to_f
+        1.upto(frames) do |k|
+          Graphics.brightness = 255.0 - (steps * k)
+          Graphics.wait(1)
+        end
+      end
+
+      #------------------------------------------------------------------------
+      # * Performs a fade-in of the screen.
+      #------------------------------------------------------------------------
+      def fadein(frames)
+        steps = 255.0/frames.to_f
+        frames.times do |k|
+          Graphics.brightness = steps * k.to_f
+          Graphics.wait(1)
+        end
+      end
+
+      #------------------------------------------------------------------------
+      # * The brightness of the screen
+      #------------------------------------------------------------------------
+      def brightness
+        255 - Graphics.overlayer.opacity
+      end
+      #------------------------------------------------------------------------
+      # * change The brightness of the screen
+      #------------------------------------------------------------------------
+      def brightness=(val)
+        Graphics.overlayer.opacity = 255.0 - val.to_f
+      end
+
+      #------------------------------------------------------------------------
+      # * Carries out a transition from the screen frozen by Graphics.freeze
+      #   to the current screen.
+      #------------------------------------------------------------------------
+      def transition(duration = 10, filename=nil, wave=nil)
+        Graphics.overlayer.bitmap = Bitmap.new(filename) if filename
+        Graphics.overlayer.opacity = 255
+        steps = 255.0 / duration.to_f
+        duration.times do |k|
+          Graphics.overlayer.opacity = 255.0 - (steps * k.to_f)
+          Graphics.wait(1)
+        end
+        Graphics.overlayer.bitmap.dispose if Graphics.overlayer.bitmap
+        retreive_bitmap
+      end
+
+    end
+
+  end
   #==============================================================================
   # ** Scene_Map
   #------------------------------------------------------------------------------
