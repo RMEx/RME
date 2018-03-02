@@ -9099,7 +9099,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
-  attr_reader :texts
+  attr_reader :texts, :spritesheets
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -9110,6 +9110,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def initialize
     @texts = Game_Texts.new
+    @spritesheets = Game_Spritesheets.new
     displaytext_initialize
   end
   #--------------------------------------------------------------------------
@@ -9119,6 +9120,7 @@ class Game_Screen
   def clear
     displaytext_clear
     clear_texts
+    clear_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Clear text
@@ -9127,11 +9129,18 @@ class Game_Screen
     @texts.each{|t|t.erase}
   end
   #--------------------------------------------------------------------------
+  # * Clear Spritesheets
+  #--------------------------------------------------------------------------
+  def clear_spritesheets
+    @spritesheets.each {|picture| picture.erase }
+  end
+  #--------------------------------------------------------------------------
   # * Frame update
   #--------------------------------------------------------------------------
   def update
     displaytext_update
     update_texts
+    update_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Update texts
@@ -9144,6 +9153,12 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def tone_change?
     @tone_duration > 0
+  end
+  #--------------------------------------------------------------------------
+  # * Update Spritesheets
+  #--------------------------------------------------------------------------
+  def update_spritesheets
+    @spritesheets.each {|picture| picture.update }
   end
 end
 
@@ -9426,6 +9441,49 @@ class Game_Pictures
 end
 
 #==============================================================================
+# ** Game_Pictures
+#------------------------------------------------------------------------------
+#  This is a wrapper for a picture array. This class is used within the
+# Game_Screen class. Map screen pictures and battle screen pictures are
+# handled separately.
+#==============================================================================
+
+class Game_Spritesheets
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize
+    @data = []
+  end
+  #--------------------------------------------------------------------------
+  # * Get Picture
+  #--------------------------------------------------------------------------
+  def [](number)
+    @data[number] ||= Game_Spritesheet.new(number)
+  end
+  #--------------------------------------------------------------------------
+  # * Iterator
+  #--------------------------------------------------------------------------
+  def each
+    @data.compact.each {|picture| yield picture } if block_given?
+  end
+  #--------------------------------------------------------------------------
+  # * Cast to array
+  #--------------------------------------------------------------------------
+  def to_a
+    return @data.compact
+  end
+
+  #--------------------------------------------------------------------------
+  # * Iterator
+  #--------------------------------------------------------------------------
+  def fresh_id
+    i = @data.find_index {|picture| !picture || picture.name.empty? }
+    return (i || @data.length)
+  end
+end
+
+#==============================================================================
 # ** Game_Spritesheet
 #------------------------------------------------------------------------------
 #  Spritesheet ingame
@@ -9639,6 +9697,90 @@ class Game_Picture
 
 end
 
+
+#==============================================================================
+# ** Game_Spritesheet
+#------------------------------------------------------------------------------
+#  Display spritesheet
+#==============================================================================
+
+class Game_Spritesheet < Game_Picture
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_reader :rows, :columns, :current, :dirty
+
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(number)
+    super(number)
+    @rows = 1
+    @columns = 1
+    @current = 0
+    @dirty = true
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get the number of squares
+  #--------------------------------------------------------------------------
+  def steps
+    @columns * @rows
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get the number of squares
+  #--------------------------------------------------------------------------
+  def current=(new_value)
+    value = (new_value)%steps
+    @dirty = @current != value
+    @current = value
+  end
+
+
+  #--------------------------------------------------------------------------
+  # * Next steps
+  #--------------------------------------------------------------------------
+  def next
+    current += 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Pred steps
+  #--------------------------------------------------------------------------
+  def pred
+    current -= 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Set rows
+  #--------------------------------------------------------------------------
+  def rows=(new_rows)
+    @dirty = new_rows != @rows
+    @rows = new_rows
+    current = 0 if @dirty
+  end
+
+  #--------------------------------------------------------------------------
+  # * Set columns
+  #--------------------------------------------------------------------------
+  def columns=(new_columns)
+    @dirty = new_columns != @columns
+    @columns = new_columns
+    current = 0 if @dirty
+  end
+
+  #--------------------------------------------------------------------------
+  # * Show Picture
+  #--------------------------------------------------------------------------
+  def show(name, columns, rows, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+    super(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+    @rows = rows
+    @columns = columns
+    @current = 0
+  end
+end
+
 #==============================================================================
 # ** Plane_Parallax
 #------------------------------------------------------------------------------
@@ -9736,6 +9878,7 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   def initialize
     create_texts
+    create_spritesheets
     rme_initialize
   end
   #--------------------------------------------------------------------------
@@ -9788,6 +9931,13 @@ class Spriteset_Map
   end
 
   #--------------------------------------------------------------------------
+  # * Create sprite sheets
+  #--------------------------------------------------------------------------
+  def create_spritesheets
+    @spritesheet_sprites = []
+  end
+
+  #--------------------------------------------------------------------------
   # * Text creation
   #--------------------------------------------------------------------------
   def create_texts
@@ -9800,6 +9950,13 @@ class Spriteset_Map
     rme_dispose
     dispose_texts
     dispose_reflects
+    dispose_spritesheets
+  end
+  #--------------------------------------------------------------------------
+  # * Free Picture Spritesheets
+  #--------------------------------------------------------------------------
+  def dispose_spritesheets
+    @spritesheet_sprites.compact.each {|sprite| sprite.dispose }
   end
   #--------------------------------------------------------------------------
   # * Dispose reflects
@@ -9820,6 +9977,7 @@ class Spriteset_Map
     update_texts
     rme_update
     update_reflects
+    update_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Update Reflects
@@ -9835,6 +9993,15 @@ class Spriteset_Map
     Game_Screen.get.texts.each do |txt|
       @text_sprites[txt.number] ||= Sprite_Text.new(@viewport2, txt)
       @text_sprites[txt.number].update
+    end
+  end
+  #--------------------------------------------------------------------------
+  # *Update Picture Spritesheets
+  #--------------------------------------------------------------------------
+  def update_spritesheets
+    $game_map.screen.spritesheets.each do |pic|
+      @spritesheet_sprites[pic.number] ||= Sprite_Spritesheet.new(@viewport2, pic)
+      @spritesheet_sprites[pic.number].update
     end
   end
   #--------------------------------------------------------------------------

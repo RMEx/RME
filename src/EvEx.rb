@@ -3059,7 +3059,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
-  attr_reader :texts
+  attr_reader :texts, :spritesheets
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -3070,6 +3070,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def initialize
     @texts = Game_Texts.new
+    @spritesheets = Game_Spritesheets.new
     displaytext_initialize
   end
   #--------------------------------------------------------------------------
@@ -3079,6 +3080,7 @@ class Game_Screen
   def clear
     displaytext_clear
     clear_texts
+    clear_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Clear text
@@ -3087,11 +3089,18 @@ class Game_Screen
     @texts.each{|t|t.erase}
   end
   #--------------------------------------------------------------------------
+  # * Clear Spritesheets
+  #--------------------------------------------------------------------------
+  def clear_spritesheets
+    @spritesheets.each {|picture| picture.erase }
+  end
+  #--------------------------------------------------------------------------
   # * Frame update
   #--------------------------------------------------------------------------
   def update
     displaytext_update
     update_texts
+    update_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Update texts
@@ -3104,6 +3113,12 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def tone_change?
     @tone_duration > 0
+  end
+  #--------------------------------------------------------------------------
+  # * Update Spritesheets
+  #--------------------------------------------------------------------------
+  def update_spritesheets
+    @spritesheets.each {|picture| picture.update }
   end
 end
 
@@ -3418,7 +3433,7 @@ class Game_Spritesheets
   def to_a
     return @data.compact
   end
-  
+
   #--------------------------------------------------------------------------
   # * Iterator
   #--------------------------------------------------------------------------
@@ -3653,7 +3668,7 @@ class Game_Spritesheet < Game_Picture
   #--------------------------------------------------------------------------
   # * Public Instance Variables
   #--------------------------------------------------------------------------
-  attr_reader :rows, :columns, current, dirty
+  attr_reader :rows, :columns, :current, :dirty
 
   #--------------------------------------------------------------------------
   # * Object Initialization
@@ -3823,6 +3838,7 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   def initialize
     create_texts
+    create_spritesheets
     rme_initialize
   end
   #--------------------------------------------------------------------------
@@ -3875,6 +3891,13 @@ class Spriteset_Map
   end
 
   #--------------------------------------------------------------------------
+  # * Create sprite sheets
+  #--------------------------------------------------------------------------
+  def create_spritesheets
+    @spritesheet_sprites = []
+  end
+
+  #--------------------------------------------------------------------------
   # * Text creation
   #--------------------------------------------------------------------------
   def create_texts
@@ -3887,6 +3910,13 @@ class Spriteset_Map
     rme_dispose
     dispose_texts
     dispose_reflects
+    dispose_spritesheets
+  end
+  #--------------------------------------------------------------------------
+  # * Free Picture Spritesheets
+  #--------------------------------------------------------------------------
+  def dispose_spritesheets
+    @spritesheet_sprites.compact.each {|sprite| sprite.dispose }
   end
   #--------------------------------------------------------------------------
   # * Dispose reflects
@@ -3907,6 +3937,7 @@ class Spriteset_Map
     update_texts
     rme_update
     update_reflects
+    update_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Update Reflects
@@ -3922,6 +3953,15 @@ class Spriteset_Map
     Game_Screen.get.texts.each do |txt|
       @text_sprites[txt.number] ||= Sprite_Text.new(@viewport2, txt)
       @text_sprites[txt.number].update
+    end
+  end
+  #--------------------------------------------------------------------------
+  # *Update Picture Spritesheets
+  #--------------------------------------------------------------------------
+  def update_spritesheets
+    $game_map.screen.spritesheets.each do |pic|
+      @spritesheet_sprites[pic.number] ||= Sprite_Spritesheet.new(@viewport2, pic)
+      @spritesheet_sprites[pic.number].update
     end
   end
   #--------------------------------------------------------------------------
