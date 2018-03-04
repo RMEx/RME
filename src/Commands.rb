@@ -107,6 +107,7 @@ module RMECommands
   def min(a, b); [a, b].min; end
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
+  def spritesheets; screen.spritesheets; end
   def scene; SceneManager.scene; end
   def spriteset; scene.spriteset; end
   def tilemap; spriteset.tilemap; end
@@ -778,8 +779,23 @@ module RMECommands
     alias_method :picture_origine, :picture_origin
     alias_method :picture_detach, :picture_unpin
 
-  append_commands
+    append_commands
   end
+
+  #==============================================================================
+  # ** Commands Spritesheets
+  #------------------------------------------------------------------------------
+  #  Spritesheets management
+  #==============================================================================
+  module Spritesheets
+
+    def spritesheet_show(id, n, row, cell, index=0 x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+
+    end
+
+    append_commands
+  end
+
 
   #==============================================================================
   # ** Commands Base

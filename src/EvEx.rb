@@ -554,6 +554,22 @@ module Kernel
     result
   end
 
+  def all_spritesheets
+    a = $game_map.screen.spritesheets.to_a.select{|pict| !pict.name.empty?}
+    a.map {|i| i.number}
+  end
+
+  def get_spritesheets(*ids, &block)
+    return [] unless SceneManager.scene.is_a?(Scene_Map)
+    if ids.length == 1 && ids[0] == :all_pictures
+      return all_spritesheets
+    end
+    result = []
+    ids.each { |id| result << id if all_spritesheets.include?(id) }
+    result += all_spritesheets.select(&block) if block_given?
+    result
+  end
+
   alias :e :events
   alias :get_events :events
 
@@ -3444,28 +3460,6 @@ class Game_Spritesheets
 end
 
 #==============================================================================
-# ** Game_Spritesheet
-#------------------------------------------------------------------------------
-#  Spritesheet ingame
-#==============================================================================
-
-class Game_Spritesheet < Game_Picture
-
-  #--------------------------------------------------------------------------
-  # * Public Instance Variables
-  #--------------------------------------------------------------------------
-  attr_accessor :cell_x, :cell_y, :index
-  #--------------------------------------------------------------------------
-  # * Object Initialization
-  #--------------------------------------------------------------------------
-  def initialize(number)
-    super(number)
-    @cell_x = @cell_y = @index = 0
-  end
-end
-
-
-#==============================================================================
 # ** Game_Picture
 #------------------------------------------------------------------------------
 #  Pictures ingame
@@ -4068,25 +4062,28 @@ class Sprite_Picture
   end
 end
 
-  #==============================================================================
-  # ** Spriteset_Weather
-  #------------------------------------------------------------------------------
-  #  A class for weather effects (rain, storm, and snow). It is used within the
-  # Spriteset_Map class.
-  #==============================================================================
+class Sprite_Spritesheet < Sprite_Picture
+end
 
-  class Spriteset_Weather
-    #--------------------------------------------------------------------------
-    # * Aliases
-    #--------------------------------------------------------------------------
-    alias_method :rme_dimness, :dimness
-    #--------------------------------------------------------------------------
-    # * Get Dimness
-    #--------------------------------------------------------------------------
-    def dimness
-      $game_system.weather_no_dimness ? 0 : rme_dimness
-    end
+#==============================================================================
+# ** Spriteset_Weather
+#------------------------------------------------------------------------------
+#  A class for weather effects (rain, storm, and snow). It is used within the
+# Spriteset_Map class.
+#==============================================================================
+
+class Spriteset_Weather
+  #--------------------------------------------------------------------------
+  # * Aliases
+  #--------------------------------------------------------------------------
+  alias_method :rme_dimness, :dimness
+  #--------------------------------------------------------------------------
+  # * Get Dimness
+  #--------------------------------------------------------------------------
+  def dimness
+    $game_system.weather_no_dimness ? 0 : rme_dimness
   end
+end
 
 #==============================================================================
 # ** Game_Actor
