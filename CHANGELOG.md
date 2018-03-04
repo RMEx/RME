@@ -31,11 +31,14 @@ In this release, we decided to use English as the main language.
 - Add command `player_jump_to` (@Grimimi)
 - Add command `event_move_to` (@Grimimi)
 - Add command `event_jump_to` (@Grimimi)
+- Add command `event_partial_move_to` (@BastienDuplessier)
+- Add command `player_partial_move_to` (@BastienDuplessier)
 
 ### Bug fixes
 - Change default parameters of `camera_*` (use `centered` instead of `top_left`) (@Grimimi, reported by @Jauke)
 - Fix commands `picture_width` and `picture_height` (@Grimimi, reported by @Jauke)
 - Fix `SkipTitle` in the "battle-test-case" (@Jauke)
+- Fix move_to command (@BastienDuplessier)
 
 ### Deprecates
 - `move_to` : use `event_move_to` instead (@Grimimi)
