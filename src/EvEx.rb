@@ -1553,6 +1553,20 @@ class Game_CharacterBase
     Fiber.yield while self.move_route_forcing if wait
   end
   #--------------------------------------------------------------------------
+  # * Move n squares towards x y coord
+  #--------------------------------------------------------------------------
+  def partial_move_to_position(sx, sy, steps, wait=false, no_through = false)
+    return unless $game_map.passable?(sx,sy,0)
+    route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
+
+    if route.list.size > steps
+      route.list.slice!(steps...-1)
+    end
+
+    self.force_move_route(route)
+    Fiber.yield while self.move_route_forcing if wait
+  end
+  #--------------------------------------------------------------------------
   # * Get path length
   #--------------------------------------------------------------------------
   def get_path_length(x, y, noth=false)

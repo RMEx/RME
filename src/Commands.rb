@@ -2140,6 +2140,14 @@ module RMECommands
       event(0).move_to_position(x, y, w, no_t)
     end
 
+    def event_partial_move_to(id, x, y, st, w=false, no_t = false)
+      event(id).partial_move_to_position(x, y, st, w, no_t)
+    end
+
+    def player_partial_move_to(x, y, st, w=false, no_t = false)
+      event(0).partial_move_to_position(x, y, st, w, no_t)
+    end
+
     def event_jump_to(id, x, y, w=true)
       event(id).jump_to(x, y, w)
     end
