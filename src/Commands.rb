@@ -800,6 +800,19 @@ module RMECommands
       spritesheets[id].show(n, row, cell, index, ori, x, y, z_x, z_y, op, bl)
     end
 
+    def spritesheet_next(id)
+      spritesheets[id].next
+    end
+
+    def spritesheet_pred(id)
+      spritesheets[id].pred
+    end
+
+    def spritesheet_index(id, new_index = nil)
+      spritesheets[id].current = new_index if new_index
+      spritesheets[id].current
+    end
+
     #--------------------------------------------------------------------------
     # * Spritesheet erase
     #--------------------------------------------------------------------------

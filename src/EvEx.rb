@@ -3678,7 +3678,8 @@ class Game_Spritesheet < Game_Picture
   #--------------------------------------------------------------------------
   # * Public Instance Variables
   #--------------------------------------------------------------------------
-  attr_reader :rows, :columns, :current, :dirty
+  attr_reader :rows, :columns, :current
+  attr_accessor :dirty
 
   #--------------------------------------------------------------------------
   # * Object Initialization
@@ -3712,14 +3713,14 @@ class Game_Spritesheet < Game_Picture
   # * Next steps
   #--------------------------------------------------------------------------
   def next
-    current += 1
+    self.current += 1
   end
 
   #--------------------------------------------------------------------------
   # * Pred steps
   #--------------------------------------------------------------------------
   def pred
-    current -= 1
+    self.current -= 1
   end
 
   #--------------------------------------------------------------------------
@@ -3743,11 +3744,12 @@ class Game_Spritesheet < Game_Picture
   #--------------------------------------------------------------------------
   # * Show Picture
   #--------------------------------------------------------------------------
-  def show(name, columns, rows, index, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+  def show(name, rows, columns, index, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
     super(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
     self.rows = rows
     self.columns = columns
     self.current = index
+    @dirty = true
   end
 end
 
@@ -4012,15 +4014,12 @@ class Sprite_Picture
   # * Get cache
   #--------------------------------------------------------------------------
   def swap_cache
-
     name = @picture.name
-
     if name == :screenshot
       return self.bitmap if @old_snap
       @old_snap = true
       return Graphics.snap_to_bitmap.clone
     end
-
     @old_snap = false
     return Cache.swap(@picture.name)
   end
@@ -4080,6 +4079,31 @@ class Sprite_Picture
 end
 
 class Sprite_Spritesheet < Sprite_Picture
+  #--------------------------------------------------------------------------
+  # * Update Transfer Origin Bitmap
+  #--------------------------------------------------------------------------
+  def update_bitmap
+    if @picture.dirty
+      super()
+      recompute_bitmap
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # * Recompute the bitmap
+  #--------------------------------------------------------------------------
+  def recompute_bitmap
+    bmp = swap_cache
+    w = bmp.width / @picture.rows
+    h = bmp.height / @picture.columns 
+    x = @picture.current % @picture.rows * w 
+    y = @picture.current / @picture.rows * h
+    rect = Rect.new(x, y, w, h)
+    self.bitmap = Bitmap.new(w, h)
+    self.bitmap.blt(0, 0, bmp, rect, 255)
+    bmp.dispose
+    @picture.dirty = false
+  end
 end
 
 #==============================================================================
