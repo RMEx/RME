@@ -813,6 +813,22 @@ module RMECommands
       spritesheets[id].current
     end
 
+    def spritesheet_rows(id, new_rows = nil)
+      if new_rows
+        spritesheets[id].rows = new_rows 
+        spritesheet_index(0)
+      end
+      spritesheets[id].rows
+    end
+
+    def spritesheet_columns(id, new_columns = nil)
+      if new_columns
+        spritesheets[id].columns = new_columns 
+        spritesheet_index(id, 0)
+      end
+      spritesheets[id].columns
+    end
+
     #--------------------------------------------------------------------------
     # * Spritesheet erase
     #--------------------------------------------------------------------------

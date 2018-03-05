@@ -827,7 +827,11 @@ var documentation = [
 {"name":"*v", "desc":"Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de la spritesheet", "type":"Fixnum"},
 {"name":"*duration", "desc":"Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", "type":"Fixnum"},
 {"name":"*wait_flag", "desc":"Attend la fin du déplacement, par défaut true", "type":"Boolean"},
-{"name":"*ease", "desc":"Fonction à utiliser pour effectuer la transition. :InLinear par défaut.", "type":"Symbol"}]}
+{"name":"*ease", "desc":"Fonction à utiliser pour effectuer la transition. :InLinear par défaut.", "type":"Symbol"}]},
+{"name":"spritesheet_rows", "description":"Change le nombre de rangées pour une spritesheet", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la spritesheet", "type":"Fixnum"},
+{"name":"*new_rows", "desc":"Nombre de rangées, si rien n'est donné, la commande renverra le nombre actuel de rangées", "type":"Fixnum"}]},
+{"name":"spritesheet_columns", "description":"Change le nombre de colonnes pour une spritesheet", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la spritesheet", "type":"Fixnum"},
+{"name":"*new_columns", "desc":"Nombre de colonnes, si rien n'est donné, la commande renverra le nombre actuel de colonnes", "type":"Fixnum"}]}
 ]},
 {"name":"Panoramas","desc":"Commandes relatives à la manipulation des panoramas","commands":[
 {"name":"parallax_show", "description":"Affiche un panorama", "returnable":false,"parameters":[{"name":"id", "desc":"ID du panorama", "type":"Fixnum"},
