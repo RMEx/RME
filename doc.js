@@ -761,7 +761,13 @@ var documentation = [
 {"name":"tone", "desc":"Teinte de la spritesheet (utilisez la commande tone)", "type":"Tone"},
 {"name":"*duration", "desc":"Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", "type":"Fixnum"},
 {"name":"*wait_flag", "desc":"Attend la fin du déplacement, par défaut false", "type":"Boolean"},
-{"name":"*ease", "desc":"Fonction à utiliser pour effectuer la transition. :InLinear par défaut.", "type":"Symbol"}]}
+{"name":"*ease", "desc":"Fonction à utiliser pour effectuer la transition. :InLinear par défaut.", "type":"Symbol"}]},
+{"name":"spritesheet_blend", "description":"Change le mode de fusion d'une spritesheet", "returnable":false,"parameters":[{"name":"Selector", "desc":"Sélécteur de spritesheets", "type":"Selector"},
+{"name":"mode", "desc":"Mode choisi (0, 1 ou 2)", "type":"Fixnum"}]},
+{"name":"spritesheet_pin", "description":"Fait défiler une spritesheet avec la carte (la fixe à une position)", "returnable":false,"parameters":[{"name":"Selector", "desc":"Sélécteur de spritesheets", "type":"Selector"},
+{"name":"*x", "desc":"Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", "type":"Fixnum"},
+{"name":"*y", "desc":"Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", "type":"Fixnum"}]},
+{"name":"spritesheet_unpin", "description":"Arrête de faire défiler une spritehsset avec la carte", "returnable":false,"parameters":[{"name":"Selector", "desc":"Sélécteur de spritesheets", "type":"Selector"}]}
 ]},
 {"name":"Panoramas","desc":"Commandes relatives à la manipulation des panoramas","commands":[
 {"name":"parallax_show", "description":"Affiche un panorama", "returnable":false,"parameters":[{"name":"id", "desc":"ID du panorama", "type":"Fixnum"},
