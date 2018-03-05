@@ -42,6 +42,7 @@ It is the result of the work of many people and any contribution is welcome.
   - **Game windows** commands (Fenêtres)
   - **Special effects** commands (Effets spéciaux)
   - **File** commands (Fichiers)
+  - **Spritesheet** commands (Spritesheet)
 
 - Add `V[id]` and `S[id]` shortcut for manipulating global variables and global switches in script calls
 - Add labels, self-labels, self-variables and extend self-switches
