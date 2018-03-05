@@ -41,6 +41,9 @@ module Cache
     if /^(\/Pictures|Pictures)\/(.*)/ =~ name
       return Cache.picture($2)
     end
+    if /^(\/Animations|Animations)\/(.*)/ =~ name
+      return Cache.animation($2)
+    end
     if /^(\/Battlers|Battlers)\/(.*)/ =~ name
       return Cache.battler($2, 0)
     end
@@ -50,8 +53,20 @@ module Cache
     if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
       return Cache.battleback2($2)
     end
+    if /^(\/Characters|Characters)\/(.*)/ =~ name
+      return Cache.character($2)
+    end
+    if /^(\/Faces|Faces)\/(.*)/ =~ name
+      return Cache.face($2)
+    end
     if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
       return Cache.parallax($2)
+    end
+    if /^(\/System|System)\/(.*)/ =~ name
+      return Cache.system($2)
+    end
+    if /^(\/Tilesets|Tilesets)\/(.*)/ =~ name
+      return Cache.tileset($2)
     end
     if /^(\/Titles1|Titles1)\/(.*)/ =~ name
       return Cache.title1($2)
@@ -520,6 +535,7 @@ module Kernel
     e
   end
   alias_method :select_pictures, :select_events
+  alias_method :select_spritesheets, :select_events
   #--------------------------------------------------------------------------
   # * All selector
   #--------------------------------------------------------------------------
@@ -3727,11 +3743,11 @@ class Game_Spritesheet < Game_Picture
   #--------------------------------------------------------------------------
   # * Show Picture
   #--------------------------------------------------------------------------
-  def show(name, columns, rows, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+  def show(name, columns, rows, index, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
     super(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
-    @rows = rows
-    @columns = columns
-    @current = 0
+    self.rows = rows
+    self.columns = columns
+    self.current = index
   end
 end
 
@@ -3824,6 +3840,7 @@ class Spriteset_Map
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :picture_sprites
+  attr_accessor :spritesheet_sprites
   attr_accessor :text_sprites
   attr_accessor :character_sprites
   attr_accessor :tilemap
@@ -3888,7 +3905,7 @@ class Spriteset_Map
   # * Create sprite sheets
   #--------------------------------------------------------------------------
   def create_spritesheets
-    @spritesheet_sprites = []
+    @spritesheet_sprites = Array.new
   end
 
   #--------------------------------------------------------------------------

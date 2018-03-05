@@ -789,8 +789,328 @@ module RMECommands
   #==============================================================================
   module Spritesheets
 
-    def spritesheet_show(id, n, row, cell, index=0 x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+    #--------------------------------------------------------------------------
+    # * Sprite picture
+    #--------------------------------------------------------------------------
+    def sprite_spritesheet(id)
+      spriteset.spritesheet_sprites[id]
+    end
 
+    def spritesheet_show(id, n, row, cell, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      spritesheets[id].show(n, row, cell, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Spritesheet erase
+    #--------------------------------------------------------------------------
+    def spritesheet_erase(ids)
+      ids = select_spritesheets(ids)
+      ids.each {|id| spritesheets[id].erase}
+    end
+    #--------------------------------------------------------------------------
+    # * Spritesheet name
+    #--------------------------------------------------------------------------
+    def spritesheet_name(id, name = nil)
+      return spritesheets[id].name unless name
+      spritesheets[id].name = name
+    end
+    #--------------------------------------------------------------------------
+    # * Modify Origin
+    # Origin : 0 | 1 (0 = Corner High Left, 1 = Center)
+    #--------------------------------------------------------------------------
+    def spritesheet_origin(id, *origin)
+      origin = origin[0] if origin.length == 1
+      spritesheets[id].origin = origin
+    end
+    #--------------------------------------------------------------------------
+    # * Modify x position
+    #--------------------------------------------------------------------------
+    def spritesheet_x(id, x=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].x unless x
+      spritesheets[id].set_transition('x', x, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify y position
+    #--------------------------------------------------------------------------
+    def spritesheet_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].y unless y
+      spritesheets[id].set_transition('y', y, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify position
+    #--------------------------------------------------------------------------
+    def spritesheet_position(ids, x, y, duration = 0, wf = false, ease = :InLinear)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheet_x(id, x, duration, false, ease)
+        spritesheet_y(id, y, duration, false, ease)
+      end
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Move picture
+    #--------------------------------------------------------------------------
+    def spritesheet_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :InLinear)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        p = spritesheets[id]
+        opacity = (opacity == -1) ? p.opacity : opacity
+        blend = (bt == -1) ? p.blend_type : bt
+        origin = (o == -1) ? p.origin : o
+        p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur, ease)
+      end
+      wait(dur) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify wave
+    #--------------------------------------------------------------------------
+    def spritesheet_wave(ids, amp, speed)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheets[id].wave_amp = amp
+        spritesheets[id].wave_speed = speed
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Apply Mirror
+    #--------------------------------------------------------------------------
+    def spritesheet_flip(ids)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheets[id].mirror = !spritesheets[id].mirror
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Modify Angle
+    #--------------------------------------------------------------------------
+    def spritesheet_angle(id, angle=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].angle unless angle
+      spritesheets[id].set_transition('angle', angle, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Rotate
+    #--------------------------------------------------------------------------
+    def spritesheet_rotate(ids, speed)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheets[id].rotate(speed)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * change Zoom X
+    #--------------------------------------------------------------------------
+    def spritesheet_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].zoom_x unless zoom_x
+      spritesheets[id].set_transition('zoom_x', zoom_x, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * change Zoom Y
+    #--------------------------------------------------------------------------
+    def spritesheet_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].zoom_y unless zoom_y
+      spritesheets[id].set_transition('zoom_y', zoom_y, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * change Zoom
+    #--------------------------------------------------------------------------
+    def spritesheet_zoom(ids, zoom_x, zoom_y = false, duration = 0, wf = false, ease = :InLinear)
+      zoom_y ||= zoom_x
+      select_spritesheets(ids).each do |id|
+        spritesheet_zoom_x(id, zoom_x, duration, false, ease)
+        spritesheet_zoom_y(id, zoom_y, duration, false, ease)
+      end
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * change Tone
+    #--------------------------------------------------------------------------
+    def spritesheet_tone(id, tone, d = 0, wf = false, ease = :InLinear)
+      if d.is_a?(Fixnum)
+        spritesheets[id].start_tone_change(tone, d, ease)
+        wait(d) if wf
+      else
+        spritesheets[id].tone = tone
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Change blend type
+    #--------------------------------------------------------------------------
+    def spritesheet_blend(ids, blend)
+      select_spritesheets(ids).each {|id| spritesheets[id].blend = blend }
+    end
+    #--------------------------------------------------------------------------
+    # * Pin spritesheet on the map
+    #--------------------------------------------------------------------------
+    def spritesheet_pin(ids, x=nil, y=nil)
+      select_spritesheets(ids).each do |id|
+        unless x
+          x_s = 16 * spritesheets[id].scroll_speed_x
+          y_s = 16 * spritesheets[id].scroll_speed_y
+          x = spritesheet_x(id) + $game_map.display_x * x_s + spritesheets[id].shake
+          y = spritesheet_y(id) + $game_map.display_y * y_s
+        end
+        spritesheet_x(id, x)
+        spritesheet_y(id, y)
+        spritesheets[id].pin
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Unpin spritesheet on the map
+    #--------------------------------------------------------------------------
+    def spritesheet_unpin(ids)
+      select_spritesheets(ids).each {|id| spritesheets[id].unpin }
+    end
+
+    #--------------------------------------------------------------------------
+    # * Check if a spritesheet is in movement
+    #--------------------------------------------------------------------------
+    def spritesheet_move?(id)
+      spritesheets[id].move?
+    end
+
+    def spritesheet_erased?(id)
+      spritesheets[id].name.empty?
+    end
+
+    def spritesheet_showed?(id)
+      !spritesheet_erased?(id)
+    end
+
+    def fresh_spritesheet_id
+      spritesheets.fresh_id
+    end
+
+
+    #--------------------------------------------------------------------------
+    # * Change spritesheet Opacity
+    #--------------------------------------------------------------------------
+    def spritesheet_opacity(ids, value, duration = 0, wf = false, ease = :InLinear)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].set_transition('opacity', value, duration, ease)
+      end
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Shake the spritesheet
+    #--------------------------------------------------------------------------
+    def spritesheet_shake(ids, power, speed, duration)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].start_shake(power, speed, duration)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Point in spritesheet
+    #--------------------------------------------------------------------------
+    def pixel_in_spritesheet?(id, x, y, precise = false)
+      spr = sprite_spritesheet(id)
+      return false unless spr
+      precise ? spr.precise_in?(x, y) : spr.in?(x, y)
+    end
+    def spritesheet_mouse_hover?(id, precise = false)
+      pixel_in_spritesheet?(id, Mouse.x, Mouse.y, precise)
+    end
+    def spritesheet_mouse_click?(id, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.click?
+    end
+    def spritesheet_mouse_press?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.press?(key)
+    end
+    def spritesheet_mouse_trigger?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.trigger?(key)
+    end
+    def spritesheet_mouse_repeat?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.repeat?(key)
+    end
+    def spritesheet_mouse_release?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.release?(key)
+    end
+    #--------------------------------------------------------------------------
+    # * spritesheet collisions
+    #--------------------------------------------------------------------------
+    def spritesheets_collide?(a, b)
+      spr_a = sprite_spritesheet(a)
+      spr_b = sprite_spritesheet(b)
+      return if (!spr_a) || (!spr_b)
+      spr_a.collide_with?(spr_b)
+    end
+    #--------------------------------------------------------------------------
+    # * spritesheet collisions (perfect pixel)
+    #--------------------------------------------------------------------------
+    def spritesheets_perfect_collide?(a, b)
+      spr_a = sprite_spritesheet(a)
+      spr_b = sprite_spritesheet(b)
+      return if (!spr_a) || (!spr_b)
+      spr_a.pixel_collide_with(spr_b)
+    end
+    #--------------------------------------------------------------------------
+    # * Change scroll speed (in X)
+    #--------------------------------------------------------------------------
+    def spritesheet_scroll_x(ids, speed = nil)
+      return spritesheets[ids].scroll_speed_x unless speed
+      select_spritesheets(ids).each {|id| spritesheets[id].scroll_speed_x = speed}
+    end
+    #--------------------------------------------------------------------------
+    # * Change scroll speed (in Y)
+    #--------------------------------------------------------------------------
+    def spritesheet_scroll_y(ids, speed = nil)
+    return spritesheets[ids].scroll_speed_y unless speed
+      select_spritesheets(ids).each {|id| spritesheets[id].scroll_speed_y = speed}
+    end
+    #--------------------------------------------------------------------------
+    # * Change scroll speed
+    #--------------------------------------------------------------------------
+    def spritesheet_scroll(ids, speed)
+      select_spritesheets(ids).each do |id|
+        spritesheet_scroll_x(id, speed)
+        spritesheet_scroll_y(id, speed)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Clear all spritesheets
+    #--------------------------------------------------------------------------
+    def spritesheets_clear
+      screen.clear_spritesheets
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get pictures dimension
+    #--------------------------------------------------------------------------
+    def spritesheet_width(id, v = nil, duration = 0, wf = false, ease = :InLinear)
+      pict = spritesheets[id]
+      unless v
+        return 0 if !pict || pict.name.empty?
+        bmp = Cache.swap(pict.name)
+        return (((bmp.width * pict.zoom_x))/100.0).to_i
+      end
+      zoom = Command.percent(v, spritesheet_width(id))
+      spritesheet_zoom_x(id, zoom, duration, wf, ease)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get spritesheets dimension
+    #--------------------------------------------------------------------------
+    def spritesheet_height(id, v = nil, duration = 0, wf = false, ease = :InLinear)
+      pict = spritesheets[id]
+      unless v
+        return 0 if !pict || pict.name.empty?
+        bmp = Cache.swap(pict.name)
+        return (((bmp.height * pict.zoom_y))/100.0).to_i
+      end
+      zoom = Command.percent(v, spritesheet_height(id))
+      spritesheet_zoom_y(id, zoom, duration, wf, ease)
+    end
+
+    #--------------------------------------------------------------------------
+    # * set spritesheets dimension
+    #--------------------------------------------------------------------------
+    def spritesheet_dimension(id, w, h, duration = 0, wf = false, ease = :InLinear)
+      spritesheet_width(id, w, duration, false, ease)
+      spritesheet_height(id, h, duration, wf, ease)
     end
 
     append_commands
