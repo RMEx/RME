@@ -800,6 +800,21 @@ module RMECommands
       spritesheets[id].show(n, row, cell, index, ori, x, y, z_x, z_y, op, bl)
     end
 
+    def spritesheet_show_face(id, n, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "Faces/" + n
+      spritesheet_show(id, name, 4, 2, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_show_icon(id, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "System/iconSet"
+      spritesheet_show(id, name, 16, 39, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_show_balloon(id, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "System/Balloon"
+      spritesheet_show(id, name, 8, 10, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
     def spritesheet_next(id)
       spritesheets[id].next
     end
@@ -811,6 +826,10 @@ module RMECommands
     def spritesheet_index(id, new_index = nil)
       spritesheets[id].current = new_index if new_index
       spritesheets[id].current
+    end
+
+    def spritesheet_steps(id)
+      spritesheets[id].steps
     end
 
     def spritesheet_rows(id, new_rows = nil)
