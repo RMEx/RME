@@ -13240,6 +13240,14 @@ module RMECommands
       (height * (coeff / 100.0)).to_i
     end
 
+    def player_width
+      event_width(0)
+    end
+
+    def player_height
+      event_height(0)
+    end
+
     def character_width(name) 
       real_name = "Characters/" + name
       bmp = Cache.swap(real_name)
