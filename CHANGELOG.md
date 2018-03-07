@@ -5,6 +5,12 @@
 In this release, we decided to use English as the main language.
 
 ### Additions
+- Add command `player_height` (@Grimimi)
+- Add command `player_width` (@Grimimi)
+- Add command `event_height` (@Grimimi)
+- Add command `event_width` (@Grimimi)
+- Add command `character_height` (@Grimimi, reported by @Zer0Zer0x)
+- Add command `character_width` (@Grimimi, reported by @Zer0Zer0x)
 - Add module `spritesheet` (@Grimimi, reported by @Spyrojojo and @Zer0Zer0x)
 - Add command `import_variable_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
 - Add command `import_label_with_free_name` (@Grimimi, reported by @Zer0Zer0x)
