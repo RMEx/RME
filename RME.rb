@@ -12006,6 +12006,18 @@ module RMECommands
       spritesheet_show(id, name, 8, 10, index, ori, x, y, z_x, z_y, op, bl)
     end
 
+    def spritesheet_show_character(id, n, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "Characters/" + n
+      sign = n[/^[\!\$]./]
+      row = 12
+      cell = 8
+      if sign && sign.include?('$')
+        row = 3
+        cell = 4
+      end
+      spritesheet_show(id, name, row, cell, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
     def spritesheet_next(id)
       spritesheets[id].next
     end
@@ -13213,6 +13225,40 @@ module RMECommands
 
     def player_ox(value = nil); event_ox(0, value); end
     def player_oy(value = nil); event_oy(0, value); end
+
+    def event_width(id) 
+      character = event_character_name(id)
+      width = character_width(character)
+      coeff = event_zoom_x(id)
+      (width * (coeff / 100.0)).to_i
+    end
+
+    def event_height(id) 
+      character = event_character_name(id)
+      height = character_height(character)
+      coeff = event_zoom_y(id)
+      (height * (coeff / 100.0)).to_i
+    end
+
+    def character_width(name) 
+      real_name = "Characters/" + name
+      bmp = Cache.swap(real_name)
+      sign = name[/^[\!\$]./]
+      row = 12
+      row = 3 if sign && sign.include?('$')
+      w = bmp.width / row 
+      w
+    end
+
+    def character_height(name) 
+      real_name = "Characters/" + name
+      bmp = Cache.swap(real_name)
+      sign = name[/^[\!\$]./]
+      row = 8
+      row = 4 if sign && sign.include?('$')
+      h = bmp.height / row 
+      h
+    end
 
     def event_zoom_x(id, value = nil)
       return event(id).zoom_x unless value
