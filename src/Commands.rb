@@ -2624,6 +2624,14 @@ module RMECommands
       event(id).jump_to(x, y, w)
     end
 
+
+    #--------------------------------------------------------------------------
+    # * Start an event
+    #--------------------------------------------------------------------------
+    def event_start(id)
+      event(id).start
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
