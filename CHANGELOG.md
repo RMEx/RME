@@ -40,6 +40,11 @@ In this release, we decided to use English as the main language.
 - Add command `event_jump_to` (@grrim)
 - Add command `event_partial_move_to` (@BastienDuplessier)
 - Add command `player_partial_move_to` (@BastienDuplessier)
+- Add command `boat_passable?` (@BastienDuplessier)
+- Add command `ship_passable?` (@BastienDuplessier)
+- Add command `autotile_type` (@BastienDuplessier)
+- Add command `event_at` (alias for `id_at`) (@BastienDuplessier)
+- Add command `event_start` (@BastienDuplessier)
 
 ### Bug fixes
 - Change default parameters of `camera_*` (use `centered` instead of `top_left`) (@grrim, reported by @Jauke)
