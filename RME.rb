@@ -12656,6 +12656,8 @@ module RMECommands
       flash_rect(x, y, width, height, Color.new(0, 0, 0))
     end
 
+    alias_method :event_at, :id_at
+
     append_commands
   end
 
@@ -13821,6 +13823,14 @@ module RMECommands
     def jump_to(id, x, y, w=true)
       RME::deprecated_command("jump_to", "use 'event_jump_to' or 'player_jump_to'")
       event(id).jump_to(x, y, w)
+    end
+
+
+    #--------------------------------------------------------------------------
+    # * Start an event
+    #--------------------------------------------------------------------------
+    def event_start(id)
+      event(id).start
     end
 
     # Fix for EE4
