@@ -1269,6 +1269,18 @@ module RMECommands
       (tile_id.between?(2816, 4351) && !table?(x,y)) ||
       (tile_id > 1663 && !stair?(x,y))
     end
+    
+    def boat_passable?(x, y)
+      $game_map.boat_passable?(x, y)
+    end
+    
+    def ship_passable?(x, y)
+      $game_map.ship_passable?(x, y)
+    end
+   
+    def autotile_type(x, y, z)
+      $game_map.autotile_type(x, y, z)
+    end
 
     def get_squares_by_region(region_id)
       $game_map.squares_by_region(region_id)
