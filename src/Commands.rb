@@ -1455,6 +1455,8 @@ module RMECommands
       flash_rect(x, y, width, height, Color.new(0, 0, 0))
     end
 
+    alias_method :event_at, :id_at
+
     append_commands
   end
 
