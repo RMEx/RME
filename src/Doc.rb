@@ -869,7 +869,7 @@ register_command :standard, 'Command.unflash_rect'
   register_command :mapinfo, "Command.map_name"
 
   link_method_documentation "Command.id_at",
-                        "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
+                        "[Dépréciée] Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
                         {
                           :x => ["Coordonnées X de la case", :Fixnum],
                           :y => ["Coordonnées Y de la case", :Fixnum]

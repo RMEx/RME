@@ -43,7 +43,7 @@ In this release, we decided to use English as the main language.
 - Add command `boat_passable?` (@BastienDuplessier)
 - Add command `ship_passable?` (@BastienDuplessier)
 - Add command `autotile_type` (@BastienDuplessier)
-- Add command `event_at` (alias for `id_at`) (@BastienDuplessier)
+- Add command `event_at` (@BastienDuplessier)
 - Add command `event_start` (@BastienDuplessier)
 
 ### Bug fixes
@@ -55,6 +55,7 @@ In this release, we decided to use English as the main language.
 ### Deprecates
 - `move_to` : use `event_move_to` instead (@grrim)
 - `jump_to` : use `event_jump_to` instead (@grrim)
+- `id_at` : use `event_at` instead (@BastienDuplessier)
 
 ## Release (1.2.0)
 

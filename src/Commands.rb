@@ -1213,6 +1213,13 @@ module RMECommands
     # * Get Event Id form coords
     #--------------------------------------------------------------------------
     def id_at(x, y)
+      RME::deprecated_command("id_at", "use 'event_at'")
+      event_at(x, y)
+    end
+    #--------------------------------------------------------------------------
+    # * Get Event Id form coords
+    #--------------------------------------------------------------------------
+    def event_at(x, y)
       result = $game_map.event_id_xy(x, y)
       return result if result > 0
       return 0 if $game_player.x == x && $game_player.y == y
@@ -1454,8 +1461,6 @@ module RMECommands
     def unflash_rect(x, y, width, height)
       flash_rect(x, y, width, height, Color.new(0, 0, 0))
     end
-
-    alias_method :event_at, :id_at
 
     append_commands
   end
