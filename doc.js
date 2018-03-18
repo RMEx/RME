@@ -97,7 +97,7 @@ var documentation = [
 {"name":"green", "desc":"Valeur de vert, entre -255 et 255", "type":"Fixnum"},
 {"name":"blue", "desc":"Valeur de bleu, entre -255 et 255", "type":"Fixnum"},
 {"name":"*gray", "desc":"Valeur de gris, entre 0 et 255, par défaut 0 !", "type":"Fixnum"}]},
-{"name":"get", "description":"Renvoie la cellule à la valeur donnée d'un tableau", "returnable":true,"parameters":[{"name":"array", "desc":"Tableau", "type":"Array"},
+{"name":"get", "description":"Renvoie la valeur à la cellule donnée d'un tableau", "returnable":true,"parameters":[{"name":"array", "desc":"Tableau", "type":"Array"},
 {"name":"index", "desc":"Index à trouver", "type":"Fixnum"}]},
 {"name":"session_username", "description":"Renvoie le nom d'utilisateur de la session Windows", "returnable":true,"parameters":[]},
 {"name":"length", "description":"Renvoie la taille d'un tableau", "returnable":true,"parameters":[{"name":"array", "desc":"Tableau dont il faut renvoyer la taille", "type":"Array"}]},

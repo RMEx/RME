@@ -812,7 +812,7 @@ register_command :standard, 'Command.unflash_rect'
   register_command :standard, "Command.tone"
 
   link_method_documentation "Command.get",
-                        "Renvoie la cellule à la valeur donnée d'un tableau",
+                        "Renvoie la valeur à la cellule donnée d'un tableau",
                         {:array =>["Tableau", :Array], :index => ["Index à trouver", :Fixnum]}, true
   register_command :standard, "Command.get"
   link_snippet("Command.get", "Command.get([0, 1, 2, 17], 2) # Renvoie 2 (parce que c'est la deuxième cellule et que l'indexation des tableaux commence à 0)")
