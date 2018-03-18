@@ -1,7 +1,7 @@
 # Package description
 Package.new(
   name: 'RME',
-  version: vsn(1, 2, 0),
+  version: vsn(1, 3, 0),
   authors: {
     'xvw' => 'xaviervdw@gmail.com',
     'Grim' => 'grimfw@gmail.com',
@@ -23,7 +23,9 @@ Package.new(
     'SDK.Gui.rb',
     'EvEx.rb',
     'Commands.rb',
-    'Tools.rb'
+    'Tools.rb', 
+    'Incubator/add_kill_resolution.rb', 
+    'Incubator/fix_kill_resolution.rb'
   ],
   description: 'RME is a powerful tool to improve your RPGMaker VXAce experience!'
 )

@@ -2,7 +2,7 @@ var documentation = [
 {"name":"Carte","desc":"Commandes relatives aux informations des cartes","commands":[
 {"name":"map_id", "description":"Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!", "returnable":true,"parameters":[]},
 {"name":"map_name", "description":"Renvoie le nom de la map en cours", "returnable":true,"parameters":[]},
-{"name":"id_at", "description":"Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnées X de la case", "type":"Fixnum"},
+{"name":"id_at", "description":"[Dépréciée] Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnées X de la case", "type":"Fixnum"},
 {"name":"y", "desc":"Coordonnées Y de la case", "type":"Fixnum"}]},
 {"name":"event_at", "description":"Renvoie l'id de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas) (alias de id_at(x, y))", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnées X de la case", "type":"Fixnum"},
 {"name":"y", "desc":"Coordonnées Y de la case", "type":"Fixnum"}]},
