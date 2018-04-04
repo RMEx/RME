@@ -140,26 +140,33 @@ module RME
         end
 
       # Validating command
-      cmd[:parameters].each do |p|
+      unless cmd[:parameters].nil?
+        cmd[:parameters].each do |p|
 
-        if p[:name].nil? or p[:name].empty?
-          raise "Invalid parameter's definition for command: #{cmd[:name]} !"
-        else
-          similar = RME::Doc::defined_parameters(section)[p[:name]]
+          if p[:name].nil? or p[:name].empty?
+            raise "Invalid parameter's definition for command: #{cmd[:name]} !"
+          else
+            similar = RME::Doc::defined_parameters(section)[p[:name]]
 
-          unless similar.nil?
-            p[:type] = similar.type.raw_type if p[:type].nil?
-            p[:description] = similar.description if p[:description].nil?
+            unless similar.nil?
+              p[:type] = similar.type.raw_type if p[:type].nil?
+              p[:description] = similar.description if p[:description].nil?
+            end
+
+            p[:type] ||= ParameterType::Object
           end
-
-          p[:type] ||= ParameterType::Object
         end
       end
 
       # Documenting method
-      doc_parameters = cmd[:parameters].map do |p|
-        RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
-      end
+      doc_parameters =
+       unless cmd[:parameters].nil?
+         cmd[:parameters].map do |p|
+           RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
+         end
+       else
+         Hash.new
+       end
       Doc::describe_method(section,
                            RME::Doc::Command.new(cmd[:name],
                                                  cmd[:description],

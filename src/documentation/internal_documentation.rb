@@ -123,8 +123,15 @@ module RME
       # * Serializes this `Command` into JSON.
       # ------------------------------------------------------------------------
       def to_json(translator)
-        parameters = @parameters.map{|p| p.to_json(translator)}.join(",")
         description_key = "doc.cmd.#{@description}"
+        parameters =
+          unless @parameters.empty?
+            params = @parameters.map{|p| p.to_json(translator)}.join(",")
+            "," + "\"parameters\":[#{params}]"
+          else
+            ""
+          end
+
         see_also =
           unless @see_also.empty?
             commands_to_see = @see_also.map{|c| "\"#{c}\"" }.join(",")
@@ -142,8 +149,8 @@ module RME
 
         "{" +
           "\"name\":\"#{@name}\"," +
-          "\"description\":\"#{translator[description_key]}\"," +
-          "\"parameters\":[#{parameters}]" +
+          "\"description\":\"#{translator[description_key]}\"" +
+          parameters +
           deprecation +
           see_also +
         "}"
