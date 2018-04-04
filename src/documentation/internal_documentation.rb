@@ -343,31 +343,39 @@ module RME
         end
 
       # Generating sections' related documentation
+      threads = Array.new
+
       Doc.schema.each do |section, commands|
 
-        # TODO: Revise this way of removing a prefix
-        section_name = section.name.reverse
-                                   .chomp("RME::Command::".reverse)
-                                   .reverse
+        threads << Thread.new {
+          puts "[Thread\##{Thread.current.object_id}] Generating documentation of #{section.name}\n"
+          # TODO: Revise this way of removing a prefix
+          section_name = section.name.reverse
+                           .chomp("RME::Command::".reverse)
+                           .reverse
 
-        section_dir = "#{output_dir}/#{section_name}"
-        full_mkdir(section_dir)
+          section_dir = "#{output_dir}/#{section_name}"
+          full_mkdir(section_dir)
 
-        # Generating section's documentation file
-        section_documentation = generate_section_documentation(section_name,
-                                                               commands,
-                                                               translator)
-        File.open("#{section_dir}.json", 'w:UTF-8') do |f|
-          f.write(section_documentation)
-        end
-
-        # Generating section's commands' documentation files
-        commands.each do |name, c|
-          File.open("#{section_dir}/#{name}.json", 'w:UTF-8') do |f|
-            f.write(c.to_json(translator))
+          # Generating section's documentation file
+          section_documentation = generate_section_documentation(section_name,
+                                                                 commands,
+                                                                 translator)
+          File.open("#{section_dir}.json", 'w:UTF-8') do |f|
+            f.write(section_documentation)
           end
-        end
+
+          # Generating section's commands' documentation files
+          commands.each do |name, c|
+            File.open("#{section_dir}/#{name}.json", 'w:UTF-8') do |f|
+              f.write(c.to_json(translator))
+            end
+          end
+        }
+
       end
+
+      threads.each { |t| t.join }
 
     end
 
