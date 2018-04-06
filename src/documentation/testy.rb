@@ -40,6 +40,13 @@ module RME
                           {:name => :ghostly}
                         ]}) { |x, y, ghostly| puts "Moving player to (#{x}, #{y}) (ghostly? #{ghostly})" }
     end
+
+    module Map
+      Command::declare({:name => :map_id,
+                        :section => self,
+                        :description => 'Map.map_id',
+                        }) { puts "Current map's id is {TODO}" }
+    end
   end
 end
 
