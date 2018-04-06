@@ -2,11 +2,12 @@
 #==============================================================================
 # ** RME DocGenerator
 #------------------------------------------------------------------------------
-# With:
-#  Nuki
-#  Grim
-#  Joke
-#
+#  With:
+# xvw
+# Grim
+# Joke
+#------------------------------------------------------------------------------
+# Generate the documentation
 #==============================================================================
 
 #==============================================================================
@@ -24,7 +25,7 @@ module DocGenerator
     def to_json
       result = Array.new
       RME::Doc.commands.each do |category, data|
-        puts "Generate #{category}.json"
+        #puts "generate #{category}.json"
         json_data =
           [
             "{\"name\":\"#{data[:name]}\",\"desc\":\"#{data[:desc]}\",",
@@ -33,7 +34,7 @@ module DocGenerator
         result << json_data
       end
       a  = "var documentation = [\n" + result.join(",\n") + "\n];\n"
-      puts "Generate Samples"
+      puts "generate samples from Data/CommonEvents.rvdata2"
       a += 'var rme_samples = ' + ASample.to_json + ";\n"
     end
 
@@ -42,7 +43,7 @@ module DocGenerator
       kname = lambda{|x| (x =~ /.+\.(.+)/) && $1}
       res = Array.new
       commands.each do |name, data|
-        puts "Generate #{name}.json"
+        #puts "generate #{name}.json"
         h =
           [
             "{\"name\":\"#{kname.(name)}\", ",

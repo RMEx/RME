@@ -1,27 +1,55 @@
 # -*- coding: utf-8 -*-
-
 #==============================================================================
 # ** RME
 #------------------------------------------------------------------------------
 #  With :
-# Grim (original project)
-# Nuki (a lot of things)
-# Raho (general reformulation)
-# Zeus81 (a lot of help)
-# Hiino (some help and GUI Components)
-# Joke (some help)
-# Zangther (some help)
-# XHTMLBoy (koffie)
-# Fabien (Buzzer)
-# Kaelar (Improvement)
-#
+# xvw
+# Joke
+# Grim
+# Raho
+# Zeus81
+# Hiino
+# Zangther
+# Fabien
+# Kaelar
+# Spyrojojo
+# Boubou le hibou
+# FalconPilot
+# Husk
+# Hinola
+# Ulis
+# msp
+#------------------------------------------------------------------------------
+#  RME is the successor of Event Extender. It offers a collection of tools to
+# promote the personalization of an RPG Maker VX Ace project. It is the result
+# of the work of many people and any contribution is welcome.
+#------------------------------------------------------------------------------
+#  GitHub: https://github.com/RMEx/RME
 #==============================================================================
 
-=begin
+=begin # MIT License
 
-License coming soon
+Copyright (c) 2012-2018 RMEx
 
-=end
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+=end # MIT License
 
 #==============================================================================
 # ** RME
@@ -44,7 +72,7 @@ module RME
     # * Version
     # * With RMEPackage, it's seems useless ?
     #--------------------------------------------------------------------------
-    def version; define_version(0,1,0); end
+    def version; define_version(1,3,0); end
     #--------------------------------------------------------------------------
     # * define Version
     #--------------------------------------------------------------------------
@@ -68,6 +96,16 @@ module RME
     #--------------------------------------------------------------------------
     def gui_enabled?
       true
+    end
+    #--------------------------------------------------------------------------
+    # * Deprecation
+    #--------------------------------------------------------------------------
+    def deprecated(message)
+      puts "[deprecated] #{message}"
+    end
+
+    def deprecated_command(command, message = "this command is deprecated")
+      puts "[deprecated command '#{command}'] #{message}"
     end
   end
 
@@ -899,14 +937,42 @@ end
 #  Point(x, y) representation
 #==============================================================================
 
-class Point < Struct.new(:x, :y)
+class Point
+
+  attr_reader :x, :y
+  attr_accessor :rect
+
+  #--------------------------------------------------------------------------
+  # * Initialize
+  #--------------------------------------------------------------------------
+  def initialize(x, y, rect = nil)
+    @rect = rect
+    set(x, y, rect)
+  end
 
   #--------------------------------------------------------------------------
   # * Set coords
   #--------------------------------------------------------------------------
-  def set(x, y)
+  def set(x, y, rect = nil)
+    @rect ||= rect
     self.x = x
     self.y = y
+  end
+
+  #--------------------------------------------------------------------------
+  # * x accessor
+  #--------------------------------------------------------------------------
+  def x=(new_x)
+    new_x = new_x.bound(@rect.x, @rect.x + @rect.width) if @rect
+    @x = new_x
+  end
+
+  #--------------------------------------------------------------------------
+  # * y accessor
+  #--------------------------------------------------------------------------
+  def y=(new_y)
+    new_y = new_y.bound(@rect.y, @rect.y + @rect.height) if @rect
+    @y = new_y
   end
 
   #--------------------------------------------------------------------------
@@ -970,7 +1036,7 @@ class Point < Struct.new(:x, :y)
   # * Restart
   #--------------------------------------------------------------------------
   def null!
-    self.x = self.y = 0
+    set(0, 0)
   end
 
   #--------------------------------------------------------------------------
@@ -2526,7 +2592,7 @@ end
 # ** Socket
 #------------------------------------------------------------------------------
 # Adds the possibility to send/receive messages to/from a server
-# Big thanks to Zeus81 (and to Nuki, too)
+# Big thanks to Zeus81 (and to xvw, too)
 #==============================================================================
 
 class Socket

@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------
 #  With :
 # Grim (original project)
-# Nuki
+# xvw
 # Raho
 #  Help :
 # Fabien
@@ -32,6 +32,49 @@ module Cache
         [map_id, load_data(sprintf("Data/Map%03d.rvdata2", map_id))]
     end
     return Game_Temp.cached_map[1]
+  end
+
+  def self.swap(name)
+    if name == :screenshot
+      return Graphics.snap_to_bitmap.clone
+    end
+    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
+      return Cache.picture($2)
+    end
+    if /^(\/Animations|Animations)\/(.*)/ =~ name
+      return Cache.animation($2)
+    end
+    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
+      return Cache.battler($2, 0)
+    end
+    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
+      return Cache.battleback1($2)
+    end
+    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
+      return Cache.battleback2($2)
+    end
+    if /^(\/Characters|Characters)\/(.*)/ =~ name
+      return Cache.character($2)
+    end
+    if /^(\/Faces|Faces)\/(.*)/ =~ name
+      return Cache.face($2)
+    end
+    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
+      return Cache.parallax($2)
+    end
+    if /^(\/System|System)\/(.*)/ =~ name
+      return Cache.system($2)
+    end
+    if /^(\/Tilesets|Tilesets)\/(.*)/ =~ name
+      return Cache.tileset($2)
+    end
+    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
+      return Cache.title1($2)
+    end
+    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
+      return Cache.title2($2)
+    end
+    return Cache.picture(name)
   end
 end
 
@@ -83,7 +126,7 @@ end
 
 
 #==============================================================================
-# ** V (special thanks to Nuki)
+# ** V (special thanks to xvw)
 #------------------------------------------------------------------------------
 #  Variable handling API
 #==============================================================================
@@ -115,7 +158,7 @@ module V
 end
 
 #==============================================================================
-# ** S (special thanks to Nuki)
+# ** S (special thanks to xvw)
 #------------------------------------------------------------------------------
 # Switch handling API
 #==============================================================================
@@ -492,6 +535,7 @@ module Kernel
     e
   end
   alias_method :select_pictures, :select_events
+  alias_method :select_spritesheets, :select_events
   #--------------------------------------------------------------------------
   # * All selector
   #--------------------------------------------------------------------------
@@ -523,6 +567,22 @@ module Kernel
     result = []
     ids.each{|id| result << id if $game_map.each_events[id]}
     result += $game_map.each_events.select(&block) if block_given?
+    result
+  end
+
+  def all_spritesheets
+    a = $game_map.screen.spritesheets.to_a.select{|pict| !pict.name.empty?}
+    a.map {|i| i.number}
+  end
+
+  def get_spritesheets(*ids, &block)
+    return [] unless SceneManager.scene.is_a?(Scene_Map)
+    if ids.length == 1 && ids[0] == :all_pictures
+      return all_spritesheets
+    end
+    result = []
+    ids.each { |id| result << id if all_spritesheets.include?(id) }
+    result += all_spritesheets.select(&block) if block_given?
     result
   end
 
@@ -1114,6 +1174,8 @@ class Game_Text
   attr_accessor :target_opacity
   attr_accessor :duration
   attr_accessor :opacity_duration
+  attr_accessor :pin
+  attr_accessor  :scroll_speed_x, :scroll_speed_y
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
@@ -1135,6 +1197,8 @@ class Game_Text
   # * Init basic values
   #--------------------------------------------------------------------------
   def init_basic
+    @pin = false
+    @scroll_speed_y = @scroll_speed_x = 2
     @text_value = ""
     @origin = @x = @y = 0
     @zoom_x = @zoom_y = 100.0
@@ -1254,6 +1318,12 @@ class Game_Text
   #--------------------------------------------------------------------------
   def move?
     return @moving
+  end
+  #--------------------------------------------------------------------------
+  # * Text is pinned ?
+  #--------------------------------------------------------------------------
+  def pinned?
+    @pin
   end
 end
 
@@ -1515,6 +1585,20 @@ class Game_CharacterBase
     Fiber.yield while self.move_route_forcing if wait
   end
   #--------------------------------------------------------------------------
+  # * Move n squares towards x y coord
+  #--------------------------------------------------------------------------
+  def partial_move_to_position(sx, sy, steps, wait=false, no_through = false)
+    return unless $game_map.passable?(sx,sy,0)
+    route = Pathfinder.create_path(Point.new(sx, sy), self, no_through)
+
+    if route.list.size > steps
+      route.list.slice!(steps...-1)
+    end
+
+    self.force_move_route(route)
+    Fiber.yield while self.move_route_forcing if wait
+  end
+  #--------------------------------------------------------------------------
   # * Get path length
   #--------------------------------------------------------------------------
   def get_path_length(x, y, noth=false)
@@ -1618,7 +1702,6 @@ class Game_Character
       set_direction(sy > 0 ? 2 : 8)
     end
   end
-
 end
 
 
@@ -2786,12 +2869,19 @@ class Game_Map
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
   end
+
+  #--------------------------------------------------------------------------
+  # * Get the map rectangle
+  #--------------------------------------------------------------------------
+  def scrollable_rect
+    Rect.new(0, 0, self.width * 32, self.height * 32)
+  end
   #--------------------------------------------------------------------------
   # * Scroll straight towards the given point (x, y)
   #--------------------------------------------------------------------------
   def start_scroll_towards(x, y, nb_steps, easing_function)
-    initial = Point.new(@display_x, @display_y)
-    target  = Point.new(x, y)
+    initial = Point.new(@display_x, @display_y, scrollable_rect)
+    target  = Point.new(x, y, scrollable_rect)
 
     return if initial.eql? target
 
@@ -2801,7 +2891,7 @@ class Game_Map
       step_variation = Easing.tween(initial.y, target.y,
                                     nb_steps, easing_function)
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
-        Point.new(initial.x, step_variation.call(i))
+        Point.new(initial.x, step_variation.call(i), scrollable_rect)
       end
     else
       linear_interpolant = Point.linear_interpolant(initial, target)
@@ -2813,7 +2903,7 @@ class Game_Map
       @scroll_function = build_scroll_function(target, nb_steps) do |i|
         x = x_variation.call(i)
         y = linear_interpolant.call(x)
-        Point.new(x, y)
+        Point.new(x, y, scrollable_rect)
       end
     end
 
@@ -3001,7 +3091,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   # * Public instance variable
   #--------------------------------------------------------------------------
-  attr_reader :texts
+  attr_reader :texts, :spritesheets
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
@@ -3012,6 +3102,7 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def initialize
     @texts = Game_Texts.new
+    @spritesheets = Game_Spritesheets.new
     displaytext_initialize
   end
   #--------------------------------------------------------------------------
@@ -3021,6 +3112,7 @@ class Game_Screen
   def clear
     displaytext_clear
     clear_texts
+    clear_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Clear text
@@ -3029,11 +3121,18 @@ class Game_Screen
     @texts.each{|t|t.erase}
   end
   #--------------------------------------------------------------------------
+  # * Clear Spritesheets
+  #--------------------------------------------------------------------------
+  def clear_spritesheets
+    @spritesheets.each {|picture| picture.erase }
+  end
+  #--------------------------------------------------------------------------
   # * Frame update
   #--------------------------------------------------------------------------
   def update
     displaytext_update
     update_texts
+    update_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Update texts
@@ -3046,6 +3145,12 @@ class Game_Screen
   #--------------------------------------------------------------------------
   def tone_change?
     @tone_duration > 0
+  end
+  #--------------------------------------------------------------------------
+  # * Update Spritesheets
+  #--------------------------------------------------------------------------
+  def update_spritesheets
+    @spritesheets.each {|picture| picture.update }
   end
 end
 
@@ -3142,8 +3247,15 @@ class Sprite_Text < Sprite
   # * Update Position
   #--------------------------------------------------------------------------
   def update_position
-    self.x = @text.x
-    self.y = @text.y
+    if @text.pinned?
+      x_s = 16 * @text.scroll_speed_x
+      y_s = 16 * @text.scroll_speed_y
+      self.x = @text.x - ($game_map.display_x * x_s)
+      self.y = @text.y - ($game_map.display_y * y_s)
+    else
+      self.x = @text.x
+      self.y = @text.y
+    end
     self.z = @text.number
   end
   #--------------------------------------------------------------------------
@@ -3321,26 +3433,47 @@ class Game_Pictures
 end
 
 #==============================================================================
-# ** Game_Spritesheet
+# ** Game_Pictures
 #------------------------------------------------------------------------------
-#  Spritesheet ingame
+#  This is a wrapper for a picture array. This class is used within the
+# Game_Screen class. Map screen pictures and battle screen pictures are
+# handled separately.
 #==============================================================================
 
-class Game_Spritesheet < Game_Picture
-
-  #--------------------------------------------------------------------------
-  # * Public Instance Variables
-  #--------------------------------------------------------------------------
-  attr_accessor :cell_x, :cell_y, :index
+class Game_Spritesheets
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
-  def initialize(number)
-    super(number)
-    @cell_x = @cell_y = @index = 0
+  def initialize
+    @data = []
+  end
+  #--------------------------------------------------------------------------
+  # * Get Picture
+  #--------------------------------------------------------------------------
+  def [](number)
+    @data[number] ||= Game_Spritesheet.new(number)
+  end
+  #--------------------------------------------------------------------------
+  # * Iterator
+  #--------------------------------------------------------------------------
+  def each
+    @data.compact.each {|picture| yield picture } if block_given?
+  end
+  #--------------------------------------------------------------------------
+  # * Cast to array
+  #--------------------------------------------------------------------------
+  def to_a
+    return @data.compact
+  end
+
+  #--------------------------------------------------------------------------
+  # * Iterator
+  #--------------------------------------------------------------------------
+  def fresh_id
+    i = @data.find_index {|picture| !picture || picture.name.empty? }
+    return (i || @data.length)
   end
 end
-
 
 #==============================================================================
 # ** Game_Picture
@@ -3534,6 +3667,92 @@ class Game_Picture
 
 end
 
+
+#==============================================================================
+# ** Game_Spritesheet
+#------------------------------------------------------------------------------
+#  Display spritesheet
+#==============================================================================
+
+class Game_Spritesheet < Game_Picture
+  #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_reader :rows, :columns, :current
+  attr_accessor :dirty
+
+  #--------------------------------------------------------------------------
+  # * Object Initialization
+  #--------------------------------------------------------------------------
+  def initialize(number)
+    super(number)
+    @rows = 1
+    @columns = 1
+    @current = 0
+    @dirty = true
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get the number of squares
+  #--------------------------------------------------------------------------
+  def steps
+    @columns * @rows
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get the number of squares
+  #--------------------------------------------------------------------------
+  def current=(new_value)
+    value = (new_value)%steps
+    @dirty = @current != value
+    @current = value
+  end
+
+
+  #--------------------------------------------------------------------------
+  # * Next steps
+  #--------------------------------------------------------------------------
+  def next
+    self.current += 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Pred steps
+  #--------------------------------------------------------------------------
+  def pred
+    self.current -= 1
+  end
+
+  #--------------------------------------------------------------------------
+  # * Set rows
+  #--------------------------------------------------------------------------
+  def rows=(new_rows)
+    @dirty = new_rows != @rows
+    @rows = new_rows
+    current = 0 if @dirty
+  end
+
+  #--------------------------------------------------------------------------
+  # * Set columns
+  #--------------------------------------------------------------------------
+  def columns=(new_columns)
+    @dirty = new_columns != @columns
+    @columns = new_columns
+    current = 0 if @dirty
+  end
+
+  #--------------------------------------------------------------------------
+  # * Show Picture
+  #--------------------------------------------------------------------------
+  def show(name, rows, columns, index, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+    super(name, origin, x, y, zoom_x, zoom_y, opacity, blend_type)
+    self.rows = rows
+    self.columns = columns
+    self.current = index
+    @dirty = true
+  end
+end
+
 #==============================================================================
 # ** Plane_Parallax
 #------------------------------------------------------------------------------
@@ -3623,6 +3842,7 @@ class Spriteset_Map
   # * Public instances variables
   #--------------------------------------------------------------------------
   attr_accessor :picture_sprites
+  attr_accessor :spritesheet_sprites
   attr_accessor :text_sprites
   attr_accessor :character_sprites
   attr_accessor :tilemap
@@ -3631,6 +3851,7 @@ class Spriteset_Map
   #--------------------------------------------------------------------------
   def initialize
     create_texts
+    create_spritesheets
     rme_initialize
   end
   #--------------------------------------------------------------------------
@@ -3683,6 +3904,13 @@ class Spriteset_Map
   end
 
   #--------------------------------------------------------------------------
+  # * Create sprite sheets
+  #--------------------------------------------------------------------------
+  def create_spritesheets
+    @spritesheet_sprites = Array.new
+  end
+
+  #--------------------------------------------------------------------------
   # * Text creation
   #--------------------------------------------------------------------------
   def create_texts
@@ -3695,6 +3923,13 @@ class Spriteset_Map
     rme_dispose
     dispose_texts
     dispose_reflects
+    dispose_spritesheets
+  end
+  #--------------------------------------------------------------------------
+  # * Free Picture Spritesheets
+  #--------------------------------------------------------------------------
+  def dispose_spritesheets
+    @spritesheet_sprites.compact.each {|sprite| sprite.dispose }
   end
   #--------------------------------------------------------------------------
   # * Dispose reflects
@@ -3715,6 +3950,7 @@ class Spriteset_Map
     update_texts
     rme_update
     update_reflects
+    update_spritesheets
   end
   #--------------------------------------------------------------------------
   # * Update Reflects
@@ -3730,6 +3966,15 @@ class Spriteset_Map
     Game_Screen.get.texts.each do |txt|
       @text_sprites[txt.number] ||= Sprite_Text.new(@viewport2, txt)
       @text_sprites[txt.number].update
+    end
+  end
+  #--------------------------------------------------------------------------
+  # *Update Picture Spritesheets
+  #--------------------------------------------------------------------------
+  def update_spritesheets
+    $game_map.screen.spritesheets.each do |pic|
+      @spritesheet_sprites[pic.number] ||= Sprite_Spritesheet.new(@viewport2, pic)
+      @spritesheet_sprites[pic.number].update
     end
   end
   #--------------------------------------------------------------------------
@@ -3769,38 +4014,14 @@ class Sprite_Picture
   # * Get cache
   #--------------------------------------------------------------------------
   def swap_cache
-
     name = @picture.name
-
     if name == :screenshot
       return self.bitmap if @old_snap
       @old_snap = true
       return Graphics.snap_to_bitmap.clone
     end
-
     @old_snap = false
-    if /^(\/Pictures|Pictures)\/(.*)/ =~ name
-      return Cache.picture($2)
-    end
-    if /^(\/Battlers|Battlers)\/(.*)/ =~ name
-      return Cache.battler($2, 0)
-    end
-    if /^(\/Battlebacks1|Battlebacks1)\/(.*)/ =~ name
-      return Cache.battleback1($2)
-    end
-    if /^(\/Battlebacks2|Battlebacks2)\/(.*)/ =~ name
-      return Cache.battleback2($2)
-    end
-    if /^(\/Parallaxes|Parallaxes)\/(.*)/ =~ name
-      return Cache.parallax($2)
-    end
-    if /^(\/Titles1|Titles1)\/(.*)/ =~ name
-      return Cache.title1($2)
-    end
-    if /^(\/Titles2|Titles2)\/(.*)/ =~ name
-      return Cache.title2($2)
-    end
-    return Cache.picture(name)
+    return Cache.swap(@picture.name)
   end
   #--------------------------------------------------------------------------
   # * Alias
@@ -3857,25 +4078,53 @@ class Sprite_Picture
   end
 end
 
-  #==============================================================================
-  # ** Spriteset_Weather
-  #------------------------------------------------------------------------------
-  #  A class for weather effects (rain, storm, and snow). It is used within the
-  # Spriteset_Map class.
-  #==============================================================================
-
-  class Spriteset_Weather
-    #--------------------------------------------------------------------------
-    # * Aliases
-    #--------------------------------------------------------------------------
-    alias_method :rme_dimness, :dimness
-    #--------------------------------------------------------------------------
-    # * Get Dimness
-    #--------------------------------------------------------------------------
-    def dimness
-      $game_system.weather_no_dimness ? 0 : rme_dimness
+class Sprite_Spritesheet < Sprite_Picture
+  #--------------------------------------------------------------------------
+  # * Update Transfer Origin Bitmap
+  #--------------------------------------------------------------------------
+  def update_bitmap
+    if @picture.dirty
+      super()
+      recompute_bitmap
     end
   end
+
+  #--------------------------------------------------------------------------
+  # * Recompute the bitmap
+  #--------------------------------------------------------------------------
+  def recompute_bitmap
+    bmp = swap_cache
+    w = bmp.width / @picture.rows
+    h = bmp.height / @picture.columns 
+    x = @picture.current % @picture.rows * w 
+    y = @picture.current / @picture.rows * h
+    rect = Rect.new(x, y, w, h)
+    self.bitmap = Bitmap.new(w, h)
+    self.bitmap.blt(0, 0, bmp, rect, 255)
+    bmp.dispose
+    @picture.dirty = false
+  end
+end
+
+#==============================================================================
+# ** Spriteset_Weather
+#------------------------------------------------------------------------------
+#  A class for weather effects (rain, storm, and snow). It is used within the
+# Spriteset_Map class.
+#==============================================================================
+
+class Spriteset_Weather
+  #--------------------------------------------------------------------------
+  # * Aliases
+  #--------------------------------------------------------------------------
+  alias_method :rme_dimness, :dimness
+  #--------------------------------------------------------------------------
+  # * Get Dimness
+  #--------------------------------------------------------------------------
+  def dimness
+    $game_system.weather_no_dimness ? 0 : rme_dimness
+  end
+end
 
 #==============================================================================
 # ** Game_Actor
@@ -4523,18 +4772,18 @@ module Pathfinder
   #--------------------------------------------------------------------------
   # * Check the passability
   #--------------------------------------------------------------------------
-  def passable?(e, x, y, dir, s = false);
-    if s and e.through
+  def passable?(e, x, y, current, dir, no_through = false)
+    if no_through && e.through
       return $game_map.passable?(x, y, dir)
     end
-    e.passable?(x, y, dir)
+    e.passable?(current.x, current.y, dir)
   end
 
   #--------------------------------------------------------------------------
   # * Complete passability
   #--------------------------------------------------------------------------
-  def check_passability?(event, current, elt, no_through, x, y, cl)
-    passable?(event, x, y, elt, no_through) && !has_key?(x, y, cl)
+  def check_passability?(event, current, dir, no_through, x, y, cl)
+    passable?(event, x, y, current, dir, no_through) && !has_key?(x, y, cl)
   end
 
   #--------------------------------------------------------------------------
@@ -4566,21 +4815,17 @@ module Pathfinder
       open_list.delete(current.id)
       closed_list[current.id] = current
 
-
-      [[0, 1], [-1, 0], [1, 0], [0, -1]].each do | elt |
+      {2 => [0, 1], 4 => [-1, 0], 6 => [1, 0], 8 => [0, -1]}.each do | dir, elt |
         args = current.x + elt[0], current.y + elt[1]
         next if unbounded?(*args)
-        [2, 4, 6, 8].each do |d|
-          if check_passability?(event, current, d, no_through, *args, closed_list)
-            if !has_key?(*args, open_list)
-              open_list[id(*args)] = Point.new(*args, current, goal)
-            else
-              open_list[id(*args)].score(current)
-            end
+        if check_passability?(event, current, dir, no_through, *args, closed_list)
+          if !has_key?(*args, open_list)
+            open_list[id(*args)] = Point.new(*args, current, goal)
+          else
+            open_list[id(*args)].score(current)
           end
         end
       end
-
     end
 
     move_route = RPG::MoveRoute.new
@@ -4618,6 +4863,7 @@ module DataManager
     alias_method :rm_extender_make_save_contents, :make_save_contents
     alias_method :rm_extender_extract_save_contents, :extract_save_contents
     alias_method :rm_extender_init, :init
+    alias_method :rm_save_game_without_rescue, :save_game_without_rescue
     #--------------------------------------------------------------------------
     # * Reinitialize the DataManager
     #--------------------------------------------------------------------------
@@ -4679,6 +4925,25 @@ module DataManager
       return datas
     end
 
+    #--------------------------------------------------------------------------
+    # * Create Filename
+    #     index : File Index
+    #--------------------------------------------------------------------------
+    def make_filename(index)
+      return sprintf("Save%02d.rvdata2", index + 1) if index.is_a?(Fixnum)
+      "#{index}.rvdata2"
+    end
+
+    #--------------------------------------------------------------------------
+    # * Execute Save (No Exception Processing)
+    #--------------------------------------------------------------------------
+    def save_game_without_rescue(name)
+      last_index = @last_savefile_index
+      trace = rm_save_game_without_rescue(name)
+      @last_savefile_index = last_index unless name.is_a?(Fixnum)
+      trace
+    end
+
   end
 end
 
@@ -4706,7 +4971,7 @@ module SceneManager
       Game_Temp.in_game = true
       DataManager.init_cst_db
       data = skip_title_data
-      if !data.activate || !map_exists?(data.map_id)
+      if !data.activate || !map_exists?(data.map_id) || $BTEST
         skip_ee_run
         return
       end

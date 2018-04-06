@@ -16,7 +16,7 @@
 #  Version 1.0 - 23/04/2013
 #      - Original Release VXace
 #------------------------------------------------------------------------------
-#  Special thanks to Nuki, Grim (and the other members of Funkywork)
+#  Special thanks to xvw, Grim (and the other members of Funkywork)
 #------------------------------------------------------------------------------
 # This system is designed to transform en event from RPG maker to a textual representation
 # Two type of output are usable. You can chose to print it in a file or you can put this into your clipboard
@@ -33,7 +33,7 @@
 #             (you always need a map id (reference to event names)
 #            Then you can use print_raw, print_bbcode, print_html, copy_raw, copy_bbcode, copy_html
 #
-#      - Nuki                 No. Don't use this Nuki
+#      - xvw                 No. Don't use this xvw
 #==============================================================================
 if $TEST
   module EventPrinter

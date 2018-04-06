@@ -79,4 +79,6 @@ ASample.new('Choix + Message',
 ASample.new('Désactive la course quand le joueur est sur la zone 7',
 ['dash_activate', 'dash_deactivate', 'dash_activate?', 'dash_deactivate?'], 33)
 
+ASample.new('Un exemple de spritesheet',
+['spritesheet_show', 'spritesheet_next'], 34)
 end

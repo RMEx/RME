@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------
 #  With :
 # Grim (original project)
-# Nuki
+# xvw
 # Raho
 #  Help :
 # Fabien
@@ -107,6 +107,7 @@ module RMECommands
   def min(a, b); [a, b].min; end
   def screen; Game_Screen.get; end
   def pictures; screen.pictures; end
+  def spritesheets; screen.spritesheets; end
   def scene; SceneManager.scene; end
   def spriteset; scene.spriteset; end
   def tilemap; spriteset.tilemap; end
@@ -156,6 +157,32 @@ module RMECommands
       i += 1
     end
     return false
+  end
+
+  def file_exists?(filename)
+    File.exists?(filename)
+  end
+
+  def file_delete(filename)
+    File.delete(filename)
+  end
+
+  def file_read(filename)
+    begin
+      File.open(filename, "r") {|f| f.read}
+    rescue
+      ""
+    end
+  end
+
+  def file_write(filename, content)
+    File.open(filename, "w") {|f| f.write(content)}
+    content
+  end
+
+  def file_append(filename, content)
+    File.open(filename, "a+") {|f| f.write(content)}
+    content
   end
 
   def random_combination(len, *keys)
@@ -718,7 +745,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = sprite_picture(id).swap_cache
+        bmp = Cache.swap(pict.name)
         return (((bmp.width * pict.zoom_x))/100.0).to_i
       end
       zoom = Command.percent(v, picture_width(id))
@@ -732,7 +759,7 @@ module RMECommands
       pict = pictures[id]
       unless v
         return 0 if !pict || pict.name.empty?
-        bmp = sprite_picture(id).swap_cache
+        bmp = Cache.swap(pict.name)
         return (((bmp.height * pict.zoom_y))/100.0).to_i
       end
       zoom = Command.percent(v, picture_height(id))
@@ -752,8 +779,403 @@ module RMECommands
     alias_method :picture_origine, :picture_origin
     alias_method :picture_detach, :picture_unpin
 
-  append_commands
+    append_commands
   end
+
+  #==============================================================================
+  # ** Commands Spritesheets
+  #------------------------------------------------------------------------------
+  #  Spritesheets management
+  #==============================================================================
+  module Spritesheets
+
+    #--------------------------------------------------------------------------
+    # * Sprite picture
+    #--------------------------------------------------------------------------
+    def sprite_spritesheet(id)
+      spriteset.spritesheet_sprites[id]
+    end
+
+    def spritesheet_show(id, n, row, cell, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      spritesheets[id].show(n, row, cell, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_show_face(id, n, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "Faces/" + n
+      spritesheet_show(id, name, 4, 2, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_show_icon(id, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "System/iconSet"
+      spritesheet_show(id, name, 16, 39, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_show_balloon(id, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "System/Balloon"
+      spritesheet_show(id, name, 8, 10, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_show_character(id, n, index=0, x=0, y=0, ori=0,  z_x=100, z_y=100, op=255, bl=0)
+      name = "Characters/" + n
+      sign = n[/^[\!\$]./]
+      row = 12
+      cell = 8
+      if sign && sign.include?('$')
+        row = 3
+        cell = 4
+      end
+      spritesheet_show(id, name, row, cell, index, ori, x, y, z_x, z_y, op, bl)
+    end
+
+    def spritesheet_next(id)
+      spritesheets[id].next
+    end
+
+    def spritesheet_pred(id)
+      spritesheets[id].pred
+    end
+
+    def spritesheet_index(id, new_index = nil)
+      spritesheets[id].current = new_index if new_index
+      spritesheets[id].current
+    end
+
+    def spritesheet_steps(id)
+      spritesheets[id].steps
+    end
+
+    def spritesheet_rows(id, new_rows = nil)
+      if new_rows
+        spritesheets[id].rows = new_rows 
+        spritesheet_index(0)
+      end
+      spritesheets[id].rows
+    end
+
+    def spritesheet_columns(id, new_columns = nil)
+      if new_columns
+        spritesheets[id].columns = new_columns 
+        spritesheet_index(id, 0)
+      end
+      spritesheets[id].columns
+    end
+
+    #--------------------------------------------------------------------------
+    # * Spritesheet erase
+    #--------------------------------------------------------------------------
+    def spritesheet_erase(ids)
+      ids = select_spritesheets(ids)
+      ids.each {|id| spritesheets[id].erase}
+    end
+    #--------------------------------------------------------------------------
+    # * Spritesheet name
+    #--------------------------------------------------------------------------
+    def spritesheet_name(id, name = nil)
+      return spritesheets[id].name unless name
+      spritesheets[id].name = name
+    end
+    #--------------------------------------------------------------------------
+    # * Modify Origin
+    # Origin : 0 | 1 (0 = Corner High Left, 1 = Center)
+    #--------------------------------------------------------------------------
+    def spritesheet_origin(id, *origin)
+      origin = origin[0] if origin.length == 1
+      spritesheets[id].origin = origin
+    end
+    #--------------------------------------------------------------------------
+    # * Modify x position
+    #--------------------------------------------------------------------------
+    def spritesheet_x(id, x=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].x unless x
+      spritesheets[id].set_transition('x', x, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify y position
+    #--------------------------------------------------------------------------
+    def spritesheet_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].y unless y
+      spritesheets[id].set_transition('y', y, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify position
+    #--------------------------------------------------------------------------
+    def spritesheet_position(ids, x, y, duration = 0, wf = false, ease = :InLinear)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheet_x(id, x, duration, false, ease)
+        spritesheet_y(id, y, duration, false, ease)
+      end
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Move picture
+    #--------------------------------------------------------------------------
+    def spritesheet_move(ids, x, y, zoom_x, zoom_y, dur, wf = true, opacity = -1, bt = -1, o = -1, ease = :InLinear)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        p = spritesheets[id]
+        opacity = (opacity == -1) ? p.opacity : opacity
+        blend = (bt == -1) ? p.blend_type : bt
+        origin = (o == -1) ? p.origin : o
+        p.move(origin, x, y, zoom_x, zoom_y, opacity, blend, dur, ease)
+      end
+      wait(dur) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify wave
+    #--------------------------------------------------------------------------
+    def spritesheet_wave(ids, amp, speed)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheets[id].wave_amp = amp
+        spritesheets[id].wave_speed = speed
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Apply Mirror
+    #--------------------------------------------------------------------------
+    def spritesheet_flip(ids)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheets[id].mirror = !spritesheets[id].mirror
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Modify Angle
+    #--------------------------------------------------------------------------
+    def spritesheet_angle(id, angle=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].angle unless angle
+      spritesheets[id].set_transition('angle', angle, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Rotate
+    #--------------------------------------------------------------------------
+    def spritesheet_rotate(ids, speed)
+      ids = select_spritesheets(ids)
+      ids.each do |id|
+        spritesheets[id].rotate(speed)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * change Zoom X
+    #--------------------------------------------------------------------------
+    def spritesheet_zoom_x(id, zoom_x=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].zoom_x unless zoom_x
+      spritesheets[id].set_transition('zoom_x', zoom_x, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * change Zoom Y
+    #--------------------------------------------------------------------------
+    def spritesheet_zoom_y(id, zoom_y=false, duration = 0, wf = false, ease = :InLinear)
+      return spritesheets[id].zoom_y unless zoom_y
+      spritesheets[id].set_transition('zoom_y', zoom_y, duration, ease)
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * change Zoom
+    #--------------------------------------------------------------------------
+    def spritesheet_zoom(ids, zoom_x, zoom_y = false, duration = 0, wf = false, ease = :InLinear)
+      zoom_y ||= zoom_x
+      select_spritesheets(ids).each do |id|
+        spritesheet_zoom_x(id, zoom_x, duration, false, ease)
+        spritesheet_zoom_y(id, zoom_y, duration, false, ease)
+      end
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * change Tone
+    #--------------------------------------------------------------------------
+    def spritesheet_tone(id, tone, d = 0, wf = false, ease = :InLinear)
+      if d.is_a?(Fixnum)
+        spritesheets[id].start_tone_change(tone, d, ease)
+        wait(d) if wf
+      else
+        spritesheets[id].tone = tone
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Change blend type
+    #--------------------------------------------------------------------------
+    def spritesheet_blend(ids, blend)
+      select_spritesheets(ids).each {|id| spritesheets[id].blend = blend }
+    end
+    #--------------------------------------------------------------------------
+    # * Pin spritesheet on the map
+    #--------------------------------------------------------------------------
+    def spritesheet_pin(ids, x=nil, y=nil)
+      select_spritesheets(ids).each do |id|
+        unless x
+          x_s = 16 * spritesheets[id].scroll_speed_x
+          y_s = 16 * spritesheets[id].scroll_speed_y
+          x = spritesheet_x(id) + $game_map.display_x * x_s + spritesheets[id].shake
+          y = spritesheet_y(id) + $game_map.display_y * y_s
+        end
+        spritesheet_x(id, x)
+        spritesheet_y(id, y)
+        spritesheets[id].pin
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Unpin spritesheet on the map
+    #--------------------------------------------------------------------------
+    def spritesheet_unpin(ids)
+      select_spritesheets(ids).each {|id| spritesheets[id].unpin }
+    end
+
+    #--------------------------------------------------------------------------
+    # * Check if a spritesheet is in movement
+    #--------------------------------------------------------------------------
+    def spritesheet_move?(id)
+      spritesheets[id].move?
+    end
+
+    def spritesheet_erased?(id)
+      spritesheets[id].name.empty?
+    end
+
+    def spritesheet_showed?(id)
+      !spritesheet_erased?(id)
+    end
+
+    def fresh_spritesheet_id
+      spritesheets.fresh_id
+    end
+
+
+    #--------------------------------------------------------------------------
+    # * Change spritesheet Opacity
+    #--------------------------------------------------------------------------
+    def spritesheet_opacity(ids, value, duration = 0, wf = false, ease = :InLinear)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].set_transition('opacity', value, duration, ease)
+      end
+      wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Shake the spritesheet
+    #--------------------------------------------------------------------------
+    def spritesheet_shake(ids, power, speed, duration)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].start_shake(power, speed, duration)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Point in spritesheet
+    #--------------------------------------------------------------------------
+    def pixel_in_spritesheet?(id, x, y, precise = false)
+      spr = sprite_spritesheet(id)
+      return false unless spr
+      precise ? spr.precise_in?(x, y) : spr.in?(x, y)
+    end
+    def spritesheet_mouse_hover?(id, precise = false)
+      pixel_in_spritesheet?(id, Mouse.x, Mouse.y, precise)
+    end
+    def spritesheet_mouse_click?(id, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.click?
+    end
+    def spritesheet_mouse_press?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.press?(key)
+    end
+    def spritesheet_mouse_trigger?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.trigger?(key)
+    end
+    def spritesheet_mouse_repeat?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.repeat?(key)
+    end
+    def spritesheet_mouse_release?(id, key = :mouse_left, precise = false)
+      spritesheet_mouse_hover?(id, precise) && Mouse.release?(key)
+    end
+    #--------------------------------------------------------------------------
+    # * spritesheet collisions
+    #--------------------------------------------------------------------------
+    def spritesheets_collide?(a, b)
+      spr_a = sprite_spritesheet(a)
+      spr_b = sprite_spritesheet(b)
+      return if (!spr_a) || (!spr_b)
+      spr_a.collide_with?(spr_b)
+    end
+    #--------------------------------------------------------------------------
+    # * spritesheet collisions (perfect pixel)
+    #--------------------------------------------------------------------------
+    def spritesheets_perfect_collide?(a, b)
+      spr_a = sprite_spritesheet(a)
+      spr_b = sprite_spritesheet(b)
+      return if (!spr_a) || (!spr_b)
+      spr_a.pixel_collide_with(spr_b)
+    end
+    #--------------------------------------------------------------------------
+    # * Change scroll speed (in X)
+    #--------------------------------------------------------------------------
+    def spritesheet_scroll_x(ids, speed = nil)
+      return spritesheets[ids].scroll_speed_x unless speed
+      select_spritesheets(ids).each {|id| spritesheets[id].scroll_speed_x = speed}
+    end
+    #--------------------------------------------------------------------------
+    # * Change scroll speed (in Y)
+    #--------------------------------------------------------------------------
+    def spritesheet_scroll_y(ids, speed = nil)
+    return spritesheets[ids].scroll_speed_y unless speed
+      select_spritesheets(ids).each {|id| spritesheets[id].scroll_speed_y = speed}
+    end
+    #--------------------------------------------------------------------------
+    # * Change scroll speed
+    #--------------------------------------------------------------------------
+    def spritesheet_scroll(ids, speed)
+      select_spritesheets(ids).each do |id|
+        spritesheet_scroll_x(id, speed)
+        spritesheet_scroll_y(id, speed)
+      end
+    end
+    #--------------------------------------------------------------------------
+    # * Clear all spritesheets
+    #--------------------------------------------------------------------------
+    def spritesheets_clear
+      screen.clear_spritesheets
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get pictures dimension
+    #--------------------------------------------------------------------------
+    def spritesheet_width(id, v = nil, duration = 0, wf = false, ease = :InLinear)
+      pict = spritesheets[id]
+      unless v
+        return 0 if !pict || pict.name.empty?
+        bmp = Cache.swap(pict.name)
+        return (((bmp.width * pict.zoom_x))/100.0).to_i
+      end
+      zoom = Command.percent(v, spritesheet_width(id))
+      spritesheet_zoom_x(id, zoom, duration, wf, ease)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get spritesheets dimension
+    #--------------------------------------------------------------------------
+    def spritesheet_height(id, v = nil, duration = 0, wf = false, ease = :InLinear)
+      pict = spritesheets[id]
+      unless v
+        return 0 if !pict || pict.name.empty?
+        bmp = Cache.swap(pict.name)
+        return (((bmp.height * pict.zoom_y))/100.0).to_i
+      end
+      zoom = Command.percent(v, spritesheet_height(id))
+      spritesheet_zoom_y(id, zoom, duration, wf, ease)
+    end
+
+    #--------------------------------------------------------------------------
+    # * set spritesheets dimension
+    #--------------------------------------------------------------------------
+    def spritesheet_dimension(id, w, h, duration = 0, wf = false, ease = :InLinear)
+      spritesheet_width(id, w, duration, false, ease)
+      spritesheet_height(id, h, duration, wf, ease)
+    end
+
+    append_commands
+  end
+
 
   #==============================================================================
   # ** Commands Base
@@ -791,6 +1213,13 @@ module RMECommands
     # * Get Event Id form coords
     #--------------------------------------------------------------------------
     def id_at(x, y)
+      RME::deprecated_command("id_at", "use 'event_at'")
+      event_at(x, y)
+    end
+    #--------------------------------------------------------------------------
+    # * Get Event Id form coords
+    #--------------------------------------------------------------------------
+    def event_at(x, y)
       result = $game_map.event_id_xy(x, y)
       return result if result > 0
       return 0 if $game_player.x == x && $game_player.y == y
@@ -846,6 +1275,18 @@ module RMECommands
       tile_id = tile_id(x, y, 0)
       (tile_id.between?(2816, 4351) && !table?(x,y)) ||
       (tile_id > 1663 && !stair?(x,y))
+    end
+    
+    def boat_passable?(x, y)
+      $game_map.boat_passable?(x, y)
+    end
+    
+    def ship_passable?(x, y)
+      $game_map.ship_passable?(x, y)
+    end
+   
+    def autotile_type(x, y, z)
+      $game_map.autotile_type(x, y, z)
     end
 
     def get_squares_by_region(region_id)
@@ -1613,6 +2054,48 @@ module RMECommands
     def player_ox(value = nil); event_ox(0, value); end
     def player_oy(value = nil); event_oy(0, value); end
 
+    def event_width(id) 
+      character = event_character_name(id)
+      width = character_width(character)
+      coeff = event_zoom_x(id)
+      (width * (coeff / 100.0)).to_i
+    end
+
+    def event_height(id) 
+      character = event_character_name(id)
+      height = character_height(character)
+      coeff = event_zoom_y(id)
+      (height * (coeff / 100.0)).to_i
+    end
+
+    def player_width
+      event_width(0)
+    end
+
+    def player_height
+      event_height(0)
+    end
+
+    def character_width(name) 
+      real_name = "Characters/" + name
+      bmp = Cache.swap(real_name)
+      sign = name[/^[\!\$]./]
+      row = 12
+      row = 3 if sign && sign.include?('$')
+      w = bmp.width / row 
+      w
+    end
+
+    def character_height(name) 
+      real_name = "Characters/" + name
+      bmp = Cache.swap(real_name)
+      sign = name[/^[\!\$]./]
+      row = 8
+      row = 4 if sign && sign.include?('$')
+      h = bmp.height / row 
+      h
+    end
+
     def event_zoom_x(id, value = nil)
       return event(id).zoom_x unless value
       event(id).zoom_x = value
@@ -2082,16 +2565,77 @@ module RMECommands
       event_turn_away_from_event(0, id)
     end
 
+    def event_jump(id, x_plus, y_plus)
+      event(id).jump(x_plus, y_plus)
+    end
+
+    def player_jump(x_plus, y_plus)
+      event_jump(0, x_plus, y_plus)
+    end
+
+    def event_jump_x(id, x_plus)
+      event_jump(id, x_plus, 0)
+    end
+
+    def event_jump_y(id, y_plus)
+      event_jump(id, 0, y_plus)
+    end
+
+    def player_jump_x(x_plus)
+      event_jump(0, x_plus, 0)
+    end
+
+    def player_jump_y(y_plus)
+      event_jump(0, 0, y_plus)
+    end
+
+    def event_move_to(id, x, y, w=false, no_t = false)
+      event(id).move_to_position(x, y, w, no_t)
+    end
+
+    def player_move_to(x, y, w=false, no_t = false)
+      event(0).move_to_position(x, y, w, no_t)
+    end
+
+    def event_partial_move_to(id, x, y, st, w=false, no_t = false)
+      event(id).partial_move_to_position(x, y, st, w, no_t)
+    end
+
+    def player_partial_move_to(x, y, st, w=false, no_t = false)
+      event(0).partial_move_to_position(x, y, st, w, no_t)
+    end
+
+    def event_jump_to(id, x, y, w=true)
+      event(id).jump_to(x, y, w)
+    end
+
+    def player_jump_to(x, y, w=true)
+      event(0).jump_to(x, y, w)
+    end
 
 
     #--------------------------------------------------------------------------
     # * Move event to x, y coords
     #--------------------------------------------------------------------------
-    def move_to(id, x, y, w=false, no_t = false); event(id).move_to_position(x, y, w, no_t); end
+    def move_to(id, x, y, w=false, no_t = false)
+      RME::deprecated_command("move_to", "use 'event_move_to' or 'player_move_to'")
+      event(id).move_to_position(x, y, w, no_t)
+    end
     #--------------------------------------------------------------------------
     # * Jump event to x, y coords
     #--------------------------------------------------------------------------
-    def jump_to(id, x, y, w=true); event(id).jump_to(x, y, w); end
+    def jump_to(id, x, y, w=true)
+      RME::deprecated_command("jump_to", "use 'event_jump_to' or 'player_jump_to'")
+      event(id).jump_to(x, y, w)
+    end
+
+
+    #--------------------------------------------------------------------------
+    # * Start an event
+    #--------------------------------------------------------------------------
+    def event_start(id)
+      event(id).start
+    end
 
     # Fix for EE4
     alias_method :collide?, :events_collide?
@@ -2351,6 +2895,57 @@ module RMECommands
     #--------------------------------------------------------------------------
     def fresh_text_id
       Game_Screen.get.texts.fresh_id
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll_x(id, value = nil)
+      Game_Screen.get.texts[id].scroll_speed_x = value if value
+      Game_Screen.get.texts[id].scroll_speed_x
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll_y(id, value = nil)
+      Game_Screen.get.texts[id].scroll_speed_y = value if value
+      Game_Screen.get.texts[id].scroll_speed_y
+    end
+
+    #--------------------------------------------------------------------------
+    # * Change text scroll speed
+    #--------------------------------------------------------------------------
+    def text_scroll(id, xvalue, yvalue = xvalue)
+      yvalue ||= xvalue
+      text_scroll_speed_x(id, xvalue)
+      text_scroll_speed_y(id, yvalue)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Pin text
+    #--------------------------------------------------------------------------
+    def text_pin(id, x = nil, y = nil)
+      text =  Game_Screen.get.texts[id]
+      unless x
+        x_s = 16 * text.scroll_speed_x
+        x = text_x(id) + $game_map.display_x * x_s
+      end
+      unless y
+        y_s = 16 * text.scroll_speed_y
+        y = text_y(id) + $game_map.display_y * y_s
+      end
+      text_x(id, x)
+      text_y(id, y)
+      text.pin = true
+    end
+
+    def text_unpin(id)
+      Game_Screen.get.texts[id].pin = false
+    end
+
+    def text_pinned?(id)
+      Game_Screen.get.texts[id].pin
     end
 
     #--------------------------------------------------------------------------
@@ -2727,11 +3322,25 @@ module RMECommands
       DataManager.save_game(index - 1)
     end
 
+    def save_game_with_free_name(name)
+      DataManager.save_game(name)
+    end
+
     #--------------------------------------------------------------------------
     # * Load Game
     #--------------------------------------------------------------------------
     def load_game(index, time=100)
       DataManager.load_game(index-1)
+      fadeout(time)
+      $game_system.on_after_load
+      SceneManager.goto(Scene_Map)
+    end
+
+    #--------------------------------------------------------------------------
+    # * Load Game
+    #--------------------------------------------------------------------------
+    def load_game_with_free_name(name, time=100)
+      DataManager.load_game(name)
       fadeout(time)
       $game_system.on_after_load
       SceneManager.goto(Scene_Map)
@@ -2764,6 +3373,10 @@ module RMECommands
     def import_variable(ids, idvar); DataManager.export(ids-1)[:variables][idvar]; end
     def import_switch(ids, idswitch); DataManager.export(ids-1)[:switches][idswitch]; end
     def import_label(ids, idlabel); DataManager.export(ids-1)[:labels][idlabel]; end
+
+    def import_variable_with_free_name(ids, idvar); DataManager.export(ids)[:variables][idvar]; end
+    def import_switch_with_free_name(ids, idswitch); DataManager.export(ids)[:switches][idswitch]; end
+    def import_label_with_free_name(ids, idlabel); DataManager.export(ids)[:labels][idlabel]; end
 
     # Fix for EE4
     alias_method :delete_save, :save_delete
@@ -3095,18 +3708,18 @@ module RMECommands
       $game_map.start_scroll(direction, distance, speed)
     end
 
-    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :centered)
       Fiber.yield while $game_map.scrolling?
       $game_map.start_scroll_towards(*POSITION[position].call(x, y),
                                      nb_steps,
                                      Easing::FUNCTIONS[easing])
     end
 
-    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
     end
 
-    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :top_left)
+    def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
     end
 

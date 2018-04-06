@@ -5,17 +5,10 @@
 #  With :
 # Joke
 # Grim
-# Nuki
-#
+# xvw
 #------------------------------------------------------------------------------
 # Graphical User Interface SDK for RME's tools
 #==============================================================================
-
-=begin
-
-License coming soon
-
-=end
 
 if RME.gui_enabled?
 
