@@ -135,6 +135,7 @@ module RMECommands
     [:follower, pos]
   end
   def rm_kill; SceneManager.exit; end
+  def reset; SceneManager.reset; end
   def website(url); Thread.new { system("start #{url}") };end
   def split_each_char(str); str.scan(/./); end
 

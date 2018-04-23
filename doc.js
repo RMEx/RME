@@ -127,6 +127,7 @@ var documentation = [
 {"name":"wait_release", "description":"Attend le relâchement d'une touche", "returnable":true,"parameters":[{"name":"key", "desc":"Touche à attendre", "type":"Symbol"}]},
 {"name":"fadeout", "description":"Fondu noir (et sonore) du jeu pendant la durée passée en argument", "returnable":false,"parameters":[{"name":"*time", "desc":"Durée de fondu", "type":"Fixnum"}]},
 {"name":"rm_kill", "description":"Quitte le jeu... d'un coup sec... TCHAK", "returnable":false,"parameters":[]},
+{"name":"reset", "description":"Redémarre le jeu, se comporte comme l'appui sur la touche F12", "returnable":false,"parameters":[]},
 {"name":"import_variable_with_free_name", "description":"Renvoie la valeur d'une variable issue d'une autre sauvegarde nommée librement", "returnable":true,"parameters":[{"name":"index", "desc":"Nom de la sauvegarde", "type":"String"},
 {"name":"idvar", "desc":"Numéro de la variable", "type":"Fixnum"}]},
 {"name":"random_combination", "description":"Renvoie une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composée des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )", "returnable":true,"parameters":[{"name":"len", "desc":"Args description", "type":"Fixnum"},

@@ -2,6 +2,9 @@
 
 ## Release (1.4.0)
 
+### Additions
+- Add command `reset` (@BastienDuplessier, reported by @YendaHusk)
+
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos and @Zer0Zer0x)
 

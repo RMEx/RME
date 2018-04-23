@@ -4986,6 +4986,12 @@ module SceneManager
       goto(Scene_Map)
       scene.main while scene
     end
+    #--------------------------------------------------------------------------
+    # * Reset game
+    #--------------------------------------------------------------------------
+    def reset
+      raise RGSSReset.new
+    end
   end
 end
 
