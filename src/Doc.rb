@@ -4368,7 +4368,7 @@ link_method_documentation "Command.text_y",
                           "Change l'axe Y d'un texte",
                           {
                             :id => ["ID du texte", :Fixnum],
-                            :y => ["Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte", :Fixnum],
+                            :y => ["Position en y du texte, si aucun argument n'est passé, la commande renverra la position Y du texte", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
