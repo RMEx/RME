@@ -1,5 +1,10 @@
 # RME Changelog
 
+## Release (1.4.0)
+
+### Misc
+- Various fixes in the documentation (reported by @aureliendossantos and @Zer0Zer0x)
+
 ## Release (1.3.0)
 
 In this release, we decided to use English as the main language.
