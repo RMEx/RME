@@ -5869,7 +5869,6 @@ link_method_documentation 'Command.player_path_length',
  	                        {
 		                        :x => ["Coordonnées X", :Fixnum],
 		                        :y => ["Coordonnées Y", :Fixnum],
-		                       :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                            :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
 	                        } # Maybe changed
@@ -5881,7 +5880,6 @@ link_method_documentation 'Command.event_path_length',
 		                        :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
 		                        :x => ["Coordonnées X", :Fixnum],
 		                        :y => ["Coordonnées Y", :Fixnum],
-		                       :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                            :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
 	                        } # Maybe changed
