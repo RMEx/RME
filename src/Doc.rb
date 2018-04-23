@@ -4368,7 +4368,7 @@ link_method_documentation "Command.text_y",
                           "Change l'axe Y d'un texte",
                           {
                             :id => ["ID du texte", :Fixnum],
-                            :y => ["Position en y du texte, si aucun argument n'est passé, la commande renverra la position X du texte", :Fixnum],
+                            :y => ["Position en y du texte, si aucun argument n'est passé, la commande renverra la position Y du texte", :Fixnum],
                             :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                             :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
                           }, true
@@ -5869,7 +5869,6 @@ link_method_documentation 'Command.player_path_length',
  	                        {
 		                        :x => ["Coordonnées X", :Fixnum],
 		                        :y => ["Coordonnées Y", :Fixnum],
-		                       :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                            :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
 	                        } # Maybe changed
@@ -5881,7 +5880,6 @@ link_method_documentation 'Command.event_path_length',
 		                        :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
 		                        :x => ["Coordonnées X", :Fixnum],
 		                        :y => ["Coordonnées Y", :Fixnum],
-		                       :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                            :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
 	                        } # Maybe changed
