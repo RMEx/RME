@@ -5,6 +5,9 @@
 ### Additions
 - Add command `reset` (@BastienDuplessier, reported by @YendaHusk)
 
+### Bug fixes
+- Fix Game_End background that wasn't disposed on skip_title activated (@BastienDuplessier, reported by @Zer0Zer0x)
+
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos and @Zer0Zer0x)
 
