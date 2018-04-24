@@ -2365,12 +2365,12 @@ module RMECommands
       event(id).force_move_route(route)
     end
 
-    def event_path_length(id, x, y, nth = false)
+    def event_path_length(id, x, y, noth = false)
       return event(id).get_path_length(x, y, noth)
     end
 
-    def player_path_length(x, y, nth = false)
-      return event_path_length(0, x, y, nth)
+    def player_path_length(x, y, noth = false)
+      return event_path_length(0, x, y, noth)
     end
 
     def player_move_with(*code)

@@ -7,6 +7,7 @@
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on skip_title activated (@BastienDuplessier, reported by @Zer0Zer0x)
+- Fix get_path_length (@BastienDuplessier, reported by @Ibiky)
 
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos and @Zer0Zer0x)
