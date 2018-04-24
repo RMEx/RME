@@ -10707,7 +10707,7 @@ class Scene_End
     end
     close_command_window
     fadeout_all
-    SceneManager.run
+    SceneManager.reset
   end
 
 end
