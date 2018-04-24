@@ -1474,7 +1474,7 @@ var documentation = [
 {"name":"Sauvegardes","desc":"Commandes pour gérer et naviguer entre les sauvegardes","commands":[
 {"name":"start_new_game", "description":"Démarre une nouvelle partie", "returnable":false,"parameters":[]},
 {"name":"save_game_with_free_name", "description":"Sauvegarde la partie avec un nom de sauvegarde libre. Attention, une sauvegarde qui ne respecte pas le format de nom SaveXXX ne sera pas considéré comme une sauvegarde [énumérable] et devra utiliser [load_game_with_free_name] pour être chargée", "returnable":true,"parameters":[{"name":"name", "desc":"Nom du fichier de sauvegarde", "type":"String"}]},
-{"name":"load_game_with_free_name", "description":"Charge une partie avec un nom de sauvegarde libre", "returnable":true,"parameters":[{"name":"name", "desc":"Nom du fichier de sauvegarde", "type":"ArgType"},
+{"name":"load_game_with_free_name", "description":"Charge une partie avec un nom de sauvegarde libre", "returnable":true,"parameters":[{"name":"name", "desc":"Nom du fichier de sauvegarde", "type":"String"},
 {"name":"*time", "desc":"Durée de la transition", "type":"Fixnum"}]},
 {"name":"save_game", "description":"Sauvegarde la partie sur la sauvegardé référencée par l'ID donné", "returnable":false,"parameters":[{"name":"index", "desc":"Numéro de la sauvegarde", "type":"Fixnum"}]},
 {"name":"load_game", "description":"Charge la partie référencée par l'ID de sauvegarde donné", "returnable":false,"parameters":[{"name":"index", "desc":"Numéro de la sauvegarde", "type":"Fixnum"},

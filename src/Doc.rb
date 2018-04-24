@@ -4651,7 +4651,7 @@ register_command :save, 'Command.save_game_with_free_name'
 link_method_documentation 'Command.load_game_with_free_name', 
 	'Charge une partie avec un nom de sauvegarde libre',
  	{
-		:name => ["Nom du fichier de sauvegarde", :ArgType],
+		:name => ["Nom du fichier de sauvegarde", :String],
 		:"*time" => ["Durée de la transition", :Fixnum],
 
 	}, true # Maybe changed
