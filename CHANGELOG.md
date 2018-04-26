@@ -1,5 +1,17 @@
 # RME Changelog
 
+## Release (1.4.0)
+
+### Additions
+- Add command `reset` (@BastienDuplessier, reported by @YendaHusk)
+
+### Bug fixes
+- Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0Zer0x)
+- Fix `get_path_length` (@BastienDuplessier, reported by @Ibiky)
+
+### Misc
+- Various fixes in the documentation (reported by @aureliendossantos, @Zer0Zer0x, @grrim, @YendaHusk)
+
 ## Release (1.3.0)
 
 In this release, we decided to use English as the main language.

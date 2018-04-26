@@ -7656,8 +7656,8 @@ class Game_CharacterBase
   # * Get path length
   #--------------------------------------------------------------------------
   def get_path_length(x, y, noth=false)
-    route = Pathfinder.create_path(Pathfinder::Goal.new(x, y), self, noth)
-    return route.list.length
+    route = Pathfinder.create_path(Point.new(x, y), self, noth)
+    return route.list.length - 1 # Minus 1 is to count out ROUTE_END
   end
   #--------------------------------------------------------------------------
   # * Jump to coord
@@ -10707,7 +10707,7 @@ class Scene_End
     end
     close_command_window
     fadeout_all
-    SceneManager.run
+    SceneManager.reset
   end
 
 end
@@ -11040,6 +11040,12 @@ module SceneManager
       goto(Scene_Map)
       scene.main while scene
     end
+    #--------------------------------------------------------------------------
+    # * Reset game
+    #--------------------------------------------------------------------------
+    def reset
+      raise RGSSReset.new
+    end
   end
 end
 
@@ -11336,6 +11342,7 @@ module RMECommands
     [:follower, pos]
   end
   def rm_kill; SceneManager.exit; end
+  def reset; SceneManager.reset; end
   def website(url); Thread.new { system("start #{url}") };end
   def split_each_char(str); str.scan(/./); end
 
@@ -13565,12 +13572,12 @@ module RMECommands
       event(id).force_move_route(route)
     end
 
-    def event_path_length(id, x, y, nth = false)
+    def event_path_length(id, x, y, noth = false)
       return event(id).get_path_length(x, y, noth)
     end
 
-    def player_path_length(x, y, nth = false)
-      return event_path_length(0, x, y, nth)
+    def player_path_length(x, y, noth = false)
+      return event_path_length(0, x, y, noth)
     end
 
     def player_move_with(*code)
