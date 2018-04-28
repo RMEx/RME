@@ -1314,6 +1314,11 @@ register_command :event, 'Command.player_tone'
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_x"
 
+  link_method_documentation "Command.event_original_x",
+                        "Renvoie la coordonnée X de la case sur laquelle se trouve l'évènement référencé par son ID tel que placé dans l'éditeur",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_original_x"
+
   link_method_documentation "Command.event_in_screen?",
                         "Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
@@ -1329,6 +1334,11 @@ register_command :event, 'Command.player_tone'
                         "Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_y"
+
+  link_method_documentation "Command.event_original_y",
+                        "Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID tel que placé dans l'éditeur",
+                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
+  register_command :event, "Command.event_original_y"
 
   link_method_documentation "Command.event_screen_x",
                         "Renvoie la coordonnée X de l'évènement référencé par son ID par rapport à l'écran",
