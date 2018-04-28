@@ -2645,7 +2645,7 @@ module RMECommands
       $game_map.rpg_event(id).x
     end
     #--------------------------------------------------------------------------
-    # * Get X coordinate of an event from the editor
+    # * Get Y coordinate of an event from the editor
     #--------------------------------------------------------------------------
     def event_original_y(id)
       $game_map.rpg_event(id).y
