@@ -2638,6 +2638,19 @@ module RMECommands
       event(id).start
     end
 
+    #--------------------------------------------------------------------------
+    # * Get X coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_x(id)
+      $game_map.rpg_event(id).x
+    end
+    #--------------------------------------------------------------------------
+    # * Get X coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_y(id)
+      $game_map.rpg_event(id).y
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
