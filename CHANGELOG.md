@@ -6,11 +6,11 @@
 - Add command `reset` (@BastienDuplessier, reported by @YendaHusk)
 
 ### Bug fixes
-- Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0Zer0x)
+- Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
 - Fix `get_path_length` (@BastienDuplessier, reported by @Ibiky)
 
 ### Misc
-- Various fixes in the documentation (reported by @aureliendossantos, @Zer0Zer0x, @grrim, @YendaHusk)
+- Various fixes in the documentation (reported by @aureliendossantos, @Zer0xxxx, @grrim, @YendaHusk)
 
 ## Release (1.3.0)
 
