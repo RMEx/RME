@@ -5389,7 +5389,7 @@ register_command :textfield, 'Command.textfield_opacity'
 link_method_documentation 'Command.message_height',
   'Change le nombre de lignes affichées dans les messages (Commande Event Afficher message)',
   {
-    :n => ["Nombre de lignes visibles", :Fixnum],
+    :n => ["Nombre de lignes visibles, si aucun argument n'est passé, la commande renverra la valeur actuelle", :Fixnum],
 
   }
 register_command :standard, 'Command.message_height'
