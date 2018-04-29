@@ -9299,7 +9299,7 @@ class Sprite_Text < Sprite
   # * Update origin
   #--------------------------------------------------------------------------
   def update_origin
-    if @text.origin == 0
+    if @text.origin == 0 || bitmap.nil?
       self.ox = 0
       self.oy = 0
     else

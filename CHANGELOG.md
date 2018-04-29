@@ -12,6 +12,7 @@
 - Fix `get_path_length` (@BastienDuplessier, reported by @Ibiky)
 - Fix `Float DomainError : Infinity` when losing focus (@BastienDuplessier, reported by @Zer0xxxx)
 - Fix `create_text_window`, now can create empty text windows (@BastienDuplessier, reported by @Zer0xxxx)
+- Fix `text_show` with empty content and centered (@BastienDuplessier, reported by @aureliendossantos)
 
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos, @Zer0xxxx, @grrim, @YendaHusk)
