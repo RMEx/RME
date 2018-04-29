@@ -3050,6 +3050,15 @@ class Game_Map
   def parallel_common_events
     rm_extender_pc.select {|e| e && !e.for_battle?}
   end
+
+  #--------------------------------------------------------------------------
+  # * Get RPG::Event
+  #--------------------------------------------------------------------------
+  def rpg_event(id)
+    event = @map.events.fetch(id, nil)
+    return event if event
+    raise sprintf("Event %d doesn't exist", id)
+  end
 end
 
 

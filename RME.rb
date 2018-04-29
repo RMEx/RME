@@ -9104,6 +9104,15 @@ class Game_Map
   def parallel_common_events
     rm_extender_pc.select {|e| e && !e.for_battle?}
   end
+
+  #--------------------------------------------------------------------------
+  # * Get RPG::Event
+  #--------------------------------------------------------------------------
+  def rpg_event(id)
+    event = @map.events.fetch(id, nil)
+    return event if event
+    raise sprintf("Event %d doesn't exist", id)
+  end
 end
 
 
@@ -13843,6 +13852,19 @@ module RMECommands
     #--------------------------------------------------------------------------
     def event_start(id)
       event(id).start
+    end
+
+    #--------------------------------------------------------------------------
+    # * Get X coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_x(id)
+      $game_map.rpg_event(id).x
+    end
+    #--------------------------------------------------------------------------
+    # * Get Y coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_y(id)
+      $game_map.rpg_event(id).y
     end
 
     # Fix for EE4
