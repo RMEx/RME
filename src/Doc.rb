@@ -943,7 +943,7 @@ register_command :standard, 'Command.unflash_rect'
   register_command :mapinfo, "Command.region_id"
 
   link_method_documentation "Command.square_passable?",
-                        "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
+                        "Renvoie true si, depuis les coordonnées X,Y l'on peut avancer dans la direction passée en paramètre",
                         {
                           :x => ["Coordonnées X de la case", :Fixnum],
                           :y => ["Coordonnées Y de la case", :Fixnum],

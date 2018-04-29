@@ -23,7 +23,7 @@ var documentation = [
 {"name":"layer", "desc":"Couche de la carte (1,2 ou 3)", "type":"Fixnum"}]},
 {"name":"region_id", "description":"Renvoie l'ID de la région pointée par les coordonnées X,Y", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnées X de la case", "type":"Fixnum"},
 {"name":"y", "desc":"Coordonnées Y de la case", "type":"Fixnum"}]},
-{"name":"square_passable?", "description":"Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnées X de la case", "type":"Fixnum"},
+{"name":"square_passable?", "description":"Renvoie true si, depuis les coordonnées X,Y l'on peut avancer dans la direction passée en paramètre", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnées X de la case", "type":"Fixnum"},
 {"name":"y", "desc":"Coordonnées Y de la case", "type":"Fixnum"},
 {"name":"direction", "desc":"Direction (2,4,6,8)", "type":"Fixnum"}]},
 {"name":"get_tileset_id", "description":"Renvoie l' ID du tileset de la carte en cours", "returnable":true,"parameters":[]},
