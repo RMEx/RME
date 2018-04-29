@@ -1773,6 +1773,7 @@ module Devices
       cursor_position(buffer)
       screen_to_client(HWND, buffer)
       r = Game_Window.ratio
+      return if r.zero?
       @point.x, @point.y = *buffer.unpack('l2')
       @point.x, @point.y = (@point.x / r).to_i, (@point.y / r).to_i
       @square.null!

@@ -10,6 +10,7 @@
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
 - Fix `get_path_length` (@BastienDuplessier, reported by @Ibiky)
+- Fix `Float DomainError : Infinity` when losing focus (@BastienDuplessier, reported by @Zer0xxxx)
 
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos, @Zer0xxxx, @grrim, @YendaHusk)
