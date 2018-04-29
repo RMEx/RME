@@ -8223,7 +8223,7 @@ class Window_Text < Window_Base
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max.to_i, heights.max.to_i
     total_height = height * lines.length
     [width, total_height, height]
   end
