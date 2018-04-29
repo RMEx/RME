@@ -943,7 +943,7 @@ register_command :standard, 'Command.unflash_rect'
   register_command :mapinfo, "Command.region_id"
 
   link_method_documentation "Command.square_passable?",
-                        "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
+                        "Renvoie true si, depuis les coordonnées X,Y l'on peut avancer dans la direction passée en paramètre",
                         {
                           :x => ["Coordonnées X de la case", :Fixnum],
                           :y => ["Coordonnées Y de la case", :Fixnum],
@@ -5389,7 +5389,7 @@ register_command :textfield, 'Command.textfield_opacity'
 link_method_documentation 'Command.message_height',
   'Change le nombre de lignes affichées dans les messages (Commande Event Afficher message)',
   {
-    :n => ["Nombre de lignes visibles", :Fixnum],
+    :n => ["Nombre de lignes visibles, si aucun argument n'est passé, la commande renverra la valeur actuelle", :Fixnum],
 
   }
 register_command :standard, 'Command.message_height'

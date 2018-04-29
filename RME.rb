@@ -1773,6 +1773,7 @@ module Devices
       cursor_position(buffer)
       screen_to_client(HWND, buffer)
       r = Game_Window.ratio
+      return if r.zero?
       @point.x, @point.y = *buffer.unpack('l2')
       @point.x, @point.y = (@point.x / r).to_i, (@point.y / r).to_i
       @square.null!
@@ -8222,7 +8223,7 @@ class Window_Text < Window_Base
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max.to_i, heights.max.to_i
     total_height = height * lines.length
     [width, total_height, height]
   end
@@ -9298,7 +9299,7 @@ class Sprite_Text < Sprite
   # * Update origin
   #--------------------------------------------------------------------------
   def update_origin
-    if @text.origin == 0
+    if @text.origin == 0 || bitmap.nil?
       self.ox = 0
       self.oy = 0
     else
@@ -11451,7 +11452,8 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------
-  def message_height(n)
+  def message_height(n = false)
+    return Window_Message.line_number unless n
     Window_Message.line_number = n
     scene = SceneManager.scene
     scene.refresh_message if scene.respond_to?(:refresh_message)
@@ -12571,7 +12573,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Check passability
     #--------------------------------------------------------------------------
-    def square_passable?(x, y, d=2)
+    def square_passable?(x, y, d)
       $game_map.passable?(x, y, d)
     end
     #--------------------------------------------------------------------------

@@ -235,7 +235,8 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------
-  def message_height(n)
+  def message_height(n = false)
+    return Window_Message.line_number unless n
     Window_Message.line_number = n
     scene = SceneManager.scene
     scene.refresh_message if scene.respond_to?(:refresh_message)
@@ -1355,7 +1356,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Check passability
     #--------------------------------------------------------------------------
-    def square_passable?(x, y, d=2)
+    def square_passable?(x, y, d)
       $game_map.passable?(x, y, d)
     end
     #--------------------------------------------------------------------------

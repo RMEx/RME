@@ -5,10 +5,14 @@
 ### Additions
 - Add command `reset` (@BastienDuplessier, reported by @YendaHusk)
 - Add commands `event_original_x` and `event_original_y` (@BastienDuplessier, reported by @Zer0xxxx)
+- Allow to get `message_height` (@BastienDuplessier, reported by @Zer0xxxx)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
 - Fix `get_path_length` (@BastienDuplessier, reported by @Ibiky)
+- Fix `Float DomainError : Infinity` when losing focus (@BastienDuplessier, reported by @Zer0xxxx)
+- Fix `create_text_window`, now can create empty text windows (@BastienDuplessier, reported by @Zer0xxxx)
+- Fix `text_show` with empty content and centered (@BastienDuplessier, reported by @aureliendossantos)
 
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos, @Zer0xxxx, @grrim, @YendaHusk)
