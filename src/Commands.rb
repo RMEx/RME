@@ -3954,6 +3954,10 @@ module RMECommands
       SceneManager.scene.windows[id].y = y
     end
 
+    def fresh_window_id
+      SceneManager.scene.fresh_window_id
+    end
+
     #--------------------------------------------------------------------------
     # * Point in window
     #--------------------------------------------------------------------------

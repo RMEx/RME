@@ -6865,6 +6865,11 @@ link_method_documentation 'Command.window_y',
 	}, true # Maybe changed
 register_command :window, 'Command.window_y'
 
+link_method_documentation 'Command.fresh_window_id',
+	'Génère un ID non utilisé pour une window',
+ 	{}, true # Maybe changed
+register_command :window, 'Command.fresh_window_id'
+
 link_method_documentation 'Command.mouse_hover_window?',
 	'Renvoie true si la souris survole la fenêtre, false sinon.',
  	{:id => ["ID de la fenêtre", :Fixnum]}, true

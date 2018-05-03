@@ -8670,6 +8670,12 @@ class Scene_Map
     @windows.each {|i,t| t.deactivate if t && !t.disposed?}
   end
   #--------------------------------------------------------------------------
+  # * Fresh Window ID
+  #--------------------------------------------------------------------------
+  def fresh_window_id
+    @windows.keys.max + 1
+  end
+  #--------------------------------------------------------------------------
   # * add Window
   #--------------------------------------------------------------------------
   def add_window(i, window)
@@ -15169,6 +15175,10 @@ module RMECommands
     def window_y(id, y = nil)
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
+    end
+
+    def fresh_window_id
+      SceneManager.scene.fresh_window_id
     end
 
     #--------------------------------------------------------------------------

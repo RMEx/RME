@@ -1773,6 +1773,7 @@ var documentation = [
 {"name":"*x", "desc":"Coordonnée X de la fenêtre", "type":"Fixnum"}]},
 {"name":"window_y", "description":"Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"},
 {"name":"*y", "desc":"Coordonnée Y de la fenêtre", "type":"Fixnum"}]},
+{"name":"fresh_window_id", "description":"Génère un ID non utilisé pour une window", "returnable":true,"parameters":[]},
 {"name":"mouse_hover_window?", "description":"Renvoie true si la souris survole la fenêtre, false sinon.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"}]}
 ]},
 {"name":"Fenêtre de jeu","desc":"Commandes de manipulation de la fenêtre de jeu","commands":[
