@@ -858,14 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.terrain_tag",
-                        "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
-                        {
-                          :x => ["Coordonnées X de la case", :Fixnum],
-                          :y => ["Coordonnées Y de la case", :Fixnum]
-                        }, true
-  register_command :mapinfo, "Command.terrain_tag"
-
   link_method_documentation "Command.tile_id",
                         "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
                         {

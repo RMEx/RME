@@ -68,8 +68,18 @@ module RME
         return -1
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns the type of terrain which corresponds to the tile located
+      #   at the given coordinates (`x`, `y`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :terrain_tag,
+                        :description => 'Map.terrain_tag',
+                        :parameters  => [X, Y]}) { |x, y|
+        $game_map.terrain_tag(x, y)
+      }
+
       # TODO
-      # - `terrain_tag`
       # - `tile_id`
       # - `set_tile_where`
       # - `delete_tiles`
