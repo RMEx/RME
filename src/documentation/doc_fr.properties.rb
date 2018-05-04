@@ -11,5 +11,11 @@
   # Commands
   ## Map
   'doc.cmd.Map.map_id' => "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!",
-  'doc.cmd.Map.map_name' => "Renvoie le nom de la map en cours"
+  'doc.cmd.Map.map_name' => "Renvoie le nom de la map en cours",
+  'doc.cmd.Map.id_at' => "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (O si c'est le héros, -1 s'il n'y en a pas)",
+
+  # Parameters
+  ## Map
+  'doc.parameter.Map.x' => "Coordonnée X de la case",
+  'doc.parameter.Map.y' => "Coordonnée Y de la case"
 }

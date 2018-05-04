@@ -858,14 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.id_at",
-                        "[Dépréciée] Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
-                        {
-                          :x => ["Coordonnées X de la case", :Fixnum],
-                          :y => ["Coordonnées Y de la case", :Fixnum]
-                        }, true
-  register_command :mapinfo, "Command.id_at"
-
   link_method_documentation "Command.event_at",
                         "Renvoie l'id de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas) (alias de id_at(x, y))",
                         {

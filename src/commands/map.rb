@@ -17,6 +17,14 @@ module RME
   module Command
     module Map
 
+      # Common parameters' declaration
+      X = {:name        => :x,
+           :type        => ParameterType::Coordinate,
+           :description => 'Map.x'}
+      Y = {:name        => :y,
+           :type        => ParameterType::Coordinate,
+           :description => 'Map.y'}
+
       # ------------------------------------------------------------------------
       # * Returns the identifier of the current map.
       # ------------------------------------------------------------------------
@@ -35,8 +43,18 @@ module RME
         $game_map.display_name
       }
 
+      # ------------------------------------------------------------------------
+      # * Returns the event's identifier which is located at the given
+      #   coordinates (`x`, `y`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section          => self,
+                        :name             => :id_at,
+                        :description      => 'Map.id_at',
+                        :deprecated_since => "2.0.0",
+                        :see              => [:event_at],
+                        :parameters       => [X, Y]}) { |x, y| event_at(x, y) }
+
       # TODO
-      # - `id_at`
       # - `event_at`
       # - `terrain_tag`
       # - `tile_id`

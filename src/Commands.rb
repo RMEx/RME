@@ -1201,13 +1201,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Get Event Id form coords
     #--------------------------------------------------------------------------
-    def id_at(x, y)
-      RME::deprecated_command("id_at", "use 'event_at'")
-      event_at(x, y)
-    end
-    #--------------------------------------------------------------------------
-    # * Get Event Id form coords
-    #--------------------------------------------------------------------------
     def event_at(x, y)
       result = $game_map.event_id_xy(x, y)
       return result if result > 0
