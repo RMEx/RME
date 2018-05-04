@@ -6,6 +6,7 @@
 - Add command `reset` (@BastienDuplessier, reported by @YendaHusk)
 - Add commands `event_original_x` and `event_original_y` (@BastienDuplessier, reported by @Zer0xxxx)
 - Allow to get `message_height` (@BastienDuplessier, reported by @Zer0xxxx)
+- Add command `fresh_window_id` (@BastienDuplessier, reported by @Zer0xxxx)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
