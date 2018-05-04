@@ -49,13 +49,26 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section          => self,
                         :name             => :id_at,
-                        :description      => 'Map.id_at',
+                        :description      => 'Map.event_at',
                         :deprecated_since => "2.0.0",
                         :see              => [:event_at],
                         :parameters       => [X, Y]}) { |x, y| event_at(x, y) }
 
+      # ------------------------------------------------------------------------
+      # - Returns the event's identifier which is located at the given
+      #   coordinates ( `x`, `y`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_at,
+                        :description => 'Map.event_at',
+                        :parameters  => [X, Y]}) { |x, y|
+        result = $game_map.event_id_xy(x, y)
+        return result if result > 0
+        return 0 if $game_player.x == x && $game_player.y == y
+        return -1
+      }
+
       # TODO
-      # - `event_at`
       # - `terrain_tag`
       # - `tile_id`
       # - `set_tile_where`

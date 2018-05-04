@@ -1199,15 +1199,6 @@ module RMECommands
       x + Kernel.rand
     end
     #--------------------------------------------------------------------------
-    # * Get Event Id form coords
-    #--------------------------------------------------------------------------
-    def event_at(x, y)
-      result = $game_map.event_id_xy(x, y)
-      return result if result > 0
-      return 0 if $game_player.x == x && $game_player.y == y
-      return -1
-    end
-    #--------------------------------------------------------------------------
     # * Get terrain Tag from coords
     #--------------------------------------------------------------------------
     def terrain_tag(x, y)
