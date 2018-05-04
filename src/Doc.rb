@@ -858,11 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.map_name",
-                        "Renvoie le nom de la map en cours",
-                        {}, true
-  register_command :mapinfo, "Command.map_name"
-
   link_method_documentation "Command.id_at",
                         "[Dépréciée] Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
                         {

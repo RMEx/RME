@@ -10,5 +10,6 @@
 
   # Commands
   ## Map
-  'doc.cmd.Map.map_id' => "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!"
+  'doc.cmd.Map.map_id' => "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!",
+  'doc.cmd.Map.map_name' => "Renvoie le nom de la map en cours"
 }

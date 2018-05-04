@@ -26,8 +26,16 @@ module RME
         $game_map.map_id
       }
 
+      # ------------------------------------------------------------------------
+      # * Returns the current map's name.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :map_name,
+                        :description => 'Map.map_name'}) {
+        $game_map.display_name
+      }
+
       # TODO
-      # - `map_name`
       # - `id_at`
       # - `event_at`
       # - `terrain_tag`
