@@ -858,11 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.map_id",
-                        "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!",
-                        {}, true
-  register_command :mapinfo, "Command.map_id"
-
   link_method_documentation "Command.map_name",
                         "Renvoie le nom de la map en cours",
                         {}, true

@@ -6,8 +6,9 @@
   'doc.PositiveInteger.description' => 'Entier positif',
 
   # Sections
-  'doc.section.Map' => "Commandes relatives aux informations des cartes"
+  'doc.section.Map' => "Commandes relatives aux informations des cartes",
 
   # Commands
-
+  ## Map
+  'doc.cmd.Map.map_id' => "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!"
 }

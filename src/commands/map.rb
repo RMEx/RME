@@ -17,8 +17,16 @@ module RME
   module Command
     module Map
 
+      # ------------------------------------------------------------------------
+      # * Returns the identifier of the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :map_id,
+                        :description => 'Map.map_id'}) {
+        $game_map.map_id
+      }
+
       # TODO
-      # - `map_id`
       # - `map_name`
       # - `id_at`
       # - `event_at`
