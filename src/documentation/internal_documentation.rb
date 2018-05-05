@@ -351,9 +351,10 @@ module RME
         threads << Thread.new {
           puts "[Thread\##{Thread.current.object_id}] Generating documentation of #{section.name}\n"
           # TODO: Revise this way of removing a prefix
-          section_name = section.name.reverse
-                           .chomp("RME::Command::".reverse)
-                           .reverse
+          section_name = section.name
+                                .reverse
+                                .chomp("RME::Command::".reverse)
+                                .reverse
 
           section_dir = "#{output_dir}/#{section_name}"
 
