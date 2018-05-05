@@ -17,6 +17,7 @@
   'doc.cmd.Map.terrain_tag' => "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
   'doc.cmd.Map.tile_id' => "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
   'doc.cmd.Map.set_tile_where' => "Change tous les tile d'une carte selon un ID et un layer",
+  'doc.cmd.Map.delete_tiles' => "Supprime tous les tiles référencés par un ID et un layer",
 
   # Parameters
   ## Map
@@ -25,5 +26,6 @@
   'doc.parameter.Map.layer' => "Numéro de la couche",
   'doc.parameter.Map.map_id' => "ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante",
   'doc.parameter.Map.set_tile_where.id' => "Id du tile à remplacer",
-  'doc.parameter.Map.set_tile_where.new_id' => "Nouvel Id du tile"
+  'doc.parameter.Map.set_tile_where.new_id' => "Nouvel Id du tile",
+  'doc.parameter.Map.delete_tiles.id' => "Id du tile à supprimer"
 }

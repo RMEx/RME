@@ -219,10 +219,6 @@ module RMECommands
     $game_map.instance_variable_get(:@map).data[x, y, layer] = value
   end
 
-  def delete_tiles(layer, id)
-    set_tile_where(layer, id, 0)
-  end
-
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------

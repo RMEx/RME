@@ -126,8 +126,23 @@ module RME
         end
       }
 
+      # ------------------------------------------------------------------------
+      # - Deletes all the tiles which are located in the given `layer` and
+      #   complying with the given `id`.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :delete_tiles,
+                        :description => 'Map.delete_tiles',
+                        :parameters  => [
+                          LAYER,
+                          {:name        => :id,
+                           :description => 'Map.delete_tiles.id',
+                           :type        => ParameterType::PositiveInteger}
+                        ]}) { |layer, id|
+        set_tile_where(layer, id, 0)
+      }
+
       # TODO
-      # - `delete_tiles`
       # - `set_tile`
       # - `region_id`
       # - `square_passable?`
