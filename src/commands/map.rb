@@ -160,8 +160,18 @@ module RME
         $game_map.instance_variable_get(:@map).data[x, y, layer] = value
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns the region's identifier to which the tile located at the
+      #   given coordinates belongs to (`x`, `y`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :region_id,
+                        :description => 'Map.region_id',
+                        :parameters  => [X, Y]}) { |x, y|
+        $game_map.region_id(x, y)
+      }
+
       # TODO
-      # - `region_id`
       # - `square_passable?`
       # - `get_tileset_id`
       # - `dash_activate?`

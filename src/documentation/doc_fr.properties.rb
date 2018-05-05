@@ -19,6 +19,7 @@
   'doc.cmd.Map.set_tile_where' => "Change tous les tile d'une carte selon un ID et un layer",
   'doc.cmd.Map.delete_tiles' => "Supprime tous les tiles référencés par un ID et un layer",
   'doc.cmd.Map.set_tile' => "Change une case de tile",
+  'doc.cmd.Map.region_id' => "Renvoie l'ID de la région pointée par les coordonnées X,Y",
 
   # Parameters
   ## Map

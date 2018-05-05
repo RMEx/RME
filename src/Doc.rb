@@ -858,14 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.region_id",
-                        "Renvoie l'ID de la région pointée par les coordonnées X,Y",
-                        {
-                          :x => ["Coordonnées X de la case", :Fixnum],
-                          :y => ["Coordonnées Y de la case", :Fixnum]
-                        }, true
-  register_command :mapinfo, "Command.region_id"
-
   link_method_documentation "Command.square_passable?",
                         "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
                         {
