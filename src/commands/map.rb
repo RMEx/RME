@@ -102,8 +102,31 @@ module RME
         Cache.map(map_id).data[x, y, layer]
       }
 
+      # ------------------------------------------------------------------------
+      # - Changes all the tiles which are located in the given `layer` and
+      #   which are complying with the given `id` to the new `new_id`.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :set_tile_where,
+                        :description => 'Map.set_tile_where',
+                        :parameters  => [
+                          LAYER,
+                          {:name        => :id,
+                           :description => 'Map.set_tile_where.id',
+                           :type        => ParameterType::PositiveInteger},
+                          {:name        => :new_id,
+                           :description => 'Map.set_tile_where.new_id',
+                           :type        => ParamaterType::PositiveInteger}
+                        ]}) { |layer, id, new_id|
+        map = $game_map.instance_variable_get(:@map)
+        map_height.times do |y|
+          map_width.times do |x|
+            map.data[x, y, layer] = new_id if map.data[x, y, layer] == id
+          end
+        end
+      }
+
       # TODO
-      # - `set_tile_where`
       # - `delete_tiles`
       # - `set_tile`
       # - `region_id`
