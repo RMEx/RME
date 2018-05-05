@@ -24,6 +24,9 @@ module RME
       Y = {:name        => :y,
            :type        => ParameterType::Coordinate,
            :description => 'Map.y'}
+      LAYER = {:name => :layer,
+               :type => ParameterType::PositiveInteger,
+               :description => 'Map.layer'}
 
       # ------------------------------------------------------------------------
       # * Returns the identifier of the current map.
@@ -79,8 +82,27 @@ module RME
         $game_map.terrain_tag(x, y)
       }
 
+      # ------------------------------------------------------------------------
+      # - Return the identifier of the tile located at the given coordinates
+      #   (`x`, `y`, `layer`) and belonging to the given map (`map_id`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :tile_id,
+                        :description => 'Map.tile_id',
+                        :parameters  => [
+                          X,
+                          Y,
+                          LAYER,
+                          {:name        => :map_id,
+                           :description => 'Map.map_id',
+                           :type        => ParameterType::NullablePositiveInteger,
+                           :default     => nil}
+                        ]}) { |x, y, layer, map_id|
+        return $game_map.tile_id(x, y, layer) unless map_id
+        Cache.map(map_id).data[x, y, layer]
+      }
+
       # TODO
-      # - `tile_id`
       # - `set_tile_where`
       # - `delete_tiles`
       # - `set_tile`

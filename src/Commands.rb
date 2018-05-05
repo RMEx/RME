@@ -1198,13 +1198,6 @@ module RMECommands
     def random_figures(x=0)
       x + Kernel.rand
     end
-    #--------------------------------------------------------------------------
-    # * Get Tile ID from coords and layer (0,1,2)
-    #--------------------------------------------------------------------------
-    def tile_id(x, y, layer, map_id = nil)
-      return $game_map.tile_id(x, y, layer) unless map_id
-      Cache.map(map_id).data[x, y, layer]
-    end
 
     #--------------------------------------------------------------------------
     # * retreive data about tiles

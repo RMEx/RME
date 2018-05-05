@@ -858,16 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.tile_id",
-                        "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
-                        {
-                          :x => ["Coordonnées X de la case", :Fixnum],
-                          :y => ["Coordonnées Y de la case", :Fixnum],
-                          :layer => ["Numéro de la couche", :Fixnum],
-                          :"*map_id" => ["ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante", :Fixnum],
-                        }, true
-  register_command :mapinfo, "Command.tile_id"
-
   link_method_documentation 'Command.set_tile_where',
   	'Change tous les tile d\'une carte selon un ID et un layer',
    	{

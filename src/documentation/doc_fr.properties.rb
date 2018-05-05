@@ -15,9 +15,12 @@
   'doc.cmd.Map.map_name' => "Renvoie le nom de la map en cours",
   'doc.cmd.Map.event_at' => "Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (O si c'est le héros, -1 s'il n'y en a pas)",
   'doc.cmd.Map.terrain_tag' => "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
+  'doc.cmd.Map.tile_id' => "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
 
   # Parameters
   ## Map
   'doc.parameter.Map.x' => "Coordonnée X de la case",
-  'doc.parameter.Map.y' => "Coordonnée Y de la case"
+  'doc.parameter.Map.y' => "Coordonnée Y de la case",
+  'doc.parameter.Map.layer' => "Numéro de la couche",
+  'doc.parameter.Map.map_id' => "ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante"
 }
