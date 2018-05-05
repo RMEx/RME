@@ -343,6 +343,7 @@ module RME
         end
 
       # Generating sections' related documentation
+      lock = Mutex.new
       threads = Array.new
 
       Doc.schema.each do |section, commands|
@@ -355,7 +356,8 @@ module RME
                            .reverse
 
           section_dir = "#{output_dir}/#{section_name}"
-          full_mkdir(section_dir)
+
+          lock.synchronize { full_mkdir(section_dir) }
 
           # Generating section's documentation file
           section_documentation = generate_section_documentation(section_name,
