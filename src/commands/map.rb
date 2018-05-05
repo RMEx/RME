@@ -142,8 +142,25 @@ module RME
         set_tile_where(layer, id, 0)
       }
 
+      # ------------------------------------------------------------------------
+      # - Changes the tile which is located at the given coordinates
+      #   (`x`, `y`, `layer`), with the new `value`.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :set_tile,
+                        :description => 'Map.set_tile',
+                        :parameters  => [
+                          {:name        => :value,
+                           :description => 'Map.set_tile.value',
+                           :type        => ParameterType::PositiveInteger},
+                          X,
+                          Y,
+                          LAYER
+                        ]}) { |value, x, y, layer|
+        $game_map.instance_variable_get(:@map).data[x, y, layer] = value
+      }
+
       # TODO
-      # - `set_tile`
       # - `region_id`
       # - `square_passable?`
       # - `get_tileset_id`
