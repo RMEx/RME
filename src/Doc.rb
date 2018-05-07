@@ -7450,9 +7450,9 @@ link_method_documentation 'Command.text_progressive',
  	{
 		:id => ["Id du champ de texte", :Fixnum],
 		:value => ["Texte a afficher", :String],
-		:delay => ["Durée (délai) entre chaque apparition de caractères", :Fixnum],
+    :delay => ["Durée (délai) entre chaque apparition de caractères", :Fixnum],
+    :"*purge" => ["Si ce paramètre vaut true, le texte sera vidé avant d'être affiché progressivement. Par défaut, ce paramètre vaut false", :Boolean],
 		:"*block" => ["Vous pouvez passer du code entre accolades qui va s'exécuter à chaque caractère (facultatif)", :Block]
-
 	}
 register_command :text, 'Command.text_progressive'
 

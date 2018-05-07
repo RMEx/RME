@@ -11719,7 +11719,7 @@ module RMECommands
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
-    # * Modify zx position
+    # * Modify z position
     #--------------------------------------------------------------------------
     def picture_z(id, z=false)
       return pictures[id].z unless z
@@ -14346,7 +14346,8 @@ module RMECommands
       Game_Screen.get.texts[id].angle = value
     end
 
-    def text_progressive(id, value, delay)
+    def text_progressive(id, value, delay, purge = false)
+      text_change(id, "") if purge
       value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)

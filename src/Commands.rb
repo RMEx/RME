@@ -3121,7 +3121,8 @@ module RMECommands
       Game_Screen.get.texts[id].angle = value
     end
 
-    def text_progressive(id, value, delay)
+    def text_progressive(id, value, delay, purge = false)
+      text_change(id, "") if purge
       value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)
