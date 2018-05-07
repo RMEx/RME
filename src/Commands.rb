@@ -494,6 +494,13 @@ module RMECommands
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def picture_z(id, z=false)
+      return pictures[id].z unless z
+      pictures[id].z = z
+    end
+    #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
     def picture_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
@@ -891,6 +898,13 @@ module RMECommands
       return spritesheets[id].x unless x
       spritesheets[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def spritesheet_z(id, z=false)
+      return spritesheets[id].z unless z
+      spritesheets[id].z = z
     end
     #--------------------------------------------------------------------------
     # * Modify y position

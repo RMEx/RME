@@ -3448,7 +3448,7 @@ class Game_Pictures
 end
 
 #==============================================================================
-# ** Game_Pictures
+# ** Game_Spritesheet
 #------------------------------------------------------------------------------
 #  This is a wrapper for a picture array. This class is used within the
 # Game_Screen class. Map screen pictures and battle screen pictures are
@@ -3524,6 +3524,7 @@ class Game_Picture
   attr_accessor  :wave_speed
   attr_accessor  :duration
   attr_accessor  :scroll_speed_x, :scroll_speed_y
+  attr_accessor  :z
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -3589,6 +3590,7 @@ class Game_Picture
     @wave_amp = @wave_speed = 0
     @pin = false
     @scroll_speed_y = @scroll_speed_x = 2
+    @z = @number
     clear_shake
   end
   #--------------------------------------------------------------------------
@@ -4077,7 +4079,7 @@ class Sprite_Picture
       self.x = @picture.x + @picture.shake
       self.y = @picture.y
     end
-    self.z = @picture.number
+    self.z = @picture.z
   end
   #--------------------------------------------------------------------------
   # * Update Origin
