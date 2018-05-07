@@ -58,6 +58,12 @@ var documentation = [
 {"name":"get_squares_by_region", "description":"Renvoie un tableau de cases pour une région donnée.", "returnable":true,"parameters":[{"name":"region_id", "desc":"l'ID de la région (entre 0 et 63)", "type":"Fixnum"}]},
 {"name":"get_squares_by_tile", "description":"Renvoie un tableau de cases pour un tile (et une couche) donnés.", "returnable":true,"parameters":[{"name":"layer", "desc":"La couche (entre 0 et 2)", "type":"Fixnum"},
 {"name":"tile_id", "desc":"L'ID du tile", "type":"Fixnum"}]},
+{"name":"get_squares_between", "description":"Renvoie un tableau de cases entre deux points A et B", "returnable":true,"parameters":[{"name":"xa", "desc":"Coordonnée X du point A", "type":"Fixnum"},
+{"name":"ya", "desc":"Coordonnée Y du point A", "type":"Fixnum"},
+{"name":"xb", "desc":"Coordonnée X du point B", "type":"Fixnum"},
+{"name":"yb", "desc":"Coordonnée Y du point B", "type":"Fixnum"}]},
+{"name":"get_squares_between_events", "description":"Renvoie un tableau de cases entre deux events (avec le point de départ et d'arrivée)", "returnable":true,"parameters":[{"name":"id1", "desc":"L'ID de l'événement de départ", "type":"Fixnum"},
+{"name":"id2", "desc":"L'ID de l'événement d'arrivée", "type":"Fixnum"}]},
 {"name":"get_squares_by_terrain", "description":"Renvoie un tableau de cases pour un terrain_tag donné donnée.", "returnable":true,"parameters":[{"name":"terrain_tag", "desc":"Le terrain tag (entre 0 et 7)", "type":"Fixnum"}]}
 ]},
 {"name":"Standards","desc":"Commandes standards","commands":[
