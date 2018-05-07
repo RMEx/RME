@@ -14012,6 +14012,7 @@ module RMECommands
     def mantissa(x)
       [0, x.to_s.split('.')[1]].join('.').to_f
     end
+    def abs(x); x.abs; end
     #--------------------------------------------------------------------------
     # * Find angle from a couple of point
     #--------------------------------------------------------------------------
