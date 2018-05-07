@@ -1429,6 +1429,7 @@ var documentation = [
 {"name":"text_progressive", "description":"Affiche progressivement un texte (caractère par caractère)", "returnable":false,"parameters":[{"name":"id", "desc":"Id du champ de texte", "type":"Fixnum"},
 {"name":"value", "desc":"Texte a afficher", "type":"String"},
 {"name":"delay", "desc":"Durée (délai) entre chaque apparition de caractères", "type":"Fixnum"},
+{"name":"*purge", "desc":"Si ce paramètre vaut true, le texte sera vidé avant d'être affiché progressivement. Par défaut, ce paramètre vaut false", "type":"Boolean"},
 {"name":"*block", "desc":"Vous pouvez passer du code entre accolades qui va s'exécuter à chaque caractère (facultatif)", "type":"Block"}]},
 {"name":"pixel_in_text?", "description":"Vérifie que le x, y sont inscrit dans le texte", "returnable":true,"parameters":[{"name":"id", "desc":"ID du texte", "type":"Fixnum"},
 {"name":"x", "desc":"Coordonnées X", "type":"Fixnum"},
