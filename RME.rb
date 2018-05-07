@@ -9503,7 +9503,7 @@ class Game_Pictures
 end
 
 #==============================================================================
-# ** Game_Pictures
+# ** Game_Spritesheet
 #------------------------------------------------------------------------------
 #  This is a wrapper for a picture array. This class is used within the
 # Game_Screen class. Map screen pictures and battle screen pictures are
@@ -9579,6 +9579,7 @@ class Game_Picture
   attr_accessor  :wave_speed
   attr_accessor  :duration
   attr_accessor  :scroll_speed_x, :scroll_speed_y
+  attr_accessor  :z
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -9644,6 +9645,7 @@ class Game_Picture
     @wave_amp = @wave_speed = 0
     @pin = false
     @scroll_speed_y = @scroll_speed_x = 2
+    @z = @number
     clear_shake
   end
   #--------------------------------------------------------------------------
@@ -10132,7 +10134,7 @@ class Sprite_Picture
       self.x = @picture.x + @picture.shake
       self.y = @picture.y
     end
-    self.z = @picture.number
+    self.z = @picture.z
   end
   #--------------------------------------------------------------------------
   # * Update Origin
@@ -11717,6 +11719,13 @@ module RMECommands
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
+    # * Modify zx position
+    #--------------------------------------------------------------------------
+    def picture_z(id, z=false)
+      return pictures[id].z unless z
+      pictures[id].z = z
+    end
+    #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
     def picture_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
@@ -12114,6 +12123,13 @@ module RMECommands
       return spritesheets[id].x unless x
       spritesheets[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def spritesheet_z(id, z=false)
+      return spritesheets[id].z unless z
+      spritesheets[id].z = z
     end
     #--------------------------------------------------------------------------
     # * Modify y position
