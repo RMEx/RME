@@ -1251,6 +1251,7 @@ var documentation = [
 ]},
 {"name":"Mathématiques","desc":"Outils de traitement mathématiques un peu avancé","commands":[
 {"name":"pi", "description":"Renvoie une approximation de PI", "returnable":true,"parameters":[]},
+{"name":"abs", "description":"Renvoie la valeur absolue du nombre passé en argument", "returnable":true,"parameters":[{"name":"x", "desc":"Nombre", "type":"Fixnum"}]},
 {"name":"acos", "description":"Renvoie l'arc cosinus de x", "returnable":true,"parameters":[{"name":"x", "desc":"Valeur numérique", "type":"Numeric"}]},
 {"name":"mantissa", "description":"Renvoi la partie flottante d'un nombre à virgule", "returnable":true,"parameters":[{"name":"x", "desc":"Nombre à virgule", "type":"Float"}]},
 {"name":"acosh", "description":"Renvoie l'inverse hyperbolique cosinus de x", "returnable":true,"parameters":[{"name":"x", "desc":"Valeur numérique", "type":"Numeric"}]},
