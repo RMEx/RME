@@ -494,7 +494,7 @@ module RMECommands
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
-    # * Modify zx position
+    # * Modify z position
     #--------------------------------------------------------------------------
     def picture_z(id, z=false)
       return pictures[id].z unless z
