@@ -243,6 +243,15 @@ module RME
         dash_activation(true)
       }
 
+      # ------------------------------------------------------------------------
+      # - Disables the dashing option for the player in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :dash_deactivate,
+                        :description => 'Map.dash_deactivate'}) {
+        dash_activation(false)
+      }
+
       # TODO
       # - `switch_tileset`
       # - `wall?`

@@ -1879,10 +1879,6 @@ module RMECommands
       Math.hypot(*args).to_i
     end
 
-    def dash_deactivate
-      dash_activation(false)
-    end
-
     def event_flash(id, _color, duration)
       color = _color.is_a?(String) ? get_color(_color) : _color
       event(id).k_sprite.flash(color, duration)
