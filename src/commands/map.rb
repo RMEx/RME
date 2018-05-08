@@ -216,7 +216,7 @@ module RME
       Command::declare({:section     => self,
                         :name        => :dash_deactivate?,
                         :description => 'Map.dash_deactivate?'}) {
-        !dash_activate
+        !dash_activate?
       }
 
       # TODO
