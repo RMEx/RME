@@ -1189,10 +1189,6 @@ module RMECommands
        $game_map.squares_by_tile(layer, tile_id)
     end
 
-    def get_random_square(region_id = 0)
-      $game_map.random_square(region_id)
-    end
-
     def use_reflection(properties = nil)
       $game_map.use_reflection = true
       return unless properties && properties.is_a?(Hash)

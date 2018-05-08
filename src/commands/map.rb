@@ -412,8 +412,23 @@ module RME
         $game_map.damage_floor?(x, y)
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns a random square in the current map which belongs to the given
+      #   `region_id`.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :get_random_square,
+                        :description => 'Map.get_random_square',
+                        :parameters  => [
+                          {:name        => :region_id,
+                           :description => 'Map.get_random_square.region_id',
+                           :type        => ParameterType::RegionId,
+                           :default     => 0}]}) {
+        |region_id|
+        $game_map.random_square(region_id)
+      }
+
       # TODO
-      # - `get_random_square`
       # - `get_squares_by_region`
       # - `get_squares_by_tile`
       # - `get_squares_by_terrain`

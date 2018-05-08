@@ -128,6 +128,9 @@ module RME
       ParameterType::declare(:Direction,
                              "Movement direction",
                              Set.new(2, 4, 6, 8))
+      ParameterType::declare(:RegionId,
+                             "Region's identifier",
+                             ClosedInterval.new(0, 63))
 
       # TODO: add other domains' definition
 

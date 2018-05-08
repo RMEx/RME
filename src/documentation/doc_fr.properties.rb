@@ -6,6 +6,7 @@
   'doc.PositiveInteger.description' => 'Entier positif',
   'doc.NullablePositiveInteger.description' => 'Entier positif (peut-être nul)',
   'doc.Direction.description' => "Direction du mouvement (`2` pour le bas, `4` pour la gauche, `6` pour la droite et `8` pour le haut)",
+  'doc.RegionId.description' => "Identifiant de région (tiles)",
 
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",
@@ -40,6 +41,7 @@
   'doc.cmd.Map.ship_passable?' => "Renvoie `true` si l'on peut traverser la case avec le bateau",
   'doc.cmd.Map.autotile_type' => "Renvoie l'ID qui correspond au tile d'autotile aux coordonnées passées en paramètre",
   'doc.cmd.Map.damage_floor?' => "Renvoie `true` si la case référencée par (`x`, `y`) est blessante, `false` sinon",
+  'doc.cmd.Map.get_random_square' => "Renvoie un point aléatoire sur la carte, dont la région est référencée par son ID",
 
   # Parameters
   ## Map
@@ -54,5 +56,6 @@
   'doc.parameter.Map.set_tile.value' => "Valeur du tile (utilisez éventuellement la commande `tile_id`)",
   'doc.parameter.Map.dash_activation.flag' => "`true` pour l'activer, `false` pour la désactiver",
   'doc.parameter.Map.switch_tileset.tileset_id' => "ID du nouveau tileset",
-  'doc.parameter.Map.autotile_type.z' => "Couche du tileset"
+  'doc.parameter.Map.autotile_type.z' => "Couche du tileset",
+  'doc.parameter.Map.get_random_square.region_id' => "L'id de la région dans laquelle chercher une case aléatoire. Par défaut, elle vaut 0"
 }
