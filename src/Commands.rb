@@ -1181,10 +1181,6 @@ module RMECommands
       $game_map.squares_by_terrain(terrain_tag)
     end
 
-    def get_squares_by_tile(layer, tile_id)
-       $game_map.squares_by_tile(layer, tile_id)
-    end
-
     def use_reflection(properties = nil)
       $game_map.use_reflection = true
       return unless properties && properties.is_a?(Hash)

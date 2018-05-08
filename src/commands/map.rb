@@ -443,8 +443,23 @@ module RME
         $game_map.squares_by_region(region_id)
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns an array of squares which is made of the same tile (`tile_id`)
+      #   and which is located on the same `layer` in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :get_squares_by_tile,
+                        :description => 'Map.get_squares_by_tile',
+                        :parameters  => [
+                          LAYER,
+                          {:name        => :tile_id,
+                           :description => 'Map.get_squares_by_tile.tile_id',
+                           :type        => ParameterType::PositiveInteger}]}) {
+        |layer, tile_id|
+        $game_map.squares_by_tile(layer, tile_id)
+      }
+
       # TODO
-      # - `get_squares_by_tile`
       # - `get_squares_by_terrain`
 
     end

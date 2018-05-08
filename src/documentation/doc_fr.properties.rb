@@ -43,6 +43,7 @@
   'doc.cmd.Map.damage_floor?' => "Renvoie `true` si la case référencée par (`x`, `y`) est blessante, `false` sinon",
   'doc.cmd.Map.get_random_square' => "Renvoie un point aléatoire sur la carte, dont la région est référencée par son ID",
   'doc.cmd.Map.get_squares_by_region' => "Renvoie un tableau de cases pour une région donnée",
+  'doc.cmd.Map.get_squares_by_tile' => "Renvoie un table de cases pour un tile (et une couche) donnés",
 
   # Parameters
   ## Map
@@ -59,5 +60,6 @@
   'doc.parameter.Map.switch_tileset.tileset_id' => "ID du nouveau tileset",
   'doc.parameter.Map.autotile_type.z' => "Couche du tileset",
   'doc.parameter.Map.get_random_square.region_id' => "L'id de la région dans laquelle chercher une case aléatoire. Par défaut, elle vaut 0",
-  'doc.parameter.Map.get_squares_by_region.region_id' => "l'ID de la région (entre 0 et 63)"
+  'doc.parameter.Map.get_squares_by_region.region_id' => "l'ID de la région (entre 0 et 63)",
+  'doc.parameter.Map.get_squares_by_tile.tile_id' => "L'ID du tile"
 }
