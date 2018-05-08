@@ -1177,10 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def get_squares_by_region(region_id)
-      $game_map.squares_by_region(region_id)
-    end
-
     def get_squares_by_terrain(terrain_tag)
       $game_map.squares_by_terrain(terrain_tag)
     end

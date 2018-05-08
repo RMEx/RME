@@ -428,8 +428,22 @@ module RME
         $game_map.random_square(region_id)
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns an array of squares which belongs to the given `region_id`,
+      #   in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :get_squares_by_region,
+                        :description => 'Map.get_squares_by_region',
+                        :parameters  => [
+                          {:name        => :region_id,
+                           :description => 'Map.get_squares_by_region.region_id',
+                           :type        => ParameterType::RegionId}]}) {
+        |region_id|
+        $game_map.squares_by_region(region_id)
+      }
+
       # TODO
-      # - `get_squares_by_region`
       # - `get_squares_by_tile`
       # - `get_squares_by_terrain`
 
