@@ -38,6 +38,7 @@
   'doc.cmd.Map.map_height' => "Retourne la hauteur de la carte",
   'doc.cmd.Map.boat_passable?' => "Renvoie `true` si l'on peut traverser la case avec le radeau",
   'doc.cmd.Map.ship_passable?' => "Renvoie `true` si l'on peut traverser la case avec le bateau",
+  'doc.cmd.Map.autotile_type' => "Renvoie l'ID qui correspond au tile d'autotile aux coordonnées passées en paramètre",
 
   # Parameters
   ## Map
@@ -51,5 +52,6 @@
   'doc.parameter.Map.delete_tiles.id' => "Id du tile à supprimer",
   'doc.parameter.Map.set_tile.value' => "Valeur du tile (utilisez éventuellement la commande `tile_id`)",
   'doc.parameter.Map.dash_activation.flag' => "`true` pour l'activer, `false` pour la désactiver",
-  'doc.parameter.Map.switch_tileset.tileset_id' => "ID du nouveau tileset"
+  'doc.parameter.Map.switch_tileset.tileset_id' => "ID du nouveau tileset",
+  'doc.parameter.Map.autotile_type.z' => "Couche du tileset"
 }

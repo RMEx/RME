@@ -383,8 +383,24 @@ module RME
         $game_map.ship_passable?(x, y)
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns the tile's identifier which corresponds to the autotile
+      #   located at the given coordinates (`x`, `y`, `z`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :autotile_type,
+                        :description => 'Map.autotile_type',
+                        :parameters  => [
+                          X,
+                          Y,
+                          {:name        => :z,
+                           :description => 'Map.autotile_type.z',
+                           :type        => ParameterType::PositiveInteger}]}) {
+        |x, y, z|
+        $game_map.autotile_type(x, y, z)
+      }
+
       # TODO
-      # - `autotile_type`
       # - `damage_floor?`
       # - `get_random_square`
       # - `get_squares_by_region`

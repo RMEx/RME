@@ -1177,10 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def autotile_type(x, y, z)
-      $game_map.autotile_type(x, y, z)
-    end
-
     def get_squares_by_region(region_id)
       $game_map.squares_by_region(region_id)
     end
