@@ -134,6 +134,9 @@ module RME
       ParameterType::declare(:LayerId,
                              "Layer's identifier",
                              ClosedInterval.new(0, 2))
+      ParameterType::declare(:TerrainTag,
+                             "Terrain tag",
+                             ClosedInterval.new(0, 7))
 
       # TODO: add other domains' definition
 
