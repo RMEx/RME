@@ -1316,7 +1316,6 @@ module RMECommands
       Color.new(r,v,b,a)
     end
 
-    def map_width; $game_map.width; end
     def map_height; $game_map.height; end
 
     #--------------------------------------------------------------------------

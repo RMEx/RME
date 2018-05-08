@@ -341,8 +341,16 @@ module RME
           (tile_id > 1663 && !stair?(x,y))
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns the width (unit being the tiles) of the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :map_width,
+                        :description => 'Map.map_width'}) {
+        $game_map.width
+      }
+
       # TODO
-      # - `map_width`
       # - `map_height`
       # - `boat_passable?`
       # - `ship_passable?`
