@@ -199,8 +199,17 @@ module RME
         $game_map.tileset_id
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the dash is enabled (`true`) or not (`false`)
+      #   for the player in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :dash_activate?,
+                        :description => 'Map.dash_activate?'}) {
+        $game_map.can_dash
+      }
+
       # TODO
-      # - `dash_activate?`
       # - `dash_deactivate?`
       # - `dash_activation`
       # - `switch_tileset`

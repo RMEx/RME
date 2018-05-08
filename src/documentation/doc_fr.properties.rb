@@ -23,6 +23,7 @@
   'doc.cmd.Map.region_id' => "Renvoie l'ID de la région pointée par les coordonnées X,Y",
   'doc.cmd.Map.square_passable?' => "Renvoie `true` si la case référencée par X, Y est passable dans la direction référencée par `direction`; `false` sinon",
   'doc.cmd.Map.get_tileset_id' => "Renvoie l'ID du tileset de la carte en cours",
+  'doc.cmd.Map.dash_activate?' => "Renvoie `true` si la course est activée pour la map en cours, `false` sinon",
 
   # Parameters
   ## Map
