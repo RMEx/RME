@@ -252,8 +252,21 @@ module RME
         dash_activation(false)
       }
 
+      # ------------------------------------------------------------------------
+      # - Changes the main tileset of the current map for the given one.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :switch_tileset,
+                        :description => 'Map.switch_tileset',
+                        :parameters  => [
+                          {:name        => :tileset_id,
+                           :description => 'Map.switch_tileset.tileset_id',
+                           :type        => ParameterType::PositiveInteger}]}) {
+        |tileset_id|
+        $game_map.tileset_id = tileset_id
+      }
+
       # TODO
-      # - `switch_tileset`
       # - `wall?`
       # - `roof?`
       # - `stair?`
