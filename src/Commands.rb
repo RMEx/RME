@@ -1177,12 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def stair?(x, y)
-      tile_id = tile_id(x, y, 0)
-      tile_id.between?(1541, 1542) || tile_id.between?(1549, 1550) ||
-      tile_id.between?(1600, 1615)
-    end
-
     def table?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(3152, 3199) || tile_id.between?(3536, 3583) ||
