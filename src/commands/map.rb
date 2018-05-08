@@ -459,8 +459,20 @@ module RME
         $game_map.squares_by_tile(layer, tile_id)
       }
 
-      # TODO
-      # - `get_squares_by_terrain`
+      # ------------------------------------------------------------------------
+      # - Returns an array of squares which comply with the given `terrain_tag`,
+      #   in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :get_squares_by_terrain,
+                        :description => 'Map.get_squares_by_terrain',
+                        :parameters  => [
+                          {:name        => :terrain_tag,
+                           :description => 'Map.get_squares_by_terrain.terrain_tag',
+                           :type        => ParameterType::TerrainTag}]}) {
+        |terrain_tag|
+        $game_map.squares_by_terrain(terrain_tag)
+      }
 
     end
   end

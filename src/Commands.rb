@@ -1174,13 +1174,6 @@ module RMECommands
       x + Kernel.rand
     end
 
-    #--------------------------------------------------------------------------
-    # * retreive data about tiles
-    #--------------------------------------------------------------------------
-    def get_squares_by_terrain(terrain_tag)
-      $game_map.squares_by_terrain(terrain_tag)
-    end
-
     def use_reflection(properties = nil)
       $game_map.use_reflection = true
       return unless properties && properties.is_a?(Hash)
