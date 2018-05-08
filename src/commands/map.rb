@@ -359,8 +359,19 @@ module RME
         $game_map.height
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      #   is traversable by boat (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :boat_passable?,
+                        :description => 'Map.boat_passable?',
+                        :parameters  => [X, Y]}) {
+        |x, y|
+        $game_map.boat_passable?(x, y)
+      }
+
       # TODO
-      # - `boat_passable?`
       # - `ship_passable?`
       # - `autotile_type`
       # - `damage_floor?`

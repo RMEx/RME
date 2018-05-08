@@ -6332,15 +6332,6 @@ link_method_documentation 'Command.mouse_moving?',
  	{}, true # Maybe changed
 register_command :mouse, 'Command.mouse_moving?'
 
-link_method_documentation 'Command.boat_passable?',
-	'Renvoie true si l\'on peut traverser la case avec le radeau',
- 	{
-		:x => ["Coordonnées X", :Fixnum],
-		:y => ["Coordonnées Y", :Fixnum],
-
-	}, true
-register_command :mapinfo, 'Command.boat_passable?'
-
 link_method_documentation 'Command.ship_passable?',
 	'Renvoie true si l\'on peut traverser la case avec le bateau',
  	{

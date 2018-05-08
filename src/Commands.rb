@@ -1177,10 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def boat_passable?(x, y)
-      $game_map.boat_passable?(x, y)
-    end
-    
     def ship_passable?(x, y)
       $game_map.ship_passable?(x, y)
     end
