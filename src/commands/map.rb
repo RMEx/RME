@@ -313,8 +313,21 @@ module RME
           tile_id.between?(1600, 1615)
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      #   corresponds to a table (`true`) or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :table?,
+                        :description => 'Map.table?',
+                        :parameters  => [X, Y]}) {
+        |x, y|
+        tile_id = tile_id(x, y, 0)
+        tile_id.between?(3152, 3199) || tile_id.between?(3536, 3583) ||
+          tile_id.between?(3920, 3967) || tile_id.between?(4304, 4351)
+      }
+
       # TODO
-      # - `table?`
       # - `map_width`
       # - `map_height`
       # - `ground?`

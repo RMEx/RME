@@ -32,6 +32,7 @@
   'doc.cmd.Map.wall?' => "Renvoie `true` si les coordonnées sont sur un mur, `false` sinon",
   'doc.cmd.Map.roof?' => "Renvoie `true` si les coordonnées sont sur un toit, `false` sinon",
   'doc.cmd.Map.stair?' => "Renvoie `true` si les coordonnées sont sur une marche, `false` sinon",
+  'doc.cmd.Map.table?' => "Renvoie `true` si les coordonnées sont sur une table, `false` sinon",
 
   # Parameters
   ## Map

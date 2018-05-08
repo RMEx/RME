@@ -1177,12 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def table?(x, y)
-      tile_id = tile_id(x, y, 0)
-      tile_id.between?(3152, 3199) || tile_id.between?(3536, 3583) ||
-      tile_id.between?(3920, 3967) || tile_id.between?(4304, 4351)
-    end
-
     def ground?(x, y)
       tile_id = tile_id(x, y, 0)
       (tile_id.between?(2816, 4351) && !table?(x,y)) ||
