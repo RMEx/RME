@@ -35,6 +35,7 @@
   'doc.cmd.Map.table?' => "Renvoie `true` si les coordonnées sont sur une table, `false` sinon",
   'doc.cmd.Map.ground?' => "Renvoie `true` si les coordonnées sont sur le sol, `false` sinon",
   'doc.cmd.Map.map_width' => "Retourne la largeur de la carte",
+  'doc.cmd.Map.map_height' => "Retourne la hauteur de la carte",
 
   # Parameters
   ## Map

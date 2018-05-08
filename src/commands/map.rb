@@ -350,8 +350,16 @@ module RME
         $game_map.width
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns the height (unit being the tiles) of the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :map_height,
+                        :description => 'Map.map_height'}) {
+        $game_map.height
+      }
+
       # TODO
-      # - `map_height`
       # - `boat_passable?`
       # - `ship_passable?`
       # - `autotile_type`
