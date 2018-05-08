@@ -400,8 +400,19 @@ module RME
         $game_map.autotile_type(x, y, z)
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      #   might hurt the player if he walks on it.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :damage_floor?,
+                        :description => 'Map.damage_floor?',
+                        :parameters  => [X, Y]}) {
+        |x, y|
+        $game_map.damage_floor?(x, y)
+      }
+
       # TODO
-      # - `damage_floor?`
       # - `get_random_square`
       # - `get_squares_by_region`
       # - `get_squares_by_tile`
