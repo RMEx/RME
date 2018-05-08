@@ -209,8 +209,17 @@ module RME
         $game_map.can_dash
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the dash is disabled (`true`) or not (`false`)
+      #   for the player in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :dash_deactivate?,
+                        :description => 'Map.dash_deactivate?'}) {
+        !dash_activate
+      }
+
       # TODO
-      # - `dash_deactivate?`
       # - `dash_activation`
       # - `switch_tileset`
       # - `wall?`

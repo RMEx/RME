@@ -24,6 +24,7 @@
   'doc.cmd.Map.square_passable?' => "Renvoie `true` si la case référencée par X, Y est passable dans la direction référencée par `direction`; `false` sinon",
   'doc.cmd.Map.get_tileset_id' => "Renvoie l'ID du tileset de la carte en cours",
   'doc.cmd.Map.dash_activate?' => "Renvoie `true` si la course est activée pour la map en cours, `false` sinon",
+  'doc.cmd.Map.dash_deactivate?' => "Renvoie `true` si la course est désactivée pour la map en cours, `true` sinon",
 
   # Parameters
   ## Map

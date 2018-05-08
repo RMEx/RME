@@ -1879,10 +1879,6 @@ module RMECommands
       Math.hypot(*args).to_i
     end
 
-    def dash_deactivate?
-      !dash_activate
-    end
-
     def dash_activation(flag)
       $game_map.can_dash = !!flag
     end
