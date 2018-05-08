@@ -1177,12 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def ground?(x, y)
-      tile_id = tile_id(x, y, 0)
-      (tile_id.between?(2816, 4351) && !table?(x,y)) ||
-      (tile_id > 1663 && !stair?(x,y))
-    end
-    
     def boat_passable?(x, y)
       $game_map.boat_passable?(x, y)
     end
