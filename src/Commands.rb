@@ -1879,10 +1879,6 @@ module RMECommands
       Math.hypot(*args).to_i
     end
 
-    def dash_activate
-      dash_activation(true)
-    end
-
     def dash_deactivate
       dash_activation(false)
     end

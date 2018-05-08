@@ -234,6 +234,15 @@ module RME
         $game_map.can_dash = !!flag
       }
 
+      # ------------------------------------------------------------------------
+      # - Enables the dashing option for the player in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :dash_activate,
+                        :description => 'Map.dash_activate'}) {
+        dash_activation(true)
+      }
+
       # TODO
       # - `switch_tileset`
       # - `wall?`
