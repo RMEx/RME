@@ -30,6 +30,7 @@
   'doc.cmd.Map.dash_deactivate' => "Désactive la course pour la map en cours",
   'doc.cmd.Map.switch_tileset' => "Change le tileset de la carte en cours",
   'doc.cmd.Map.wall?' => "Renvoie `true` si les coordonnées sont sur un mur, `false` sinon",
+  'doc.cmd.Map.roof?' => "Renvoie `true` si les coordonnées sont sur un toit, `false` sinon",
 
   # Parameters
   ## Map

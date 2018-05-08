@@ -284,8 +284,22 @@ module RME
           tile_id > 7807
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      #   corresponds to a roof (`true`) or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :roof?,
+                        :description => 'Map.roof?',
+                        :parameters  => [X, Y]}) {
+        |x, y|
+        tile_id = tile_id(x, y, 0)
+        tile_id.between?(4352, 4735) || tile_id.between?(5120, 5503) ||
+          tile_id.between?(5888, 6271) || tile_id.between?(6656, 7039) ||
+          tile_id.between?(7424, 7807)
+      }
+
       # TODO
-      # - `roof?`
       # - `stair?`
       # - `table?`
       # - `map_width`
