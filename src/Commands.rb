@@ -207,10 +207,6 @@ module RMECommands
     args[Kernel.rand(args.length)]
   end
 
-  def get_tileset_id
-    $game_map.tileset_id
-  end
-
   def switch_tileset(tileset_id)
     $game_map.tileset_id = tileset_id
   end

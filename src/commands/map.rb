@@ -189,8 +189,17 @@ module RME
         $game_map.passable?(x, y, d)
       }
 
+      # ------------------------------------------------------------------------
+      # - Returns the identifier of the main tileset used to render
+      #   the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :get_tileset_id,
+                        :description => 'Map.get_tileset_id'}) {
+        $game_map.tileset_id
+      }
+
       # TODO
-      # - `get_tileset_id`
       # - `dash_activate?`
       # - `dash_deactivate?`
       # - `dash_activation`
