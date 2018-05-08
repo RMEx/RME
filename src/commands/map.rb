@@ -219,8 +219,22 @@ module RME
         !dash_activate?
       }
 
+      # ------------------------------------------------------------------------
+      # - Enables (`true`) or disables (`false`) the dashing option for the
+      #   player in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :dash_activation,
+                        :description => 'Map.dash_activation',
+                        :parameters  => [
+                          {:name        => :flag,
+                           :description => 'Map.dash_activation.flag',
+                           :type        => ParameterType::Boolean}]}) {
+        |flag|
+        $game_map.can_dash = !!flag
+      }
+
       # TODO
-      # - `dash_activation`
       # - `switch_tileset`
       # - `wall?`
       # - `roof?`
