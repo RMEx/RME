@@ -371,8 +371,19 @@ module RME
         $game_map.boat_passable?(x, y)
       }
 
+      # ------------------------------------------------------------------------
+      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      #   is traversable by ship (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :ship_passable?,
+                        :description => 'Map.ship_passable?',
+                        :parameters  => [X, Y]}) {
+        |x, y|
+        $game_map.ship_passable?(x, y)
+      }
+
       # TODO
-      # - `ship_passable?`
       # - `autotile_type`
       # - `damage_floor?`
       # - `get_random_square`

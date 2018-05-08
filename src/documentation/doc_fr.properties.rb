@@ -37,6 +37,7 @@
   'doc.cmd.Map.map_width' => "Retourne la largeur de la carte",
   'doc.cmd.Map.map_height' => "Retourne la hauteur de la carte",
   'doc.cmd.Map.boat_passable?' => "Renvoie `true` si l'on peut traverser la case avec le radeau",
+  'doc.cmd.Map.ship_passable?' => "Renvoie `true` si l'on peut traverser la case avec le bateau",
 
   # Parameters
   ## Map

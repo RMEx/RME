@@ -1177,10 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def ship_passable?(x, y)
-      $game_map.ship_passable?(x, y)
-    end
-   
     def autotile_type(x, y, z)
       $game_map.autotile_type(x, y, z)
     end

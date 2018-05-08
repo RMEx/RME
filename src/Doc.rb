@@ -6332,15 +6332,6 @@ link_method_documentation 'Command.mouse_moving?',
  	{}, true # Maybe changed
 register_command :mouse, 'Command.mouse_moving?'
 
-link_method_documentation 'Command.ship_passable?',
-	'Renvoie true si l\'on peut traverser la case avec le bateau',
- 	{
-		:x => ["Coordonnées X", :Fixnum],
-		:y => ["Coordonnées Y", :Fixnum],
-
-	}, true
-register_command :mapinfo, 'Command.ship_passable?'
-
 link_method_documentation 'Command.autotile_type',
 	'Renvoie l\'ID qui correspond au tile d\'autotile aux coordonnées passées en paramètre',
  	{
