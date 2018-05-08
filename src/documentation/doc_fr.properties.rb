@@ -7,6 +7,7 @@
   'doc.NullablePositiveInteger.description' => 'Entier positif (peut-être nul)',
   'doc.Direction.description' => "Direction du mouvement (`2` pour le bas, `4` pour la gauche, `6` pour la droite et `8` pour le haut)",
   'doc.RegionId.description' => "Identifiant de région (tiles)",
+  'doc.LayerId.description' => "Identifiant de la couche (tiles)",
 
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",

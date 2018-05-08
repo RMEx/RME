@@ -25,7 +25,7 @@ module RME
            :type        => ParameterType::Coordinate,
            :description => 'Map.y'}
       LAYER = {:name => :layer,
-               :type => ParameterType::PositiveInteger,
+               :type => ParameterType::LayerId,
                :description => 'Map.layer'}
 
       # ------------------------------------------------------------------------

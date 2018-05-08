@@ -131,6 +131,9 @@ module RME
       ParameterType::declare(:RegionId,
                              "Region's identifier",
                              ClosedInterval.new(0, 63))
+      ParameterType::declare(:LayerId,
+                             "Layer's identifier",
+                             ClosedInterval.new(0, 2))
 
       # TODO: add other domains' definition
 
