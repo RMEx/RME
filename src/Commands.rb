@@ -1177,16 +1177,6 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * retreive data about tiles
     #--------------------------------------------------------------------------
-    def wall?(x, y)
-      tile_id = tile_id(x, y, 0)
-      tile_id.between?(2288, 2335) || tile_id.between?(2384, 2431) ||
-      tile_id.between?(2480, 2527) || tile_id.between?(2576, 2623) ||
-      tile_id.between?(2672, 2719) || tile_id.between?(2768, 2815) ||
-      tile_id.between?(4736, 5119) || tile_id.between?(5504, 5887) ||
-      tile_id.between?(6272, 6655) || tile_id.between?(7040, 7423) ||
-      tile_id > 7807
-    end
-
     def roof?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(4352, 4735) || tile_id.between?(5120, 5503) ||
