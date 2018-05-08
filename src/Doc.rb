@@ -858,16 +858,6 @@ register_command :standard, 'Command.unflash_rect'
                         }, true
   register_command :standard, "Command.random_figures"
 
-  link_method_documentation "Command.square_passable?",
-                        "Renvoie true si la case référencée par X, Y est passable dans la direction référencée par direction, false sinon",
-                        {
-                          :x => ["Coordonnées X de la case", :Fixnum],
-                          :y => ["Coordonnées Y de la case", :Fixnum],
-                          :direction => ["Direction (2,4,6,8)", :Fixnum]
-                        }, true
-
-  register_command :mapinfo, "Command.square_passable?"
-
   link_method_documentation "Command.percent",
                         "Renvoie le pourcentage de value par rapport à max",
                         {

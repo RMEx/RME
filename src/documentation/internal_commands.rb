@@ -125,6 +125,10 @@ module RME
                              "Nullable positive integer",
                              Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
 
+      ParameterType::declare(:Direction,
+                             "Movement direction",
+                             Set.new(2, 4, 6, 8))
+
       # TODO: add other domains' definition
 
     end

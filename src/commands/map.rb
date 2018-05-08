@@ -171,8 +171,25 @@ module RME
         $game_map.region_id(x, y)
       }
 
+      # ------------------------------------------------------------------------
+      # - Checks if the tile located at the given coordinates (`x`, `y`)
+      #   can be passed through in the given `direction`.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :square_passable?,
+                        :description => 'Map.square_passable?',
+                        :parameters  => [
+                          X,
+                          Y,
+                          {:name        => :direction,
+                           :description => 'Map.direction',
+                           :type        => ParameterType::Direction,
+                           :default     => 2}
+                        ]}) { |x, y, direction|
+        $game_map.passable?(x, y, d)
+      }
+
       # TODO
-      # - `square_passable?`
       # - `get_tileset_id`
       # - `dash_activate?`
       # - `dash_deactivate?`
