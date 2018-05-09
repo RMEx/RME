@@ -385,7 +385,11 @@ module RME
 
           # Generating section's commands' documentation files
           commands.each do |name, c|
-            File.open("#{section_dir}/#{name}.json", 'w:UTF-8') do |f|
+
+            # Escaping invalid characters for a filename in the command's name
+            f_name = name.to_s.gsub('?', '')
+
+            File.open("#{section_dir}/#{f_name}.json", 'w:UTF-8') do |f|
               f.write(c.to_json(translator))
             end
           end
