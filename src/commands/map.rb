@@ -474,6 +474,7 @@ module RME
         $game_map.squares_by_terrain(terrain_tag)
       }
 
+      append_commands
     end
   end
 end
