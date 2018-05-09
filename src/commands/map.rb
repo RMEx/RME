@@ -116,7 +116,7 @@ module RME
                            :type        => ParameterType::PositiveInteger},
                           {:name        => :new_id,
                            :description => 'Map.set_tile_where.new_id',
-                           :type        => ParamaterType::PositiveInteger}
+                           :type        => ParameterType::PositiveInteger}
                         ]}) { |layer, id, new_id|
         map = $game_map.instance_variable_get(:@map)
         map_height.times do |y|
