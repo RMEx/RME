@@ -16,3 +16,7 @@ Doc
 Process.Doc
 # work-in-progress-things (see Incubator/README.md)
 Incubator/
+# Commands' refactoring
+documentation/internal_documentation
+documentation/internal_commands
+commands/map
