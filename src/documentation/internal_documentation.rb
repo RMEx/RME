@@ -1,5 +1,20 @@
 # -*- coding: utf-8 -*-
 
+# ------------------------------------------------------------------------------
+# Work-around as it appears that the Ruby Interpreter used by RPG Maker is
+# halfly implemented :/.
+# ------------------------------------------------------------------------------
+class Mutex
+  def synchronize
+    lock
+    begin
+      yield
+    ensure
+      unlock
+    end
+  end
+end
+
 # ==============================================================================
 # * RPG Maker (VX / VX.ACE) Extender
 # ------------------------------------------------------------------------------
