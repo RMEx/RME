@@ -191,26 +191,28 @@ module RME
                                                                      cmd[:deprecated_since]))
 
       # Generating method
-      section.define_singleton_method(cmd[:name]) do |*args|
+      section.send(:define_method, cmd[:name]) do |*args|
 
         # Validating each parameter
-        cmd[:parameters].each_with_index do |expected, i |
+        unless cmd[:parameters].nil?
+          cmd[:parameters].each_with_index do |expected, i |
 
-          # Handling optional parameter
-          unless expected[:default].nil?
-            if args[i].nil?
-              args << expected[:default]
+            # Handling optional parameter
+            unless expected[:default].nil?
+              if args[i].nil?
+                args << expected[:default]
+              end
             end
-          end
 
-          # Validating provided parameter
-          unless expected[:type][:domain].valid? args[i]
-            arg_value = (args[i].nil?) ? "nil (i.e.: not provided)." : args[i]
-            raise "Invalid parameter: #{expected[:name]} " +
-                  "(should be a #{expected[:type][:internal_description]}). " +
-                  "Actual value is #{arg_value}"
-          end
+            # Validating provided parameter
+            unless expected[:type][:domain].valid? args[i]
+              arg_value = (args[i].nil?) ? "nil (i.e.: not provided)." : args[i]
+              raise "Invalid parameter: #{expected[:name]} " +
+                    "(should be a #{expected[:type][:internal_description]}). " +
+                    "Actual value is #{arg_value}"
+            end
 
+          end
         end
 
         # Calling the delegated method
