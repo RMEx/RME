@@ -162,7 +162,7 @@ module RME
           if p[:name].nil? or p[:name].empty?
             raise "Invalid parameter's definition for command: #{cmd[:name]} !"
           else
-            similar = RME::Doc::defined_parameters(section)[p[:name]]
+            similar = RME::Documentation::defined_parameters(section)[p[:name]]
 
             unless similar.nil?
               p[:type] = similar.type.raw_type if p[:type].nil?
@@ -178,17 +178,17 @@ module RME
       doc_parameters =
        unless cmd[:parameters].nil?
          cmd[:parameters].map do |p|
-           RME::Doc::Parameter.new(p[:name], p[:type], p[:description], p[:default])
+           RME::Documentation::Parameter.new(p[:name], p[:type], p[:description], p[:default])
          end
        else
          Hash.new
        end
-      Doc::describe_method(section,
-                           RME::Doc::Command.new(cmd[:name],
-                                                 cmd[:description],
-                                                 doc_parameters,
-                                                 cmd[:see],
-                                                 cmd[:deprecated_since]))
+      Documentation::describe_method(section,
+                                     RME::Documentation::Command.new(cmd[:name],
+                                                                     cmd[:description],
+                                                                     doc_parameters,
+                                                                     cmd[:see],
+                                                                     cmd[:deprecated_since]))
 
       # Generating method
       section.define_singleton_method(cmd[:name]) do |*args|

@@ -69,15 +69,15 @@ module RME
   # ============================================================================
   # ** Documentation module
   # ============================================================================
-  module Doc
+  module Documentation
 
     # Eigenclass
     class << self
       attr_accessor :schema
       attr_accessor :default_translation
 
-      Doc.schema ||= Hash.new
-      Doc.default_translation ||= Configuration.new('doc.properties.rb')
+      Documentation.schema ||= Hash.new
+      Documentation.default_translation ||= Configuration.new('../src/documentation/doc.properties.rb')
     end
 
     # ==========================================================================
@@ -111,8 +111,8 @@ module RME
         @see_also = see_also
         @deprecated_since = deprecated_since
 
-        (@parameters ||= Array.new).compact!
-        (@see_also ||= Array.new).compact!
+        (@parameters ||= Array.new).reject { |x| x.nil? }
+        (@see_also ||= Array.new).reject { |x| x.nil? }
       end
 
       # ------------------------------------------------------------------------
@@ -305,8 +305,8 @@ module RME
     #   - `command` the documented command                               Command
     # --------------------------------------------------------------------------
     def self.describe_method(section, command)
-      Doc.schema[section] ||= Hash.new
-      Doc.schema[section][command.name] = command
+      Documentation.schema[section] ||= Hash.new
+      Documentation.schema[section][command.name] = command
     end
 
     # --------------------------------------------------------------------------
@@ -352,19 +352,19 @@ module RME
       # Selecting properties' file for translations
       translator =
         unless "en".eql? lang
-          Configuration.new("doc_#{lang}.properties.rb", Doc.default_translation)
+          Configuration.new("../src/documentation/doc_#{lang}.properties.rb", Documentation.default_translation)
         else
-          Doc.default_translation
+          Documentation.default_translation
         end
 
       # Generating sections' related documentation
       lock = Mutex.new
       threads = Array.new
 
-      Doc.schema.each do |section, commands|
+      Documentation.schema.each do |section, commands|
 
         threads << Thread.new {
-          puts "[Thread\##{Thread.current.object_id}] Generating documentation of #{section.name}\n"
+          puts "[Thread\##{Thread.current.object_id}] Generating documentation of #{section}\n"
           # TODO: Revise this way of removing a prefix
           section_name = section.name
                                 .reverse
@@ -406,8 +406,8 @@ module RME
     def self.defined_parameters(section)
       parameters = Hash.new
 
-      if Doc.schema.key? section
-        Doc.schema[section].each do |c_name, c|
+      if Documentation.schema.key? section
+        Documentation.schema[section].each do |c_name, c|
           c.parameters.each do |p|
             parameters[p.name] = p
           end
