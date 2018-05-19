@@ -48,6 +48,15 @@ module RMECommands
     $game_temp.reserve_common_event(id)
   end
 
+  def include_common_event(id)
+    common_event = $data_common_events[id]
+    if common_event
+      child = Game_Interpreter.new(@depth + 1)
+      child.setup(common_event.list, same_map? ? me : 0)
+      child.run
+    end
+  end
+
   def has_prefix?(string, prefix)
     string.start_with?(prefix)
   end
