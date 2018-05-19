@@ -778,12 +778,20 @@ link_method_documentation 'Command.unflash_rect',
 register_command :standard, 'Command.unflash_rect'
 
   link_method_documentation 'Command.call_common_event',
-    'Exécute l\'événement commun référencé par son ID',
+    'Exécute l\'événement commun référencé par son ID dès que possible.',
      {
       :id => ["ID de l'événement commun à exécuter", :Fixnum],
 
     }, false
   register_command :standard, 'Command.call_common_event'
+
+  link_method_documentation 'Command.include_common_event',
+    'Exécute l\'événement commun référencé par son ID immédiatement.',
+     {
+      :id => ["ID de l'événement commun à exécuter", :Fixnum],
+
+    }, false
+  register_command :standard, 'Command.include_common_event'
 
   link_method_documentation "Command.max",
                         "Renvoie la plus grande des deux valeurs A, B",
