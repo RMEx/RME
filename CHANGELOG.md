@@ -11,6 +11,7 @@
 - Add command `spritesheet_z` (@xvw, reported by @Zer0xxxx)
 - Add `purge` parameter for `text_progressive` (@xvw, reported by @Princesseuh)
 - Add command `abs` (@xvw, reported by @Zer0xxxx)
+- Add command `include_common_event` (@BastienDuplessier)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
