@@ -12,6 +12,7 @@
 
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",
+  'doc.section.Actors' => "Offre des commandes pour obtenir des informations sur les acteurs (héros) ",
 
   # Commands
   ## Map
