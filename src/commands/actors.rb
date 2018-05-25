@@ -175,8 +175,17 @@ module RME
         $game_actors[id].level
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the maximum level that the given actor can reach.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_level_max,
+                        :description => 'Actors.actor_level_max',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].max_level
+      end
+
       # TODO
-      # - `actor_level_max`
       # - `actor_exp`
       # - `actor_note`
       # - `actor_hp`

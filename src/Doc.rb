@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_level_max",
-                        "renvoie le niveau maximum du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                        }, true
-register_command :actors, "Command.actor_level_max"
-
 link_method_documentation "Command.actor_exp",
                         "renvoie les points d'expérience du héros référencé par son ID",
                         {

@@ -62,6 +62,7 @@
   'doc.cmd.Actors.actor_has_body?' => "Renvoie `true` si le héros référencé par son ID est équipé d'une armure; `false` sinon",
   'doc.cmd.Actors.actor_has_accessory?' => "Renvoie `true` si le héros référencé par son ID est équipé d'un accessoire; `false` sinon",
   'doc.cmd.Actors.actor_level' => "Renvoie le niveau du héros référencé par son ID",
+  'doc.cmd.Actors.actor_level_max' => "Renvoie le niveau maximum du héros référencé par son ID",
 
   # Parameters
   ## Map
