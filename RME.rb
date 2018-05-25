@@ -15331,6 +15331,22 @@ module RMECommands
       SceneManager.scene.windows[id].y = y
     end
 
+    def window_change_windowskin(id, filename)
+      SceneManager.scene.windows[id].change_windowskin(filename)
+    end
+
+    def window_change_tone(id, tone)
+      SceneManager.scene.windows[id].change_tone(tone)
+    end
+
+    def window_use_default_windowskin(id)
+      SceneManager.scene.windows[id].use_default_windowskin
+    end
+
+    def window_use_default_tone(id)
+      SceneManager.scene.windows[id].use_default_tone
+    end
+
     def fresh_window_id
       SceneManager.scene.fresh_window_id
     end

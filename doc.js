@@ -1787,7 +1787,13 @@ var documentation = [
 {"name":"window_y", "description":"Change la coordonnée Y de la fenêtre référencée par son ID, si aucun Y n'est donné, la commande renverra la valeur actuelle de y", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"},
 {"name":"*y", "desc":"Coordonnée Y de la fenêtre", "type":"Fixnum"}]},
 {"name":"fresh_window_id", "description":"Génère un ID non utilisé pour une window", "returnable":true,"parameters":[]},
-{"name":"mouse_hover_window?", "description":"Renvoie true si la souris survole la fenêtre, false sinon.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"}]}
+{"name":"mouse_hover_window?", "description":"Renvoie true si la souris survole la fenêtre, false sinon.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"}]},
+{"name":"window_change_windowskin", "description":"Change le windowskin de la fenêtre spécifiée.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"},
+{"name":"filename", "desc":"Nom du fichier dans Graphics/Windowskins", "type":"String"}]},
+{"name":"window_change_tone", "description":"Change le ton de la fenêtre spécifiée.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"},
+{"name":"tone", "desc":"Teinte (utilisez la commande 'tone')", "type":"Tone"}]},
+{"name":"window_use_default_windowskin", "description":"Change le windowskin par celui par défaut.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"}]},
+{"name":"window_use_default_tone", "description":"Chante le ton par celui par défaut.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la fenêtre", "type":"Fixnum"}]}
 ]},
 {"name":"Fenêtre de jeu","desc":"Commandes de manipulation de la fenêtre de jeu","commands":[
 {"name":"game_window_rect", "description":"Renvoie le rectangle correspondant à la fenêtre de jeu", "returnable":true,"parameters":[]}
