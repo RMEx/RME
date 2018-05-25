@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_hit_rate(id); $game_actors[id].hit; end
     def actor_evasion_rate(id); $game_actors[id].eva; end
     def actor_critical_rate(id); $game_actors[id].cri; end
     def actor_critical_evasion_rate(id); $game_actors[id].cev; end

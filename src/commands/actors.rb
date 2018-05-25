@@ -316,8 +316,18 @@ module RME
         $game_actors[id].luk
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor can successfully hit
+      #   a monster.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_hit_rate,
+                        :description => 'Actors.actor_hit_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].hit
+      end
+
       # TODO
-      # - `actor_hit_rate`
       # - `actor_evasion_rate`
       # - `actor_critical_rate`
       # - `actor_critical_evasion_rate`
