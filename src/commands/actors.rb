@@ -185,8 +185,17 @@ module RME
         $game_actors[id].max_level
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the experience points that the given actor currently has.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_exp,
+                        :description => 'Actors.actor_exp',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].exp
+      end
+
       # TODO
-      # - `actor_exp`
       # - `actor_note`
       # - `actor_hp`
       # - `actor_mp`

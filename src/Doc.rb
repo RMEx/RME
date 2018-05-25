@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_exp",
-                        "renvoie les points d'expérience du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                        }, true
-register_command :actors, "Command.actor_exp"
-
 link_method_documentation "Command.actor_note",
                         "renvoie le commentaire de la base de données du héros référencé par son ID",
                         {
