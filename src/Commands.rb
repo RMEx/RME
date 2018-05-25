@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_has_weapon?(id); actor_weapon(id) != 0; end
     def actor_has_shield?(id); actor_shield(id) != 0; end
     def actor_has_head?(id); actor_head(id) != 0; end
     def actor_has_body?(id); actor_body(id) != 0; end

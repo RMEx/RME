@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_has_weapon?",
-                        "renvoie true si le héros référencé par son ID est équipé d'une arme, false sinon",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                        }, true
-register_command :actors, "Command.actor_has_weapon?"
-
 link_method_documentation "Command.actor_has_shield?",
                         "renvoie true si le héros référencé par son ID est équipé d'un bouclier, false sinon",
                         {
