@@ -12,7 +12,6 @@
 #   - `../documentation/internal_commands.rb`
 #   - `../documentation/internal_documentation.rb`
 # ==============================================================================
-
 module RME
   module Command
     module Map
@@ -58,7 +57,7 @@ module RME
                         :parameters       => [X, Y]}) { |x, y| event_at(x, y) }
 
       # ------------------------------------------------------------------------
-      # - Returns the event's identifier which is located at the given
+      # * Returns the event's identifier which is located at the given
       #   coordinates ( `x`, `y`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -72,7 +71,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns the type of terrain which corresponds to the tile located
+      # * Returns the type of terrain which corresponds to the tile located
       #   at the given coordinates (`x`, `y`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -83,7 +82,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Return the identifier of the tile located at the given coordinates
+      # * Return the identifier of the tile located at the given coordinates
       #   (`x`, `y`, `layer`) and belonging to the given map (`map_id`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -103,7 +102,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Changes all the tiles which are located in the given `layer` and
+      # * Changes all the tiles which are located in the given `layer` and
       #   which are complying with the given `id` to the new `new_id`.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -127,7 +126,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Deletes all the tiles which are located in the given `layer` and
+      # * Deletes all the tiles which are located in the given `layer` and
       #   complying with the given `id`.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -143,7 +142,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Changes the tile which is located at the given coordinates
+      # * Changes the tile which is located at the given coordinates
       #   (`x`, `y`, `layer`), with the new `value`.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -161,7 +160,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns the region's identifier to which the tile located at the
+      # * Returns the region's identifier to which the tile located at the
       #   given coordinates belongs to (`x`, `y`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -172,7 +171,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Checks if the tile located at the given coordinates (`x`, `y`)
+      # * Checks if the tile located at the given coordinates (`x`, `y`)
       #   can be passed through in the given `direction`.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -190,7 +189,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns the identifier of the main tileset used to render
+      # * Returns the identifier of the main tileset used to render
       #   the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -200,7 +199,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the dash is enabled (`true`) or not (`false`)
+      # * Tells whether the dash is enabled (`true`) or not (`false`)
       #   for the player in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -210,7 +209,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the dash is disabled (`true`) or not (`false`)
+      # * Tells whether the dash is disabled (`true`) or not (`false`)
       #   for the player in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -220,7 +219,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Enables (`true`) or disables (`false`) the dashing option for the
+      # * Enables (`true`) or disables (`false`) the dashing option for the
       #   player in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -235,7 +234,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Enables the dashing option for the player in the current map.
+      # * Enables the dashing option for the player in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :dash_activate,
@@ -244,7 +243,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Disables the dashing option for the player in the current map.
+      # * Disables the dashing option for the player in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :dash_deactivate,
@@ -253,7 +252,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Changes the main tileset of the current map for the given one.
+      # * Changes the main tileset of the current map for the given one.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :switch_tileset,
@@ -267,7 +266,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   corresponds to a wall (`true`) or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -285,7 +284,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   corresponds to a roof (`true`) or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -300,7 +299,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   corresponds to a stair (`true`) or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -314,7 +313,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   corresponds to a table (`true`) or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -328,7 +327,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   corresponds to a ground one (`true`) or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -342,7 +341,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns the width (unit being the tiles) of the current map.
+      # * Returns the width (unit being the tiles) of the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :map_width,
@@ -351,7 +350,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns the height (unit being the tiles) of the current map.
+      # * Returns the height (unit being the tiles) of the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :map_height,
@@ -360,7 +359,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   is traversable by boat (`true`); or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -372,7 +371,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   is traversable by ship (`true`); or not (`false`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -384,7 +383,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns the tile's identifier which corresponds to the autotile
+      # * Returns the tile's identifier which corresponds to the autotile
       #   located at the given coordinates (`x`, `y`, `z`).
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -401,7 +400,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Tells whether the tile located at the given coordinates (`x`, `y`)
+      # * Tells whether the tile located at the given coordinates (`x`, `y`)
       #   might hurt the player if he walks on it.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -413,7 +412,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns a random square in the current map which belongs to the given
+      # * Returns a random square in the current map which belongs to the given
       #   `region_id`.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -429,7 +428,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns an array of squares which belongs to the given `region_id`,
+      # * Returns an array of squares which belongs to the given `region_id`,
       #   in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -444,7 +443,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns an array of squares which is made of the same tile (`tile_id`)
+      # * Returns an array of squares which is made of the same tile (`tile_id`)
       #   and which is located on the same `layer` in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -460,7 +459,7 @@ module RME
       }
 
       # ------------------------------------------------------------------------
-      # - Returns an array of squares which comply with the given `terrain_tag`,
+      # * Returns an array of squares which comply with the given `terrain_tag`,
       #   in the current map.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
