@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_has_accessory?(id); actor_accessory(id) != 0; end
     def actor_level(id); $game_actors[id].level; end
     def actor_level_max(id); $game_actors[id].max_level; end
     def actor_exp(id); $game_actors[id].exp; end

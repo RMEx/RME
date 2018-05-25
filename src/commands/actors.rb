@@ -154,8 +154,18 @@ module RME
         actor_body(id) != 0
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given actor is equipped with an accessory (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_has_accessory?,
+                        :description => 'Actors.actor_has_accessory?',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_accessory(id) != 0
+      end
+
       # TODO
-      # - `actor_has_accessory?`
       # - `actor_level`
       # - `actor_level_max`
       # - `actor_exp`
