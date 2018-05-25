@@ -55,6 +55,7 @@
   'doc.cmd.Actors.actor_head' => "Renvoie l'id du casque équipé par le héros référencé par son ID",
   'doc.cmd.Actors.actor_body' => "Renvoie l'id de l'armure équipée par le héros référencé par son ID",
   'doc.cmd.Actors.actor_description' => "Renvoie la description du héros référencé par son ID",
+  'doc.cmd.Actors.actor_accessory' => "Renvoie l'id de l'accessoire équipé par le héros référencé par son ID",
 
   # Parameters
   ## Map

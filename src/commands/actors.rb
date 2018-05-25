@@ -99,8 +99,18 @@ module RME
         $game_actors[id].description
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the identifier of the accessory which is currently
+      #   equipped by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_accessory,
+                        :description => 'Actors.actor_accessory',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_equip(id, :Accessory)
+      end
+
       # TODO
-      # - `actor_accessory`
       # - `actor_has_weapon?`
       # - `actor_has_shield?`
       # - `actor_has_head?`
