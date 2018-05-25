@@ -138,6 +138,13 @@ module RME
                              "Terrain tag",
                              ClosedInterval.new(0, 7))
 
+      ParameterType::declare(:ActorId,
+                             "Actor's identifier",
+                             ClosedInterval.new(1, 999))
+      ParameterType::declare(:EquipmentSlot,
+                             "Equipment's slot",
+                             Set.new(:Weapon, :Head, :Body, :Shield, :Accessory))
+
       # TODO: add other domains' definition
 
     end

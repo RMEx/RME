@@ -9,6 +9,8 @@
   'doc.RegionId.description' => "Identifiant de région (tiles)",
   'doc.LayerId.description' => "Identifiant de la couche (tiles)",
   'doc.TerrainTag.description' => "Étiquette de terrain (tiles)",
+  'doc.ActorId.description' => "Identifiant du héros",
+  'doc.EquipmentSlot.description' => "Slot d'équipement (`:Weapon` pour l'arme, `:Head` pour le case, `:Body` pour le torse, `:Shield` pour le bouclier, `:Accessory` pour l'accessoire)",
 
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",
