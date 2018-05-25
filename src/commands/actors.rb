@@ -89,8 +89,17 @@ module RME
         actor_equip(id, :Body)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the description associated with the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_description,
+                        :description => 'Actors.actor_description',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].description
+      end
+
       # TODO
-      # - `actor_description`
       # - `actor_accessory`
       # - `actor_has_weapon?`
       # - `actor_has_shield?`

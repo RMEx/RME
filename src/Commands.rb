@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_description(id); $game_actors[id].description; end
     def actor_accessory(id); actor_equip(id, :Accessory); end
     def actor_has_weapon?(id); actor_weapon(id) != 0; end
     def actor_has_shield?(id); actor_shield(id) != 0; end
