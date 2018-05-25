@@ -37,7 +37,7 @@ module RME
         #    `false` otherwise.
         # ----------------------------------------------------------------------
         def valid?(val)
-          predicate.call val
+          @predicate.call val
         end
       end
 
