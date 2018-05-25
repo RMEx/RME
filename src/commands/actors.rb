@@ -306,8 +306,17 @@ module RME
         $game_actors[id].agi
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the luck points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_luck,
+                        :description => 'Actors.actor_luck',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].luk
+      end
+
       # TODO
-      # - `actor_luck`
       # - `actor_hit_rate`
       # - `actor_evasion_rate`
       # - `actor_critical_rate`
