@@ -74,6 +74,7 @@
   'doc.cmd.Actors.actor_defense' => "Renvoie les points de défense du héros référencé par son ID",
   'doc.cmd.Actors.actor_magic_attack' => "Renvoie les points d'attaque magique du héros référencé par son ID",
   'doc.cmd.Actors.actor_magic_defense' => "Renvoie les points de défense magique du héros référencé par son ID",
+  'doc.cmd.Actors.actor_agility' => "Renvoie les points d'agilité du héros référencé par son ID",
 
   # Parameters
   ## Map

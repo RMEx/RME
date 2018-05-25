@@ -296,8 +296,17 @@ module RME
         $game_actors[id].mdf
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the agility points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_agility,
+                        :description => 'Actors.actor_agility',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].agi
+      end
+
       # TODO
-      # - `actor_agility`
       # - `actor_luck`
       # - `actor_hit_rate`
       # - `actor_evasion_rate`
