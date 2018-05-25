@@ -2875,6 +2875,18 @@ class Game_Map
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
   end
+  #--------------------------------------------------------------------------
+  # * Is X axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_x_locked?
+    $game_map.camera_lock.include?(:x)
+  end
+  #--------------------------------------------------------------------------
+  # * Is Y axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_y_locked?
+    $game_map.camera_lock.include?(:y)
+  end
 
   #--------------------------------------------------------------------------
   # * Get the map rectangle
