@@ -2799,14 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_equip",
-                        "Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                          :slot => ["Slot d'équipement soit :Weapon, :Head, :Body, :Shield ou :Accessory", :Symbol]
-                        }, true
-register_command :actors, "Command.actor_equip"
-
 link_method_documentation "Command.actor_weapon",
                         "renvoie l'id de l'arme équipée par le héros référencé par son ID",
                         {

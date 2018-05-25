@@ -1640,13 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def type_equip(str)
-      [:Weapon, :Shield, :Head, :Body, :Accessory].index(str)
-    end
-    def actor_equip(id, t)
-      k = $game_actors[id].equips[type_equip(t)]
-      (k.nil?) ? 0 : k.id
-    end
     def actor_weapon(id); actor_equip(id, :Weapon); end
     def actor_shield(id); actor_equip(id, :Shield); end
     def actor_head(id); actor_equip(id, :Head); end

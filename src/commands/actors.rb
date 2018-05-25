@@ -17,8 +17,35 @@ module RME
   module Command
     module Actors
 
+      # Common parameters' declaration
+      ACTOR_ID = {:name        => :id,
+                  :type        => ParameterType::ActorId,
+                  :description => 'Actors.actor_id'}
+
+      # Internal methods
+      def self.type_equip(sym)
+        [:Weapon, :Shield, :Head, :Body, :Accessory].index(sym)
+      end
+      private_class_method :type_equip
+
+      # ------------------------------------------------------------------------
+      # * Returns the identifier of the item which is currently equipped
+      #   by the given actor, in the specified slot.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_equip,
+                        :description => 'Actors.actor_equip',
+                        :parameters  => [
+                           ACTOR_ID,
+                           {:name        => :slot,
+                            :description => 'Actors.actor_equip.slot',
+                            :type        => ParameterType::EquipmentSlot}
+                         ]}) do |id, slot|
+        k = $game_actors[id].equips[type_equip(slot)]
+        (k.nil?) ? 0 : k.id
+      end
+
       # TODO
-      # - `actor_equip`
       # - `actor_weapon`
       # - `actor_shield`
       # - `actor_head`
@@ -76,7 +103,6 @@ module RME
       # - `actor_class`
       # - `actor_exp_for_next_level`
       # - `actor_change_equip`
-      # - `actor_equip`
       # - `actor_equip_weapon`
       # - `actor_equip_shield`
       # - `actor_equip_head`
