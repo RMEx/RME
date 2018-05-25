@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_magic_defense",
-                        "renvoie les points de défense magique du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_magic_defense"
-
 link_method_documentation "Command.actor_agility",
                         "renvoie les points d'agilité du héros référencé par son ID",
                         {
