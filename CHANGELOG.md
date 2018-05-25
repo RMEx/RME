@@ -13,6 +13,7 @@
 - Add command `abs` (@xvw, reported by @Zer0xxxx)
 - Add command `include_common_event` (@BastienDuplessier)
 - Add command `get_squares_between` and `get_squares_between_events` (@BastienDuplessier)
+- Add commands `window_change_windowskin`, `window_change_tone`, `window_use_default_windowskin, `window_use_default_tone` (@BastienDuplessier, reported by @Zer0xxxx)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
