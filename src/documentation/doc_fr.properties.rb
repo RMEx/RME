@@ -57,6 +57,7 @@
   'doc.cmd.Actors.actor_description' => "Renvoie la description du héros référencé par son ID",
   'doc.cmd.Actors.actor_accessory' => "Renvoie l'id de l'accessoire équipé par le héros référencé par son ID",
   'doc.cmd.Actors.actor_has_weapon?' => "Renvoie `true` si le héros référencé par son ID est équipé d'une arme; `false` sinon",
+  'doc.cmd.Actors.actor_has_shield?' => "Renvoie `true` si le héros référencé par son ID est équipé d'un bouclier; `false` sinon",
 
   # Parameters
   ## Map

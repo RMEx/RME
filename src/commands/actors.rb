@@ -121,8 +121,18 @@ module RME
         actor_weapon(id) != 0
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given actor is equipped with a shield (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_has_shield?,
+                        :description => 'Actors.actor_has_shield?',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_shield(id) != 0
+      end
+
       # TODO
-      # - `actor_has_shield?`
       # - `actor_has_head?`
       # - `actor_has_body?`
       # - `actor_has_accessory?`
