@@ -132,8 +132,18 @@ module RME
         actor_shield(id) != 0
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given actor is equipped with an helmet (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_has_head?,
+                        :description => 'Actors.actor_has_head?',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_head(id) != 0
+      end
+
       # TODO
-      # - `actor_has_head?`
       # - `actor_has_body?`
       # - `actor_has_accessory?`
       # - `actor_level`

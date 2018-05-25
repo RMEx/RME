@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_has_head?",
-                        "renvoie true si le héros référencé par son ID est équipé d'une casque, false sinon",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                        }, true
-register_command :actors, "Command.actor_has_head?"
-
 link_method_documentation "Command.actor_has_body?",
                         "renvoie true si le héros référencé par son ID est équipé d'une armure, false sinon",
                         {
