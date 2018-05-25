@@ -7775,6 +7775,7 @@ class Game_Player
   #--------------------------------------------------------------------------
   alias_method :rme_update_scroll, :update_scroll
   alias_method :rme_refresh, :refresh
+  alias_method :rme_center, :center
   def update_scroll(last_real_x, last_real_y)
     return if $game_map.target_camera != self
     rme_update_scroll(last_real_x, last_real_y)
@@ -7791,6 +7792,19 @@ class Game_Player
   def refresh
     rme_refresh
     restore_oxy
+  end
+  #--------------------------------------------------------------------------
+  # * Set Map Display Position to Center of Screen
+  #--------------------------------------------------------------------------
+  def center(x, y)
+    return unless $game_map.target_camera == self
+    if $game_map.camera_x_locked?
+      $game_map.set_display_pos($game_map.display_x, y - center_y)
+    elsif $game_map.camera_y_locked?
+      $game_map.set_display_pos(x - center_x, $game_map.display_x)
+    else
+      rme_center(x, y)
+    end
   end
 end
 
@@ -8929,6 +8943,18 @@ class Game_Map
   def scroll_up(distance)
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
+  end
+  #--------------------------------------------------------------------------
+  # * Is X axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_x_locked?
+    $game_map.camera_lock.include?(:x)
+  end
+  #--------------------------------------------------------------------------
+  # * Is Y axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_y_locked?
+    $game_map.camera_lock.include?(:y)
   end
 
   #--------------------------------------------------------------------------
@@ -15007,11 +15033,11 @@ module RMECommands
 
     def camera_lock_x; $game_map.camera_lock << :x; end
     def camera_unlock_x; $game_map.camera_lock.delete(:x); end
-    def camera_x_locked?; $game_map.camera_lock.include?(:x); end
+    def camera_x_locked?; $game_map.camera_x_locked?; end
 
     def camera_lock_y; $game_map.camera_lock << :y; end
     def camera_unlock_y; $game_map.camera_lock.delete(:y); end
-    def camera_y_locked?; $game_map.camera_lock.include?(:y); end
+    def camera_y_locked?; $game_map.camera_y_locked?; end
 
     def camera_change_focus(event_id)
       e = event(event_id)
