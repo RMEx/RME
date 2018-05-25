@@ -143,8 +143,18 @@ module RME
         actor_head(id) != 0
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given actor is equipped with an armour (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_has_body?,
+                        :description => 'Actors.actor_has_body?',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_body(id) != 0
+      end
+
       # TODO
-      # - `actor_has_body?`
       # - `actor_has_accessory?`
       # - `actor_level`
       # - `actor_level_max`
