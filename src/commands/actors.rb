@@ -56,8 +56,18 @@ module RME
         actor_equip(id, :Weapon)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the identifier of the shield which is currently
+      #   equipped by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_shield,
+                        :description => 'Actors.actor_shield',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_equip(id, :Shield)
+      end
+
       # TODO
-      # - `actor_shield`
       # - `actor_head`
       # - `actor_body`
       # - `actor_description`
