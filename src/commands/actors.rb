@@ -246,8 +246,17 @@ module RME
         $game_actors[id].mhp
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the maximal mana points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_max_mp,
+                        :description => 'Actors.actor_max_mp',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mmp
+      end
+
       # TODO
-      # - `actor_max_mp`
       # - `actor_attack`
       # - `actor_defense`
       # - `actor_magic_attack`
