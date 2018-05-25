@@ -276,8 +276,17 @@ module RME
         $game_actors[id].def
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the magical attack points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_magic_attack,
+                        :description => 'Actors.actor_magic_attack',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mat
+      end
+
       # TODO
-      # - `actor_magic_attack`
       # - `actor_magic_defense`
       # - `actor_agility`
       # - `actor_luck`
