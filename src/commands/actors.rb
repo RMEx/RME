@@ -165,8 +165,17 @@ module RME
         actor_accessory(id) != 0
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the level of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_level,
+                        :description => 'Actors.actor_level',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].level
+      end
+
       # TODO
-      # - `actor_level`
       # - `actor_level_max`
       # - `actor_exp`
       # - `actor_note`
