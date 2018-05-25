@@ -206,8 +206,17 @@ module RME
         $game_actors[id].actor.note
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the health points that the given actor currently has.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_hp,
+                        :description => 'Actors.actor_hp',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].hp
+      end
+
       # TODO
-      # - `actor_hp`
       # - `actor_mp`
       # - `actor_tp`
       # - `actor_max_hp`

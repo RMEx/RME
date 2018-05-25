@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_hp",
-                        "renvoie les points de vie du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                        }, true
-register_command :actors, "Command.actor_hp"
-
 link_method_documentation "Command.actor_mp",
                         "renvoie les points de magie du héros référencé par son ID",
                         {
