@@ -232,7 +232,7 @@ module RME
             ""
           end
 
-        description_key = "doc.parameter.#{@description}.description"
+        description_key = "doc.parameter.#{@description}"
 
         "{" +
           "\"name\":\"#{@name}\"," +
