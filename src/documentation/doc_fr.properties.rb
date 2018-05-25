@@ -70,6 +70,7 @@
   'doc.cmd.Actors.actor_tp' => "Renvoie les points de temps du héros référencé par son ID",
   'doc.cmd.Actors.actor_max_hp' => "Renvoie le nombre de points de vie maximum du héros référencé par son ID",
   'doc.cmd.Actors.actor_max_mp' => "Renvoie le nombre de points de magie (mana) maximum du héros référencé par son ID",
+  'doc.cmd.Actors.actor_attack' => "Renvoie les points d'attaque du héros référencé par son ID",
 
   # Parameters
   ## Map

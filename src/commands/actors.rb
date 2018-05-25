@@ -256,8 +256,17 @@ module RME
         $game_actors[id].mmp
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the attack points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_attack,
+                        :description => 'Actors.actor_attack',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].atk
+      end
+
       # TODO
-      # - `actor_attack`
       # - `actor_defense`
       # - `actor_magic_attack`
       # - `actor_magic_defense`
