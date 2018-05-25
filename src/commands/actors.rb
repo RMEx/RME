@@ -195,8 +195,18 @@ module RME
         $game_actors[id].exp
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the note (as stored in RM database) associated with the given
+      #   actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_note,
+                        :description => 'Actors.actor_note',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].actor.note
+      end
+
       # TODO
-      # - `actor_note`
       # - `actor_hp`
       # - `actor_mp`
       # - `actor_tp`

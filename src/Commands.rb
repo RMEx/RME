@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_note(id);  $game_actors[id].actor.note; end
     def actor_hp(id); $game_actors[id].hp; end
     def actor_mp(id); $game_actors[id].mp; end
     def actor_tp(id); $game_actors[id].tp; end
