@@ -216,8 +216,17 @@ module RME
         $game_actors[id].hp
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the mana points that the given actor currently has.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_mp,
+                        :description => 'Actors.actor_mp',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mp
+      end
+
       # TODO
-      # - `actor_mp`
       # - `actor_tp`
       # - `actor_max_hp`
       # - `actor_max_mp`

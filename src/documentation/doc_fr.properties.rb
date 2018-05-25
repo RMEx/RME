@@ -66,6 +66,7 @@
   'doc.cmd.Actors.actor_exp' => "Renvoie les points d'expérience du héros référencé par son ID",
   'doc.cmd.Actors.actor_note' => "Renvoie le commentaire de la base de données du héros référencé par son ID",
   'doc.cmd.Actors.actor_hp' => "Renvoie les points de vie du héros référencé par son ID",
+  'doc.cmd.Actors.actor_mp' => "Renvoie les points de magie (mana) du héros référencé par son ID",
 
   # Parameters
   ## Map
