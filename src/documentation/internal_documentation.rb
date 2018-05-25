@@ -278,8 +278,14 @@ module RME
             # TODO
             ""
           elsif domain.is_a? RME::Command::ParameterType::Set
-            available_values = domain.elements.map {|x| "\"#{x}\""}.join(",")
-            "," + "\"availableValues\":[#{available_values}]"
+            available_values = domain.elements.map do |x|
+              if x.is_a? Symbol
+                "\":#{x}\""
+              else
+                "\"#{x}\""
+              end
+            end
+            "," + "\"availableValues\":[#{available_values.join(',')}]"
           elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
             "," + "\"min\":\"#{domain.range.min}\"" +
             "," + "\"max\":\"#{domain.range.max}\""
