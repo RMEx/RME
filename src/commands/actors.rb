@@ -266,8 +266,17 @@ module RME
         $game_actors[id].atk
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the defense points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_defense,
+                        :description => 'Actors.actor_defense',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].def
+      end
+
       # TODO
-      # - `actor_defense`
       # - `actor_magic_attack`
       # - `actor_magic_defense`
       # - `actor_agility`

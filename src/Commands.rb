@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_defense(id); $game_actors[id].def; end
     def actor_magic_attack(id); $game_actors[id].mat; end
     def actor_magic_defense(id); $game_actors[id].mdf; end
     def actor_agility(id); $game_actors[id].agi; end
