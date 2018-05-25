@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_max_hp(id); $game_actors[id].mhp; end
     def actor_max_mp(id); $game_actors[id].mmp; end
     def actor_attack(id); $game_actors[id].atk; end
     def actor_defense(id); $game_actors[id].def; end

@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_max_hp",
-                        "renvoie le nombre de points de vie maximum du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_max_hp"
-
 link_method_documentation "Command.actor_max_mp",
                         "renvoie le nombre de points de magie maximum du héros référencé par son ID",
                         {

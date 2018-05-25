@@ -236,8 +236,17 @@ module RME
         $game_actors[id].tp
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the maximal health points of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_max_hp,
+                        :description => 'Actors.actor_max_hp',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mhp
+      end
+
       # TODO
-      # - `actor_max_hp`
       # - `actor_max_mp`
       # - `actor_attack`
       # - `actor_defense`
