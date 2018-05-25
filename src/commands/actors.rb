@@ -226,8 +226,17 @@ module RME
         $game_actors[id].mp
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the "time points"" that the given actor currently has.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_tp,
+                        :description => 'Actors.actor_tp',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].tp
+      end
+
       # TODO
-      # - `actor_tp`
       # - `actor_max_hp`
       # - `actor_max_mp`
       # - `actor_attack`
