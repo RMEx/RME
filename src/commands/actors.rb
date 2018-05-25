@@ -45,8 +45,18 @@ module RME
         (k.nil?) ? 0 : k.id
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the identifier of the weapon which is currently
+      #   equipped by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_weapon,
+                        :description => 'Actors.actor_weapon',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        actor_equip(id, :Weapon)
+      end
+
       # TODO
-      # - `actor_weapon`
       # - `actor_shield`
       # - `actor_head`
       # - `actor_body`

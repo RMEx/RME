@@ -50,6 +50,7 @@
   'doc.cmd.Map.get_squares_by_terrain' => "Renvoie un tableau de cases pour un `terrain_tag` donné",
   ## Actors
   'doc.cmd.Actors.actor_equip' => "Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)",
+  'doc.cmd.Actors.actor_weapon' => "Renvoie l'id de l'arme équipée par le héros référencé par son ID",
 
   # Parameters
   ## Map
