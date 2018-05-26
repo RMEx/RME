@@ -647,8 +647,23 @@ module RME
         $game_actors[id].next_level_exp
       end
 
+      # ------------------------------------------------------------------------
+      # * Changes a piece of equipment for the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_change_equip,
+                        :description => 'Actors.actor_change_equip',
+                        :parameters  => [
+                          ACTOR_ID,
+                          SLOT,
+                          {:name        => :item_id,
+                           :description => 'Actors.actor_change_equip.item_id',
+                           :type        => ParameterType::ItemId}
+                        ]}) do |id, slot, item_id|
+        $game_actors[id].change_equip_by_id(type_equip(slot), item_id)
+      end
+
       # TODO
-      # - `actor_change_equip`
       # - `actor_equip_weapon`
       # - `actor_equip_shield`
       # - `actor_equip_head`

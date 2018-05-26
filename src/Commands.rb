@@ -1640,9 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_change_equip(id, slot, wp_id)
-      $game_actors[id].change_equip_by_id(type_equip(slot), wp_id)
-    end
     def actor_equip_weapon(id, wp); actor_equip(id, :Weapon, wp_id); end
     def actor_equip_shield(id, wp); actor_equip(id, :Shield, wp_id); end
     def actor_equip_head(id, wp); actor_equip(id, :Head, wp_id); end

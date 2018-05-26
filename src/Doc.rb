@@ -2799,15 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_change_equip",
-                        "Change l'équipement du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                          :slot => ["Slot d'équipement (:Weapon, :Body, :Shield, : Head, :Accessory)", :Symbol],
-                          :object_id => ["ID de l'Arme ou de l'Armure à mettre (La commande déduira s'il doit s'agir d'une arme ou d'une armure)", :Fixnum]
-                        }
-register_command :actors, "Command.actor_change_equip"
-
 link_method_documentation "Command.actor_equip_weapon",
                         "Change l'arme du héros référencé par son ID",
                         {
