@@ -404,8 +404,18 @@ module RME
         $game_actors[id].hrg
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor regenerate
+      #   its magic (mana) points.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_mp_regeneration_rate,
+                        :description => 'Actors.actor_mp_regeneration_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mrg
+      end
+
       # TODO
-      # - `actor_mp_regeneration_rate`
       # - `actor_tp_regeneration_rate`
       # - `actor_target_rate`
       # - `actor_guard_effect_rate`

@@ -84,6 +84,7 @@
   'doc.cmd.Actors.actor_magical_reflection_rate' => "Renvoie la probabilité de renvoyer une attaque magique pour le héros référencé par son ID",
   'doc.cmd.Actors.actor_counter_attack_rate' => "Renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
   'doc.cmd.Actors.actor_hp_regeneration_rate' => "Renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID",
+  'doc.cmd.Actors.actor_mp_regeneration_rate' => "Renvoie le pourcentage de régénération de MP à chaque tour du héros référencé par son ID",
 
   # Parameters
   ## Map
