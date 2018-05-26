@@ -638,8 +638,18 @@ module RME
         $game_actors[id].class_id
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the remaining number of experience points that the given actor
+      #   has to acquire before leveling-up.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_exp_for_next_level,
+                        :description => 'Actors.actor_exp_for_next_level',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].next_level_exp
+      end
+
       # TODO
-      # - `actor_exp_for_next_level`
       # - `actor_change_equip`
       # - `actor_equip_weapon`
       # - `actor_equip_shield`

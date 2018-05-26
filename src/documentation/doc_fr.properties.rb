@@ -106,6 +106,7 @@
   'doc.cmd.Actors.actor_face_name' => "Renvoie le nom du faceset du héros référencé par son ID",
   'doc.cmd.Actors.actor_face_index' => "Renvoie l'index du faceset du héros référencé par son ID",
   'doc.cmd.Actors.actor_class' => "Renvoie l'ID de la classe du héros référencé par son ID",
+  'doc.cmd.Actors.actor_exp_for_next_level' => "Renvoie le nombre de points d'expérience nécessaires pour que le héros (référencé par son ID) passe au niveau suivant",
 
   # Parameters
   ## Map
