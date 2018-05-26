@@ -127,6 +127,7 @@
   'doc.cmd.Actors.actor_learn' => "Fait apprendre une nouvelle technique au héros",
   'doc.cmd.Actors.actor_forget' => "Fait oublier une technique au héros",
   'doc.cmd.Actors.actor_knowns?' => "Renvoie `true` si le héros connaît la technique; `false` autrement",
+  'doc.cmd.Actors.actor_set_graphic' => "Change les graphismes (charset et portrait) du héros",
 
   # Parameters
   ## Map

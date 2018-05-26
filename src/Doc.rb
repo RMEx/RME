@@ -2799,17 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_set_graphic",
-                        "Change les graphismes du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                          :character_name => ["Charset", :String],
-                          :character_index => ["index du Charset", :Fixnum],
-                          :face_name => ["Faceset", :String],
-                          :face_index => ["Index du faceset", :Fixnum],
-                        }
-register_command :actors, "Command.actor_set_graphic"
-
 link_method_documentation "Command.actor_weapons",
                         "renvoie le tableau des ID's des armes équipées du héros référencé par son ID",
                         {

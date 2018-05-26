@@ -833,8 +833,24 @@ module RME
         $game_actors[id].skill_learn?($data_skills[skill_id])
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates graphics (i.e.: charset & face) which represents the given
+      #   actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_set_graphic,
+                        :description => 'Actors.actor_set_graphic',
+                        :parameters  => [
+                          ACTOR_ID,
+                          CHARSETS_FILENAME,
+                          CHARSET_INDEX,
+                          FACESET_FILENAME,
+                          FACE_INDEX
+                        ]}) do |id, charsets_filename, charset_index, faceset_filename, face_index|
+        $game_actors[id].set_graphic(charsets_filename, charset_index, faceset_filename, face_index)
+      end
+
       # TODO
-      # - `actor_set_graphic`
       # - `actor_weapons`
       # - `actor_armors`
       # - `actor_skills`

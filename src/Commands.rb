@@ -1640,9 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_set_graphic(character_name, character_index, face_name, face_index)
-      $game_actors.set_graphic(character_name, character_index, face_name, face_index)
-    end
     def actor_change_appear(id, character_name, character_index, face_name, face_index)
       $game_actors[id].set_graphic(character_name, character_index, face_name, face_index)
       $game_player.refresh
