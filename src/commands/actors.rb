@@ -24,6 +24,9 @@ module RME
       SLOT = {:name        => :slot,
               :description => 'Actors.slot',
               :type        => ParameterType::EquipmentSlot}
+      SKILL_ID = {:name        => :skill_id,
+                  :description => 'Actors.skill_id',
+                  :type        => ParameterType::SkillId}
 
       # Internal methods
       def self.type_equip(sym)

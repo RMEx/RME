@@ -144,6 +144,7 @@
   ## Actors
   'doc.parameter.Actors.actor_id' => "ID de l'acteur",
   'doc.parameter.Actors.slot' => "Slot d'équipement",
+  'doc.parameter.Actors.skill_id' => "ID de la technique, du sort",
   'doc.parameter.Actors.set_actor_name.name' => "Nouveau nom du héros",
   'doc.parameter.Actors.set_actor_nickname.name' => "Nouveau surnom du héros",
   'doc.parameter.Actors.actor_change_equip.item_id' => "ID de la pièce d'équipement à faire équiper",
