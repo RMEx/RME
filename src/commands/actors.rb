@@ -797,8 +797,17 @@ module RME
         $game_actors[id].learn_skill(skill_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Makes the given actor forget a skill
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_forget,
+                        :description => 'Actors.actor_forget',
+                        :parameters  => [ACTOR_ID, SKILl_ID]}) do |id, skill_id|
+        $game_actors[id].forget_skill(skill_id)
+      end
+
       # TODO
-      # - `actor_forget`
       # - `actor_knowns?`
       # - `actor_set_graphic`
       # - `actor_weapons`

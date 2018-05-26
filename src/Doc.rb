@@ -2799,14 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_forget",
-                        "Oublie la technique passée en argument au héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                          :skill_id => ["ID de le technique", :Fixnum],
-                        }
-register_command :actors, "Command.actor_forget"
-
 link_method_documentation "Command.actor_knowns?",
                         "Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon",
                         {
