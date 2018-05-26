@@ -448,8 +448,18 @@ module RME
         $game_actors[id].grd
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the capability of the given actor to recover its health
+      #   and magical (mana) points.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_recovery_effect_rate,
+                        :description => 'Actors.actor_recovery_effect_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].rec
+      end
+
       # TODO
-      # - `actor_revory_effect_rate`
       # - `actor_pharmacology`
       # - `actor_mp_cost_rate`
       # - `actor_tp_charge_rate`
