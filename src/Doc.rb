@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_magical_reflection_rate",
-                        "renvoie la probabilité d'une réflexion magique du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_magical_reflection_rate"
-
 link_method_documentation "Command.actor_counter_attack_rate",
                         "renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
                         {
