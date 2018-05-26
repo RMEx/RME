@@ -768,8 +768,23 @@ module RME
         $game_actors[id].level_down
       end
 
+      # ------------------------------------------------------------------------
+      # * Adds or removes a given amount of experiences points,
+      #   to the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_give_exp,
+                        :description => 'Actors.actor_give_exp',
+                        :parameters  => [
+                          ACTOR_ID,
+                          {:name        => :exp,
+                           :description => 'Actors.actor_give_exp.exp',
+                           :type        => ParameterType::Integer}
+                        ]}) do |id, exp|
+        $game_actors[id].gain_exp(exp)
+      end
+
       # TODO
-      # - `actor_give_exp`
       # - `actor_learn`
       # - `actor_forget`
       # - `actor_knowns?`

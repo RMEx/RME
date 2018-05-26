@@ -120,6 +120,7 @@
   'doc.cmd.Actors.actor_optimize_equipement' => "Optimise l'équipement du héros",
   'doc.cmd.Actors.actor_level_up' => "Fait gagner un niveau au héros",
   'doc.cmd.Actors.actor_level_down' => "Fait perdre un niveau au héros",
+  'doc.cmd.Actors.actor_give_exp' => "Fait gagner ou perdre de l'expérience au héros",
 
   # Parameters
   ## Map
@@ -149,5 +150,6 @@
   'doc.parameter.Actors.actor_equip_shield.shield_id' => "ID du bouclier à faire équiper",
   'doc.parameter.Actors.actor_equip_head.head_id' => "ID du casque à faire équiper",
   'doc.parameter.Actors.actor_equip_body.body_id' => "ID de l'armure à faire équiper",
-  'doc.parameter.Actors.actor_equip_accessory.accessory_id' => "ID de l'accessoire à faire équiper"
+  'doc.parameter.Actors.actor_equip_accessory.accessory_id' => "ID de l'accessoire à faire équiper",
+  'doc.parameter.Actors.actor_give_exp.exp' => "La quantité d'expérience à ajouter (nombre positif) ou à enlever (nombre négatif)"
 }
