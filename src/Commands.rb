@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_equip_accessory(id, wp); actor_equip(id, :Accessory, wp_id); end
     def actor_optimize_equipement(id); $game_actors[id].optimize_equipement; end
     def actor_level_up(id); $game_actors[id].level_up; end
     def actor_level_down(id); $game_actors[id].level_down; end
