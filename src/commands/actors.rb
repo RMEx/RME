@@ -21,6 +21,9 @@ module RME
       ACTOR_ID = {:name        => :id,
                   :type        => ParameterType::ActorId,
                   :description => 'Actors.actor_id'}
+      SLOT = {:name        => :slot,
+              :description => 'Actors.actor_equip.slot',
+              :type        => ParameterType::EquipmentSlot}
 
       # Internal methods
       def self.type_equip(sym)
@@ -35,12 +38,7 @@ module RME
       Command::declare({:section     => self,
                         :name        => :actor_equip,
                         :description => 'Actors.actor_equip',
-                        :parameters  => [
-                           ACTOR_ID,
-                           {:name        => :slot,
-                            :description => 'Actors.actor_equip.slot',
-                            :type        => ParameterType::EquipmentSlot}
-                         ]}) do |id, slot|
+                        :parameters  => [ACTOR_ID, SLOT]}) do |id, slot|
         k = $game_actors[id].equips[type_equip(slot)]
         (k.nil?) ? 0 : k.id
       end
