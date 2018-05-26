@@ -14,6 +14,7 @@
   'doc.ActorId.description' => "Identifiant d'un héros",
   'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
   'doc.ItemId.description' => "Identifiant d'un item (objets, consommables ou pièces d'équipement)",
+  'doc.SkillId.description' => "Identifiant d'une technique, d'un sort",
 
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",

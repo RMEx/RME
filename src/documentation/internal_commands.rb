@@ -153,6 +153,9 @@ module RME
       ParameterType::declare(:ItemId,
                              "Item's identifier",
                              ClosedInterval.new(1, 9999))
+      ParameterType::declare(:SkillId,
+                             "Skill's identifier",
+                             ClosedInterval.new(1, 9999))
 
       # TODO: add other domains' definition
 
