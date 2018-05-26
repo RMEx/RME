@@ -482,8 +482,19 @@ module RME
         $game_actors[id].mcr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the costs' ratio in terms of "time" points,
+      #   when an attack requiring "time" points has been triggered
+      #   by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_mp_cost_rate,
+                        :description => 'Actors.actor_tp_charge_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].tcr
+      end
+
       # TODO
-      # - `actor_tp_charge_rate`
       # - `actor_physical_damage_rate`
       # - `actor_magical_damage_rate`
       # - `actor_floor_damage_rate`
