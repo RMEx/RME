@@ -117,6 +117,7 @@
   'doc.cmd.Actors.actor_equip_body' => "Change l'armure du héros",
   'doc.cmd.Actors.actor_equip_accessory' => "Change l'accessoire du héros",
   'doc.cmd.Actors.actor_optimize_equipement' => "Optimise l'équipement du héros",
+  'doc.cmd.Actors.actor_level_up' => "Fait gagner un niveau au héros",
 
   # Parameters
   ## Map

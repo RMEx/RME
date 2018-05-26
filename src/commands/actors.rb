@@ -748,8 +748,17 @@ module RME
         $game_actors[id].optimize_equipement
       end
 
+      # ------------------------------------------------------------------------
+      # * Adds one level to the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_level_up,
+                        :description => 'Actors.actor_level_up',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].level_up
+      end
+
       # TODO
-      # - `actor_level_up`
       # - `actor_level_down`
       # - `actor_give_exp`
       # - `actor_learn`
