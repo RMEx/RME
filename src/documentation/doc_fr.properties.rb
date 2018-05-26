@@ -90,6 +90,7 @@
   'doc.cmd.Actors.actor_guard_effect_rate' => "Renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID",
   'doc.cmd.Actors.actor_recovery_effect_rate' => "Renvoie le pourcentage de PV/PM reçu, du héros référencé par son ID",
   'doc.cmd.Actors.actor_pharmacology' => "Renvoie le pourcentrage de PV/PM récupéré via un objet par le héros référencé par son ID",
+  'doc.cmd.Actors.actor_mp_cost_rate' => "Renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID",
 
   # Parameters
   ## Map
