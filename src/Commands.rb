@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_optimize_equipement(id); $game_actors[id].optimize_equipement; end
     def actor_level_up(id); $game_actors[id].level_up; end
     def actor_level_down(id); $game_actors[id].level_down; end
     def actor_give_exp(id, exp); $game_actors[id].gain_exp(exp); end

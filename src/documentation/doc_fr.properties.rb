@@ -116,6 +116,7 @@
   'doc.cmd.Actors.actor_equip_head' => "Change le casque du héros",
   'doc.cmd.Actors.actor_equip_body' => "Change l'armure du héros",
   'doc.cmd.Actors.actor_equip_accessory' => "Change l'accessoire du héros",
+  'doc.cmd.Actors.actor_optimize_equipement' => "Optimise l'équipement du héros",
 
   # Parameters
   ## Map

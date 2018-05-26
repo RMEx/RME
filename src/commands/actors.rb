@@ -738,8 +738,17 @@ module RME
         actor_equip(id, :Accessory, accessory_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Optimizes the equipement of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_optimize_equipement,
+                        :description => 'Actors.actor_optimize_equipement',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].optimize_equipement
+      end
+
       # TODO
-      # - `actor_optimize_equipement`
       # - `actor_level_up`
       # - `actor_level_down`
       # - `actor_give_exp`
