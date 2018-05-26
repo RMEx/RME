@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_counter_attack_rate",
-                        "renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_counter_attack_rate"
-
 link_method_documentation "Command.actor_hp_regeneration_rate",
                         "renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID",
                         {

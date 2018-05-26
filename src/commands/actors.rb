@@ -382,8 +382,18 @@ module RME
         $game_actors[id].mrf
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor can successfully reflect
+      #   physical attacks performed by monsters.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_counter_attack_rate,
+                        :description => 'Actors.actor_counter_attack_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].cnt
+      end
+
       # TODO
-      # - `actor_counter_attack_rate`
       # - `actor_hp_regeneration_rate`
       # - `actor_mp_regeneration_rate`
       # - `actor_tp_regeneration_rate`

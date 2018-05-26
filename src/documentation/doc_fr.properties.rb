@@ -82,6 +82,7 @@
   'doc.cmd.Actors.actor_critical_evasion_rate' => "Renvoie la probabilité de faire un coup critique en préemptif du héros référencé par son ID",
   'doc.cmd.Actors.actor_magical_evasion_rate' => "Renvoie la probabilité d'esquiver une attaque magique pour le héros référencé par son ID",
   'doc.cmd.Actors.actor_magical_reflection_rate' => "Renvoie la probabilité de renvoyer une attaque magique pour le héros référencé par son ID",
+  'doc.cmd.Actors.actor_counter_attack_rate' => "Renvoie la probabilité d'un contre (sur une attaque physique) du héros référencé par son ID",
 
   # Parameters
   ## Map
