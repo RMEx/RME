@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_character_index",
-                        "renvoie l'index du charset du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_character_index"
-
 link_method_documentation "Command.actor_face_name",
                         "renvoie le nom du faceset du héros référencé par son ID",
                         {
