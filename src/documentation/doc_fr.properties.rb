@@ -78,6 +78,7 @@
   'doc.cmd.Actors.actor_luck' => "Renvoie les points de chance du héros référencé par son ID",
   'doc.cmd.Actors.actor_hit' => "Renvoie la probabilité de toucher un ennemi pour le héros référencé par son ID",
   'doc.cmd.Actors.actor_evasion_rate' => "Renvoie la probabilité d'esquiver une attaque physique du héros référencé par son ID",
+  'doc.cmd.Actors.actor_critical_rate' => "Renvoie la probabilité de coup critique du héros référencé par son ID",
 
   # Parameters
   ## Map
