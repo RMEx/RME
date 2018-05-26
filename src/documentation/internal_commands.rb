@@ -129,7 +129,7 @@ module RME
                              Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
       ParameterType::declare(:String,
                              "String value",
-                             Domain.new(lambda { |x| (x.is_a? String) }))
+                             Domain.new(lambda { |x| (x.is_a? ::String) }))
 
       ParameterType::declare(:Direction,
                              "Movement direction",
