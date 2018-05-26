@@ -437,8 +437,18 @@ module RME
         $game_actors[id].tgr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the capability of the given actor to reduce physical damage
+      #   it takes.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_guard_effect_rate,
+                        :description => 'Actors.actor_guard_effect_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].grd
+      end
+
       # TODO
-      # - `actor_guard_effect_rate`
       # - `actor_revory_effect_rate`
       # - `actor_pharmacology`
       # - `actor_mp_cost_rate`

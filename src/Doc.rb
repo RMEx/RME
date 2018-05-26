@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_guard_effect_rate",
-                        "renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_guard_effect_rate"
-
 link_method_documentation "Command.actor_recovery_effect_rate",
                         "renvoie le pourcentage de PV/PM reçu, du héros référencé par son ID",
                         {
