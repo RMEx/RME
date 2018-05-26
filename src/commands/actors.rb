@@ -393,8 +393,18 @@ module RME
         $game_actors[id].cnt
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor regenerate
+      #   its health points.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_hp_regeneration_rate,
+                        :description => 'Actors.actor_hp_regeneration_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].hrg
+      end
+
       # TODO
-      # - `actor_hp_regeneration_rate`
       # - `actor_mp_regeneration_rate`
       # - `actor_tp_regeneration_rate`
       # - `actor_target_rate`
