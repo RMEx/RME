@@ -527,8 +527,18 @@ module RME
         $game_actors[id].fdr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the ratio of experience's growth that the given actor
+      #   can acquire.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_experience_rate,
+                        :description => 'Actors.actor_experience_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].exr
+      end
+
       # TODO
-      # - `actor_exp_rate`
       # - `actor_name`
       # - `set_actor_name`
       # - `actor_nickname`
