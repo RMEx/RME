@@ -516,8 +516,18 @@ module RME
         $game_actors[id].mdr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the ratio of floor-performed physical damage that the given
+      #   actor has lastly received.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_floor_damage_rate,
+                        :description => 'Actors.actor_floor_damage_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].fdr
+      end
+
       # TODO
-      # - `actor_floor_damage_rate`
       # - `actor_exp_rate`
       # - `actor_name`
       # - `set_actor_name`
