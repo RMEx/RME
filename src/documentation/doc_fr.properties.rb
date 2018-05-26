@@ -113,6 +113,7 @@
   'doc.cmd.Actors.actor_change_equip' => "Change une pièce d'équipement pour le héros donné (référencé par son ID)",
   'doc.cmd.Actors.actor_equip_weapon' => "Change l'arme du héros",
   'doc.cmd.Actors.actor_equip_shield' => "Change le bouclier du héros",
+  'doc.cmd.Actors.actor_equip_head' => "Change le casque du héros",
 
   # Parameters
   ## Map
@@ -140,4 +141,5 @@
   'doc.parameter.Actors.actor_change_equip.item_id' => "ID de la pièce d'équipement à faire équiper",
   'doc.parameter.Actors.actor_equip_weapon.weapon_id' => "ID de l'arme à faire équiper",
   'doc.parameter.Actors.actor_equip_shield.shield_id' => "ID du bouclier à faire équiper",
+  'doc.parameter.Actors.actor_equip_head.head_id' => "ID du casque à faire équiper"
 }

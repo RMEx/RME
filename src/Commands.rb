@@ -1639,8 +1639,7 @@ module RMECommands
   #  DatabaseActor commands
   #==============================================================================
 
-  module Actors
-    def actor_equip_head(id, wp); actor_equip(id, :Head, wp_id); end
+  module Actor
     def actor_equip_body(id, wp); actor_equip(id, :Body, wp_id); end
     def actor_equip_accessory(id, wp); actor_equip(id, :Accessory, wp_id); end
     def actor_optimize_equipement(id); $game_actors[id].optimize_equipement; end
