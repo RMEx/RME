@@ -10,6 +10,9 @@
   'doc.RegionId.description' => "Identifiant de région (tiles)",
   'doc.LayerId.description' => "Identifiant de la couche (tiles)",
   'doc.TerrainTag.description' => "Étiquette de terrain (tiles)",
+  'doc.ActorId.description' => "Identifiant d'un héros",
+  'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
+  'doc.ItemId.description' => "Identifiant d'un item (objets, consommables ou pièces d'équipement)",
 
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",
@@ -128,7 +131,7 @@
   'doc.parameter.Map.get_squares_by_terrain.terrain_tag' => "Le terrain tag (entre 0 et 7)",
   ## Actors
   'doc.parameter.Actors.actor_id' => "ID de l'acteur",
-  'doc.parameter.Actors.actor_equip.slot' => "Slot d'équipement",
+  'doc.parameter.Actors.slot' => "Slot d'équipement",
   'doc.parameter.Actors.set_actor_name.name' => "Nouveau nom du héros",
   'doc.parameter.Actors.set_actor_nickname.name' => "Nouveau surnom du héros"
 }

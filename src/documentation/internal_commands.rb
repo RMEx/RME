@@ -147,6 +147,9 @@ module RME
       ParameterType::declare(:EquipmentSlot,
                              "Equipment's slot",
                              Set.new(:Weapon, :Head, :Body, :Shield, :Accessory))
+      ParameterType::declare(:ItemId,
+                             "Item's identifier",
+                             ClosedInterval.new(1, 9999))
 
       # TODO: add other domains' definition
 

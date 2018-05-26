@@ -22,7 +22,7 @@ module RME
                   :type        => ParameterType::ActorId,
                   :description => 'Actors.actor_id'}
       SLOT = {:name        => :slot,
-              :description => 'Actors.actor_equip.slot',
+              :description => 'Actors.slot',
               :type        => ParameterType::EquipmentSlot}
 
       # Internal methods
