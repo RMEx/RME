@@ -86,6 +86,7 @@
   'doc.cmd.Actors.actor_hp_regeneration_rate' => "Renvoie le pourcentage de régénération de PV à chaque tour du héros référencé par son ID",
   'doc.cmd.Actors.actor_mp_regeneration_rate' => "Renvoie le pourcentage de régénération de MP à chaque tour du héros référencé par son ID",
   'doc.cmd.Actors.actor_tp_regeneration_rate' => "Renvoie le pourcentage de régénération de TP à chaque tour du héros référencé par son ID",
+  'doc.cmd.Actors.actor_target_rate' => "Renvoie la probabilité qu'à le héros (référencé par son ID) d'être ciblé par un ennemi",
 
   # Parameters
   ## Map

@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_target_rate(id); $game_actors[id].tgr; end
     def actor_guard_effect_rate(id); $game_actors[id].grd; end
     def actor_recovery_effect_rate(id); $game_actors[id].rec; end
     def actor_pharmacology(id); $game_actors[id].pha; end

@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_target_rate",
-                        "renvoie la probabilité d'être ciblé par un ennemi, du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_target_rate"
-
 link_method_documentation "Command.actor_guard_effect_rate",
                         "renvoie la force de défense (diminution de l'attaque subie) du héros référencé par son ID",
                         {
