@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_face_name(id); $game_actors[id].face_name; end
     def actor_face_index(id); $game_actors[id].face_index; end
     def actor_class(id); $game_actors[id].class_id; end
     def actor_exp_for_next_level(id); $game_actors[id].next_level_exp; end

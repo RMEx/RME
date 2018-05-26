@@ -608,8 +608,17 @@ module RME
         $game_actors[id].character_index
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the name of the faceset which represents the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_face_name,
+                        :description => 'Actors.actor_face_name',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].face_name
+      end
+
       # TODO
-      # - `actor_face_name`
       # - `actor_face_index`
       # - `actor_class`
       # - `actor_exp_for_next_level`

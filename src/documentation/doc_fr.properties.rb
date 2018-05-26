@@ -103,6 +103,7 @@
   'doc.cmd.Actors.set_actor_nickname' => "Modifie le surnom du héros référencé par son ID",
   'doc.cmd.Actors.actor_character_name' => "Renvoie le nom du charset du héros référencé par son ID",
   'doc.cmd.Actors.actor_character_index' => "Renvoie l'index du charset du héros référencé par son ID",
+  'doc.cmd.Actors.actor_face_name' => "Renvoie le nom du faceset du héros référencé par son ID",
 
   # Parameters
   ## Map
