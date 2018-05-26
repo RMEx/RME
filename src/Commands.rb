@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_class(id); $game_actors[id].class_id; end
     def actor_exp_for_next_level(id); $game_actors[id].next_level_exp; end
     def actor_change_equip(id, slot, wp_id)
       $game_actors[id].change_equip_by_id(type_equip(slot), wp_id)

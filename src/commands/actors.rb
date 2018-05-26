@@ -628,8 +628,17 @@ module RME
         $game_actors[id].face_index
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the index of the class to which belongs the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_class,
+                        :description => 'Actors.actor_class',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].class_id
+      end
+
       # TODO
-      # - `actor_class`
       # - `actor_exp_for_next_level`
       # - `actor_change_equip`
       # - `actor_equip_weapon`

@@ -105,6 +105,7 @@
   'doc.cmd.Actors.actor_character_index' => "Renvoie l'index du charset du héros référencé par son ID",
   'doc.cmd.Actors.actor_face_name' => "Renvoie le nom du faceset du héros référencé par son ID",
   'doc.cmd.Actors.actor_face_index' => "Renvoie l'index du faceset du héros référencé par son ID",
+  'doc.cmd.Actors.actor_class' => "Renvoie l'ID de la classe du héros référencé par son ID",
 
   # Parameters
   ## Map
