@@ -209,6 +209,8 @@ module RME
                                                                      cmd[:see],
                                                                      cmd[:deprecated_since]))
 
+      # TODO: Handle aliases regarding the documentation process
+
       # Generating method
       section.send(:define_method, cmd[:name]) do |*args|
 
@@ -243,7 +245,24 @@ module RME
           raise "There is no underlying block or method to call for #{cmd[:name]} !"
         end
 
-      end
+       end
+
+       # Generating aliases
+       aliases =
+         if (cmd[:alias].nil?)
+           Array.new
+         elsif (cmd[:alias].is_a? Symbol)
+           Array.new << cmd[:alias]
+         elsif (cmd[:alias].is_a? Array)
+           cmd[:alias]
+         else
+           raise "Invalid alias(es) definition for #{section}::#{cmd[:name]} !"
+         end
+
+       aliases.each do |a|
+         section.send(:alias_method, a, cmd[:name])
+       end
+
     end
 
   end
