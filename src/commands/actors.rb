@@ -415,8 +415,18 @@ module RME
         $game_actors[id].mrg
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor regenerate
+      #   its "time" points.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_tp_regeneration_rate,
+                        :description => 'Actors.actor_tp_regeneration_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].trg
+      end
+
       # TODO
-      # - `actor_tp_regeneration_rate`
       # - `actor_target_rate`
       # - `actor_guard_effect_rate`
       # - `actor_revory_effect_rate`
