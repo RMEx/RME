@@ -2799,14 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_equip_shield",
-                        "Change le bouclier du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                          :object_id => ["ID de l'Armure", :Fixnum]
-                        }
-register_command :actors, "Command.actor_equip_shield"
-
 link_method_documentation "Command.actor_equip_head",
                         "Change le casque du héros référencé par son ID",
                         {
