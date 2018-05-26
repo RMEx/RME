@@ -832,6 +832,7 @@ module RME
       # - `actor_slot`
       # - `actor_element_rate`
 
+      append_commands
     end
   end
 end
