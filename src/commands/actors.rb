@@ -563,8 +563,17 @@ module RME
         $game_actors[id].name = new_name
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the nickname of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_nickname,
+                        :description => 'Actors.actor_nickname',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].nickname
+      end
+
       # TODO
-      # - `actor_nickname`
       # - `set_actor_nickname`
       # - `actor_character_name`
       # - `actor_character_index`

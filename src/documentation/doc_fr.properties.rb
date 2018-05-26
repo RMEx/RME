@@ -99,6 +99,7 @@
   'doc.cmd.Actors.actor_experience_rate' => "Renvoie le pourcentage correspondant à la croissance en points d'expérience du héros référencé par son ID",
   'doc.cmd.Actors.actor_name' => "Renvoie le nom du héros référencé par son ID",
   'doc.cmd.Actors.set_actor_name' => "Modifie le nom du héros référencé par son ID",
+  'doc.cmd.Actors.actor_nickname' => "Renvoie le surnom du héros référencé par son ID",
 
   # Parameters
   ## Map
