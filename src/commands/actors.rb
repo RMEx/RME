@@ -360,8 +360,18 @@ module RME
         $game_actors[id].cev
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor can successfully dodge
+      #   magical attacks performed by monsters.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_magical_evasion_rate,
+                        :description => 'Actors.actor_magical_evasion_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mev
+      end
+
       # TODO
-      # - `actor_magical_evasion_rate`
       # - `actor_magical_reflection_rate`
       # - `actor_counter_attack_rate`
       # - `actor_hp_regeneration_rate`

@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_magical_evasion_rate",
-                        "renvoie la probabilité d'une esquiver une attaque magique d'un ennemi pour le héros référencé par son ID ",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_magical_evasion_rate"
-
 link_method_documentation "Command.actor_magical_reflection_rate",
                         "renvoie la probabilité d'une réflexion magique du héros référencé par son ID",
                         {

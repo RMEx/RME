@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_magical_evasion_rate(id); $game_actors[id].mev; end
     def actor_magical_reflection_rate(id); $game_actors[id].mrf; end
     def actor_counter_attack_rate(id); $game_actors[id].cnt; end
     def actor_hp_regeneration_rate(id); $game_actors[id].hrg; end
