@@ -548,8 +548,22 @@ module RME
         $game_actors[id].name
       end
 
+      # ------------------------------------------------------------------------
+      # * Modifies the name of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :set_actor_name,
+                        :description => 'Actors.set_actor_name',
+                        :parameters  => [
+                          ACTOR_ID,
+                          {:name        => :new_name,
+                           :description => 'Actors.set_actor_name.name',
+                           :type        => ParameterType::String}
+                        ]}) do |id, new_name|
+        $game_actors[id].name = new_name
+      end
+
       # TODO
-      # - `set_actor_name`
       # - `actor_nickname`
       # - `set_actor_nickname`
       # - `actor_character_name`

@@ -98,6 +98,7 @@
   'doc.cmd.Actors.actor_floor_damage_rate' => "Renvoie le pourcentage de dégâts de terrain reçus par le héros référencé par son ID",
   'doc.cmd.Actors.actor_experience_rate' => "Renvoie le pourcentage correspondant à la croissance en points d'expérience du héros référencé par son ID",
   'doc.cmd.Actors.actor_name' => "Renvoie le nom du héros référencé par son ID",
+  'doc.cmd.Actors.set_actor_name' => "Modifie le nom du héros référencé par son ID",
 
   # Parameters
   ## Map
@@ -119,5 +120,6 @@
   'doc.parameter.Map.get_squares_by_terrain.terrain_tag' => "Le terrain tag (entre 0 et 7)",
   ## Actors
   'doc.parameter.Actors.actor_id' => "ID de l'acteur",
-  'doc.parameter.Actors.actor_equip.slot' => "Slot d'équipement"
+  'doc.parameter.Actors.actor_equip.slot' => "Slot d'équipement",
+  'doc.parameter.Actors.set_actor_name.name' => "Nouveau nom du héros"
 }
