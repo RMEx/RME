@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_level_down(id); $game_actors[id].level_down; end
     def actor_give_exp(id, exp); $game_actors[id].gain_exp(exp); end
     def actor_learn(id, skill_id); $game_actors[id].learn_skill(skill_id); end
     def actor_forget(id, skill_id); $game_actors[id].forget_skill(skill_id); end

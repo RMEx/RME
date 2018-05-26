@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_level_down",
-                        "fait perdre un niveau au héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }
-register_command :actors, "Command.actor_level_down"
-
 link_method_documentation "Command.actor_give_exp",
                         "fait gagner de l'expérience au héros référencé par son ID",
                         {

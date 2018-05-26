@@ -758,8 +758,17 @@ module RME
         $game_actors[id].level_up
       end
 
+      # ------------------------------------------------------------------------
+      # * Removes one level to the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_level_down,
+                        :description => 'Actors.actor_level_down',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].level_down
+      end
+
       # TODO
-      # - `actor_level_down`
       # - `actor_give_exp`
       # - `actor_learn`
       # - `actor_forget`
