@@ -3,6 +3,7 @@
   # Parameters' types
   'doc.Coordinate.description'      => "Coordonées d'un point dans un repère cartésien",
   'doc.Boolean.description'         => 'Valeur booléenne (deux états : vrai ou faux)',
+  'doc.Integer.description' => 'Entier',
   'doc.PositiveInteger.description' => 'Entier positif',
   'doc.NullablePositiveInteger.description' => 'Entier positif (peut-être nul)',
   'doc.String.description' => "Chaîne de caractères",

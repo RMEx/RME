@@ -118,6 +118,9 @@ module RME
       ParameterType::declare(:Boolean,
                              "Boolean value",
                              Set.new(true, false))
+      ParameterType::declare(:Integer,
+                             "Integer (positive or negative)",
+                             Domain.new(lambda { |x| x.is_a? Integer }))
       ParameterType::declare(:PositiveInteger,
                              "Positive integer",
                              Domain.new(lambda { |x| (x.is_a? Integer) and (0 <= x) }))
