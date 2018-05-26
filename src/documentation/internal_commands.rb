@@ -236,11 +236,19 @@ module RME
           end
         end
 
+        # Preparing command's arguments
+        cmd_args =
+          if not(cmd[:parameters].nil?) and (1 == cmd[:parameters].size)
+            args[0]
+          else
+            args
+          end
+
         # Calling the delegated method
         if (cmd[:call].is_a? Proc)
           cmd[:call]
         elsif block_given?
-          yield args
+          yield cmd_args
         else
           raise "There is no underlying block or method to call for #{cmd[:name]} !"
         end
