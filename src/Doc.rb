@@ -2799,14 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_weapons",
-                        "renvoie le tableau des ID's des armes équipées du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_weapons"
-
-
 link_method_documentation "Command.actor_armors",
                         "renvoie le tableau des ID's des armures équipées du héros référencé par son ID",
                         {

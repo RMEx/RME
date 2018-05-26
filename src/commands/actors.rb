@@ -850,8 +850,18 @@ module RME
         $game_actors[id].set_graphic(charsets_filename, charset_index, faceset_filename, face_index)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the list of weapons (actual weapon and shield) currently
+      #   equipped by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_weapons,
+                        :description => 'Actors.actor_weapons',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].weapons.map{|w| w.id}
+      end
+
       # TODO
-      # - `actor_weapons`
       # - `actor_armors`
       # - `actor_skills`
       # - `actor_change_appear`

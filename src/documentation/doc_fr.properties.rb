@@ -128,6 +128,7 @@
   'doc.cmd.Actors.actor_forget' => "Fait oublier une technique au héros",
   'doc.cmd.Actors.actor_knowns?' => "Renvoie `true` si le héros connaît la technique; `false` autrement",
   'doc.cmd.Actors.actor_set_graphic' => "Change les graphismes (charset et portrait) du héros",
+  'doc.cmd.Actors.actor_weapons' => "Renvoie la liste des armes (vrais armes et boucliers) qui sont actuellement équippées par le héros",
 
   # Parameters
   ## Map

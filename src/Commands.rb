@@ -1655,7 +1655,6 @@ module RMECommands
       $game_player.refresh
     end
     def actor_skills(id); $game_actors[id].skills.map{|s| s.id}; end
-    def actor_weapons(id); $game_actors[id].weapons.map{|w| w.id}; end
     def actor_armors(id); $game_actors[id].armors.map{|a| a.id}; end
     def actor_element_rate(id, element_id)
       $game_actors[id].element_rate(element_id)
