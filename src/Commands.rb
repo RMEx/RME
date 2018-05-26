@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_learn(id, skill_id); $game_actors[id].learn_skill(skill_id); end
     def actor_forget(id, skill_id); $game_actors[id].forget_skill(skill_id); end
     def actor_knowns?(id, skill_id); $game_actors[id].skill_learn?($data_skills[skill_id]); end
     def actor_set_graphic(character_name, character_index, face_name, face_index)
