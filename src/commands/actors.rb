@@ -494,8 +494,18 @@ module RME
         $game_actors[id].tcr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the ratio of physical damage that the given actor
+      #   has lastly received.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_physical_damage_rate,
+                        :description => 'Actors.actor_physical_damage_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].pdr
+      end
+
       # TODO
-      # - `actor_physical_damage_rate`
       # - `actor_magical_damage_rate`
       # - `actor_floor_damage_rate`
       # - `actor_exp_rate`
