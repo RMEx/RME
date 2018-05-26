@@ -27,6 +27,18 @@ module RME
       SKILL_ID = {:name        => :skill_id,
                   :description => 'Actors.skill_id',
                   :type        => ParameterType::SkillId}
+      CHARSETS_FILENAME = {:name        => :charsets_filename,
+                           :description => 'Actors.charsets_filename',
+                           :type        => ParameterType::String}
+      CHARSET_INDEX = {:name        => :charset_index,
+                       :description => 'Actors.charset_index',
+                       :type        => ParameterType::CharsetIndex}
+      FACESET_FILENAME = {:name        => :faceset_filename,
+                          :description => 'Actors.faceset_filename',
+                          :type        => ParameterType::String}
+      FACE_INDEX = {:name        => :face_index,
+                    :description => 'Actors.face_index',
+                    :type        => ParameterType::FaceIndex}
 
       # Internal methods
       def self.type_equip(sym)
