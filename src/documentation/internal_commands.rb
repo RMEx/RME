@@ -120,10 +120,10 @@ module RME
                              Set.new(true, false))
       ParameterType::declare(:Integer,
                              "Integer (positive or negative)",
-                             Domain.new(lambda { |x| x.is_a? Integer }))
+                             Domain.new(lambda { |x| (x.is_a? ::Integer) }))
       ParameterType::declare(:PositiveInteger,
                              "Positive integer",
-                             Domain.new(lambda { |x| (x.is_a? Integer) and (0 <= x) }))
+                             Domain.new(lambda { |x| (x.is_a? ::Integer) and (0 <= x) }))
       ParameterType::declare(:NullablePositiveInteger,
                              "Nullable positive integer",
                              Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
