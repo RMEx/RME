@@ -96,6 +96,7 @@
   'doc.cmd.Actors.actor_magical_damage_rate' => "Renvoie le pourcentage de dégâts magiques reçus par le héros référencé par son ID",
   'doc.cmd.Actors.actor_floor_damage_rate' => "Renvoie le pourcentage de dégâts de terrain reçus par le héros référencé par son ID",
   'doc.cmd.Actors.actor_experience_rate' => "Renvoie le pourcentage correspondant à la croissance en points d'expérience du héros référencé par son ID",
+  'doc.cmd.Actors.actor_name' => "Renvoie le nom du héros référencé par son ID",
 
   # Parameters
   ## Map

@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_name",
-                        "renvoie le nom du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_name"
-
 link_method_documentation "Command.set_actor_name",
                         "modifie le nom du héros référencé par son ID",
                         {

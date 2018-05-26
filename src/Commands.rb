@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_name(id); $game_actors[id].name; end
     def set_actor_name(id, n); $game_actors[id].name = n; end
     def actor_nickname(id); $game_actors[id].nickname; end
     def set_actor_nickname(id, n); $game_actors[id].nickname = n; end

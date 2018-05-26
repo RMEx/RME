@@ -538,8 +538,17 @@ module RME
         $game_actors[id].exr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the name of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_name,
+                        :description => 'Actors.actor_name',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].name
+      end
+
       # TODO
-      # - `actor_name`
       # - `set_actor_name`
       # - `actor_nickname`
       # - `set_actor_nickname`
