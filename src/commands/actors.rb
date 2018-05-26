@@ -796,7 +796,7 @@ module RME
       Command::declare({:section     => self,
                         :name        => :actor_learn,
                         :description => 'Actors.actor_learn',
-                        :parameters  => [ACTOR_ID, SKILl_ID]}) do |id, skill_id|
+                        :parameters  => [ACTOR_ID, SKILL_ID]}) do |id, skill_id|
         $game_actors[id].learn_skill(skill_id)
       end
 
@@ -806,7 +806,7 @@ module RME
       Command::declare({:section     => self,
                         :name        => :actor_forget,
                         :description => 'Actors.actor_forget',
-                        :parameters  => [ACTOR_ID, SKILl_ID]}) do |id, skill_id|
+                        :parameters  => [ACTOR_ID, SKILL_ID]}) do |id, skill_id|
         $game_actors[id].forget_skill(skill_id)
       end
 
@@ -817,7 +817,7 @@ module RME
       Command::declare({:section     => self,
                         :name        => :actor_knowns?,
                         :description => 'Actors.actor_knowns?',
-                        :parameters  => [ACTOR_ID, SKILl_ID]}) do |id, skill_id|
+                        :parameters  => [ACTOR_ID, SKILL_ID]}) do |id, skill_id|
         $game_actors[id].skill_learn?($data_skills[skill_id])
       end
 
