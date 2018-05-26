@@ -15,7 +15,7 @@
   'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
   'doc.ItemId.description' => "Identifiant d'un item (objets, consommables ou pièces d'équipement)",
   'doc.SkillId.description' => "Identifiant d'une technique, d'un sort",
-  'doc.CharacterIndex.description' => "Indice du charset représentant le héros, au sein du fichier dans lequel is trouve",
+  'doc.CharsetIndex.description' => "Indice du charset représentant le héros, au sein du fichier dans lequel is trouve",
   'doc.FaceIndex.description' => "Indice du portrait représentant le héros, au sein du fichier dans lequel il se trouve",
 
   # Sections
