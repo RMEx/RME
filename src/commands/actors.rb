@@ -327,8 +327,18 @@ module RME
         $game_actors[id].hit
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor can successfully dodge
+      #   monsters' attacks.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_evasion_rate,
+                        :description => 'Actors.actor_evasion_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].eva
+      end
+
       # TODO
-      # - `actor_evasion_rate`
       # - `actor_critical_rate`
       # - `actor_critical_evasion_rate`
       # - `actor_magical_evasion_rate`
