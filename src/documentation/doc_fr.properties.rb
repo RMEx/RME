@@ -5,6 +5,7 @@
   'doc.Boolean.description'         => 'Valeur booléenne (deux états : vrai ou faux)',
   'doc.PositiveInteger.description' => 'Entier positif',
   'doc.NullablePositiveInteger.description' => 'Entier positif (peut-être nul)',
+  'doc.String.description' => "Chaîne de caractères",
   'doc.Direction.description' => "Direction du mouvement (`2` pour le bas, `4` pour la gauche, `6` pour la droite et `8` pour le haut)",
   'doc.RegionId.description' => "Identifiant de région (tiles)",
   'doc.LayerId.description' => "Identifiant de la couche (tiles)",

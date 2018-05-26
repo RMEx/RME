@@ -124,6 +124,9 @@ module RME
       ParameterType::declare(:NullablePositiveInteger,
                              "Nullable positive integer",
                              Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
+      ParameterType::declare(:String,
+                             "String value",
+                             Domain.new(lambda { |x| (x.is_a? String) }))
 
       ParameterType::declare(:Direction,
                              "Movement direction",
