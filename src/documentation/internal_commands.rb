@@ -156,6 +156,12 @@ module RME
       ParameterType::declare(:SkillId,
                              "Skill's identifier",
                              ClosedInterval.new(1, 9999))
+      ParameterType::declare(:CharacterIndex,
+                             "The index of the actor's charset (walking graphic) within its file",
+                             ClosedInterval.new(0, 7))
+      ParameterType::declare(:FaceIndex,
+                             "The index of actor's face graphic inside the faceset",
+                             ClosedInterval.new(0, 7))
 
       # TODO: add other domains' definition
 
