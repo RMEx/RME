@@ -708,8 +708,22 @@ module RME
         actor_equip(id, :Head, head_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Changes the armour currently worn by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_equip_body,
+                        :description => 'Actors.actor_equip_body',
+                        :parameters  => [
+                          ACTOR_ID,
+                          {:name        => :body_id,
+                           :description => 'Actors.actor_equip_body.body_id',
+                           :type        => ParameterType::ItemId}
+                        ]}) do |id, body_id|
+        actor_equip(id, :Body, body_id)
+      end
+
       # TODO
-      # - `actor_equip_body`
       # - `actor_equip_accessory`
       # - `actor_optimize_equipement`
       # - `actor_level_up`
