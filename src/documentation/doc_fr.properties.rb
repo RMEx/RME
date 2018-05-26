@@ -124,6 +124,7 @@
   'doc.cmd.Actors.actor_give_exp' => "Fait gagner ou perdre de l'expérience au héros",
   'doc.cmd.Actors.actor_learn' => "Fait apprendre une nouvelle technique au héros",
   'doc.cmd.Actors.actor_forget' => "Fait oublier une technique au héros",
+  'doc.cmd.Actors.actor_knowns?' => "Renvoie `true` si le héros connaît la technique; `false` autrement",
 
   # Parameters
   ## Map

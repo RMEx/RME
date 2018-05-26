@@ -807,8 +807,18 @@ module RME
         $game_actors[id].forget_skill(skill_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given actor already know a skill (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_knowns?,
+                        :description => 'Actors.actor_knowns?',
+                        :parameters  => [ACTOR_ID, SKILl_ID]}) do |id, skill_id|
+        $game_actors[id].skill_learn?($data_skills[skill_id])
+      end
+
       # TODO
-      # - `actor_knowns?`
       # - `actor_set_graphic`
       # - `actor_weapons`
       # - `actor_armors`

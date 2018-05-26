@@ -2799,14 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_knowns?",
-                        "Renvoie true si le héros référencé par son ID connait la technique référencée par son ID, false sinon",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum],
-                          :skill_id => ["ID de le technique", :Fixnum],
-                        }
-register_command :actors, "Command.actor_knowns?"
-
 link_method_documentation "Command.actor_set_graphic",
                         "Change les graphismes du héros référencé par son ID",
                         {
