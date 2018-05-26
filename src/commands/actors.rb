@@ -459,8 +459,18 @@ module RME
         $game_actors[id].rec
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the ratio of health and magical (mana) points that the given
+      #   actor has received with the last item.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_pharmacology,
+                        :description => 'Actors.actor_pharmacology',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].pha
+      end
+
       # TODO
-      # - `actor_pharmacology`
       # - `actor_mp_cost_rate`
       # - `actor_tp_charge_rate`
       # - `actor_physical_damage_rate`

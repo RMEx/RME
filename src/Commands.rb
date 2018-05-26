@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_pharmacology(id); $game_actors[id].pha; end
     def actor_mp_cost_rate(id); $game_actors[id].mcr; end
     def actor_tp_charge_rate(id); $game_actors[id].tcr; end
     def actor_physical_damage_rate(id); $game_actors[id].pdr; end
