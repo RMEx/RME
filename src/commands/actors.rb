@@ -349,8 +349,18 @@ module RME
         $game_actors[id].cri
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the rate at which the given actor can successfully dodge
+      #   critical strikes performed by monsters.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_critical_evasion_rate,
+                        :description => 'Actors.actor_critical_evasion_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].cev
+      end
+
       # TODO
-      # - `actor_critical_evasion_rate`
       # - `actor_magical_evasion_rate`
       # - `actor_magical_reflection_rate`
       # - `actor_counter_attack_rate`
