@@ -1668,11 +1668,6 @@ module RMECommands
       $game_party.members[id - 1].id
     end
 
-    # Fix for EE4
-    alias_method :actor_experience, :actor_exp
-    alias_method :actor_exp_rate, :actor_experience_rate
-    alias_method :actor_magic, :actor_magic_attack
-
     append_commands
   end
 

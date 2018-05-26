@@ -191,6 +191,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :actor_exp,
+                        :alias       => :actor_experience,
                         :description => 'Actors.actor_exp',
                         :parameters  => [ACTOR_ID]}) do |id|
         $game_actors[id].exp
@@ -282,6 +283,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :actor_magic_attack,
+                        :alias       => :actor_magic,
                         :description => 'Actors.actor_magic_attack',
                         :parameters  => [ACTOR_ID]}) do |id|
         $game_actors[id].mat
@@ -534,6 +536,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :actor_experience_rate,
+                        :alias       => :actor_exp_rate,
                         :description => 'Actors.actor_experience_rate',
                         :parameters  => [ACTOR_ID]}) do |id|
         $game_actors[id].exr
