@@ -588,8 +588,17 @@ module RME
         $game_actors[id].nickname = new_name
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the name of the charset which represents the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_character_name,
+                        :description => 'Actors.actor_character_name',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].character_name
+      end
+
       # TODO
-      # - `actor_character_name`
       # - `actor_character_index`
       # - `actor_face_name`
       # - `actor_face_index`
