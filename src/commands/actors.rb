@@ -505,8 +505,18 @@ module RME
         $game_actors[id].pdr
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the ratio of magical damage that the given actor
+      #   has lastly received.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_magical_damage_rate,
+                        :description => 'Actors.actor_magical_damage_rate',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].mdr
+      end
+
       # TODO
-      # - `actor_magical_damage_rate`
       # - `actor_floor_damage_rate`
       # - `actor_exp_rate`
       # - `actor_name`

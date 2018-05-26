@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_magical_damage_rate",
-                        "renvoie le pourcentage de dommage magique reçu par le héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_magical_damage_rate"
-
 link_method_documentation "Command.actor_floor_damage_rate",
                         "renvoie le pourcentage de dommage des terrains reçu par le héros référencé par son ID",
                         {

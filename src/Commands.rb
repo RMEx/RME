@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_magical_damage_rate(id); $game_actors[id].mdr; end
     def actor_floor_damage_rate(id); $game_actors[id].fdr; end
     def actor_experience_rate(id); $game_actors[id].exr; end
     def actor_name(id); $game_actors[id].name; end

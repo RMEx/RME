@@ -93,6 +93,7 @@
   'doc.cmd.Actors.actor_mp_cost_rate' => "Renvoie le facteur d'un coût de MP (pour une attaque faisant varier la consommation de MP) du héros référencé par son ID",
   'doc.cmd.Actors.actor_tp_charge_rate' => "Renvoie le facteur de coût de TP (pour une attaque faisant varier la consommation de TP) du héros référencé par son ID",
   'doc.cmd.Actors.actor_physical_damage_rate' => "Renvoie le pourcentage de dégâts physiques reçus par le héros référencé par son ID",
+  'doc.cmd.Actors.actor_magical_damage_rate' => "Renvoie le pourcentage de dégâts magiques reçus par le héros référencé par son ID",
 
   # Parameters
   ## Map
