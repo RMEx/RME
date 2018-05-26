@@ -100,6 +100,7 @@
   'doc.cmd.Actors.actor_name' => "Renvoie le nom du héros référencé par son ID",
   'doc.cmd.Actors.set_actor_name' => "Modifie le nom du héros référencé par son ID",
   'doc.cmd.Actors.actor_nickname' => "Renvoie le surnom du héros référencé par son ID",
+  'doc.cmd.Actors.set_actor_nickname' => "Modifie le surnom du héros référencé par son ID",
 
   # Parameters
   ## Map
@@ -122,5 +123,6 @@
   ## Actors
   'doc.parameter.Actors.actor_id' => "ID de l'acteur",
   'doc.parameter.Actors.actor_equip.slot' => "Slot d'équipement",
-  'doc.parameter.Actors.set_actor_name.name' => "Nouveau nom du héros"
+  'doc.parameter.Actors.set_actor_name.name' => "Nouveau nom du héros",
+  'doc.parameter.Actors.set_actor_nickname.name' => "Nouveau surnom du héros"
 }
