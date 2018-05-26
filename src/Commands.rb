@@ -1640,7 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actors
-    def actor_equip_weapon(id, wp); actor_equip(id, :Weapon, wp_id); end
     def actor_equip_shield(id, wp); actor_equip(id, :Shield, wp_id); end
     def actor_equip_head(id, wp); actor_equip(id, :Head, wp_id); end
     def actor_equip_body(id, wp); actor_equip(id, :Body, wp_id); end

@@ -663,8 +663,22 @@ module RME
         $game_actors[id].change_equip_by_id(type_equip(slot), item_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Changes the weapon currently wielded by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_equip_weapon,
+                        :description => 'Actors.actor_equip_weapon',
+                        :parameters  => [
+                          ACTOR_ID,
+                          {:name        => :weapon_id,
+                           :description => 'Actors.actor_equip_weapon.weapon_id',
+                           :type        => ParameterType::ItemId}
+                        ]}) do |id, weapon_id|
+        actor_equip(id, :Weapon, weapon_id)
+      end
+
       # TODO
-      # - `actor_equip_weapon`
       # - `actor_equip_shield`
       # - `actor_equip_head`
       # - `actor_equip_body`

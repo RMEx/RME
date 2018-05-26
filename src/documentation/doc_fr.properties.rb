@@ -111,6 +111,7 @@
   'doc.cmd.Actors.actor_class' => "Renvoie l'ID de la classe du héros référencé par son ID",
   'doc.cmd.Actors.actor_exp_for_next_level' => "Renvoie le nombre de points d'expérience nécessaires pour que le héros (référencé par son ID) passe au niveau suivant",
   'doc.cmd.Actors.actor_change_equip' => "Change une pièce d'équipement pour le héros donné (référencé par son ID)",
+  'doc.cmd.Actors.actor_equip_weapon' => "Change l'arme du héros",
 
   # Parameters
   ## Map
@@ -135,5 +136,6 @@
   'doc.parameter.Actors.slot' => "Slot d'équipement",
   'doc.parameter.Actors.set_actor_name.name' => "Nouveau nom du héros",
   'doc.parameter.Actors.set_actor_nickname.name' => "Nouveau surnom du héros",
-  'doc.parameter.Actors.actor_change_equip.item_id' => "ID de la pièce d'équipement à faire équiper"
+  'doc.parameter.Actors.actor_change_equip.item_id' => "ID de la pièce d'équipement à faire équiper",
+  'doc.parameter.Actors.actor_equip_weapon.weapon_id' => "ID de l'arme à faire équiper",
 }
