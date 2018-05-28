@@ -1040,6 +1040,49 @@ class Point
   end
 
   #--------------------------------------------------------------------------
+  # * Vector to another point
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # @param oth [Point] the first point
+  # @return [Array] vector from the first to the second point
+  #--------------------------------------------------------------------------
+  def vector(oth)
+    [x - oth.x, y - oth.y]
+  end
+
+  #--------------------------------------------------------------------------
+  # * Returns all squares touching the AB segment
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # @param a [Point] the first point
+  # @param b [Point] the second point (whose x-coordinate should be below
+  #                  the first one)
+  # @return [Array] array of coordinates like [x,y]
+  #--------------------------------------------------------------------------
+  def self.get_squares_between(a, b)
+    if a.x == b.x # Horizonal
+      Range.new(*[a.y, b.y].sort).map { |y| [a.x, y] }
+    elsif a.y == b.y # Vertical
+      Range.new(*[a.x, b.x].sort).map { |x| [x, a.y] }
+    else
+      vec = a.vector(b)
+      if vec[0].abs == vec[1].abs # Diagonal
+        fun = linear_interpolant(a, b)
+        Range.new(*[a.x, b.x].sort).map do |x|
+          y = fun.(x).to_i
+          [x, y]
+        end
+      else # Other
+        aa = Point.new(a.x * 32 + 16, a.y * 32 + 16)
+        bb = Point.new(b.x * 32 + 16, b.y * 32 + 16)
+        fun = linear_interpolant(aa, bb)
+        Range.new(*[aa.x, bb.x].sort).map do |x|
+          y = fun.(x)
+          [x, y].map { |i| (i/32).to_i }
+        end.uniq
+      end
+    end
+  end
+
+  #--------------------------------------------------------------------------
   # * Linear interpolant between the two given points
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # @param a [Point] the first point

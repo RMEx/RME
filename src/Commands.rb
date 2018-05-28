@@ -1330,6 +1330,24 @@ module RMECommands
       $game_map.random_square(region_id)
     end
 
+    def get_squares_between(x1, y1, x2, y2)
+      a = Point.new(x1, y1)
+      b = Point.new(x2, y2)
+      Point.get_squares_between(a, b).select do |x, y|
+        x >= 0 && y >= 0
+      end.sort do |p1, p2|
+        args1 = x1 - p1[0], y1 - p1[1]
+        args2 = x1 - p2[0], y1 - p2[1]
+        Math.hypot(*args1).to_i <=> Math.hypot(*args2).to_i
+      end
+    end
+
+    def get_squares_between_events(id1, id2)
+      x1, y1 = event_x(id1), event_y(id1)
+      x2, y2 = event_x(id2), event_y(id2)
+      get_squares_between(x1, y1, x2, y2)
+    end
+
     def use_reflection(properties = nil)
       $game_map.use_reflection = true
       return unless properties && properties.is_a?(Hash)
