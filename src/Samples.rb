@@ -81,4 +81,8 @@ ASample.new('Désactive la course quand le joueur est sur la zone 7',
 
 ASample.new('Un exemple de spritesheet',
 ['spritesheet_show', 'spritesheet_next'], 34)
+
+ASample.new('Infiltration : champ de vision d\'un garde',
+['event_x', 'event_y', 'get_squares_between', 'get'], 35)
+
 end
