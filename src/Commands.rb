@@ -2693,6 +2693,11 @@ module RMECommands
       $game_map.rpg_event(id).y
     end
 
+    def event_allow_overlap(id, value = nil)
+      return event(id).allow_overlap? if value.nil?
+      event(id).allow_overlap = value
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?

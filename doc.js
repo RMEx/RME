@@ -247,6 +247,8 @@ var documentation = [
 {"name":"*precise", "desc":"Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", "type":"Boolean"}]},
 {"name":"event_x", "description":"Renvoie la coordonnées X de la case sur laquelle se trouve l'évènement référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"}]},
 {"name":"event_original_x", "description":"Renvoie la coordonnée X de la case sur laquelle se trouve l'évènement référencé par son ID tel que placé dans l'éditeur", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"}]},
+{"name":"event_allow_overlap", "description":"Modifie (ou retourne) la possibilité de l'évènement de chevaucher d'autres évènements autres que le joueur.", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"},
+{"name":"*value", "desc":"Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", "type":"Boolean"}]},
 {"name":"event_in_screen?", "description":"Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"}]},
 {"name":"player_in_screen?", "description":"Renvoie true si le joueur est visible à l'écran, false sinon", "returnable":true,"parameters":[]},
 {"name":"event_y", "description":"Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement (0 pour héros)", "type":"Fixnum"}]},

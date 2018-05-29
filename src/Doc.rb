@@ -1327,6 +1327,13 @@ register_command :event, 'Command.player_tone'
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_original_x"
 
+  link_method_documentation "Command.event_allow_overlap",
+         'Modifie (ou retourne) la possibilité de l\'évènement de chevaucher d\'autres évènements autres que le joueur.',
+         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
+          :"*value" => ["Nouvelle valeur, si aucune valeur n'est donnée, la commande renverra la valeur courante", :Boolean]
+         }, true
+  register_command :event, "Command.event_allow_overlap"
+
   link_method_documentation "Command.event_in_screen?",
                         "Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
