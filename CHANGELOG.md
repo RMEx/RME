@@ -22,6 +22,7 @@
 - Fix `create_text_window`, now can create empty text windows (@BastienDuplessier, reported by @Zer0xxxx)
 - Fix `text_show` with empty content and centered (@BastienDuplessier, reported by @aureliendossantos)
 - Teleport/Moving player will not recenter camera anymore if camera is locked (@BastienDuplessier, reported by @LucasDevos)
+- Fix disapearing windows and textfields after returning to Scene_Map
 
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos, @Zer0xxxx, @grrim, @YendaHusk)

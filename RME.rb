@@ -8741,8 +8741,8 @@ class Scene_Map
   # * Start
   #--------------------------------------------------------------------------
   def start
-    @textfields = Hash.new
-    @windows = Hash.new
+    @textfields ||= Hash.new
+    @windows ||= Hash.new
     extender_start
     $game_map.reflash_map
   end
