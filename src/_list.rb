@@ -20,4 +20,4 @@ Incubator/
 documentation/internal_documentation
 documentation/internal_commands
 commands/map
-commands/actor
+commands/actors
