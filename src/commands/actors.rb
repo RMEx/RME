@@ -886,6 +886,23 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Updates the face which represents the given actor;
+      #   and refreshes the sprites to show them in game.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_change_face,
+                        :description => 'Actors.actor_change_face',
+                        :parameters  => [
+                          ACTOR_ID,
+                          FACESET_FILENAME,
+                          FACE_INDEX
+                        ]}) do |id, faceset_filename, face_index|
+        $game_actors[id].face_name = face_name
+        $game_actors[id].face_index = face_index
+        $game_player.refresh
+      end
+
+      # ------------------------------------------------------------------------
       # * Returns the list of weapons (actual weapon and shield) currently
       #   equipped by the given actor.
       # ------------------------------------------------------------------------
@@ -918,7 +935,6 @@ module RME
       end
 
       # TODO
-      # - `actor_change_face`
       # - `actor_slot`
       # - `actor_element_rate`
 

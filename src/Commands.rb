@@ -1640,11 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_change_face(id, face_name, face_index)
-      $game_actors[id].face_name = face_name
-      $game_actors[id].face_index = face_index
-      $game_player.refresh
-    end
     def actor_element_rate(id, element_id)
       $game_actors[id].element_rate(element_id)
     end
