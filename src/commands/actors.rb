@@ -872,8 +872,17 @@ module RME
         $game_actors[id].armors.map{|a| a.id}
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the list of skills that the given actor currently knows.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_skills,
+                        :description => 'Actors.actor_skills',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].armors.map{|s| s.id}
+      end
+
       # TODO
-      # - `actor_skills`
       # - `actor_change_appear`
       # - `actor_change_character`
       # - `actor_change_face`

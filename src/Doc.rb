@@ -2799,13 +2799,6 @@ link_method_documentation "Command.actor_",
 register_command :actors, "Command.actor_"
 =end
 
-link_method_documentation "Command.actor_skills",
-                        "renvoie le tableau des ID's des techniques connues du héros référencé par son ID",
-                        {
-                          :id => ["ID de l'acteur", :Fixnum]
-                        }, true
-register_command :actors, "Command.actor_skills"
-
 link_method_documentation "Command.skill_scope",
                         "Renvoie la portée (en Entier) d'une technique référencée par son ID",
                         {
