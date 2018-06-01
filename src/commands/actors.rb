@@ -861,8 +861,18 @@ module RME
         $game_actors[id].weapons.map{|w| w.id}
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the list of armors (head, body, accessory) currently
+      #   equipped by the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_armors,
+                        :description => 'Actors.actor_armors',
+                        :parameters  => [ACTOR_ID]}) do |id|
+        $game_actors[id].armors.map{|a| a.id}
+      end
+
       # TODO
-      # - `actor_armors`
       # - `actor_skills`
       # - `actor_change_appear`
       # - `actor_change_character`
