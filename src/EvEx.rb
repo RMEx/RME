@@ -76,6 +76,13 @@ module Cache
     end
     return Cache.picture(name)
   end
+
+  #--------------------------------------------------------------------------
+  # * Get Battle Background (Floor) Graphic
+  #--------------------------------------------------------------------------
+  def self.windowskin(filename)
+    load_bitmap("Graphics/Windowskins/", filename)
+  end
 end
 
 
@@ -2101,6 +2108,7 @@ class Window_Base
   alias_method :rm_extender_convert_escape_characters, :convert_escape_characters
   alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_update, :update
+  alias_method :rm_extender_update_tone, :update_tone
   #--------------------------------------------------------------------------
   # * Object Initialize
   #--------------------------------------------------------------------------
@@ -2115,6 +2123,13 @@ class Window_Base
   def update
     rm_extender_update
     mod_update
+  end
+  #--------------------------------------------------------------------------
+  # * Update Tone
+  #--------------------------------------------------------------------------
+  def update_tone
+    return if @custom_tone
+    rm_extender_update_tone
   end
   #--------------------------------------------------------------------------
   # * Preconvert Control Characters
@@ -2151,6 +2166,31 @@ class Window_Base
     posX -= viewport.x if (viewport)
     posY -= viewport.y if (viewport)
     return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
+  end
+  #--------------------------------------------------------------------------
+  # * Change Windowskin
+  #--------------------------------------------------------------------------
+  def change_windowskin(filename)
+    self.windowskin = Cache.windowskin(filename)
+  end
+  #--------------------------------------------------------------------------
+  # * Change Window tone
+  #--------------------------------------------------------------------------
+  def change_tone(tone)
+    @custom_tone = true
+    self.tone.set(tone)
+  end
+  #--------------------------------------------------------------------------
+  # * Use default windowskin
+  #--------------------------------------------------------------------------
+  def use_default_windowskin
+    self.windowskin = Cache.system("Window")
+  end
+  #--------------------------------------------------------------------------
+  # * Use default window tone
+  #--------------------------------------------------------------------------
+  def use_default_tone
+    @custom_tone = false
   end
 end
 

@@ -6892,6 +6892,36 @@ link_method_documentation 'Command.mouse_hover_window?',
    {:id => ["ID de la fenêtre", :Fixnum]}, true
 register_command :window, 'Command.mouse_hover_window?'
 
+link_method_documentation 'Command.window_change_windowskin',
+  'Change le windowskin de la fenêtre spécifiée.',
+   {
+    :id => ["ID de la fenêtre", :Fixnum],
+    :filename => ["Nom du fichier dans Graphics/Windowskins", :String],
+  }, true # Maybe changed
+register_command :window, 'Command.window_change_windowskin'
+
+link_method_documentation 'Command.window_change_tone',
+  'Change le ton de la fenêtre spécifiée.',
+   {
+    :id => ["ID de la fenêtre", :Fixnum],
+    :tone => ["Teinte (utilisez la commande 'tone')", :Tone],
+  }, true # Maybe changed
+register_command :window, 'Command.window_change_tone'
+
+link_method_documentation 'Command.window_use_default_windowskin',
+  'Change le windowskin par celui par défaut.',
+   {
+    :id => ["ID de la fenêtre", :Fixnum],
+  }, true # Maybe changed
+register_command :window, 'Command.window_use_default_windowskin'
+
+link_method_documentation 'Command.window_use_default_tone',
+  'Chante le ton par celui par défaut.',
+   {
+    :id => ["ID de la fenêtre", :Fixnum],
+  }, true # Maybe changed
+register_command :window, 'Command.window_use_default_tone'
+
 link_method_documentation 'Command.between',
   'Donne la distance entre deux points',
    {
