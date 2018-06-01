@@ -159,6 +159,9 @@ module RME
       ParameterType::declare(:SkillId,
                              "Skill's identifier",
                              ClosedInterval.new(1, 9999))
+      ParamaterType::declare(:ElementId,
+                             "Element's identifier",
+                             ClosedInterval.new(1, 99))
       ParameterType::declare(:CharsetIndex,
                              "The index of the actor's charset (walking graphic) within its file",
                              ClosedInterval.new(0, 7))
