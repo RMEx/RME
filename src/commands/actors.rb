@@ -869,6 +869,23 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Updates the charset which represents the given actor;
+      #   and refreshes the sprites to show them in game.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_change_character,
+                        :description => 'Actors.actor_change_character',
+                        :parameters  => [
+                          ACTOR_ID,
+                          CHARSETS_FILENAME,
+                          CHARSET_INDEX
+                        ]}) do |id, charsets_filename, charset_index|
+        $game_actors[id].character_name = charsets_filename
+        $game_actors[id].character_index = charset_index
+        $game_player.refresh
+      end
+
+      # ------------------------------------------------------------------------
       # * Returns the list of weapons (actual weapon and shield) currently
       #   equipped by the given actor.
       # ------------------------------------------------------------------------
@@ -901,7 +918,6 @@ module RME
       end
 
       # TODO
-      # - `actor_change_character`
       # - `actor_change_face`
       # - `actor_slot`
       # - `actor_element_rate`
