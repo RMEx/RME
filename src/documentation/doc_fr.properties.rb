@@ -23,6 +23,7 @@
   # Sections
   'doc.section.Map' => "Commandes relatives aux informations des cartes",
   'doc.section.Actors' => "Offre des commandes pour obtenir des informations sur les acteurs (héros) ",
+  'doc.section.Area' => "Commandes pour créer et manipuler des zones virtuelles",
 
   # Commands
   ## Map
