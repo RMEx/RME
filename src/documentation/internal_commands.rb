@@ -124,6 +124,9 @@ module RME
       ParameterType::declare(:PositiveInteger,
                              "Positive integer",
                              Domain.new(lambda { |x| (x.is_a? ::Integer) and (0 <= x) }))
+      ParameterType::declare(:StrictlyPositiveInteger,
+                             "Strictly positive integer",
+                             Domain.new(lambda { |x| (x.is_a? ::Integer) and (0 < x) }))
       ParameterType::declare(:NullablePositiveInteger,
                              "Nullable positive integer",
                              Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
