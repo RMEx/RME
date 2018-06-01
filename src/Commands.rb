@@ -1640,10 +1640,6 @@ module RMECommands
   #==============================================================================
 
   module Actor
-    def actor_element_rate(id, element_id)
-      $game_actors[id].element_rate(element_id)
-    end
-
     append_commands
   end
 

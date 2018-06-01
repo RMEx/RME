@@ -954,8 +954,20 @@ module RME
         end
       end
 
-      # TODO
-      # - `actor_element_rate`
+      # ------------------------------------------------------------------------
+      # * Returns the elemental resistance of the given actor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_element_rate,
+                        :description => 'Actors.actor_element_rate',
+                        :parameters  => [
+                          ACTOR_ID,
+                          {:name        => :element_id,
+                           :description => 'Actors.actor_element_rate.element_id',
+                           :type        => ParameterType::ElementId}
+                        ]}) do |id, element_id|
+        $game_actors[id].element_rate(element_id)
+      end
 
       append_commands
     end

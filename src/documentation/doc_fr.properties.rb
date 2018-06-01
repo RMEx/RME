@@ -137,6 +137,7 @@
   'doc.cmd.Actors.actor_armors' => "Renvoie la liste des armures qui sont actuellement équipées par le héros",
   'doc.cmd.Actors.actor_skills' => "Renvoie la liste des techniques/sorts qui sont actuellement connues par le héros",
   'doc.cmd.Actors.actor_slot' => "Renvoie l'id du héros en fonction de sa position dans l'équipe. Renvoie `0` si le slot est vide",
+  'doc.cmd.Actors.actor_element_rate' => "Renvoie la résistence que le héros a face à l'élément",
 
   # Parameters
   ## Map
@@ -173,5 +174,6 @@
   'doc.parameter.Actors.actor_equip_body.body_id' => "ID de l'armure à faire équiper",
   'doc.parameter.Actors.actor_equip_accessory.accessory_id' => "ID de l'accessoire à faire équiper",
   'doc.parameter.Actors.actor_give_exp.exp' => "La quantité d'expérience à ajouter (nombre positif) ou à enlever (nombre négatif)",
-  'doc.parameter.Actors.actor_slot.index' => "Position du héros dans l'équipe"
+  'doc.parameter.Actors.actor_slot.index' => "Position du héros dans l'équipe",
+  'doc.parameter.Actors.actor_element_rate.element_id' => "Identifiant de l'élément"
 }
