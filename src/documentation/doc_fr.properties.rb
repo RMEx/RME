@@ -135,6 +135,7 @@
   'doc.cmd.Actors.actor_weapons' => "Renvoie la liste des armes (vrais armes et boucliers) qui sont actuellement équippées par le héros",
   'doc.cmd.Actors.actor_armors' => "Renvoie la liste des armures qui sont actuellement équipées par le héros",
   'doc.cmd.Actors.actor_skills' => "Renvoie la liste des techniques/sorts qui sont actuellement connues par le héros",
+  'doc.cmd.Actors.actor_slot' => "Renvoie l'id du héros en fonction de sa position dans l'équipe. Renvoie `0` si le slot est vide",
 
   # Parameters
   ## Map
@@ -170,5 +171,6 @@
   'doc.parameter.Actors.actor_equip_head.head_id' => "ID du casque à faire équiper",
   'doc.parameter.Actors.actor_equip_body.body_id' => "ID de l'armure à faire équiper",
   'doc.parameter.Actors.actor_equip_accessory.accessory_id' => "ID de l'accessoire à faire équiper",
-  'doc.parameter.Actors.actor_give_exp.exp' => "La quantité d'expérience à ajouter (nombre positif) ou à enlever (nombre négatif)"
+  'doc.parameter.Actors.actor_give_exp.exp' => "La quantité d'expérience à ajouter (nombre positif) ou à enlever (nombre négatif)",
+  'doc.parameter.Actors.actor_slot.index' => "Position du héros dans l'équipe"
 }

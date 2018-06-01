@@ -1643,10 +1643,6 @@ module RMECommands
     def actor_element_rate(id, element_id)
       $game_actors[id].element_rate(element_id)
     end
-    def actor_slot(id)
-      return 0 unless $game_party.members[id - 1]
-      $game_party.members[id - 1].id
-    end
 
     append_commands
   end

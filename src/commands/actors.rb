@@ -934,8 +934,27 @@ module RME
         $game_actors[id].armors.map{|s| s.id}
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the identifier of an actor, based on its position (index)
+      #   in the current party (team).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :actor_slot,
+                        :description => 'Actors.actor_slot',
+                        :parameters  => [
+                          {:name        => :index,
+                           :description => 'Actors.actor_slot.index',
+                           :type        => ParameterType::StrictlyPositiveInteger}
+                        ]}) do |index|
+        actor = $game_party.members[id - 1]
+        unless actor
+          0
+        else
+          actor.id
+        end
+      end
+
       # TODO
-      # - `actor_slot`
       # - `actor_element_rate`
 
       append_commands
