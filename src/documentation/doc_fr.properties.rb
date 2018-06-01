@@ -128,6 +128,7 @@
   'doc.cmd.Actors.actor_forget' => "Fait oublier une technique au héros",
   'doc.cmd.Actors.actor_knowns?' => "Renvoie `true` si le héros connaît la technique; `false` autrement",
   'doc.cmd.Actors.actor_set_graphic' => "Change les graphismes (charset et portrait) du héros",
+  'doc.cmd.Actors.actor_change_appear' => "Change les graphismes (charset et portrait) du héros et réactualise les sprites du joueur pour voir le changement sans attendre",
   'doc.cmd.Actors.actor_weapons' => "Renvoie la liste des armes (vrais armes et boucliers) qui sont actuellement équippées par le héros",
   'doc.cmd.Actors.actor_armors' => "Renvoie la liste des armures qui sont actuellement équipées par le héros",
   'doc.cmd.Actors.actor_skills' => "Renvoie la liste des techniques/sorts qui sont actuellement connues par le héros",
