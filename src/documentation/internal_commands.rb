@@ -159,7 +159,7 @@ module RME
       ParameterType::declare(:SkillId,
                              "Skill's identifier",
                              ClosedInterval.new(1, 9999))
-      ParamaterType::declare(:ElementId,
+      ParameterType::declare(:ElementId,
                              "Element's identifier",
                              ClosedInterval.new(1, 99))
       ParameterType::declare(:CharsetIndex,
