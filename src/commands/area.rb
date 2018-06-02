@@ -17,8 +17,36 @@ module RME
   module Command
     module Area
 
+      # Common parameters' declaration
+      X = {:name        => :x,
+           :type        => ParameterType::Coordinate,
+           :description => 'Area.x'}
+      Y = {:name        => :y,
+           :type        => ParameterType::Coordinate,
+           :description => 'Area.y'}
+      WIDTH = {:name        => :width,
+               :type        => ParameterType::StrictlyPositiveInteger,
+               :description => 'Area.width'}
+      HEIGHT = {:name        => :height,
+                :type        => ParameterType::StrictlyPositiveInteger,
+                :description => 'Area.height'}
+
+      # ------------------------------------------------------------------------
+      # * Returns a new virtual zone which is rectangular.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :create_rect_area,
+                        :description => 'Area.create_rect_area',
+                        :parameters  => [
+                          X,
+                          Y,
+                          WIDTH,
+                          HEIGHT
+                        ]}) do |x, y, width, height|
+        ::Area::Rect.new(x, y, width, height)
+      end
+
       # TODO
-      # - `create_rect_area`
       # - `create_circle_area`
       # - `create_ellipse_area`
       # - `create_polygon_area`
