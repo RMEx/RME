@@ -3097,7 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def create_circle_area(x, y, rayon); Area::Circle.new(x, y, rayon); end
     def create_ellipse_area(x, y, width, height); Area::Ellipse.new(x, y, width, height); end
     def create_polygon_area(*points); Area::Polygon.new(*points); end
     def in_area?(area, x, y); area.in?(x, y); end

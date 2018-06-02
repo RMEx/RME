@@ -46,8 +46,23 @@ module RME
         ::Area::Rect.new(x, y, width, height)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns a new virtual zone which is circular.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :create_circle_area,
+                        :description => 'Area.create_circle_area',
+                        :parameters  => [
+                          X,
+                          Y,
+                          {:name        => :radius,
+                           :description => 'Area.create_circle_area.radius',
+                           :type        => ParameterType::StrictlyPositiveInteger}
+                        ]}) do |x, y, radius|
+        ::Area::Circle.new(x, y, radius)
+      end
+
       # TODO
-      # - `create_circle_area`
       # - `create_ellipse_area`
       # - `create_polygon_area`
       # - `in_area?`
