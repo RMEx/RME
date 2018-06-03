@@ -134,8 +134,18 @@ module RME
         area.square_hover?
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area and triggering
+      #   a `click` event during the command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_click_area?,
+                        :description => 'Area.mouse_click_area?',
+                        :parameters  => [AREA]}) do |area|
+        area.click?
+      end
+
       # TODO
-      # - `mouse_click_area?`
       # - `mouse_click_square_area?`
       # - `mouse_trigger_area?`
       # - `mouse_trigger_square_area?`

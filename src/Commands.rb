@@ -3097,7 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def mouse_click_area?(area, k=nil); area.click?; end
     def mouse_click_square_area?(area, k=nil); area.square_click?; end
 
     def mouse_trigger_area?(area, k=:mouse_left)
