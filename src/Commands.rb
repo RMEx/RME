@@ -3097,7 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def create_ellipse_area(x, y, width, height); Area::Ellipse.new(x, y, width, height); end
     def create_polygon_area(*points); Area::Polygon.new(*points); end
     def in_area?(area, x, y); area.in?(x, y); end
     def mouse_hover_area?(area); area.hover?; end

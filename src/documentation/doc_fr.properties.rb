@@ -142,6 +142,7 @@
   ## Area
   'doc.cmd.Area.create_rect_area' => "Renvoie une nouvelle zone rectangulaire",
   'doc.cmd.Area.create_circle_area' => "Renvoie une nouvelle zone circulaire",
+  'doc.cmd.Area.create_ellipse_area' => "Renvoie une nouvelle zone ellipsoïdale",
 
   # Parameters
   ## Map

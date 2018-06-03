@@ -62,8 +62,22 @@ module RME
         ::Area::Circle.new(x, y, radius)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns a new virtual zone which is ellipsoidal.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :create_ellipse_area,
+                        :description => 'Area.create_ellipse_area',
+                        :parameters  => [
+                          X,
+                          Y,
+                          WIDTH,
+                          HEIGHT
+                        ]}) do |x, y, width, height|
+        ::Area::Ellipse.new(x, y, width, height)
+      end
+
       # TODO
-      # - `create_ellipse_area`
       # - `create_polygon_area`
       # - `in_area?`
       # - `mouse_hover_area?`
