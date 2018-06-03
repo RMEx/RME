@@ -145,6 +145,7 @@
   'doc.cmd.Area.create_circle_area' => "Renvoie une nouvelle zone circulaire",
   'doc.cmd.Area.create_ellipse_area' => "Renvoie une nouvelle zone ellipsoïdale",
   'doc.cmd.Area.create_polygon_area' => "Renvoie une nouvelle zone polygonale sachant que le dernier sommet sera relié avec le premier. (Attention, il faut au minimum trois points -- appelés sommets -- pour définir un polygone !)",
+  'doc.cmd.Area.in_area?' => "Vérifie si le point de coordonnées (`x`, `y`) se trouve dans la zone",
 
   # Parameters
   ## Map
@@ -188,6 +189,7 @@
   'doc.parameter.Area.y' => "Coordonnée en Y (ordonnée) de la zone",
   'doc.parameter.Area.width' => "Largeur de la zone",
   'doc.parameter.Area.height' => "Hauteur de la zone",
+  'doc.parameter.Area.area' => "Zone virtuelle à utiliser",
   'doc.parameter.Area.create_circle_area.radius' => "Rayon de la zone",
   'doc.parameter.Area.create_polygon_area.points' => "Sommets du polygone (il faut en fournir au minimum 3 !)"
 }

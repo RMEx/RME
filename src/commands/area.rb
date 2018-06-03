@@ -30,6 +30,9 @@ module RME
       HEIGHT = {:name        => :height,
                 :type        => ParameterType::StrictlyPositiveInteger,
                 :description => 'Area.height'}
+      AREA = {:name        => :area,
+              :type        => ParameterType::Area,
+              :description => 'Area.area'}
 
       # ------------------------------------------------------------------------
       # * Returns a new virtual zone which is rectangular.
@@ -93,8 +96,22 @@ module RME
         ::Area::Polygon.new(points)
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks whether the given point (`x`, `y`) is inside the given area
+      #   (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :in_area?,
+                        :description => 'Area.in_area?',
+                        :parameters  => [
+                          AREA,
+                          X,
+                          Y
+                        ]}) do |area, x, y|
+        area.in?(x, y)
+      end
+
       # TODO
-      # - `in_area?`
       # - `mouse_hover_area?`
       # - `mouse_hover_square_area?`
       # - `mouse_click_area?`
