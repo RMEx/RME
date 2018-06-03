@@ -298,6 +298,12 @@ module RME
                              "Virtual area",
                              Domain.new(lambda { |x| AREA_TYPES.any? { |t| x.is_a? t }}))
 
+      ParameterType::declare(:MouseButton,
+                             "Mouse button / key",
+                             Set.new(:mouse_left, :mouse_right,
+                                     :mouse_center,
+                                     :mouse_x1, :mouse_x2))
+
       ParameterType::declare(:ActorId,
                              "Actor's identifier",
                              ClosedInterval.new(1, 999))
