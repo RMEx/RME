@@ -96,6 +96,152 @@ module RME
       # [! This constructor should not be used: instead use `::declare` !]
       Constructor = Struct.new(:name, :internal_description, :domain)
 
+      # ========================================================================
+      # * [Generic based on `ParameterType`]
+      #   Abstract definition of an homogeneous list of elements.
+      # ========================================================================
+      class GenericVectorization
+        attr_reader :underlying_type
+
+        # ----------------------------------------------------------------------
+        # * Initializes this vectorized parameter with the given enclosed type
+        #   (`underlying_type`).
+        #   - `underlying_type`                                    ParameterType
+        #     the enclosed type, that each of the nested element should
+        #     comply with
+        # ----------------------------------------------------------------------
+        def initialize(underlying_type, *predicates)
+          @underlying_type = underlying_type
+          @predicates = predicates
+          @predicates ||= Array.new
+        end
+
+        # ----------------------------------------------------------------------
+        # * Tells whether the given (`val`) is indeed a vectorized value
+        #   containg elements of the expected `underlying_type`.
+        #   - `val`                                                       Object
+        #     the value to check
+        # -> `true` if the value is a vector of `underlying_type` elements;
+        #    `false` otherwise.
+        # ----------------------------------------------------------------------
+        def valid?(val)
+          return false unless val.is_a? Enumerable
+          return false unless @predicates.all? { |p| p.call(val) }
+          val.all? { |x| @underlying_type.domain.valid? x }
+        end
+
+      end
+
+      # ========================================================================
+      # * [Generic based on `ParameterType`]
+      #   Static list / tuples (static vectorization of an enclosed type).
+      # ========================================================================
+      class List < GenericVectorization
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps fixed size
+        #   list.
+        #   - `type`                                               ParameterType
+        #     the type of each of this list's elements
+        #   - `hint_msg`                                       String [Optional]
+        #     an hint which explains what the following `*predicates` actually
+        #     check
+        #   - `*predicates`                 Lambda(Object) => Boolean [Variadic]
+        #     the additional checks to process on the value to check
+        # ----------------------------------------------------------------------
+        def self.of(type, hint_msg, *predicates)
+          Constructor.new("List_of_#{type.name}".to_sym,
+                          "list of #{hint_msg}, with each element " +
+                          "being a #{type.internal_description}",
+                          List.new(type, *predicates))
+        end
+        private_class_method :of
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps
+        #   a list of elements, with at least `nb_elements`.
+        #   - `type`                                               ParameterType
+        #     the type of each of this list's elements
+        #   - `nb_elements`                                              Integer
+        #     the number of elements that the list should at least contain
+        # ----------------------------------------------------------------------
+        def self.of_at_least(type, nb_elements)
+          of(type,
+             "at least #{nb_elements} element(s)",
+             lambda { |val| (nb_elements <= val.size) })
+        end
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps
+        #   a list of elements, with exactly `nb_elements`.
+        #   - `type`                                               ParameterType
+        #     the type of each of this list's elements
+        #   - `nb_elements`                                              Integer
+        #     the number of elements that the list should at exactly contain
+        # ----------------------------------------------------------------------
+        def self.of_exactly(type, nb_elements)
+          of(type,
+             "exactly #{nb_elements} element(s)",
+             lambda { |val| (nb_elements == val.size) })
+        end
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps
+        #   a list of elements, with at most `nb_elements`.
+        #   - `type`                                               ParameterType
+        #     the type of each of this list's elements
+        #   - `nb_elements`                                              Integer
+        #     the number of elements that the list should at most contain
+        # ----------------------------------------------------------------------
+        def self.of_at_most(type, nb_elements)
+          of(type,
+             "at most #{nb_elements} element(s)",
+             lambda { |val| (nb_elements >= val.size) })
+        end
+
+      end
+
+      # ========================================================================
+      # * [Generic based on `ParameterType`]
+      #   Variadic parameter (dynamic vectorization of an enclosed type).
+      # ========================================================================
+      class Variadic < GenericVectorization
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps
+        #   variadic ones.
+        #   - `type`                                               ParameterType
+        #     the underlying type of this variadic parameter
+        #   - `hint_msg`                                       String [Optional]
+        #     an hint which explains what the following `*predicates` actually
+        #     check
+        #   - `*predicates`                 Lambda(Object) => Boolean [Variadic]
+        #     the additional checks to process on the value to check
+        # ----------------------------------------------------------------------
+        def self.of(type, hint_msg = "", *predicates)
+          Constructor.new("Variadic_of_#{type.name}".to_sym,
+                          "variadic of #{hint_msg}, with each element " +
+                          "being a #{type.internal_description}",
+                          Variadic.new(type, *predicates))
+        end
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps
+        #   variadic ones, with at least `nb_elements`.
+        #   - `type`                                               ParameterType
+        #     the underlying type of this variadic parameter
+        #   - `nb_elements`                                              Integer
+        #     the number of elements that the variadic value should at least
+        #     contain
+        # ----------------------------------------------------------------------
+        def self.of_at_least(type, nb_elements)
+          of(type,
+             "at least #{nb_elements} element(s)",
+             lambda { |val| (nb_elements <= val.size) })
+        end
+
+      end
+
       # ------------------------------------------------------------------------
       # * Registers a new type of command's parameter under `ParameterType`.
       #   - `name` the type's name                                 Symbol/String
