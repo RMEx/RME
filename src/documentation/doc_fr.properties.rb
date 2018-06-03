@@ -151,6 +151,7 @@
   'doc.cmd.Area.mouse_hover_square_area?' => "Renvoie `true` si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
   'doc.cmd.Area.mouse_click_area?' => "Renvoie `true` si la souris survole et clique sur la zone passée en argument au moment de l'appel; `false` sinon",
   'doc.cmd.Area.mouse_click_square_area?' => "Renvoie `true` si la souris survole et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
+  'doc.cmd.Area.mouse_trigger_area?' => "Renvoie `true` si la souris survole et clique une fois sur la zone passée en argument au moment de l'appel, `false` sinon",
 
   # Parameters
   ## Map
@@ -195,6 +196,7 @@
   'doc.parameter.Area.width' => "Largeur de la zone",
   'doc.parameter.Area.height' => "Hauteur de la zone",
   'doc.parameter.Area.area' => "Zone virtuelle à utiliser",
+  'doc.parameter.Area.mouse_btn' => "Bouton de la souris à vérifier",
   'doc.parameter.Area.create_circle_area.radius' => "Rayon de la zone",
   'doc.parameter.Area.create_polygon_area.points' => "Sommets du polygone (il faut en fournir au minimum 3 !)"
 }

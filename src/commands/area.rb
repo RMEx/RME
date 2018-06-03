@@ -33,6 +33,10 @@ module RME
       AREA = {:name        => :area,
               :type        => ParameterType::Area,
               :description => 'Area.area'}
+      MOUSE_BUTTON = {:name        => :mouse_btn,
+                      :type        => ParameterType::MouseButton,
+                      :description => 'Area.mouse_btn',
+                      :default     => :mouse_left}
 
       # ------------------------------------------------------------------------
       # * Returns a new virtual zone which is rectangular.
@@ -158,8 +162,22 @@ module RME
         area.square_click?
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area, triggering
+      #   a `click` event during the command's call on the specified `mouse_btn`
+      #   (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_trigger_area?,
+                        :description => 'Area.mouse_trigger_area?',
+                        :parameters  => [
+                          AREA,
+                          MOUSE_BUTTON
+                        ]}) do |area, mouse_btn|
+        area.trigger?(mouse_btn)
+      end
+
       # TODO
-      # - `mouse_trigger_area?`
       # - `mouse_trigger_square_area?`
       # - `mouse_press_area?`
       # - `mouse_press_square_area?`
