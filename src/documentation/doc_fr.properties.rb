@@ -146,6 +146,7 @@
   'doc.cmd.Area.create_ellipse_area' => "Renvoie une nouvelle zone ellipsoïdale",
   'doc.cmd.Area.create_polygon_area' => "Renvoie une nouvelle zone polygonale sachant que le dernier sommet sera relié avec le premier. (Attention, il faut au minimum trois points -- appelés sommets -- pour définir un polygone !)",
   'doc.cmd.Area.in_area?' => "Vérifie si le point de coordonnées (`x`, `y`) se trouve dans la zone",
+  'doc.cmd.Area.mouse_hover_area?' => "Vérifie si la souris survole la zone au moment de l'appel",
 
   # Parameters
   ## Map

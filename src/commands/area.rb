@@ -111,8 +111,18 @@ module RME
         area.in?(x, y)
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area during the
+      #   command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_hover_area?,
+                        :description => 'Area.mouse_hover_area?',
+                        :parameters  => [AREA]}) do |area|
+        area.hover?
+      end
+
       # TODO
-      # - `mouse_hover_area?`
       # - `mouse_hover_square_area?`
       # - `mouse_click_area?`
       # - `mouse_click_square_area?`
