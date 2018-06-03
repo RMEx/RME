@@ -293,6 +293,11 @@ module RME
                              "Terrain tag",
                              ClosedInterval.new(0, 7))
 
+      AREA_TYPES = [::Area::Rect, ::Area::Circle, ::Area::Ellipse, ::Area::Polygon]
+      ParameterType::declare(:Area,
+                             "Virtual area",
+                             Domain.new(lambda { |x| AREA_TYPES.any? { |t| x.is_a? t }}))
+
       ParameterType::declare(:ActorId,
                              "Actor's identifier",
                              ClosedInterval.new(1, 999))

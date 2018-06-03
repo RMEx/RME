@@ -12,6 +12,7 @@
   'doc.RegionId.description' => "Identifiant de région (tiles)",
   'doc.LayerId.description' => "Identifiant de la couche (tiles)",
   'doc.TerrainTag.description' => "Étiquette de terrain (tiles)",
+  'doc.Area.description' => "Zone virtuelle (il peut s'agir d'un rectangle, d'un cercle, d'une ellipse ou d'un polygone)",
   'doc.ActorId.description' => "Identifiant d'un héros",
   'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
   'doc.ItemId.description' => "Identifiant d'un item (objets, consommables ou pièces d'équipement)",
