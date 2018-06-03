@@ -332,26 +332,26 @@ module RME
           self
         end
 
-      # Validating command
+      # Validating the command's definition
+      validate_cmd(cmd)
+
+      # Consolidating command's parameters
       unless cmd[:parameters].nil?
         cmd[:parameters].each do |p|
-
-          if p[:name].nil? or p[:name].empty?
-            raise "Invalid parameter's definition for command: #{cmd[:name]} !"
-          else
             similar = RME::Documentation::defined_parameters(section)[p[:name]]
 
+            # Retrieving definition of this parameter, if it is missing and
+            # if one with the same name has already been defined before
             unless similar.nil?
               p[:type] = similar.type.raw_type if p[:type].nil?
               p[:description] = similar.description if p[:description].nil?
             end
 
             p[:type] ||= ParameterType::Object
-          end
         end
       end
 
-      # Documenting method
+      # Documenting command
       doc_parameters =
        unless cmd[:parameters].nil?
          cmd[:parameters].map do |p|
@@ -372,23 +372,27 @@ module RME
       # Generating method
       section.send(:define_method, cmd[:name]) do |*args|
 
+        # Parsing parameters
+        parsed_args = Command::parse_cmd_args(args, cmd[:parameters])
+
         # Validating each parameter
         unless cmd[:parameters].nil?
-          cmd[:parameters].each_with_index do |expected, i |
+          cmd[:parameters].each_with_index do |expected, i|
 
             # Handling optional parameter
             unless expected[:default].nil?
-              if args[i].nil?
-                args << expected[:default]
+              if parsed_args[i].nil?
+                parsed_args << expected[:default]
               end
             end
 
             # Validating provided parameter
-            unless expected[:type][:domain].valid? args[i]
-              arg_value = (args[i].nil?) ? "nil (i.e.: not provided)." : args[i]
-              raise "Invalid parameter: #{expected[:name]} " +
-                    "(should be a #{expected[:type][:internal_description]}). " +
-                    "Actual value is #{arg_value}"
+            unless expected[:type][:domain].valid? parsed_args[i]
+              arg_value = (parsed_args[i].nil?) ? "nil (i.e.: not provided)." : parsed_args[i]
+              raise "Wrong usage of command: `#{cmd[:name]}` !\n" +
+                    "\tInvalid value for parameter: `#{expected[:name]}`.\n" +
+                    "\tIt should be a #{expected[:type][:internal_description]}.\n" +
+                    "\tActual value is: `#{arg_value}`."
             end
 
           end
@@ -397,9 +401,9 @@ module RME
         # Preparing command's arguments
         cmd_args =
           if not(cmd[:parameters].nil?) and (1 == cmd[:parameters].size)
-            args[0]
+            parsed_args[0]
           else
-            args
+            parsed_args
           end
 
         # Calling the delegated method
@@ -429,6 +433,103 @@ module RME
          section.send(:alias_method, a, cmd[:name])
        end
 
+    end
+
+    # ==========================================================================
+    # * Error/Exception which maps invalid commands' definitions.
+    # ==========================================================================
+    class DefinitionError < StandardError
+
+      # ------------------------------------------------------------------------
+      # * Constructs a new `DefinitionError`.
+      #   - `cmd_name` the name of the command which               Symbol/String
+      #     has fired this error
+      #   - `message` the underlying message which                        String
+      #     explains the error
+      # ------------------------------------------------------------------------
+      def initialize(cmd_name, message)
+        super("Invalid definition for command: #{cmd_name}.\n#{message}")
+      end
+
+    end
+
+    # --------------------------------------------------------------------------
+    # * Tells whether the given command's parameter is a variadic one or not.
+    #   - `cmd_param` the command's parameter's definition                  Hash
+    # -> `true` if the parameter is a variadic one;
+    #    `false` otherwise.
+    # --------------------------------------------------------------------------
+    def self.is_variadic_parameter?(cmd_param)
+      cmd_param[:type].domain.is_a? ParameterType::Variadic
+    end
+
+    # --------------------------------------------------------------------------
+    # * Checks if the provided command's definition (`cmd`) is a valid one
+    #   or not. If it is not, it throws an error to the upper layer.
+    #   - `cmd` the command's definition                                    Hash
+    # --------------------------------------------------------------------------
+    def self.validate_cmd(cmd)
+
+      # Validating command's global data's definition
+      if cmd[:name].nil?
+         cmd[:name].empty?
+         raise DefinitionError.new('{{undefined}}',
+                                   "One of the defined command has no name !")
+      end
+
+      # Validating parameters' definitions
+      unless cmd[:parameters].nil?
+        # Checking if there is at most one variadic parameter
+        nb_variadic = cmd[:parameters].select { |x| is_variadic_parameter? x }
+                                      .size
+
+        if (1 < nb_variadic)
+          raise DefinitionError.new(cmd[:name],
+                                    "At most one variadic parameter is accepted " +
+                                    "(i.e.: 0 or 1 variadic parameter).\n" +
+                                    "#{nb_variadic} given !")
+        end
+
+        # Checking each parameter's definition
+        cmd[:parameters].each_with_index do |param, i|
+
+          if param[:name].nil? or
+             param[:name].empty?
+            raise DefinitionError.new(cmd[:name],
+                                      "One of the parameter (##{i}) has no name !")
+          end
+
+        end
+      end
+
+    end
+    private_class_method :validate_cmd
+
+    # ------------------------------------------------------------------------
+    # * Parses the supplied command's arguments (`args`), according to what
+    #   is expected (`expected_params`).
+    #   (It mainly acts as a proxy to decompose variadic arguments
+    #    in an handier way)
+    #   - `args`                                                         Array
+    #     the command's argument, as provided by the end-user
+    #   - `expected_params`                                               Hash
+    #     the definition of expected command's arguments
+    # -> The array of parsed arguments.
+    # ------------------------------------------------------------------------
+    def self.parse_cmd_args(args, expected_params)
+      return args if expected_params.nil?
+      return args if (expected_params.size > args.size)
+
+      first_part = expected_params.take_while { |x| not(is_variadic_parameter? x) }
+      last_part = expected_params.reverse
+                                 .take_while { |x| not(is_variadic_parameter? x) }
+
+      first = args[0, first_part.size]
+      last = args[-1, last_part.size]
+
+      variadic = args[first_part.size, args.size - (first_part.size + last_part.size)]
+
+      first + (Array.new << variadic) + last
     end
 
   end
