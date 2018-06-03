@@ -122,8 +122,19 @@ module RME
         area.hover?
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area during the
+      #   command's call and considering the fact that the zone has been
+      #   defined using tiles instead of pixels (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_hover_square_area?,
+                        :description => 'Area.mouse_hover_square_area?',
+                        :parameters  => [AREA]}) do |area|
+        area.square_hover?
+      end
+
       # TODO
-      # - `mouse_hover_square_area?`
       # - `mouse_click_area?`
       # - `mouse_click_square_area?`
       # - `mouse_trigger_area?`

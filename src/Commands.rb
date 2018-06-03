@@ -3097,7 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def mouse_hover_square_area?(area); area.square_hover?; end
     def mouse_click_area?(area, k=nil); area.click?; end
     def mouse_click_square_area?(area, k=nil); area.square_click?; end
 
