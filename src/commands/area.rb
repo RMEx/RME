@@ -77,8 +77,23 @@ module RME
         ::Area::Ellipse.new(x, y, width, height)
       end
 
+      POINT_TYPE = ParameterType::List::of_exactly(ParameterType::Coordinate, 2)
+      # ------------------------------------------------------------------------
+      # * Returns a new virtual zone which corresponds to the polygon,
+      #   formed by the given points.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :create_polygon_area,
+                        :description => 'Area.create_polygon_area',
+                        :parameters  => [
+                          {:name        => :points,
+                           :description => 'Area.create_polygon_area.points',
+                           :type        => ParameterType::List::of_at_least(POINT_TYPE, 3)},
+                        ]}) do |points|
+        ::Area::Polygon.new(points)
+      end
+
       # TODO
-      # - `create_polygon_area`
       # - `in_area?`
       # - `mouse_hover_area?`
       # - `mouse_hover_square_area?`
