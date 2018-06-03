@@ -208,8 +208,23 @@ module RME
         area.press?(mouse_btn)
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area, constantly
+      #   clicking during the command's call on the specified `mouse_btn`
+      #   and considering the fact that the zone has been defined using tiles
+      #   instead of pixels (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_press_square_area?,
+                        :description => 'Area.mouse_press_square_area?',
+                        :parameters  => [
+                          AREA,
+                          MOUSE_BUTTON
+                        ]}) do |area, mouse_btn|
+        area.square_press?(mouse_btn)
+      end
+
       # TODO
-      # - `mouse_press_square_area?`
       # - `mouse_release_area?`
       # - `mouse_release_square_area?`
       # - `mouse_repeat_area?`
