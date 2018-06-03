@@ -177,8 +177,23 @@ module RME
         area.trigger?(mouse_btn)
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area, triggering
+      #   a `click` event during the command's call on the specified `mouse_btn`
+      #   and considering the fact that the zone has been defined using tiles
+      #   instead of pixels (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_trigger_square_area?,
+                        :description => 'Area.mouse_trigger_square_area?',
+                        :parameters  => [
+                          AREA,
+                          MOUSE_BUTTON
+                        ]}) do |area, mouse_btn|
+        area.square_trigger?(mouse_btn)
+      end
+
       # TODO
-      # - `mouse_trigger_square_area?`
       # - `mouse_press_area?`
       # - `mouse_press_square_area?`
       # - `mouse_release_area?`

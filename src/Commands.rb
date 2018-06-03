@@ -3097,10 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def mouse_trigger_square_area?(area, k=:mouse_left)
-      area.square_trigger?(k)
-    end
-
     def mouse_press_area?(area, k=:mouse_left)
       area.press?(k)
     end
