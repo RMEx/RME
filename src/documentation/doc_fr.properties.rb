@@ -149,6 +149,7 @@
   'doc.cmd.Area.mouse_hover_area?' => "Vérifie si la souris survole la zone au moment de l'appel",
   'doc.cmd.Area.mouse_hover_square_area?' => "Renvoie `true` si la souris survole la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
   'doc.cmd.Area.mouse_click_area?' => "Renvoie `true` si la souris survole et clique sur la zone passée en argument au moment de l'appel; `false` sinon",
+  'doc.cmd.Area.mouse_click_square_area?' => "Renvoie `true` si la souris survole et clique sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
 
   # Parameters
   ## Map
