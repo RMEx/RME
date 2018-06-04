@@ -14,6 +14,7 @@
 - Add command `include_common_event` (@BastienDuplessier)
 - Add command `get_squares_between` and `get_squares_between_events` (@BastienDuplessier)
 - Add commands `window_change_windowskin`, `window_change_tone`, `window_use_default_windowskin, `window_use_default_tone` (@BastienDuplessier, reported by @Zer0xxxx)
+- Add command `event_allow_overlap` (@BastienDuplessier, reported by @YendaHusk)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
@@ -22,6 +23,7 @@
 - Fix `create_text_window`, now can create empty text windows (@BastienDuplessier, reported by @Zer0xxxx)
 - Fix `text_show` with empty content and centered (@BastienDuplessier, reported by @aureliendossantos)
 - Teleport/Moving player will not recenter camera anymore if camera is locked (@BastienDuplessier, reported by @LucasDevos)
+- Fix disapearing windows and textfields after returning to Scene_Map
 
 ### Misc
 - Various fixes in the documentation (reported by @aureliendossantos, @Zer0xxxx, @grrim, @YendaHusk)

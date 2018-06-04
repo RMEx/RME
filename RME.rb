@@ -7525,8 +7525,11 @@ class Game_CharacterBase
   attr_accessor :move_succeed
   attr_accessor :light_emitter
   attr_accessor :tone
+  attr_accessor :allow_overlap
   attr_reader :id
 
+  alias_method :allow_overlap?, :allow_overlap
+  alias_method :rme_collide_with_characters?, :collide_with_characters?
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -7741,6 +7744,13 @@ class Game_CharacterBase
     Game_Interpreter.current_map_id = $game_map.map_id
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
     super(script, $game_map.interpreter.get_binding)
+  end
+  #--------------------------------------------------------------------------
+  # * Detect Collision with Character
+  #--------------------------------------------------------------------------
+  def collide_with_characters?(x, y)
+    return false if allow_overlap?
+    rme_collide_with_characters?(x, y)
   end
 
 end
@@ -8741,8 +8751,8 @@ class Scene_Map
   # * Start
   #--------------------------------------------------------------------------
   def start
-    @textfields = Hash.new
-    @windows = Hash.new
+    @textfields ||= Hash.new
+    @windows ||= Hash.new
     extender_start
     $game_map.reflash_map
   end
@@ -10334,11 +10344,14 @@ end
 
 class Game_Event
   #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :erased
+  attr_accessor :trigger
+  #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rm_extender_conditions_met?,  :conditions_met?
-  attr_accessor :erased
-  attr_accessor :trigger
   alias_method :erased?, :erased
   alias_method :rme_setup_page_settings, :setup_page_settings
   #--------------------------------------------------------------------------
@@ -14025,6 +14038,11 @@ module RMECommands
     #--------------------------------------------------------------------------
     def event_original_y(id)
       $game_map.rpg_event(id).y
+    end
+
+    def event_allow_overlap(id, value = nil)
+      return event(id).allow_overlap? if value.nil?
+      event(id).allow_overlap = value
     end
 
     # Fix for EE4
