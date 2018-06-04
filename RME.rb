@@ -12695,6 +12695,46 @@ module RMECommands
       get_squares_between(x1, y1, x2, y2)
     end
 
+    def get_squares_around_event(id, r = 1, center = false, strategy = :circle)
+      get_squares_around(event_x(id), event_y(id), r, center, strategy)
+    end
+
+    def get_squares_around(x, y, r = 1, center = false, strategy = :circle)
+      result = center ? [[x,y]] : []
+      case strategy
+      when :circle
+        r.times.inject(result) do |acc, n|
+          acc + get_squares_in_circle(x, y, n + 1)
+        end
+      when :square
+        (1..r).inject(result) do |acc, n|
+          w = n*2+1
+          acc + get_squares_in_rectangle(x-n, y-n, w, w)
+        end
+      else
+        result
+      end
+    end
+
+    def get_squares_in_circle(cx, cy, r)
+      curr = [cx - r, cy]
+      mod = [1, -1]
+      (0...(r * 4)).each_with_object([curr]) do |_, acc|
+        curr = curr.zip(mod).map { |a, b| a + b }
+        acc << curr
+        mod[0] *= -1 if curr[0] == cx + r || curr[0] == cx - r
+        mod[1] *= -1 if curr[1] == cy + r || curr[1] == cy - r
+      end
+    end
+
+    def get_squares_in_rectangle(x, y, w, h)
+      result = []
+      xx, yy = x + w - 1, y + h - 1
+      (x..xx).each { |xi| result << [xi, y]; result << [xi, yy] }
+      (y..yy).each { |yi| result << [x, yi]; result << [xx, yi] }
+      result.uniq
+    end
+
     def use_reflection(properties = nil)
       $game_map.use_reflection = true
       return unless properties && properties.is_a?(Hash)
