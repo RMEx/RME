@@ -64,6 +64,18 @@ var documentation = [
 {"name":"yb", "desc":"Coordonnée Y du point B", "type":"Fixnum"}]},
 {"name":"get_squares_between_events", "description":"Renvoie un tableau de cases entre deux events (avec le point de départ et d'arrivée)", "returnable":true,"parameters":[{"name":"id1", "desc":"L'ID de l'événement de départ", "type":"Fixnum"},
 {"name":"id2", "desc":"L'ID de l'événement d'arrivée", "type":"Fixnum"}]},
+{"name":"get_squares_around_event", "description":"Renvoie un tableau de cases situées autour de l'évènement désigné par son ID dans un rayon spécifié en paramètre", "returnable":true,"parameters":[{"name":"id", "desc":"L'ID de l'événement", "type":"Fixnum"},
+{"name":"*rayon", "desc":"Rayon de la zone renvoyée (par défaut il équivaut à 1 case)", "type":"Fixnum"},
+{"name":"*include_center", "desc":"Paramètre permettant de définir si la case centrale (x, y) doit être inclue dans la zone (true) ou non (false). Par défaut la valeur vaut false", "type":"Boolean"},
+{"name":"*forme", "desc":"Forme de la zone récupérée :circle ou :square. Par défaut, c'est :circle", "type":"Symbol"}]},
+{"name":"get_squares_around", "description":"Renvoie un tableau de cases situées autour de la case désignée par ses coordonnées X et Y dans un rayon spécifié en paramètre", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnée X du centre", "type":"Fixnum"},
+{"name":"y", "desc":"Coordonnée Y du centre", "type":"Fixnum"},
+{"name":"*rayon", "desc":"Rayon de la zone renvoyée (par défaut il équivaut à 1 case)", "type":"Fixnum"},
+{"name":"*include_center", "desc":"Paramètre permettant de définir si la case centrale (x, y) doit être inclue dans la zone (true) ou non (false). Par défaut la valeur vaut false", "type":"Boolean"},
+{"name":"*forme", "desc":"Forme de la zone récupérée :circle ou :square. Par défaut, c'est :circle", "type":"Symbol"}]},
+{"name":"get_squares_in_circle", "description":"Renvoie un tableau de cases représentant un cercle de centre XY et de rayon spécifié en paramètre", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnée X du centre", "type":"Fixnum"},
+{"name":"y", "desc":"Coordonnée Y du centre", "type":"Fixnum"},
+{"name":"*rayon", "desc":"Rayon du cercle renvoyé", "type":"Fixnum"}]},
 {"name":"get_squares_by_terrain", "description":"Renvoie un tableau de cases pour un terrain_tag donné donnée.", "returnable":true,"parameters":[{"name":"terrain_tag", "desc":"Le terrain tag (entre 0 et 7)", "type":"Fixnum"}]}
 ]},
 {"name":"Standards","desc":"Commandes standards","commands":[
