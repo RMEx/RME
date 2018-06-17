@@ -1265,6 +1265,8 @@ var documentation = [
 {"name":"skill_nb_hits", "description":"Renvoie le nombre de coups portés par la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_success_rate", "description":"Renvoie la probabilité de succès de la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_tp_gain", "description":"Renvoie le gain de TP que la technique référencée par son ID apporte une fois utilisée en combat", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
+{"name":"skill_mp_cost", "description":"Renvoie le coût en MP de la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
+{"name":"skill_tp_cost", "description":"Renvoie le coût en TP de la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_name", "description":"Renvoie le nom de la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_note", "description":"Renvoie le commentaire de la base de données de la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_description", "description":"Renvoie la description la technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},

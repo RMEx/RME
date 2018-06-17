@@ -3687,6 +3687,20 @@ link_method_documentation "Command.skill_tp_gain",
                         }, true
 register_command :skills, "Command.skill_tp_gain"
 
+link_method_documentation "Command.skill_mp_cost",
+                        "Renvoie le coût en MP de la technique référencée par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum],
+                        }, true
+register_command :skills, "Command.skill_mp_cost"
+
+link_method_documentation "Command.skill_tp_cost",
+                        "Renvoie le coût en TP de la technique référencée par son ID",
+                        {
+                          :id => ["Id de la technique", :Fixnum],
+                        }, true
+register_command :skills, "Command.skill_tp_cost"
+
 link_method_documentation "Command.skill_name",
                         "Renvoie le nom de la technique référencée par son ID",
                         {
