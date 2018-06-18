@@ -16,6 +16,7 @@
 - Add commands `window_change_windowskin`, `window_change_tone`, `window_use_default_windowskin, `window_use_default_tone` (@BastienDuplessier, reported by @Zer0xxxx)
 - Add command `event_allow_overlap` (@BastienDuplessier, reported by @YendaHusk)
 - Add commands `get_squares_around_event`, `get_squares_around`, `get_squares_in_circle` and `get_squares_in_rectangle` (@BastienDuplessier)
+- Add commands `skill_mp_cost` and `skill_tp_cost` (@LucasDevos, @BastienDuplessier)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)

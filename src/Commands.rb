@@ -2827,6 +2827,8 @@ module RMECommands
     def skill_nb_hits(i); $data_skills[i].repeats; end
     def skill_success_rate(i); $data_skills[i].success_rate; end
     def skill_tp_gain(i); $data_skills[i].tp_gain; end
+    def skill_mp_cost(i); $data_skills[i].mp_cost; end
+    def skill_tp_cost(i); $data_skills[i].tp_cost; end
 
     append_commands
   end
