@@ -168,8 +168,17 @@ module RME
         $data_armors[id].params[6]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the luck points that this armor gives when equipped.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_luck,
+                        :description => 'Armors.armor_luck',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].params[7]
+      end
+
       # TODO
-      # - `armor_luck`
       # - `give_armor`
       # - `has_armor?`
       # - `armor_equiped?`
