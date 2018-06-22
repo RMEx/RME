@@ -133,6 +133,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_hover_square_area?,
+                        :alias       => :mouse_square_hover_area?,
                         :description => 'Area.mouse_hover_square_area?',
                         :parameters  => [AREA]}) do |area|
         area.square_hover?
@@ -144,6 +145,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_click_area?,
+                        :alias       => :mouse_clicked_area?,
                         :description => 'Area.mouse_click_area?',
                         :parameters  => [AREA]}) do |area|
         area.click?
@@ -157,6 +159,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_click_square_area?,
+                        :alias       => :mouse_square_clicked_area?,
                         :description => 'Area.mouse_click_square_area?',
                         :parameters  => [AREA]}) do |area|
         area.square_click?
@@ -169,6 +172,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_trigger_area?,
+                        :alias       => :mouse_triggered_area?,
                         :description => 'Area.mouse_trigger_area?',
                         :parameters  => [
                           AREA,
@@ -185,6 +189,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_trigger_square_area?,
+                        :alias       => :mouse_square_triggered_area?,
                         :description => 'Area.mouse_trigger_square_area?',
                         :parameters  => [
                           AREA,
@@ -200,6 +205,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_press_area?,
+                        :alias       => :mouse_pressed_area?,
                         :description => 'Area.mouse_press_area?',
                         :parameters  => [
                           AREA,
@@ -216,6 +222,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_press_square_area?,
+                        :alias       => :mouse_square_pressed_area?,
                         :description => 'Area.mouse_press_square_area?',
                         :parameters  => [
                           AREA,
@@ -231,6 +238,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_release_area?,
+                        :alias       => :mouse_released_area?,
                         :description => 'Area.mouse_release_area?',
                         :parameters  => [
                           AREA,
@@ -246,6 +254,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_release_square_area?,
+                        :alias       => :mouse_square_released_area?,
                         :description => 'Area.mouse_release_square_area?',
                         :parameters  => [
                           AREA,
@@ -261,6 +270,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_repeat_area?,
+                        :alias       => :mouse_repeated_area?,
                         :description => 'Area.mouse_repeat_area?',
                         :parameters  => [
                           AREA,
@@ -276,6 +286,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_repeat_square_area?,
+                        :alias       => :mouse_square_repeated_area?,
                         :description => 'Area.mouse_repeat_square_area?',
                         :parameters  => [
                           AREA,

@@ -3097,20 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-
-    # EE4 compatibilities
-    alias_method :mouse_square_hover_area?, :mouse_hover_square_area?
-    alias_method :mouse_clicked_area?, :mouse_click_area?
-    alias_method :mouse_square_clicked_area?, :mouse_click_square_area?
-    alias_method :mouse_triggered_area?, :mouse_trigger_area?
-    alias_method :mouse_square_triggered_area?, :mouse_trigger_square_area?
-    alias_method :mouse_pressed_area?, :mouse_press_area?
-    alias_method :mouse_square_pressed_area?, :mouse_press_square_area?
-    alias_method :mouse_released_area?, :mouse_release_area?
-    alias_method :mouse_square_released_area?, :mouse_release_square_area?
-    alias_method :mouse_repeated_area?, :mouse_repeat_area?
-    alias_method :mouse_square_repeated_area?, :mouse_repeat_square_area?
-
     append_commands
   end
 
