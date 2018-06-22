@@ -22,3 +22,4 @@ documentation/internal_commands
 commands/map
 commands/actors
 commands/area
+commands/armors
