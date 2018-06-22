@@ -200,8 +200,25 @@ module RME
         $game_party.gain_item(item, amount, include_equipment)
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells wether the player owns the given armor (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :has_armor?,
+                        :description => 'Armors.has_armor?',
+                        :parameters  => [
+                          ARMOR_ID,
+                          {:name        => :include_equipment,
+                           :description => 'Armors.has_armor?.include_equipment',
+                           :type        => ParameterType::Boolean,
+                           :default     => false}
+                        ]}) do |id, include_equipment|
+        item = $data_armors[id]
+        $game_party.has_item?(item, include_equipment)
+      end
+
       # TODO
-      # - `has_armor?`
       # - `armor_equiped?`
       # - `armor_type`
       # - `armor_element_rate`

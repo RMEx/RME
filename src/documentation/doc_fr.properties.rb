@@ -177,6 +177,7 @@
   'doc.cmd.Armors.armor_agility' => "Renvoie l'apport d'agilité procuré par l'armure",
   'doc.cmd.Armors.armor_luck' => "Renvoie l'apport de chance procuré par l'armure",
   'doc.cmd.Armors.give_armor' => "Ajoute ou supprime plusieurs exemplaires d'une armure, de l'inventaire du joueur",
+  'doc.cmd.Armors.has_armor?' => "Renvoie `true` si l'armure est possédée par le joueur; `false` sinon."
 
   # Parameters
   ## Map
@@ -228,5 +229,6 @@
   'doc.parameter.Armors.armor_id' => "Identifiant de l'armure",
   'doc.parameter.Armors.armor_count.id' => "Identifiant de l'armure dont on veut compter le nombre d'exemplaires",
   'doc.parameter.Armors.give_armor.amount' => "Nombre d'exemplaires à ajouter à l'inventaire du joueur. Si le nombre est négatif, il s'agit du nombre d'exemplaires à retirer de l'inventaire.",
-  'doc.parameter.Armors.give_armor.include_equipment' => "Ce paramètre n'est utile que si l'on supprime des armures (`amount` est négatif). Si cette variable vaut `true`, les armures équipés seront aussi enlevé si l'inventaire n'en possède pas assez."
+  'doc.parameter.Armors.give_armor.include_equipment' => "Ce paramètre n'est utile que si l'on supprime des armures (`amount` est négatif). Si cette variable vaut `true`, les armures équipés seront aussi enlevé si l'inventaire n'en possède pas assez.",
+  'doc.parameter.Armors.has_armor?.include_equipment' => "Si ce paramètre vaut `true`, la commande prend en compte l'équipement; autrement elle ne le prend pas en compte (`false`)",
 }

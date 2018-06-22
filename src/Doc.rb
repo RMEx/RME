@@ -2388,14 +2388,6 @@ link_method_documentation "Command.has_weapon?",
                         }, true
 register_command :weapons, "Command.has_weapon?"
 
-link_method_documentation "Command.has_armor?",
-                        "Renvoie true si l'armure référencée par son ID est possédée par l'équipe, false sinon",
-                        {
-                          :id => ["Id de l'armure", :Fixnum],
-                           :"*include_equipement" => ["Si ce paramètre vaut true, la commande prend en compte l'équipement, sinon (false), elle ne le prend pas en compte (par défaut: false)", :Boolean]
-
-                        }, true
-register_command :armors, "Command.has_armor?"
 link_method_documentation "Command.weapon_equiped?",
                         "Renvoie true si l'arme référencée par son ID est équipée par un des membres de l'équipe, false sinon",
                         {

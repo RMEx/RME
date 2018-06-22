@@ -1488,10 +1488,6 @@ module RMECommands
       item = $data_weapons[id]
       $game_party.has_item?(item, include_equip)
     end
-    def has_armor?(id, include_equip = false)
-      item = $data_armors[id]
-      $game_party.has_item?(item, include_equip)
-    end
     def weapon_equiped?(id, member = nil)
       item = $data_weapons[id]
       return $game_party.members_equip_include?(item) unless member
