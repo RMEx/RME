@@ -2302,11 +2302,6 @@ link_method_documentation "Command.weapon_price",
                         {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :weapons, "Command.weapon_price"
 
-link_method_documentation "Command.armor_price",
-                        "Renvoie le prix  de l'armure référencée par son ID",
-                        {:id => ["Id de l'armure", :Fixnum]}, true
-register_command :armors, "Command.armor_price"
-
 link_method_documentation "Command.item_consumable?",
                         "Renvoie true si l'objet référencé par son ID est consommable, false sinon",
                         {:id => ["Id de l'objet", :Fixnum]}, true

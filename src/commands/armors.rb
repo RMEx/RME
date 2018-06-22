@@ -86,8 +86,17 @@ module RME
         $data_armors[id].icon_index
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the price of the given armor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_price,
+                        :description => 'Armors.armor_price',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].price
+      end
+
       # TODO
-      # - `armor_price`
       # - `armor_max_hit_points`
       # - `armor_max_magic_points`
       # - `armor_attack_power`
