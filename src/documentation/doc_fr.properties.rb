@@ -166,6 +166,7 @@
   'doc.cmd.Armors.armor_name' => "Renvoie le nom de l'armure",
   'doc.cmd.Armors.armor_note' => "Renvoie le commentaire associé à l'armure",
   'doc.cmd.Armors.armor_description' => "Renvoie la description de l'armure",
+  'doc.cmd.Armors.armor_icon' => "Renvoie l'indice de l'icône qui représente l'armure",
 
   # Parameters
   ## Map

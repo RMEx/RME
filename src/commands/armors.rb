@@ -76,8 +76,17 @@ module RME
         $data_armors[id].description
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the given armor's icon's index, within the current iconset.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_icon,
+                        :description => 'Armors.armor_icon',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].icon_index
+      end
+
       # TODO
-      # - `armor_icon`
       # - `armor_price`
       # - `armor_max_hit_points`
       # - `armor_max_magic_points`
