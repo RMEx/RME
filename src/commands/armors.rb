@@ -107,8 +107,18 @@ module RME
         $data_armors[id].params[0]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the additional magic points that this armor gives when
+      #   equipped.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_max_magic_points,
+                        :description => 'Armors.armor_max_magic_points',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].params[1]
+      end
+
       # TODO
-      # - `armor_max_magic_points`
       # - `armor_attack_power`
       # - `armor_defense_power`
       # - `armor_magic_attack_power`

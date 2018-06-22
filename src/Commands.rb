@@ -1451,7 +1451,6 @@ module RMECommands
     def weapon_magic_defense_power(id); $data_weapons[id].params[5]; end
     def weapon_agility(id); $data_weapons[id].params[6]; end
     def weapon_luck(id); $data_weapons[id].params[7]; end
-    def armor_max_magic_points(id); $data_armors[id].params[1]; end
     def armor_attack_power(id); $data_armors[id].params[2]; end
     def armor_defense_power(id); $data_armors[id].params[3]; end
     def armor_magic_attack_power(id); $data_armors[id].params[4]; end
