@@ -218,8 +218,29 @@ module RME
         $game_party.has_item?(item, include_equipment)
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells wether the given actor owns the given armor (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_equipped?,
+                        :description => 'Armors.armor_equiped?',
+                        :parameters  => [
+                          ARMOR_ID,
+                          {:name        => :member_id,
+                           :description => 'Armors.armor_equiped?.member_id',
+                           :type        => ParameterType::PositiveInteger,
+                           :default     => nil}
+                        ]}) do |id, member_id|
+        item = $data_armors[id]
+        unless member_id
+          $game_party.members_equip_include?(item)
+        else
+          $game_actors[member_id].equips.include?(item)
+        end
+      end
+
       # TODO
-      # - `armor_equiped?`
       # - `armor_type`
       # - `armor_element_rate`
 

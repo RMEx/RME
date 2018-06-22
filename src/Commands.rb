@@ -1493,11 +1493,6 @@ module RMECommands
       return $game_party.members_equip_include?(item) unless member
       $game_actors[member].equips.include?(item)
     end
-    def armor_equiped?(id, member = nil)
-      item = $data_armors[id]
-      return $game_party.members_equip_include?(item) unless member
-      $game_actors[member].equips.include?(item)
-    end
 
     def weapon_type(id)
      i = $data_weapons[id].wtype_id
