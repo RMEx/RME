@@ -164,6 +164,7 @@
   'doc.cmd.Armors.armors_possessed' => "Renvoie la liste des armures possédées",
   'doc.cmd.Armors.armor_count' => "Renvoie le nombre d'exemplaires (actuellement possédé par le joueur) de l'armure",
   'doc.cmd.Armors.armor_name' => "Renvoie le nom de l'armure",
+  'doc.cmd.Armors.armor_note' => "Renvoie le commentaire associé à l'armure",
 
   # Parameters
   ## Map
