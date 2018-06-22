@@ -2352,11 +2352,6 @@ link_method_documentation "Command.weapon_luck",
                         {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :weapons, "Command.weapon_luck"
 
-link_method_documentation "Command.armor_magic_attack_power",
-                        "Renvoie la puissance d'attaque magique d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet", :Fixnum]}, true
-register_command :armors, "Command.armor_magic_attack_power"
-
 link_method_documentation "Command.armor_magic_defense_power",
                         "Renvoie la puissance de défense magique d'une armure référencée par son ID",
                         {:id => ["Id de l'objet", :Fixnum]}, true
