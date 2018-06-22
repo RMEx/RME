@@ -162,6 +162,7 @@
   'doc.cmd.Area.mouse_repeat_square_area?' => "Renvoie `true` si la souris survole et est pressée de manière répétée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
   ## Armors
   'doc.cmd.Armors.armors_possessed' => "Renvoie la liste des armures possédées",
+  'doc.cmd.Armors.armor_count' => "Renvoie le nombre d'exemplaires (actuellement possédé par le joueur) de l'armure",
 
   # Parameters
   ## Map
@@ -208,5 +209,7 @@
   'doc.parameter.Area.area' => "Zone virtuelle à utiliser",
   'doc.parameter.Area.mouse_btn' => "Bouton de la souris à vérifier",
   'doc.parameter.Area.create_circle_area.radius' => "Rayon de la zone",
-  'doc.parameter.Area.create_polygon_area.points' => "Sommets du polygone (il faut en fournir au minimum 3 !)"
+  'doc.parameter.Area.create_polygon_area.points' => "Sommets du polygone (il faut en fournir au minimum 3 !)",
+  ## Armors
+  'doc.parameter.Armors.armour_count.id' => "Identifiant de l'armure dont on veut compter le nombre d'exemplaires"
 }

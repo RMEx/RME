@@ -26,8 +26,22 @@ module RME
         $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
       end
 
+      # ------------------------------------------------------------------------
+      # * Counts the number of copies for the given armor, that are currently
+      #   owned by the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_count,
+                        :description => 'Armors.armor_count',
+                        :parameters  => [
+                          {:name        => :id,
+                           :description => 'Armors.armor_count.id',
+                           :type        => ParameterType::ItemId}
+                        ]}) do |id|
+        $game_party.item_number($data_armors[id])
+      end
+
       # TODO
-      # - `armor_count`
       # - `armor_name`
       # - `armor_note`
       # - `armor_description`

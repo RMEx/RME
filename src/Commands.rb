@@ -1431,7 +1431,6 @@ module RMECommands
     end
     def item_count(id); $game_party.item_number($data_items[id]); end
     def weapon_count(id); $game_party.item_number($data_weapons[id]); end
-    def armor_count(id); $game_party.item_number($data_armors[id]); end
     def item_name(id); $data_items[id].name; end
     def weapon_name(id); $data_weapons[id].name; end
     def armor_name(id); $data_armors[id].name; end
