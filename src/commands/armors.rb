@@ -17,6 +17,11 @@ module RME
   module Command
     module Armors
 
+      # Common parameters' declaration
+      ARMOR_ID = {:name        => :id,
+                  :type        => ParameterType::ItemId,
+                  :description => 'Armors.armor_id'}
+
       # ------------------------------------------------------------------------
       # * Returns the list of armors that are currently owned by the player.
       # ------------------------------------------------------------------------
@@ -41,8 +46,17 @@ module RME
         $game_party.item_number($data_armors[id])
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the name of the given armor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_name,
+                        :description => 'Armors.armor_name',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].name
+      end
+
       # TODO
-      # - `armor_name`
       # - `armor_note`
       # - `armor_description`
       # - `armor_icon`

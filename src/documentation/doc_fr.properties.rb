@@ -163,6 +163,7 @@
   ## Armors
   'doc.cmd.Armors.armors_possessed' => "Renvoie la liste des armures possédées",
   'doc.cmd.Armors.armor_count' => "Renvoie le nombre d'exemplaires (actuellement possédé par le joueur) de l'armure",
+  'doc.cmd.Armors.armor_name' => "Renvoie le nom de l'armure",
 
   # Parameters
   ## Map
@@ -211,5 +212,6 @@
   'doc.parameter.Area.create_circle_area.radius' => "Rayon de la zone",
   'doc.parameter.Area.create_polygon_area.points' => "Sommets du polygone (il faut en fournir au minimum 3 !)",
   ## Armors
-  'doc.parameter.Armors.armour_count.id' => "Identifiant de l'armure dont on veut compter le nombre d'exemplaires"
+  'doc.parameter.Armors.armor_id' => "Identifiant de l'armure",
+  'doc.parameter.Armors.armor_count.id' => "Identifiant de l'armure dont on veut compter le nombre d'exemplaires"
 }
