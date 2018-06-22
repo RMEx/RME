@@ -158,8 +158,17 @@ module RME
         $data_armors[id].params[5]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the agility points that this armor gives when equipped.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_agility,
+                        :description => 'Armors.armor_agility',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].params[6]
+      end
+
       # TODO
-      # - `armor_agility`
       # - `armor_luck`
       # - `give_armor`
       # - `has_armor?`
