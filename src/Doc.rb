@@ -2282,11 +2282,6 @@ link_method_documentation "Command.weapon_description",
                         {:id => ["Id de l'arme", :Fixnum]}, true
 register_command :weapons, "Command.weapon_description"
 
-link_method_documentation "Command.armor_description",
-                        "Renvoie la description de l'armure référencé par son ID",
-                        {:id => ["Id de l'armure", :Fixnum]}, true
-register_command :armors, "Command.armor_description"
-
 link_method_documentation "Command.item_icon",
                         "Renvoie l'index de l'icone de l'objet référencé par son ID",
                         {:id => ["Id de l'objet", :Fixnum]}, true

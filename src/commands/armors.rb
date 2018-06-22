@@ -66,8 +66,17 @@ module RME
         $data_armors[id].note
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the given armor's description.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_description,
+                        :description => 'Armors.armor_description',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].description
+      end
+
       # TODO
-      # - `armor_description`
       # - `armor_icon`
       # - `armor_price`
       # - `armor_max_hit_points`

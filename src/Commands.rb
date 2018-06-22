@@ -1437,7 +1437,6 @@ module RMECommands
     def weapon_note(id); $data_weapons[id].note; end
     def item_description(id); $data_items[id].description; end
     def weapon_description(id); $data_weapons[id].description; end
-    def armor_description(id); $data_armors[id].description; end
     def item_icon(id); $data_items[id].icon_index; end
     def weapon_icon(id); $data_weapons[id].icon_index; end
     def armor_icon(id); $data_armors[id].icon_index; end
