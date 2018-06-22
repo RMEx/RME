@@ -17,8 +17,16 @@ module RME
   module Command
     module Armors
 
+      # ------------------------------------------------------------------------
+      # * Returns the list of armors that are currently owned by the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armors_possessed,
+                        :description => 'Armors.armors_possessed'}) do
+        $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
+      end
+
       # TODO
-      # - `armors_possessed`
       # - `armor_count`
       # - `armor_name`
       # - `armor_note`

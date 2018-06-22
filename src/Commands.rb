@@ -1426,9 +1426,6 @@ module RMECommands
     def items_possessed
       $game_party.items.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
-    def armors_possessed
-      $game_party.armors.map {|i| [i.id] * $game_party.item_number(i)}.flatten
-    end
     def weapons_possessed
       $game_party.weapons.map {|i| [i.id] * $game_party.item_number(i)}.flatten
     end
