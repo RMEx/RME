@@ -251,9 +251,6 @@ module RME
         $data_system.armor_types[i]
       end
 
-      # TODO
-      # - `armor_element_rate`
-
       append_commands
     end
   end
