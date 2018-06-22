@@ -176,6 +176,7 @@
   'doc.cmd.Armors.armor_magic_defense_power' => "Renvoie les points de défense magique de l'armure",
   'doc.cmd.Armors.armor_agility' => "Renvoie l'apport d'agilité procuré par l'armure",
   'doc.cmd.Armors.armor_luck' => "Renvoie l'apport de chance procuré par l'armure",
+  'doc.cmd.Armors.give_armor' => "Ajoute ou supprime plusieurs exemplaires d'une armure, de l'inventaire du joueur",
 
   # Parameters
   ## Map
@@ -225,5 +226,7 @@
   'doc.parameter.Area.create_polygon_area.points' => "Sommets du polygone (il faut en fournir au minimum 3 !)",
   ## Armors
   'doc.parameter.Armors.armor_id' => "Identifiant de l'armure",
-  'doc.parameter.Armors.armor_count.id' => "Identifiant de l'armure dont on veut compter le nombre d'exemplaires"
+  'doc.parameter.Armors.armor_count.id' => "Identifiant de l'armure dont on veut compter le nombre d'exemplaires",
+  'doc.parameter.Armors.give_armor.amount' => "Nombre d'exemplaires à ajouter à l'inventaire du joueur. Si le nombre est négatif, il s'agit du nombre d'exemplaires à retirer de l'inventaire.",
+  'doc.parameter.Armors.give_armor.include_equipment' => "Ce paramètre n'est utile que si l'on supprime des armures (`amount` est négatif). Si cette variable vaut `true`, les armures équipés seront aussi enlevé si l'inventaire n'en possède pas assez."
 }

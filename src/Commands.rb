@@ -1480,10 +1480,6 @@ module RMECommands
       item = $data_weapons[id];
       $game_party.gain_item(item, amount, include_equip)
     end
-    def give_armor(id, amount, include_equip = false)
-      item = $data_armors[id];
-      $game_party.gain_item(item, amount, include_equip)
-    end
     def has_item?(id)
       item = $data_items[id]
       $game_party.has_item?(item)

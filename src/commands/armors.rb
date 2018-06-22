@@ -178,8 +178,29 @@ module RME
         $data_armors[id].params[7]
       end
 
+      # ------------------------------------------------------------------------
+      # * Gives or removes copies of the given armor from the player's
+      #   inventory.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :give_armor,
+                        :description => 'Armors.give_armor',
+                        :parameters  => [
+                          ARMOR_ID,
+                          {:name        => :amount,
+                           :description => 'Armors.give_armor.amount',
+                           :type        => ParameterType::Integer
+                          },
+                          {:name        => :include_equipment,
+                           :description => 'Armors.give_armor.include_equipment',
+                           :type        => ParameterType::Boolean,
+                           :default     => false}
+                        ]}) do |id, amount, include_equipment|
+        item = $data_armors[id];
+        $game_party.gain_item(item, amount, include_equipment)
+      end
+
       # TODO
-      # - `give_armor`
       # - `has_armor?`
       # - `armor_equiped?`
       # - `armor_type`

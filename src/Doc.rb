@@ -2371,16 +2371,6 @@ link_method_documentation "Command.give_weapon",
                         }
 register_command :weapons, "Command.give_weapon"
 
-link_method_documentation "Command.give_armor",
-                        "Fait gagner à l'équipe l'armure référencée par son ID",
-                        {
-                          :id => ["Id de l'armure", :Fixnum],
-                          :amount => ["Nombre à donner. Si le nombre est négatif, l'objet sera retiré", :Fixnum],
-                          :"*include_equipement" => ["Ce paramètre n'est utile que si on supprime des objets (ammount négatif). Si cette variable vaut true, les objets équipés seront déséquipés si l'inventaire n'en possède pas assez. Par défaut, il vaut false. Donc pas de déséquipement", :Boolean]
-
-                        }
-register_command :armors, "Command.give_armor"
-
 link_method_documentation "Command.has_item?",
                         "Renvoie true si l'objet référencé par son ID est possédé par l'équipe, false sinon",
                         {
