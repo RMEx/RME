@@ -168,6 +168,7 @@
   'doc.cmd.Armors.armor_description' => "Renvoie la description de l'armure",
   'doc.cmd.Armors.armor_icon' => "Renvoie l'indice de l'icône qui représente l'armure",
   'doc.cmd.Armors.armor_price' => "Renvoie le prix de l'armure",
+  'doc.cmd.Armors.armor_max_hit_points' => "Renvoie le maximum des points de vie de l'armure",
 
   # Parameters
   ## Map

@@ -96,8 +96,18 @@ module RME
         $data_armors[id].price
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the additional health points that this armor gives when
+      #   equipped.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_max_hit_points,
+                        :description => 'Armors.armor_max_hit_points',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].params[0]
+      end
+
       # TODO
-      # - `armor_max_hit_points`
       # - `armor_max_magic_points`
       # - `armor_attack_power`
       # - `armor_defense_power`

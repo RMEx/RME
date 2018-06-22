@@ -2352,11 +2352,6 @@ link_method_documentation "Command.weapon_luck",
                         {:id => ["Id de l'objet", :Fixnum]}, true
 register_command :weapons, "Command.weapon_luck"
 
-link_method_documentation "Command.armor_max_hit_points",
-                        "Renvoie le maximum des points de vie d'une armure référencée par son ID",
-                        {:id => ["Id de l'objet", :Fixnum]}, true
-register_command :armors, "Command.armor_max_hit_points"
-
 link_method_documentation "Command.armor_max_magic_points",
                         "Renvoie le maximum des points de magie d'une armure référencée par son ID",
                         {:id => ["Id de l'objet", :Fixnum]}, true
