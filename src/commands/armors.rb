@@ -148,8 +148,17 @@ module RME
         $data_armors[id].params[4]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the magical defense power that this armor gives when equipped.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_magic_defense_power,
+                        :description => 'Armors.armor_magic_defense_power',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        $data_armors[id].params[5]
+      end
+
       # TODO
-      # - `armor_magic_defense_power`
       # - `armor_agility`
       # - `armor_luck`
       # - `give_armor`

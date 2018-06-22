@@ -173,6 +173,7 @@
   'doc.cmd.Armors.armor_attack_power' => "Renvoie la puissance d'attaque de l'armure",
   'doc.cmd.Armors.armor_defense_power' => "Renvoie les points de défense de l'armure",
   'doc.cmd.Armors.armor_magic_attack_power' => "Renvoie la puissance d'attaque magique de l'armure",
+  'doc.cmd.Armors.armor_magic_defense_power' => "Renvoie les points de défense magique de l'armure",
 
   # Parameters
   ## Map
