@@ -239,8 +239,22 @@ module RME
         area.release?(mouse_btn)
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area (defined using
+      #   tiles instead of pixels), and the `mouse_btn` is released during the
+      #   command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_release_square_area?,
+                        :description => 'Area.mouse_release_square_area?',
+                        :parameters  => [
+                          AREA,
+                          MOUSE_BUTTON
+                        ]}) do |area, mouse_btn|
+        area.square_release?(mouse_btn)
+      end
+
       # TODO
-      # - `mouse_release_square_area?`
       # - `mouse_repeat_area?`
       # - `mouse_repeat_square_area?`
 
