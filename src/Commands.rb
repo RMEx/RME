@@ -3097,9 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def mouse_repeat_area?(area, k=:mouse_left)
-      area.repeat?(k)
-    end
     def mouse_repeat_square_area?(area, k=:mouse_left)
       area.square_repeat?(k)
     end
