@@ -269,8 +269,20 @@ module RME
         area.repeat?(mouse_btn)
       end
 
-      # TODO
-      # - `mouse_repeat_square_area?`
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given area (defined using
+      #   tiles instead of pixels), and the `mouse_btn` is constantly released
+      #   during the command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_repeat_square_area?,
+                        :description => 'Area.mouse_repeat_square_area?',
+                        :parameters  => [
+                          AREA,
+                          MOUSE_BUTTON
+                        ]}) do |area, mouse_btn|
+        area.square_repeat?(mouse_btn)
+      end
 
       append_commands
     end

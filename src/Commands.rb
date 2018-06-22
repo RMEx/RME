@@ -3097,9 +3097,6 @@ module RMECommands
   #==============================================================================
 
   module AreaCmds
-    def mouse_repeat_square_area?(area, k=:mouse_left)
-      area.square_repeat?(k)
-    end
 
     # EE4 compatibilities
     alias_method :mouse_square_hover_area?, :mouse_hover_square_area?

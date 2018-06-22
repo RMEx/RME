@@ -158,6 +158,7 @@
   'doc.cmd.Area.mouse_release_area?' => "Renvoie `true` si la souris survole et est relâchée sur la zone passée en argument au moment de l'appel; `false` sinon",
   'doc.cmd.Area.mouse_release_square_area?' => "Renvoie `true` si la souris survole est relâchée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
   'doc.cmd.Area.mouse_repeat_area?' => "Renvoie `true` si la souris survole et pressée de manière répétée sur la zone passée en argument au moment de l'appel; `false` sinon",
+  'doc.cmd.Area.mouse_repeat_square_area?' => "Renvoie `true` si la souris survole et est pressée de manière répétée sur la zone passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels; `false` sinon",
 
   # Parameters
   ## Map
