@@ -240,8 +240,18 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the given armor's type.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :armor_type,
+                        :description => 'Armors.armor_type',
+                        :parameters  => [ARMOR_ID]}) do |id|
+        i = $data_armors[id].atype_id
+        $data_system.armor_types[i]
+      end
+
       # TODO
-      # - `armor_type`
       # - `armor_element_rate`
 
       append_commands

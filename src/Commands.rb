@@ -1498,10 +1498,6 @@ module RMECommands
      i = $data_weapons[id].wtype_id
      $data_system.weapon_types[i]
     end
-    def armor_type(id)
-      i = $data_armors[id].atype_id
-      $data_system.armor_types[i]
-    end
     def item_scope(id)
       $data_items[id].scope
     end

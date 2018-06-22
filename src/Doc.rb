@@ -2403,13 +2403,6 @@ link_method_documentation "Command.weapon_type",
                         }, true
 register_command :weapons, "Command.weapon_type"
 
-link_method_documentation "Command.armor_type",
-                        "Renvoie le type de l'armure référencée par son ID",
-                        {
-                          :id => ["Id de l'armure", :Fixnum],
-                        }, true
-register_command :armors, "Command.armor_type"
-
 link_method_documentation "Command.item_scope",
                         "Renvoie la portée (en Entier) d'un objet référencé par son ID",
                         {
