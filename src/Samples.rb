@@ -83,6 +83,7 @@ ASample.new('Un exemple de spritesheet',
 ['spritesheet_show', 'spritesheet_next'], 34)
 
 ASample.new('Infiltration : champ de vision d\'un garde',
-['event_x', 'event_y', 'get_squares_between', 'get'], 35)
+['event_look_towards_event?', 'get_squares_between_events',
+ 'length',  'get', 'region_id', 'event_at'], 35)
 
 end
