@@ -3867,6 +3867,18 @@ module Kernel
   end
 
 end
+#==============================================================================
+# ** Direction
+#------------------------------------------------------------------------------
+#  Directions are defined in this module.
+#==============================================================================
+module Direction
+  UP    = 2
+  LEFT  = 4
+  RIGHT = 6
+  DOWN  = 8
+end
+
 
 #==============================================================================
 # ** RME Gui
@@ -13442,6 +13454,32 @@ module RMECommands
       end
       return x_axis && y_axis && (distance_between(metric, ev, to)<=scope)
     end
+    def event_look_towards_event?(source, dest, scope)
+      event_look_towards?(source, event_x(dest), event_y(dest), scope)
+    end
+    def event_look_towards?(source, x, y, scope)
+      ex, ey = event_x(source), event_y(source)
+      case event_direction(source)
+      when Direction::UP
+        distance = ey - y
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey > y
+      when Direction::DOWN
+        distance = y - ey
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey < y
+      when Direction::LEFT
+        distance = ex - x
+        x_axis = ex > x
+        y_axis = (ey >= y - distance) && (ey <= y + distance)
+      when Direction::RIGHT
+        distance = x - ex
+        x_axis = ex < x
+        y_axis = (ey >= y - distance) && (ey <= y + distance)
+      end
+      return x_axis && y_axis && distance <= scope
+    end
+
     def events_collide?(ev1, ev2)
       event1 = event(ev1)
       event2 = event(ev2)
