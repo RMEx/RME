@@ -17,6 +17,11 @@ module RME
   module Command
     module Camera
 
+      # Common parameters' declaration
+      DISTANCE = {:name        => :distance,
+                  :type        => ParameterType::PositiveInteger,
+                  :description => 'Camera.distance'}
+
       # ------------------------------------------------------------------------
       # * Tells whether the camera is currently scrolling (`true`);
       #   or not (`false`)
@@ -27,8 +32,26 @@ module RME
         $game_map.scrolling? || $game_map.scrolling_activate
       end
 
+      # ------------------------------------------------------------------------
+      # * Scrolls the camera in the given `direction`.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_scroll,
+                        :description => 'Camera.camera_scroll',
+                        :parameters  => [
+                          {:name        => :direction,
+                           :type        => ParameterType::Direction,
+                           :description => 'Camera.camera_scroll.direction'},
+                          DISTANCE,
+                          {:name        => :speed,
+                           :type        => ParameterType::PositiveFloat,
+                           :description => 'Camera.camera_scroll.speed'}
+                        ]}) do |direction, distance, speed|
+        Fiber.yield while $game_map.scrolling?
+        $game_map.start_scroll(direction, distance, speed)
+      end
+
       # TODO
-      # - `camera_scroll`
       # - `camera_scroll_towards`
       # - `camera_scroll_towards_event`
       # - `camera_scroll_towards_player`

@@ -3314,11 +3314,6 @@ module RMECommands
                          :top_y, :center_y, :bottom_y,
                          :limit_within_range
 
-    def camera_scroll(direction, distance, speed)
-      Fiber.yield while $game_map.scrolling?
-      $game_map.start_scroll(direction, distance, speed)
-    end
-
     def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :centered)
       Fiber.yield while $game_map.scrolling?
       $game_map.start_scroll_towards(*POSITION[position].call(x, y),

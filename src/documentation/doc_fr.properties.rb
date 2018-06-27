@@ -186,6 +186,7 @@
   'doc.cmd.Armors.armor_type' => "Renvoie le type de l'armure",
   ## Camera
   'doc.cmd.Camera.camera_scrolling?' => "Renvoie `true` si la caméra est en train de défiler; `false` sinon",
+  'doc.cmd.Camera.camera_scroll' => "Fait défiler la caméra dans une direction sur une distance (en cases), et suivant une certaine vitesse",
 
   # Parameters
   ## Map
@@ -239,5 +240,9 @@
   'doc.parameter.Armors.give_armor.amount' => "Nombre d'exemplaires à ajouter à l'inventaire du joueur. Si le nombre est négatif, il s'agit du nombre d'exemplaires à retirer de l'inventaire.",
   'doc.parameter.Armors.give_armor.include_equipment' => "Ce paramètre n'est utile que si l'on supprime des armures (`amount` est négatif). Si cette variable vaut `true`, les armures équipés seront aussi enlevé si l'inventaire n'en possède pas assez.",
   'doc.parameter.Armors.has_armor?.include_equipment' => "Si ce paramètre vaut `true`, la commande prend en compte l'équipement; autrement elle ne le prend pas en compte (`false`)",
-  'doc.parameter.Armors.armor_equiped?.member_id' => "La position du membre dans l'équipe; si cette valeur n'est pas spécifié, la commande vérifiera si au moins un membre dans l'équipe possède l'armure"
+  'doc.parameter.Armors.armor_equiped?.member_id' => "La position du membre dans l'équipe; si cette valeur n'est pas spécifié, la commande vérifiera si au moins un membre dans l'équipe possède l'armure",
+  ## Camera
+  'doc.parameter.Camera.distance' => "Nombre de cases à défiler",
+  'doc.parameter.Camera.camera_scroll.direction' => "Direction prise par la caméra",
+  'doc.parameter.Camera.camera_scroll.speed' => "Vitesse du défilement",
 }
