@@ -17,6 +17,7 @@
   'doc.TerrainTag.description' => "Étiquette de terrain (tiles)",
   'doc.Area.description' => "Zone virtuelle (il peut s'agir d'un rectangle, d'un cercle, d'une ellipse ou d'un polygone)",
   'doc.MouseButton.description' => "Bouton de la souris",
+  'doc.EasingFunction.description' => "Fonction à utiliser pour effectuer une transition",
   'doc.ActorId.description' => "Identifiant d'un héros",
   'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
   'doc.ItemId.description' => "Identifiant d'un item (objets, consommables ou pièces d'équipement)",

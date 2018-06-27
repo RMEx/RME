@@ -313,6 +313,10 @@ module RME
                                      :mouse_center,
                                      :mouse_x1, :mouse_x2))
 
+      ParameterType::declare(:EasingFunction,
+                             "Easing function",
+                             Set.new(*(Easing::FUNCTIONS.keys)))
+
       ParameterType::declare(:ActorId,
                              "Actor's identifier",
                              ClosedInterval.new(1, 999))
