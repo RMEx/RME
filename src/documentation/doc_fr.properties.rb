@@ -27,6 +27,7 @@
   'doc.section.Actors' => "Offre des commandes pour obtenir des informations sur les acteurs (héros) ",
   'doc.section.Area' => "Commandes pour créer et manipuler des zones virtuelles",
   'doc.section.Armors' => "Commandes permettant de manipuler les armures",
+  'doc.section.Camera' => "Commandes relatives à la manipulation de la caméra (scrolling de la carte)",
 
   # Commands
   ## Map

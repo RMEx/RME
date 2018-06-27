@@ -23,3 +23,4 @@ commands/map
 commands/actors
 commands/area
 commands/armors
+commands/camera
