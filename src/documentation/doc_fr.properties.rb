@@ -181,6 +181,8 @@
   'doc.cmd.Armors.has_armor?' => "Renvoie `true` si l'armure est possédée par le joueur; `false` sinon."
   'doc.cmd.Armors.armor_equiped?' => "Renvoie `true` si l'armure est équipé par l'un des membres de l'équipe; `false` sinon.",
   'doc.cmd.Armors.armor_type' => "Renvoie le type de l'armure",
+  ## Camera
+  'doc.cmd.Camera.camera_scrolling?' => "Renvoie `true` si la caméra est en train de défiler; `false` sinon",
 
   # Parameters
   ## Map

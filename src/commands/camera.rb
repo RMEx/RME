@@ -17,8 +17,17 @@ module RME
   module Command
     module Camera
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the camera is currently scrolling (`true`);
+      #   or not (`false`)
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_scrolling?,
+                        :description => 'Camera.camera_scrolling?'}) do
+        $game_map.scrolling? || $game_map.scrolling_activate
+      end
+
       # TODO
-      # - `camera_scrolling?`
       # - `camera_scroll`
       # - `camera_scroll_towards`
       # - `camera_scroll_towards_event`

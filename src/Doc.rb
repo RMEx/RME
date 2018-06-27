@@ -2637,11 +2637,6 @@ link_method_documentation "Command.item_tp_gain",
                         }, true
 register_command :items, "Command.item_tp_gain"
 
-link_method_documentation 'Command.camera_scrolling?',
-	'Renvoie true si la camera est en train de défiler, false sinon',
- 	{}, true # Maybe changed
-register_command :camera, 'Command.camera_scrolling?' 
-
 link_method_documentation "Command.game_title",
                         "Renvoie le titre du jeu",
                         {}, true

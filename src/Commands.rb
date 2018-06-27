@@ -3338,10 +3338,6 @@ module RMECommands
       $game_map.set_display_pos(x-CENTER_X, y-CENTER_Y)
     end
 
-    def camera_scrolling?
-      $game_map.scrolling? || $game_map.scrolling_activate
-    end
-
     def camera_scroll_on(x, y, speed)
       camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
       camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
