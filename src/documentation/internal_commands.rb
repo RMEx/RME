@@ -276,6 +276,15 @@ module RME
       ParameterType::declare(:NullablePositiveInteger,
                              "Nullable positive integer",
                              Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
+      ParameterType::declare(:Float,
+                             "Real number (positive or negative)",
+                             Domain.new(lambda { |x| (x.is_a? ::Float) }))
+      ParameterType::declare(:PositiveFloat,
+                             "Positive real number (Float)",
+                             Domain.new(lambda { |x| (x.is_a? ::Float) and (0 <= x) }))
+      ParameterType::declare(:StrictlyPositiveFloat,
+                             "Strictly positive real number (Float)",
+                             Domain.new(lambda { |x| (x.is_a? ::Float) and (0 < x) }))
       ParameterType::declare(:String,
                              "String value",
                              Domain.new(lambda { |x| (x.is_a? ::String) }))
