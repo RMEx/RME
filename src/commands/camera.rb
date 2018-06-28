@@ -202,8 +202,17 @@ module RME
         $game_map.target_camera = $game_player
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the camera is currently locked (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_locked?,
+                        :description => 'Camera.camera_locked?'}) do
+        $game_map.target_camera.nil?
+      end
+
       # TODO
-      # - `camera_locked?`
       # - `camera_lock_x`
       # - `camera_unlock_x`
       # - `camera_x_locked?`

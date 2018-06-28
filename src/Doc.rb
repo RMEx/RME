@@ -5158,11 +5158,6 @@ link_method_documentation 'Command.event_trigger',
   }
 register_command :event, 'Command.event_trigger'
 
-link_method_documentation 'Command.camera_locked?',
-	'Renovie true si la camera est verrouillée',
- 	{}
-register_command :camera,'Command.camera_locked?'
-
 link_method_documentation 'Command.camera_lock_x',
 	'Verrouille la position de la caméra sur l\'axe X',
  	{}
