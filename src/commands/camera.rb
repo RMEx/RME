@@ -21,6 +21,9 @@ module RME
       DISTANCE = {:name        => :distance,
                   :type        => ParameterType::PositiveInteger,
                   :description => 'Camera.distance'}
+      SPEED = {:name        => :speed,
+               :type        => ParameterType::PositiveFloat,
+               :description => 'Camera.camera_scroll.speed'}
       X = {:name        => :x,
            :type        => ParameterType::PositiveInteger,
            :description => 'Camera.x'}
@@ -94,9 +97,7 @@ module RME
                            :type        => ParameterType::Direction,
                            :description => 'Camera.camera_scroll.direction'},
                           DISTANCE,
-                          {:name        => :speed,
-                           :type        => ParameterType::PositiveFloat,
-                           :description => 'Camera.camera_scroll.speed'}
+                          SPEED
                         ]}) do |direction, distance, speed|
         Fiber.yield while $game_map.scrolling?
         $game_map.start_scroll(direction, distance, speed)
@@ -168,8 +169,22 @@ module RME
         $game_map.set_display_pos(x - CENTER_X, y - CENTER_Y)
       end
 
+      # ------------------------------------------------------------------------
+      # * Scrolls the camera towards the given point (`x`, `y`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_scroll_on,
+                        :description => 'Camera.camera_scroll_on',
+                        :parameters  => [
+                          X,
+                          Y,
+                          SPEED
+                        ]}) do |x, y, speed|
+        camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
+        camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
+      end
+
       # TODO
-      # - `camera_scroll_on`
       # - `camera_lock`
       # - `camera_unlock`
       # - `camera_locked?`

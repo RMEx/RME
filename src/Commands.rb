@@ -3281,11 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    def camera_scroll_on(x, y, speed)
-      camera_scroll(((dx = $game_map.display_x) > x)?4:6, (dx-x).abs-CENTER_X, speed)
-      camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
-    end
-
     def camera_lock; $game_map.target_camera = nil; end
     def camera_unlock; $game_map.target_camera = $game_player; end
     def camera_locked?; $game_map.target_camera.nil?; end
