@@ -203,6 +203,7 @@
   'doc.cmd.Camera.camera_x_locked?' => "Renvoie `true` si la caméra est verrouillée en X; `false` sinon",
   'doc.cmd.Camera.camera_lock_y' => "Verrouille la position de la caméra sur l'axe Y",
   'doc.cmd.Camera.camera_unlock_y' => "Déverrouille la position de la caméra sur l'axe Y",
+  'doc.cmd.Camera.camera_y_locked?' => "Renvoie `true` si la caméra est verrouillée en Y; `false` sinon",
 
   # Parameters
   ## Map

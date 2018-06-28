@@ -3281,8 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    def camera_y_locked?; $game_map.camera_lock.include?(:y); end
-
     def camera_change_focus(event_id)
       e = event(event_id)
       camera_move_on(e.x, e.y)
