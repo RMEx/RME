@@ -3281,7 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    def camera_unlock_x; $game_map.camera_lock.delete(:x); end
     def camera_x_locked?; $game_map.camera_lock.include?(:x); end
 
     def camera_lock_y; $game_map.camera_lock << :y; end
