@@ -107,10 +107,10 @@ module RME
       #   (The trajectory between its origin point and target one is computed
       #    using a linear interpolation)
       # ------------------------------------------------------------------------
-      Command::declare({:section => self,
-                        :name => :camera_scroll_towards,
+      Command::declare({:section     => self,
+                        :name        => :camera_scroll_towards,
                         :description => 'Camera.camera_scroll_towards',
-                        :parameters => [
+                        :parameters  => [
                           X,
                           Y,
                           NB_STEPS,
@@ -128,10 +128,10 @@ module RME
       #   (The trajectory between its origin point and target one is computed
       #    using a linear interpolation)
       # ------------------------------------------------------------------------
-      Command::declare({:section => self,
-                        :name => :camera_scroll_towards_event,
+      Command::declare({:section     => self,
+                        :name        => :camera_scroll_towards_event,
                         :description => 'Camera.camera_scroll_towards_event',
-                        :parameters => [
+                        :parameters  => [
                           {:name        => :id,
                            :type        => ParameterType::EventId,
                            :description => 'Camera.camera_scroll_towards_event.id'},
@@ -147,10 +147,10 @@ module RME
       #   (The trajectory between its origin point and target one is computed
       #    using a linear interpolation)
       # ------------------------------------------------------------------------
-      Command::declare({:section => self,
-                        :name => :camera_scroll_towards_player,
+      Command::declare({:section     => self,
+                        :name        => :camera_scroll_towards_player,
                         :description => 'Camera.camera_scroll_towards_player',
-                        :parameters => [
+                        :parameters  => [
                           NB_STEPS,
                           EASING,
                           POSITION
@@ -161,10 +161,10 @@ module RME
       # ------------------------------------------------------------------------
       # * Makes the camera focus the given point (`x`, `y`).
       # ------------------------------------------------------------------------
-      Command::declare({:section => self,
-                        :name => :camera_move_on,
+      Command::declare({:section     => self,
+                        :name        => :camera_move_on,
                         :description => 'Camera.camera_move_on',
-                        :parameters => [X, Y]}) do |x, y|
+                        :parameters  => [X, Y]}) do |x, y|
         $game_map.set_display_pos(x - CENTER_X, y - CENTER_Y)
       end
 
