@@ -316,6 +316,13 @@ module RME
       ParameterType::declare(:EasingFunction,
                              "Easing function",
                              Set.new(*(Easing::FUNCTIONS.keys)))
+      ParameterType::declare(:PositionRegardingCamera,
+                             "Target's (i.e.: event) position regarding the camera's overall focus",
+                             Set.new(:centered,
+                                     :centered_left, :centered_right,
+                                     :centered_top, :centered_bottom,
+                                     :top_left, :top_right,
+                                     :bottom_left, :bottom_right))
 
       ParameterType::declare(:ActorId,
                              "Actor's identifier",
