@@ -193,8 +193,16 @@ module RME
         $game_map.target_camera = nil
       end
 
+      # ------------------------------------------------------------------------
+      # * Unlocks the camera.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_unlock,
+                        :description => 'Camera.camera_unlock'}) do
+        $game_map.target_camera = $game_player
+      end
+
       # TODO
-      # - `camera_unlock`
       # - `camera_locked?`
       # - `camera_lock_x`
       # - `camera_unlock_x`

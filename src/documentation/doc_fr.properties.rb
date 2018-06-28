@@ -196,6 +196,7 @@
   'doc.cmd.Camera.camera_move_on' => "Place la caméra sur un point de la carte",
   'doc.cmd.Camera.camera_scroll_on' => "Fait défiler la caméra vers un point donné",
   'doc.cmd.Camera.camera_lock' => "Verrouille la position de la caméra",
+  'doc.cmd.Camera.camera_unlock' => "Déverrouille la position de la caméra (et reprend le héros comme plan de référence)",
 
   # Parameters
   ## Map
