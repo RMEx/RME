@@ -184,8 +184,16 @@ module RME
         camera_scroll(((dy = $game_map.display_y) > y)?8:2, (dy-y).abs-CENTER_Y, speed)
       end
 
+      # ------------------------------------------------------------------------
+      # * Locks the camera.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_lock,
+                        :description => 'Camera.camera_lock'}) do
+        $game_map.target_camera = nil
+      end
+
       # TODO
-      # - `camera_lock`
       # - `camera_unlock`
       # - `camera_locked?`
       # - `camera_lock_x`

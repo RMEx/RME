@@ -195,6 +195,7 @@
   'doc.cmd.Camera.camera_scroll_towards_player' => "Fait défiler la caméra vers la position du joueur",
   'doc.cmd.Camera.camera_move_on' => "Place la caméra sur un point de la carte",
   'doc.cmd.Camera.camera_scroll_on' => "Fait défiler la caméra vers un point donné",
+  'doc.cmd.Camera.camera_lock' => "Verrouille la position de la caméra",
 
   # Parameters
   ## Map
