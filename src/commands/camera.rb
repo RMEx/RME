@@ -240,8 +240,16 @@ module RME
         $game_map.camera_lock.include?(:x)
       end
 
+      # ------------------------------------------------------------------------
+      # * Locks the camera on the y-axis.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_lock_y,
+                        :description => 'Camera.camera_lock_y'}) do
+        $game_map.camera_lock << :y
+      end
+
       # TODO
-      # - `camera_lock_y`
       # - `camera_unlock_y`
       # - `camera_y_locked?`
       # - `camera_change_focus`
