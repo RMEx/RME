@@ -230,8 +230,17 @@ module RME
         $game_map.camera_lock.delete(:x)
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the camera is locked on the x-axis (`true`);
+      #   or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_x_locked?,
+                        :description => 'Camera.camera_x_locked?'}) do
+        $game_map.camera_lock.include?(:x)
+      end
+
       # TODO
-      # - `camera_x_locked?`
       # - `camera_lock_y`
       # - `camera_unlock_y`
       # - `camera_y_locked?`
