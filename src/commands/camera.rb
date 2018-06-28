@@ -249,8 +249,16 @@ module RME
         $game_map.camera_lock << :y
       end
 
+      # ------------------------------------------------------------------------
+      # * Unlocks the camera on the y-axis.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_unlock_y,
+                        :description => 'Camera.camera_unlock_y'}) do
+        $game_map.camera_lock.delete(:y)
+      end
+
       # TODO
-      # - `camera_unlock_y`
       # - `camera_y_locked?`
       # - `camera_change_focus`
       # - `camera_zoom`

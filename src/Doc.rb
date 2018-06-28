@@ -5158,11 +5158,6 @@ link_method_documentation 'Command.event_trigger',
   }
 register_command :event, 'Command.event_trigger'
 
-link_method_documentation 'Command.camera_unlock_y',
-	'Déverrouille la position de la caméra sur l\'axe Y',
- 	{}
-register_command :camera,'Command.camera_unlock_y'
-
 link_method_documentation 'Command.camera_y_locked?',
 	'Renovie true si la camera est verrouillée en Y',
  	{}
