@@ -189,6 +189,7 @@
   ## Camera
   'doc.cmd.Camera.camera_scrolling?' => "Renvoie `true` si la caméra est en train de défiler; `false` sinon",
   'doc.cmd.Camera.camera_scroll' => "Fait défiler la caméra dans une direction sur une distance (en cases), et suivant une certaine vitesse",
+  'doc.cmd.Camera.camera_scroll_towards' => "Fait défiler la caméra vers le point de coordonnées (`x`, `y`). Par défaut, ce point sera celui situé dans le coin haut-gauche de l'écran une fois le défilement terminé",
 
   # Parameters
   ## Map
@@ -245,6 +246,11 @@
   'doc.parameter.Armors.armor_equiped?.member_id' => "La position du membre dans l'équipe; si cette valeur n'est pas spécifié, la commande vérifiera si au moins un membre dans l'équipe possède l'armure",
   ## Camera
   'doc.parameter.Camera.distance' => "Nombre de cases à défiler",
+  'doc.parameter.Camera.x' => "L'abscisse du point cible",
+  'doc.parameter.Camera.y' => "L'ordonnée du point cible",
+  'doc.parameter.Camera.nb_steps' => "Le nombre de frames pendant lequel la caméra va se déplacer",
+  'doc.parameter.Camera.easing' => "La transition à appliquer lorsque la caméra va se déplacer",
+  'doc.parameter.Camera.position' => "La position du point cible par rapport à la caméra quand cette dernière aura fini de se déplacer",
   'doc.parameter.Camera.camera_scroll.direction' => "Direction prise par la caméra",
   'doc.parameter.Camera.camera_scroll.speed' => "Vitesse du défilement",
 }

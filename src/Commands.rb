@@ -3281,46 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    CENTER_X = (Graphics.width / 32 - 1) / 2.0
-    CENTER_Y = (Graphics.height / 32 - 1) / 2.0
-
-    POSITION = {
-      :centered        => lambda { |x, y| [center_x(x), center_y(y)] },
-      :centered_left   => lambda { |x, y| [left_x(x), center_y(y)] },
-      :centered_right  => lambda { |x, y| [right_x(x), center_y(y)] },
-      :centered_top    => lambda { |x, y| [center_x(x), top_y(y)] },
-      :centered_bottom => lambda { |x, y| [center_x(x), bottom_y(y)] },
-      :top_left        => lambda { |x, y| [left_x(x), top_y(y)] },
-      :top_right       => lambda { |x, y| [right_x(x), top_y(y)] },
-      :bottom_left     => lambda { |x, y| [left_x(x), bottom_y(y)] },
-      :bottom_right    => lambda { |x, y| [right_x(x), bottom_y(y)] }
-    }
-
-    def self.limit_within_range(x, min, max)
-      min if (x < min)
-      max if (x > max)
-      x
-    end
-
-    def self.left_x(x); limit_within_range(x, 0, $game_map.width); end
-    def self.center_x(x); limit_within_range(x - CENTER_X, 0, $game_map.width); end
-    def self.right_x(x); limit_within_range(x - 2 * CENTER_X, 0, $game_map.width); end
-
-    def self.top_y(y); limit_within_range(y, 0, $game_map.height); end
-    def self.center_y(y); limit_within_range(y - CENTER_Y, 0, $game_map.height); end
-    def self.bottom_y(y); limit_within_range(y - 2 * CENTER_Y, 0, $game_map.height); end
-
-    private_class_method :left_x, :center_x, :right_x,
-                         :top_y, :center_y, :bottom_y,
-                         :limit_within_range
-
-    def camera_scroll_towards(x, y, nb_steps, easing = :InLinear, position = :centered)
-      Fiber.yield while $game_map.scrolling?
-      $game_map.start_scroll_towards(*POSITION[position].call(x, y),
-                                     nb_steps,
-                                     Easing::FUNCTIONS[easing])
-    end
-
     def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
     end
