@@ -192,6 +192,7 @@
   'doc.cmd.Camera.camera_scroll' => "Fait défiler la caméra dans une direction sur une distance (en cases), et suivant une certaine vitesse",
   'doc.cmd.Camera.camera_scroll_towards' => "Fait défiler la caméra vers le point de coordonnées (`x`, `y`). Par défaut, ce point sera celui situé dans le coin haut-gauche de l'écran une fois le défilement terminé",
   'doc.cmd.Camera.camera_scroll_towards_event' => "Fait défiler la caméra vers l'événement spécifié",
+  'doc.cmd.Camera.camera_scroll_towards_player' => "Fait défiler la caméra vers la position du joueur",
 
   # Parameters
   ## Map

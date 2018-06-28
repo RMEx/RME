@@ -142,8 +142,23 @@ module RME
         camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
       end
 
+      # ------------------------------------------------------------------------
+      # * Scrolls the camera towards the player's event.
+      #   (The trajectory between its origin point and target one is computed
+      #    using a linear interpolation)
+      # ------------------------------------------------------------------------
+      Command::declare({:section => self,
+                        :name => :camera_scroll_towards_player,
+                        :description => 'Camera.camera_scroll_towards_player',
+                        :parameters => [
+                          NB_STEPS,
+                          EASING,
+                          POSITION
+                        ]}) do |nb_steps, easing, position|
+        camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
+      end
+
       # TODO
-      # - `camera_scroll_towards_player`
       # - `camera_move_on`
       # - `camera_scroll_on`
       # - `camera_lock`
