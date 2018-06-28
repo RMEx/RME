@@ -191,6 +191,7 @@
   'doc.cmd.Camera.camera_scrolling?' => "Renvoie `true` si la caméra est en train de défiler; `false` sinon",
   'doc.cmd.Camera.camera_scroll' => "Fait défiler la caméra dans une direction sur une distance (en cases), et suivant une certaine vitesse",
   'doc.cmd.Camera.camera_scroll_towards' => "Fait défiler la caméra vers le point de coordonnées (`x`, `y`). Par défaut, ce point sera celui situé dans le coin haut-gauche de l'écran une fois le défilement terminé",
+  'doc.cmd.Camera.camera_scroll_towards_event' => "Fait défiler la caméra vers l'événement spécifié",
 
   # Parameters
   ## Map
@@ -254,4 +255,5 @@
   'doc.parameter.Camera.position' => "La position du point cible par rapport à la caméra quand cette dernière aura fini de se déplacer",
   'doc.parameter.Camera.camera_scroll.direction' => "Direction prise par la caméra",
   'doc.parameter.Camera.camera_scroll.speed' => "Vitesse du défilement",
+  'doc.parameter.Camera.camera_scroll_towards_event.id' => "Identifiant de l'événement vers lequel la caméra doit se déplacer"
 }

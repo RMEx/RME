@@ -3281,10 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    def camera_scroll_towards_event(id, nb_steps, easing = :InLinear, position = :centered)
-      camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
-    end
-
     def camera_scroll_towards_player(nb_steps, easing = :InLinear, position = :centered)
       camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
     end

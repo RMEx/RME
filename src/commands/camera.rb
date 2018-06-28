@@ -123,9 +123,26 @@ module RME
                                        Easing::FUNCTIONS[easing])
       end
 
+      # ------------------------------------------------------------------------
+      # * Scrolls the camera towards the given event.
+      #   (The trajectory between its origin point and target one is computed
+      #    using a linear interpolation)
+      # ------------------------------------------------------------------------
+      Command::declare({:section => self,
+                        :name => :camera_scroll_towards_event,
+                        :description => 'Camera.camera_scroll_towards_event',
+                        :parameters => [
+                          {:name        => :id,
+                           :type        => ParameterType::EventId,
+                           :description => 'Camera.camera_scroll_towards_event.id'},
+                          NB_STEPS,
+                          EASING,
+                          POSITION
+                        ]}) do |id, nb_steps, easing, position|
+        camera_scroll_towards(event_x(id), event_y(id), nb_steps, easing, position)
+      end
 
       # TODO
-      # - `camera_scroll_towards_event`
       # - `camera_scroll_towards_player`
       # - `camera_move_on`
       # - `camera_scroll_on`
