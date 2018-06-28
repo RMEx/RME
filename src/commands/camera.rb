@@ -158,8 +158,17 @@ module RME
         camera_scroll_towards(player_x, player_y, nb_steps, easing, position)
       end
 
+      # ------------------------------------------------------------------------
+      # * Makes the camera focus the given point (`x`, `y`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section => self,
+                        :name => :camera_move_on,
+                        :description => 'Camera.camera_move_on',
+                        :parameters => [X, Y]}) do |x, y|
+        $game_map.set_display_pos(x - CENTER_X, y - CENTER_Y)
+      end
+
       # TODO
-      # - `camera_move_on`
       # - `camera_scroll_on`
       # - `camera_lock`
       # - `camera_unlock`
