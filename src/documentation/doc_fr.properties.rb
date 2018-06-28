@@ -198,6 +198,7 @@
   'doc.cmd.Camera.camera_lock' => "Verrouille la position de la caméra",
   'doc.cmd.Camera.camera_unlock' => "Déverrouille la position de la caméra (et reprend le héros comme plan de référence)",
   'doc.cmd.Camera.camera_locked?' => "Renvoie `true` si la caméra est verrouillée; `false` sinon",
+  'doc.cmd.Camera.camera_lock_x' => "Verrouille la position de la caméra sur l'axe X",
 
   # Parameters
   ## Map

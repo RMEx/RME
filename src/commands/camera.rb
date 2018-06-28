@@ -212,8 +212,16 @@ module RME
         $game_map.target_camera.nil?
       end
 
+      # ------------------------------------------------------------------------
+      # * Locks the camera on the x-axis.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_lock_x,
+                        :description => 'Camera.camera_lock_x'}) do
+        $game_map.camera_lock << :x
+      end
+
       # TODO
-      # - `camera_lock_x`
       # - `camera_unlock_x`
       # - `camera_x_locked?`
       # - `camera_lock_y`
