@@ -12736,7 +12736,7 @@ module RMECommands
         acc << curr
         mod[0] *= -1 if curr[0] == cx + r || curr[0] == cx - r
         mod[1] *= -1 if curr[1] == cy + r || curr[1] == cy - r
-      end
+      end.uniq
     end
 
     def get_squares_in_rectangle(x, y, w, h)
