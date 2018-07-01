@@ -17,8 +17,16 @@ module RME
   module Command
     module Date
 
+      # ------------------------------------------------------------------------
+      # * Returns the current year.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :time_year,
+                        :description => 'Date.time_year'}) do
+        Time.now.year
+      end
+
       # TODO
-      # - `time_year`
       # - `time_month`
       # - `time_day`
       # - `time_hour`

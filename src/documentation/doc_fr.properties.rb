@@ -213,6 +213,8 @@
   'doc.cmd.Clipboard.clipboard_push_text' => "Place un texte dans le presse-papier",
   'doc.cmd.Clipboard.clipboard_get_text' => "Renvoie le texte contenu dans le presse-papier",
   'doc.cmd.Clipboard.clipboard_push_command' => "Place une commande événementielle dans le presse-papier",
+  ## Date
+  'doc.cmd.Date.time_year' => "Renvoie l'année actuelle",
 
   # Parameters
   ## Map
