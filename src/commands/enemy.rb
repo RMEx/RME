@@ -32,8 +32,18 @@ module RME
         enemy(id).name
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the index within the iconset, of the icon which represents
+      #   the enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_icon,
+                        :description => 'Enemy.monster_icon',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).icon_index
+      end
+
       # TODO
-      # - `monster_icon`
       # - `monster_description`
       # - `monster_note`
       # - `monster_battler_name`

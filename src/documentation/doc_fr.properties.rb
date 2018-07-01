@@ -224,6 +224,7 @@
   'doc.cmd.Date.time_sec' => "Renvoie le nombre de secondes actuelles",
   ## Enemy
   'doc.cmd.Enemy.monster_name' => "Renvoie le nom d'un ennemi",
+  'doc.cmd.Enemy.monster_icon' => "Renvoie l'indice (dans l'iconset) de l'icône qui représente un ennemi",
 
   # Parameters
   ## Map
