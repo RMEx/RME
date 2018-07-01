@@ -227,6 +227,7 @@
   'doc.cmd.Enemy.monster_icon' => "Renvoie l'indice (dans l'iconset) de l'icône qui représente un ennemi",
   'doc.cmd.Enemy.monster_description' => "Renvoie la description d'un ennemi",
   'doc.cmd.Enemy.monster_note' => "Renvoie la note/le commentaire d'un ennemi",
+  'doc.cmd.Enemy.monster_battler_name' => "Renvoie le nom du fichier battler d'un ennemi",
 
   # Parameters
   ## Map

@@ -63,8 +63,18 @@ module RME
         enemy(id).note
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the name of the file in which is stored the graphical
+      #   representation of the enemy (i.e: battler).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_battler_name,
+                        :description => 'Enemy.monster_battler_name',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).battler_name
+      end
+
       # TODO
-      # - `monster_battler_name`
       # - `monster_battler_hue`
       # - `monster_max_hp`
       # - `monster_max_mp`
