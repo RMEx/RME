@@ -216,6 +216,7 @@
   ## Date
   'doc.cmd.Date.time_year' => "Renvoie l'année actuelle",
   'doc.cmd.Date.time_mont' => "Renvoie le mois actuel",
+  'doc.cmd.Date.time_day' => "Renvoie le jour actuel",
 
   # Parameters
   ## Map
