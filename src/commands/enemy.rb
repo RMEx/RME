@@ -17,8 +17,22 @@ module RME
   module Command
     module Enemy
 
+      # Common parameters' declaration
+      ENEMY_ID = {:name        => :id,
+                  :type        => ParameterType::EnemyId,
+                  :description => 'Enemy.id'}
+
+      # ------------------------------------------------------------------------
+      # * Returns the enemy's name.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_name,
+                        :description => 'Enemy.monster_name',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).name
+      end
+
       # TODO
-      # - `monster_name`
       # - `monster_icon`
       # - `monster_description`
       # - `monster_note`

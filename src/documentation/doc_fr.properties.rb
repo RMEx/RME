@@ -222,6 +222,8 @@
   'doc.cmd.Date.time_hour' => "Renvoie l'heure actuelle",
   'doc.cmd.Date.time_min' => "Renvoie le nombre de minutes actuelles",
   'doc.cmd.Date.time_sec' => "Renvoie le nombre de secondes actuelles",
+  ## Enemy
+  'doc.cmd.Enemy.monster_name' => "Renvoie le nom d'un ennemi",
 
   # Parameters
   ## Map
@@ -292,5 +294,7 @@
   'doc.parameter.Camera.camera_motion_blur' => "Valeur d'atténuation du rafraîchissement de l'écran",
   ## Clipboard
   'doc.parameter.Clipboard.clipboard_push_text.text' => "Texte à sauvegarder dans le presse-papier",
-  'doc.parameter.Clipboard.clipboard_push_command.cmd' => "Commande à sauvegarder dans le presse-papier"
+  'doc.parameter.Clipboard.clipboard_push_command.cmd' => "Commande à sauvegarder dans le presse-papier",
+  ## Enemy
+  'doc.parameter.Enemy.id' => "Identifiant de l'ennemi"
 }

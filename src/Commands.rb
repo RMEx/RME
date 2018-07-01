@@ -2479,7 +2479,6 @@ module RMECommands
     end
     def monster_battler_width(i); monster_battler_dimension(i)[0]; end
     def monster_battler_height(i); monster_battler_dimension(i)[1]; end
-    def monster_name(id); enemy(id).name; end
     def monster_icon(id); enemy(id).icon_index; end
     def monster_description(id); enemy(id).description; end
     def monster_note(id); enemy(id).note; end

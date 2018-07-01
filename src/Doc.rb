@@ -3087,10 +3087,6 @@ link_method_documentation "Command.picture_show_enemy",
                         }, false
 register_command :picture, "Command.picture_show_enemy"
 
-link_method_documentation "Command.monster_name",
-                        "renvoie le nom d'un ennemi référencé par son ID",
-                        { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.monster_name"
 
 link_method_documentation "Command.monster_icon",
                         "renvoie l'icone index d'un ennemi référencé par son ID",
