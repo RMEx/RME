@@ -215,6 +215,7 @@
   'doc.cmd.Clipboard.clipboard_push_command' => "Place une commande événementielle dans le presse-papier",
   ## Date
   'doc.cmd.Date.time_year' => "Renvoie l'année actuelle",
+  'doc.cmd.Date.time_mont' => "Renvoie le mois actuel",
 
   # Parameters
   ## Map

@@ -26,8 +26,16 @@ module RME
         Time.now.year
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the current month.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :time_month,
+                        :description => 'Date.time_month'}) do
+        Time.now.month
+      end
+
       # TODO
-      # - `time_month`
       # - `time_day`
       # - `time_hour`
       # - `time_min`
