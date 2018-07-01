@@ -25,3 +25,4 @@ commands/area
 commands/armors
 commands/camera
 commands/clipboard
+commands/date

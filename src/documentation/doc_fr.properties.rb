@@ -35,6 +35,7 @@
   'doc.section.Armors' => "Commandes permettant de manipuler les armures",
   'doc.section.Camera' => "Commandes relatives à la manipulation de la caméra (scrolling de la carte)",
   'doc.section.Clipboard' => "Commandes permettant de stocker/récupérer des données enregistrées dans le presse-papier",
+  'doc.section.Date' => "Commandes permettant de récupérer des informations concernant la date et l'heure",
 
   # Commands
   ## Map
