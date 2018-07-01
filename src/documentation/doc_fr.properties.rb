@@ -219,6 +219,7 @@
   'doc.cmd.Date.time_day' => "Renvoie le jour actuel",
   'doc.cmd.Date.time_hour' => "Renvoie l'heure actuelle",
   'doc.cmd.Date.time_min' => "Renvoie le nombre de minutes actuelles",
+  'doc.cmd.Date.time_sec' => "Renvoie le nombre de secondes actuelles",
 
   # Parameters
   ## Map

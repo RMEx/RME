@@ -2815,11 +2815,6 @@ module RMECommands
 
   module CmdTime
 
-    #--------------------------------------------------------------------------
-    # * Get the current sec
-    #--------------------------------------------------------------------------
-    def time_sec; Time.now.sec; end
-
     append_commands
 
   end

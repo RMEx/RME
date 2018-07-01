@@ -62,8 +62,14 @@ module RME
         Time.now.min
       end
 
-      # TODO
-      # - `time_sec`
+      # ------------------------------------------------------------------------
+      # * Returns the clock's seconds.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :time_sec,
+                        :description => 'Date.time_sec'}) do
+        Time.now.sec
+      end
 
       append_commands
     end
