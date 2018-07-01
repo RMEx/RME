@@ -210,6 +210,7 @@
   'doc.cmd.Camera.camera_motion_blur' => "Atténue le rafraîchissement de l'écran (en rendant plus diffus les mouvements de la caméra)",
   ## Clipboard
   'doc.cmd.Clipboard.clipboard_push_text' => "Place un texte dans le presse-papier",
+  'doc.cmd.Clipboard.clipboard_get_text' => "Renvoie le texte contenu dans le presse-papier",
 
   # Parameters
   ## Map

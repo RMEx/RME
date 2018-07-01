@@ -31,8 +31,16 @@ module RME
         Clipboard.push_text(text)
       end
 
+      # ------------------------------------------------------------------------
+      # * Retrieves the text stored in the clipboard.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :clipboard_get_text,
+                        :description => 'Clipboard.clipboard_get_text'}) do
+        Clipboard.get_text
+      end
+
       # TODO
-      # - `clipboard_get_text`
       # - `clipboard_push_command`
 
       append_commands
