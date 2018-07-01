@@ -268,8 +268,24 @@ module RME
         $game_map.camera_lock.include?(:y)
       end
 
+      # ------------------------------------------------------------------------
+      # * Changes the focus of the camera; making the given event tracked
+      #   by the camera.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_change_focus,
+                        :description => 'Camera.camera_change_focus',
+                        :parameters  => [
+                          {:name        => :id,
+                           :type        => ParameterType::EventId,
+                           :description => 'Camera.camera_change_focus.id'}
+                        ]}) do |id|
+        e = event(event_id)
+        camera_move_on(e.x, e.y)
+        $game_map.target_camera = e
+      end
+
       # TODO
-      # - `camera_change_focus`
       # - `camera_zoom`
       # - `camera_motion_blur`
 

@@ -3281,12 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    def camera_change_focus(event_id)
-      e = event(event_id)
-      camera_move_on(e.x, e.y)
-      $game_map.target_camera = e
-    end
-
     def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('zoom', zoom, duration, ease)
       wait(duration) if wait_flag
