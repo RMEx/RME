@@ -2489,7 +2489,6 @@ module RMECommands
     def monster_luck(id); enemy(id).params[7]; end
     def monster_give_exp(id); enemy(id).exp; end
     def monster_give_gold(id); enemy(id).gold; end
-    def monster_battler_hue(id); enemy(id).battler_hue; end
     def current_troop; Kernel.current_troop; end
     # def monster_element_rate(id, element_id)
     #   enemy(id).element_rate(element_id)

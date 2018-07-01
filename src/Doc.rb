@@ -3088,11 +3088,6 @@ link_method_documentation "Command.picture_show_enemy",
 register_command :picture, "Command.picture_show_enemy"
 
 
-link_method_documentation "Command.monster_battler_hue",
-                        "renvoie la teinte d'un ennemi référencé par son ID",
-                        { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.monster_battler_hue"
-
 link_method_documentation "Command.monster_max_hp",
                         "renvoie le maximum de points de vie d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true

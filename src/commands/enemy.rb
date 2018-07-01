@@ -74,8 +74,18 @@ module RME
         enemy(id).battler_name
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the hue of the enemy's graphical representation
+      #   (i.e: battler).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_battler_hue,
+                        :description => 'Enemy.monster_battler_hue',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).battler_hue
+      end
+
       # TODO
-      # - `monster_battler_hue`
       # - `monster_max_hp`
       # - `monster_max_mp`
       # - `monster_attack_power`
