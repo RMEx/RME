@@ -40,8 +40,18 @@ module RME
         Clipboard.get_text
       end
 
-      # TODO
-      # - `clipboard_push_command`
+      # ------------------------------------------------------------------------
+      # * Stores the given event command into the clipboard.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :clipboard_push_command,
+                        :description => 'Clipboard.clipboard_push_command',
+                        :parameters  => [
+                          {:name        => :cmd,
+                           :description => 'Clipboard.clipboard_push_command.cmd'}
+                        ]}) do |cmd|
+        Clipboard.push_command(cmd)
+      end
 
       append_commands
     end

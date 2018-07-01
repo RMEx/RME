@@ -211,6 +211,7 @@
   ## Clipboard
   'doc.cmd.Clipboard.clipboard_push_text' => "Place un texte dans le presse-papier",
   'doc.cmd.Clipboard.clipboard_get_text' => "Renvoie le texte contenu dans le presse-papier",
+  'doc.cmd.Clipboard.clipboard_push_command' => "Place une commande événementielle dans le presse-papier",
 
   # Parameters
   ## Map
@@ -280,5 +281,6 @@
   'doc.parameter.Camera.camera_change_focus.id' => "Identifiant de l'événement que la caméra doit dorénavant suivre",
   'doc.parameter.Camera.camera_motion_blur' => "Valeur d'atténuation du rafraîchissement de l'écran",
   ## Clipboard
-  'doc.parameter.Clipboard.clipboard_push_text.text' => "Texte à sauvegarder dans le presse-papier"
+  'doc.parameter.Clipboard.clipboard_push_text.text' => "Texte à sauvegarder dans le presse-papier",
+  'doc.parameter.Clipboard.clipboard_push_command.cmd' => "Commande à sauvegarder dans le presse-papier"
 }

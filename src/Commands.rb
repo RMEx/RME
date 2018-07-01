@@ -3062,7 +3062,6 @@ module RMECommands
   #  Clipboar commands
   #==============================================================================
   module RMEClipboard
-    def clipboard_push_command(cmd); Clipboard.push_command(cmd); end
     append_commands
   end
 
