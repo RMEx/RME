@@ -17,6 +17,7 @@
 - Add command `event_allow_overlap` (@BastienDuplessier, reported by @YendaHusk)
 - Add commands `get_squares_around_event`, `get_squares_around`, `get_squares_in_circle` and `get_squares_in_rectangle` (@BastienDuplessier)
 - Add commands `skill_mp_cost` and `skill_tp_cost` (@LucasDevos, @BastienDuplessier)
+- Add commands `event_look_towards_event?` and `event_look_towards?` (@BastienDuplessier)
 
 ### Bug fixes
 - Fix Game_End background that wasn't disposed on `skip_title` activated (@BastienDuplessier, reported by @Zer0xxxx)
