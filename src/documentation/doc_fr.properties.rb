@@ -205,6 +205,7 @@
   'doc.cmd.Camera.camera_unlock_y' => "Déverrouille la position de la caméra sur l'axe Y",
   'doc.cmd.Camera.camera_y_locked?' => "Renvoie `true` si la caméra est verrouillée en Y; `false` sinon",
   'doc.cmd.Camera.camera_change_focus' => "Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre événement",
+  'doc.cmd.Camera.camera_zoom' => "Zoom tout l'écran en temps réel, sauf les fenêtres (comme les dialogues)",
 
   # Parameters
   ## Map
@@ -264,8 +265,10 @@
   'doc.parameter.Camera.x' => "L'abscisse du point cible",
   'doc.parameter.Camera.y' => "L'ordonnée du point cible",
   'doc.parameter.Camera.nb_steps' => "Le nombre de frames pendant lequel la caméra va se déplacer",
+  'doc.parameter.Camera.duration' => "Le nombre de frames pendant lequel la transition va s'appliquer (plus le nombre est important, plus la transition sera lente)",
   'doc.parameter.Camera.easing' => "La transition à appliquer lorsque la caméra va se déplacer",
   'doc.parameter.Camera.position' => "La position du point cible par rapport à la caméra quand cette dernière aura fini de se déplacer",
+  'doc.parameter.Camera.wait_flag' => "Le déplacement de la caméra est bloquant jusqu'à la fin du déplacement (`true`); ou non (`false`)",
   'doc.parameter.Camera.camera_scroll.direction' => "Direction prise par la caméra",
   'doc.parameter.Camera.camera_scroll.speed' => "Vitesse du défilement",
   'doc.parameter.Camera.camera_scroll_towards_event.id' => "Identifiant de l'événement vers lequel la caméra doit se déplacer",

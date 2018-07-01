@@ -33,6 +33,10 @@ module RME
       NB_STEPS = {:name        => :nb_steps,
                   :type        => ParameterType::StrictlyPositiveInteger,
                   :description => 'Camera.nb_steps'}
+      DURATION = {:name        => :duration,
+                  :type        => ParameterType::PositiveInteger,
+                  :description => 'Camera.duration',
+                  :default     => 0}
       EASING = {:name        => :easing,
                 :type        => ParameterType::EasingFunction,
                 :description => 'Camera.easing',
@@ -41,6 +45,10 @@ module RME
                   :type        => ParameterType::PositionRegardingCamera,
                   :description => 'Camera.position_regarding_camera',
                   :default     => :centered}
+      WAIT_FLAG = {:name        => :wait_flag,
+                   :type        => ParameterType::Boolean,
+                   :description => 'Camera.wait_flag',
+                   :default     => false}
 
       # Internal methods
       CENTER_X = (Graphics.width / 32 - 1) / 2.0
@@ -285,8 +293,25 @@ module RME
         $game_map.target_camera = e
       end
 
+      # ------------------------------------------------------------------------
+      # * Perfoms a zoom on the whole screen (excepting windows).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_zoom,
+                        :description => 'Camera.camera_zoom',
+                        :parameters  => [
+                          {:name        => :zoom,
+                           :type        => ParameterType::PositiveInteger,
+                           :description => 'Camera.camera_zoom.zoom'},
+                          DURATION,
+                          WAIT_FLAG,
+                          EASING
+                        ]}) do |zoom, duration, wait_flag, easing|
+        Graphics.screen.set_transition('zoom', zoom, duration, easing)
+        wait(duration) if wait_flag
+      end
+
       # TODO
-      # - `camera_zoom`
       # - `camera_motion_blur`
 
       append_commands

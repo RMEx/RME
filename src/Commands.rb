@@ -3281,10 +3281,6 @@ module RMECommands
   #==============================================================================
   module Camera
 
-    def camera_zoom(zoom, duration = 0, wait_flag = false, ease = :InLinear)
-      Graphics.screen.set_transition('zoom', zoom, duration, ease)
-      wait(duration) if wait_flag
-    end
     def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :InLinear)
       Graphics.screen.set_transition('motion_blur', v, duration, ease)
       wait(duration) if wait_flag
