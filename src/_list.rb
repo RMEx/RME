@@ -25,4 +25,5 @@ commands/area
 commands/armors
 commands/camera
 commands/clipboard
+commands/enemy
 commands/date

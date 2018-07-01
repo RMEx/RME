@@ -36,6 +36,7 @@
   'doc.section.Camera' => "Commandes relatives à la manipulation de la caméra (scrolling de la carte)",
   'doc.section.Clipboard' => "Commandes permettant de stocker/récupérer des données enregistrées dans le presse-papier",
   'doc.section.Date' => "Commandes permettant de récupérer des informations concernant la date et l'heure",
+  'doc.section.Enemy' => "Commandes relatives aux monstres rencontrables en combat (tels que définis dans la base de données)",
 
   # Commands
   ## Map
