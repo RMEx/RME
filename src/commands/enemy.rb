@@ -53,8 +53,17 @@ module RME
         enemy(id).description
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the enemy's note (additional description).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_note,
+                        :description => 'Enemy.monster_note',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).note
+      end
+
       # TODO
-      # - `monster_note`
       # - `monster_battler_name`
       # - `monster_battler_hue`
       # - `monster_max_hp`

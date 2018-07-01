@@ -3088,11 +3088,6 @@ link_method_documentation "Command.picture_show_enemy",
 register_command :picture, "Command.picture_show_enemy"
 
 
-link_method_documentation "Command.monster_note",
-                        "renvoie la note/commentaire d'un ennemi référencé par son ID",
-                        { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.monster_note"
-
 link_method_documentation "Command.monster_battler_name",
                         "renvoie le nom du fichier battler d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
