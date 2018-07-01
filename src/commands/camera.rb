@@ -84,6 +84,11 @@ module RME
                            :top_y, :center_y, :bottom_y,
                            :limit
 
+      # Definition of internal parameter's type
+      ParameterType::declare(:CameraBlur,
+                             "Bluring effect's value",
+                             ClosedInterval.new(0, 200))
+
       # ------------------------------------------------------------------------
       # * Tells whether the camera is currently scrolling (`true`);
       #   or not (`false`)
@@ -311,8 +316,24 @@ module RME
         wait(duration) if wait_flag
       end
 
-      # TODO
-      # - `camera_motion_blur`
+      # ------------------------------------------------------------------------
+      # * Adds a bluring effect to the camera through reducing the screen's
+      #   refreshing rate.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :camera_motion_blur,
+                        :description => 'Camera.camera_motion_blur',
+                        :parameters  => [
+                          {:name        => :attenuation,
+                           :type        => ParameterType::CameraBlur,
+                           :description => 'Camera.camera_motion_blur.attenuation'},
+                          DURATION,
+                          WAIT_FLAG,
+                          EASING
+                        ]}) do |v, duration, wait_flag, easing|
+        Graphics.screen.set_transition('motion_blur', v, duration, ease)
+        wait(duration) if wait_flag
+      end
 
       append_commands
     end

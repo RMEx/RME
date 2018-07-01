@@ -3280,12 +3280,6 @@ module RMECommands
   #  Command for Camera manipulation
   #==============================================================================
   module Camera
-
-    def camera_motion_blur(v, duration = 0, wait_flag = false, ease = :InLinear)
-      Graphics.screen.set_transition('motion_blur', v, duration, ease)
-      wait(duration) if wait_flag
-    end
-
     append_commands
   end
 
