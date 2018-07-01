@@ -34,6 +34,7 @@
   'doc.section.Area' => "Commandes pour créer et manipuler des zones virtuelles",
   'doc.section.Armors' => "Commandes permettant de manipuler les armures",
   'doc.section.Camera' => "Commandes relatives à la manipulation de la caméra (scrolling de la carte)",
+  'doc.section.Clipboard' => "Commandes permettant de stocker/récupérer des données enregistrées dans le presse-papier",
 
   # Commands
   ## Map
