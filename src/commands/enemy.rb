@@ -105,8 +105,17 @@ module RME
         enemy(id).params[1]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the attack points points of the given enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_attack_power,
+                        :description => 'Enemy.monster_attack_power',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).params[2]
+      end
+
       # TODO
-      # - `monster_attack_power`
       # - `monster_defense_power`
       # - `monster_magic_attack_power`
       # - `monster_magic_defense_power`

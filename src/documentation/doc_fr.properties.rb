@@ -231,6 +231,7 @@
   'doc.cmd.Enemy.monster_battler_hue' => "Renvoie la teinte du battler d'un ennemi",
   'doc.cmd.Enemy.monster_max_hp' => "Renvoie le maximum de points de vie d'un ennemi",
   'doc.cmd.Enemy.monster_max_mp' => "Renvoie le maximum de points de magie d'un ennemi",
+  'doc.cmd.Enemy.monster_attack_power' => "Renvoie les points d'attaque d'un ennemi",
 
   # Parameters
   ## Map
