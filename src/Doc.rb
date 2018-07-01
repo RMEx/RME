@@ -3088,11 +3088,6 @@ link_method_documentation "Command.picture_show_enemy",
 register_command :picture, "Command.picture_show_enemy"
 
 
-link_method_documentation "Command.monster_max_mp",
-                        "renvoie le maximum de points de magie d'un ennemi référencé par son ID",
-                        { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.monster_max_mp"
-
 link_method_documentation "Command.monster_attack_power",
                         "renvoie les points d'attaque d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true

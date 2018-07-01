@@ -95,8 +95,17 @@ module RME
         enemy(id).params[0]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the maximal mana points of the given enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_max_mp,
+                        :description => 'Enemy.monster_max_mp',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).params[1]
+      end
+
       # TODO
-      # - `monster_max_mp`
       # - `monster_attack_power`
       # - `monster_defense_power`
       # - `monster_magic_attack_power`
