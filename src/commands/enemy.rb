@@ -43,8 +43,17 @@ module RME
         enemy(id).icon_index
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the enemy's description.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_description,
+                        :description => 'Enemy.monster_description',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).description
+      end
+
       # TODO
-      # - `monster_description`
       # - `monster_note`
       # - `monster_battler_name`
       # - `monster_battler_hue`

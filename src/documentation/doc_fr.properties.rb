@@ -225,6 +225,7 @@
   ## Enemy
   'doc.cmd.Enemy.monster_name' => "Renvoie le nom d'un ennemi",
   'doc.cmd.Enemy.monster_icon' => "Renvoie l'indice (dans l'iconset) de l'icône qui représente un ennemi",
+  'doc.cmd.Enemy.monster_description' => "Renvoie la description d'un ennemi",
 
   # Parameters
   ## Map
