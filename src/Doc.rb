@@ -3088,11 +3088,6 @@ link_method_documentation "Command.picture_show_enemy",
 register_command :picture, "Command.picture_show_enemy"
 
 
-link_method_documentation "Command.monster_defense_power",
-                        "renvoie les points de défense d'un ennemi référencé par son ID",
-                        { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.monster_defense_power"
-
 link_method_documentation "Command.monster_magic_attack_power",
                         "renvoie les points d'attaque magique d'un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true
