@@ -44,8 +44,16 @@ module RME
         Time.now.day
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the current hour of the day.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :time_hour,
+                        :description => 'Date.time_hour'}) do
+        Time.now.hour
+      end
+
       # TODO
-      # - `time_hour`
       # - `time_min`
       # - `time_sec`
 
