@@ -208,6 +208,8 @@
   'doc.cmd.Camera.camera_change_focus' => "Change la cible du scrolling (par défaut, le scrolling suit le héros) pour un autre événement",
   'doc.cmd.Camera.camera_zoom' => "Zoom tout l'écran en temps réel, sauf les fenêtres (comme les dialogues)",
   'doc.cmd.Camera.camera_motion_blur' => "Atténue le rafraîchissement de l'écran (en rendant plus diffus les mouvements de la caméra)",
+  ## Clipboard
+  'doc.cmd.Clipboard.clipboard_push_text' => "Place un texte dans le presse-papier",
 
   # Parameters
   ## Map
@@ -275,5 +277,7 @@
   'doc.parameter.Camera.camera_scroll.speed' => "Vitesse du défilement",
   'doc.parameter.Camera.camera_scroll_towards_event.id' => "Identifiant de l'événement vers lequel la caméra doit se déplacer",
   'doc.parameter.Camera.camera_change_focus.id' => "Identifiant de l'événement que la caméra doit dorénavant suivre",
-  'doc.parameter.Camera.camera_motion_blur' => "Valeur d'atténuation du rafraîchissement de l'écran"
+  'doc.parameter.Camera.camera_motion_blur' => "Valeur d'atténuation du rafraîchissement de l'écran",
+  ## Clipboard
+  'doc.parameter.Clipboard.clipboard_push_text.text' => "Texte à sauvegarder dans le presse-papier"
 }
