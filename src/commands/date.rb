@@ -53,8 +53,16 @@ module RME
         Time.now.hour
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the clock's minutes.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :time_min,
+                        :description => 'Date.time_min'}) do
+        Time.now.min
+      end
+
       # TODO
-      # - `time_min`
       # - `time_sec`
 
       append_commands
