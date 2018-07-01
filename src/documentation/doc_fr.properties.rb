@@ -20,6 +20,7 @@
   'doc.EasingFunction.description' => "Fonction à utiliser pour effectuer une transition",
   'doc.PositionRegardingCamera.description' => "Position finale du point cible par rapport à la caméra",
   'doc.EventId.description' => "Identifiant de l'événement",
+  'doc.EnemyId.description' => "Identifiant de l'ennemi",
   'doc.ActorId.description' => "Identifiant d'un héros",
   'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
   'doc.ItemId.description' => "Identifiant d'un item (objets, consommables ou pièces d'équipement)",

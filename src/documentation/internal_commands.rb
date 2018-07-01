@@ -327,6 +327,9 @@ module RME
       ParameterType::declare(:EventId,
                              "Event's identifier",
                              ClosedInterval.new(0, 99999))
+      ParameterType::declare(:EnemyId,
+                             "Enemy's identifier",
+                             ClosedInterval.new(1, 99999))
 
       ParameterType::declare(:ActorId,
                              "Actor's identifier",
