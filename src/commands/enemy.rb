@@ -85,8 +85,17 @@ module RME
         enemy(id).battler_hue
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the maximal health points of the given enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_max_hp,
+                        :description => 'Enemy.monster_max_hp',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).params[0]
+      end
+
       # TODO
-      # - `monster_max_hp`
       # - `monster_max_mp`
       # - `monster_attack_power`
       # - `monster_defense_power`
