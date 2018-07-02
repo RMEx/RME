@@ -498,7 +498,8 @@ module RME
     #    `false` otherwise.
     # --------------------------------------------------------------------------
     def self.is_variadic_parameter?(cmd_param)
-      cmd_param[:type].domain.is_a? ParameterType::Variadic
+      (not cmd_param[:type].nil?) and
+      (cmd_param[:type].domain.is_a? ParameterType::Variadic)
     end
 
     # --------------------------------------------------------------------------
