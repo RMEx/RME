@@ -87,7 +87,7 @@ module RME
       # Definition of internal parameter's type
       ParameterType::declare(:CameraBlur,
                              "Bluring effect's value",
-                             ClosedInterval.new(0, 200))
+                             ParameterType::ClosedInterval.new(0, 200))
 
       # ------------------------------------------------------------------------
       # * Tells whether the camera is currently scrolling (`true`);
