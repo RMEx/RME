@@ -238,6 +238,7 @@
   'doc.cmd.Enemy.monster_agility' => "Renvoie l'agilité d'un ennemi",
   'doc.cmd.Enemy.monster_luck' => "Renvoie la chance d'un ennemi",
   'doc.cmd.Enemy.monster_give_exp' => "Renvoie les points d'expérience donnés par un ennemi, une fois battu",
+  'doc.cmd.Enemy.monster_give_gold' => "Renvoie la quantité d'or donnée par un ennemi, une fois battu",
 
   # Parameters
   ## Map
