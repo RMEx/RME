@@ -2480,9 +2480,6 @@ module RMECommands
     def monster_battler_width(i); monster_battler_dimension(i)[0]; end
     def monster_battler_height(i); monster_battler_dimension(i)[1]; end
     def current_troop; Kernel.current_troop; end
-    # def monster_element_rate(id, element_id)
-    #   enemy(id).element_rate(element_id)
-    # end
 
     # Fix for EE4
     #alias_method :monster_attack, :monster_attack_power

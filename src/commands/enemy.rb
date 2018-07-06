@@ -188,8 +188,21 @@ module RME
         enemy(id).gold
       end
 
-      # TODO
-      # - `monster_element_rate`
+      # ------------------------------------------------------------------------
+      # * Returns the amount of gold that the given enemy provides once
+      #   defeated.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_element_rate,
+                        :description => 'Enemy.monster_element_rate',
+                        :parameters  => [
+                          ENEMY_ID,
+                          {:name        => :element_id,
+                           :type        => ParameterType::ElementId,
+                           :description => 'Enemy.monster_element_rate.element_id'}
+                        ]}) do |id, element_id|
+        enemy(id).element_rate(element_id)
+      end
 
       append_commands
     end

@@ -239,6 +239,7 @@
   'doc.cmd.Enemy.monster_luck' => "Renvoie la chance d'un ennemi",
   'doc.cmd.Enemy.monster_give_exp' => "Renvoie les points d'expérience donnés par un ennemi, une fois battu",
   'doc.cmd.Enemy.monster_give_gold' => "Renvoie la quantité d'or donnée par un ennemi, une fois battu",
+  'doc.cmd.Enemy.monster_element_rate' => "Renvoie la résistance élémentaire d'un ennemi",
 
   # Parameters
   ## Map
@@ -311,5 +312,6 @@
   'doc.parameter.Clipboard.clipboard_push_text.text' => "Texte à sauvegarder dans le presse-papier",
   'doc.parameter.Clipboard.clipboard_push_command.cmd' => "Commande à sauvegarder dans le presse-papier",
   ## Enemy
-  'doc.parameter.Enemy.id' => "Identifiant de l'ennemi"
+  'doc.parameter.Enemy.id' => "Identifiant de l'ennemi",
+  'doc.parameter.Enemy.monster_element_rate.element_id' => "Identifiant de l'élément"
 }
