@@ -2479,7 +2479,6 @@ module RMECommands
     end
     def monster_battler_width(i); monster_battler_dimension(i)[0]; end
     def monster_battler_height(i); monster_battler_dimension(i)[1]; end
-    def monster_magic_defense_power(id); enemy(id).params[5]; end
     def monster_agility(id); enemy(id).params[6]; end
     def monster_luck(id); enemy(id).params[7]; end
     def monster_give_exp(id); enemy(id).exp; end

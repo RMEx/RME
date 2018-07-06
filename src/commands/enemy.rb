@@ -135,8 +135,17 @@ module RME
         enemy(id).params[4]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the magical defense points points of the given enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_magic_defense_power,
+                        :description => 'Enemy.monster_magic_defense_power',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).params[5]
+      end
+
       # TODO
-      # - `monster_magic_defense_power`
       # - `monster_agility`
       # - `monster_luck`
       # - `monster_give_exp`
