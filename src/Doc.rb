@@ -3088,11 +3088,6 @@ link_method_documentation "Command.picture_show_enemy",
 register_command :picture, "Command.picture_show_enemy"
 
 
-link_method_documentation "Command.monster_give_exp",
-                        "renvoie l'experience donnée par un ennemi référencé par son ID",
-                        { :id => ["ID de l'ennemi", :Fixnum]}, true
-register_command :enemy, "Command.monster_give_exp"
-
 link_method_documentation "Command.monster_give_gold",
                         "renvoie l'or donné par un ennemi référencé par son ID",
                         { :id => ["ID de l'ennemi", :Fixnum]}, true

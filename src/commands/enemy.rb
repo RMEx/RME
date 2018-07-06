@@ -166,8 +166,18 @@ module RME
         enemy(id).params[7]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the experience points that the given enemy provides
+      #   once defeated.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_give_exp,
+                        :description => 'Enemy.monster_give_exp',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).exp
+      end
+
       # TODO
-      # - `monster_give_exp`
       # - `monster_give_gold`
       # - `monster_element_rate`
 
