@@ -90,6 +90,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_max_hp,
+                        :alias       => :monster_hp,
                         :description => 'Enemy.monster_max_hp',
                         :parameters  => [ENEMY_ID]}) do |id|
         enemy(id).params[0]
@@ -100,6 +101,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_max_mp,
+                        :alias       => :monster_mp,
                         :description => 'Enemy.monster_max_mp',
                         :parameters  => [ENEMY_ID]}) do |id|
         enemy(id).params[1]
@@ -110,6 +112,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_attack_power,
+                        :alias       => :monster_attack,
                         :description => 'Enemy.monster_attack_power',
                         :parameters  => [ENEMY_ID]}) do |id|
         enemy(id).params[2]
@@ -120,6 +123,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_defense_power,
+                        :alias       => :monster_defense,
                         :description => 'Enemy.monster_defense_power',
                         :parameters  => [ENEMY_ID]}) do |id|
         enemy(id).params[3]
@@ -130,6 +134,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_magic_attack_power,
+                        :alias       => :monster_magic_attack,
                         :description => 'Enemy.monster_magic_attack_power',
                         :parameters  => [ENEMY_ID]}) do |id|
         enemy(id).params[4]
@@ -140,6 +145,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_magic_defense_power,
+                        :alias       => :monster_magic_defense,
                         :description => 'Enemy.monster_magic_defense_power',
                         :parameters  => [ENEMY_ID]}) do |id|
         enemy(id).params[5]
