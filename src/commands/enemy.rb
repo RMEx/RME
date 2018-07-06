@@ -156,8 +156,17 @@ module RME
         enemy(id).params[6]
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the luck points of the given enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_luck,
+                        :description => 'Enemy.monster_luck',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).params[7]
+      end
+
       # TODO
-      # - `monster_luck`
       # - `monster_give_exp`
       # - `monster_give_gold`
       # - `monster_element_rate`

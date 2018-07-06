@@ -2479,7 +2479,6 @@ module RMECommands
     end
     def monster_battler_width(i); monster_battler_dimension(i)[0]; end
     def monster_battler_height(i); monster_battler_dimension(i)[1]; end
-    def monster_luck(id); enemy(id).params[7]; end
     def monster_give_exp(id); enemy(id).exp; end
     def monster_give_gold(id); enemy(id).gold; end
     def current_troop; Kernel.current_troop; end
