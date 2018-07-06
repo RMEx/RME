@@ -235,6 +235,7 @@
   'doc.cmd.Enemy.monster_defense_power' => "Renvoie les points de défense d'un ennemi",
   'doc.cmd.Enemy.monster_magic_attack_power' => "Renvoie les points d'attaque magique d'un ennemi",
   'doc.cmd.Enemy.monster_magic_defense_power' => "Renvoie les points de défense magique d'un ennemi",
+  'doc.cmd.Enemy.monster_agility' => "Renvoie l'agilité d'un ennemi",
 
   # Parameters
   ## Map

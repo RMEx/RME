@@ -145,8 +145,18 @@ module RME
         enemy(id).params[5]
       end
 
+
+      # ------------------------------------------------------------------------
+      # * Returns the agility points of the given enemy.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :monster_agility,
+                        :description => 'Enemy.monster_agility',
+                        :parameters  => [ENEMY_ID]}) do |id|
+        enemy(id).params[6]
+      end
+
       # TODO
-      # - `monster_agility`
       # - `monster_luck`
       # - `monster_give_exp`
       # - `monster_give_gold`
