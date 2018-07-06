@@ -106,7 +106,7 @@ module RME
       end
 
       # ------------------------------------------------------------------------
-      # * Returns the attack points points of the given enemy.
+      # * Returns the attack points of the given enemy.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_attack_power,
@@ -116,7 +116,7 @@ module RME
       end
 
       # ------------------------------------------------------------------------
-      # * Returns the defense points points of the given enemy.
+      # * Returns the defense points of the given enemy.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_defense_power,
@@ -126,7 +126,7 @@ module RME
       end
 
       # ------------------------------------------------------------------------
-      # * Returns the magical attack points points of the given enemy.
+      # * Returns the magical attack points of the given enemy.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_magic_attack_power,
@@ -136,7 +136,7 @@ module RME
       end
 
       # ------------------------------------------------------------------------
-      # * Returns the magical defense points points of the given enemy.
+      # * Returns the magical defense points of the given enemy.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :monster_magic_defense_power,
