@@ -21,6 +21,7 @@
   'doc.PositionRegardingCamera.description' => "Position finale du point cible par rapport à la caméra",
   'doc.MapId.description' => "Identifiant de la map",
   'doc.EventId.description' => "Identifiant de l'événement",
+  'doc.EventPageId.description' => "Identifiant de la page d'un événement",
   'doc.EnemyId.description' => "Identifiant de l'ennemi",
   'doc.ActorId.description' => "Identifiant d'un héros",
   'doc.EquipmentSlot.description' => "Type d'emplacement pour un équipement (Arme => `:Weapon`, Casque => `:Head`, Torse => `:Body`, Bouclier => `:Shield`, Accessoire => `:Accessory`)",
