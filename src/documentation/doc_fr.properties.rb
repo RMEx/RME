@@ -19,6 +19,7 @@
   'doc.MouseButton.description' => "Bouton de la souris",
   'doc.EasingFunction.description' => "Fonction à utiliser pour effectuer une transition",
   'doc.PositionRegardingCamera.description' => "Position finale du point cible par rapport à la caméra",
+  'doc.MapId.description' => "Identifiant de la map",
   'doc.EventId.description' => "Identifiant de l'événement",
   'doc.EnemyId.description' => "Identifiant de l'ennemi",
   'doc.ActorId.description' => "Identifiant d'un héros",

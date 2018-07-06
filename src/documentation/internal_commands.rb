@@ -324,6 +324,9 @@ module RME
                                      :top_left, :top_right,
                                      :bottom_left, :bottom_right))
 
+      ParameterType::declare(:MapId,
+                             "Map's identifier",
+                             ClosedInterval.new(1, 999))
       ParameterType::declare(:EventId,
                              "Event's identifier",
                              ClosedInterval.new(0, 99999))
