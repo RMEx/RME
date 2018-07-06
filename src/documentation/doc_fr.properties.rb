@@ -38,6 +38,7 @@
   'doc.section.Clipboard' => "Commandes permettant de stocker/récupérer des données enregistrées dans le presse-papier",
   'doc.section.Date' => "Commandes permettant de récupérer des informations concernant la date et l'heure",
   'doc.section.Enemy' => "Commandes relatives aux monstres rencontrables en combat (tels que définis dans la base de données)",
+  'doc.section.Event' => "Commandes relatives aux événements",
 
   # Commands
   ## Map
