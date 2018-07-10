@@ -29,10 +29,11 @@ module RME
       # * Includes and calls the page of another event.
       #   (The execution context can be modified with `runnable` and `context`)
       # ------------------------------------------------------------------------
-      Command::declare({:section     => self,
-                        :name        => :include_page,
-                        :description => 'Event.include_page',
-                        :parameters  => [
+      Command::declare({:section      => self,
+                        :name         => :include_page,
+                        :description  => 'Event.include_page',
+                        :add_exec_ctx => true,
+                        :parameters   => [
                           MAP_ID,
                           {:name        => :event_id,
                            :type        => ParameterType::EventId,
@@ -65,7 +66,7 @@ module RME
                         :name        => :event_moving?,
                         :description => 'Event.event_moving?',
                         :parameters  => [ EVENT_ID ]}) do |event_id|
-        event(id).moving?
+        ::Command.event(event_id).moving?
       end
 
       # TODO

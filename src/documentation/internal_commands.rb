@@ -450,14 +450,23 @@ module RME
             parsed_args
           end
 
-        # Adding the execution context as an additional parameter
-        cmd_args << self
+        # Adding the execution context as an additional parameter if requested
+        extended_cmd_args =
+          if (true == cmd[:add_exec_ctx])
+            if (cmd_args.is_a? Array)
+              cmd_args << self
+            else
+              [] << cmd_args << self
+            end
+          else
+            cmd_args
+          end
 
         # Calling the delegated method
         if (cmd[:call].is_a? Proc)
           cmd[:call]
         elsif block_given?
-          yield cmd_args
+          yield extended_cmd_args
         else
           raise "There is no underlying block or method to call for #{cmd[:name]} !"
         end
