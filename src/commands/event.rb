@@ -69,8 +69,16 @@ module RME
         ::Command.event(event_id).moving?
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the player is moving (`true`) or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_moving?,
+                        :description => 'Event.player_moving?'}) do
+        ::Command.event_moving?(0)
+      end
+
       # TODO
-      # - `player_moving?`
       # - `event_trail`
       # - `pixel_in_event?`
       # - `pixel_in_player?`

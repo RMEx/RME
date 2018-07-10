@@ -246,6 +246,7 @@
   ## Event
   'doc.cmd.Event.include_page' => "Invoque une page (comme s'il s'agissait d'un événement commun) d'un autre événement",
   'doc.cmd.Event.event_moving?' => "Renvoie `true` si l'événement est en mouvement; `false` sinon",
+  'doc.cmd.Event.player_moving?' => "Renvoie `true` si le héros est en mouvement; `false` sinon",
 
   # Parameters
   ## Map
