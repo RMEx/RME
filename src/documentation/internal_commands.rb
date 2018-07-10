@@ -450,6 +450,9 @@ module RME
             parsed_args
           end
 
+        # Adding the execution context as an additional parameter
+        cmd_args << self
+
         # Calling the delegated method
         if (cmd[:call].is_a? Proc)
           cmd[:call]
