@@ -17,8 +17,45 @@ module RME
   module Command
     module Event
 
+      # Common parameters' declaration
+      MAP_ID = {:name        => :map_id,
+                :type        => ParameterType::MapId,
+                :description => 'Event.map_id'}
+
+      # ------------------------------------------------------------------------
+      # * Includes and calls the page of another event.
+      #   (The execution context can be modified with `runnable` and `context`)
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :include_page,
+                        :description => 'Event.include_page',
+                        :parameters  => [
+                          MAP_ID,
+                          {:name        => :event_id,
+                           :type        => ParameterType::EventId,
+                           :description => 'Event.include_page.event_id'},
+                          {:name        => :page_id,
+                           :type        => ParameterType::EventPageId,
+                           :description => 'Event.include_page.page_id'},
+                          {:name        => :runnable,
+                           :type        => ParameterType::Boolean,
+                           :description => 'Event.include_page.runnable',
+                           :default     => false},
+                          {:name        => :context,
+                           :type        => ParameterType::Boolean,
+                           :description => 'Event.include_page.context',
+                           :default     => false}
+                        ]}) do |map_id, event_id, page_id, runnable, context, exec_ctx|
+        if exec_ctx.class == Game_Interpreter
+          page = Game_Interpreter.get_page(map_id, event_id, page_id)
+          if page &&
+             (!runnable || page_runnable?(map_id, event_id, page, context))
+            exec_ctx.append_interpreter(page)
+          end
+        end
+      end
+
       # TODO
-      # - `include_page`
       # - `event_moving?`
       # - `player_moving?`
       # - `event_trail`

@@ -1227,17 +1227,6 @@ module RMECommands
       ((percent*max)/100.0).to_i
     end
     #--------------------------------------------------------------------------
-    # * Include event page
-    #--------------------------------------------------------------------------
-    def include_page(map_id, ev_id, p_id, if_runnable = false, context=false)
-      return unless self.class == Game_Interpreter
-      page = Game_Interpreter.get_page(map_id, ev_id, p_id)
-      return unless page
-      if !if_runnable || page_runnable?(map_id, ev_id, page, context)
-        self.append_interpreter(page)
-      end
-    end
-    #--------------------------------------------------------------------------
     # * Invoke Event
     #--------------------------------------------------------------------------
     def invoke_event(map_id, ev_id, new_id, x=nil, y=nil)

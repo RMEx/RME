@@ -243,6 +243,8 @@
   'doc.cmd.Enemy.monster_give_exp' => "Renvoie les points d'expérience donnés par un ennemi, une fois battu",
   'doc.cmd.Enemy.monster_give_gold' => "Renvoie la quantité d'or donnée par un ennemi, une fois battu",
   'doc.cmd.Enemy.monster_element_rate' => "Renvoie la résistance élémentaire d'un ennemi",
+  ## Event
+  'doc.cmd.Event.include_page' => "Invoque une page (comme s'il s'agissait d'un événement commun) d'un autre événement",
 
   # Parameters
   ## Map
@@ -316,5 +318,11 @@
   'doc.parameter.Clipboard.clipboard_push_command.cmd' => "Commande à sauvegarder dans le presse-papier",
   ## Enemy
   'doc.parameter.Enemy.id' => "Identifiant de l'ennemi",
-  'doc.parameter.Enemy.monster_element_rate.element_id' => "Identifiant de l'élément"
+  'doc.parameter.Enemy.monster_element_rate.element_id' => "Identifiant de l'élément",
+  ## Event
+  'doc.parameter.Event.map_id' => "Identifiant de la map dans laquelle l'événement se trouve",
+  'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
+  'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
+  'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",
+  'doc.parameter.Event.include_page.context' => "Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant.`"
 }
