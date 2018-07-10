@@ -21,6 +21,9 @@ module RME
       MAP_ID = {:name        => :map_id,
                 :type        => ParameterType::MapId,
                 :description => 'Event.map_id'}
+      EVENT_ID = {:name        => :event_id,
+                  :type        => ParameterType::EventId,
+                  :description => 'Event.event_id'}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -55,8 +58,17 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the event is moving (`true`) or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_moving?,
+                        :description => 'Event.event_moving?',
+                        :parameters  => [ EVENT_ID ]}) do |event_id|
+        event(id).moving?
+      end
+
       # TODO
-      # - `event_moving?`
       # - `player_moving?`
       # - `event_trail`
       # - `pixel_in_event?`

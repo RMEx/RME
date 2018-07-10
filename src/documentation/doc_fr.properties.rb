@@ -245,6 +245,7 @@
   'doc.cmd.Enemy.monster_element_rate' => "Renvoie la résistance élémentaire d'un ennemi",
   ## Event
   'doc.cmd.Event.include_page' => "Invoque une page (comme s'il s'agissait d'un événement commun) d'un autre événement",
+  'doc.cmd.Event.event_moving?' => "Renvoie `true` si l'événement est en mouvement; `false` sinon",
 
   # Parameters
   ## Map
@@ -321,6 +322,7 @@
   'doc.parameter.Enemy.monster_element_rate.element_id' => "Identifiant de l'élément",
   ## Event
   'doc.parameter.Event.map_id' => "Identifiant de la map dans laquelle l'événement se trouve",
+  'doc.parameter.Event.event_id' => "Identifiant de l'événement",
   'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
   'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
   'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",
