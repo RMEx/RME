@@ -24,6 +24,7 @@
   'doc.PositionRegardingCamera.description' => "Position finale du point cible par rapport à la caméra",
   'doc.MapId.description' => "Identifiant de la map",
   'doc.EventId.description' => "Identifiant de l'événement",
+  'doc.EventsSelector.description' => "Sélecteur d'événement (il peut aussi bien s'agir d'un identifiant d'événement seul, ou d'un taleau contenant plusieurs identifiants d'événements)",
   'doc.EventPageId.description' => "Identifiant de la page d'un événement",
   'doc.EnemyId.description' => "Identifiant de l'ennemi",
   'doc.ActorId.description' => "Identifiant d'un héros",

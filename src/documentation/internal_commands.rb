@@ -344,6 +344,13 @@ module RME
       ParameterType::declare(:EventId,
                              "Event's identifier",
                              ClosedInterval.new(0, 99999))
+      ParameterType::declare(:EventsSelector,
+                             "Events' selector",
+                             Domain.new(lambda { |x|
+                               (ParameterType::EventId.domain.valid? x) or
+                               (ParameterType::List::of_at_least(ParameterType::EventId, 1).domain.valid? x)
+                             }))
+
       ParameterType::declare(:EventPageId,
                              "Event's page's identifier",
                              ClosedInterval.new(0, 99))
