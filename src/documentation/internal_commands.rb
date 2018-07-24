@@ -306,6 +306,20 @@ module RME
       ParameterType::declare(:Area,
                              "Virtual area",
                              Domain.new(lambda { |x| AREA_TYPES.any? { |t| x.is_a? t }}))
+      ParameterType::declare(:Tone,
+                             "Color tone",
+                             Domain.new(lambda { |x| x.is_a? ::Tone }))
+      ParameterType::declare(:NullableTone,
+                             "Nullable color tone",
+                             Domain.new(lambda { |x| (x.nil?) or (x.is_a? ::Tone) }))
+      BLENDING_MODES = {
+        :normal      => 0,
+        :addition    => 1,
+        :subtraction => 2
+      }
+      ParameterType::declare(:BlendingMode,
+                             "Sprites' blending type",
+                             Set.new(*BLENDING_MODES.values))
 
       ParameterType::declare(:MouseButton,
                              "Mouse button / key",
