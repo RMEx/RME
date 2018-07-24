@@ -194,7 +194,7 @@ module RME
                            :type        => ParameterType::Direction,
                            :default     => 2}
                         ]}) do |x, y, direction|
-        $game_map.passable?(x, y, d)
+        $game_map.passable?(x, y, direction)
       end
 
       # ------------------------------------------------------------------------

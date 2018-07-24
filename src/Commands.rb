@@ -48,6 +48,15 @@ module RMECommands
     $game_temp.reserve_common_event(id)
   end
 
+  def include_common_event(id)
+    common_event = $data_common_events[id]
+    if common_event
+      child = Game_Interpreter.new(@depth + 1)
+      child.setup(common_event.list, same_map? ? me : 0)
+      child.run
+    end
+  end
+
   def has_prefix?(string, prefix)
     string.start_with?(prefix)
   end
@@ -210,7 +219,8 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------
-  def message_height(n)
+  def message_height(n = false)
+    return Window_Message.line_number unless n
     Window_Message.line_number = n
     scene = SceneManager.scene
     scene.refresh_message if scene.respond_to?(:refresh_message)
@@ -466,6 +476,13 @@ module RMECommands
       return pictures[id].x unless x
       pictures[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def picture_z(id, z=false)
+      return pictures[id].z unless z
+      pictures[id].z = z
     end
     #--------------------------------------------------------------------------
     # * Modify y position
@@ -867,6 +884,13 @@ module RMECommands
       wait(duration) if wf
     end
     #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def spritesheet_z(id, z=false)
+      return spritesheets[id].z unless z
+      spritesheets[id].z = z
+    end
+    #--------------------------------------------------------------------------
     # * Modify y position
     #--------------------------------------------------------------------------
     def spritesheet_y(id, y=false, duration = 0, wf = false, ease = :InLinear)
@@ -1172,6 +1196,64 @@ module RMECommands
     #--------------------------------------------------------------------------
     def random_figures(x=0)
       x + Kernel.rand
+    end
+
+    def get_squares_between(x1, y1, x2, y2)
+      a = Point.new(x1, y1)
+      b = Point.new(x2, y2)
+      Point.get_squares_between(a, b).select do |x, y|
+        x >= 0 && y >= 0
+      end.sort do |p1, p2|
+        args1 = x1 - p1[0], y1 - p1[1]
+        args2 = x1 - p2[0], y1 - p2[1]
+        Math.hypot(*args1).to_i <=> Math.hypot(*args2).to_i
+      end
+    end
+
+    def get_squares_between_events(id1, id2)
+      x1, y1 = event_x(id1), event_y(id1)
+      x2, y2 = event_x(id2), event_y(id2)
+      get_squares_between(x1, y1, x2, y2)
+    end
+
+    def get_squares_around_event(id, r = 1, center = false, strategy = :circle)
+      get_squares_around(event_x(id), event_y(id), r, center, strategy)
+    end
+
+    def get_squares_around(x, y, r = 1, center = false, strategy = :circle)
+      result = center ? [[x,y]] : []
+      case strategy
+      when :circle
+        r.times.inject(result) do |acc, n|
+          acc + get_squares_in_circle(x, y, n + 1)
+        end
+      when :square
+        (1..r).inject(result) do |acc, n|
+          w = n*2+1
+          acc + get_squares_in_rectangle(x-n, y-n, w, w)
+        end
+      else
+        result
+      end
+    end
+
+    def get_squares_in_circle(cx, cy, r)
+      curr = [cx - r, cy]
+      mod = [1, -1]
+      (0...(r * 4)).each_with_object([curr]) do |_, acc|
+        curr = curr.zip(mod).map { |a, b| a + b }
+        acc << curr
+        mod[0] *= -1 if curr[0] == cx + r || curr[0] == cx - r
+        mod[1] *= -1 if curr[1] == cy + r || curr[1] == cy - r
+      end.uniq
+    end
+
+    def get_squares_in_rectangle(x, y, w, h)
+      result = []
+      xx, yy = x + w - 1, y + h - 1
+      (x..xx).each { |xi| result << [xi, y]; result << [xi, yy] }
+      (y..yy).each { |yi| result << [x, yi]; result << [xx, yi] }
+      result.uniq
     end
 
     def use_reflection(properties = nil)
@@ -1671,6 +1753,32 @@ module RMECommands
       end
       return x_axis && y_axis && (distance_between(metric, ev, to)<=scope)
     end
+    def event_look_towards_event?(source, dest, scope)
+      event_look_towards?(source, event_x(dest), event_y(dest), scope)
+    end
+    def event_look_towards?(source, x, y, scope)
+      ex, ey = event_x(source), event_y(source)
+      case event_direction(source)
+      when Direction::UP
+        distance = ey - y
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey > y
+      when Direction::DOWN
+        distance = y - ey
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey < y
+      when Direction::LEFT
+        distance = ex - x
+        x_axis = ex > x
+        y_axis = (ey >= y - distance) && (ey <= y + distance)
+      when Direction::RIGHT
+        distance = x - ex
+        x_axis = ex < x
+        y_axis = (ey >= y - distance) && (ey <= y + distance)
+      end
+      return x_axis && y_axis && distance <= scope
+    end
+
     def events_collide?(ev1, ev2)
       event1 = event(ev1)
       event2 = event(ev2)
@@ -2290,6 +2398,24 @@ module RMECommands
       event(id).start
     end
 
+    #--------------------------------------------------------------------------
+    # * Get X coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_x(id)
+      $game_map.rpg_event(id).x
+    end
+    #--------------------------------------------------------------------------
+    # * Get Y coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_y(id)
+      $game_map.rpg_event(id).y
+    end
+
+    def event_allow_overlap(id, value = nil)
+      return event(id).allow_overlap? if value.nil?
+      event(id).allow_overlap = value
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
@@ -2379,6 +2505,8 @@ module RMECommands
     def skill_nb_hits(i); $data_skills[i].repeats; end
     def skill_success_rate(i); $data_skills[i].success_rate; end
     def skill_tp_gain(i); $data_skills[i].tp_gain; end
+    def skill_mp_cost(i); $data_skills[i].mp_cost; end
+    def skill_tp_cost(i); $data_skills[i].tp_cost; end
 
     append_commands
   end
@@ -2411,6 +2539,7 @@ module RMECommands
     def mantissa(x)
       [0, x.to_s.split('.')[1]].join('.').to_f
     end
+    def abs(x); x.abs; end
     #--------------------------------------------------------------------------
     # * Find angle from a couple of point
     #--------------------------------------------------------------------------
@@ -2720,7 +2849,8 @@ module RMECommands
       Game_Screen.get.texts[id].angle = value
     end
 
-    def text_progressive(id, value, delay)
+    def text_progressive(id, value, delay, purge = false)
+      text_change(id, "") if purge
       value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)
@@ -3352,6 +3482,26 @@ module RMECommands
     def window_y(id, y = nil)
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
+    end
+
+    def window_change_windowskin(id, filename)
+      SceneManager.scene.windows[id].change_windowskin(filename)
+    end
+
+    def window_change_tone(id, tone)
+      SceneManager.scene.windows[id].change_tone(tone)
+    end
+
+    def window_use_default_windowskin(id)
+      SceneManager.scene.windows[id].use_default_windowskin
+    end
+
+    def window_use_default_tone(id)
+      SceneManager.scene.windows[id].use_default_tone
+    end
+
+    def fresh_window_id
+      SceneManager.scene.fresh_window_id
     end
 
     #--------------------------------------------------------------------------

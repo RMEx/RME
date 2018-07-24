@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #==============================================================================
-# ** RME v1.3.0
+# ** RME v1.4.0
 #------------------------------------------------------------------------------
 #  With :
 # xvw
@@ -72,7 +72,7 @@ module RME
     # * Version
     # * With RMEPackage, it's seems useless ?
     #--------------------------------------------------------------------------
-    def version; define_version(1,3,0); end
+    def version; define_version(1,4,0); end
     #--------------------------------------------------------------------------
     # * define Version
     #--------------------------------------------------------------------------
@@ -1040,6 +1040,49 @@ class Point
   end
 
   #--------------------------------------------------------------------------
+  # * Vector to another point
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # @param oth [Point] the first point
+  # @return [Array] vector from the first to the second point
+  #--------------------------------------------------------------------------
+  def vector(oth)
+    [x - oth.x, y - oth.y]
+  end
+
+  #--------------------------------------------------------------------------
+  # * Returns all squares touching the AB segment
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # @param a [Point] the first point
+  # @param b [Point] the second point (whose x-coordinate should be below
+  #                  the first one)
+  # @return [Array] array of coordinates like [x,y]
+  #--------------------------------------------------------------------------
+  def self.get_squares_between(a, b)
+    if a.x == b.x # Horizonal
+      Range.new(*[a.y, b.y].sort).map { |y| [a.x, y] }
+    elsif a.y == b.y # Vertical
+      Range.new(*[a.x, b.x].sort).map { |x| [x, a.y] }
+    else
+      vec = a.vector(b)
+      if vec[0].abs == vec[1].abs # Diagonal
+        fun = linear_interpolant(a, b)
+        Range.new(*[a.x, b.x].sort).map do |x|
+          y = fun.(x).to_i
+          [x, y]
+        end
+      else # Other
+        aa = Point.new(a.x * 32 + 16, a.y * 32 + 16)
+        bb = Point.new(b.x * 32 + 16, b.y * 32 + 16)
+        fun = linear_interpolant(aa, bb)
+        Range.new(*[aa.x, bb.x].sort).map do |x|
+          y = fun.(x)
+          [x, y].map { |i| (i/32).to_i }
+        end.uniq
+      end
+    end
+  end
+
+  #--------------------------------------------------------------------------
   # * Linear interpolant between the two given points
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # @param a [Point] the first point
@@ -1773,6 +1816,7 @@ module Devices
       cursor_position(buffer)
       screen_to_client(HWND, buffer)
       r = Game_Window.ratio
+      return if r.zero?
       @point.x, @point.y = *buffer.unpack('l2')
       @point.x, @point.y = (@point.x / r).to_i, (@point.y / r).to_i
       @square.null!
@@ -3823,6 +3867,18 @@ module Kernel
   end
 
 end
+#==============================================================================
+# ** Direction
+#------------------------------------------------------------------------------
+#  Directions are defined in this module.
+#==============================================================================
+module Direction
+  UP    = 2
+  LEFT  = 4
+  RIGHT = 6
+  DOWN  = 8
+end
+
 
 #==============================================================================
 # ** RME Gui
@@ -6130,6 +6186,13 @@ module Cache
     end
     return Cache.picture(name)
   end
+
+  #--------------------------------------------------------------------------
+  # * Get Battle Background (Floor) Graphic
+  #--------------------------------------------------------------------------
+  def self.windowskin(filename)
+    load_bitmap("Graphics/Windowskins/", filename)
+  end
 end
 
 
@@ -7474,8 +7537,11 @@ class Game_CharacterBase
   attr_accessor :move_succeed
   attr_accessor :light_emitter
   attr_accessor :tone
+  attr_accessor :allow_overlap
   attr_reader :id
 
+  alias_method :allow_overlap?, :allow_overlap
+  alias_method :rme_collide_with_characters?, :collide_with_characters?
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -7691,6 +7757,13 @@ class Game_CharacterBase
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
     super(script, $game_map.interpreter.get_binding)
   end
+  #--------------------------------------------------------------------------
+  # * Detect Collision with Character
+  #--------------------------------------------------------------------------
+  def collide_with_characters?(x, y)
+    return false if allow_overlap?
+    rme_collide_with_characters?(x, y)
+  end
 
 end
 
@@ -7774,6 +7847,7 @@ class Game_Player
   #--------------------------------------------------------------------------
   alias_method :rme_update_scroll, :update_scroll
   alias_method :rme_refresh, :refresh
+  alias_method :rme_center, :center
   def update_scroll(last_real_x, last_real_y)
     return if $game_map.target_camera != self
     rme_update_scroll(last_real_x, last_real_y)
@@ -7790,6 +7864,19 @@ class Game_Player
   def refresh
     rme_refresh
     restore_oxy
+  end
+  #--------------------------------------------------------------------------
+  # * Set Map Display Position to Center of Screen
+  #--------------------------------------------------------------------------
+  def center(x, y)
+    return unless $game_map.target_camera == self
+    if $game_map.camera_x_locked?
+      $game_map.set_display_pos($game_map.display_x, y - center_y)
+    elsif $game_map.camera_y_locked?
+      $game_map.set_display_pos(x - center_x, $game_map.display_x)
+    else
+      rme_center(x, y)
+    end
   end
 end
 
@@ -8141,6 +8228,7 @@ class Window_Base
   alias_method :rm_extender_convert_escape_characters, :convert_escape_characters
   alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_update, :update
+  alias_method :rm_extender_update_tone, :update_tone
   #--------------------------------------------------------------------------
   # * Object Initialize
   #--------------------------------------------------------------------------
@@ -8155,6 +8243,13 @@ class Window_Base
   def update
     rm_extender_update
     mod_update
+  end
+  #--------------------------------------------------------------------------
+  # * Update Tone
+  #--------------------------------------------------------------------------
+  def update_tone
+    return if @custom_tone
+    rm_extender_update_tone
   end
   #--------------------------------------------------------------------------
   # * Preconvert Control Characters
@@ -8192,6 +8287,31 @@ class Window_Base
     posY -= viewport.y if (viewport)
     return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
   end
+  #--------------------------------------------------------------------------
+  # * Change Windowskin
+  #--------------------------------------------------------------------------
+  def change_windowskin(filename)
+    self.windowskin = Cache.windowskin(filename)
+  end
+  #--------------------------------------------------------------------------
+  # * Change Window tone
+  #--------------------------------------------------------------------------
+  def change_tone(tone)
+    @custom_tone = true
+    self.tone.set(tone)
+  end
+  #--------------------------------------------------------------------------
+  # * Use default windowskin
+  #--------------------------------------------------------------------------
+  def use_default_windowskin
+    self.windowskin = Cache.system("Window")
+  end
+  #--------------------------------------------------------------------------
+  # * Use default window tone
+  #--------------------------------------------------------------------------
+  def use_default_tone
+    @custom_tone = false
+  end
 end
 
 #==============================================================================
@@ -8222,7 +8342,7 @@ class Window_Text < Window_Base
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max.to_i, heights.max.to_i
     total_height = height * lines.length
     [width, total_height, height]
   end
@@ -8643,8 +8763,8 @@ class Scene_Map
   # * Start
   #--------------------------------------------------------------------------
   def start
-    @textfields = Hash.new
-    @windows = Hash.new
+    @textfields ||= Hash.new
+    @windows ||= Hash.new
     extender_start
     $game_map.reflash_map
   end
@@ -8667,6 +8787,12 @@ class Scene_Map
   #--------------------------------------------------------------------------
   def unactivate_windows
     @windows.each {|i,t| t.deactivate if t && !t.disposed?}
+  end
+  #--------------------------------------------------------------------------
+  # * Fresh Window ID
+  #--------------------------------------------------------------------------
+  def fresh_window_id
+    @windows.keys.max + 1
   end
   #--------------------------------------------------------------------------
   # * add Window
@@ -8923,6 +9049,18 @@ class Game_Map
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
   end
+  #--------------------------------------------------------------------------
+  # * Is X axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_x_locked?
+    $game_map.camera_lock.include?(:x)
+  end
+  #--------------------------------------------------------------------------
+  # * Is Y axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_y_locked?
+    $game_map.camera_lock.include?(:y)
+  end
 
   #--------------------------------------------------------------------------
   # * Get the map rectangle
@@ -9103,6 +9241,15 @@ class Game_Map
   #--------------------------------------------------------------------------
   def parallel_common_events
     rm_extender_pc.select {|e| e && !e.for_battle?}
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get RPG::Event
+  #--------------------------------------------------------------------------
+  def rpg_event(id)
+    event = @map.events.fetch(id, nil)
+    return event if event
+    raise sprintf("Event %d doesn't exist", id)
   end
 end
 
@@ -9289,7 +9436,7 @@ class Sprite_Text < Sprite
   # * Update origin
   #--------------------------------------------------------------------------
   def update_origin
-    if @text.origin == 0
+    if @text.origin == 0 || bitmap.nil?
       self.ox = 0
       self.oy = 0
     else
@@ -9487,7 +9634,7 @@ class Game_Pictures
 end
 
 #==============================================================================
-# ** Game_Pictures
+# ** Game_Spritesheet
 #------------------------------------------------------------------------------
 #  This is a wrapper for a picture array. This class is used within the
 # Game_Screen class. Map screen pictures and battle screen pictures are
@@ -9563,6 +9710,7 @@ class Game_Picture
   attr_accessor  :wave_speed
   attr_accessor  :duration
   attr_accessor  :scroll_speed_x, :scroll_speed_y
+  attr_accessor  :z
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -9628,6 +9776,7 @@ class Game_Picture
     @wave_amp = @wave_speed = 0
     @pin = false
     @scroll_speed_y = @scroll_speed_x = 2
+    @z = @number
     clear_shake
   end
   #--------------------------------------------------------------------------
@@ -10116,7 +10265,7 @@ class Sprite_Picture
       self.x = @picture.x + @picture.shake
       self.y = @picture.y
     end
-    self.z = @picture.number
+    self.z = @picture.z
   end
   #--------------------------------------------------------------------------
   # * Update Origin
@@ -10207,11 +10356,14 @@ end
 
 class Game_Event
   #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :erased
+  attr_accessor :trigger
+  #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rm_extender_conditions_met?,  :conditions_met?
-  attr_accessor :erased
-  attr_accessor :trigger
   alias_method :erased?, :erased
   alias_method :rme_setup_page_settings, :setup_page_settings
   #--------------------------------------------------------------------------
@@ -11255,6 +11407,15 @@ module RMECommands
     $game_temp.reserve_common_event(id)
   end
 
+  def include_common_event(id)
+    common_event = $data_common_events[id]
+    if common_event
+      child = Game_Interpreter.new(@depth + 1)
+      child.setup(common_event.list, same_map? ? me : 0)
+      child.run
+    end
+  end
+
   def has_prefix?(string, prefix)
     string.start_with?(prefix)
   end
@@ -11442,7 +11603,8 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Change Message height
   #--------------------------------------------------------------------------
-  def message_height(n)
+  def message_height(n = false)
+    return Window_Message.line_number unless n
     Window_Message.line_number = n
     scene = SceneManager.scene
     scene.refresh_message if scene.respond_to?(:refresh_message)
@@ -11698,6 +11860,13 @@ module RMECommands
       return pictures[id].x unless x
       pictures[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def picture_z(id, z=false)
+      return pictures[id].z unless z
+      pictures[id].z = z
     end
     #--------------------------------------------------------------------------
     # * Modify y position
@@ -12097,6 +12266,13 @@ module RMECommands
       return spritesheets[id].x unless x
       spritesheets[id].set_transition('x', x, duration, ease)
       wait(duration) if wf
+    end
+    #--------------------------------------------------------------------------
+    # * Modify z position
+    #--------------------------------------------------------------------------
+    def spritesheet_z(id, z=false)
+      return spritesheets[id].z unless z
+      spritesheets[id].z = z
     end
     #--------------------------------------------------------------------------
     # * Modify y position
@@ -12513,6 +12689,64 @@ module RMECommands
       $game_map.random_square(region_id)
     end
 
+    def get_squares_between(x1, y1, x2, y2)
+      a = Point.new(x1, y1)
+      b = Point.new(x2, y2)
+      Point.get_squares_between(a, b).select do |x, y|
+        x >= 0 && y >= 0
+      end.sort do |p1, p2|
+        args1 = x1 - p1[0], y1 - p1[1]
+        args2 = x1 - p2[0], y1 - p2[1]
+        Math.hypot(*args1).to_i <=> Math.hypot(*args2).to_i
+      end
+    end
+
+    def get_squares_between_events(id1, id2)
+      x1, y1 = event_x(id1), event_y(id1)
+      x2, y2 = event_x(id2), event_y(id2)
+      get_squares_between(x1, y1, x2, y2)
+    end
+
+    def get_squares_around_event(id, r = 1, center = false, strategy = :circle)
+      get_squares_around(event_x(id), event_y(id), r, center, strategy)
+    end
+
+    def get_squares_around(x, y, r = 1, center = false, strategy = :circle)
+      result = center ? [[x,y]] : []
+      case strategy
+      when :circle
+        r.times.inject(result) do |acc, n|
+          acc + get_squares_in_circle(x, y, n + 1)
+        end
+      when :square
+        (1..r).inject(result) do |acc, n|
+          w = n*2+1
+          acc + get_squares_in_rectangle(x-n, y-n, w, w)
+        end
+      else
+        result
+      end
+    end
+
+    def get_squares_in_circle(cx, cy, r)
+      curr = [cx - r, cy]
+      mod = [1, -1]
+      (0...(r * 4)).each_with_object([curr]) do |_, acc|
+        curr = curr.zip(mod).map { |a, b| a + b }
+        acc << curr
+        mod[0] *= -1 if curr[0] == cx + r || curr[0] == cx - r
+        mod[1] *= -1 if curr[1] == cy + r || curr[1] == cy - r
+      end.uniq
+    end
+
+    def get_squares_in_rectangle(x, y, w, h)
+      result = []
+      xx, yy = x + w - 1, y + h - 1
+      (x..xx).each { |xi| result << [xi, y]; result << [xi, yy] }
+      (y..yy).each { |yi| result << [x, yi]; result << [xx, yi] }
+      result.uniq
+    end
+
     def use_reflection(properties = nil)
       $game_map.use_reflection = true
       return unless properties && properties.is_a?(Hash)
@@ -12562,7 +12796,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Check passability
     #--------------------------------------------------------------------------
-    def square_passable?(x, y, d=2)
+    def square_passable?(x, y, d)
       $game_map.passable?(x, y, d)
     end
     #--------------------------------------------------------------------------
@@ -13220,6 +13454,32 @@ module RMECommands
       end
       return x_axis && y_axis && (distance_between(metric, ev, to)<=scope)
     end
+    def event_look_towards_event?(source, dest, scope)
+      event_look_towards?(source, event_x(dest), event_y(dest), scope)
+    end
+    def event_look_towards?(source, x, y, scope)
+      ex, ey = event_x(source), event_y(source)
+      case event_direction(source)
+      when Direction::UP
+        distance = ey - y
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey > y
+      when Direction::DOWN
+        distance = y - ey
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey < y
+      when Direction::LEFT
+        distance = ex - x
+        x_axis = ex > x
+        y_axis = (ey >= y - distance) && (ey <= y + distance)
+      when Direction::RIGHT
+        distance = x - ex
+        x_axis = ex < x
+        y_axis = (ey >= y - distance) && (ey <= y + distance)
+      end
+      return x_axis && y_axis && distance <= scope
+    end
+
     def events_collide?(ev1, ev2)
       event1 = event(ev1)
       event2 = event(ev2)
@@ -13845,6 +14105,24 @@ module RMECommands
       event(id).start
     end
 
+    #--------------------------------------------------------------------------
+    # * Get X coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_x(id)
+      $game_map.rpg_event(id).x
+    end
+    #--------------------------------------------------------------------------
+    # * Get Y coordinate of an event from the editor
+    #--------------------------------------------------------------------------
+    def event_original_y(id)
+      $game_map.rpg_event(id).y
+    end
+
+    def event_allow_overlap(id, value = nil)
+      return event(id).allow_overlap? if value.nil?
+      event(id).allow_overlap = value
+    end
+
     # Fix for EE4
     alias_method :collide?, :events_collide?
     alias_method :look_at, :event_look_at?
@@ -13934,6 +14212,8 @@ module RMECommands
     def skill_nb_hits(i); $data_skills[i].repeats; end
     def skill_success_rate(i); $data_skills[i].success_rate; end
     def skill_tp_gain(i); $data_skills[i].tp_gain; end
+    def skill_mp_cost(i); $data_skills[i].mp_cost; end
+    def skill_tp_cost(i); $data_skills[i].tp_cost; end
 
     append_commands
   end
@@ -13966,6 +14246,7 @@ module RMECommands
     def mantissa(x)
       [0, x.to_s.split('.')[1]].join('.').to_f
     end
+    def abs(x); x.abs; end
     #--------------------------------------------------------------------------
     # * Find angle from a couple of point
     #--------------------------------------------------------------------------
@@ -14300,7 +14581,8 @@ module RMECommands
       Game_Screen.get.texts[id].angle = value
     end
 
-    def text_progressive(id, value, delay)
+    def text_progressive(id, value, delay, purge = false)
+      text_change(id, "") if purge
       value.each_char do |ch|
         yield if block_given?
         text_change(id, text_value(id) + ch)
@@ -14950,11 +15232,11 @@ module RMECommands
 
     def camera_lock_x; $game_map.camera_lock << :x; end
     def camera_unlock_x; $game_map.camera_lock.delete(:x); end
-    def camera_x_locked?; $game_map.camera_lock.include?(:x); end
+    def camera_x_locked?; $game_map.camera_x_locked?; end
 
     def camera_lock_y; $game_map.camera_lock << :y; end
     def camera_unlock_y; $game_map.camera_lock.delete(:y); end
-    def camera_y_locked?; $game_map.camera_lock.include?(:y); end
+    def camera_y_locked?; $game_map.camera_y_locked?; end
 
     def camera_change_focus(event_id)
       e = event(event_id)
@@ -15145,6 +15427,26 @@ module RMECommands
     def window_y(id, y = nil)
       return SceneManager.scene.windows[id].y unless y
       SceneManager.scene.windows[id].y = y
+    end
+
+    def window_change_windowskin(id, filename)
+      SceneManager.scene.windows[id].change_windowskin(filename)
+    end
+
+    def window_change_tone(id, tone)
+      SceneManager.scene.windows[id].change_tone(tone)
+    end
+
+    def window_use_default_windowskin(id)
+      SceneManager.scene.windows[id].use_default_windowskin
+    end
+
+    def window_use_default_tone(id)
+      SceneManager.scene.windows[id].use_default_tone
+    end
+
+    def fresh_window_id
+      SceneManager.scene.fresh_window_id
     end
 
     #--------------------------------------------------------------------------

@@ -76,6 +76,13 @@ module Cache
     end
     return Cache.picture(name)
   end
+
+  #--------------------------------------------------------------------------
+  # * Get Battle Background (Floor) Graphic
+  #--------------------------------------------------------------------------
+  def self.windowskin(filename)
+    load_bitmap("Graphics/Windowskins/", filename)
+  end
 end
 
 
@@ -1420,8 +1427,11 @@ class Game_CharacterBase
   attr_accessor :move_succeed
   attr_accessor :light_emitter
   attr_accessor :tone
+  attr_accessor :allow_overlap
   attr_reader :id
 
+  alias_method :allow_overlap?, :allow_overlap
+  alias_method :rme_collide_with_characters?, :collide_with_characters?
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1637,6 +1647,13 @@ class Game_CharacterBase
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
     super(script, $game_map.interpreter.get_binding)
   end
+  #--------------------------------------------------------------------------
+  # * Detect Collision with Character
+  #--------------------------------------------------------------------------
+  def collide_with_characters?(x, y)
+    return false if allow_overlap?
+    rme_collide_with_characters?(x, y)
+  end
 
 end
 
@@ -1720,6 +1737,7 @@ class Game_Player
   #--------------------------------------------------------------------------
   alias_method :rme_update_scroll, :update_scroll
   alias_method :rme_refresh, :refresh
+  alias_method :rme_center, :center
   def update_scroll(last_real_x, last_real_y)
     return if $game_map.target_camera != self
     rme_update_scroll(last_real_x, last_real_y)
@@ -1736,6 +1754,19 @@ class Game_Player
   def refresh
     rme_refresh
     restore_oxy
+  end
+  #--------------------------------------------------------------------------
+  # * Set Map Display Position to Center of Screen
+  #--------------------------------------------------------------------------
+  def center(x, y)
+    return unless $game_map.target_camera == self
+    if $game_map.camera_x_locked?
+      $game_map.set_display_pos($game_map.display_x, y - center_y)
+    elsif $game_map.camera_y_locked?
+      $game_map.set_display_pos(x - center_x, $game_map.display_x)
+    else
+      rme_center(x, y)
+    end
   end
 end
 
@@ -2087,6 +2118,7 @@ class Window_Base
   alias_method :rm_extender_convert_escape_characters, :convert_escape_characters
   alias_method :rm_extender_initialize, :initialize
   alias_method :rm_extender_update, :update
+  alias_method :rm_extender_update_tone, :update_tone
   #--------------------------------------------------------------------------
   # * Object Initialize
   #--------------------------------------------------------------------------
@@ -2101,6 +2133,13 @@ class Window_Base
   def update
     rm_extender_update
     mod_update
+  end
+  #--------------------------------------------------------------------------
+  # * Update Tone
+  #--------------------------------------------------------------------------
+  def update_tone
+    return if @custom_tone
+    rm_extender_update_tone
   end
   #--------------------------------------------------------------------------
   # * Preconvert Control Characters
@@ -2138,6 +2177,31 @@ class Window_Base
     posY -= viewport.y if (viewport)
     return(posX.between?(0, self.width-1) && posY.between?(0, self.height-1))
   end
+  #--------------------------------------------------------------------------
+  # * Change Windowskin
+  #--------------------------------------------------------------------------
+  def change_windowskin(filename)
+    self.windowskin = Cache.windowskin(filename)
+  end
+  #--------------------------------------------------------------------------
+  # * Change Window tone
+  #--------------------------------------------------------------------------
+  def change_tone(tone)
+    @custom_tone = true
+    self.tone.set(tone)
+  end
+  #--------------------------------------------------------------------------
+  # * Use default windowskin
+  #--------------------------------------------------------------------------
+  def use_default_windowskin
+    self.windowskin = Cache.system("Window")
+  end
+  #--------------------------------------------------------------------------
+  # * Use default window tone
+  #--------------------------------------------------------------------------
+  def use_default_tone
+    @custom_tone = false
+  end
 end
 
 #==============================================================================
@@ -2168,7 +2232,7 @@ class Window_Text < Window_Base
       widths << r.width
       heights << r.height
     end
-    width, height = widths.max, heights.max
+    width, height = widths.max.to_i, heights.max.to_i
     total_height = height * lines.length
     [width, total_height, height]
   end
@@ -2589,8 +2653,8 @@ class Scene_Map
   # * Start
   #--------------------------------------------------------------------------
   def start
-    @textfields = Hash.new
-    @windows = Hash.new
+    @textfields ||= Hash.new
+    @windows ||= Hash.new
     extender_start
     $game_map.reflash_map
   end
@@ -2613,6 +2677,12 @@ class Scene_Map
   #--------------------------------------------------------------------------
   def unactivate_windows
     @windows.each {|i,t| t.deactivate if t && !t.disposed?}
+  end
+  #--------------------------------------------------------------------------
+  # * Fresh Window ID
+  #--------------------------------------------------------------------------
+  def fresh_window_id
+    @windows.keys.max + 1
   end
   #--------------------------------------------------------------------------
   # * add Window
@@ -2869,6 +2939,18 @@ class Game_Map
     return if @camera_lock.include?(:y)
     rm_extender_scroll_up(distance)
   end
+  #--------------------------------------------------------------------------
+  # * Is X axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_x_locked?
+    $game_map.camera_lock.include?(:x)
+  end
+  #--------------------------------------------------------------------------
+  # * Is Y axis of the camera locked ?
+  #--------------------------------------------------------------------------
+  def camera_y_locked?
+    $game_map.camera_lock.include?(:y)
+  end
 
   #--------------------------------------------------------------------------
   # * Get the map rectangle
@@ -3049,6 +3131,15 @@ class Game_Map
   #--------------------------------------------------------------------------
   def parallel_common_events
     rm_extender_pc.select {|e| e && !e.for_battle?}
+  end
+
+  #--------------------------------------------------------------------------
+  # * Get RPG::Event
+  #--------------------------------------------------------------------------
+  def rpg_event(id)
+    event = @map.events.fetch(id, nil)
+    return event if event
+    raise sprintf("Event %d doesn't exist", id)
   end
 end
 
@@ -3235,7 +3326,7 @@ class Sprite_Text < Sprite
   # * Update origin
   #--------------------------------------------------------------------------
   def update_origin
-    if @text.origin == 0
+    if @text.origin == 0 || bitmap.nil?
       self.ox = 0
       self.oy = 0
     else
@@ -3433,7 +3524,7 @@ class Game_Pictures
 end
 
 #==============================================================================
-# ** Game_Pictures
+# ** Game_Spritesheet
 #------------------------------------------------------------------------------
 #  This is a wrapper for a picture array. This class is used within the
 # Game_Screen class. Map screen pictures and battle screen pictures are
@@ -3509,6 +3600,7 @@ class Game_Picture
   attr_accessor  :wave_speed
   attr_accessor  :duration
   attr_accessor  :scroll_speed_x, :scroll_speed_y
+  attr_accessor  :z
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -3574,6 +3666,7 @@ class Game_Picture
     @wave_amp = @wave_speed = 0
     @pin = false
     @scroll_speed_y = @scroll_speed_x = 2
+    @z = @number
     clear_shake
   end
   #--------------------------------------------------------------------------
@@ -4062,7 +4155,7 @@ class Sprite_Picture
       self.x = @picture.x + @picture.shake
       self.y = @picture.y
     end
-    self.z = @picture.number
+    self.z = @picture.z
   end
   #--------------------------------------------------------------------------
   # * Update Origin
@@ -4153,11 +4246,14 @@ end
 
 class Game_Event
   #--------------------------------------------------------------------------
+  # * Public Instance Variables
+  #--------------------------------------------------------------------------
+  attr_accessor :erased
+  attr_accessor :trigger
+  #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :rm_extender_conditions_met?,  :conditions_met?
-  attr_accessor :erased
-  attr_accessor :trigger
   alias_method :erased?, :erased
   alias_method :rme_setup_page_settings, :setup_page_settings
   #--------------------------------------------------------------------------
