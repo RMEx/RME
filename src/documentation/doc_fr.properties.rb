@@ -195,7 +195,7 @@
   'doc.cmd.Armors.armor_agility' => "Renvoie l'apport d'agilité procuré par l'armure",
   'doc.cmd.Armors.armor_luck' => "Renvoie l'apport de chance procuré par l'armure",
   'doc.cmd.Armors.give_armor' => "Ajoute ou supprime plusieurs exemplaires d'une armure, de l'inventaire du joueur",
-  'doc.cmd.Armors.has_armor?' => "Renvoie `true` si l'armure est possédée par le joueur; `false` sinon."
+  'doc.cmd.Armors.has_armor?' => "Renvoie `true` si l'armure est possédée par le joueur; `false` sinon.",
   'doc.cmd.Armors.armor_equiped?' => "Renvoie `true` si l'armure est équipé par l'un des membres de l'équipe; `false` sinon.",
   'doc.cmd.Armors.armor_type' => "Renvoie le type de l'armure",
   ## Camera
