@@ -24,6 +24,20 @@ module RME
       EVENT_ID = {:name        => :event_id,
                   :type        => ParameterType::EventId,
                   :description => 'Event.event_id'}
+      EVENT_IDS = {:name        => :ids,
+                   :type        => ParameterType::EventsSelector,
+                   :description => 'Event.event_ids'}
+      TRAIL_LENGTH = {:name        => :length,
+                      :type        => ParameterType::PositiveInteger,
+                      :description => 'Event.event_trail.length'}
+      TRAIL_BLEND_MODE = {:name          => :blend_mode,
+                          :type          => ParameterType::BlendingMode,
+                          :description   => 'Event.event_trail.blend_mode',
+                          :default_value => ParameterType::BLENDING_MODES[:normal]}
+      TRAIL_TONE = {:name        => :tone,
+                    :type        => ParameterType::NullableTone,
+                    :description => 'Event.event_trail.tone',
+                    :default     => nil}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -78,8 +92,28 @@ module RME
         ::Command.event_moving?(0)
       end
 
+      # ------------------------------------------------------------------------
+      # * Apply a trailing visual effect on the given events.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_trail,
+                        :description => 'Event.event_trail',
+                        :parameters  => [
+                          EVENT_IDS,
+                          TRAIL_LENGTH,
+                          TRAIL_BLEND_MODE,
+                          TRAIL_TONE
+                        ]}) do |ids, length, blend_mode, tone|
+        select_events(ids).each do |id_event|
+          ::Command.event(id_event).trails = length
+          ::Command.event(id_event).trails_prop = {
+            :blend_type => blend_mode,
+            :tone => tone
+          }
+        end
+      end
+
       # TODO
-      # - `event_trail`
       # - `pixel_in_event?`
       # - `pixel_in_player?`
       # - `event_opacity`

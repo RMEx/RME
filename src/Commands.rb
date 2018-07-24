@@ -1966,12 +1966,6 @@ module RMECommands
     def event_through(id, flag = true); event(id).through = flag; end
     def player_through(flag = true); event_through(flag); end
 
-    def event_trail(ids, len, mode = 0, tone = nil)
-      select_events(ids).each do |id_event|
-        event(id_event).trails = len
-        event(id_event).trails_prop = {:blend_type => mode, :tone => tone}
-      end
-    end
     def player_trail(len, mode = 0, tone = nil)
       event_trail(0, len, mode, tone)
     end

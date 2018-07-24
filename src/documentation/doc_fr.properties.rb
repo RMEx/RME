@@ -251,6 +251,7 @@
   'doc.cmd.Event.include_page' => "Invoque une page (comme s'il s'agissait d'un événement commun) d'un autre événement",
   'doc.cmd.Event.event_moving?' => "Renvoie `true` si l'événement est en mouvement; `false` sinon",
   'doc.cmd.Event.player_moving?' => "Renvoie `true` si le héros est en mouvement; `false` sinon",
+  'doc.cmd.Event.event_trail' => "Applique une traînée sur un ou plusieurs événements",
 
   # Parameters
   ## Map
@@ -328,8 +329,12 @@
   ## Event
   'doc.parameter.Event.map_id' => "Identifiant de la map dans laquelle l'événement se trouve",
   'doc.parameter.Event.event_id' => "Identifiant de l'événement",
+  'doc.parameter.Event.event_ids' => "Identifiants des événements (voir les sélecteurs d'événements: `get_events`)",
   'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
   'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
   'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",
-  'doc.parameter.Event.include_page.context' => "Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant.`"
+  'doc.parameter.Event.include_page.context' => "Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant.`",
+  'doc.parameter.Event.event_trail.length' => "Taille de la traînée, c'est-à-dire le nombre de fois où le sprite va être répété (mettre une valeur supérieure à `5` pour avoir une traînée visible)",
+  'doc.parameter.Event.event_trail.blend_mode' => "Mode de fusion des sprites constituant la traînée",
+  'doc.parameter.Event.event_trail.tone' => "Teinte des sprites consituant la traînée"
 }
