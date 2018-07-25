@@ -2086,13 +2086,6 @@ module RMECommands
     end
     def player_brutal_stop_trail; event_brutal_stop_trail(0); end
 
-    def event_opacity(ids, value = nil)
-      return event(ids).opacity unless value
-      select_events(ids).each do |id_event|
-        event(id_event).opacity = value
-      end
-    end
-
     #--------------------------------------------------------------------------
     # * change Tone
     #--------------------------------------------------------------------------

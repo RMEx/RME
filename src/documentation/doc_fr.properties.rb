@@ -256,6 +256,7 @@
   'doc.cmd.Event.event_trail' => "Applique une traînée sur un ou plusieurs événements",
   'doc.cmd.Event.pixel_in_event?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans l'événement; `false` sinon",
   'doc.cmd.Event.pixel_in_player?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans le joueur; `false` sinon",
+  'doc.cmd.Event.event_opacity' => "Modifie (ou retourne) l'opacité d'un événement",
 
   # Parameters
   ## Map
@@ -343,5 +344,6 @@
   'doc.parameter.Event.event_trail.tone' => "Teinte des sprites consituant la traînée",
   'doc.parameter.Event.pixel_in_event?.x' => "Coordonnée X du point à vérifier",
   'doc.parameter.Event.pixel_in_event?.y' => "Coordonnée Y du point à vérifier",
-  'doc.parameter.Event.pixel_in_event?.precision' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon, elle se fait en fonction du rectangle"
+  'doc.parameter.Event.pixel_in_event?.precision' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon, elle se fait en fonction du rectangle",
+  'doc.parameter.Event.event_opacity.value' => "Valeur de l'opacité (entre `0` et `255`). Si aucune valeur n'est donnée, la commande retourne l'opacité de l'événement ciblé"
 }

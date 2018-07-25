@@ -156,8 +156,29 @@ module RME
         ::Command.pixel_in_event?(0, x, y, precision)
       end
 
+      # ------------------------------------------------------------------------
+      # * Retrieves or updates the opacity of the given events' sprites.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_opacity,
+                        :description => 'Event.event_opacity',
+                        :parameters  => [
+                          EVENT_IDS,
+                          {:name        => :value,
+                           :type        => ParameterType::NullableOpacity,
+                           :description => 'Event.event_opacity.value',
+                           :default     => nil}
+                        ]}) do |ids, value|
+        unless value
+          ::Command.event(ids).opacity
+        else
+          select_events(ids).each do |id_event|
+            ::Command.event(id_event).opacity = value
+          end
+        end
+      end
+
       # TODO
-      # - `event_opacity`
       # - `event_tone`
       # - `player_tone`
       # - `player_opacity`
