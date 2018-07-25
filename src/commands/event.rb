@@ -450,8 +450,19 @@ module RME
         ::Command.event_stop_trail(0)
       end
 
+      # ------------------------------------------------------------------------
+      # * Brutally stops the trailing effect on the event.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_brutal_stop_trail,
+                        :description => 'Event.event_brutal_stop_trail',
+                        :parameters  => [ EVENT_IDS ]}) do |ids|
+        select_events(ids).each do |id_event|
+          ::Command.event(id_event).trails = 0
+        end
+      end
+
       # TODO
-      # - `event_brutal_stop_trail`
       # - `player_brutal_stop_trail`
       # - `page_runnable?`
       # - `invoke_event`
