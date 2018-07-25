@@ -257,6 +257,7 @@
   'doc.cmd.Event.pixel_in_event?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans l'événement; `false` sinon",
   'doc.cmd.Event.pixel_in_player?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans le joueur; `false` sinon",
   'doc.cmd.Event.event_opacity' => "Modifie (ou retourne) l'opacité d'un événement",
+  'doc.cmd.Event.event_tone' => "Change la teinte d'un ou plusieurs événements",
 
   # Parameters
   ## Map
@@ -335,6 +336,9 @@
   'doc.parameter.Event.map_id' => "Identifiant de la map dans laquelle l'événement se trouve",
   'doc.parameter.Event.event_id' => "Identifiant de l'événement",
   'doc.parameter.Event.event_ids' => "Identifiants des événements (voir les sélecteurs d'événements: `get_events`)",
+  'doc.parameter.Event.transition_duration' => "Durée de la transition (en nombre de frames)",
+  'doc.parameter.Event.wait_flag' => "Si la valeur est positionnée à `true`, la transition est bloquante et on attend jusqu'à la fin de celle-ci; autrement on n'attend pas (`false`)",
+  'doc.parameter.Event.easing' => "La transition à appliquer",
   'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
   'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
   'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",
@@ -345,5 +349,6 @@
   'doc.parameter.Event.pixel_in_event?.x' => "Coordonnée X du point à vérifier",
   'doc.parameter.Event.pixel_in_event?.y' => "Coordonnée Y du point à vérifier",
   'doc.parameter.Event.pixel_in_event?.precision' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon, elle se fait en fonction du rectangle",
-  'doc.parameter.Event.event_opacity.value' => "Valeur de l'opacité (entre `0` et `255`). Si aucune valeur n'est donnée, la commande retourne l'opacité de l'événement ciblé"
+  'doc.parameter.Event.event_opacity.value' => "Valeur de l'opacité (entre `0` et `255`). Si aucune valeur n'est donnée, la commande retourne l'opacité de l'événement ciblé",
+  'doc.parameter.Event.event_tone.tone' => "Teinte de l'événement (utilisez la commande `tone`)"
 }

@@ -34,6 +34,9 @@ module RME
                           :type        => ParameterType::BlendingMode,
                           :description => 'Event.event_trail.blend_mode',
                           :default     => ParameterType::BLENDING_MODES[:normal]}
+      EVENT_TONE = {:name        => :tone,
+                    :type        => ParameterType::Tone,
+                    :description => 'Event.event_tone.tone'}
       TRAIL_TONE = {:name        => :tone,
                     :type        => ParameterType::NullableTone,
                     :description => 'Event.event_trail.tone',
@@ -48,6 +51,18 @@ module RME
                          :type        => ParameterType::Boolean,
                          :description => 'Event.pixel_in_event?.precision',
                          :default     => false}
+      TRANSITION_DURATION = {:name        => :duration,
+                             :type        => ParameterType::PositiveInteger,
+                             :description => 'Event.transtion_duration',
+                             :default     => 0}
+      WAIT_FLAG = {:name        => :wait_flag,
+                   :type        => ParameterType::Boolean,
+                   :description => 'Event.wait_flag',
+                   :default     => false}
+      EASING_FUNCTION = {:name        => :easing,
+                         :type        => ParameterType::EasingFunction,
+                         :description => 'Event.easing',
+                         :default     => :InLinear}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -178,8 +193,26 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the tone of the given events' sprites.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_tone,
+                        :description => 'Event.event_tone',
+                        :parameters  => [
+                          EVENT_IDS,
+                          EVENT_TONE,
+                          TRANSITION_DURATION,
+                          WAIT_FLAG,
+                          EASING_FUNCTION
+                        ]}) do |ids, tone, duration, wait_flag, easing|
+        select_events(ids).each do |id_event|
+          ::Command.event(id_event).start_tone_change(tone, duration, easing)
+        end
+        ::Command.wait(duration) if wait_flag
+      end
+
       # TODO
-      # - `event_tone`
       # - `player_tone`
       # - `player_opacity`
       # - `event_ox`

@@ -2086,18 +2086,6 @@ module RMECommands
     end
     def player_brutal_stop_trail; event_brutal_stop_trail(0); end
 
-    #--------------------------------------------------------------------------
-    # * change Tone
-    #--------------------------------------------------------------------------
-    def event_tone(ids, tone, d = 0, wf = false, ease = :InLinear)
-      select_events(ids).each do |id_event|
-        event(id_event).start_tone_change(tone, d, ease)
-      end
-      if d.is_a?(Fixnum) && wf
-        wait(d)
-      end
-    end
-
     def player_tone(tone, d = 0, wf = false, ease = :InLinear)
       event_tone(0, tone, d, wf, ease)
     end
