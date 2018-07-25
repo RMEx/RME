@@ -401,8 +401,21 @@ module RME
         ::Command.event_zoom_y(0, value)
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the player's sprite's zoom level.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_zoom,
+                        :description => 'Event.player_zoom',
+                        :parameters  => [
+                          {:name        => :value,
+                           :type        => ParameterType::PositiveFloat,
+                           :description => 'Event.event_zoom.value'}
+                        ]}) do |value|
+        ::Command.event_zoom(0, value)
+      end
+
       # TODO
-      # - `player_zoom`
       # - `player_trail`
       # - `event_stop_trail`
       # - `player_stop_trail`

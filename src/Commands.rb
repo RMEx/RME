@@ -1844,8 +1844,6 @@ module RMECommands
       h
     end
 
-    def player_zoom(value); event_zoom(0, value); end
-
       [:last_clicked,
       :last_pressed,
       :last_triggered,
