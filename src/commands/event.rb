@@ -429,8 +429,19 @@ module RME
         ::Command.event_trail(0, length, blend_mode, tone)
       end
 
+      # ------------------------------------------------------------------------
+      # * Stop the trailing effect on the given events.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_stop_trail,
+                        :description => 'Event.event_stop_trail',
+                        :parameters  => [ EVENT_IDS ]}) do |ids|
+        select_events(ids).each do |id_event|
+          ::Command.event(id_event).trails_signal = true
+        end
+      end
+
       # TODO
-      # - `event_stop_trail`
       # - `player_stop_trail`
       # - `event_brutal_stop_trail`
       # - `player_brutal_stop_trail`
