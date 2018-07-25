@@ -327,8 +327,24 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the given sprite y-axis' zoom level.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_zoom_y,
+                        :description => 'Event.event_zoom_y',
+                        :parameters  => [
+                          EVENT_ID,
+                          NEW_ZOOM_VALUE
+                        ]}) do |event_id, value|
+        unless value
+          ::Command.event(event_id).zoom_y
+        else
+          ::Command.event(event_id).zoom_y = value
+        end
+      end
+
       # TODO
-      # - `event_zoom_y`
       # - `event_zoom`
       # - `event_restore_origin`
       # - `player_restore_origin`

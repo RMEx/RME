@@ -267,6 +267,7 @@
   'doc.cmd.Event.player_ox' => "Modifie (ou retourne) la coordonnée X du point de départ du joueur (son point d'accroche)",
   'doc.cmd.Event.player_oy' => "Modifie (ou retourne) la coordonnée Y du point de départ du joueur (son point d'accroche)",
   'doc.cmd.Event.event_zoom_x' => "Modifie (ou retourne) la valeur du zoom horizontal d'un événement",
+  'doc.cmd.Event.event_zoom_y' => "Modifie (ou retourne) la valeur du zoom vertical d'un événement",
 
   # Parameters
   ## Map
