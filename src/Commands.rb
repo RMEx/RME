@@ -1844,7 +1844,6 @@ module RMECommands
       h
     end
 
-    def player_zoom_y(value = nil); event_zoom_y(0, value); end
     def player_zoom(value); event_zoom(0, value); end
 
       [:last_clicked,

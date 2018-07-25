@@ -272,6 +272,7 @@
   'doc.cmd.Event.event_restore_origin' => "Restaure la position de départ de l'événement à sa valeur initiale (celle de l'éditeur)",
   'doc.cmd.Event.player_restore_origin' => "Restaure la position de départ du joueur à sa valeur initiale (celle de l'éditeur)",
   'doc.cmd.Event.player_zoom_x' => "Modifie (ou retourne) la valeur du zoom horizontal du joueur",
+  'doc.cmd.Event.player_zoom_y' => "Modifie (ou retourne) la valeur du zoom vertical du joueur",
 
   # Parameters
   ## Map
