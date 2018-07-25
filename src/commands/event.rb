@@ -280,8 +280,20 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns or updates (if `value` is provided) the starting position
+      #   of the player (as set in the editor).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_ox,
+                        :description => 'Event.player_ox',
+                        :parameters  => [
+                          NEW_COORDINATE_VALUE
+                        ]}) do |value|
+        ::Command.event_ox(0, value)
+      end
+
       # TODO
-      # - `player_ox`
       # - `player_oy`
       # - `event_zoom_x`
       # - `event_zoom_y`

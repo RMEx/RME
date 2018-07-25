@@ -1802,7 +1802,6 @@ module RMECommands
       event_in_screen?(0)
     end
 
-    def player_ox(value = nil); event_ox(0, value); end
     def player_oy(value = nil); event_oy(0, value); end
 
     def event_width(id) 
