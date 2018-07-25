@@ -1,7 +1,8 @@
 # coding: utf-8
 {
   # Parameters' types
-  'doc.Coordinate.description'      => "Coordonées d'un point dans un repère cartésien",
+  'doc.Coordinate.description'      => "Coordonnée d'un point dans un repère cartésien",
+  'doc.NullableCoordinate.description' => "Coordonnée d'un point dans un repère cartésien (peut-être nul)",
   'doc.Boolean.description'         => 'Valeur booléenne (deux états : vrai ou faux)',
   'doc.Integer.description' => 'Entier',
   'doc.PositiveInteger.description' => 'Entier positif',

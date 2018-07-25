@@ -261,6 +261,10 @@ module RME
       ParameterType::declare(:Coordinate,
                              "Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
                              ClosedInterval.new(0, 999))
+      ParameterType::declare(:NullableCoordinate,
+                             "Nullable coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
+                             Domain.new(lambda { |x| (x.nil?) or
+                                                     (ParameterType::Coordinate.domain.valid? x) }))
       ParameterType::declare(:Boolean,
                              "Boolean value",
                              Set.new(true, false))
