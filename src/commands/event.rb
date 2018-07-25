@@ -71,6 +71,10 @@ module RME
                               :type        => ParameterType::NullableCoordinate,
                               :description => 'Event.new_coordinate_value',
                               :default     => nil}
+      NEW_ZOOM_VALUE = {:name        => :value,
+                        :type        => ParameterType::PositiveFloat,
+                        :description => 'Event.new_zoom_value',
+                        :default     => nil}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -306,8 +310,24 @@ module RME
         ::Command.event_oy(0, value)
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the given sprite x-axis' zoom level.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_zoom_x,
+                        :description => 'Event.event_zoom_x',
+                        :parameters  => [
+                          EVENT_ID,
+                          NEW_ZOOM_VALUE
+                        ]}) do |event_id, value|
+        unless value
+          ::Command.event(event_id).zoom_x
+        else
+          ::Command.event(event_id).zoom_x = value
+        end
+      end
+
       # TODO
-      # - `event_zoom_x`
       # - `event_zoom_y`
       # - `event_zoom`
       # - `event_restore_origin`

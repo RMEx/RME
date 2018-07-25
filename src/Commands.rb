@@ -1844,11 +1844,6 @@ module RMECommands
       h
     end
 
-    def event_zoom_x(id, value = nil)
-      return event(id).zoom_x unless value
-      event(id).zoom_x = value
-    end
-
     def event_zoom_y(id, value = nil)
       return event(id).zoom_y unless value
       event(id).zoom_y = value

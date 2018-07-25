@@ -266,6 +266,7 @@
   'doc.cmd.Event.event_oy' => "Modifie (ou retourne) la coordonnée Y du point de départ d'un événement (son point d'accroche)",
   'doc.cmd.Event.player_ox' => "Modifie (ou retourne) la coordonnée X du point de départ du joueur (son point d'accroche)",
   'doc.cmd.Event.player_oy' => "Modifie (ou retourne) la coordonnée Y du point de départ du joueur (son point d'accroche)",
+  'doc.cmd.Event.event_zoom_x' => "Modifie (ou retourne) la valeur du zoom horizontal d'un événement",
 
   # Parameters
   ## Map
@@ -348,6 +349,7 @@
   'doc.parameter.Event.wait_flag' => "Si la valeur est positionnée à `true`, la transition est bloquante et on attend jusqu'à la fin de celle-ci; autrement on n'attend pas (`false`)",
   'doc.parameter.Event.easing' => "La transition à appliquer",
   'doc.parameter.Event.new_coordinate_value' => "Nouvelle coordonnée. Si aucune valeur n'est donnée, la commande renverra la coordonnée courante",
+  'doc.parameter.Event.new_zoom_value' => "Nouveau niveau de zoom. Si aucune valeur n'est donnée, la commande renverra le niveau courant",
   'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
   'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
   'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",
