@@ -276,6 +276,7 @@
   'doc.cmd.Event.player_zoom' => "Modifie la valeur du zoom du joueur",
   'doc.cmd.Event.player_trail' => "Applique une traînée sur le joueur",
   'doc.cmd.Event.event_stop_trail' => "Arrête la traînée sur un ou plusieurs événements",
+  'doc.cmd.Event.player_stop_trail' => "Arrête la traînée sur le joueur",
 
   # Parameters
   ## Map

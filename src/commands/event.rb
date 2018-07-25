@@ -441,8 +441,16 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Stop the trailing effect on the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_stop_trail,
+                        :description => 'Event.player_stop_trail'}) do
+        ::Command.event_stop_trail(0)
+      end
+
       # TODO
-      # - `player_stop_trail`
       # - `event_brutal_stop_trail`
       # - `player_brutal_stop_trail`
       # - `page_runnable?`
