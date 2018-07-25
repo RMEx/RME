@@ -311,7 +311,7 @@ module RME
       end
 
       # ------------------------------------------------------------------------
-      # * Updates the given sprite x-axis' zoom level.
+      # * Updates the given event's sprite's x-axis' zoom level.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :event_zoom_x,
@@ -328,7 +328,7 @@ module RME
       end
 
       # ------------------------------------------------------------------------
-      # * Updates the given sprite y-axis' zoom level.
+      # * Updates the given event's sprite's y-axis' zoom level.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :event_zoom_y,
@@ -344,8 +344,23 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the given event's sprite's zoom level.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_zoom,
+                        :description => 'Event.event_zoom',
+                        :parameters  => [
+                          EVENT_ID,
+                          {:name        => :value,
+                           :type        => ParameterType::PositiveFloat,
+                           :description => 'Event.event_zoom.value'}
+                        ]}) do |event_id, value|
+        ::Command.event_zoom_x(event_id, value)
+        ::Command.event_zoom_y(event_id, value)
+      end
+
       # TODO
-      # - `event_zoom`
       # - `event_restore_origin`
       # - `player_restore_origin`
       # - `player_zoom_x`

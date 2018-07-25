@@ -268,6 +268,7 @@
   'doc.cmd.Event.player_oy' => "Modifie (ou retourne) la coordonnée Y du point de départ du joueur (son point d'accroche)",
   'doc.cmd.Event.event_zoom_x' => "Modifie (ou retourne) la valeur du zoom horizontal d'un événement",
   'doc.cmd.Event.event_zoom_y' => "Modifie (ou retourne) la valeur du zoom vertical d'un événement",
+  'doc.cmd.Event.event_zoom' => "Modifie la valeur du zoom d'un événement",
 
   # Parameters
   ## Map
@@ -362,5 +363,6 @@
   'doc.parameter.Event.pixel_in_event?.y' => "Coordonnée Y du point à vérifier",
   'doc.parameter.Event.pixel_in_event?.precision' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon, elle se fait en fonction du rectangle",
   'doc.parameter.Event.event_opacity.value' => "Valeur de l'opacité (entre `0` et `255`). Si aucune valeur n'est donnée, la commande retourne l'opacité de l'événement ciblé",
-  'doc.parameter.Event.event_tone.tone' => "Teinte de l'événement (utilisez la commande `tone`)"
+  'doc.parameter.Event.event_tone.tone' => "Teinte de l'événement (utilisez la commande `tone`)",
+  'doc.parameter.Event.event_zoom.value' => "Nouveau niveau de zoom (cette valeur constitue aussi bien le nouveau niveau de zoom vertical qu'horizontal)"
 }

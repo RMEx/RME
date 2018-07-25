@@ -1844,11 +1844,6 @@ module RMECommands
       h
     end
 
-    def event_zoom(id, value)
-      event_zoom_x(id, value)
-      event_zoom_y(id, value)
-    end
-
     def player_zoom_x(value = nil); event_zoom_x(0, value); end
     def player_zoom_y(value = nil); event_zoom_y(0, value); end
     def player_zoom(value); event_zoom(0, value); end
