@@ -269,6 +269,7 @@
   'doc.cmd.Event.event_zoom_x' => "Modifie (ou retourne) la valeur du zoom horizontal d'un événement",
   'doc.cmd.Event.event_zoom_y' => "Modifie (ou retourne) la valeur du zoom vertical d'un événement",
   'doc.cmd.Event.event_zoom' => "Modifie la valeur du zoom d'un événement",
+  'doc.cmd.Event.event_restore_origin' => "Restaure la position de départ de l'événement à sa valeur initiale (celle de l'éditeur)",
 
   # Parameters
   ## Map

@@ -360,8 +360,18 @@ module RME
         ::Command.event_zoom_y(event_id, value)
       end
 
+      # ------------------------------------------------------------------------
+      # * Restores the event's starting position, to the one defined in the
+      #   editor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_restore_origin,
+                        :description => 'Event.event_restore_origin',
+                        :parameters  => [ EVENT_ID ]}) do |event_id|
+        ::Command.event(event_id).restore_oxy
+      end
+
       # TODO
-      # - `event_restore_origin`
       # - `player_restore_origin`
       # - `player_zoom_x`
       # - `player_zoom_y`
