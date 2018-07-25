@@ -252,6 +252,7 @@
   'doc.cmd.Event.event_moving?' => "Renvoie `true` si l'événement est en mouvement; `false` sinon",
   'doc.cmd.Event.player_moving?' => "Renvoie `true` si le héros est en mouvement; `false` sinon",
   'doc.cmd.Event.event_trail' => "Applique une traînée sur un ou plusieurs événements",
+  'doc.cmd.Event.pixel_in_event?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans l'événement; `false` sinon",
 
   # Parameters
   ## Map
@@ -336,5 +337,8 @@
   'doc.parameter.Event.include_page.context' => "Si `runnable` et `context` valent `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant.`",
   'doc.parameter.Event.event_trail.length' => "Taille de la traînée, c'est-à-dire le nombre de fois où le sprite va être répété (mettre une valeur supérieure à `5` pour avoir une traînée visible)",
   'doc.parameter.Event.event_trail.blend_mode' => "Mode de fusion des sprites constituant la traînée",
-  'doc.parameter.Event.event_trail.tone' => "Teinte des sprites consituant la traînée"
+  'doc.parameter.Event.event_trail.tone' => "Teinte des sprites consituant la traînée",
+  'doc.parameter.Event.pixel_in_event?.x' => "Coordonnée X du point à vérifier",
+  'doc.parameter.Event.pixel_in_event?.y' => "Coordonnée Y du point à vérifier",
+  'doc.parameter.Event.pixel_in_event?.precision' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon, elle se fait en fonction du rectangle"
 }

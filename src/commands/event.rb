@@ -38,6 +38,16 @@ module RME
                     :type        => ParameterType::NullableTone,
                     :description => 'Event.event_trail.tone',
                     :default     => nil}
+      PIXEL_X = {:name        => :x,
+                 :type        => ParameterType::Coordinate,
+                 :description => 'Event.pixel_in_event?.x'}
+      PIXEL_Y = {:name        => :y,
+                 :type        => ParameterType::Coordinate,
+                 :description => 'Event.pixel_in_event?.y'}
+      PIXEL_PRECISION = {:name        => :precision,
+                         :type        => ParameterType::Boolean,
+                         :description => 'Event.pixel_in_event?.precision',
+                         :default     => false}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -113,8 +123,24 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given point (`x`, `y`) is inside the event's sprite
+      #   (`true`) or not (`false`).
+      # TODO: Revise this command as it does not work currently !
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :pixel_in_event?,
+                        :description => 'Event.pixel_in_event?',
+                        :parameters  => [
+                          EVENT_ID,
+                          PIXEL_X,
+                          PIXEL_Y,
+                          PIXEL_PRECISION
+                        ]}) do |event_id, x, y, precision|
+        ::Command.event(event_id).pixel_in?(x, y, precision)
+      end
+
       # TODO
-      # - `pixel_in_event?`
       # - `pixel_in_player?`
       # - `event_opacity`
       # - `event_tone`

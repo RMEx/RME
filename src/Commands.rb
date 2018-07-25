@@ -1792,9 +1792,6 @@ module RMECommands
       end
       return flag && !event1.moving?
     end
-    def pixel_in_event?(id, x, y, pr = false)
-      event(id).pixel_in?(x, y, pr)
-    end
     def pixel_in_player?(x, y, pr = false)
       pixel_in_event?(0, x, y, pr)
     end
