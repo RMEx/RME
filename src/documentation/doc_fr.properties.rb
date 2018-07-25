@@ -261,6 +261,7 @@
   'doc.cmd.Event.event_tone' => "Change la teinte d'un ou plusieurs événements",
   'doc.cmd.Event.player_tone' => "Change la teinte du joueur",
   'doc.cmd.Event.player_opacity' => "Modifie (ou retourne) l'opacité du joueur",
+  'doc.cmd.Event.event_ox' => "Modifie (ou retourne) la coordonnée X du point de départ d'un événement (son point d'accroche)",
 
   # Parameters
   ## Map
@@ -342,6 +343,7 @@
   'doc.parameter.Event.transition_duration' => "Durée de la transition (en nombre de frames)",
   'doc.parameter.Event.wait_flag' => "Si la valeur est positionnée à `true`, la transition est bloquante et on attend jusqu'à la fin de celle-ci; autrement on n'attend pas (`false`)",
   'doc.parameter.Event.easing' => "La transition à appliquer",
+  'doc.parameter.Event.new_coordinate_value' => "Nouvelle coordonnée. Si aucune valeur n'est donnée, la commande renverra la coordonnée courante",
   'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
   'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
   'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",

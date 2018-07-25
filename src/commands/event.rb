@@ -67,6 +67,10 @@ module RME
                          :type        => ParameterType::EasingFunction,
                          :description => 'Event.easing',
                          :default     => :InLinear}
+      NEW_COORDINATE_VALUE = {:name        => :value,
+                              :type        => ParameterType::NullableCoordinate,
+                              :description => 'Event.new_coordinate_value',
+                              :default     => nil}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -240,8 +244,25 @@ module RME
         ::Command.event_opacity(0, value)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns or updates (if `value` is provided) the starting position
+      #   of the given event (as set in the editor).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_ox,
+                        :description => 'Event.event_ox',
+                        :parameters  => [
+                          EVENT_ID,
+                          NEW_COORDINATE_VALUE
+                        ]}) do |event_id, value|
+        unless value
+          ::Command.event(event_id).ox
+        else
+          ::Command.event(event_id).ox = value
+        end
+      end
+
       # TODO
-      # - `event_ox`
       # - `event_oy`
       # - `player_ox`
       # - `player_oy`
