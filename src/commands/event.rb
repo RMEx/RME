@@ -381,8 +381,17 @@ module RME
         ::Command.event_restore_origin(0)
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the player's sprite's x-axis' zoom level.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_zoom_x,
+                        :description => 'Event.player_zoom_x',
+                        :parameters  => [ NEW_ZOOM_VALUE ]}) do |value|
+        ::Command.event_zoom_x(0, value)
+      end
+
       # TODO
-      # - `player_zoom_x`
       # - `player_zoom_y`
       # - `player_zoom`
       # - `player_trail`
