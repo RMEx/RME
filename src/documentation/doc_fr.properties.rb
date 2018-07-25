@@ -258,6 +258,7 @@
   'doc.cmd.Event.pixel_in_player?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans le joueur; `false` sinon",
   'doc.cmd.Event.event_opacity' => "Modifie (ou retourne) l'opacité d'un événement",
   'doc.cmd.Event.event_tone' => "Change la teinte d'un ou plusieurs événements",
+  'doc.cmd.Event.player_tone' => "Change la teinte du joueur",
 
   # Parameters
   ## Map

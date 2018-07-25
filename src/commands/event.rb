@@ -212,8 +212,22 @@ module RME
         ::Command.wait(duration) if wait_flag
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the tone of the player's sprite.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_tone,
+                        :description => 'Event.player_tone',
+                        :parameters  => [
+                          EVENT_TONE,
+                          TRANSITION_DURATION,
+                          WAIT_FLAG,
+                          EASING_FUNCTION
+                        ]}) do |tone, duration, wait_flag, easing|
+        ::Command.event_tone(0, tone, duration, wait_flag, easing)
+      end
+
       # TODO
-      # - `player_tone`
       # - `player_opacity`
       # - `event_ox`
       # - `event_oy`

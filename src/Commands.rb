@@ -2086,10 +2086,6 @@ module RMECommands
     end
     def player_brutal_stop_trail; event_brutal_stop_trail(0); end
 
-    def player_tone(tone, d = 0, wf = false, ease = :InLinear)
-      event_tone(0, tone, d, wf, ease)
-    end
-
     def player_opacity(value = nil)
       event_opacity(0, value)
     end
