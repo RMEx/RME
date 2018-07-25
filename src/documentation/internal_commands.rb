@@ -320,6 +320,12 @@ module RME
       ParameterType::declare(:BlendingMode,
                              "Sprites' blending type",
                              Set.new(*BLENDING_MODES.values))
+      ParameterType::declare(:Opacity,
+                             "Sprites' opacity",
+                             ClosedInterval.new(0, 255))
+      ParameterType::declare(:NullableOpacity,
+                             "Nullable sprites' opacity",
+                             Domain.new(lambda { |x| (x.nil?) or (ParameterType::Opacity.domain.valid? x) }))
 
       ParameterType::declare(:MouseButton,
                              "Mouse button / key",

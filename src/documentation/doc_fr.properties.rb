@@ -19,6 +19,8 @@
   'doc.Tone.description' => "Teinte colorée (voir la commande `tone`)",
   'doc.NullableTone.description' => "Teinte colorée (voir la commande `tone`) qui peut être nulle",
   'doc.BlendingMode.description' => "Type de fusion du sprite (`0`: Normal, `1`: Addition, `2`: Soustraction)",
+  'doc.Opacity.description' => "Opacité du sprite",
+  'doc.NullableOpacity.description' => "Opacity du sprite (qui peut être nulle)",
   'doc.MouseButton.description' => "Bouton de la souris",
   'doc.EasingFunction.description' => "Fonction à utiliser pour effectuer une transition",
   'doc.PositionRegardingCamera.description' => "Position finale du point cible par rapport à la caméra",
