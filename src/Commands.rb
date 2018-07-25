@@ -1802,8 +1802,6 @@ module RMECommands
       event_in_screen?(0)
     end
 
-    def player_oy(value = nil); event_oy(0, value); end
-
     def event_width(id) 
       character = event_character_name(id)
       width = character_width(character)
