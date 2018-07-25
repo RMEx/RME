@@ -415,8 +415,21 @@ module RME
         ::Command.event_zoom(0, value)
       end
 
+      # ------------------------------------------------------------------------
+      # * Apply a trailing visual effect on the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_trail,
+                        :description => 'Event.player_trail',
+                        :parameters  => [
+                          TRAIL_LENGTH,
+                          TRAIL_BLEND_MODE,
+                          TRAIL_TONE
+                        ]}) do |length, blend_mode, tone|
+        ::Command.event_trail(0, length, blend_mode, tone)
+      end
+
       # TODO
-      # - `player_trail`
       # - `event_stop_trail`
       # - `player_stop_trail`
       # - `event_brutal_stop_trail`

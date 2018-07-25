@@ -2032,10 +2032,6 @@ module RMECommands
     def event_through(id, flag = true); event(id).through = flag; end
     def player_through(flag = true); event_through(flag); end
 
-    def player_trail(len, mode = 0, tone = nil)
-      event_trail(0, len, mode, tone)
-    end
-
     def event_stop_trail(ids)
       select_events(ids).each do |id_event|
         event(id_event).trails_signal = true
