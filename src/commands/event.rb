@@ -371,8 +371,17 @@ module RME
         ::Command.event(event_id).restore_oxy
       end
 
+      # ------------------------------------------------------------------------
+      # * Restores the players starting position, to the one defined in the
+      #   editor.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_restore_origin,
+                        :description => 'Event.player_restore_origin'}) do
+        ::Command.event_restore_origin(0)
+      end
+
       # TODO
-      # - `player_restore_origin`
       # - `player_zoom_x`
       # - `player_zoom_y`
       # - `player_zoom`

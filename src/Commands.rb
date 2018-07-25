@@ -1848,7 +1848,6 @@ module RMECommands
     def player_zoom_y(value = nil); event_zoom_y(0, value); end
     def player_zoom(value); event_zoom(0, value); end
 
-    def player_restore_origin; event_restore_origin(0); end
       [:last_clicked,
       :last_pressed,
       :last_triggered,
