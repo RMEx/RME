@@ -462,8 +462,16 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Brutally stops the trailing effect on the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_brutal_stop_trail,
+                        :description => 'Event.player_brutal_stop_trail'}) do
+        ::Command.event_brutal_stop_trail(0)
+      end
+
       # TODO
-      # - `player_brutal_stop_trail`
       # - `page_runnable?`
       # - `invoke_event`
       # - `max_event_id`

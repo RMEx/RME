@@ -278,6 +278,7 @@
   'doc.cmd.Event.event_stop_trail' => "Arrête la traînée sur un ou plusieurs événements",
   'doc.cmd.Event.player_stop_trail' => "Arrête la traînée sur le joueur",
   'doc.cmd.Event.event_brutal_stop_trail' => "Arrête brutalement la traînée sur un ou plusieurs événements",
+  'doc.cmd.Event.player_brutal_stop_trail' => "Arrête brutalement la traînée sur le joueur",
 
   # Parameters
   ## Map

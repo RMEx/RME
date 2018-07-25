@@ -2032,8 +2032,6 @@ module RMECommands
     def event_through(id, flag = true); event(id).through = flag; end
     def player_through(flag = true); event_through(flag); end
 
-    def player_brutal_stop_trail; event_brutal_stop_trail(0); end
-
     def event_move_with(id, *code)
       route = RPG::MoveRoute.new
       route.list = code.map {|i| RPG::MoveCommand.new(i)}
