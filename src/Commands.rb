@@ -1802,11 +1802,6 @@ module RMECommands
       event_in_screen?(0)
     end
 
-    def event_oy(id, value = nil)
-      return event(id).oy unless value
-      event(id).oy = value
-    end
-
     def player_ox(value = nil); event_ox(0, value); end
     def player_oy(value = nil); event_oy(0, value); end
 

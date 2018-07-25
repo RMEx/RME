@@ -262,6 +262,7 @@
   'doc.cmd.Event.player_tone' => "Change la teinte du joueur",
   'doc.cmd.Event.player_opacity' => "Modifie (ou retourne) l'opacité du joueur",
   'doc.cmd.Event.event_ox' => "Modifie (ou retourne) la coordonnée X du point de départ d'un événement (son point d'accroche)",
+  'doc.cmd.Event.event_oy' => "Modifie (ou retourne) la coordonnée Y du point de départ d'un événement (son point d'accroche)",
 
   # Parameters
   ## Map

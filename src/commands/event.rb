@@ -262,8 +262,25 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns or updates (if `value` is provided) the starting position
+      #   of the given event (as set in the editor).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_oy,
+                        :description => 'Event.event_oy',
+                        :parameters  => [
+                          EVENT_ID,
+                          NEW_COORDINATE_VALUE
+                        ]}) do |event_id, value|
+        unless value
+          ::Command.event(event_id).oy
+        else
+          ::Command.event(event_id).oy = value
+        end
+      end
+
       # TODO
-      # - `event_oy`
       # - `player_ox`
       # - `player_oy`
       # - `event_zoom_x`
