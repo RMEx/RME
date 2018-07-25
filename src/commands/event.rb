@@ -140,8 +140,23 @@ module RME
         ::Command.event(event_id).pixel_in?(x, y, precision)
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given point (`x`, `y`) is inside the player's sprite
+      #   (`true`) or not (`false`).
+      # TODO: Revise this command as it does not work currently !
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :pixel_in_player?,
+                        :description => 'Event.pixel_in_player?',
+                        :parameters  => [
+                          PIXEL_X,
+                          PIXEL_Y,
+                          PIXEL_PRECISION
+                        ]}) do |x, y, precision|
+        ::Command.pixel_in_event?(0, x, y, precision)
+      end
+
       # TODO
-      # - `pixel_in_player?`
       # - `event_opacity`
       # - `event_tone`
       # - `player_tone`

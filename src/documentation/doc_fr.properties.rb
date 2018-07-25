@@ -253,6 +253,7 @@
   'doc.cmd.Event.player_moving?' => "Renvoie `true` si le héros est en mouvement; `false` sinon",
   'doc.cmd.Event.event_trail' => "Applique une traînée sur un ou plusieurs événements",
   'doc.cmd.Event.pixel_in_event?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans l'événement; `false` sinon",
+  'doc.cmd.Event.pixel_in_player?' => "Renvoie `true` si le pixel (`x`, `y`) est inclue dans le joueur; `false` sinon",
 
   # Parameters
   ## Map
