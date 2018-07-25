@@ -30,10 +30,10 @@ module RME
       TRAIL_LENGTH = {:name        => :length,
                       :type        => ParameterType::PositiveInteger,
                       :description => 'Event.event_trail.length'}
-      TRAIL_BLEND_MODE = {:name          => :blend_mode,
-                          :type          => ParameterType::BlendingMode,
-                          :description   => 'Event.event_trail.blend_mode',
-                          :default_value => ParameterType::BLENDING_MODES[:normal]}
+      TRAIL_BLEND_MODE = {:name        => :blend_mode,
+                          :type        => ParameterType::BlendingMode,
+                          :description => 'Event.event_trail.blend_mode',
+                          :default     => ParameterType::BLENDING_MODES[:normal]}
       TRAIL_TONE = {:name        => :tone,
                     :type        => ParameterType::NullableTone,
                     :description => 'Event.event_trail.tone',
