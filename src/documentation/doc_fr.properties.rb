@@ -10,6 +10,7 @@
   'doc.NullablePositiveInteger.description' => 'Entier positif (peut-être nul)',
   'doc.Float.description' => 'Nombre réel',
   'doc.PositiveFloat.description' => 'Nombre réel positif',
+  'doc.NullablePositiveFloat.description' => 'Nombre réel positif (peut-être nul)',
   'doc.StrictlyPositiveFloat.description' => 'Nombre réel scrictement positif',
   'doc.String.description' => "Chaîne de caractères",
   'doc.Direction.description' => "Direction du mouvement (`2` pour le bas, `4` pour la gauche, `6` pour la droite et `8` pour le haut)",

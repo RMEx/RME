@@ -286,6 +286,10 @@ module RME
       ParameterType::declare(:PositiveFloat,
                              "Positive real number (Float)",
                              Domain.new(lambda { |x| (x.is_a? ::Float) and (0 <= x) }))
+      ParameterType::declare(:NullablePositiveFloat,
+                             "Nullable positive real number (Float)",
+                             Domain.new(lambda { |x| (x.nil?) or
+                                                     (ParameterType::PositiveFloat.domain.valid? x)}))
       ParameterType::declare(:StrictlyPositiveFloat,
                              "Strictly positive real number (Float)",
                              Domain.new(lambda { |x| (x.is_a? ::Float) and (0 < x) }))
