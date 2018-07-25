@@ -51,6 +51,10 @@ module RME
                          :type        => ParameterType::Boolean,
                          :description => 'Event.pixel_in_event?.precision',
                          :default     => false}
+      OPACITY = {:name        => :value,
+                 :type        => ParameterType::NullableOpacity,
+                 :description => 'Event.event_opacity.value',
+                 :default     => nil}
       TRANSITION_DURATION = {:name        => :duration,
                              :type        => ParameterType::PositiveInteger,
                              :description => 'Event.transtion_duration',
@@ -179,10 +183,7 @@ module RME
                         :description => 'Event.event_opacity',
                         :parameters  => [
                           EVENT_IDS,
-                          {:name        => :value,
-                           :type        => ParameterType::NullableOpacity,
-                           :description => 'Event.event_opacity.value',
-                           :default     => nil}
+                          OPACITY
                         ]}) do |ids, value|
         unless value
           ::Command.event(ids).opacity
@@ -227,8 +228,19 @@ module RME
         ::Command.event_tone(0, tone, duration, wait_flag, easing)
       end
 
+      # ------------------------------------------------------------------------
+      # * Updates the opacity of the player's sprite.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_opacity,
+                        :description => 'Event.player_opacity',
+                        :parameters  => [
+                          OPACITY
+                        ]}) do |value|
+        ::Command.event_opacity(0, value)
+      end
+
       # TODO
-      # - `player_opacity`
       # - `event_ox`
       # - `event_oy`
       # - `player_ox`

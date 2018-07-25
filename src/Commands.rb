@@ -2086,10 +2086,6 @@ module RMECommands
     end
     def player_brutal_stop_trail; event_brutal_stop_trail(0); end
 
-    def player_opacity(value = nil)
-      event_opacity(0, value)
-    end
-
     def event_move_with(id, *code)
       route = RPG::MoveRoute.new
       route.list = code.map {|i| RPG::MoveCommand.new(i)}

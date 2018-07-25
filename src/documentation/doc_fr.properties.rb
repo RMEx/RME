@@ -259,6 +259,7 @@
   'doc.cmd.Event.event_opacity' => "Modifie (ou retourne) l'opacité d'un événement",
   'doc.cmd.Event.event_tone' => "Change la teinte d'un ou plusieurs événements",
   'doc.cmd.Event.player_tone' => "Change la teinte du joueur",
+  'doc.cmd.Event.player_opacity' => "Modifie (ou retourne) l'opacité du joueur",
 
   # Parameters
   ## Map
