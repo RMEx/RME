@@ -7,6 +7,7 @@
 - Fix `event_look_towards?` and `event_look_towards_event?` (@BastienDuplessier, reported by @Azvnrd)
 - Fix `pixel_in_event?` and `pixel_in_player?` (@BastienDuplessier, reported by @acs-l)
 - Fix `page_runnable?` (@BastienDuplessier, reported by @acs-l)
+- Fix `event_move_with`, move is not repeatable anymore  (@BastienDuplessier, reported by @Zer0xxxxx)
 
 ## Release (1.4.0)
 

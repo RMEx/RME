@@ -2469,7 +2469,9 @@ module RMECommands
 
     def event_move_with(id, *code)
       route = RPG::MoveRoute.new
+      route.repeat = false
       route.list = code.map {|i| RPG::MoveCommand.new(i)}
+      route.list << RPG::MoveCommand.new(0)
       event(id).force_move_route(route)
     end
 
