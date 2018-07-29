@@ -2102,13 +2102,13 @@ module RMECommands
       ex, ey = event_x(source), event_y(source)
       case event_direction(source)
       when Direction::UP
-        distance = ey - y
-        x_axis = (ex >= x - distance) && (ex <= x + distance)
-        y_axis = ey > y
-      when Direction::DOWN
         distance = y - ey
         x_axis = (ex >= x - distance) && (ex <= x + distance)
         y_axis = ey < y
+      when Direction::DOWN
+        distance = ey - y
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey > y
       when Direction::LEFT
         distance = ex - x
         x_axis = ex > x

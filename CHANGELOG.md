@@ -4,6 +4,7 @@
 
 ### Bug fixes
 - Fix `spritesheet_erase` and  `spritesheets_clear` (@BastienDuplessier, reported by @Princesseuh)
+- Fix `event_look_towards?` and `event_look_towards_event?` (@BastienDuplessier, reported by @Azvnrd)
 
 ## Release (1.4.0)
 
