@@ -7168,6 +7168,13 @@ module Handler
       return false unless k_sprite
       k_sprite.release?(key, pr)
     end
+    #--------------------------------------------------------------------------
+    # * Is pixel in sprite ?
+    #--------------------------------------------------------------------------
+    def pixel_in?(x, y, precise = false)
+      return false unless k_sprite
+      precise ? k_sprite.precise_in?(x, y) : k_sprite.in?(x, y)
+    end
   end
   #==============================================================================
   # ** API
