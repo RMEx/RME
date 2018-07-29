@@ -1,5 +1,10 @@
 # RME Changelog
 
+## Release (1.4.1)
+
+### Bug fixes
+- Fix `spritesheet_erase` and  `spritesheets_clear` (@BastienDuplessier, reported by @Princesseuh)
+
 ## Release (1.4.0)
 
 ### Additions
