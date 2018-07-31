@@ -8850,6 +8850,12 @@ class Scene_Map
     @message_window.dispose
     @message_window = Window_Message.new
   end
+  #--------------------------------------------------------------------------
+  # * Add Event sprite into spriteset
+  #--------------------------------------------------------------------------
+  def add_event_sprite(event)
+    @spriteset.add_event_sprite(event)
+  end
 
   #--------------------------------------------------------------------------
   # * Update All Windows
@@ -9171,14 +9177,15 @@ class Game_Map
     return unless event
     event.id = new_id
     clone_events = @events.clone
-    clone_events.store(new_id, Game_Event.new(@map_id, event))
+    new_event = Game_Event.new(@map_id, event)
+    clone_events.store(new_id, new_event)
     x ||= event.x
     y ||= event.y
     @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
     @max_event_id = [@max_event_id, new_id].max
-    SceneManager.scene.refresh_spriteset
+    SceneManager.scene.add_event_sprite(new_event)
   end
   #--------------------------------------------------------------------------
   # * Clear parallaxes
@@ -10218,6 +10225,13 @@ class Spriteset_Map
       @parallaxes_plane[parallax.id].update
     end
     rm_extender_update_parallax
+  end
+  #--------------------------------------------------------------------------
+  # * Add Event Sprite to Characters
+  #--------------------------------------------------------------------------
+  def add_event_sprite(event)
+    sp = Sprite_Character.new(@viewport1, event)
+    @character_sprites.push(sp)
   end
 end
 
