@@ -187,14 +187,17 @@ module RME
 
       # ========================================================================
       # * [Generic based on `ParameterType`]
-      #   Static list / tuples (static vectorization of an enclosed type).
+      #   Representation of a variadic parameter
+      #   (vectorization of an enclosed type)
       # ========================================================================
       class List < GenericVectorization
 
         # ----------------------------------------------------------------------
         # * Constructs a new type of command's parameter which maps fixed size
         #   list.
-        #   - `type`                                               ParameterType
+        #   - `type_name`                                                 String
+        #     this variadic type's name
+        #   - `underlying_type`                                    ParameterType
         #     the type of each of this list's elements
         #   - `hint_msg`                                       String [Optional]
         #     an hint which explains what the following `*predicates` actually
@@ -202,11 +205,11 @@ module RME
         #   - `*predicates`                 Lambda(Object) => Boolean [Variadic]
         #     the additional checks to process on the value to check
         # ----------------------------------------------------------------------
-        def self.of(type, hint_msg, *predicates)
-          Constructor.new("List_of_#{type.name}".to_sym,
+        def self.of(type_name, underlying_type, hint_msg, *predicates)
+          Constructor.new(type_name.to_sym,
                           "list of #{hint_msg}, with each element " +
-                          "being a #{type.internal_description}",
-                          List.new(type, *predicates))
+                          "being a #{underlying_type.internal_description}",
+                          List.new(underlying_type, *predicates))
         end
         private_class_method :of
 
@@ -219,7 +222,8 @@ module RME
         #     the number of elements that the list should at least contain
         # ----------------------------------------------------------------------
         def self.of_at_least(type, nb_elements)
-          of(type,
+          of("Array[#{nb_elements}+]<#{type.name}>",
+             type,
              "at least #{nb_elements} element(s)",
              lambda { |val| (nb_elements <= val.size) })
         end
@@ -233,7 +237,8 @@ module RME
         #     the number of elements that the list should at exactly contain
         # ----------------------------------------------------------------------
         def self.of_exactly(type, nb_elements)
-          of(type,
+          of("Array[#{nb_elements}]<#{type.name}>",
+             type,
              "exactly #{nb_elements} element(s)",
              lambda { |val| (nb_elements == val.size) })
         end
@@ -247,7 +252,8 @@ module RME
         #     the number of elements that the list should at most contain
         # ----------------------------------------------------------------------
         def self.of_at_most(type, nb_elements)
-          of(type,
+          of("Array[#{nb_elements}-]<#{type.name}>",
+             type,
              "at most #{nb_elements} element(s)",
              lambda { |val| (nb_elements >= val.size) })
         end
