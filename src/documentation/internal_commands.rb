@@ -260,47 +260,6 @@ module RME
 
       end
 
-      # ========================================================================
-      # * [Generic based on `ParameterType`]
-      #   Variadic parameter (dynamic vectorization of an enclosed type).
-      # ========================================================================
-      class Variadic < GenericVectorization
-
-        # ----------------------------------------------------------------------
-        # * Constructs a new type of command's parameter which maps
-        #   variadic ones.
-        #   - `type`                                               ParameterType
-        #     the underlying type of this variadic parameter
-        #   - `hint_msg`                                       String [Optional]
-        #     an hint which explains what the following `*predicates` actually
-        #     check
-        #   - `*predicates`                 Lambda(Object) => Boolean [Variadic]
-        #     the additional checks to process on the value to check
-        # ----------------------------------------------------------------------
-        def self.of(type, hint_msg = "", *predicates)
-          Constructor.new("Variadic_of_#{type.name}".to_sym,
-                          "variadic of #{hint_msg}, with each element " +
-                          "being a #{type.internal_description}",
-                          Variadic.new(type, *predicates))
-        end
-
-        # ----------------------------------------------------------------------
-        # * Constructs a new type of command's parameter which maps
-        #   variadic ones, with at least `nb_elements`.
-        #   - `type`                                               ParameterType
-        #     the underlying type of this variadic parameter
-        #   - `nb_elements`                                              Integer
-        #     the number of elements that the variadic value should at least
-        #     contain
-        # ----------------------------------------------------------------------
-        def self.of_at_least(type, nb_elements)
-          of(type,
-             "at least #{nb_elements} element(s)",
-             lambda { |val| (nb_elements <= val.size) })
-        end
-
-      end
-
       # ------------------------------------------------------------------------
       # * Registers a new type of command's parameter under `ParameterType`.
       #   - `name` the type's name                                 Symbol/String
@@ -611,7 +570,7 @@ module RME
     # --------------------------------------------------------------------------
     def self.is_variadic_parameter?(cmd_param)
       (not cmd_param[:type].nil?) and
-      (cmd_param[:type].domain.is_a? ParameterType::Variadic)
+      (cmd_param[:type].domain.is_a? ParameterType::GenericVectorization)
     end
 
     # --------------------------------------------------------------------------
