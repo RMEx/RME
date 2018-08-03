@@ -221,7 +221,7 @@ module RMECommands
   end
 
   def switch_tileset(tileset_id)
-    $game_map.tileset_id = tileset_id
+    $game_map.change_tileset(tileset_id)
   end
 
   def set_tile(value, x, y, layer)

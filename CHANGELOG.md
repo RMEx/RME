@@ -9,6 +9,7 @@
 - Fix `page_runnable?` (@BastienDuplessier, reported by @acs-l)
 - Fix `event_move_with`, move is not repeatable anymore  (@BastienDuplessier, reported by @Zer0xxxxx)
 - Fix `invoke_event` which was stopping animations when called  (@BastienDuplessier, reported by @YendaHusk)
+- Fix `switch_tileset`, now does not reset ox/oy of events sprites (@BastienDuplessier, reported by @YendaHusk)
 
 ## Release (1.4.0)
 

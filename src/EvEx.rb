@@ -1435,10 +1435,12 @@ class Game_CharacterBase
   attr_accessor :light_emitter
   attr_accessor :tone
   attr_accessor :allow_overlap
+  attr_accessor :changing_graphics
   attr_reader :id
 
   alias_method :allow_overlap?, :allow_overlap
   alias_method :rme_collide_with_characters?, :collide_with_characters?
+  alias_method :rme_set_graphic, :set_graphic
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1467,6 +1469,7 @@ class Game_CharacterBase
     @rect = Rect.new(0,0,0,0)
     @sprite_index
     init_tone
+    @changing_graphics = false
   end
 
   #--------------------------------------------------------------------------
@@ -1660,6 +1663,13 @@ class Game_CharacterBase
   def collide_with_characters?(x, y)
     return false if allow_overlap?
     rme_collide_with_characters?(x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Change Graphics
+  #--------------------------------------------------------------------------
+  def set_graphic(character_name, character_index)
+    rme_set_graphic(character_name, character_index)
+    @changing_graphics = true
   end
 
 end
@@ -1894,8 +1904,14 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   def set_character_bitmap
     rm_extender_set_character_bitmap
-    character.ox = self.ox
-    character.oy = self.oy
+    if character.changing_graphics || (character.ox.nil? && character.oy.nil?)
+      character.ox = self.ox
+      character.oy = self.oy
+    else
+      self.ox = character.ox
+      self.oy = character.oy
+    end
+    character.changing_graphics = false
     @old_buzz = 0
     @origin_len_x = self.zoom_x
   end
