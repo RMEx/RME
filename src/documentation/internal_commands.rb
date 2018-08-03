@@ -97,6 +97,59 @@ module RME
       Constructor = Struct.new(:name, :internal_description, :domain)
 
       # ========================================================================
+      # * [Variant type based on `ParameterType`]
+      #   Abstract definition of a disjoint union (sum) of parameter's types.
+      #   It helps to build a sum of different distinct types, for instance:
+      #    "*If `x` is an element which can either be of type `A`, or type `B`;
+      #     then, `x`'s type is a variant composed of `A` and `B`*"
+      # ========================================================================
+      class Variant
+        attr_reader :underlying_types
+
+        # ----------------------------------------------------------------------
+        # * Initializes this variant parameter's types, with the given enclosed
+        #   types (`underlying_types`).
+        #   - `underlying_types`                            Array<ParameterType>
+        #     the enclosed types that will be sumed-up in order to form this
+        #     variant type
+        # ----------------------------------------------------------------------
+        def initialize(underlying_types)
+          @underlying_types = underlying_types
+        end
+
+        # ----------------------------------------------------------------------
+        # * Tells whether the given (`val`) is valid regarding at least one of
+        #   the underlying types which compose this variant type.
+        #   - `val`                                                       Object
+        #     the value to check
+        #   -> `true` if the value is matching one of the `underlying_types`;
+        #      `false` otherwise.
+        # ----------------------------------------------------------------------
+        def valid?(val)
+          @underlying_types.any? { |t| t.domain.valid? val }
+        end
+
+        # ----------------------------------------------------------------------
+        # * Constructs a new type of command's parameter which maps a variant
+        #   element (i.e.: an element which is complying with at least one
+        #   of the `underlying_types`).
+        # ----------------------------------------------------------------------
+        def self.of(*underlying_types)
+          underlying_types_names = underlying_types.map { |t| t.name }
+          underlying_types_hint = underlying_types.map do |t|
+            "#{t.internal_description} (#{t.name})"
+          end
+
+          type_name = "{#{underlying_types_names.join(",")}}"
+          hint_msg = "Either a #{underlying_types_hint.join(", or a ")}"
+
+          Constructor.new(type_name.to_sym,
+                          hint_msg,
+                          Variant.new(underlying_types))
+        end
+      end
+
+      # ========================================================================
       # * [Generic based on `ParameterType`]
       #   Abstract definition of an homogeneous list of elements.
       # ========================================================================
