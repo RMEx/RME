@@ -54,6 +54,18 @@ module RME
     end
 
     # --------------------------------------------------------------------------
+    # * Tells whether the given `key` is defined in this configuration file
+    #   (`true`) or not (`false`).
+    #   - `key` the property whose existence is being checked             String
+    # -> `true` if the property is defined;
+    #    `false` otherwise.
+    # --------------------------------------------------------------------------
+    def key?(key)
+      (@properties.key? key) or
+      ((fallback?) and (@fallback.key? key))
+    end
+
+    # --------------------------------------------------------------------------
     # * Tells whether this configuration object has been initialized with
     #   a fallback one or not.
     # -> `true` if a fallback has been registred;
@@ -289,13 +301,30 @@ module RME
           elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
             "," + "\"min\":\"#{domain.range.min}\"" +
             "," + "\"max\":\"#{domain.range.max}\""
+          elsif domain.is_a? RME::Command::ParameterType::GenericVectorization
+            underlying_type = ParameterType.new(@raw_type.domain.underlying_type)
+            underlying_type_desc = underlying_type.to_json(translator)
+            "," + "\"enclosed_type\": {#{underlying_type_desc}}"
+          elsif domain.is_a? RME::Command::ParameterType::Variant
+            types_desc = @raw_type.domain.underlying_types.map do |t|
+              ParameterType.new(t)
+                           .to_json(translator)
+            end
+            "," + "\"enclosed_types\": [#{types_desc.join(',')}]\""
           else
             ""
           end
 
+        description =
+          if (translator.key? @description)
+            "\"description\":\"#{translator[@description]}\","
+          else
+            puts "Missing translation key (even in fallback) for #{@description}"
+            ""
+          end
 
         "{" +
-          "\"description\":\"#{translator[@description]}\"," +
+          description +
           "\"name\":\"#{@raw_type.name}\"" +
           additional_info +
         "}"
