@@ -1,5 +1,16 @@
 # RME Changelog
 
+## Release (1.4.1)
+
+### Bug fixes
+- Fix `spritesheet_erase` and  `spritesheets_clear` (@BastienDuplessier, reported by @Princesseuh)
+- Fix `event_look_towards?` and `event_look_towards_event?` (@BastienDuplessier, reported by @Azvnrd)
+- Fix `pixel_in_event?` and `pixel_in_player?` (@BastienDuplessier, reported by @acs-l)
+- Fix `page_runnable?` (@BastienDuplessier, reported by @acs-l)
+- Fix `event_move_with`, move is not repeatable anymore  (@BastienDuplessier, reported by @Zer0xxxxx)
+- Fix `invoke_event` which was stopping animations when called  (@BastienDuplessier, reported by @YendaHusk)
+- Fix `switch_tileset`, now does not reset ox/oy of events sprites (@BastienDuplessier, reported by @YendaHusk)
+
 ## Release (1.4.0)
 
 ### Additions
