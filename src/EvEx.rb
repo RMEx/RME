@@ -1058,6 +1058,13 @@ module Handler
       return false unless k_sprite
       k_sprite.release?(key, pr)
     end
+    #--------------------------------------------------------------------------
+    # * Is pixel in sprite ?
+    #--------------------------------------------------------------------------
+    def pixel_in?(x, y, precise = false)
+      return false unless k_sprite
+      precise ? k_sprite.precise_in?(x, y) : k_sprite.in?(x, y)
+    end
   end
   #==============================================================================
   # ** API
@@ -1428,10 +1435,12 @@ class Game_CharacterBase
   attr_accessor :light_emitter
   attr_accessor :tone
   attr_accessor :allow_overlap
+  attr_accessor :changing_graphics
   attr_reader :id
 
   alias_method :allow_overlap?, :allow_overlap
   alias_method :rme_collide_with_characters?, :collide_with_characters?
+  alias_method :rme_set_graphic, :set_graphic
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -1460,6 +1469,7 @@ class Game_CharacterBase
     @rect = Rect.new(0,0,0,0)
     @sprite_index
     init_tone
+    @changing_graphics = false
   end
 
   #--------------------------------------------------------------------------
@@ -1653,6 +1663,13 @@ class Game_CharacterBase
   def collide_with_characters?(x, y)
     return false if allow_overlap?
     rme_collide_with_characters?(x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Change Graphics
+  #--------------------------------------------------------------------------
+  def set_graphic(character_name, character_index)
+    rme_set_graphic(character_name, character_index)
+    @changing_graphics = true
   end
 
 end
@@ -1887,8 +1904,14 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   def set_character_bitmap
     rm_extender_set_character_bitmap
-    character.ox = self.ox
-    character.oy = self.oy
+    if character.changing_graphics || (character.ox.nil? && character.oy.nil?)
+      character.ox = self.ox
+      character.oy = self.oy
+    else
+      self.ox = character.ox
+      self.oy = character.oy
+    end
+    character.changing_graphics = false
     @old_buzz = 0
     @origin_len_x = self.zoom_x
   end
@@ -2733,6 +2756,12 @@ class Scene_Map
     @message_window.dispose
     @message_window = Window_Message.new
   end
+  #--------------------------------------------------------------------------
+  # * Add Event sprite into spriteset
+  #--------------------------------------------------------------------------
+  def add_event_sprite(event)
+    @spriteset.add_event_sprite(event)
+  end
 
   #--------------------------------------------------------------------------
   # * Update All Windows
@@ -3054,14 +3083,15 @@ class Game_Map
     return unless event
     event.id = new_id
     clone_events = @events.clone
-    clone_events.store(new_id, Game_Event.new(@map_id, event))
+    new_event = Game_Event.new(@map_id, event)
+    clone_events.store(new_id, new_event)
     x ||= event.x
     y ||= event.y
     @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
     @max_event_id = [@max_event_id, new_id].max
-    SceneManager.scene.refresh_spriteset
+    SceneManager.scene.add_event_sprite(new_event)
   end
   #--------------------------------------------------------------------------
   # * Clear parallaxes
@@ -3844,6 +3874,14 @@ class Game_Spritesheet < Game_Picture
     self.current = index
     @dirty = true
   end
+  #--------------------------------------------------------------------------
+  # * Erase Picture
+  #--------------------------------------------------------------------------
+  def erase
+    super
+    @dirty = true
+  end
+
 end
 
 #==============================================================================
@@ -4093,6 +4131,13 @@ class Spriteset_Map
       @parallaxes_plane[parallax.id].update
     end
     rm_extender_update_parallax
+  end
+  #--------------------------------------------------------------------------
+  # * Add Event Sprite to Characters
+  #--------------------------------------------------------------------------
+  def add_event_sprite(event)
+    sp = Sprite_Character.new(@viewport1, event)
+    @character_sprites.push(sp)
   end
 end
 

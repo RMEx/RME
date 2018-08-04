@@ -221,7 +221,7 @@ module RMECommands
   end
 
   def switch_tileset(tileset_id)
-    $game_map.tileset_id = tileset_id
+    $game_map.change_tileset(tileset_id)
   end
 
   def set_tile(value, x, y, layer)
@@ -1491,7 +1491,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     def page_runnable?(map_id, ev_id, page, context=false)
       return unless self.class == Game_Interpreter
-      page = Game_Interpreter.get_page(map_id, ev_id, p_id) if page.is_a?(Fixnum)
+      page = Game_Interpreter.get_page(map_id, ev_id, page) if page.is_a?(Fixnum)
       return unless page
       return Game_Interpreter.conditions_met?(map_id, ev_id, page) if context
       c_map_id = Game_Interpreter.current_map_id
@@ -2102,13 +2102,13 @@ module RMECommands
       ex, ey = event_x(source), event_y(source)
       case event_direction(source)
       when Direction::UP
-        distance = ey - y
-        x_axis = (ex >= x - distance) && (ex <= x + distance)
-        y_axis = ey > y
-      when Direction::DOWN
         distance = y - ey
         x_axis = (ex >= x - distance) && (ex <= x + distance)
         y_axis = ey < y
+      when Direction::DOWN
+        distance = ey - y
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey > y
       when Direction::LEFT
         distance = ex - x
         x_axis = ex > x
@@ -2469,7 +2469,9 @@ module RMECommands
 
     def event_move_with(id, *code)
       route = RPG::MoveRoute.new
+      route.repeat = false
       route.list = code.map {|i| RPG::MoveCommand.new(i)}
+      route.list << RPG::MoveCommand.new(0)
       event(id).force_move_route(route)
     end
 

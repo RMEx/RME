@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #==============================================================================
-# ** RME v1.4.0
+# ** RME v1.4.1
 #------------------------------------------------------------------------------
 #  With :
 # xvw
@@ -72,7 +72,7 @@ module RME
     # * Version
     # * With RMEPackage, it's seems useless ?
     #--------------------------------------------------------------------------
-    def version; define_version(1,4,0); end
+    def version; define_version(1,4,1); end
     #--------------------------------------------------------------------------
     # * define Version
     #--------------------------------------------------------------------------
@@ -7168,6 +7168,13 @@ module Handler
       return false unless k_sprite
       k_sprite.release?(key, pr)
     end
+    #--------------------------------------------------------------------------
+    # * Is pixel in sprite ?
+    #--------------------------------------------------------------------------
+    def pixel_in?(x, y, precise = false)
+      return false unless k_sprite
+      precise ? k_sprite.precise_in?(x, y) : k_sprite.in?(x, y)
+    end
   end
   #==============================================================================
   # ** API
@@ -7538,10 +7545,12 @@ class Game_CharacterBase
   attr_accessor :light_emitter
   attr_accessor :tone
   attr_accessor :allow_overlap
+  attr_accessor :changing_graphics
   attr_reader :id
 
   alias_method :allow_overlap?, :allow_overlap
   alias_method :rme_collide_with_characters?, :collide_with_characters?
+  alias_method :rme_set_graphic, :set_graphic
   #--------------------------------------------------------------------------
   # * Initialisation du Buzzer
   #--------------------------------------------------------------------------
@@ -7570,6 +7579,7 @@ class Game_CharacterBase
     @rect = Rect.new(0,0,0,0)
     @sprite_index
     init_tone
+    @changing_graphics = false
   end
 
   #--------------------------------------------------------------------------
@@ -7763,6 +7773,13 @@ class Game_CharacterBase
   def collide_with_characters?(x, y)
     return false if allow_overlap?
     rme_collide_with_characters?(x, y)
+  end
+  #--------------------------------------------------------------------------
+  # * Change Graphics
+  #--------------------------------------------------------------------------
+  def set_graphic(character_name, character_index)
+    rme_set_graphic(character_name, character_index)
+    @changing_graphics = true
   end
 
 end
@@ -7997,8 +8014,14 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   def set_character_bitmap
     rm_extender_set_character_bitmap
-    character.ox = self.ox
-    character.oy = self.oy
+    if character.changing_graphics || (character.ox.nil? && character.oy.nil?)
+      character.ox = self.ox
+      character.oy = self.oy
+    else
+      self.ox = character.ox
+      self.oy = character.oy
+    end
+    character.changing_graphics = false
     @old_buzz = 0
     @origin_len_x = self.zoom_x
   end
@@ -8843,6 +8866,12 @@ class Scene_Map
     @message_window.dispose
     @message_window = Window_Message.new
   end
+  #--------------------------------------------------------------------------
+  # * Add Event sprite into spriteset
+  #--------------------------------------------------------------------------
+  def add_event_sprite(event)
+    @spriteset.add_event_sprite(event)
+  end
 
   #--------------------------------------------------------------------------
   # * Update All Windows
@@ -9164,14 +9193,15 @@ class Game_Map
     return unless event
     event.id = new_id
     clone_events = @events.clone
-    clone_events.store(new_id, Game_Event.new(@map_id, event))
+    new_event = Game_Event.new(@map_id, event)
+    clone_events.store(new_id, new_event)
     x ||= event.x
     y ||= event.y
     @events = clone_events
     @events[new_id].moveto(x, y)
     @need_refresh = true
     @max_event_id = [@max_event_id, new_id].max
-    SceneManager.scene.refresh_spriteset
+    SceneManager.scene.add_event_sprite(new_event)
   end
   #--------------------------------------------------------------------------
   # * Clear parallaxes
@@ -9954,6 +9984,14 @@ class Game_Spritesheet < Game_Picture
     self.current = index
     @dirty = true
   end
+  #--------------------------------------------------------------------------
+  # * Erase Picture
+  #--------------------------------------------------------------------------
+  def erase
+    super
+    @dirty = true
+  end
+
 end
 
 #==============================================================================
@@ -10203,6 +10241,13 @@ class Spriteset_Map
       @parallaxes_plane[parallax.id].update
     end
     rm_extender_update_parallax
+  end
+  #--------------------------------------------------------------------------
+  # * Add Event Sprite to Characters
+  #--------------------------------------------------------------------------
+  def add_event_sprite(event)
+    sp = Sprite_Character.new(@viewport1, event)
+    @character_sprites.push(sp)
   end
 end
 
@@ -11580,7 +11625,7 @@ module RMECommands
   end
 
   def switch_tileset(tileset_id)
-    $game_map.tileset_id = tileset_id
+    $game_map.change_tileset(tileset_id)
   end
 
   def set_tile(value, x, y, layer)
@@ -12850,7 +12895,7 @@ module RMECommands
     #--------------------------------------------------------------------------
     def page_runnable?(map_id, ev_id, page, context=false)
       return unless self.class == Game_Interpreter
-      page = Game_Interpreter.get_page(map_id, ev_id, p_id) if page.is_a?(Fixnum)
+      page = Game_Interpreter.get_page(map_id, ev_id, page) if page.is_a?(Fixnum)
       return unless page
       return Game_Interpreter.conditions_met?(map_id, ev_id, page) if context
       c_map_id = Game_Interpreter.current_map_id
@@ -13461,13 +13506,13 @@ module RMECommands
       ex, ey = event_x(source), event_y(source)
       case event_direction(source)
       when Direction::UP
-        distance = ey - y
-        x_axis = (ex >= x - distance) && (ex <= x + distance)
-        y_axis = ey > y
-      when Direction::DOWN
         distance = y - ey
         x_axis = (ex >= x - distance) && (ex <= x + distance)
         y_axis = ey < y
+      when Direction::DOWN
+        distance = ey - y
+        x_axis = (ex >= x - distance) && (ex <= x + distance)
+        y_axis = ey > y
       when Direction::LEFT
         distance = ex - x
         x_axis = ex > x
@@ -13828,7 +13873,9 @@ module RMECommands
 
     def event_move_with(id, *code)
       route = RPG::MoveRoute.new
+      route.repeat = false
       route.list = code.map {|i| RPG::MoveCommand.new(i)}
+      route.list << RPG::MoveCommand.new(0)
       event(id).force_move_route(route)
     end
 
