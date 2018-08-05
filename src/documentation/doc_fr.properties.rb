@@ -287,6 +287,7 @@
   'doc.cmd.Event.max_event_id' => "Renvoie le plus grand identifiant d'événement utilisé sur la carte actuelle",
   'doc.cmd.Event.fresh_event_id' => "Renvoie un identifiant d'événement libre (utile en cas d'invocation d'événement)",
   'doc.cmd.Event.mouse_hover_event?' => "Renvoie `true` si la souris survole un événement du sélecteur passé en argument",
+  'doc.cmd.Event.mouse_click_event?' => "Renvoie `true` si la souris clique sur un événement du sélecteur passé en argument",
 
   # Parameters
   ## Map
