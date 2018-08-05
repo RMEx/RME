@@ -283,6 +283,7 @@
   'doc.cmd.Event.event_brutal_stop_trail' => "Arrête brutalement la traînée sur un ou plusieurs événements",
   'doc.cmd.Event.player_brutal_stop_trail' => "Arrête brutalement la traînée sur le joueur",
   'doc.cmd.Event.page_runnable?' => "Vérifie si la page est exécutable dans le contexte de l'événement appelant",
+  'doc.cmd.Event.invoke_event' => "Invoque un événement d'une autre carte (ou de la même) sur la carte actuelle",
 
   # Parameters
   ## Map
@@ -381,5 +382,10 @@
   'doc.parameter.Event.event_zoom.value' => "Nouveau niveau de zoom (cette valeur constitue aussi bien le nouveau niveau de zoom vertical qu'horizontal)",
   'doc.parameter.Event.page_runnable?.event_id' => "ID de l'événement où chercher la page à tester",
   'doc.parameter.Event.page_runnable?.page' => "ID de la page à tester",
-  'doc.parameter.Event.page_runnable?.context' => "Si cette valeur vaut `true`, la condition de lancement de la page utilisera le contexte (c'est-à-dire les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant."
+  'doc.parameter.Event.page_runnable?.context' => "Si cette valeur vaut `true`, la condition de lancement de la page utilisera le contexte (c'est-à-dire les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant.",
+  'doc.parameter.Event.invoke_event.map_id' => "Identifiant de la carte (map) où chercher l'événement à invoquer",
+  'doc.parameter.Event.invoke_event.event_id' => "Identifiant de l'événement à invoquer",
+  'doc.parameter.Event.invoke_event.new_id' => "Identifiant de l'événement à invoquer, au sein de la carte (map) actuelle",
+  'doc.parameter.Event.invoke_event.new_x' => "Position X où placer l'événement invoqué (par défaut, l'événement se trouve à la même position que celle où il se trouve dans sa carte (map) d'origine)",
+  'doc.parameter.Event.invoke_event.new_y' => "Position Y où placer l'événement invoqué (par défaut, l'événement se trouve à la même position que celle où il se trouve dans sa carte (map) d'origine)"
 }

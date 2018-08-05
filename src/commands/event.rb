@@ -514,8 +514,35 @@ module RME
 
       end
 
+      # ------------------------------------------------------------------------
+      # * Copies the given event, into the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :invoke_event,
+                        :description => 'Event.invoke_event',
+                        :parameters  => [
+                          {:name        => :map_id,
+                           :type        => ParameterType::MapId,
+                           :description => 'Event.invoke_event.map_id'},
+                          {:name        => :event_id,
+                           :type        => ParameterType::EventId,
+                           :description => 'Event.invoke_event.event_id'},
+                          {:name        => :new_id,
+                           :type        => ParameterType::EventId,
+                           :description => 'Event.invoke_event.new_id'},
+                          {:name        => :new_x,
+                           :type        => ParameterType::NullableCoordinate,
+                           :description => 'Event.invoke_event.new_x',
+                           :default     => nil},
+                          {:name        => :new_y,
+                           :type        => ParameterType::NullableCoordinate,
+                           :description => 'Event.invoke_event.new_y',
+                           :default     => nil}
+                        ]}) do |map_id, event_id, new_id, new_x, new_y|
+        $game_map.add_event(map_id, event_id, new_id, new_x, new_y)
+      end
+
       # TODO
-      # - `invoke_event`
       # - `max_event_id`
       # - `fresh_event_id`
       # - `mouse_over_event?`

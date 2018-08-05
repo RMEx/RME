@@ -884,17 +884,6 @@ register_command :standard, 'Command.unflash_rect'
   link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
   register_command :standard, "Command.apply_percent"
 
-  link_method_documentation "Command.invoke_event",
-                        "Invoque un évènement d'une autre map (ou de la même) sur la carte",
-                        {
-                          :map_id => ["ID de la map où chercher l'évènement à invoquer", :Fixnum],
-                          :event_id => ["ID de l'évènement à invoquer", :Fixnum],
-                          :new_id => ["Nouvel ID de l'évènement fraîchement invoqué", :Fixnum],
-                          "*x".to_sym => ["Position X où placer l'évènement invoqué, par défaut, conserve la valeur de l'évènement invoqué", :Fixnum],
-                          "*y".to_sym => ["Position Y où placer l'évènement invoqué, par défaut conserve la valeur de l'évènement invoqué", :Fixnum]
-                        }
-  register_command :event, "Command.invoke_event"
-
   link_method_documentation "Command.max_event_id",
                         "Renvoie le plus grand ID d'évènement occupé sur la carte",
                         {}, true
