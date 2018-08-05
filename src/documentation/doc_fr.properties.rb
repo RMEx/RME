@@ -282,6 +282,7 @@
   'doc.cmd.Event.player_stop_trail' => "Arrête la traînée sur le joueur",
   'doc.cmd.Event.event_brutal_stop_trail' => "Arrête brutalement la traînée sur un ou plusieurs événements",
   'doc.cmd.Event.player_brutal_stop_trail' => "Arrête brutalement la traînée sur le joueur",
+  'doc.cmd.Event.page_runnable?' => "Vérifie si la page est exécutable dans le contexte de l'événement appelant",
 
   # Parameters
   ## Map
@@ -377,5 +378,8 @@
   'doc.parameter.Event.pixel_in_event?.precision' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon, elle se fait en fonction du rectangle",
   'doc.parameter.Event.event_opacity.value' => "Valeur de l'opacité (entre `0` et `255`). Si aucune valeur n'est donnée, la commande retourne l'opacité de l'événement ciblé",
   'doc.parameter.Event.event_tone.tone' => "Teinte de l'événement (utilisez la commande `tone`)",
-  'doc.parameter.Event.event_zoom.value' => "Nouveau niveau de zoom (cette valeur constitue aussi bien le nouveau niveau de zoom vertical qu'horizontal)"
+  'doc.parameter.Event.event_zoom.value' => "Nouveau niveau de zoom (cette valeur constitue aussi bien le nouveau niveau de zoom vertical qu'horizontal)",
+  'doc.parameter.Event.page_runnable?.event_id' => "ID de l'événement où chercher la page à tester",
+  'doc.parameter.Event.page_runnable?.page' => "ID de la page à tester",
+  'doc.parameter.Event.page_runnable?.context' => "Si cette valeur vaut `true`, la condition de lancement de la page utilisera le contexte (c'est-à-dire les interrupteurs locaux) de l'événement d'origine à la place de celui de l'événement appelant."
 }

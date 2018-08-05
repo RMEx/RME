@@ -884,16 +884,6 @@ register_command :standard, 'Command.unflash_rect'
   link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
   register_command :standard, "Command.apply_percent"
 
-  link_method_documentation "Command.page_runnable?",
-                        "Vérifie si la page est exécutable dans le contexte de l'évènement appelant.",
-                        {
-                          :map_id => ["ID de la map où chercher l'évènement à tester", :Fixnum],
-                          :event_id => ["ID de l'évènement où chercher la page à tester", :Fixnum],
-                          :page_id => ["ID de la page à tester", :Fixnum],
-                          "*context".to_sym => ["Par défaut, cette variable a pour valeur `false`. Si elle vaut `true`, la condition de lancement de la page utilisera le contexte (les interrupteurs locaux) de l'évènement d'origine à la place de celui de l'évènement appelant.", :Boolean]
-                          }, true
-  register_command :event, "Command.page_runnable?"
-
   link_method_documentation "Command.invoke_event",
                         "Invoque un évènement d'une autre map (ou de la même) sur la carte",
                         {

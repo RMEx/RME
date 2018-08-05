@@ -1326,18 +1326,6 @@ module RMECommands
       max_event_id + 1
     end
     #--------------------------------------------------------------------------
-    # * Check if a page is runnable
-    #--------------------------------------------------------------------------
-    def page_runnable?(map_id, ev_id, page, context=false)
-      return unless self.class == Game_Interpreter
-      page = Game_Interpreter.get_page(map_id, ev_id, p_id) if page.is_a?(Fixnum)
-      return unless page
-      return Game_Interpreter.conditions_met?(map_id, ev_id, page) if context
-      c_map_id = Game_Interpreter.current_map_id
-      c_ev_id = self.event_id
-      Game_Interpreter.conditions_met?(c_map_id, c_ev_id, page)
-    end
-    #--------------------------------------------------------------------------
     # * Create a tone
     #--------------------------------------------------------------------------
     def tone(r, v, b, gray = 0)

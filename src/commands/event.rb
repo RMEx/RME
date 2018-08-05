@@ -104,7 +104,7 @@ module RME
         if exec_ctx.class == Game_Interpreter
           page = Game_Interpreter.get_page(map_id, event_id, page_id)
           if page &&
-             (!runnable || page_runnable?(map_id, event_id, page, context))
+             (!runnable || ::Command.page_runnable?(map_id, event_id, page, context))
             exec_ctx.append_interpreter(page)
           end
         end
@@ -471,8 +471,50 @@ module RME
         ::Command.event_brutal_stop_trail(0)
       end
 
+      # ------------------------------------------------------------------------
+      # * Tells whether the given `page` of the given `event` is runnable
+      #   by the calling one (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section      => self,
+                        :name         => :page_runnable?,
+                        :description  => 'Event.page_runnable?',
+                        :add_exec_ctx => true,
+                        :parameters   => [
+                          MAP_ID,
+                          {:name        => :event_id,
+                           :type        => ParameterType::EventId,
+                           :description => 'Event.page_runnable?.event_id'},
+                          {:name        => :page,
+                           :type        => ParameterType::Variant::of(ParameterType::EventPage,
+                                                                      ParameterType::EventPageId),
+                           :description => 'Event.page_runnable?.page'},
+                          {:name        => :context,
+                           :type        => ParameterType::Boolean,
+                           :description => 'Event.page_runnable?.context',
+                           :default     => false}
+                        ]}) do |map_id, event_id, page, context, exec_ctx|
+        if exec_ctx.class == Game_Interpreter
+          p =
+            if (page.is_a? Fixnum)
+              Game_Interpreter.get_page(map_id, event_id, page)
+            else
+              page
+            end
+
+          if (p)
+            if (context)
+              Game_Interpreter.conditions_met?(map_id, event_id, p)
+            else
+              c_map_id = Game_Interpreter.current_map_id
+              c_ev_id = exec_ctx.event_id
+              Game_Interpreter.conditions_met?(c_map_id, c_ev_id, p)
+            end
+          end
+        end
+
+      end
+
       # TODO
-      # - `page_runnable?`
       # - `invoke_event`
       # - `max_event_id`
       # - `fresh_event_id`
