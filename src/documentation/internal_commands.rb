@@ -272,17 +272,35 @@ module RME
         self.const_set(name, type)
       end
 
-      # Common domains' definitions
+      # Primal domains' definition
       ParameterType::declare(:Object,
                              "Object type (it is the default parameter type and means that none were provided)",
                              Domain.new(lambda { |x| true }))
+      ParameterType::declare(:Null,
+                             "Nullable value",
+                             Set.new(nil))
+
+      # ========================================================================
+      # * Provides a convenient method to wrap an existing parameters' types
+      #   into a new one which allows to use `nil` as a value.
+      # ========================================================================
+      class Nullable
+        # ----------------------------------------------------------------------
+        # * Builds a new variant type composed of an existing parameter's `type`
+        #   and the `ParameterType::Null` type (i.e.: it makes an existing
+        #   parameters' type nullable).
+        # ----------------------------------------------------------------------
+        def self.of(type)
+          Variant::of(ParameterType::Null, type)
+        end
+      end
+
+      # Common domains' definitions
       ParameterType::declare(:Coordinate,
                              "Coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
                              ClosedInterval.new(0, 999))
-      ParameterType::declare(:NullableCoordinate,
-                             "Nullable coordinate of a point in a cartesian coordinate system (i.e.: `x` or `y`)",
-                             Domain.new(lambda { |x| (x.nil?) or
-                                                     (ParameterType::Coordinate.domain.valid? x) }))
+      NullableCoordinate = Nullable::of(ParameterType::Coordinate)
+
       ParameterType::declare(:Boolean,
                              "Boolean value",
                              Set.new(true, false))
@@ -295,19 +313,14 @@ module RME
       ParameterType::declare(:StrictlyPositiveInteger,
                              "Strictly positive integer",
                              Domain.new(lambda { |x| (x.is_a? ::Integer) and (0 < x) }))
-      ParameterType::declare(:NullablePositiveInteger,
-                             "Nullable positive integer",
-                             Domain.new(lambda { |x| (x.nil?) or (PositiveInteger.domain.valid? x) }))
+      NullablePositiveInteger = Nullable::of(ParameterType::PositiveInteger)
       ParameterType::declare(:Float,
                              "Real number (positive or negative)",
                              Domain.new(lambda { |x| (x.is_a? ::Float) }))
       ParameterType::declare(:PositiveFloat,
                              "Positive real number (Float)",
                              Domain.new(lambda { |x| (x.is_a? ::Float) and (0 <= x) }))
-      ParameterType::declare(:NullablePositiveFloat,
-                             "Nullable positive real number (Float)",
-                             Domain.new(lambda { |x| (x.nil?) or
-                                                     (ParameterType::PositiveFloat.domain.valid? x)}))
+      NullablePositiveFloat = Nullable::of(ParameterType::PositiveFloat)
       ParameterType::declare(:StrictlyPositiveFloat,
                              "Strictly positive real number (Float)",
                              Domain.new(lambda { |x| (x.is_a? ::Float) and (0 < x) }))
@@ -335,9 +348,7 @@ module RME
       ParameterType::declare(:Tone,
                              "Color tone",
                              Domain.new(lambda { |x| x.is_a? ::Tone }))
-      ParameterType::declare(:NullableTone,
-                             "Nullable color tone",
-                             Domain.new(lambda { |x| (x.nil?) or (x.is_a? ::Tone) }))
+      NullableTone = Nullable::of(ParameterType::Tone)
       BLENDING_MODES = {
         :normal      => 0,
         :addition    => 1,
@@ -349,9 +360,7 @@ module RME
       ParameterType::declare(:Opacity,
                              "Sprites' opacity",
                              ClosedInterval.new(0, 255))
-      ParameterType::declare(:NullableOpacity,
-                             "Nullable sprites' opacity",
-                             Domain.new(lambda { |x| (x.nil?) or (ParameterType::Opacity.domain.valid? x) }))
+      NullableOpacity = Nullable::of(ParameterType::Opacity)
 
       ParameterType::declare(:MouseButton,
                              "Mouse button / key",
