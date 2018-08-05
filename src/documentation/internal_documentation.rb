@@ -304,13 +304,13 @@ module RME
           elsif domain.is_a? RME::Command::ParameterType::GenericVectorization
             underlying_type = ParameterType.new(@raw_type.domain.underlying_type)
             underlying_type_desc = underlying_type.to_json(translator)
-            "," + "\"enclosed_type\": {#{underlying_type_desc}}"
+            "," + "\"enclosed_type\":#{underlying_type_desc}"
           elsif domain.is_a? RME::Command::ParameterType::Variant
             types_desc = @raw_type.domain.underlying_types.map do |t|
               ParameterType.new(t)
                            .to_json(translator)
             end
-            "," + "\"enclosed_types\": [#{types_desc.join(',')}]\""
+            "," + "\"enclosed_types\":[#{types_desc.join(',')}]"
           else
             ""
           end
@@ -323,9 +323,25 @@ module RME
             ""
           end
 
+        type_class =
+          if domain.is_a? RME::Command::ParameterType::Domain
+            "DOMAIN"
+          elsif domain.is_a? RME::Command::ParameterType::Set
+            "SET"
+          elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
+            "CLOSED_INTERVAL"
+          elsif domain.is_a? RME::Command::ParameterType::GenericVectorization
+            "VARIADIC"
+          elsif domain.is_a? RME::Command::ParameterType::Variant
+            "VARIANT"
+          else
+            "UNKNOWN"
+          end
+
         "{" +
           description +
-          "\"name\":\"#{@raw_type.name}\"" +
+          "\"name\":\"#{@raw_type.name}\"," +
+          "\"typeClass\":\"#{type_class}\"" +
           additional_info +
         "}"
 
