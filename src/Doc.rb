@@ -884,11 +884,6 @@ register_command :standard, 'Command.unflash_rect'
   link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
   register_command :standard, "Command.apply_percent"
 
-  link_method_documentation "Command.fresh_event_id",
-                        "Renvoie un ID libre (utile en cas d'invocation d'évènement)",
-                        {"*erased".to_sym => ["Si cette valeur vaut true, la commande renverra le plus petit ID d'un événement supprimé", :Boolean]}, true
-  register_command :event, "Command.fresh_event_id"
-
   link_method_documentation "Command.mouse_hover_event?",
                         "Renvoie true si la souris survole un évènement du sélecteur passé en argument",
                         {:events => ["Selecteur d'évènements", :Selectors],

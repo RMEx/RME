@@ -1308,13 +1308,6 @@ module RMECommands
     def apply_percent(percent, max)
       ((percent*max)/100.0).to_i
     end
-    def fresh_event_id(erased = false)
-      if erased
-        i = $game_map.min_erased_id
-        return i if i
-      end
-      max_event_id + 1
-    end
     #--------------------------------------------------------------------------
     # * Create a tone
     #--------------------------------------------------------------------------

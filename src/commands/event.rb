@@ -551,8 +551,27 @@ module RME
         $game_map.max_id
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns a free event's identifier.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :fresh_event_id,
+                        :description => 'Event.fresh_event_id',
+                        :see         => [:invoke_event],
+                        :parameters  => [
+                          {:name        => :erased,
+                           :type        => ParameterType::Boolean,
+                           :description => 'Event.fresh_event_id.erased',
+                           :default     => false}
+                        ]}) do |erased|
+        if (erased and $game_map.min_erased_id)
+          $game_map.min_erased_id
+        else
+          ::Command.max_event_id + 1
+        end
+      end
+
       # TODO
-      # - `fresh_event_id`
       # - `mouse_over_event?`
       # - `mouse_click_event?`
       # - `mouse_press_event?`
