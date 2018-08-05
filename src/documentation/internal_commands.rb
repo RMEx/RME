@@ -141,7 +141,7 @@ module RME
           end
 
           type_name = "{#{underlying_types_names.join(",")}}"
-          hint_msg = "Either a #{underlying_types_hint.join(", or a ")}"
+          hint_msg = "value which is either {a #{underlying_types_hint.join(", or a ")}}"
 
           Constructor.new(type_name.to_sym,
                           hint_msg,
@@ -486,10 +486,18 @@ module RME
             # Validating provided parameter
             unless expected[:type][:domain].valid? parsed_args[i]
               arg_value = (parsed_args[i].nil?) ? "nil (i.e.: not provided)." : parsed_args[i]
+              pretty_arg_value =
+                if (arg_value.is_a? String)
+                  "\"#{arg_value}\""
+                elsif (arg_value.is_a? Symbol)
+                  ":#{arg_value}"
+                else
+                  arg_value
+                end
               raise "Wrong usage of command: `#{cmd[:name]}` !\n" +
                     "\tInvalid value for parameter: `#{expected[:name]}`.\n" +
                     "\tIt should be a #{expected[:type][:internal_description]}.\n" +
-                    "\tActual value is: `#{arg_value}`."
+                    "\tActual value is: `#{pretty_arg_value}`."
             end
 
           end
