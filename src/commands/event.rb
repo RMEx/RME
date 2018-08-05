@@ -75,6 +75,10 @@ module RME
                         :type        => ParameterType::PositiveFloat,
                         :description => 'Event.new_zoom_value',
                         :default     => nil}
+      MOUSE_PRECISION = {:name        => :precise,
+                         :type        => ParameterType::Boolean,
+                         :description => 'Event.mouse_hover_event.precise',
+                         :default     => false}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -571,8 +575,22 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the given event(s) during the
+      #   command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_hover_event?,
+                        :description => 'Event.mouse_hover_event?',
+                        :parameters  => [
+                          EVENT_IDS,
+                          MOUSE_PRECISION
+                        ]}) do |event_ids, precise|
+        events = select_events(events_ids)
+        events.any? { |i| event(i).hover?(precise) }
+      end
+
       # TODO
-      # - `mouse_over_event?`
       # - `mouse_click_event?`
       # - `mouse_press_event?`
       # - `mouse_trigger_event?`
