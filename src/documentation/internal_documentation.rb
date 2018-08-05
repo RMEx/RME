@@ -331,7 +331,11 @@ module RME
           elsif domain.is_a? RME::Command::ParameterType::ClosedInterval
             "CLOSED_INTERVAL"
           elsif domain.is_a? RME::Command::ParameterType::GenericVectorization
-            "VARIADIC"
+            if (domain.variadic?)
+              "VARIADIC_VECTOR"
+            else
+              "VECTOR"
+            end
           elsif domain.is_a? RME::Command::ParameterType::Variant
             "VARIANT"
           else

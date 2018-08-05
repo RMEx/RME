@@ -155,6 +155,7 @@ module RME
       # ========================================================================
       class GenericVectorization
         attr_reader :underlying_type
+        attr_reader :predicates
 
         # ----------------------------------------------------------------------
         # * Initializes this vectorized parameter with the given enclosed type
@@ -162,11 +163,26 @@ module RME
         #   - `underlying_type`                                    ParameterType
         #     the enclosed type, that each of the nested element should
         #     comply with
+        #   - `is_variadic`                                              Boolean
+        #     the boolean which tells whether this parameter's type is a
+        #     varadic one which requires splat operator (`true`);
+        #     or not (`false`)
+        #   - `predicates`                  Lambda(Object) => Boolean [Variadic]
+        #     the additional checks to perform on the requested value
         # ----------------------------------------------------------------------
-        def initialize(underlying_type, *predicates)
+        def initialize(underlying_type, is_variadic, *predicates)
           @underlying_type = underlying_type
+          @is_variadic = is_variadic
           @predicates = predicates
           @predicates ||= Array.new
+        end
+
+        # ----------------------------------------------------------------------
+        # * Tells whether this parameter's type is a variadic one (`true`) or
+        #   not (`false`).
+        # ----------------------------------------------------------------------
+        def variadic?
+          @is_variadic
         end
 
         # ----------------------------------------------------------------------
@@ -193,23 +209,23 @@ module RME
       class List < GenericVectorization
 
         # ----------------------------------------------------------------------
-        # * Constructs a new type of command's parameter which maps fixed size
-        #   list.
+        # * Constructs a new type of command's parameter which maps defined size
+        #   vector/list.
         #   - `type_name`                                                 String
-        #     this variadic type's name
+        #     this vector type's name
         #   - `underlying_type`                                    ParameterType
-        #     the type of each of this list's elements
+        #     the type of each of this vector's elements
         #   - `hint_msg`                                       String [Optional]
         #     an hint which explains what the following `*predicates` actually
         #     check
         #   - `*predicates`                 Lambda(Object) => Boolean [Variadic]
-        #     the additional checks to process on the value to check
+        #     the additional checks to process on the value
         # ----------------------------------------------------------------------
         def self.of(type_name, underlying_type, hint_msg, *predicates)
           Constructor.new(type_name.to_sym,
                           "list of #{hint_msg}, with each element " +
                           "being a #{underlying_type.internal_description}",
-                          List.new(underlying_type, *predicates))
+                          List.new(underlying_type, false, *predicates))
         end
         private_class_method :of
 
@@ -258,6 +274,21 @@ module RME
              lambda { |val| (nb_elements >= val.size) })
         end
 
+      end
+
+      # ------------------------------------------------------------------------
+      # * Turns an already declared parameter's type whose domain is a
+      #   `ParameterType::List` into a variadic one.
+      # ------------------------------------------------------------------------
+      def self.variadic_of(type)
+        if (type.is_a? ParameterType::Constructor) and
+           (type.domain.is_a? ParameterType::List)
+          Constructor.new(type.name,
+                          type.internal_description,
+                          List.new(type.domain.underlying_type,
+                                   true,
+                                   *(type.domain.predicates)))
+        end
       end
 
       # ------------------------------------------------------------------------
@@ -582,8 +613,11 @@ module RME
     #    `false` otherwise.
     # --------------------------------------------------------------------------
     def self.is_variadic_parameter?(cmd_param)
-      (not cmd_param[:type].nil?) and
-      (cmd_param[:type].domain.is_a? ParameterType::GenericVectorization)
+      type = cmd_param[:type]
+
+      (not type.nil?) and
+      (type.domain.is_a? ParameterType::GenericVectorization) and
+      (type.domain.variadic?)
     end
 
     # --------------------------------------------------------------------------
@@ -632,7 +666,7 @@ module RME
     # * Parses the supplied command's arguments (`args`), according to what
     #   is expected (`expected_params`).
     #   (It mainly acts as a proxy to decompose variadic arguments
-    #    in an handier way)
+    #    in an handier way; *although optionals are not correctly handled !*)
     #   - `args`                                                         Array
     #     the command's argument, as provided by the end-user
     #   - `expected_params`                                               Hash
@@ -642,6 +676,7 @@ module RME
     def self.parse_cmd_args(args, expected_params)
       return args if expected_params.nil?
       return args if (expected_params.size > args.size)
+      return args unless (expected_params.any? { |x| is_variadic_parameter? x })
 
       first_part = expected_params.take_while { |x| not(is_variadic_parameter? x) }
       last_part = expected_params.reverse
