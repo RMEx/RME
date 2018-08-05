@@ -419,6 +419,9 @@ module RME
       EventsSelector = Variant::of(ParameterType::EventId,
                                    ParameterType::List::of_at_least(ParameterType::EventId, 1))
 
+      ParameterType::declare(:EventPage,
+                             "Event's page (RPG::Event::Page)",
+                             Domain.new(lambda { |x| x.is_a? ::RPG::Event::Page }))
       ParameterType::declare(:EventPageId,
                              "Event's page's identifier",
                              ClosedInterval.new(0, 99))
