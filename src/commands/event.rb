@@ -542,8 +542,16 @@ module RME
         $game_map.add_event(map_id, event_id, new_id, new_x, new_y)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the greatest event's identifier used in the current map.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :max_event_id,
+                        :description => 'Event.max_event_id'}) do
+        $game_map.max_id
+      end
+
       # TODO
-      # - `max_event_id`
       # - `fresh_event_id`
       # - `mouse_over_event?`
       # - `mouse_click_event?`

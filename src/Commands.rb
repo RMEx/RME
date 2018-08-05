@@ -1308,10 +1308,6 @@ module RMECommands
     def apply_percent(percent, max)
       ((percent*max)/100.0).to_i
     end
-    #--------------------------------------------------------------------------
-    # * Get the max Event ID
-    #--------------------------------------------------------------------------
-    def max_event_id; $game_map.max_id; end
     def fresh_event_id(erased = false)
       if erased
         i = $game_map.min_erased_id

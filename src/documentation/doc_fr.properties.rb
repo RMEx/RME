@@ -284,6 +284,7 @@
   'doc.cmd.Event.player_brutal_stop_trail' => "Arrête brutalement la traînée sur le joueur",
   'doc.cmd.Event.page_runnable?' => "Vérifie si la page est exécutable dans le contexte de l'événement appelant",
   'doc.cmd.Event.invoke_event' => "Invoque un événement d'une autre carte (ou de la même) sur la carte actuelle",
+  'doc.cmd.Event.max_event_id' => "Renvoie le plus grand identifiant d'événement utilisé sur la carte actuelle",
 
   # Parameters
   ## Map
