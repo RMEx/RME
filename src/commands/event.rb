@@ -597,6 +597,7 @@ module RME
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
                         :name        => :mouse_click_event?,
+                        :alias       => :mouse_clicked_event?,
                         :description => 'Event.mouse_click_event?',
                         :parameters  => [
                           EVENT_IDS,
