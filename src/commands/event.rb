@@ -777,10 +777,21 @@ module RME
         event(event_id).x
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the y-coordinate of the given event.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_y,
+                        :description => 'Event.event_y',
+                        :parameters  => [
+                          EVENT_ID
+                        ]}) do |event_id|
+        event(event_id).y
+      end
+
       # TODO
       # - `event_in_screen?`
       # - `player_in_screen?`
-      # - `event_y`
       # - `event_screen_x`
       # - `event_screen_y`
       # - `event_pixel_x`

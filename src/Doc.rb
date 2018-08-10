@@ -906,12 +906,6 @@ register_command :standard, 'Command.unflash_rect'
                         {}, true
   register_command :event, "Command.player_in_screen?"
 
-
-  link_method_documentation "Command.event_y",
-                        "Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID",
-                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
-  register_command :event, "Command.event_y"
-
   link_method_documentation "Command.event_original_y",
                         "Renvoie la coordonnée Y de la case sur laquelle se trouve l'évènement référencé par son ID tel que placé dans l'éditeur",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
