@@ -1088,13 +1088,6 @@ module Handler
       e.each{|i|event(i).unbind(k)}
     end
     #--------------------------------------------------------------------------
-    # * Pressed event
-    #--------------------------------------------------------------------------
-    def mouse_press_event?(e, k=:mouse_left, pr = false)
-      e = select_events(e)
-      e.any?{|i|event(i).press?(k, pr)}
-    end
-    #--------------------------------------------------------------------------
     # * Triggered event
     #--------------------------------------------------------------------------
     def mouse_trigger_event?(e, k=:mouse_left, pr = false)

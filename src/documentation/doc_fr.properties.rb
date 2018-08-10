@@ -288,6 +288,7 @@
   'doc.cmd.Event.fresh_event_id' => "Renvoie un identifiant d'événement libre (utile en cas d'invocation d'événement)",
   'doc.cmd.Event.mouse_hover_event?' => "Renvoie `true` si la souris survole un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_click_event?' => "Renvoie `true` si la souris clique sur un événement du sélecteur passé en argument",
+  'doc.cmd.Event.mouse_press.event?' => "Renvoie `true` si la souris vient de cliquer un événement du sélecteur passé en argument",
 
   # Parameters
   ## Map
@@ -393,5 +394,6 @@
   'doc.parameter.Event.invoke_event.new_x' => "Position X où placer l'événement invoqué (par défaut, l'événement se trouve à la même position que celle où il se trouve dans sa carte (map) d'origine)",
   'doc.parameter.Event.invoke_event.new_y' => "Position Y où placer l'événement invoqué (par défaut, l'événement se trouve à la même position que celle où il se trouve dans sa carte (map) d'origine)",
   'doc.parameter.Event.fresh_event_id.erased' => "Si cette valeur vaut `true`, la commande renverra le plus petit identifiant d'un événement supprimé",
-  'doc.parameter.Event.mouse_hover_event.precise' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon celle-ci se fait en fonction du rectangle (`false`)"
+  'doc.parameter.Event.mouse_hover_event.precise' => "Si cette valeur vaut `true`, la vérification se fait au pixel près; sinon celle-ci se fait en fonction du rectangle (`false`)",
+  'doc.parameter.Event.mouse_press_event?.mouse_btn' => "Touche de la souris à actionner"
 }

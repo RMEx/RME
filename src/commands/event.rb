@@ -79,6 +79,10 @@ module RME
                          :type        => ParameterType::Boolean,
                          :description => 'Event.mouse_hover_event.precise',
                          :default     => false}
+      MOUSE_BUTTON = {:name        => :mouse_btn,
+                      :type        => ParameterType::MouseButton,
+                      :description => 'Event.mouse_hover_event?.mouse_btn',
+                      :default     => :mouse_left}
 
       # ------------------------------------------------------------------------
       # * Includes and calls the page of another event.
@@ -607,8 +611,24 @@ module RME
         events.any? { |i| event(i).click?(precise) }
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above one of the given event(s) and
+      #   constantly clicking during the command's call on the specified
+      #   `mouse_btn` (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_press_event?,
+                        :description => 'Event.mouse_press_event?',
+                        :parameters  => [
+                          EVENT_IDS,
+                          MOUSE_BUTTON,
+                          MOUSE_PRECISION
+                        ]}) do |event_ids, mouse_btn, precise|
+        events = select_events(events_ids)
+        events.any? { |i| event(i).press?(mouse_btn, precise) }
+      end
+
       # TODO
-      # - `mouse_press_event?`
       # - `mouse_trigger_event?`
       # - `mouse_repeat_event?`
       # - `mouse_release_event?`
