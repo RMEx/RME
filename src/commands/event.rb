@@ -656,6 +656,21 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the player and constantly
+      #   clicking during the command's call on the specified
+      #   `mouse_btn` (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_press_player?,
+                        :description => 'Event.mouse_press_player?',
+                        :parameters  => [
+                          MOUSE_BUTTON,
+                          MOUSE_PRECISION
+                        ]}) do |mouse_btn, precise|
+        $game_player.press?(mouse_btn, precise)
+      end
+
+      # ------------------------------------------------------------------------
       # * Checks if the mouse is currently above one of the given event(s) and
       #   triggering a `click` event during the command's call on the specified
       #   `mouse_btn` (`true`); or not (`false`).
@@ -740,7 +755,6 @@ module RME
       # - `event_through`
       # - `player_through`
       # - `event_erased?`
-      # - `mouse_press_player?`
       # - `mouse_trigger_player?`
       # - `mouse_repeat_player?`
       # - `mouse_release_player?`
