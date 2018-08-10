@@ -825,10 +825,21 @@ module RME
         ($game_map.display_x * 32) + ::Command.event_screen_x(event_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the y-coordinate (pixels being the unit) of the given event.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_pixel_y,
+                        :description => 'Event.event_pixel_y',
+                        :parameters  => [
+                          EVENT_ID
+                        ]}) do |event_id|
+        ($game_map.display_y * 32) + ::Command.event_screen_y(event_id)
+      end
+
       # TODO
       # - `event_in_screen?`
       # - `player_in_screen?`
-      # - `event_pixel_y`
       # - `event_change_character`
       # - `event_character_name`
       # - `event_character_index`

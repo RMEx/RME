@@ -911,11 +911,6 @@ register_command :standard, 'Command.unflash_rect'
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
   register_command :event, "Command.event_original_y"
 
-  link_method_documentation "Command.event_pixel_y",
-                        "Renvoie la coordonnée Y de l'évènement référencé par son ID en pixel sur la carte",
-                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
-  register_command :event, "Command.event_pixel_y"
-
   link_method_documentation "Command.event_change_character",
                         "Change l\'apparence d'un évènement référencé par son ID",
                         {:id => ["ID de l'évènement (0 pour héros)", :Fixnum],
