@@ -1088,13 +1088,6 @@ module Handler
       e.each{|i|event(i).unbind(k)}
     end
     #--------------------------------------------------------------------------
-    # * Repeated event
-    #--------------------------------------------------------------------------
-    def mouse_repeat_event?(e, k=:mouse_left, pr = false)
-      e = select_events(e)
-      e.any?{|i|event(i).repeat?(k, pr)}
-    end
-    #--------------------------------------------------------------------------
     # * Released event
     #--------------------------------------------------------------------------
     def mouse_release_event?(e, k=:mouse_left, pr = false)
