@@ -298,6 +298,7 @@
   'doc.cmd.Event.mouse_repeat_player?' => "Renvoie `true` si le bouton de la souris (spécifié dans la commande) est appuyé de manière répétée, et que le curseur survole l'événement du joueur",
   'doc.cmd.Event.mouse_release_event?' => "Renvoie `true` si la souris est relâchée sur un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_release_player?' => "Renvoie `true` si le bouton de la souris (spécifié dans la commande) est relâché alors que le curseur survole l'événement du joueur",
+  'doc.cmd.Event.event_x' => "Renvoie la coordonnée en X de la case sur laquelle se trouve l'événement",
 
   # Parameters
   ## Map
@@ -374,7 +375,7 @@
   'doc.parameter.Enemy.monster_element_rate.element_id' => "Identifiant de l'élément",
   ## Event
   'doc.parameter.Event.map_id' => "Identifiant de la map dans laquelle l'événement se trouve",
-  'doc.parameter.Event.event_id' => "Identifiant de l'événement",
+  'doc.parameter.Event.event_id' => "Identifiant de l'événement (`0` pour le héros)",
   'doc.parameter.Event.event_ids' => "Identifiants des événements (voir les sélecteurs d'événements: `get_events`)",
   'doc.parameter.Event.transition_duration' => "Durée de la transition (en nombre de frames)",
   'doc.parameter.Event.wait_flag' => "Si la valeur est positionnée à `true`, la transition est bloquante et on attend jusqu'à la fin de celle-ci; autrement on n'attend pas (`false`)",

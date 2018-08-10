@@ -765,8 +765,19 @@ module RME
         $game_player.release?(mouse_btn, precise)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the x-coordinate of the given event.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_x,
+                        :description => 'Event.event_x',
+                        :parameters  => [
+                          EVENT_ID
+                        ]}) do |event_id|
+        event(event_id).x
+      end
+
       # TODO
-      # - `event_x`
       # - `event_in_screen?`
       # - `player_in_screen?`
       # - `event_y`
