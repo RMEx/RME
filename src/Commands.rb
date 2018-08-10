@@ -1652,9 +1652,6 @@ module RMECommands
     def event_pixel_y(id)
       ($game_map.display_y * 32) + event_screen_y(id)
     end
-    def event_pixel_x(id)
-      ($game_map.display_x * 32) + event_screen_x(id)
-    end
     def event_direction(id, value = nil)
       return event(id).direction unless value
       event(id).set_direction(value)
