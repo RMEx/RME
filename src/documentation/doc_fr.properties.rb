@@ -291,6 +291,7 @@
   'doc.cmd.Event.mouse_press.event?' => "Renvoie `true` si la souris vient de cliquer un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_trigger_event?' => "Renvoie `true` si la souris vient de cliquer un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_repeat_event?' => "Renvoie `true` si la souris clique de manière répétée un événement du sélecteur passé en argument",
+  'doc.cmd.Event.mouse_release_event?' => "Renvoie `true` si la souris est relâchée sur un événement du sélecteur passé en argument",
 
   # Parameters
   ## Map
