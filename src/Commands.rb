@@ -1649,7 +1649,6 @@ module RMECommands
 
   module Events
     def event_name(id); event(id).name; end
-    def event_screen_x(id); event(id).screen_x; end
     def event_screen_y(id); event(id).screen_y; end
     def event_pixel_y(id)
       ($game_map.display_y * 32) + event_screen_y(id)

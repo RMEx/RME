@@ -300,6 +300,7 @@
   'doc.cmd.Event.mouse_release_player?' => "Renvoie `true` si le bouton de la souris (spécifié dans la commande) est relâché alors que le curseur survole l'événement du joueur",
   'doc.cmd.Event.event_x' => "Renvoie la coordonnée en X de la case sur laquelle se trouve l'événement",
   'doc.cmd.Event.event_y' => "Renvoie la coordonnée en Y de la case sur laquelle se trouve l'événement",
+  'doc.cmd.Event.event_screen_x' => "Renvoie la coordonnée en X par rapport à l'écran de l'événement",
 
   # Parameters
   ## Map
