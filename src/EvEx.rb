@@ -1087,16 +1087,6 @@ module Handler
       e = select_events(e)
       e.each{|i|event(i).unbind(k)}
     end
-    #--------------------------------------------------------------------------
-    # * API for player
-    #--------------------------------------------------------------------------
-    [:release].each do |m|
-      define_method("mouse_#{m}_player?") do |*k|
-        k = (k[0]) ? k[0] : :mouse_left
-        r = (k[1]) ? k[1] : false
-        $game_player.send("#{m}?", k, r)
-      end
-    end
 
     #--------------------------------------------------------------------------
     # * Load Commands

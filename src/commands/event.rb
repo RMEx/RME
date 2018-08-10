@@ -751,6 +751,20 @@ module RME
         events.any? { |i| event(i).release?(mouse_btn, precise) }
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the player and the `mouse_btn`
+      #  is released during the command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_release_player?,
+                        :description => 'Event.mouse_release_player?',
+                        :parameters  => [
+                          MOUSE_BUTTON,
+                          MOUSE_PRECISION
+                        ]}) do |mouse_btn, precise|
+        $game_player.release?(mouse_btn, precise)
+      end
+
       # TODO
       # - `event_x`
       # - `event_in_screen?`
@@ -785,7 +799,6 @@ module RME
       # - `event_through`
       # - `player_through`
       # - `event_erased?`
-      # - `mouse_release_player?`
       # - `last_clicked_event`
       # - `last_pressed_event`
       # - `last_triggered_event`
