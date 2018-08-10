@@ -1090,12 +1090,6 @@ module Handler
     #--------------------------------------------------------------------------
     # * API for player
     #--------------------------------------------------------------------------
-    [:click].each do |m|
-      define_method("mouse_#{m}_player?"){ |*k|
-        k = (k[0]) ? k[0] : false
-        $game_player.send("#{m}?", k)
-      }
-    end
     [:press, :trigger, :repeat, :release].each do |m|
       define_method("mouse_#{m}_player?") do |*k|
         k = (k[0]) ? k[0] : :mouse_left
@@ -1103,9 +1097,6 @@ module Handler
         $game_player.send("#{m}?", k, r)
       end
     end
-
-    # EE4 compatibilities
-    alias_method :mouse_clicked_player?, :mouse_click_player?
 
     #--------------------------------------------------------------------------
     # * Load Commands
