@@ -289,6 +289,7 @@
   'doc.cmd.Event.mouse_hover_event?' => "Renvoie `true` si la souris survole un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_click_event?' => "Renvoie `true` si la souris clique sur un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_press.event?' => "Renvoie `true` si la souris vient de cliquer un événement du sélecteur passé en argument",
+  'doc.cmd.Event.mouse_trigger_event?' => "Renvoie `true` si la souris vient de cliquer un événement du sélecteur passé en argument",
 
   # Parameters
   ## Map

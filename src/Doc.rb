@@ -884,15 +884,6 @@ register_command :standard, 'Command.unflash_rect'
   link_snippet("Command.apply_percent", "Command.apply_percent(50, 80) # Renvoie 40 (parce que 50% de 80 = 40)")
   register_command :standard, "Command.apply_percent"
 
-  link_method_documentation "Command.mouse_trigger_event?",
-                        "Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument",
-                        {
-                          :events => ["Selecteur d'évènements", :Selectors],
-                          :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Symbol],
-                          :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", :Boolean],
-                        }, true
-  register_command :event, "Command.mouse_trigger_event?"
-
   link_method_documentation "Command.mouse_repeat_event?",
                         "Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument",
                         {

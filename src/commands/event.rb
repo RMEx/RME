@@ -628,8 +628,24 @@ module RME
         events.any? { |i| event(i).press?(mouse_btn, precise) }
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above one of the given event(s) and
+      #   triggering a `click` event during the command's call on the specified
+      #   `mouse_btn` (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_trigger_event?,
+                        :description => 'Event.mouse_trigger_event?',
+                        :parameters  => [
+                          EVENT_IDS,
+                          MOUSE_BUTTON,
+                          MOUSE_PRECISION
+                        ]}) do |event_ids, mouse_btn, precise|
+        events = select_events(events_ids)
+        events.any? { |i| event(i).trigger?(mouse_btn, precise) }
+      end
+
       # TODO
-      # - `mouse_trigger_event?`
       # - `mouse_repeat_event?`
       # - `mouse_release_event?`
       # - `event_x`
