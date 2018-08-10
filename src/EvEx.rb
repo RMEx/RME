@@ -1090,7 +1090,7 @@ module Handler
     #--------------------------------------------------------------------------
     # * API for player
     #--------------------------------------------------------------------------
-    [:repeat, :release].each do |m|
+    [:release].each do |m|
       define_method("mouse_#{m}_player?") do |*k|
         k = (k[0]) ? k[0] : :mouse_left
         r = (k[1]) ? k[1] : false

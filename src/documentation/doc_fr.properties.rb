@@ -295,6 +295,7 @@
   'doc.cmd.Event.mouse_trigger_event?' => "Renvoie `true` si la souris vient de cliquer un événement du sélecteur passé en argument",
   'doc.cmd.Event.mouse_trigger_player?' => "Renvoie `true` si le bouton de la souris spécifié est appuyé une fois, et que le curseur survole l'événement du joueur",
   'doc.cmd.Event.mouse_repeat_event?' => "Renvoie `true` si la souris clique de manière répétée un événement du sélecteur passé en argument",
+  'doc.cmd.Event.mouse_repeat_player?' => "Renvoie `true` si le bouton de la souris spécifiée est appuyé de manière répétée, et que le curseur survole l'événement du joueur",
   'doc.cmd.Event.mouse_release_event?' => "Renvoie `true` si la souris est relâchée sur un événement du sélecteur passé en argument",
 
   # Parameters
