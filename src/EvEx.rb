@@ -1090,7 +1090,7 @@ module Handler
     #--------------------------------------------------------------------------
     # * API for player
     #--------------------------------------------------------------------------
-    [:hover, :click].each do |m|
+    [:click].each do |m|
       define_method("mouse_#{m}_player?"){ |*k|
         k = (k[0]) ? k[0] : false
         $game_player.send("#{m}?", k)

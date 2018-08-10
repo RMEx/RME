@@ -595,6 +595,19 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Checks if the mouse is currently above the player during the
+      #   command's call (`true`); or not (`false`).
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :mouse_hover_player?,
+                        :description => 'Event.mouse_hover_player?',
+                        :parameters  => [
+                          MOUSE_PRECISION
+                        ]}) do |precise|
+        $game_player.hover?(precise)
+      end
+
+      # ------------------------------------------------------------------------
       # * Checks if the mouse is currently above one of the given event(s) and
       #   triggering a `click` event during the command's call (`true`);
       #   or not (`false`).
@@ -713,7 +726,6 @@ module RME
       # - `event_through`
       # - `player_through`
       # - `event_erased?`
-      # - `mouse_hover_player?`
       # - `mouse_click_player?`
       # - `mouse_press_player?`
       # - `mouse_trigger_player?`
