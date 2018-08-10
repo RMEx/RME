@@ -801,10 +801,21 @@ module RME
         event(event_id).screen_x
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the y-coordinate (relative to the screen) of the given event.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_screen_y,
+                        :description => 'Event.event_screen_y',
+                        :parameters  => [
+                          EVENT_ID
+                        ]}) do |event_id|
+        event(event_id).screen_y
+      end
+
       # TODO
       # - `event_in_screen?`
       # - `player_in_screen?`
-      # - `event_screen_y`
       # - `event_pixel_x`
       # - `event_pixel_y`
       # - `event_change_character`

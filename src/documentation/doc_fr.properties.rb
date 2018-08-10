@@ -301,6 +301,7 @@
   'doc.cmd.Event.event_x' => "Renvoie la coordonnée en X de la case sur laquelle se trouve l'événement",
   'doc.cmd.Event.event_y' => "Renvoie la coordonnée en Y de la case sur laquelle se trouve l'événement",
   'doc.cmd.Event.event_screen_x' => "Renvoie la coordonnée en X par rapport à l'écran de l'événement",
+  'doc.cmd.Event.event_screen_y' => "Renvoie la coordonnée en Y par rapport à l'écran de l'événement",
 
   # Parameters
   ## Map
