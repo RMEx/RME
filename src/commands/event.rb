@@ -590,8 +590,8 @@ module RME
                           EVENT_IDS,
                           MOUSE_PRECISION
                         ]}) do |event_ids, precise|
-        events = select_events(events_ids)
-        events.any? { |i| event(i).hover?(precise) }
+        events = ::Command.select_events(events_ids)
+        events.any? { |i| ::Command.event(i).hover?(precise) }
       end
 
       # ------------------------------------------------------------------------
@@ -620,8 +620,8 @@ module RME
                           EVENT_IDS,
                           MOUSE_PRECISION
                         ]}) do |event_ids, precise|
-        events = select_events(events_ids)
-        events.any? { |i| event(i).click?(precise) }
+        events = ::Command.select_events(events_ids)
+        events.any? { |i| ::Command.event(i).click?(precise) }
       end
 
       # ------------------------------------------------------------------------
@@ -651,8 +651,8 @@ module RME
                           MOUSE_BUTTON,
                           MOUSE_PRECISION
                         ]}) do |event_ids, mouse_btn, precise|
-        events = select_events(events_ids)
-        events.any? { |i| event(i).press?(mouse_btn, precise) }
+        events = ::Command.select_events(events_ids)
+        events.any? { |i| ::Command.event(i).press?(mouse_btn, precise) }
       end
 
       # ------------------------------------------------------------------------
@@ -683,8 +683,8 @@ module RME
                           MOUSE_BUTTON,
                           MOUSE_PRECISION
                         ]}) do |event_ids, mouse_btn, precise|
-        events = select_events(events_ids)
-        events.any? { |i| event(i).trigger?(mouse_btn, precise) }
+        events = ::Command.select_events(events_ids)
+        events.any? { |i| ::Command.event(i).trigger?(mouse_btn, precise) }
       end
 
       # ------------------------------------------------------------------------
@@ -715,8 +715,8 @@ module RME
                           MOUSE_BUTTON,
                           MOUSE_PRECISION
                         ]}) do |event_ids, mouse_btn, precise|
-        events = select_events(events_ids)
-        events.any? { |i| event(i).repeat?(mouse_btn, precise) }
+        events = ::Command.select_events(events_ids)
+        events.any? { |i| ::Command.event(i).repeat?(mouse_btn, precise) }
       end
 
       # ------------------------------------------------------------------------
@@ -747,8 +747,8 @@ module RME
                           MOUSE_BUTTON,
                           MOUSE_PRECISION
                         ]}) do |event_ids, mouse_btn, precise|
-        events = select_events(events_ids)
-        events.any? { |i| event(i).release?(mouse_btn, precise) }
+        events = ::Command.select_events(events_ids)
+        events.any? { |i| ::Command.event(i).release?(mouse_btn, precise) }
       end
 
       # ------------------------------------------------------------------------
@@ -774,7 +774,7 @@ module RME
                         :parameters  => [
                           EVENT_ID
                         ]}) do |event_id|
-        event(event_id).x
+        ::Command.event(event_id).x
       end
 
       # ------------------------------------------------------------------------
@@ -786,7 +786,7 @@ module RME
                         :parameters  => [
                           EVENT_ID
                         ]}) do |event_id|
-        event(event_id).y
+        ::Command.event(event_id).y
       end
 
       # ------------------------------------------------------------------------
@@ -798,7 +798,7 @@ module RME
                         :parameters  => [
                           EVENT_ID
                         ]}) do |event_id|
-        event(event_id).screen_x
+        ::Command.event(event_id).screen_x
       end
 
       # ------------------------------------------------------------------------
@@ -810,7 +810,7 @@ module RME
                         :parameters  => [
                           EVENT_ID
                         ]}) do |event_id|
-        event(event_id).screen_y
+        ::Command.event(event_id).screen_y
       end
 
       # TODO
