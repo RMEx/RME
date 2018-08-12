@@ -778,6 +778,15 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Returns the x-coordinate of the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_x,
+                        :description => 'Event.player_x'}) do
+        $game_player.x
+      end
+
+      # ------------------------------------------------------------------------
       # * Returns the y-coordinate of the given event.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -846,7 +855,6 @@ module RME
       # - `current_event_id`
       # - `me`
       # - `event_direction`
-      # - `player_x`
       # - `player_y`
       # - `player_screen_x`
       # - `player_screen_y`
