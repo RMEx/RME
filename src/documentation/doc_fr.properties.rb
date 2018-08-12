@@ -311,6 +311,7 @@
   'doc.cmd.Event.event_pixel_y' => "Renvoie la coordonnée en Y de l'événement (en pixels)",
   'doc.cmd.Event.player_pixel_y' => "Renvoie la coordonnée en Y du joueur (en pixels)",
   'doc.cmd.Event.event_in_screen?' => "Renvoie `true` si l'événement est visible à l'écran; `false` autrement",
+  'doc.cmd.Event.player_in_screen?' => "Renvoie `true` si le joueur est visible à l'écran; `false` autrement",
 
   # Parameters
   ## Map

@@ -906,8 +906,16 @@ module RME
         check_x and check_y
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the player is currently on screen or not.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_in_screen?,
+                        :description => 'Event.player_in_screen?'}) do
+        ::Command.event_in_screen?(0)
+      end
+
       # TODO
-      # - `player_in_screen?`
       # - `event_change_character`
       # - `event_character_name`
       # - `event_character_index`

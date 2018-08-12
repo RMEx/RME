@@ -1747,9 +1747,6 @@ module RMECommands
       end
       return flag && !event1.moving?
     end
-    def player_in_screen?
-      event_in_screen?(0)
-    end
 
     def event_width(id) 
       character = event_character_name(id)
