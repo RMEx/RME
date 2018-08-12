@@ -303,6 +303,7 @@
   'doc.cmd.Event.event_y' => "Renvoie la coordonnée en Y de la case sur laquelle se trouve l'événement",
   'doc.cmd.Event.player_y' => "Renvoie la coordonnée en Y de la case sur laquelle se trouve le joueur",
   'doc.cmd.Event.event_screen_x' => "Renvoie la coordonnée en X par rapport à l'écran de l'événement",
+  'doc.cmd.Event.player_screen_x' => "Renvoie la coordonnée en X par rapport à l'écran du joueur",
   'doc.cmd.Event.event_screen_y' => "Renvoie la coordonnée en Y par rapport à l'écran de l'événement",
   'doc.cmd.Event.event_pixel_x' => "Renvoie la coordonnée en X de l'événement (en pixels)",
   'doc.cmd.Event.event_pixel_y' => "Renvoie la coordonnée en Y de l'événement (en pixels)",
