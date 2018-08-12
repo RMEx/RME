@@ -1660,7 +1660,6 @@ module RMECommands
     def event_character_index(id); event(id).character_index; end
     def current_event_id; me; end
     def me; Game_Interpreter.current_id; end
-    def player_pixel_y; event_pixel_y(0); end
     def player_direction(value = nil) ; event_direction(0, value) end
     def distance_between(flag, ev1, ev2)
       ev1, ev2 = event(ev1), event(ev2)

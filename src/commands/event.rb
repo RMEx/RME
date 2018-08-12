@@ -882,6 +882,15 @@ module RME
         ($game_map.display_y * 32) + ::Command.event_screen_y(event_id)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns the y-coordinate (pixels being the unit) of the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_pixel_y,
+                        :description => 'Event.player_pixel_y'}) do
+        ::Command.event_pixel_y(0)
+      end
+
       # TODO
       # - `event_in_screen?`
       # - `player_in_screen?`
@@ -891,7 +900,6 @@ module RME
       # - `current_event_id`
       # - `me`
       # - `event_direction`
-      # - `player_pixel_y`
       # - `player_direction`
       # - `squares_between`
       # - `pixels_between`

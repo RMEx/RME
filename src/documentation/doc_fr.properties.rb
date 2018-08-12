@@ -309,6 +309,7 @@
   'doc.cmd.Event.event_pixel_x' => "Renvoie la coordonnée en X de l'événement (en pixels)",
   'doc.cmd.Event.player_pixel_x' => "Renvoie la coordonnée en X du joueur (en pixels)",
   'doc.cmd.Event.event_pixel_y' => "Renvoie la coordonnée en Y de l'événement (en pixels)",
+  'doc.cmd.Event.player_pixel_y' => "Renvoie la coordonnée en Y du joueur (en pixels)",
 
   # Parameters
   ## Map
