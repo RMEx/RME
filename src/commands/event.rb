@@ -71,6 +71,10 @@ module RME
                               :type        => ParameterType::NullableCoordinate,
                               :description => 'Event.new_coordinate_value',
                               :default     => nil}
+      NEW_DIRECTION_VALUE = {:name        => :value,
+                             :type        => ParameterType::NullableDirection,
+                             :description => 'Event.new_direction_value',
+                             :default     => nil}
       NEW_ZOOM_VALUE = {:name        => :value,
                         :type        => ParameterType::PositiveFloat,
                         :description => 'Event.new_zoom_value',
@@ -915,13 +919,30 @@ module RME
         ::Command.event_in_screen?(0)
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns or updates (if `value` is provided) the direction of the
+      #   given event.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_direction,
+                        :description => 'Event.event_direction',
+                        :parameters  => [
+                          EVENT_ID,
+                          NEW_DIRECTION_VALUE
+                        ]}) do |event_id, value|
+        unless value
+          ::Command.event(event_id).direction
+        else
+          ::Command.event(event_id).set_direction(value)
+        end
+      end
+
       # TODO
       # - `event_change_character`
       # - `event_character_name`
       # - `event_character_index`
       # - `current_event_id`
       # - `me`
-      # - `event_direction`
       # - `player_direction`
       # - `squares_between`
       # - `pixels_between`

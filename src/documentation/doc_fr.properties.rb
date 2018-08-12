@@ -313,6 +313,7 @@
   'doc.cmd.Event.player_pixel_y' => "Renvoie la coordonnée en Y du joueur (en pixels)",
   'doc.cmd.Event.event_in_screen?' => "Renvoie `true` si l'événement est visible à l'écran; `false` autrement",
   'doc.cmd.Event.player_in_screen?' => "Renvoie `true` si le joueur est visible à l'écran; `false` autrement",
+  'doc.cmd.Event.event_direction' => "Renvoie (ou met-à-jour) la direction de l'événement",
 
   # Parameters
   ## Map
@@ -396,6 +397,7 @@
   'doc.parameter.Event.easing' => "La transition à appliquer",
   'doc.parameter.Event.new_coordinate_value' => "Nouvelle coordonnée. Si aucune valeur n'est donnée, la commande renverra la coordonnée courante",
   'doc.parameter.Event.new_zoom_value' => "Nouveau niveau de zoom. Si aucune valeur n'est donnée, la commande renverra le niveau courant",
+  'doc.parameter.Event.new_direction_value' => "Nouvelle direction de l'événement. Si aucune valeur n'est donnée, la commande renverra la direction courante",
   'doc.parameter.Event.include_page.event_id' => "Identifiant de l'événement où chercher la page à inclure",
   'doc.parameter.Event.include_page.page_id' => "Identifiant de la page à inclure",
   'doc.parameter.Event.include_page.runnable' => "Si cette variable a pour valeur `true`, la page ne sera incluse que si la condition de lancement de la page est respectée.",

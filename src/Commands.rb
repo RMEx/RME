@@ -1649,10 +1649,6 @@ module RMECommands
 
   module Events
     def event_name(id); event(id).name; end
-    def event_direction(id, value = nil)
-      return event(id).direction unless value
-      event(id).set_direction(value)
-    end
     def event_change_character(id, character_name, character_index)
       event(id).set_graphic(character_name, character_index)
     end
