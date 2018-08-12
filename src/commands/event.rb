@@ -891,8 +891,22 @@ module RME
         ::Command.event_pixel_y(0)
       end
 
+      # ------------------------------------------------------------------------
+      # * Checks if the given event is currently on screen or not.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :event_in_screen?,
+                        :description => 'Event.event_in_screen?',
+                        :parameters  => [
+                          EVENT_ID
+                        ]}) do |event_id|
+        e = ::Command.event(event_id)
+        check_x = (e.screen_x > 0) and (e.screen_x < Graphics.width)
+        check_y = (e.screen_y > 0) and (e.screen_y < Graphics.height)
+        check_x and check_y
+      end
+
       # TODO
-      # - `event_in_screen?`
       # - `player_in_screen?`
       # - `event_change_character`
       # - `event_character_name`

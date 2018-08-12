@@ -896,11 +896,6 @@ register_command :standard, 'Command.unflash_rect'
          }, true
   register_command :event, "Command.event_allow_overlap"
 
-  link_method_documentation "Command.event_in_screen?",
-                        "Renvoie true si l'évènement référencé par son ID est visible à l'écran, false sinon",
-                        {:id => ["ID de l'évènement (0 pour héros)", :Fixnum]}, true
-  register_command :event, "Command.event_in_screen?"
-
    link_method_documentation "Command.player_in_screen?",
                         "Renvoie true si le joueur est visible à l'écran, false sinon",
                         {}, true

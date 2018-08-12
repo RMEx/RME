@@ -1747,12 +1747,6 @@ module RMECommands
       end
       return flag && !event1.moving?
     end
-    def event_in_screen?(id)
-      ev = event(id)
-      check_x = ev.screen_x > 0 && ev.screen_x < Graphics.width
-      check_y = ev.screen_y > 0 && ev.screen_y < Graphics.height
-      check_x && check_y
-    end
     def player_in_screen?
       event_in_screen?(0)
     end
