@@ -862,6 +862,15 @@ module RME
       end
 
       # ------------------------------------------------------------------------
+      # * Returns the x-coordinate (pixels being the unit) of the player.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_pixel_x,
+                        :description => 'Event.player_pixel_x'}) do
+        ::Command.event_pixel_x(0)
+      end
+
+      # ------------------------------------------------------------------------
       # * Returns the y-coordinate (pixels being the unit) of the given event.
       # ------------------------------------------------------------------------
       Command::declare({:section     => self,
@@ -882,7 +891,6 @@ module RME
       # - `current_event_id`
       # - `me`
       # - `event_direction`
-      # - `player_pixel_x`
       # - `player_pixel_y`
       # - `player_direction`
       # - `squares_between`

@@ -942,11 +942,6 @@ register_command :standard, 'Command.unflash_rect'
                           :"*value" => ["Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction de l'évènement ciblé.", :Fixnum]}, true
   register_command :event, "Command.event_direction"
 
-  link_method_documentation "Command.player_pixel_x",
-                        "Renvoie la coordonnées X du joueur en pixel sur la carte",
-                        {}, true
-  register_command :event, "Command.player_pixel_x"
-
   link_method_documentation "Command.player_pixel_y",
                         "Renvoie la coordonnées Y du joueur en pixel sur la carte",
                         {}, true
