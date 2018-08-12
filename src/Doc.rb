@@ -926,11 +926,6 @@ register_command :standard, 'Command.unflash_rect'
                         "Renvoie l'ID de l'évènement en cours, alias : current_event_id", {}, true
   register_command :event, "Command.me"
 
-  link_method_documentation "Command.player_direction",
-                        "Renvoie (ou change) la direction (2 pour le bas, 8, pour le haut, 4 pour la gauche , 6 pour la droite ) du joueur",
-                        {:"*value" => ["Valeur de la direction, 2,4,6,8. Si aucune valeur n'est donnée, la commande retourne la direction du héros", :Fixnum]}, true
-  register_command :event, "Command.player_direction"
-
   link_method_documentation "Command.squares_between",
                         "Renvoie le nombre de cases entre deux évènements référencés par leurs ID",
                         {

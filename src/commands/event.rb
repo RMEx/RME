@@ -937,13 +937,24 @@ module RME
         end
       end
 
+      # ------------------------------------------------------------------------
+      # * Returns or updates (if `value` is provided) the player's direction.
+      # ------------------------------------------------------------------------
+      Command::declare({:section     => self,
+                        :name        => :player_direction,
+                        :description => 'Event.player_direction',
+                        :parameters  => [
+                          NEW_DIRECTION_VALUE
+                        ]}) do |value|
+        ::Command.event_directon(0, value)
+      end
+
       # TODO
       # - `event_change_character`
       # - `event_character_name`
       # - `event_character_index`
       # - `current_event_id`
       # - `me`
-      # - `player_direction`
       # - `squares_between`
       # - `pixels_between`
       # - `event_look_at?`

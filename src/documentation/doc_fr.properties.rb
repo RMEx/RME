@@ -314,6 +314,7 @@
   'doc.cmd.Event.event_in_screen?' => "Renvoie `true` si l'événement est visible à l'écran; `false` autrement",
   'doc.cmd.Event.player_in_screen?' => "Renvoie `true` si le joueur est visible à l'écran; `false` autrement",
   'doc.cmd.Event.event_direction' => "Renvoie (ou met-à-jour) la direction de l'événement",
+  'doc.cmd.Event.player_direction' => "Renvoie (ou met-à-jour) la direction du joueur",
 
   # Parameters
   ## Map
