@@ -362,6 +362,7 @@ module RME
       ParameterType::declare(:Direction,
                              "Movement direction",
                              Set.new(2, 4, 6, 8))
+      NullableDirection = Nullable::of(ParameterType::Direction)
       ParameterType::declare(:RegionId,
                              "Region's identifier",
                              ClosedInterval.new(0, 63))
