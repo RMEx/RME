@@ -8,7 +8,7 @@ about: Proposer une nouvelle commande.
 
 ### Définition de la commande
 
-#### Objectif de la command
+#### Objectif de la commande
 
 > *Décrivez-nous ce que la commande devrait faire. N'hésitez pas à ajouter d'éventuels dessins ou schema permettant d'illustrer votre propos.*
 
