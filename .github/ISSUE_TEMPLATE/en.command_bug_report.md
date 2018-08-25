@@ -10,7 +10,7 @@ about: Report a bug regarding one command's usage.
 
 - **RME's Version**: ``
 - **Command**: ``
-- *Other scripts (if there is any*):
+- *Other scripts (if there are any*):
 
 ---
 
