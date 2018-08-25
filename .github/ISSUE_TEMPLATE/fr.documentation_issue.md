@@ -16,7 +16,7 @@ about: Indiquer/corriger une erreur dans la documentation.
 
 ### Proposition d'amélioration
 
-**Documentation actuel** :
+**Documentation actuelle** :
 
 
 **Documentation corrigée** : (*si vous voulez éventuellement proposer une correction*)
