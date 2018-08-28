@@ -1,6 +1,6 @@
 [Join us on Discord !](https://discord.gg/yRUZcdQ)
 
-# [![RMEx](http://rmex.github.io/images/rmex-shortcut.png)](http://rmex.github.io) [RME : RPG Maker Extender](https://github.com/RMEx/RME/wiki) (`v1.4.0`)
+# [![RMEx](http://rmex.github.io/images/rmex-shortcut.png)](http://rmex.github.io) [RME : RPG Maker Extender](https://github.com/RMEx/RME/wiki) (`v1.4.1`)
 
 **RME** is the successor of **[Event Extender](http://funkywork.github.io/EE)**.
 It offers a collection of tools to promote the personalization of an RPG Maker VX Ace project.
