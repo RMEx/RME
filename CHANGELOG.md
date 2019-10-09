@@ -1,5 +1,9 @@
 # RME Changelog
 
+## Release (2.0.0)
+
+- Great improvement on global performances (@xvw with @BlancLapin's help)
+
 ## Release (1.4.1)
 
 ### Bug fixes

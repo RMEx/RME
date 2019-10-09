@@ -7637,12 +7637,6 @@ class Game_CharacterBase
     rm_extender_update
     update_scroll(last_real_x, last_real_y)
     update_eHandler
-    Game_CharacterBase.last_hovered = @id if hover?
-    Game_CharacterBase.last_clicked = @id if click?
-    Game_CharacterBase.last_triggered = @id if trigger?
-    Game_CharacterBase.last_released = @id if release?
-    Game_CharacterBase.last_repeated = @id if repeat?
-    Game_CharacterBase.last_pressed = @id if press?
     update_tone_change
   end
   #--------------------------------------------------------------------------
@@ -9221,7 +9215,26 @@ class Game_Map
     Game_Map.eval_proc(:all, Game_Map.running_proc)
     Game_Map.eval_proc(map_id, Game_Map.running_proc)
     @parallaxes.each {|parallax| parallax.update}
+    update_last_action_on_event
     rm_extender_update(main)
+  end
+  #--------------------------------------------------------------------------
+  # * Update Last Clicked Actions
+  #--------------------------------------------------------------------------
+  def update_last_action_on_event
+    return unless Mouse.moving?
+    x = Mouse.square_x
+    y = Mouse.square_y
+    result = event_id_xy(x, y)
+    result = 0 if result <= 0 && $game_player.x == x && $game_player.y == y
+    if result >= 0 
+      Game_CharacterBase.last_hovered = result
+      Game_CharacterBase.last_clicked = result if Mouse.click?
+      Game_CharacterBase.last_triggered = result if Mouse.trigger?(:mouse_left)
+      Game_CharacterBase.last_released = result if Mouse.release?(:mouse_left)
+      Game_CharacterBase.last_repeated = result if Mouse.repeat?(:mouse_left)
+      Game_CharacterBase.last_pressed = result if Mouse.press?(:mouse_left)
+    end
   end
   #--------------------------------------------------------------------------
   # * Event Setup
