@@ -11,6 +11,7 @@
 - Add command `last_used_skill` (@xvw, requested by @CuddleFox)
 
 ### Bug fixes
+- Fix `player_through` (@xvw, reported by @acs-l)
 - Fix `last_used_item` to introduce distinction between skills and items (@xvw)
 - Fix followers displacement (@xvw, reported by @Erwill)
 - Fix `create_text_window` size inference (@xvw, reported by @AurelienDosSantos)

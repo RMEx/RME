@@ -13878,7 +13878,7 @@ module RMECommands
     def player_through?; event_through?(0); end
 
     def event_through(id, flag = true); event(id).through = flag; end
-    def player_through(flag = true); event_through(flag); end
+    def player_through(flag = true); event_through(0, flag); end
 
     def event_trail(ids, len, mode = 0, tone = nil)
       select_events(ids).each do |id_event|
