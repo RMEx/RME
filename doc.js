@@ -174,7 +174,10 @@ var documentation = [
 {"name":"file_append", "description":"Ajoute du contenu en fin de fichier. Si le fichier n'existe pas, il est créé", "returnable":true,"parameters":[{"name":"filename", "desc":"Nom du fichier", "type":"String"},
 {"name":"content", "desc":"Contenu à écrire", "type":"String"}]},
 {"name":"spritesheet_z", "description":"Modifie la valeur Z de la spritesheet référencée par son ID. Si aucune valeur n'est donnée, la commande renverra la valeur courante", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la spritesheet", "type":"Fixnum"},
-{"name":"*z", "desc":"Position Z de la spritesheet. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]}
+{"name":"*z", "desc":"Position Z de la spritesheet. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]},
+{"name":"event_direction_fix", "description":"Active/Désactive (et renvoie) la direction fixe pour un évenement", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement", "type":"Fixnum"},
+{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
+{"name":"player_direction_fix", "description":"Active/Désactive (et renvoie) la direction fixe pour le joueur", "returnable":true,"parameters":[{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]}
 ]},
 {"name":"Evénements","desc":"Commandes relatives aux évènements","commands":[
 {"name":"include_page", "description":"Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement", "returnable":false,"parameters":[{"name":"map_id", "desc":"ID de la map où chercher l'évènement à inclure", "type":"Fixnum"},
@@ -741,7 +744,8 @@ var documentation = [
 {"name":"idB", "desc":"ID de la seconde image", "type":"Fixnum"}]},
 {"name":"fresh_picture_id", "description":"Génère un ID non utilisé pour une picture", "returnable":true,"parameters":[]},
 {"name":"picture_z", "description":"Modifie la valeur Z de l'image référencée par son ID. Si aucune valeur n'est donnée, la commande renverra la valeur courante", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'image", "type":"Fixnum"},
-{"name":"*z", "desc":"Position Z de l'image'. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]}
+{"name":"*z", "desc":"Position Z de l'image'. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]},
+{"name":"get_picture_opacity", "description":"Renvoie l'opacité d'une image référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'image", "type":"Fixnum"}]}
 ]},
 {"name":"Spritesheet","desc":"Commandes relatives à la manipulation des feuilles de Sprites","commands":[
 {"name":"spritesheet_show", "description":"Affiche une spritesheet à l'écran", "returnable":false,"parameters":[{"name":"id", "desc":"ID de la spritesheet", "type":"Fixnum"},

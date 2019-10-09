@@ -674,6 +674,10 @@ module RMECommands
       end
       wait(duration) if wf
     end
+
+    def get_picture_opacity(id)
+      pictures[id].opacity
+    end
     #--------------------------------------------------------------------------
     # * Shake the picture
     #--------------------------------------------------------------------------
@@ -2208,6 +2212,18 @@ module RMECommands
 
     def player_step_animation(value = nil)
       event_step_animation(0, value)
+    end
+
+    def event_direction_fix(id, value = nil)
+      e = event(id)
+      unless value.nil?
+        e.direction_fix = !!value
+      end
+      e.direction_fix
+    end
+    
+    def player_direction_fix(value = nil)
+      event_direction_fix(0, value)
     end
 
     def character_width(name) 

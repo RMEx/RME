@@ -3,8 +3,11 @@
 ## Release (2.0.0)
 
 ### Additions
-- Add commands `event_step_animation` and `player_step_animation` (@xvw)
-- Add commands `event_walk_animation` and `player_walk_animation` (@xvw)
+
+- Add command `get_picture_opacity` (@xvw, reported by @Zer0xxxxx)
+- Add commands `event_direction_fix` and `player_direction_fix` (@xvw, requested by @Zer0xxxxx)
+- Add commands `event_step_animation` and `player_step_animation` (@xvw, requested by @Zer0xxxxx)
+- Add commands `event_walk_animation` and `player_walk_animation` (@xvw, requested by @Zer0xxxxx)
 - Add command `last_used_skill` (@xvw, requested by @CuddleFox)
 
 ### Bug fixes
