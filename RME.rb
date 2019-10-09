@@ -8008,6 +8008,9 @@ class Sprite_Character
   #--------------------------------------------------------------------------
   def set_character_bitmap
     rm_extender_set_character_bitmap
+    @old_buzz = 0
+    @origin_len_x = self.zoom_x
+    return if character.is_a? Game_Follower
     if character.changing_graphics || (character.ox.nil? && character.oy.nil?)
       character.ox = self.ox
       character.oy = self.oy
@@ -8016,8 +8019,6 @@ class Sprite_Character
       self.oy = character.oy
     end
     character.changing_graphics = false
-    @old_buzz = 0
-    @origin_len_x = self.zoom_x
   end
   #--------------------------------------------------------------------------
   # * Dispose trails
@@ -15374,6 +15375,8 @@ module RMECommands
   module CmdWindow
 
     def create_text_window(id, content, x, y, w=-1, h=-1, op = 255, closed=nil)
+      w ||= -1
+      h ||= -1
       f = Window_Text.new(x, y, content, w, h, closed)
       SceneManager.scene.add_window(id, f)
     end

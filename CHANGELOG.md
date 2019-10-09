@@ -2,8 +2,9 @@
 
 ## Release (2.0.0)
 
+- Fix followers displacement (@xvw, reported by @Erwill)
 - Fix `create_text_window` size inference (@xvw, reported by @AurelienDosSantos)
-- Great improvement on global performances (@xvw with @BlancLapin's help)
+- Great improvement on global performances (@xvw with @BlancLapin and @AurelienDosSantos 's help)
 
 ## Release (1.4.1)
 
