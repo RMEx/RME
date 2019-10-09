@@ -1847,6 +1847,7 @@ module RMECommands
     # end
 
     def last_used_item(); $game_temp.last_used_item; end
+    def last_used_skill(); $game_temp.last_used_skill; end
 
     append_commands
   end

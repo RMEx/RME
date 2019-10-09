@@ -1239,6 +1239,7 @@ var documentation = [
 {"name":"element_id", "desc":"Id de l'élément", "type":"Fixnum"}]}
 ]},
 {"name":"Techniques","desc":"Offre des commandes pour obtenir des informations sur les techniques","commands":[
+{"name":"last_used_item", "description":"Renvoie l'id du dernier objet utilisé", "returnable":true,"parameters":[]},
 {"name":"skill_scope", "description":"Renvoie la portée (en Entier) d'une technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la techinuqe", "type":"Fixnum"}]},
 {"name":"skill_has_no_scope?", "description":"Renvoie true si la technique référencée par son ID ne cible personne, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_for_one_enemy?", "description":"Renvoie true si la technique référencée par son ID cible un ennemi, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},

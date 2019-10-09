@@ -2356,6 +2356,12 @@ link_method_documentation 'Command.last_used_item',
    {}, true
 register_command :items, 'Command.last_used_item'
 
+link_method_documentation 'Command.last_used_skill',
+  'Renvoie l\'id de la dernière technique utilisée',
+   {}, true
+register_command :skills, 'Command.last_used_item'
+
+
 link_method_documentation "Command.use_item",
                         "Utilise un objet sur un héros, renvoie true ou false selon si l'utilisation a réussi ou échoué",
                         {:item_id => ["ID de l'objet à utiliser", :Fixnum],

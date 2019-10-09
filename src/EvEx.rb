@@ -357,6 +357,7 @@ class Game_Temp
     Game_Temp.current_troop = 0
   end
   attr_accessor :last_used_item
+  attr_accessor :last_used_skill
 end
 
 
@@ -427,7 +428,8 @@ class Game_Battler < Game_BattlerBase
   # * Memorize item ID
   #--------------------------------------------------------------------------
   def use_item(item)
-    $game_temp.last_used_item = item.id
+    $game_temp.last_used_item = item.id if item.is_a?(RPG::Item)
+    $game_temp.last_used_skill = item.id if item.is_a?(RPG::Skill)
     old_use_item(item)
   end
 end
