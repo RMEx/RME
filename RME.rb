@@ -13890,6 +13890,15 @@ module RMECommands
       event_trail(0, len, mode, tone)
     end
 
+    def event_dashing?(id)
+      e = event(id)
+      e.dash? && event_moving?(id)
+    end
+
+    def player_dashing?
+      event_dashing?(0)
+    end
+
     def event_stop_trail(ids)
       select_events(ids).each do |id_event|
         event(id_event).trails_signal = true

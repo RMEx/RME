@@ -174,10 +174,7 @@ var documentation = [
 {"name":"file_append", "description":"Ajoute du contenu en fin de fichier. Si le fichier n'existe pas, il est créé", "returnable":true,"parameters":[{"name":"filename", "desc":"Nom du fichier", "type":"String"},
 {"name":"content", "desc":"Contenu à écrire", "type":"String"}]},
 {"name":"spritesheet_z", "description":"Modifie la valeur Z de la spritesheet référencée par son ID. Si aucune valeur n'est donnée, la commande renverra la valeur courante", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la spritesheet", "type":"Fixnum"},
-{"name":"*z", "desc":"Position Z de la spritesheet. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]},
-{"name":"event_direction_fix", "description":"Active/Désactive (et renvoie) la direction fixe pour un évenement", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement", "type":"Fixnum"},
-{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
-{"name":"player_direction_fix", "description":"Active/Désactive (et renvoie) la direction fixe pour le joueur", "returnable":true,"parameters":[{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]}
+{"name":"*z", "desc":"Position Z de la spritesheet. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]}
 ]},
 {"name":"Evénements","desc":"Commandes relatives aux évènements","commands":[
 {"name":"include_page", "description":"Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement", "returnable":false,"parameters":[{"name":"map_id", "desc":"ID de la map où chercher l'évènement à inclure", "type":"Fixnum"},
@@ -545,7 +542,12 @@ var documentation = [
 {"name":"player_walk_animation", "description":"Active ou désactive l'animation de marche du joueur", "returnable":true,"parameters":[{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
 {"name":"event_step_animation", "description":"Active ou désactive l'animation de marche l'arrêt d'un évènement", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement", "type":"Fixnum"},
 {"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
-{"name":"player_step_animation", "description":"Active ou désactive l'animation de marche à l'arrêt du joueur", "returnable":true,"parameters":[{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]}
+{"name":"player_step_animation", "description":"Active ou désactive l'animation de marche à l'arrêt du joueur", "returnable":true,"parameters":[{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
+{"name":"event_direction_fix", "description":"Active/Désactive (et renvoie) la direction fixe pour un évenement", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'évènement", "type":"Fixnum"},
+{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
+{"name":"player_direction_fix", "description":"Active/Désactive (et renvoie) la direction fixe pour le joueur", "returnable":true,"parameters":[{"name":"*value", "desc":"true pour activer, false pour désactiver. Si aucun argument n'est fourni, la commande renverra la valeur sans rien modifier", "type":"Boolean"}]},
+{"name":"event_dashing?", "description":"Renvoie true si l'évènement est en train de courrir, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"l'ID de l'évènement", "type":"Fixnum"}]},
+{"name":"player_dashing?", "description":"Renvoie true si le joueur est en train de courrir, false sinon", "returnable":true,"parameters":[]}
 ]},
 {"name":"Clavier","desc":"Commandes relatives au clavier","commands":[
 {"name":"key_trigger?", "description":"Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon", "returnable":true,"parameters":[{"name":"key", "desc":"Symbole référençant une touche (cf:attributs)", "type":"Symbol"}]},
