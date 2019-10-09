@@ -2186,6 +2186,30 @@ module RMECommands
       event_height(0)
     end
 
+    def event_walk_animation(id, value = nil)
+      e = event(id)
+      unless value.nil?
+        e.walk_anime = !!value
+      end
+      e.walk_anime
+    end
+
+    def player_walk_animation(value = nil)
+      event_walk_animation(0, value)
+    end
+
+    def event_step_animation(id, value = nil)
+      e = event(id)
+      unless value.nil?
+        e.step_anime = !!value
+      end
+      e.step_anime
+    end
+
+    def player_step_animation(value = nil)
+      event_step_animation(0, value)
+    end
+
     def character_width(name) 
       real_name = "Characters/" + name
       bmp = Cache.swap(real_name)

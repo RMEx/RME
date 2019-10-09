@@ -1438,6 +1438,8 @@ class Game_CharacterBase
   attr_accessor :tone
   attr_accessor :allow_overlap
   attr_accessor :changing_graphics
+  attr_accessor :step_anime
+  attr_accessor :walk_anime
   attr_reader :id
 
   alias_method :allow_overlap?, :allow_overlap
