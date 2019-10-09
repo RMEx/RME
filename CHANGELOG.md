@@ -2,6 +2,7 @@
 
 ## Release (2.0.0)
 
+- Fix `create_text_window` size inference (@xvw, reported by @AurelienDosSantos)
 - Great improvement on global performances (@xvw with @BlancLapin's help)
 
 ## Release (1.4.1)
