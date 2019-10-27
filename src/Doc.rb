@@ -138,14 +138,14 @@ class Sprite
   link_method_documentation :"self.in?",
   "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle du sprite",
   {
-    :x=> ["Coordonnées X du point", :Fixnum],
-    :y=> ["Coordonnées Y du point", :Fixnum]
+    :x=> ["Coordonnée X du point", :Fixnum],
+    :y=> ["Coordonnée Y du point", :Fixnum]
   }, true
   link_method_documentation :"self.precise_in?",
   "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le bitmap du sprite, en tenant compte de la transparence",
   {
-    :x=> ["Coordonnées X du point", :Fixnum],
-    :y=> ["Coordonnées Y du point", :Fixnum]
+    :x=> ["Coordonnée X du point", :Fixnum],
+    :y=> ["Coordonnée Y du point", :Fixnum]
   }, true
   link_method_documentation :"self.hover?",
   "Vérifie si la souris passe au dessus du rectangle du sprite",
@@ -188,8 +188,8 @@ class Rect
   link_method_documentation :"self.in?",
   "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est inscrit dans le rectangle",
   {
-    :x=> ["Coordonnées X du point", :Fixnum],
-    :y=> ["Coordonnées Y du point", :Fixnum]
+    :x=> ["Coordonnée X du point", :Fixnum],
+    :y=> ["Coordonnée Y du point", :Fixnum]
   }, true
   link_method_documentation :"self.hover?",
   "Vérifie si la souris passe au dessus du rectangle",
@@ -232,14 +232,14 @@ class Bitmap
   link_method_documentation :"self.fast_get_pixel",
   "Retourne l'objet Color correspondant au point passé en argument (via (x, y), ou via une instance de Point) de manière très rapide",
   {
-    :x => ["Coordonnées X", :Fixnum],
-    :y => ["Coordonnées Y", :Fixnum]
+    :x => ["Coordonnée X", :Fixnum],
+    :y => ["Coordonnée Y", :Fixnum]
   }, true
   link_method_documentation :"self.is_transparent?",
   "Vérifie si le point passé en argument (via (x, y), ou via une instance de Point) est sur un pixel transparent",
   {
-    :x => ["Coordonnées X", :Fixnum],
-    :y => ["Coordonnées Y", :Fixnum]
+    :x => ["Coordonnée X", :Fixnum],
+    :y => ["Coordonnée Y", :Fixnum]
   }, true
 end
 
@@ -301,14 +301,14 @@ class Point
   link_method_documentation :"Point.new",
   "Constructeur de point",
   {
-    :x => ["Coordonnées X du point", :Fixnum],
-    :y => ["Coordonnées Y du point", :Fixnum]
+    :x => ["Coordonnée X du point", :Fixnum],
+    :y => ["Coordonnée Y du point", :Fixnum]
   }, true
   link_method_documentation :"self.set",
   "Change les coordonnées du point",
   {
-    :x => ["Coordonnées X du point", :Fixnum],
-    :y => ["Coordonnées Y du point", :Fixnum]
+    :x => ["Coordonnée X du point", :Fixnum],
+    :y => ["Coordonnée Y du point", :Fixnum]
   }
   link_method_documentation :"self.in?",
   "Vérifie si un point est inscrit dans un rectangle",
@@ -320,8 +320,8 @@ class Point
   "Rotation du point par rapport au point passé en argument (via (x, y), ou via une instance de Point)",
   {
     :angle => ["Angle de rotation en degrés décimaux (sens positif = sens trigonométrique)", :Fixnum],
-    :x => ["Coordonnées X du point à l'origine de la rotation", :Fixnum],
-    :y => ["Coordonnées Y du point à l'origine de la rotation", :Fixnum]
+    :x => ["Coordonnée X du point à l'origine de la rotation", :Fixnum],
+    :y => ["Coordonnée Y du point à l'origine de la rotation", :Fixnum]
   }
   link_method_documentation :"self.screen_to_sprite",
   "Transforme les coordonnées du point, de l'écran vers le référentiel du sprite",
@@ -605,8 +605,8 @@ end
 class Viewport
   link_class_documentation "Représente une portion de l'écran"
   link_attr_documentation :elts, "Renvoie la liste des éléments inclus dans le Viewport"
-  link_attr_documentation :x, "(Lecture/écriture) Coordonnées X du coin supérieur gauche"
-  link_attr_documentation :y, "(Lecture/écriture) Coordonnées Y du coin supérieur gauche"
+  link_attr_documentation :x, "(Lecture/écriture) Coordonnée X du coin supérieur gauche"
+  link_attr_documentation :y, "(Lecture/écriture) Coordonnée Y du coin supérieur gauche"
   link_attr_documentation :width, "(Lecture/écriture) Largeur du rectangle"
   link_attr_documentation :height, "(Lecture/écriture) Hauteur du rectangle"
   link_method_documentation "self.append",
@@ -696,8 +696,8 @@ module Command
   link_method_documentation 'Command.message',
                             'Affiche un message à l\'écran',
                             {
-                              :value => ["Message à afficer", :String],
-                             :"*face_name" => ["Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \\n pour afficher plusieurs lignes", :String],
+                              :value => ["Message à afficher (il faut utiliser \\n pour afficher plusieurs lignes)", :String],
+                             :"*face_name" => ["Nom du faceset (peut être remplacé par nil pour ne pas en afficher)", :String],
                              :"*face_index" => ["Index du faceset (ne sert à rien si aucun faceset n'est donnée)", :Fixnum],
                              :"*position" => ["Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2", :Fixnum],
                              :"*background" => ["Fond du message, 0 normal, 1 sombre, 2 transparent", :Fixnum],
@@ -709,10 +709,10 @@ module Command
   link_method_documentation 'Command.choice',
                             'Affiche un choix (potentiellement de plus de 4 options) et retourne la valeur du choix (1 pour le premier)',
                             {
-                              :array => ["List des possibilité, par exemple ['oui', 'non', 'autre']", :Array],
-                              :index_if_cancelled => ["Valeur a attribuer si l'utilisateur annule, si ce paramètre vaut 0, il sera impossible d'annuler le choix et ça peut être une autre valeur, par exemple 100 :)", :Fixnum],
-                             :"*value" => ["Message à afficer", :String],
-                             :"*face_name" => ["Nom du faceset (peut être remplacé par nil pour ne pas en afficher), il faut utiliser \\n pour afficher plusieurs lignes", :String],
+                              :array => ["List des possibilités, par exemple ['oui', 'non', 'autre']", :Array],
+                              :index_if_cancelled => ["Valeur à attribuer si l'utilisateur annule, si ce paramètre vaut 0, il sera impossible d'annuler le choix et ça peut être une autre valeur, par exemple 100 :)", :Fixnum],
+                             :"*value" => ["Message à afficher (il faut utiliser \\n pour afficher plusieurs lignes)", :String],
+                             :"*face_name" => ["Nom du faceset (peut être remplacé par nil pour ne pas en afficher)", :String],
                              :"*face_index" => ["Index du faceset (ne sert à rien si aucun faceset n'est donnée)", :Fixnum],
                              :"*position" => ["Position de la fenêtre de message (0 = en haut, 1 au centre, 2 en bas), par défaut vaut 2", :Fixnum],
                              :"*background" => ["Fond du message, 0 normal, 1 sombre, 2 transparent", :Fixnum],
@@ -735,8 +735,8 @@ module Command
   link_method_documentation 'Command.flash_square',
                             'Fait clignoter une case selon une couleur',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :color => ["Couleur du flash (utilisez la commande color)", :Color],
 
                             }
@@ -746,8 +746,8 @@ module Command
   link_method_documentation 'Command.unflash_square',
                             'Arrête le clignotement',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }
   register_command :standard, 'Command.unflash_square'
@@ -756,8 +756,8 @@ module Command
   link_method_documentation 'Command.flash_rect',
                             'Fait clignoter un rectangle de cases',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :width => ["Largeur du rectangle", :Fixnum],
                               :height => ["Largeur du rectangle", :Fixnum],
                               :color => ["Couleur du flash (utilisez la commande color)", :Color],
@@ -769,8 +769,8 @@ module Command
   link_method_documentation 'Command.unflash_rect',
                             'Arrête de faire clignoter les cases référencées par le rectangle',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :width => ["Largeur du rectangle", :Fixnum],
                               :height => ["Largeur du rectangle", :Fixnum],
 
@@ -867,7 +867,7 @@ module Command
   register_command :standard, "Command.random_figures"
 
   link_method_documentation "Command.map_id",
-                            "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sur!",
+                            "Renvoie l'ID de la map en cours. Idéalement, utiliser c(:map_id) qui est plus sûr !",
                             {}, true
   register_command :mapinfo, "Command.map_id"
 
@@ -877,43 +877,43 @@ module Command
   register_command :mapinfo, "Command.map_name"
 
   link_method_documentation "Command.id_at",
-                            "[Dépréciée] Renvoie l'ID de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas)",
+                            "[Dépréciée] Renvoie l'ID de l'évènement pointé par les coordonnées X, Y (0 si c'est le héros, -1 s'il n'y en a pas)",
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum]
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum]
                             }, true
   register_command :mapinfo, "Command.id_at"
 
   link_method_documentation "Command.event_at",
-                            "Renvoie l'id de l'évènement pointé par les coordonnées X,Y (0 si c'est le héros, -1 s'il n'y en a pas) (alias de id_at(x, y))",
+                            "Renvoie l'id de l'évènement pointé par les coordonnées X, Y (0 si c'est le héros, -1 s'il n'y en a pas) (alias de id_at(x, y))",
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum]
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum]
                             }, true
   register_command :mapinfo, "Command.event_at"
 
   link_method_documentation "Command.terrain_tag",
-                            "Renvoie le tag du terrain de la case pointée par les coordonnées X,Y",
+                            "Renvoie le tag du terrain de la case pointée par les coordonnées X, Y",
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum]
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum]
                             }, true
   register_command :mapinfo, "Command.terrain_tag"
 
   link_method_documentation "Command.tile_id",
-                            "Renvoie l'ID de la tile pointée par les coordonnées X,Y",
+                            "Renvoie l'ID de la tile pointée par les coordonnées X, Y",
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum],
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum],
                               :layer => ["Numéro de la couche", :Fixnum],
                              :"*map_id" => ["ID d'une carte, si aucun argument n'est donné, map_id vaut l'id de la map courante", :Fixnum],
                             }, true
   register_command :mapinfo, "Command.tile_id"
 
   link_method_documentation 'Command.set_tile_where',
-                            'Change tous les tile d\'une carte selon un ID et un layer',
+                            'Change tous les tiles d\'une carte selon un ID et un layer',
                             {
-                              :layer => ["Numero de la couche", :Fixnum],
+                              :layer => ["Numéro de la couche", :Fixnum],
                               :id => ["Id du tile à remplacer", :Fixnum],
                               :new_id => ["Nouvel Id du tile", :Fixnum],
 
@@ -935,26 +935,26 @@ module Command
                             'Change une case de tile',
                             {
                               :value => ["Valeur du tile (utilisez éventuellement la commande tile_id)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :layer => ["Couche de la carte (1,2 ou 3)", :Fixnum],
 
                             }, true # Maybe changed
   register_command :mapinfo, 'Command.set_tile'
 
   link_method_documentation "Command.region_id",
-                            "Renvoie l'ID de la région pointée par les coordonnées X,Y",
+                            "Renvoie l'ID de la région pointée par les coordonnées X, Y",
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum]
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum]
                             }, true
   register_command :mapinfo, "Command.region_id"
 
   link_method_documentation "Command.square_passable?",
-                            "Renvoie true si, depuis les coordonnées X,Y l'on peut avancer dans la direction passée en paramètre",
+                            "Renvoie true si, depuis les coordonnées X, Y l'on peut avancer dans la direction passée en paramètre",
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum],
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum],
                               :direction => ["Direction (2,4,6,8)", :Fixnum]
                             }, true
 
@@ -1021,8 +1021,8 @@ module Command
                             'Renvoie true si le pixel (x, y) est inclu dans l\'événement, false sinon',
                             {
                               :id => ["Args description", :ArgType],
-                              :x => ["Coordonnées X du point à vérifier", :Fixnum],
-                              :y => ["Coordonnées Y du point à vérifier", :Fixnum],
+                              :x => ["Coordonnée X du point à vérifier", :Fixnum],
+                              :y => ["Coordonnée Y du point à vérifier", :Fixnum],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true ", :Boolean],
 
                             }, true # Maybe changed
@@ -1032,8 +1032,8 @@ module Command
   link_method_documentation 'Command.pixel_in_player?',
                             'Renvoie true si le pixel (x, y) est inclu dans le joueur, false sinon',
                             {
-                              :x => ["Coordonnées X du point à vérifier", :Fixnum],
-                              :y => ["Coordonnées Y du point à vérifier", :Fixnum],
+                              :x => ["Coordonnée X du point à vérifier", :Fixnum],
+                              :y => ["Coordonnée Y du point à vérifier", :Fixnum],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true ", :Boolean],
 
                             }, true # Maybe changed
@@ -1811,7 +1811,7 @@ module Command
                               :name => ["Nom de l'image (sans l'extension, entre guillemets anglais)", :String],
                              :"*x" => ["Position en X de l'image (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de l'image (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de l'image par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de l'image par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
@@ -1830,7 +1830,7 @@ module Command
                              :"*index" => ["Index de la feuille de sprite affichée par défaut, 0", :Fixnum],
                              :"*x" => ["Position en X de la spritesheet (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de la spritesheet (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de la spritesheet, par défaut 255 (de 0 à 255)", :Fixnum],
@@ -1853,7 +1853,7 @@ module Command
                               :id => ["ID de l'image", :Fixnum],
                              :"*x" => ["Position en X de l'image (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de l'image (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de l'image par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de l'image par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de l'image, par défaut 255 (de 0 à 255)", :Fixnum],
@@ -1882,7 +1882,7 @@ module Command
                             "Change l'origine d'une image",
                             {
                               :id => ["ID de l'image", :Fixnum],
-                              :origin => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X,Y, par défaut, zéro, zéro", :Fixnum],
+                              :origin => ["Origine de l'image, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X, Y, par défaut, zéro, zéro", :Fixnum],
                             }
   register_command :picture, "Command.picture_origin"
 
@@ -2010,16 +2010,16 @@ module Command
 
   # AUTOGenerated for windowskin_tone
   link_method_documentation 'Command.windowskin_tone',
-                            'Change la teinte du windowSkin. Si aucune valeur n\'est donnée, la commande renverra la teinte',
+                            'Change la teinte du Windowskin. Si aucune valeur n\'est donnée, la commande renverra la teinte',
                             {
-                             :"*tone" => ["Teinte du WindowSkin (utilisez la commande tone)", :Tone],
+                             :"*tone" => ["Teinte du Windowskin (utilisez la commande tone)", :Tone],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.windowskin_tone'
 
   # AUTOGenerated for windowskin_opacity
   link_method_documentation 'Command.windowskin_opacity',
-                            'Change l\'opacité du windowSkin. Si aucune valeur n\'est donnée, la commande renverra l\'opacité',
+                            'Change l\'opacité du Windowskin. Si aucune valeur n\'est donnée, la commande renverra l\'opacité',
                             {
                              :"*value" => ["Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.", :Fixnum],
 
@@ -2039,8 +2039,8 @@ module Command
                             "Fait défiler une image avec la carte (la fixe à une position)",
                             {
                               :Selector => ["Sélécteur de l'image", :Selector],
-                             :"*x" => ["Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
-                             :"*y" => ["Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
+                             :"*x" => ["Coordonnée X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
+                             :"*y" => ["Coordonnée Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
                             }
   register_command :picture, "Command.picture_pin"
 
@@ -2086,8 +2086,8 @@ module Command
                             "Vérifie que le x, y sont inscrits dans l'image",
                             {
                               :id => ["ID de l'image", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*precise" => ["Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparents seront pris en compte", :Boolean]
                             }, true
   register_command :picture, "Command.pixel_in_picture?"
@@ -4317,8 +4317,8 @@ module Command
                             'Fait défiler un texte (référencé par son ID) avec la carte (le fixe à une position)',
                             {
                               :id => ["ID du texte", :Fixnum],
-                             :"*x" => ["Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
-                             :"*y" => ["Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
+                             :"*x" => ["Coordonnée X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
+                             :"*y" => ["Coordonnée Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
 
                             }, false
   register_command :text, 'Command.text_pin' 
@@ -4601,7 +4601,7 @@ module Command
   link_method_documentation 'Command.split_each_char',
                             'Transforme une chaîne de caractères en un tableau de caractères',
                             {
-                              :str => ["Chaine a transformer", :String],
+                              :str => ["Chaîne à transformer", :String],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.split_each_char'
@@ -5070,8 +5070,8 @@ module Command
   link_method_documentation 'Command.create_rect_area',
                             "Crée et renvoie une zone virtuelle rectangulaire",
                             {
-                              :x => ["Coordonnées X de la zone", :Fixnum],
-                              :y => ["Coordonnées Y de la zone", :Fixnum],
+                              :x => ["Coordonnée X de la zone", :Fixnum],
+                              :y => ["Coordonnée Y de la zone", :Fixnum],
                               :width => ["Largeur de la zone", :Fixnum],
                               :height => ["Hauteur de la zone", :Fixnum],
 
@@ -5082,8 +5082,8 @@ module Command
   link_method_documentation 'Command.create_circle_area',
                             'Crée et renvoie une zone virtuelle circulaire',
                             {
-                              :x => ["Coordonnées X de la zone", :Fixnum],
-                              :y => ["Coordonnées Y de la zone", :Fixnum],
+                              :x => ["Coordonnée X de la zone", :Fixnum],
+                              :y => ["Coordonnée Y de la zone", :Fixnum],
                               :rayon => ["Rayon de la zone", :Fixnum],
 
                             }, true # Maybe changed
@@ -5093,8 +5093,8 @@ module Command
   link_method_documentation 'Command.create_ellipse_area',
                             'Crée et renvoie une zone virtuelle elliptique',
                             {
-                              :x => ["Coordonnées X de la zone", :Fixnum],
-                              :y => ["Coordonnées Y de la zone", :Fixnum],
+                              :x => ["Coordonnée X de la zone", :Fixnum],
+                              :y => ["Coordonnée Y de la zone", :Fixnum],
                               :width => ["Largeur de la zone", :Fixnum],
                               :height => ["Hauteur de la zone", :Fixnum],
 
@@ -5682,8 +5682,8 @@ module Command
                             'Téléporte l\'évènement référencé par son ID à une nouvelle coordonnées de la carte',
                             {
                               :id => ["ID de l'évènement", :Fixnum],
-                              :new_x => ["Coordonnées X", :Fixnum],
-                              :new_y => ["Coordonnées Y", :Fixnum],
+                              :new_x => ["Coordonnée X", :Fixnum],
+                              :new_y => ["Coordonnée Y", :Fixnum],
 
                             }
   register_command :event, 'Command.event_transfert'
@@ -5702,8 +5702,8 @@ module Command
                             'Téléporte le héros à une nouvelle coordonnées sur une nouvelle map (potentiellement)',
                             {
                               :map_id => ["ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*direction" => ["Nouvelle direction pour le héro (2,4,6 ou 8). Si aucune direction n'est spécifiée, le joueur gardera sa direction", :Fixnum],
                              :"*fade_type" => ["Le mode de téléport (par défaut 0), 0 = fondu noir, 1 = fondu blanc, 2 = instantanné", :Fixnum]
 
@@ -5715,8 +5715,8 @@ module Command
                             'Effectue une téléportation avec une image comme transition',
                             {
                               :map_id => ["ID de la carte. Utiliser c(:map_id) pour téléporter sur la même carte", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :transition => ["Image où se trouve la transition", :String],
                               :duration => ["Durée de la transition", :Fixnum],
                              :"*vague" => ["Ambiguité (par défaut, 40)", :Fixnum],
@@ -5938,8 +5938,8 @@ module Command
   link_method_documentation 'Command.player_path_length',
                             'Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
                             } # Maybe changed
@@ -5949,8 +5949,8 @@ module Command
                             'Renvoie la taille du chemin nécéssaire au pathfinder pour se rendre a un point',
                             {
                               :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
                             } # Maybe changed
@@ -5961,8 +5961,8 @@ module Command
                             '[Dépréciée] Déplace l\'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument',
                             {
                               :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
@@ -5973,8 +5973,8 @@ module Command
                             'Déplace l\'évènement référencé par son ID (0 pour le héros) vers les coordonnées données en argument',
                             {
                               :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
 
@@ -5985,8 +5985,8 @@ module Command
                             'Déplace l\'évènement référencé par son ID (0 pour le héros) d\'un certain nombre de pas vers les coordonnées données en argument',
                             {
                               :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :steps => ["Nombre de pas à réaliser", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
@@ -5999,8 +5999,8 @@ module Command
                             '[Dépréciée] Déplace l\'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées données en argument',
                             {
                               :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
 
                             } # Maybe changed
@@ -6011,8 +6011,8 @@ module Command
                             'Déplace l\'évènement, en sautant, référencé par son ID (0 pour le héros) vers les coordonnées données en argument',
                             {
                               :id => ["Id de l'évènement (0 pour le héros)", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
 
                             } # Maybe changed
@@ -6081,8 +6081,8 @@ module Command
   link_method_documentation 'Command.player_move_to', 
                             'Déplace le héros vers les coordonnées données en argument',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
                              
@@ -6093,8 +6093,8 @@ module Command
   link_method_documentation 'Command.player_partial_move_to',
                             'Déplace le héros d\'un certain nombre de pas vers les coordonnées données en argument',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :steps => ["Nombre de pas à réaliser", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
                              :"*no_through" => ["Par défaut, false, si cette valeur vaut true, même en mode fantôme, l'évènement utilisera un chemin passable", :Boolean],
@@ -6107,8 +6107,8 @@ module Command
   link_method_documentation 'Command.player_jump_to', 
                             'Déplace le héros, en sautant, vers les coordonnées données en argument',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*wait_flag" => ["Par défaut, false, cette valeur définit le blocage durant le déplacement ou non", :Boolean],
 
                             }
@@ -6245,8 +6245,8 @@ module Command
   link_method_documentation 'Command.camera_move_on',
                             'Place la caméra sur un point de la carte',
                             {
-                              :x => ["Coordonnées X",  :Fixnum],
-                              :y => ["Coordonnées Y",  :Fixnum],
+                              :x => ["Coordonnée X",  :Fixnum],
+                              :y => ["Coordonnée Y",  :Fixnum],
 
                             }
   register_command :camera,'Command.camera_move_on'
@@ -6255,8 +6255,8 @@ module Command
   link_method_documentation 'Command.camera_scroll_on',
                             'Fait défiler la carte vers un point donné',
                             {
-                              :x => ["Coordonnées X",  :Fixnum],
-                              :y => ["Coordonnées Y",  :Fixnum],
+                              :x => ["Coordonnée X",  :Fixnum],
+                              :y => ["Coordonnée Y",  :Fixnum],
                               :speed => ["Vitesse de défilement",  :Fixnum],
 
                             }
@@ -6494,7 +6494,7 @@ module Command
 
   # AUTOGenerated for get_tileset_id
   link_method_documentation 'Command.get_tileset_id',
-                            'Renvoie l\' ID du tileset de la carte en cours',
+                            'Renvoie l\'ID du tileset de la carte en cours',
                             {}, true # Maybe changed
   register_command :mapinfo, 'Command.get_tileset_id'
 
@@ -6544,8 +6544,8 @@ module Command
   link_method_documentation 'Command.wall?',
                             'Renvoie true si les coordonnées sont sur un mur, false sinon',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :mapinfo, 'Command.wall?'
@@ -6554,8 +6554,8 @@ module Command
   link_method_documentation 'Command.roof?',
                             'Renvoie true si les coordonnées sont sur un toit, false sinon',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :mapinfo, 'Command.roof?'
@@ -6564,8 +6564,8 @@ module Command
   link_method_documentation 'Command.stair?',
                             'Renvoie true si les coordonnées sont sur une marche, false sinon',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :mapinfo, 'Command.stair?'
@@ -6574,8 +6574,8 @@ module Command
   link_method_documentation 'Command.table?',
                             'Renvoie true si les coordonnées sont sur une table, false sinon',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :mapinfo, 'Command.table?'
@@ -6597,8 +6597,8 @@ module Command
   link_method_documentation 'Command.ground?',
                             'Renvoie true si les coordonnées sont sur le sol, false sinon',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :mapinfo, 'Command.ground?'
@@ -6606,8 +6606,8 @@ module Command
   link_method_documentation 'Command.boat_passable?',
                             'Renvoie true si l\'on peut traverser la case avec le radeau',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true
   register_command :mapinfo, 'Command.boat_passable?'
@@ -6615,8 +6615,8 @@ module Command
   link_method_documentation 'Command.ship_passable?',
                             'Renvoie true si l\'on peut traverser la case avec le bateau',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true
   register_command :mapinfo, 'Command.ship_passable?'
@@ -6624,8 +6624,8 @@ module Command
   link_method_documentation 'Command.autotile_type',
                             'Renvoie l\'ID qui correspond au tile d\'autotile aux coordonnées passées en paramètre',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :z => ["Couche du tileset", :Fixnum],
 
                             }, true
@@ -6809,8 +6809,8 @@ module Command
                             'Déplacement sur tous les paramètres',
                             {
                               :id => ["ID de la fenêtre", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                               :w => ["Largeur", :Fixnum],
                               :h => ["Hauteur", :Fixnum],
                               :opacity => ["Opacité", :Fixnum],
@@ -6825,8 +6825,8 @@ module Command
                             'Crée une fenêtre de sélection verticale',
                             {
                               :id => ["ID de la fenêtre", :Fixnum],
-                              :x => ["Coordonnées X de la fenêtre", :Fixnum],
-                              :y => ["Coordonnées Y de la fenêtre", :Fixnum],
+                              :x => ["Coordonnée X de la fenêtre", :Fixnum],
+                              :y => ["Coordonnée Y de la fenêtre", :Fixnum],
                               :w => ["Largeur de la fenêtre", :Fixnum],
                               :hash => ["Hash décrivant les différentes sections de la fenêtre", :Hash],
                              :"*h" => ["Hauteur de la fenêtre (en nombre de ligne), si aucun argument n'est donné, la hauteur sera calculée", :Fixnum],
@@ -6839,8 +6839,8 @@ module Command
                             'Crée une fenêtre de sélection horizontale',
                             {
                               :id => ["ID de la fenêtre", :Fixnum],
-                              :x => ["Coordonnées X de la fenêtre", :Fixnum],
-                              :y => ["Coordonnées Y de la fenêtre", :Fixnum],
+                              :x => ["Coordonnée X de la fenêtre", :Fixnum],
+                              :y => ["Coordonnée Y de la fenêtre", :Fixnum],
                               :hash => ["Hash décrivant les différentes sections de la fenêtre", :Hash],
                              :"row" => ["Nombre de colonnes. Si aucun argument n'est spécifié, la fenêtre prendra le nombre correct de colonnes", :Fixnum],
                             }
@@ -6976,8 +6976,8 @@ module Command
   link_method_documentation 'Command.damage_floor?',
                             'Renvoie true si la case référencée par X, Y est blessante, false sinon',
                             {
-                              :x => ["Coordonnées X de la case", :Fixnum],
-                              :y => ["Coordonnées Y de la case", :Fixnum],
+                              :x => ["Coordonnée X de la case", :Fixnum],
+                              :y => ["Coordonnée Y de la case", :Fixnum],
 
                             }, true
   register_command :mapinfo, 'Command.damage_floor?'
@@ -7170,8 +7170,8 @@ module Command
                             'Déplace un événement référencé par son ID d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
                               :id => ["ID de l'événement", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :event, 'Command.event_move_toward_position'
@@ -7180,8 +7180,8 @@ module Command
   link_method_documentation 'Command.player_move_toward_position',
                             'Déplace le héro d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :event, 'Command.player_move_toward_position'
@@ -7220,8 +7220,8 @@ module Command
                             'Déplace un événement référencé par son ID d\'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
                               :id => ["ID de l'événement", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :event, 'Command.event_move_away_from_position'
@@ -7230,8 +7230,8 @@ module Command
   link_method_documentation 'Command.player_move_away_from_position',
                             'Déplace le héro d\'une case dans la direction opposée d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }, true # Maybe changed
   register_command :event, 'Command.player_move_away_from_position'
@@ -7436,8 +7436,8 @@ module Command
                             'Tourne un événement référencé par son ID d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
                               :id => ["ID de l'événement", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }
   register_command :event, 'Command.event_turn_toward_position'
@@ -7446,8 +7446,8 @@ module Command
   link_method_documentation 'Command.player_turn_toward_position',
                             'Tourne le héro d\'une case en direction d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }
   register_command :event, 'Command.player_turn_toward_position'
@@ -7486,8 +7486,8 @@ module Command
                             'Tourne un événement référencé par son ID d\'une case dans la direction opposée à une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
                               :id => ["ID de l'événement", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }
   register_command :event, 'Command.event_turn_away_from_position'
@@ -7496,8 +7496,8 @@ module Command
   link_method_documentation 'Command.player_turn_away_from_position',
                             'Tourne le héro d\'une case dans la direction opposée d\'une coordonnée. Renvoie true si le mouvement a réussi, false sinon.',
                             {
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
 
                             }
   register_command :event, 'Command.player_turn_away_from_position'
@@ -7630,30 +7630,30 @@ module Command
 
   # AUTOGenerated for has_prefix?
   link_method_documentation 'Command.has_prefix?',
-                            'Renvoie true si une chaine à le préfix donné, false sinon.',
+                            'Renvoie true si une chaîne a le préfix donné, false sinon.',
                             {
-                              :string => ["La chaine de caractère à vérifier", :String],
-                              :prefix => ["Le préfix devant être contenu dans la chaine", :String],
+                              :string => ["La chaîne de caractères à vérifier", :String],
+                              :prefix => ["Le préfix devant être contenu dans la chaîne", :String],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.has_prefix?'
 
   # AUTOGenerated for has_suffix?
   link_method_documentation 'Command.has_suffix?',
-                            'Renvoie true si une chaine à le suffix donné, false sinon.',
+                            'Renvoie true si une chaîne a le suffix donné, false sinon.',
                             {
-                              :string => ["La chaine de caractère à vérifier", :String],
-                              :suffix => ["Le suffix devant être contenu dans la chaine", :String],
+                              :string => ["La chaîne de caractères à vérifier", :String],
+                              :suffix => ["Le suffix devant être contenu dans la chaîne", :String],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.has_suffix?'
 
   # AUTOGenerated for has_substring?
   link_method_documentation 'Command.has_substring?',
-                            'Renvoie true si une chaine contient une autre chaine donnée, false sinon.',
+                            'Renvoie true si une chaîne contient une autre chaîne donnée, false sinon.',
                             {
-                              :string => ["La chaine de caractère à vérifier", :String],
-                              :substring => ["La chaine devant être contenue dans la chaine", :String],
+                              :string => ["La chaîne de caractères à vérifier", :String],
+                              :substring => ["La chaîne devant être contenue dans la chaîne", :String],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.has_substring?'
@@ -7681,7 +7681,7 @@ module Command
 
   # AUTOGenerated for get_squares_by_terrain
   link_method_documentation 'Command.get_squares_by_terrain',
-                            'Renvoie un tableau de cases pour un terrain_tag donné donnée.',
+                            'Renvoie un tableau de cases pour un terrain_tag donné donné.',
                             {
                               :terrain_tag => ["Le terrain tag (entre 0 et 7)", :Fixnum],
 
@@ -7693,8 +7693,8 @@ module Command
                             'Vérifie que le x, y sont inscrit dans le texte',
                             {
                               :id => ["ID du texte", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7802,13 +7802,13 @@ module Command
 
   # AUTOGenerated for menu_disabled?
   link_method_documentation 'Command.menu_disabled?',
-                            'Renvoie true si les accès aux menus sont désactivés, false sinon',
+                            'Renvoie true si les accès au menu sont désactivés, false sinon',
                             {}, true # Maybe changed
   register_command :standard, 'Command.menu_disabled?'
 
   # AUTOGenerated for menu_enabled?
   link_method_documentation 'Command.menu_enabled?',
-                            'Renvoie true si les accès aux menus sont activés, false sinon',
+                            'Renvoie true si les accès au menu sont activés, false sinon',
                             {}, true # Maybe changed
   register_command :standard, 'Command.menu_enabled?'
 
@@ -7826,25 +7826,25 @@ module Command
 
   # AUTOGenerated for encounter_disabled?
   link_method_documentation 'Command.encounter_disabled?',
-                            'Renvoie true si les rencontres sont désactivés, false sinon',
+                            'Renvoie true si les rencontres sont désactivées, false sinon',
                             {}, true # Maybe changed
   register_command :standard, 'Command.encounter_disabled?'
 
   # AUTOGenerated for encounter_enabled?
   link_method_documentation 'Command.encounter_enabled?',
-                            'Renvoie true si les rencontres sont activés, false sinon',
+                            'Renvoie true si les rencontres sont activées, false sinon',
                             {}, true # Maybe changed
   register_command :standard, 'Command.encounter_enabled?'
 
   # AUTOGenerated for formation_disabled?
   link_method_documentation 'Command.formation_disabled?',
-                            'Renvoie true si les formations sont désactivés, false sinon',
+                            'Renvoie true si les formations sont désactivées, false sinon',
                             {}, true # Maybe changed
   register_command :standard, 'Command.formation_disabled?'
 
   # AUTOGenerated for formation_enabled?
   link_method_documentation 'Command.formation_enabled?',
-                            'Renvoie true si les formations sont activés, false sinon',
+                            'Renvoie true si les formations sont activées, false sinon',
                             {}, true # Maybe changed
   register_command :standard, 'Command.formation_enabled?'
 
@@ -7878,7 +7878,7 @@ module Command
 
   # AUTOGenerated for file_write
   link_method_documentation 'Command.file_write', 
-                            'Ecrit une chaine de caractère dans un fichier. Si le fichier existe, son contenu est écrasé',
+                            'Ecrit une chaîne de caractères dans un fichier. Si le fichier existe, son contenu est écrasé',
                             {
                               :filename => ["Nom du fichier", :String],
                               :content => ["Contenu à écrire", :String],
@@ -7940,7 +7940,7 @@ module Command
                             "Change l'origine d'une spritesheet",
                             {
                               :id => ["ID de la spritesheet", :Fixnum],
-                              :origin => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X,Y, par défaut, zéro, zéro", :Fixnum],
+                              :origin => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autour de X, Y, par défaut, zéro, zéro", :Fixnum],
                             }
   register_command :spritesheet, 'Command.spritesheet_origin' 
 
@@ -8110,8 +8110,8 @@ module Command
                             "Fait défiler une spritesheet avec la carte (la fixe à une position)",
                             {
                               :Selector => ["Sélécteur de spritesheets", :Selector],
-                             :"*x" => ["Coordonnées X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
-                             :"*y" => ["Coordonnées Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
+                             :"*x" => ["Coordonnée X de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum],
+                             :"*y" => ["Coordonnée Y de la carte en pixels, par défaut la coordonnée convertie de l'écran vers la carte", :Fixnum]
                             }
   register_command :spritesheet, 'Command.spritesheet_pin'
 
@@ -8184,8 +8184,8 @@ module Command
                             "Vérifie que le x, y sont inscrits dans la spritesheet",
                             {
                               :id => ["ID de la spritesheet", :Fixnum],
-                              :x => ["Coordonnées X", :Fixnum],
-                              :y => ["Coordonnées Y", :Fixnum],
+                              :x => ["Coordonnée X", :Fixnum],
+                              :y => ["Coordonnée Y", :Fixnum],
                              :"*precise" => ["Par défaut, precise vaut false, si precise vaut true, seuls les pixels non transparents seront pris en compte", :Boolean]
                             }, true
   register_command :spritesheet, 'Command.pixel_in_spritesheet?'
@@ -8425,7 +8425,7 @@ module Command
                              :"*index" => ["Index de la feuille de sprite affichée par défaut, 0", :Fixnum],
                              :"*x" => ["Position en X de la spritesheet (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de la spritesheet (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de la spritesheet, par défaut 255 (de 0 à 255)", :Fixnum],
@@ -8442,7 +8442,7 @@ module Command
                              :"*index" => ["Index de la feuille de sprite affichée par défaut, 0", :Fixnum],
                              :"*x" => ["Position en X de la spritesheet (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de la spritesheet (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de la spritesheet, par défaut 255 (de 0 à 255)", :Fixnum],
@@ -8459,7 +8459,7 @@ module Command
                              :"*index" => ["Index de la feuille de sprite affichée par défaut, 0", :Fixnum],
                              :"*x" => ["Position en X de la spritesheet (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de la spritesheet (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de la spritesheet, par défaut 255 (de 0 à 255)", :Fixnum],
@@ -8477,7 +8477,7 @@ module Command
                              :"*index" => ["Index de la feuille de sprite affichée par défaut, 0", :Fixnum],
                              :"*x" => ["Position en X de la spritesheet (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de la spritesheet (par défaut 0)", :Fixnum],
-                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X,Y, par défaut, zéro", :Fixnum],
+                             :"*origin" => ["Origine de la spritesheet, 0 = Haut gauche, 1 = centré, [x,y] = orienté autours de X, Y, par défaut, zéro", :Fixnum],
                              :"*zoom_x" => ["Zoom sur la largeur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*zoom_y" => ["Zoom sur la hauteur de la spritesheet par défaut 100 (pour 100%)", :Fixnum],
                              :"*opacity" => ["Opacité de la spritesheet, par défaut 255 (de 0 à 255)", :Fixnum],

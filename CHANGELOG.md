@@ -12,6 +12,7 @@
 
 ### Documentation
 
+- Fix some multiple mistakes in documentation and samples (@xvw, reported by @Zer0xxxxx)
 - Clarification between region and virtual zone (@xvw, reported by @Zer0xxxxx)
 
 ## Release (2.0.0)
