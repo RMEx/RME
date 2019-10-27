@@ -6134,6 +6134,23 @@ end
 # return preexisting objects when the same bitmap is requested again.
 #==============================================================================
 
+module Feedback
+
+  class << self
+
+    def hook(message, map_id, event_id, index, script, exception)
+      msg = "#{message}\n"
+      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
+      msg += "#{script}\n"
+      msg += "-------------------\n"
+      msg += "#{exception}"
+      msgbox(msg)
+      exit
+    end
+    
+  end
+end
+
 module Cache
   def self.map(map_id)
     return $game_map.map if $game_map && $game_map.map_id == map_id
@@ -7760,11 +7777,23 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Eval sequence
   #--------------------------------------------------------------------------
+  alias_method :extender_eval, :eval
   def eval(str, r=nil)
     Game_Interpreter.current_id = @id
     Game_Interpreter.current_map_id = $game_map.map_id
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
-    super(script, $game_map.interpreter.get_binding)
+    begin 
+      extender_eval(script, $game_map.interpreter.get_binding)
+    rescue Exception => e
+      Feedback.hook(
+        "Error in move route",
+        $game_map.map_id,
+        @id,
+        @move_route_index,
+        script,
+        e
+      )
+    end
   end
   #--------------------------------------------------------------------------
   # * Detect Collision with Character
@@ -10557,6 +10586,24 @@ class Game_Interpreter
   alias_method :extender_command_105, :command_105
   alias_method :extender_command_355, :command_355
   alias_method :extender_command_117, :command_117
+  alias_method :extender_command_122, :command_122
+  alias_method :extender_eval, :eval
+
+  def eval(script, r=nil)
+    message = @error_message || "Error in script call"
+    begin
+      extender_eval(script, r)
+    rescue Exception => e
+      Feedback.hook(
+        message,
+        @map_id,
+        @event_id,
+        @index,
+        script,
+        e
+      )
+    end    
+  end
 
   #--------------------------------------------------------------------------
   # * Show Text
@@ -10587,7 +10634,15 @@ class Game_Interpreter
   def command_111
     Game_Interpreter.current_id = @event_id
     Game_Interpreter.current_map_id = @map_id
+    @error_message = "Error in conditional branch"
     extender_command_111
+  end
+  #--------------------------------------------------------------------------
+  # * Control Variables
+  #--------------------------------------------------------------------------
+  def command_122
+    @error_message = "Error in variable assignation"
+    extender_command_122
   end
   #--------------------------------------------------------------------------
   # * Script
@@ -10601,6 +10656,7 @@ class Game_Interpreter
       script += @list[@index].parameters[0] + "\n"
     end
     script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@event_id}, #{$2}]" }
+    @error_message = "Error in script call"
     eval(script)
   end
   #--------------------------------------------------------------------------

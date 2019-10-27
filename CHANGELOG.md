@@ -1,5 +1,13 @@
 # RME Changelog
 
+## Release (2.1.0)
+
+### Additions
+
+- More comprehensive feedback on error in script call (@xvw, requested by @BastienDuplessier)
+
+### Bug fixes
+
 ## Release (2.0.0)
 
 ### Additions
