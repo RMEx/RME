@@ -24,23 +24,6 @@
 # return preexisting objects when the same bitmap is requested again.
 #==============================================================================
 
-module Feedback
-
-  class << self
-
-    def hook(message, map_id, event_id, index, script, exception)
-      msg = "#{message}\n"
-      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
-      msg += "#{script}\n"
-      msg += "-------------------\n"
-      msg += "#{exception}"
-      msgbox(msg)
-      exit
-    end
-    
-  end
-end
-
 module Cache
   def self.map(map_id)
     return $game_map.map if $game_map && $game_map.map_id == map_id

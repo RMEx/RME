@@ -29,7 +29,7 @@
 
 =begin # MIT License
 
-Copyright (c) 2012-2018 RMEx
+Copyright (c) 2012-2019 RMEx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2794,6 +2794,25 @@ if RME.unsafe?
 
   end
 end
+
+
+module Feedback
+
+  class << self
+
+    def hook(message, map_id, event_id, index, script, exception)
+      msg = "#{message}\n"
+      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
+      msg += "#{script}\n"
+      msg += "-------------------\n"
+      msg += "#{exception}"
+      msgbox(msg)
+      exit
+    end
+    
+  end
+end
+
 
 
 class Package
@@ -6133,23 +6152,6 @@ end
 # created bitmap object in the internal hash, allowing the program to
 # return preexisting objects when the same bitmap is requested again.
 #==============================================================================
-
-module Feedback
-
-  class << self
-
-    def hook(message, map_id, event_id, index, script, exception)
-      msg = "#{message}\n"
-      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
-      msg += "#{script}\n"
-      msg += "-------------------\n"
-      msg += "#{exception}"
-      msgbox(msg)
-      exit
-    end
-    
-  end
-end
 
 module Cache
   def self.map(map_id)
