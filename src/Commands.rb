@@ -3128,6 +3128,12 @@ module RMECommands
       Game_Screen.get.texts[id].scroll_speed_y
     end
 
+    def text_showed?(id)
+      t = Game_Screen.get.texts[id]
+      return !t.erased?
+      false
+    end
+
     #--------------------------------------------------------------------------
     # * Change text scroll speed
     #--------------------------------------------------------------------------

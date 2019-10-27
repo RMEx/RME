@@ -1502,7 +1502,8 @@ var documentation = [
 {"name":"text_mouse_release?", "description":"Renvoie true si la souris survole et relâche la touche référencée sur le texte référencé par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"ID du texte", "type":"Fixnum"},
 {"name":"*key", "desc":"Touche de la souris (par défaut, :mouse_left", "type":"Symbol"},
 {"name":"*precise", "desc":"Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", "type":"Boolean"}]},
-{"name":"fresh_text_id", "description":"Génère un ID non utilisé pour un texte", "returnable":true,"parameters":[]}
+{"name":"fresh_text_id", "description":"Génère un ID non utilisé pour un texte", "returnable":true,"parameters":[]},
+{"name":"text_showed?", "description":"Renvoie true si le texte référencé par son ID est affiché, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"ID du texte", "type":"Fixnum"}]}
 ]},
 {"name":"Date/Heure","desc":"Commandes pour récupérer des informations sur la date et l'heure","commands":[
 {"name":"time_year", "description":"Renvoie l'année actuelle", "returnable":true,"parameters":[]},
