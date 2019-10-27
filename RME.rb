@@ -2814,7 +2814,6 @@ module Feedback
 end
 
 
-
 class Package
 
   attr_accessor :name
@@ -11503,6 +11502,39 @@ module RMECommands
   #--------------------------------------------------------------------------
   # * Public Commands
   #--------------------------------------------------------------------------
+
+  def reset_variables
+    $game_variables = Game_Variables.new
+  end
+
+  def reset_switches
+    $game_switches = Game_Switches.new
+  end
+
+  def reset_self_switches
+    $game_self_switches = Game_SelfSwitches.new
+  end
+
+  def reset_self_variables
+    $game_self_vars = Hash.new
+  end
+
+  def reset_labels
+    $game_labels = Hash.new
+  end
+
+  def reset_self_labels
+    $game_self_labels = Hash.new
+  end
+
+  def reset_contents
+    reset_variables
+    reset_switches
+    reset_self_switches
+    reset_self_variables
+    reset_labels
+    reset_self_labels
+  end
 
   def game_window_rect
     rect = [0,0,0,0].pack('l4')

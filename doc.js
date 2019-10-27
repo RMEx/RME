@@ -174,7 +174,14 @@ var documentation = [
 {"name":"file_append", "description":"Ajoute du contenu en fin de fichier. Si le fichier n'existe pas, il est créé", "returnable":true,"parameters":[{"name":"filename", "desc":"Nom du fichier", "type":"String"},
 {"name":"content", "desc":"Contenu à écrire", "type":"String"}]},
 {"name":"spritesheet_z", "description":"Modifie la valeur Z de la spritesheet référencée par son ID. Si aucune valeur n'est donnée, la commande renverra la valeur courante", "returnable":true,"parameters":[{"name":"id", "desc":"ID de la spritesheet", "type":"Fixnum"},
-{"name":"*z", "desc":"Position Z de la spritesheet. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]}
+{"name":"*z", "desc":"Position Z de la spritesheet. Si aucune valeur n'est données, la commande renverra la valeur courante Z", "type":"Fixnum"}]},
+{"name":"reset_variables", "description":"Remet toutes les variables à zero", "returnable":false,"parameters":[]},
+{"name":"reset_switches", "description":"Désactive tous les interrupteurs", "returnable":false,"parameters":[]},
+{"name":"reset_self_switches", "description":"Désactive tous les interrupteurs locaux", "returnable":false,"parameters":[]},
+{"name":"reset_self_variables", "description":"Remet toutes les variables locales à zero", "returnable":false,"parameters":[]},
+{"name":"reset_labels", "description":"Remet tous les labels à zero", "returnable":false,"parameters":[]},
+{"name":"reset_self_labels", "description":"Remet tous les labels locaux à zero", "returnable":false,"parameters":[]},
+{"name":"reset_contents", "description":"Réinitialise les variables, les variables locales, les interrupteurs, les interrupteurs locaux, les labels et les labels locaux", "returnable":false,"parameters":[]}
 ]},
 {"name":"Evénements","desc":"Commandes relatives aux évènements","commands":[
 {"name":"include_page", "description":"Invoque une page (comme s'il s'agissait d'un évènement commun) d'un autre évènement", "returnable":false,"parameters":[{"name":"map_id", "desc":"ID de la map où chercher l'évènement à inclure", "type":"Fixnum"},

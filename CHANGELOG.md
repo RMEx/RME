@@ -4,6 +4,7 @@
 
 ### Additions
 
+- Add commands `reset_variables`, `reset_switches`, `reset_self_switches` `reset_self_variables`, `reset_labels`, `reset_self_labels` and `reset_contents` (@xvw, requested by @mamie-nani)
 - More comprehensive feedback on error in script call (@xvw, requested by @BastienDuplessier)
 
 ### Bug fixes
