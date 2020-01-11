@@ -126,7 +126,8 @@ if RME.allowed?(:extender_loop)
     end
 
     def loop_range(a, b)
-      loop_for((a..b).to_a)
+      range = (a > b) ? (b..a).to_a.reverse : (a..b).to_a
+      loop_for(range)
     end
 
     def loop_times(i)
