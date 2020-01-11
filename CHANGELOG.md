@@ -23,6 +23,7 @@
 - Fix some multiple mistakes in documentation and samples (@xvw, reported by @Zer0xxxxx)
 - Clarification between region and virtual zone (@xvw, reported by @Zer0xxxxx)
 - Fix default position for `camera_scroll_towards` (@xvw, reported by @acs-l)
+- Move Files command into File's category
 
 ## Release (2.0.0)
 
