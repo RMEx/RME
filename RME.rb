@@ -65,6 +65,16 @@ module RME
     KEY_TONE = :f4
     MAP_RELOAD = :f11
 
+    EXTENSIONS = {
+
+      # Add command to deal with Event-Making loop
+      extender_loop: true,
+
+      # Hack to use Resolution.change(w, h) with value over 640x480.
+      # The extension is unsafe and you should not use it !
+      enlarge_resolution: false,
+    }
+
   end
 
   class << self
@@ -85,12 +95,14 @@ module RME
     def check_version(oth)
       version >= oth
     end
+
     #--------------------------------------------------------------------------
-    # * unsafe?
+    # * Allowed Extension
     #--------------------------------------------------------------------------
-    def unsafe?
-      false
+    def allowed?(key)
+      RME::Config::EXTENSIONS[key] || false
     end
+    
     #--------------------------------------------------------------------------
     # * Enabled Gui components
     #--------------------------------------------------------------------------
@@ -2735,7 +2747,7 @@ class Socket
 end
 
 
-if RME.unsafe?
+if RME.allowed?(:enlarge_resolution)
   #==============================================================================
   # ** Plane
   #------------------------------------------------------------------------------
@@ -16880,7 +16892,7 @@ class Scene_Commands < Scene_RME
   end
 end
 # By Raho
-if RME.unsafe?
+if RME.allowed?(:enlarge_resolution)
 
   #==============================================================================
   # ** Resolution
@@ -16936,7 +16948,8 @@ if RME.unsafe?
   end
 
 end
-if RME.unsafe?
+
+if RME.allowed?(:enlarge_resolution)
 
   #==============================================================================
   # ** SceneManager
