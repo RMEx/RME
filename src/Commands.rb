@@ -714,10 +714,24 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Shake the picture
     #--------------------------------------------------------------------------
-    def picture_shake(ids, power, speed, duration)
+    def picture_shake(ids, power, speed, duration, wait_flag = false)
       select_pictures(ids).each do |id|
         pictures[id].start_shake(power, speed, duration)
       end
+      wait(duration) if wait_flag
+    end
+    def picture_shake_vertical(ids, power, speed, duration, wait_flag = false)
+      select_pictures(ids).each do |id|
+        pictures[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
+    end
+    def picture_shake_both(ids, power, speed, duration, wait_flag = false)
+      select_pictures(ids).each do |id|
+        pictures[id].start_shake(power, speed, duration)
+        pictures[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
     end
     #--------------------------------------------------------------------------
     # * Point in picture
@@ -4039,6 +4053,17 @@ module RMECommands
 
     def screen_shake(power, speed, duration, wait_flag = false)
       $game_map.screen.start_shake(power, speed, duration)
+      wait(duration) if wait_flag
+    end
+
+    def screen_shake_vertical(power, speed, duration, wait_flag = false)
+      $game_map.screen.start_vertical_shake(power, speed, duration)
+      wait(duration) if wait_flag
+    end
+
+    def screen_shake_both(power, speed, duration, wait_flag = false)
+      $game_map.screen.start_shake(power, speed, duration)
+      $game_map.screen.start_vertical_shake(power, speed, duration)
       wait(duration) if wait_flag
     end
 

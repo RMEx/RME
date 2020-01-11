@@ -3244,27 +3244,40 @@ class Game_Screen
   # * Public instance variable
   #--------------------------------------------------------------------------
   attr_reader :texts, :spritesheets
+  attr_reader :vertical_shake
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias_method :displaytext_initialize, :initialize
-  alias_method :displaytext_update,     :update
+  alias_method :extender_initialize, :initialize
+  alias_method :extender_update,     :update
+  alias_method :extender_clear, :clear
+  
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
   def initialize
     @texts = Game_Texts.new
     @spritesheets = Game_Spritesheets.new
-    displaytext_initialize
+    extender_initialize
   end
   #--------------------------------------------------------------------------
   # * Clear
   #--------------------------------------------------------------------------
-  alias_method :displaytext_clear, :clear
   def clear
-    displaytext_clear
+    extender_clear
     clear_texts
     clear_spritesheets
+    clear_vertical_shake
+  end
+  #--------------------------------------------------------------------------
+  # * Vertical Shake
+  #--------------------------------------------------------------------------
+  def clear_vertical_shake
+    @vertical_shake_power = 0
+    @vertical_shake_speed = 0
+    @vertical_shake_duration = 0
+    @vertical_shake_direction = 1
+    @vertical_shake = 0
   end
   #--------------------------------------------------------------------------
   # * Clear text
@@ -3279,12 +3292,46 @@ class Game_Screen
     @spritesheets.each {|picture| picture.erase }
   end
   #--------------------------------------------------------------------------
+  # * Start vertical Shaking
+  #     power: intensity
+  #     speed: speed
+  #--------------------------------------------------------------------------
+  def start_vertical_shake(power, speed, duration)
+    @vertical_shake_power = power
+    @vertical_shake_speed = speed
+    @vertical_shake_duration = duration
+  end
+  #--------------------------------------------------------------------------
   # * Frame update
   #--------------------------------------------------------------------------
   def update
-    displaytext_update
+    extender_update
     update_texts
     update_spritesheets
+    update_vertical_shake
+  end
+  #--------------------------------------------------------------------------
+  # * Update texts
+  #--------------------------------------------------------------------------
+  def update_vertical_shake
+    if @vertical_shake_duration > 0 || @vertical_shake != 0
+      delta = (@vertical_shake_power *
+               @vertical_shake_speed *
+               @vertical_shake_direction
+              ) / 10.0
+      if (@vertical_shake_duration <= 1 && @vertical_shake * (@vertical_shake + delta) < 0)
+        @vertical_shake = 0
+      else
+        @vertical_shake += delta
+      end
+      if @vertical_shake > @vertical_shake_power * 2
+        @vertical_shake_direction = -1
+      end
+      if @vertical_shake < -@vertical_shake_power * 2
+        @vertical_shake_direction = 1
+      end
+      @vertical_shake_duration -= 1
+    end
   end
   #--------------------------------------------------------------------------
   # * Update texts
@@ -3293,7 +3340,7 @@ class Game_Screen
     @texts.each{|t|t.update}
   end
   #--------------------------------------------------------------------------
-  # * Update texts
+  # * Check if a tone change
   #--------------------------------------------------------------------------
   def tone_change?
     @tone_duration > 0
@@ -3656,6 +3703,7 @@ class Game_Picture
   attr_accessor  :angle                    # rotation angle
   attr_accessor  :pinned
   attr_accessor  :shake
+  attr_accessor  :vertical_shake
   attr_accessor  :mirror
   attr_accessor  :wave_amp
   attr_accessor  :wave_speed
@@ -3729,6 +3777,7 @@ class Game_Picture
     @scroll_speed_y = @scroll_speed_x = 2
     @z = @number
     clear_shake
+    clear_vertical_shake
   end
   #--------------------------------------------------------------------------
   # * Clear Shake
@@ -3741,6 +3790,16 @@ class Game_Picture
     @shake = 0
   end
   #--------------------------------------------------------------------------
+  # * Clear Vertical Shake
+  #--------------------------------------------------------------------------
+  def clear_vertical_shake
+    @vertical_shake_power = 0
+    @vertical_shake_speed = 0
+    @vertical_shake_duration = 0
+    @vertical_shake_direction = 1
+    @vertical_shake = 0
+  end
+  #--------------------------------------------------------------------------
   # * Start Shaking
   #     power: intensity
   #     speed: speed
@@ -3749,6 +3808,16 @@ class Game_Picture
     @shake_power = power
     @shake_speed = speed
     @shake_duration = duration
+  end
+  #--------------------------------------------------------------------------
+  # * Start Vertical Shaking
+  #     power: intensity
+  #     speed: speed
+  #--------------------------------------------------------------------------
+  def start_vertical_shake(power, speed, duration)
+    @vertical_shake_power = power
+    @vertical_shake_speed = speed
+    @vertical_shake_duration = duration
   end
   #--------------------------------------------------------------------------
   # * Update Shake
@@ -3767,11 +3836,33 @@ class Game_Picture
     end
   end
   #--------------------------------------------------------------------------
+  # * Update Shake
+  #--------------------------------------------------------------------------
+  def update_vertical_shake
+    if @vertical_shake_duration > 0 || @vertical_shake != 0
+      delta = (@vertical_shake_power *
+               @vertical_shake_speed * @vertical_shake_direction) / 10.0
+      if @vertical_shake_duration <= 1 && @vertical_shake * (@vertical_shake + delta) < 0
+        @vertical_shake = 0
+      else
+        @vertical_shake += delta
+      end
+      if @vertical_shake > @vertical_shake_power * 2
+        @vertical_shake_direction = -1
+      end
+      if @vertical_shake < - @vertical_shake_power * 2
+        @vertical_shake_direction = 1
+      end
+      @vertical_shake_duration -= 1
+    end
+  end
+  #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
     rm_extender_update
     update_shake
+    update_vertical_shake
   end
 
   #--------------------------------------------------------------------------
@@ -4112,7 +4203,14 @@ class Spriteset_Map
     update_texts
     rme_update
     update_reflects
+    update_vertical_shake
     update_spritesheets
+  end
+  #--------------------------------------------------------------------------
+  # * Update Vertical Shake
+  #--------------------------------------------------------------------------
+  def update_vertical_shake
+    @viewport1.oy = $game_map.screen.vertical_shake
   end
   #--------------------------------------------------------------------------
   # * Update Reflects
@@ -4226,10 +4324,10 @@ class Sprite_Picture
       x_s = 16 * @picture.scroll_speed_x
       y_s = 16 * @picture.scroll_speed_y
       self.x = @picture.x - ($game_map.display_x * x_s) + @picture.shake
-      self.y = @picture.y - ($game_map.display_y * y_s)
+      self.y = @picture.y - ($game_map.display_y * y_s) + @picture.vertical_shake
     else
       self.x = @picture.x + @picture.shake
-      self.y = @picture.y
+      self.y = @picture.y + @picture.vertical_shake
     end
     self.z = @picture.z
   end
