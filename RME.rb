@@ -11758,6 +11758,12 @@ module RMECommands
     $game_system.formation_disabled = true
   end
 
+  def change_vehicle_graphics(vehicle, character_name, character_index)
+    h = {boat: 0, ship: 1, airship: 2}
+    v = h[vehicle]
+    v.set_graphic(character_name, character_index) if v
+  end
+  
   def save_enabled?
     !save_disabled?
   end
@@ -11803,25 +11809,33 @@ module RMECommands
   def session_username; USERNAME; end
   def length(a); a.to_a.length; end
   def get(a, i); a[i]; end
+  
   def event(id)
     if id.is_a?(Array)
       if id[0] == :follower
         e = $game_player.followers[id[1]]
         return e if e
         raise sprintf("Follower n° %d doesn't exist", id)
-      else id[0] == :vehicle
+      elsif id[0] == :vehicle
         e =  $game_map.vehicles[id[1]]
         return e if e
         raise sprintf("Vehicle n° %d doesn't exist", id)
       end
+      raise sprintf("Invalid subject %s", "#{id[0]}")
     end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
     raise sprintf("Event %d doesn't exist", id)
   end
+  
   def follower(pos)
     [:follower, pos]
   end
+  
+  def vehicle(v)
+    [:vehicle, {boat: 0, ship: 1, airship: 2}[v]]
+  end
+  
   def rm_kill; SceneManager.exit; end
   def reset; SceneManager.reset; end
   def website(url); Thread.new { system("start #{url}") };end
@@ -11984,33 +11998,33 @@ module RMECommands
     # * Show parallax
     #--------------------------------------------------------------------------
     def parallax_show(
-        id,
-        name,
-        z  = -100,
-        op = 255,
-        ax = 0,
-        ay = 0,
-        mx = 2,
-        my = 2,
-        b  = 0,
-        zx = 100,
-        zy = 100
-      )
+          id,
+          name,
+          z  = -100,
+          op = 255,
+          ax = 0,
+          ay = 0,
+          mx = 2,
+          my = 2,
+          b  = 0,
+          zx = 100,
+          zy = 100
+        )
       $game_map.parallaxes[id].show(name, z, op, ax, ay, mx, my, b, zx, zy)
     end
     #--------------------------------------------------------------------------
     # * Move parallax
     #--------------------------------------------------------------------------
     def parallax_transform(
-        id,
-        duration,
-        wf = false,
-        zoom_x = 100,
-        zoom_y = 100,
-        opacity = 255,
-        tone = nil,
-        ease = :InLinear
-      )
+          id,
+          duration,
+          wf = false,
+          zoom_x = 100,
+          zoom_y = 100,
+          opacity = 255,
+          tone = nil,
+          ease = :InLinear
+        )
       $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
     end
@@ -12434,7 +12448,7 @@ module RMECommands
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
     def picture_scroll_y(ids, speed = nil)
-    return pictures[ids].scroll_speed_y unless speed
+      return pictures[ids].scroll_speed_y unless speed
       select_pictures(ids).each {|id| pictures[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
@@ -12854,7 +12868,7 @@ module RMECommands
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
     def spritesheet_scroll_y(ids, speed = nil)
-    return spritesheets[ids].scroll_speed_y unless speed
+      return spritesheets[ids].scroll_speed_y unless speed
       select_spritesheets(ids).each {|id| spritesheets[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
@@ -13001,36 +13015,36 @@ module RMECommands
     def wall?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(2288, 2335) || tile_id.between?(2384, 2431) ||
-      tile_id.between?(2480, 2527) || tile_id.between?(2576, 2623) ||
-      tile_id.between?(2672, 2719) || tile_id.between?(2768, 2815) ||
-      tile_id.between?(4736, 5119) || tile_id.between?(5504, 5887) ||
-      tile_id.between?(6272, 6655) || tile_id.between?(7040, 7423) ||
-      tile_id > 7807
+        tile_id.between?(2480, 2527) || tile_id.between?(2576, 2623) ||
+        tile_id.between?(2672, 2719) || tile_id.between?(2768, 2815) ||
+        tile_id.between?(4736, 5119) || tile_id.between?(5504, 5887) ||
+        tile_id.between?(6272, 6655) || tile_id.between?(7040, 7423) ||
+        tile_id > 7807
     end
 
     def roof?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(4352, 4735) || tile_id.between?(5120, 5503) ||
-      tile_id.between?(5888, 6271) || tile_id.between?(6656, 7039) ||
-      tile_id.between?(7424, 7807)
+        tile_id.between?(5888, 6271) || tile_id.between?(6656, 7039) ||
+        tile_id.between?(7424, 7807)
     end
 
     def stair?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(1541, 1542) || tile_id.between?(1549, 1550) ||
-      tile_id.between?(1600, 1615)
+        tile_id.between?(1600, 1615)
     end
 
     def table?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(3152, 3199) || tile_id.between?(3536, 3583) ||
-      tile_id.between?(3920, 3967) || tile_id.between?(4304, 4351)
+        tile_id.between?(3920, 3967) || tile_id.between?(4304, 4351)
     end
 
     def ground?(x, y)
       tile_id = tile_id(x, y, 0)
       (tile_id.between?(2816, 4351) && !table?(x,y)) ||
-      (tile_id > 1663 && !stair?(x,y))
+        (tile_id > 1663 && !stair?(x,y))
     end
     
     def boat_passable?(x, y)
@@ -13040,7 +13054,7 @@ module RMECommands
     def ship_passable?(x, y)
       $game_map.ship_passable?(x, y)
     end
-   
+    
     def autotile_type(x, y, z)
       $game_map.autotile_type(x, y, z)
     end
@@ -13054,7 +13068,7 @@ module RMECommands
     end
 
     def get_squares_by_tile(layer, tile_id)
-       $game_map.squares_by_tile(layer, tile_id)
+      $game_map.squares_by_tile(layer, tile_id)
     end
 
     def get_random_square(region_id = 0)
@@ -13435,26 +13449,6 @@ module RMECommands
     def armor_agility(id); $data_armors[id].params[6]; end
     def armor_luck(id); $data_armors[id].params[7]; end
 
-    # def armor_element_rate(i, actor_id, element_id)
-    #   item = $data_armors[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
-
-    # def weapon_element_rate(i, actor_id, element_id)
-    #   item = $data_weapons[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
-
     def give_item(id, amount)
       item = $data_items[id];
       $game_party.gain_item(item, amount)
@@ -13491,8 +13485,8 @@ module RMECommands
     end
 
     def weapon_type(id)
-     i = $data_weapons[id].wtype_id
-     $data_system.weapon_types[i]
+      i = $data_weapons[id].wtype_id
+      $data_system.weapon_types[i]
     end
     def armor_type(id)
       i = $data_armors[id].atype_id
@@ -13567,19 +13561,9 @@ module RMECommands
     def item_nb_hits(i); $data_items[i].repeats; end
     def item_success_rate(i); $data_items[i].success_rate; end
     def item_tp_gain(i); $data_items[i].tp_gain; end
-    # def item_element_rate(i, actor_id, element_id)
-    #   item = $data_items[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
-
     def last_used_item(); $game_temp.last_used_item; end
     def last_used_skill(); $game_temp.last_used_skill; end
-
+    
     append_commands
   end
 
@@ -13791,7 +13775,7 @@ module RMECommands
       color = _color.is_a?(String) ? get_color(_color) : _color
       event(id).k_sprite.flash(color, duration)
     end
-
+    
     def player_flash(color, duration)
       event_flash(0, color, duration)
     end
@@ -13858,12 +13842,12 @@ module RMECommands
       event2 = event(ev2)
       return true if event1.x == event2.x && event1.y == event2.y
       flag = case event1.direction
-      when 2; event2.x == event1.x && event2.y == event1.y+1
-      when 4; event2.x == event1.x-1 && event2.y == event1.y
-      when 6; event2.x == event1.x+1 && event2.y == event1.y
-      when 8; event2.x == event1.x && event2.y == event1.y-1
-      else; false
-      end
+             when 2; event2.x == event1.x && event2.y == event1.y+1
+             when 4; event2.x == event1.x-1 && event2.y == event1.y
+             when 6; event2.x == event1.x+1 && event2.y == event1.y
+             when 8; event2.x == event1.x && event2.y == event1.y-1
+             else; false
+             end
       return flag && !event1.moving?
     end
     def pixel_in_event?(id, x, y, pr = false)
@@ -13996,15 +13980,15 @@ module RMECommands
       event(id).restore_oxy
     end
     def player_restore_origin; event_restore_origin(0); end
-      [:last_clicked,
-      :last_pressed,
-      :last_triggered,
-      :last_released ,
-      :last_repeated,
-      :last_hovered].each do |m|
-        define_method("#{m}_event") do
-          Game_CharacterBase.send(m)
-        end
+    [:last_clicked,
+     :last_pressed,
+     :last_triggered,
+     :last_released ,
+     :last_repeated,
+     :last_hovered].each do |m|
+      define_method("#{m}_event") do
+        Game_CharacterBase.send(m)
+      end
     end
 
     def events_buzzer_properties(e, amplitude, length)
@@ -14117,8 +14101,8 @@ module RMECommands
     def event_priority(ids, priority = nil)
       return event(ids).priority_type if !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
-      event(id_event).priority_type = priority
-    end
+        event(id_event).priority_type = priority
+      end
     end
 
     def event_trigger(ids, trigger = nil)
@@ -14874,7 +14858,7 @@ module RMECommands
     # * Texte movement
     #--------------------------------------------------------------------------
     def text_move(id, duration, wait_flag, x, y, zoom_x = -1,
-        zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
+                  zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
       Game_Screen.get.texts[id].move(
         duration, x, y, zoom_x, zoom_y, opacity,
         blend_type, origin
