@@ -29,7 +29,7 @@
 
 =begin # MIT License
 
-Copyright (c) 2012-2018 RMEx
+Copyright (c) 2012-2020 RMEx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -65,6 +65,16 @@ module RME
     KEY_TONE = :f4
     MAP_RELOAD = :f11
 
+    EXTENSIONS = {
+
+      # Add command to deal with Event-Making loop
+      extender_loop: true,
+
+      # Hack to use Resolution.change(w, h) with value over 640x480.
+      # The extension is unsafe and you should not use it !
+      enlarge_resolution: false,
+    }
+
   end
 
   class << self
@@ -72,7 +82,7 @@ module RME
     # * Version
     # * With RMEPackage, it's seems useless ?
     #--------------------------------------------------------------------------
-    def version; define_version(2,0,0); end
+    def version; define_version(2,1,0); end
     #--------------------------------------------------------------------------
     # * define Version
     #--------------------------------------------------------------------------
@@ -85,12 +95,14 @@ module RME
     def check_version(oth)
       version >= oth
     end
+
     #--------------------------------------------------------------------------
-    # * unsafe?
+    # * Allowed Extension
     #--------------------------------------------------------------------------
-    def unsafe?
-      false
+    def allowed?(key)
+      RME::Config::EXTENSIONS[key] || false
     end
+    
     #--------------------------------------------------------------------------
     # * Enabled Gui components
     #--------------------------------------------------------------------------
@@ -2185,6 +2197,7 @@ module Generative
     #--------------------------------------------------------------------------
     def rect
       return Rect.new(0,0,0,0) unless self.bitmap
+      src_rect = self.bitmap.rect
       tx, ty = self.x, self.y
       if viewport
         tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))
@@ -2734,7 +2747,7 @@ class Socket
 end
 
 
-if RME.unsafe?
+if RME.allowed?(:enlarge_resolution)
   #==============================================================================
   # ** Plane
   #------------------------------------------------------------------------------
@@ -2792,6 +2805,24 @@ if RME.unsafe?
       super(plane)
     end
 
+  end
+end
+
+
+module Feedback
+
+  class << self
+
+    def hook(message, map_id, event_id, index, script, exception)
+      msg = "#{message}\n"
+      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
+      msg += "#{script}\n"
+      msg += "-------------------\n"
+      msg += "#{exception}"
+      msgbox(msg)
+      exit
+    end
+    
   end
 end
 

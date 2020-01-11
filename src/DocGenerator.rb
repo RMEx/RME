@@ -286,7 +286,9 @@ module DocGenerator
           snippet = ""
           snippet = mdl.np + make_class_snippet(mdl, c[name]) + mdl.np if snip
           t += mdl.np + mdl.blockquote(desc) + mdl.nl + atr_list + snippet
-          ls += mdl.li(mdl.link("#{name}#{inline_args}", "#{'#'+"#{name2}#{inline_args2}"}"))
+          left = "#{name}#{inline_args}"
+          right = "##{name2 + inline_args2}"
+          ls += mdl.li(mdl.link(left, right))
         end
         return ls + mdl.end_ul + t
       end

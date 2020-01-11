@@ -24,7 +24,7 @@ ASample.new('Affiche des buisson aléatoirement toutes les 300 frames sur la car
 ASample.new('Le joueur est sur la zone 2',
   ['region_id'], 14)
 
-ASample.new('QTE extrèmement simple', ['qte'], 17)
+ASample.new('QTE extrêmement simple', ['qte'], 17)
 
 ASample.new('QTE généré aléatoirement avec choix de la taille de la combinaison',
   ['random_combination', 'get', 'qte'], 15)
@@ -55,7 +55,7 @@ ASample.new('Afficher progressivement du texte en jouant un son à chaque caract
 ASample.new('Faire apparaitre des événéments dans une région',
 ['get_random_square', 'id_at', 'invoke_event', 'fresh_event_id'], 24)
 
-ASample.new('Flash des tile du même ID sur une carte',
+ASample.new('Flash des tiles du même ID sur une carte',
 ['get_squares_by_tile', 'mouse_click?', 'tile_id', 'mouse_square_x', 'mouse_square_y', 'length', 'get', 'flash_rect', 'unflash_rect'], 25)
 
 ASample.new('Flash des cases du même terrain_tag',

@@ -1,5 +1,5 @@
 # By Raho
-if RME.unsafe?
+if RME.allowed?(:enlarge_resolution)
 
   #==============================================================================
   # ** Resolution

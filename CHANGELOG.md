@@ -1,5 +1,36 @@
 # RME Changelog
 
+## Release (2.1.0)
+
+### Additions
+
+- Add command `text_showed?` (@xvw, requested by @mamie-nani)
+- Add commands `reset_variables`, `reset_switches`, `reset_self_switches` `reset_self_variables`, `reset_labels`, `reset_self_labels` and `reset_contents` (@xvw, requested by @mamie-nani)
+- Add commands `map_name_of`, `map_system_name_of`, `find_map` and `select_maps` (@xvw, requested by @Zer0xxxxx)
+- Add commands `screen_shake_vertical`, `screen_shake_both`, `picture_shake_vertical`, `picture_shake_both`, `spritesheet_shake_vertical`, `spritesheet_shake_both` and add `wait_flag` in `picture_shake` and `spritesheet_shake` (@xvw, requested by @Zer0xxxxx)
+- Add commands `battle_bgm_name`, `battle_bgm_volume`, `battle_bgm_pitch`, `set_battle_bgm`, `battle_end_me_name`, `battle_end_me_volume`, `battle_end_me_pitch`and `set_battle_end_me` (@xvw, requested by @Princesseuh)
+- Add commands `enable/disable_access_menu`, `enable/disable_save_access`, `enable/disable_encounter` and `enable/disable_formation_access` (@xvw, requested by @Princesseuh)
+- Add command `change_vehicle_graphics` (@xvw, requested by @Princesseuh)
+- More comprehensive feedback on error in script call (@xvw, requested by @BastienDuplessier)
+
+
+### Bug fixes
+
+- Fix `vehicle(x)` usable as an event (@xvw)
+- Made custom triggers available in Common Events (@xvw reported by @Zer0xxxxx)
+- Fix spriteset error when sprite of picture is used in common event (@xvw reported by @Mamie-Nani)
+- Fix picture rect failure (@xvw reported by @Mamie-Nani)
+
+### Documentation
+
+- Fix some multiple mistakes in documentation and samples (@xvw, reported by @Zer0xxxxx)
+- Clarification between region and virtual zone (@xvw, reported by @Zer0xxxxx)
+- Fix default position for `camera_scroll_towards` (@xvw, reported by @acs-l)
+- Move Files command into File's category
+- Easing function and Keyboard keys are now part of the Wiki (@xvw)
+- Easing and Keys type (in documentation) are linked to the wiki (@xvw)
+- Fix a lot of arg types and append Key and Easing type (@xvw)
+
 ## Release (2.0.0)
 
 ### Additions

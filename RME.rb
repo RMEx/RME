@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #==============================================================================
-# ** RME v2.0.0
+# ** RME v2.1.0
 #------------------------------------------------------------------------------
 #  With :
 # xvw
@@ -29,7 +29,7 @@
 
 =begin # MIT License
 
-Copyright (c) 2012-2018 RMEx
+Copyright (c) 2012-2020 RMEx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -65,6 +65,16 @@ module RME
     KEY_TONE = :f4
     MAP_RELOAD = :f11
 
+    EXTENSIONS = {
+
+      # Add command to deal with Event-Making loop
+      extender_loop: true,
+
+      # Hack to use Resolution.change(w, h) with value over 640x480.
+      # The extension is unsafe and you should not use it !
+      enlarge_resolution: false,
+    }
+
   end
 
   class << self
@@ -72,7 +82,7 @@ module RME
     # * Version
     # * With RMEPackage, it's seems useless ?
     #--------------------------------------------------------------------------
-    def version; define_version(2,0,0); end
+    def version; define_version(2,1,0); end
     #--------------------------------------------------------------------------
     # * define Version
     #--------------------------------------------------------------------------
@@ -85,12 +95,14 @@ module RME
     def check_version(oth)
       version >= oth
     end
+
     #--------------------------------------------------------------------------
-    # * unsafe?
+    # * Allowed Extension
     #--------------------------------------------------------------------------
-    def unsafe?
-      false
+    def allowed?(key)
+      RME::Config::EXTENSIONS[key] || false
     end
+    
     #--------------------------------------------------------------------------
     # * Enabled Gui components
     #--------------------------------------------------------------------------
@@ -2185,6 +2197,7 @@ module Generative
     #--------------------------------------------------------------------------
     def rect
       return Rect.new(0,0,0,0) unless self.bitmap
+      src_rect = self.bitmap.rect
       tx, ty = self.x, self.y
       if viewport
         tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))
@@ -2734,7 +2747,7 @@ class Socket
 end
 
 
-if RME.unsafe?
+if RME.allowed?(:enlarge_resolution)
   #==============================================================================
   # ** Plane
   #------------------------------------------------------------------------------
@@ -2792,6 +2805,24 @@ if RME.unsafe?
       super(plane)
     end
 
+  end
+end
+
+
+module Feedback
+
+  class << self
+
+    def hook(message, map_id, event_id, index, script, exception)
+      msg = "#{message}\n"
+      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
+      msg += "#{script}\n"
+      msg += "-------------------\n"
+      msg += "#{exception}"
+      msgbox(msg)
+      exit
+    end
+    
   end
 end
 
@@ -6514,10 +6545,39 @@ class Game_CommonEvent
   #--------------------------------------------------------------------------
   alias_method :extender_active?, :active?
   #--------------------------------------------------------------------------
+  # * Get the first trigger
+  #--------------------------------------------------------------------------
+  def custom_trigger
+    return false unless @event.list[0]
+    return false unless @event.list[0].code == 355
+    script = @event.list[0].parameters[0] + "\n"
+    index = 1
+    while @event.list[index].code == 655
+      script += @event.list[index].parameters[0] + "\n"
+      index += 1
+    end
+    if script =~ /^\s*(trigger|listener)/
+      potential_trigger = eval(script)
+      return potential_trigger if potential_trigger.is_a?(Proc)
+    elsif script =~ /^\s*(ignore_left)/
+      potential_trigger = eval(script)
+      return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
+    end
+    return false
+  end
+  #--------------------------------------------------------------------------
   # * Determine if Active State
   #--------------------------------------------------------------------------
   def active?
-    return extender_active? if not in_battle?
+    if not in_battle?
+      value = extender_active?
+      first = custom_trigger
+      if first.is_a?(Array) && first[1] == :ign
+        return first[0].()
+      end
+      return value unless first
+      return value && first.()
+    end
     @event.for_battle? && @event.battle_trigger.call()
   end
 end
@@ -7760,11 +7820,25 @@ class Game_CharacterBase
   #--------------------------------------------------------------------------
   # * Eval sequence
   #--------------------------------------------------------------------------
+  alias_method :extender_eval, :eval
   def eval(str, r=nil)
     Game_Interpreter.current_id = @id
     Game_Interpreter.current_map_id = $game_map.map_id
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
-    super(script, $game_map.interpreter.get_binding)
+    begin 
+      extender_eval(script, $game_map.interpreter.get_binding)
+    rescue RGSSReset
+      raise
+    rescue Exception => e
+      Feedback.hook(
+        "Error in move route",
+        $game_map.map_id,
+        @id,
+        @move_route_index,
+        script,
+        e
+      )
+    end
   end
   #--------------------------------------------------------------------------
   # * Detect Collision with Character
@@ -8782,6 +8856,7 @@ class Scene_Map
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :extender_start, :start
+  alias_method :extender_update_scene, :update_scene
   #--------------------------------------------------------------------------
   # * Start
   #--------------------------------------------------------------------------
@@ -8882,6 +8957,23 @@ class Scene_Map
     @textfields.values.collect(&:update)
   end
 
+  #--------------------------------------------------------------------------
+  # * Update Scene Transition
+  #--------------------------------------------------------------------------
+  def update_scene
+    extender_update_scene
+    update_call_title_screen unless scene_changing? 
+  end
+
+  #--------------------------------------------------------------------------
+  # * Determine if Call to title screen is called
+  #--------------------------------------------------------------------------
+  def update_call_title_screen
+    if $game_map.goto_title_screen
+      SceneManager.call(Scene_Title) 
+    end
+  end
+
 end
 
 #==============================================================================
@@ -8966,6 +9058,7 @@ class Game_Map
   attr_accessor :scroll_speed
   attr_accessor :can_dash
   attr_accessor :scrolling_activate
+  attr_accessor :goto_title_screen
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -8973,12 +9066,14 @@ class Game_Map
     @use_reflection = false
     @reflection_properties = {}
     @parallaxes = Game_Parallaxes.new
+    @goto_title_screen = false
     rm_extender_initialize
   end
   #--------------------------------------------------------------------------
   # * Setup
   #--------------------------------------------------------------------------
   def setup(map_id)
+    @goto_title_screen = false
     rm_extender_setup(map_id)
     SceneManager.scene.erase_textfields if SceneManager.scene.is_a?(Scene_Map)
     Game_Map.eval_proc(:all)
@@ -9342,27 +9437,40 @@ class Game_Screen
   # * Public instance variable
   #--------------------------------------------------------------------------
   attr_reader :texts, :spritesheets
+  attr_reader :vertical_shake
   #--------------------------------------------------------------------------
   # * Alias
   #--------------------------------------------------------------------------
-  alias_method :displaytext_initialize, :initialize
-  alias_method :displaytext_update,     :update
+  alias_method :extender_initialize, :initialize
+  alias_method :extender_update,     :update
+  alias_method :extender_clear, :clear
+  
   #--------------------------------------------------------------------------
   # * Constructor
   #--------------------------------------------------------------------------
   def initialize
     @texts = Game_Texts.new
     @spritesheets = Game_Spritesheets.new
-    displaytext_initialize
+    extender_initialize
   end
   #--------------------------------------------------------------------------
   # * Clear
   #--------------------------------------------------------------------------
-  alias_method :displaytext_clear, :clear
   def clear
-    displaytext_clear
+    extender_clear
     clear_texts
     clear_spritesheets
+    clear_vertical_shake
+  end
+  #--------------------------------------------------------------------------
+  # * Vertical Shake
+  #--------------------------------------------------------------------------
+  def clear_vertical_shake
+    @vertical_shake_power = 0
+    @vertical_shake_speed = 0
+    @vertical_shake_duration = 0
+    @vertical_shake_direction = 1
+    @vertical_shake = 0
   end
   #--------------------------------------------------------------------------
   # * Clear text
@@ -9377,12 +9485,46 @@ class Game_Screen
     @spritesheets.each {|picture| picture.erase }
   end
   #--------------------------------------------------------------------------
+  # * Start vertical Shaking
+  #     power: intensity
+  #     speed: speed
+  #--------------------------------------------------------------------------
+  def start_vertical_shake(power, speed, duration)
+    @vertical_shake_power = power
+    @vertical_shake_speed = speed
+    @vertical_shake_duration = duration
+  end
+  #--------------------------------------------------------------------------
   # * Frame update
   #--------------------------------------------------------------------------
   def update
-    displaytext_update
+    extender_update
     update_texts
     update_spritesheets
+    update_vertical_shake
+  end
+  #--------------------------------------------------------------------------
+  # * Update texts
+  #--------------------------------------------------------------------------
+  def update_vertical_shake
+    if @vertical_shake_duration > 0 || @vertical_shake != 0
+      delta = (@vertical_shake_power *
+               @vertical_shake_speed *
+               @vertical_shake_direction
+              ) / 10.0
+      if (@vertical_shake_duration <= 1 && @vertical_shake * (@vertical_shake + delta) < 0)
+        @vertical_shake = 0
+      else
+        @vertical_shake += delta
+      end
+      if @vertical_shake > @vertical_shake_power * 2
+        @vertical_shake_direction = -1
+      end
+      if @vertical_shake < -@vertical_shake_power * 2
+        @vertical_shake_direction = 1
+      end
+      @vertical_shake_duration -= 1
+    end
   end
   #--------------------------------------------------------------------------
   # * Update texts
@@ -9391,7 +9533,7 @@ class Game_Screen
     @texts.each{|t|t.update}
   end
   #--------------------------------------------------------------------------
-  # * Update texts
+  # * Check if a tone change
   #--------------------------------------------------------------------------
   def tone_change?
     @tone_duration > 0
@@ -9754,6 +9896,7 @@ class Game_Picture
   attr_accessor  :angle                    # rotation angle
   attr_accessor  :pinned
   attr_accessor  :shake
+  attr_accessor  :vertical_shake
   attr_accessor  :mirror
   attr_accessor  :wave_amp
   attr_accessor  :wave_speed
@@ -9827,6 +9970,7 @@ class Game_Picture
     @scroll_speed_y = @scroll_speed_x = 2
     @z = @number
     clear_shake
+    clear_vertical_shake
   end
   #--------------------------------------------------------------------------
   # * Clear Shake
@@ -9839,6 +9983,16 @@ class Game_Picture
     @shake = 0
   end
   #--------------------------------------------------------------------------
+  # * Clear Vertical Shake
+  #--------------------------------------------------------------------------
+  def clear_vertical_shake
+    @vertical_shake_power = 0
+    @vertical_shake_speed = 0
+    @vertical_shake_duration = 0
+    @vertical_shake_direction = 1
+    @vertical_shake = 0
+  end
+  #--------------------------------------------------------------------------
   # * Start Shaking
   #     power: intensity
   #     speed: speed
@@ -9847,6 +10001,16 @@ class Game_Picture
     @shake_power = power
     @shake_speed = speed
     @shake_duration = duration
+  end
+  #--------------------------------------------------------------------------
+  # * Start Vertical Shaking
+  #     power: intensity
+  #     speed: speed
+  #--------------------------------------------------------------------------
+  def start_vertical_shake(power, speed, duration)
+    @vertical_shake_power = power
+    @vertical_shake_speed = speed
+    @vertical_shake_duration = duration
   end
   #--------------------------------------------------------------------------
   # * Update Shake
@@ -9865,11 +10029,33 @@ class Game_Picture
     end
   end
   #--------------------------------------------------------------------------
+  # * Update Shake
+  #--------------------------------------------------------------------------
+  def update_vertical_shake
+    if @vertical_shake_duration > 0 || @vertical_shake != 0
+      delta = (@vertical_shake_power *
+               @vertical_shake_speed * @vertical_shake_direction) / 10.0
+      if @vertical_shake_duration <= 1 && @vertical_shake * (@vertical_shake + delta) < 0
+        @vertical_shake = 0
+      else
+        @vertical_shake += delta
+      end
+      if @vertical_shake > @vertical_shake_power * 2
+        @vertical_shake_direction = -1
+      end
+      if @vertical_shake < - @vertical_shake_power * 2
+        @vertical_shake_direction = 1
+      end
+      @vertical_shake_duration -= 1
+    end
+  end
+  #--------------------------------------------------------------------------
   # * Frame Update
   #--------------------------------------------------------------------------
   def update
     rm_extender_update
     update_shake
+    update_vertical_shake
   end
 
   #--------------------------------------------------------------------------
@@ -10210,7 +10396,14 @@ class Spriteset_Map
     update_texts
     rme_update
     update_reflects
+    update_vertical_shake
     update_spritesheets
+  end
+  #--------------------------------------------------------------------------
+  # * Update Vertical Shake
+  #--------------------------------------------------------------------------
+  def update_vertical_shake
+    @viewport1.oy = $game_map.screen.vertical_shake
   end
   #--------------------------------------------------------------------------
   # * Update Reflects
@@ -10324,10 +10517,10 @@ class Sprite_Picture
       x_s = 16 * @picture.scroll_speed_x
       y_s = 16 * @picture.scroll_speed_y
       self.x = @picture.x - ($game_map.display_x * x_s) + @picture.shake
-      self.y = @picture.y - ($game_map.display_y * y_s)
+      self.y = @picture.y - ($game_map.display_y * y_s) + @picture.vertical_shake
     else
       self.x = @picture.x + @picture.shake
-      self.y = @picture.y
+      self.y = @picture.y + @picture.vertical_shake
     end
     self.z = @picture.z
   end
@@ -10557,6 +10750,26 @@ class Game_Interpreter
   alias_method :extender_command_105, :command_105
   alias_method :extender_command_355, :command_355
   alias_method :extender_command_117, :command_117
+  alias_method :extender_command_122, :command_122
+  alias_method :extender_eval, :eval
+
+  def eval(script, r=nil)
+    message = @error_message || "Error in script call"
+    begin
+      extender_eval(script, r)
+    rescue RGSSReset
+      raise
+    rescue Exception => e
+      Feedback.hook(
+        message,
+        @map_id,
+        @event_id,
+        @index,
+        script,
+        e
+      )
+    end    
+  end
 
   #--------------------------------------------------------------------------
   # * Show Text
@@ -10587,7 +10800,15 @@ class Game_Interpreter
   def command_111
     Game_Interpreter.current_id = @event_id
     Game_Interpreter.current_map_id = @map_id
+    @error_message = "Error in conditional branch"
     extender_command_111
+  end
+  #--------------------------------------------------------------------------
+  # * Control Variables
+  #--------------------------------------------------------------------------
+  def command_122
+    @error_message = "Error in variable assignation"
+    extender_command_122
   end
   #--------------------------------------------------------------------------
   # * Script
@@ -10601,6 +10822,7 @@ class Game_Interpreter
       script += @list[@index].parameters[0] + "\n"
     end
     script = script.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@event_id}, #{$2}]" }
+    @error_message = "Error in script call"
     eval(script)
   end
   #--------------------------------------------------------------------------
@@ -11446,6 +11668,39 @@ module RMECommands
   # * Public Commands
   #--------------------------------------------------------------------------
 
+  def reset_variables
+    $game_variables = Game_Variables.new
+  end
+
+  def reset_switches
+    $game_switches = Game_Switches.new
+  end
+
+  def reset_self_switches
+    $game_self_switches = Game_SelfSwitches.new
+  end
+
+  def reset_self_variables
+    $game_self_vars = Hash.new
+  end
+
+  def reset_labels
+    $game_labels = Hash.new
+  end
+
+  def reset_self_labels
+    $game_self_labels = Hash.new
+  end
+
+  def reset_contents
+    reset_variables
+    reset_switches
+    reset_self_switches
+    reset_self_variables
+    reset_labels
+    reset_self_labels
+  end
+
   def game_window_rect
     rect = [0,0,0,0].pack('l4')
     Externlib::GetWindowRect.call(HWND, rect)
@@ -11502,6 +11757,40 @@ module RMECommands
     $game_system.window_opacity
   end
 
+  def battle_bgm_name
+    $game_system.battle_bgm.name
+  end
+
+  def battle_bgm_volume
+    $game_system.battle_bgm.volume
+  end
+
+  def battle_bgm_pitch
+    $game_system.battle_bgm.pitch
+  end
+
+  def set_battle_bgm(name, volume = 100, pitch = 100)
+    bgm = RPG::BGM.new(name, volume, pitch)
+    $game_system.battle_bgm = bgm
+  end
+
+  def battle_end_me_name
+    $game_system.battle_end_me.name
+  end
+
+  def battle_end_me_volume
+    $game_system.battle_end_me.volume
+  end
+
+  def battle_end_me_pitch
+    $game_system.battle_end_me.pitch
+  end
+
+  def set_battle_end_me(name, volume = 100, pitch = 100)
+    me = RPG::ME.new(name, volume, pitch)
+    $game_system.battle_end_me = me
+  end
+
   def menu_disabled?
     $game_system.menu_disabled
   end
@@ -11510,12 +11799,52 @@ module RMECommands
     !menu_disabled?
   end
 
+  def enable_menu_access
+    $game_system.menu_disabled = false
+  end
+
+  def disable_menu_access
+    $game_system.menu_disabled = false
+  end
+
+  def enable_encounter
+    $game_system.encounter_disabled = false
+    $game_player.make_encounter_count
+  end
+
+  def disable_encounter
+    $game_system.encounter_disabled = true
+    $game_player.make_encounter_count
+  end
+
+  def enable_formation_access
+    $game_system.formation_disabled = false
+  end
+
+  def disable_formation_access
+    $game_system.formation_disabled = true
+  end
+
+  def change_vehicle_graphics(vehicle, character_name, character_index)
+    h = {boat: 0, ship: 1, airship: 2}
+    v = h[vehicle]
+    v.set_graphic(character_name, character_index) if v
+  end
+  
   def save_enabled?
     !save_disabled?
   end
 
   def save_disabled?
     $game_system.save_disabled
+  end
+
+  def enable_save_access
+    $game_system.save_disabled = false
+  end
+
+  def disable_save_access
+    $game_system.save_disabled = true
   end
 
   def encounter_disabled?
@@ -11547,25 +11876,33 @@ module RMECommands
   def session_username; USERNAME; end
   def length(a); a.to_a.length; end
   def get(a, i); a[i]; end
+  
   def event(id)
     if id.is_a?(Array)
       if id[0] == :follower
         e = $game_player.followers[id[1]]
         return e if e
         raise sprintf("Follower n° %d doesn't exist", id)
-      else id[0] == :vehicle
+      elsif id[0] == :vehicle
         e =  $game_map.vehicles[id[1]]
         return e if e
         raise sprintf("Vehicle n° %d doesn't exist", id)
       end
+      raise sprintf("Invalid subject %s", "#{id[0]}")
     end
     return $game_player if id == 0
     return $game_map.events[id] if $game_map.events[id]
     raise sprintf("Event %d doesn't exist", id)
   end
+  
   def follower(pos)
     [:follower, pos]
   end
+  
+  def vehicle(v)
+    [:vehicle, {boat: 0, ship: 1, airship: 2}[v]]
+  end
+  
   def rm_kill; SceneManager.exit; end
   def reset; SceneManager.reset; end
   def website(url); Thread.new { system("start #{url}") };end
@@ -11728,33 +12065,33 @@ module RMECommands
     # * Show parallax
     #--------------------------------------------------------------------------
     def parallax_show(
-        id,
-        name,
-        z  = -100,
-        op = 255,
-        ax = 0,
-        ay = 0,
-        mx = 2,
-        my = 2,
-        b  = 0,
-        zx = 100,
-        zy = 100
-      )
+          id,
+          name,
+          z  = -100,
+          op = 255,
+          ax = 0,
+          ay = 0,
+          mx = 2,
+          my = 2,
+          b  = 0,
+          zx = 100,
+          zy = 100
+        )
       $game_map.parallaxes[id].show(name, z, op, ax, ay, mx, my, b, zx, zy)
     end
     #--------------------------------------------------------------------------
     # * Move parallax
     #--------------------------------------------------------------------------
     def parallax_transform(
-        id,
-        duration,
-        wf = false,
-        zoom_x = 100,
-        zoom_y = 100,
-        opacity = 255,
-        tone = nil,
-        ease = :InLinear
-      )
+          id,
+          duration,
+          wf = false,
+          zoom_x = 100,
+          zoom_y = 100,
+          opacity = 255,
+          tone = nil,
+          ease = :InLinear
+        )
       $game_map.parallaxes[id].move(duration, zoom_x, zoom_y, opacity, tone, ease)
       wait(duration) if wf
     end
@@ -12104,15 +12441,30 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Shake the picture
     #--------------------------------------------------------------------------
-    def picture_shake(ids, power, speed, duration)
+    def picture_shake(ids, power, speed, duration, wait_flag = false)
       select_pictures(ids).each do |id|
         pictures[id].start_shake(power, speed, duration)
       end
+      wait(duration) if wait_flag
+    end
+    def picture_shake_vertical(ids, power, speed, duration, wait_flag = false)
+      select_pictures(ids).each do |id|
+        pictures[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
+    end
+    def picture_shake_both(ids, power, speed, duration, wait_flag = false)
+      select_pictures(ids).each do |id|
+        pictures[id].start_shake(power, speed, duration)
+        pictures[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
     end
     #--------------------------------------------------------------------------
     # * Point in picture
     #--------------------------------------------------------------------------
     def pixel_in_picture?(id, x, y, precise = false)
+      return false unless SceneManager.scene.respond_to?(:spriteset)
       spr = sprite_picture(id)
       return false unless spr
       precise ? spr.precise_in?(x, y) : spr.in?(x, y)
@@ -12164,7 +12516,7 @@ module RMECommands
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
     def picture_scroll_y(ids, speed = nil)
-    return pictures[ids].scroll_speed_y unless speed
+      return pictures[ids].scroll_speed_y unless speed
       select_pictures(ids).each {|id| pictures[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
@@ -12510,10 +12862,24 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Shake the spritesheet
     #--------------------------------------------------------------------------
-    def spritesheet_shake(ids, power, speed, duration)
+    def spritesheet_shake(ids, power, speed, duration, wait_flag = false)
       select_spritesheets(ids).each do |id|
         spritesheets[id].start_shake(power, speed, duration)
       end
+      wait(duration) if wait_flag
+    end
+    def spritesheet_shake_vertical(ids, power, speed, duration, wait_flag = false)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
+    end
+    def spritesheet_shake_both(ids, power, speed, duration, wait_flag = false)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].start_shake(power, speed, duration)
+        spritesheets[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
     end
     #--------------------------------------------------------------------------
     # * Point in spritesheet
@@ -12570,7 +12936,7 @@ module RMECommands
     # * Change scroll speed (in Y)
     #--------------------------------------------------------------------------
     def spritesheet_scroll_y(ids, speed = nil)
-    return spritesheets[ids].scroll_speed_y unless speed
+      return spritesheets[ids].scroll_speed_y unless speed
       select_spritesheets(ids).each {|id| spritesheets[id].scroll_speed_y = speed}
     end
     #--------------------------------------------------------------------------
@@ -12661,6 +13027,26 @@ module RMECommands
     def map_name
       $game_map.display_name
     end
+
+    def map_name_of(map_id)
+      VXACE_MAP[map_id].display_name
+    end
+
+    def map_system_name_of(map_id)
+      VXACE_MAP[map_id].name
+    end
+
+    def select_maps(&block) 
+      VXACE_MAP.
+        select{ |k, v| block.call(k) }.
+        map {| i, map | map.id }
+    end
+
+    def find_map(&block)
+      map = VXACE_MAP.find{ |k, v| block.call(k) }
+      return map[1].id if map
+      nil
+    end
     #--------------------------------------------------------------------------
     # * Get Event Id form coords
     #--------------------------------------------------------------------------
@@ -12697,36 +13083,36 @@ module RMECommands
     def wall?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(2288, 2335) || tile_id.between?(2384, 2431) ||
-      tile_id.between?(2480, 2527) || tile_id.between?(2576, 2623) ||
-      tile_id.between?(2672, 2719) || tile_id.between?(2768, 2815) ||
-      tile_id.between?(4736, 5119) || tile_id.between?(5504, 5887) ||
-      tile_id.between?(6272, 6655) || tile_id.between?(7040, 7423) ||
-      tile_id > 7807
+        tile_id.between?(2480, 2527) || tile_id.between?(2576, 2623) ||
+        tile_id.between?(2672, 2719) || tile_id.between?(2768, 2815) ||
+        tile_id.between?(4736, 5119) || tile_id.between?(5504, 5887) ||
+        tile_id.between?(6272, 6655) || tile_id.between?(7040, 7423) ||
+        tile_id > 7807
     end
 
     def roof?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(4352, 4735) || tile_id.between?(5120, 5503) ||
-      tile_id.between?(5888, 6271) || tile_id.between?(6656, 7039) ||
-      tile_id.between?(7424, 7807)
+        tile_id.between?(5888, 6271) || tile_id.between?(6656, 7039) ||
+        tile_id.between?(7424, 7807)
     end
 
     def stair?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(1541, 1542) || tile_id.between?(1549, 1550) ||
-      tile_id.between?(1600, 1615)
+        tile_id.between?(1600, 1615)
     end
 
     def table?(x, y)
       tile_id = tile_id(x, y, 0)
       tile_id.between?(3152, 3199) || tile_id.between?(3536, 3583) ||
-      tile_id.between?(3920, 3967) || tile_id.between?(4304, 4351)
+        tile_id.between?(3920, 3967) || tile_id.between?(4304, 4351)
     end
 
     def ground?(x, y)
       tile_id = tile_id(x, y, 0)
       (tile_id.between?(2816, 4351) && !table?(x,y)) ||
-      (tile_id > 1663 && !stair?(x,y))
+        (tile_id > 1663 && !stair?(x,y))
     end
     
     def boat_passable?(x, y)
@@ -12736,7 +13122,7 @@ module RMECommands
     def ship_passable?(x, y)
       $game_map.ship_passable?(x, y)
     end
-   
+    
     def autotile_type(x, y, z)
       $game_map.autotile_type(x, y, z)
     end
@@ -12750,7 +13136,7 @@ module RMECommands
     end
 
     def get_squares_by_tile(layer, tile_id)
-       $game_map.squares_by_tile(layer, tile_id)
+      $game_map.squares_by_tile(layer, tile_id)
     end
 
     def get_random_square(region_id = 0)
@@ -12945,6 +13331,7 @@ module RMECommands
     # * Flash a square
     #--------------------------------------------------------------------------
     def flash_square(x, y, color)
+      return unless SceneManager.scene.respond_to?(:spriteset)
       tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
       tilemap.flash_data[x, y] = color.to_hex
       $game_system.flashed_data[$game_map.map_id] = tilemap.flash_data
@@ -13131,26 +13518,6 @@ module RMECommands
     def armor_agility(id); $data_armors[id].params[6]; end
     def armor_luck(id); $data_armors[id].params[7]; end
 
-    # def armor_element_rate(i, actor_id, element_id)
-    #   item = $data_armors[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
-
-    # def weapon_element_rate(i, actor_id, element_id)
-    #   item = $data_weapons[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
-
     def give_item(id, amount)
       item = $data_items[id];
       $game_party.gain_item(item, amount)
@@ -13187,8 +13554,8 @@ module RMECommands
     end
 
     def weapon_type(id)
-     i = $data_weapons[id].wtype_id
-     $data_system.weapon_types[i]
+      i = $data_weapons[id].wtype_id
+      $data_system.weapon_types[i]
     end
     def armor_type(id)
       i = $data_armors[id].atype_id
@@ -13263,19 +13630,9 @@ module RMECommands
     def item_nb_hits(i); $data_items[i].repeats; end
     def item_success_rate(i); $data_items[i].success_rate; end
     def item_tp_gain(i); $data_items[i].tp_gain; end
-    # def item_element_rate(i, actor_id, element_id)
-    #   item = $data_items[i]
-    #   user = $game_actors[i]
-    #   if item.damage.element_id < 0
-    #     user.atk_elements.empty? ? 1.0 : elements_max_rate(user.atk_elements)
-    #   else
-    #     element_rate(item.damage.element_id)
-    #   end
-    # end
-
     def last_used_item(); $game_temp.last_used_item; end
     def last_used_skill(); $game_temp.last_used_skill; end
-
+    
     append_commands
   end
 
@@ -13487,7 +13844,7 @@ module RMECommands
       color = _color.is_a?(String) ? get_color(_color) : _color
       event(id).k_sprite.flash(color, duration)
     end
-
+    
     def player_flash(color, duration)
       event_flash(0, color, duration)
     end
@@ -13554,12 +13911,12 @@ module RMECommands
       event2 = event(ev2)
       return true if event1.x == event2.x && event1.y == event2.y
       flag = case event1.direction
-      when 2; event2.x == event1.x && event2.y == event1.y+1
-      when 4; event2.x == event1.x-1 && event2.y == event1.y
-      when 6; event2.x == event1.x+1 && event2.y == event1.y
-      when 8; event2.x == event1.x && event2.y == event1.y-1
-      else; false
-      end
+             when 2; event2.x == event1.x && event2.y == event1.y+1
+             when 4; event2.x == event1.x-1 && event2.y == event1.y
+             when 6; event2.x == event1.x+1 && event2.y == event1.y
+             when 8; event2.x == event1.x && event2.y == event1.y-1
+             else; false
+             end
       return flag && !event1.moving?
     end
     def pixel_in_event?(id, x, y, pr = false)
@@ -13692,15 +14049,15 @@ module RMECommands
       event(id).restore_oxy
     end
     def player_restore_origin; event_restore_origin(0); end
-      [:last_clicked,
-      :last_pressed,
-      :last_triggered,
-      :last_released ,
-      :last_repeated,
-      :last_hovered].each do |m|
-        define_method("#{m}_event") do
-          Game_CharacterBase.send(m)
-        end
+    [:last_clicked,
+     :last_pressed,
+     :last_triggered,
+     :last_released ,
+     :last_repeated,
+     :last_hovered].each do |m|
+      define_method("#{m}_event") do
+        Game_CharacterBase.send(m)
+      end
     end
 
     def events_buzzer_properties(e, amplitude, length)
@@ -13813,8 +14170,8 @@ module RMECommands
     def event_priority(ids, priority = nil)
       return event(ids).priority_type if !priority && ids.is_a?(Fixnum)
       select_events(ids).not(0).each do |id_event|
-      event(id_event).priority_type = priority
-    end
+        event(id_event).priority_type = priority
+      end
     end
 
     def event_trigger(ids, trigger = nil)
@@ -14518,6 +14875,12 @@ module RMECommands
       Game_Screen.get.texts[id].scroll_speed_y
     end
 
+    def text_showed?(id)
+      t = Game_Screen.get.texts[id]
+      return !t.erased?
+      false
+    end
+
     #--------------------------------------------------------------------------
     # * Change text scroll speed
     #--------------------------------------------------------------------------
@@ -14564,7 +14927,7 @@ module RMECommands
     # * Texte movement
     #--------------------------------------------------------------------------
     def text_move(id, duration, wait_flag, x, y, zoom_x = -1,
-        zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
+                  zoom_y = -1, opacity = -1, blend_type = -1, origin = -1)
       Game_Screen.get.texts[id].move(
         duration, x, y, zoom_x, zoom_y, opacity,
         blend_type, origin
@@ -14862,7 +15225,11 @@ module RMECommands
     # * Go to title Screen
     #--------------------------------------------------------------------------
     def call_title_screen
-      SceneManager.call(Scene_Title)
+      if SceneManager.scene.is_a?(Scene_Map)
+        $game_map.goto_title_screen = true
+      else
+        SceneManager.call(Scene_Title)
+      end
     end
     #--------------------------------------------------------------------------
     # * Go to Load Screen
@@ -15403,6 +15770,17 @@ module RMECommands
 
     def screen_shake(power, speed, duration, wait_flag = false)
       $game_map.screen.start_shake(power, speed, duration)
+      wait(duration) if wait_flag
+    end
+
+    def screen_shake_vertical(power, speed, duration, wait_flag = false)
+      $game_map.screen.start_vertical_shake(power, speed, duration)
+      wait(duration) if wait_flag
+    end
+
+    def screen_shake_both(power, speed, duration, wait_flag = false)
+      $game_map.screen.start_shake(power, speed, duration)
+      $game_map.screen.start_vertical_shake(power, speed, duration)
       wait(duration) if wait_flag
     end
 
@@ -16517,8 +16895,149 @@ class Scene_Commands < Scene_RME
     dispose_main_viewport
   end
 end
+# Short cut for Event Making Loop
+# Based on Pico-loop, by Grim
+
+if RME.allowed?(:extender_loop)
+  
+  class Loop_Iterator
+    
+    attr_reader :iterators
+    attr_reader :counter
+    attr_reader :driver
+
+    
+    def initialize
+      @iterators = {}
+      @counter = 0
+      clear_driver
+    end
+
+    def clear_driver
+      @driver = default_driver
+    end
+
+    def realloc_driver
+      if !@driver || !@driver.is_a?(Proc)
+        clear_driver
+      end
+    end
+
+    def remove(indent)
+      @iterators.delete(indent)
+      @counter -= 1
+      @counter = 0 if @counter < 0
+      clear_driver
+    end
+
+    def exec(indent, offset)
+      realloc_driver
+      current = (get(indent) || {value: 0, driver: @driver})
+      current_value = current[:value]
+      current_driver = current[:driver]
+      value = current_value + offset
+      state = current_driver.call(value)
+      @iterators[indent] = {
+        value: value,
+        driver: current_driver,
+        state: state[1],
+        continue: state[0]
+      }
+      clear_driver
+      @counter += 1
+    end
+
+    def get(id)
+      @iterators[id]
+    end
+
+    def default_driver
+      lambda{|i| [true, i]}
+    end
+
+    def set_driver(&block)
+      @driver = block
+    end
+  end
+
+  class Game_Interpreter
+
+    attr_reader :loop_iterator
+    alias_method :loop_clear, :clear
+    alias_method :loop_command_112, :command_112
+    alias_method :loop_command_413, :command_413
+    alias_method :loop_command_113, :command_113
+
+    def clear
+      @loop_iterator = Loop_Iterator.new
+      loop_clear
+    end
+
+    def command_112
+      @loop_iterator.exec(@indent, 0)
+      loop_command_112
+    end
+
+    def command_113
+      @loop_iterator.remove(@indent-1)
+      loop_command_113
+    end
+
+    def command_413
+      it = @loop_iterator.get(@indent)
+      if it
+        unless it[:continue]
+          @loop_iterator.remove(@indent)
+          return
+        end
+        @loop_iterator.exec(@indent, 1)
+      end
+      loop_command_413
+    end
+
+  end
+
+  module Loop_Commands
+
+    def loop_step
+      return if @indent == 0
+      iterator = loop_iterator.get(@indent - 1)
+      return iterator[:value] if iterator && iterator[:value]
+      return nil
+    end
+
+    def loop_state
+      return if @indent == 0
+      iterator = loop_iterator.get(@indent - 1)
+      return iterator[:state] if iterator && iterator[:state]
+      return nil
+    end
+
+    def loop_for(array)
+      loop_iterator.set_driver do |step|
+        if array.length == 0 then [false, nil]
+        else
+          [step < (array.length - 1), array[step]]
+        end
+      end
+    end
+
+    def loop_range(a, b)
+      range = (a > b) ? (b..a).to_a.reverse : (a..b).to_a
+      loop_for(range)
+    end
+
+    def loop_times(i)
+      loop_range(1, i.abs)
+    end
+    
+    append_commands
+  end
+  
+end
+
 # By Raho
-if RME.unsafe?
+if RME.allowed?(:enlarge_resolution)
 
   #==============================================================================
   # ** Resolution
@@ -16574,7 +17093,8 @@ if RME.unsafe?
   end
 
 end
-if RME.unsafe?
+
+if RME.allowed?(:enlarge_resolution)
 
   #==============================================================================
   # ** SceneManager

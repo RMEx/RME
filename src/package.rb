@@ -23,7 +23,8 @@ Package.new(
     'SDK.Gui.rb',
     'EvEx.rb',
     'Commands.rb',
-    'Tools.rb', 
+    'Tools.rb',
+    'Incubator/loop.rb',
     'Incubator/add_kill_resolution.rb', 
     'Incubator/fix_kill_resolution.rb'
   ],
