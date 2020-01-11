@@ -12712,10 +12712,24 @@ module RMECommands
     #--------------------------------------------------------------------------
     # * Shake the spritesheet
     #--------------------------------------------------------------------------
-    def spritesheet_shake(ids, power, speed, duration)
+    def spritesheet_shake(ids, power, speed, duration, wait_flag = false)
       select_spritesheets(ids).each do |id|
         spritesheets[id].start_shake(power, speed, duration)
       end
+      wait(duration) if wait_flag
+    end
+    def spritesheet_shake_vertical(ids, power, speed, duration, wait_flag = false)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
+    end
+    def spritesheet_shake_both(ids, power, speed, duration, wait_flag = false)
+      select_spritesheets(ids).each do |id|
+        spritesheets[id].start_shake(power, speed, duration)
+        spritesheets[id].start_vertical_shake(power, speed, duration)
+      end
+      wait(duration) if wait_flag
     end
     #--------------------------------------------------------------------------
     # * Point in spritesheet
