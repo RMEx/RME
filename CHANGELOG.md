@@ -6,7 +6,9 @@
 
 - Add command `text_showed?` (@xvw, requested by @mamie-nani)
 - Add commands `reset_variables`, `reset_switches`, `reset_self_switches` `reset_self_variables`, `reset_labels`, `reset_self_labels` and `reset_contents` (@xvw, requested by @mamie-nani)
+- Add commands `map_name_of`, `map_system_name_of`, `find_map` and `select_maps` (@xvw, requested by @Zer0xxxxx)
 - More comprehensive feedback on error in script call (@xvw, requested by @BastienDuplessier)
+
 
 ### Bug fixes
 

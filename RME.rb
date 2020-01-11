@@ -29,7 +29,7 @@
 
 =begin # MIT License
 
-Copyright (c) 2012-2019 RMEx
+Copyright (c) 2012-2020 RMEx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -12750,6 +12750,26 @@ module RMECommands
     #--------------------------------------------------------------------------
     def map_name
       $game_map.display_name
+    end
+
+    def map_name_of(map_id)
+      VXACE_MAP[map_id].display_name
+    end
+
+    def map_system_name_of(map_id)
+      VXACE_MAP[map_id].name
+    end
+
+    def select_maps(&block) 
+      VXACE_MAP.
+        select{ |k, v| block.call(k) }.
+        map {| i, map | map.id }
+    end
+
+    def find_map(&block)
+      map = VXACE_MAP.find{ |k, v| block.call(k) }
+      return map[1].id if map
+      nil
     end
     #--------------------------------------------------------------------------
     # * Get Event Id form coords

@@ -76,7 +76,11 @@ var documentation = [
 {"name":"get_squares_in_circle", "description":"Renvoie un tableau de cases représentant un cercle de centre XY et de rayon spécifié en paramètre", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnée X du centre", "type":"Fixnum"},
 {"name":"y", "desc":"Coordonnée Y du centre", "type":"Fixnum"},
 {"name":"*rayon", "desc":"Rayon du cercle renvoyé", "type":"Fixnum"}]},
-{"name":"get_squares_by_terrain", "description":"Renvoie un tableau de cases pour un terrain_tag donné donné.", "returnable":true,"parameters":[{"name":"terrain_tag", "desc":"Le terrain tag (entre 0 et 7)", "type":"Fixnum"}]}
+{"name":"get_squares_by_terrain", "description":"Renvoie un tableau de cases pour un terrain_tag donné donné.", "returnable":true,"parameters":[{"name":"terrain_tag", "desc":"Le terrain tag (entre 0 et 7)", "type":"Fixnum"}]},
+{"name":"map_name_of", "description":"Renvoie le nom d'affichage d'une carte référencée par son ID", "returnable":true,"parameters":[{"name":"map_id", "desc":"ID de la carte", "type":"Fixnum"}]},
+{"name":"map_system_name_of", "description":"Renvoie le nom défini dans l'éditeur d'une carte référencée par son ID", "returnable":true,"parameters":[{"name":"map_id", "desc":"ID de la carte", "type":"ArgType"}]},
+{"name":"select_maps", "description":"Renvoie une liste des ID de cartes qui respectent le prédicat donné en argument", "returnable":true,"parameters":[{"name":"&block", "desc":"Un block de la forme '{|map_id| ... }' qui renvoie true ou false", "type":"Block"}]},
+{"name":"find_map", "description":"Renvoie le premier ID de carte qui resepcte le prédicat donné en argument", "returnable":true,"parameters":[{"name":"&block", "desc":"Un block de la forme '{|map_id| ... }' qui renvoie true ou false", "type":"Block"}]}
 ]},
 {"name":"Standards","desc":"Commandes standards","commands":[
 {"name":"message", "description":"Affiche un message à l'écran", "returnable":false,"parameters":[{"name":"value", "desc":"Message à afficher (il faut utiliser \n pour afficher plusieurs lignes)", "type":"String"},
@@ -136,7 +140,6 @@ var documentation = [
 {"name":"windowskin_opacity", "description":"Change l'opacité du Windowskin. Si aucune valeur n'est donnée, la commande renverra l'opacité", "returnable":true,"parameters":[{"name":"*value", "desc":"Valeur de l'opacité, entre 0 et 255. Si aucune valeur n'est donnée, la commande retourne l'opacité de l'évènement ciblé.", "type":"Fixnum"}]},
 {"name":"wait_with", "description":"Attend en exécutant une action", "returnable":false,"parameters":[{"name":"time", "desc":"Temps d'attente", "type":"Fixnum"},
 {"name":"&block", "desc":"Action à exécuter ({action})", "type":"Block"}]},
-{"name":"split_each_char", "description":"Transforme une chaîne de caractères en un tableau de caractères", "returnable":true,"parameters":[{"name":"str", "desc":"Chaîne à transformer", "type":"String"}]},
 {"name":"qte", "description":"Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.", "returnable":true,"parameters":[{"name":"key", "desc":"Touche qu'il faut presser avant la fin", "type":"Symbol"},
 {"name":"time", "desc":"Durée", "type":"Fixnum"},
 {"name":"*strict", "desc":"Difficulté, si elle vaut true, aucune erreur admise, sinon erreurs admises. Par défaut vaut true", "type":"Boolean"}]},
