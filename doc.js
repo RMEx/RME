@@ -1737,7 +1737,7 @@ var documentation = [
 {"name":"camera_scroll", "description":"Fait défiler la caméra dans une direction sur une distance (en cases) à une certaine vitesse", "returnable":false,"parameters":[{"name":"direction", "desc":"Direction (2=bas, 4=gauche, 6=droite, 8=haut)", "type":"Fixnum"},
 {"name":"distance", "desc":"Nombre de cases à défiler", "type":"Fixnum"},
 {"name":"speed", "desc":"Vitesse du défilement", "type":"Fixnum"}]},
-{"name":"camera_scroll_towards", "description":"Fait défiler la caméra vers le point de coordonnées (x, y). (Par défaut, ce point sera celui situé dans le coin haut-gauche de l'écran une fois le défilement terminé)", "returnable":false,"parameters":[{"name":"x", "desc":"L'abscisse du point cible", "type":"Fixnum"},
+{"name":"camera_scroll_towards", "description":"Fait défiler la caméra vers le point de coordonnées (x, y). (Par défaut, ce point sera celui situé au centre de l'écran une fois le défilement terminé)", "returnable":false,"parameters":[{"name":"x", "desc":"L'abscisse du point cible", "type":"Fixnum"},
 {"name":"y", "desc":"L'ordonnée du point cible", "type":"Fixnum"},
 {"name":"duration", "desc":"La durée du défilement (plus il y en a, plus le temps de défilement sera long)", "type":"Fixnum"},
 {"name":"*easing_function", "desc":"Fonction à utiliser pour effectuer la transition. :InLinear par défaut.", "type":"Symbol"},
