@@ -1,5 +1,8 @@
-if RME.allowed?(:extender_loop)
+# Short cut for Event Making Loop
+# Based on Pico-loop, by Grim
 
+if RME.allowed?(:extender_loop)
+  
   class Loop_Iterator
     
     attr_reader :iterators
@@ -122,8 +125,12 @@ if RME.allowed?(:extender_loop)
       end
     end
 
+    def loop_range(a, b)
+      loop_for((a..b).to_a)
+    end
+
     def loop_times(i)
-      loop_for((1..i).to_a)
+      loop_range(1, i)
     end
     
     append_commands
