@@ -130,7 +130,7 @@ if RME.allowed?(:extender_loop)
     end
 
     def loop_times(i)
-      loop_range(1, i)
+      loop_range(1, i.abs)
     end
     
     append_commands

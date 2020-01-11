@@ -10,9 +10,9 @@ Tools
 Event_printer
 SDK.Sample
 Samples
+# work-in-progress-things (see Incubator/README.md)
+Incubator/
 # doc
 DocGenerator
 Doc 
 Process.Doc
-# work-in-progress-things (see Incubator/README.md)
-Incubator/
