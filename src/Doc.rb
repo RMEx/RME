@@ -91,6 +91,7 @@ module Command
   register_command_category :fx, "Effets spéciaux", "Effets spéciaux sur la carte"
   register_command_category :file, "Fichiers", "Manipulation de fichiers"
   register_command_category :spritesheet, "Spritesheet", "Manipulation de Spritesheets"
+  register_command_category :loop, "Boucles", "Des boucles plus expressives"
 
   link_class_documentation "Collection des commandes EventExtender"
 
