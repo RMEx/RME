@@ -444,7 +444,7 @@ module Command
   link_method_documentation 'Command.pixel_in_event?',
                             'Renvoie true si le pixel (x, y) est inclu dans l\'événement, false sinon',
                             {
-                              :id => ["Args description", :ArgType],
+                              :id => ["ID de l'évènement", :Fixnum],
                               :x => ["Coordonnée X du point à vérifier", :Fixnum],
                               :y => ["Coordonnée Y du point à vérifier", :Fixnum],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut true ", :Boolean],
@@ -481,7 +481,7 @@ module Command
                               :tone => ["Teinte de l'évènement (utilisez la commande tone)", :Tone],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }, false # Maybe changed
   register_command :event, 'Command.event_tone'
@@ -493,7 +493,7 @@ module Command
                               :tone => ["Teinte de l'évènement (utilisez la commande tone)", :Tone],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }, false # Maybe changed
   register_command :event, 'Command.player_tone'
@@ -709,7 +709,7 @@ module Command
                             "Renvoie true si la souris reste pressée sur un évènement du sélecteur passé en argument",
                             {
                               :events => ["Selecteur d'évènements", :Selectors],
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", :Boolean],
                             }, true
   register_command :event, "Command.mouse_press_event?"
@@ -718,7 +718,7 @@ module Command
                             "Renvoie true si la souris vient de cliquer un évènement du sélecteur passé en argument",
                             {
                               :events => ["Selecteur d'évènements", :Selectors],
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", :Boolean],
                             }, true
   register_command :event, "Command.mouse_trigger_event?"
@@ -727,7 +727,7 @@ module Command
                             "Renvoie true si la souris clique de manière répétée un évènement du sélecteur passé en argument",
                             {
                               :events => ["Selecteur d'évènements", :Selectors],
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", :Boolean],
                             }, true
   register_command :event, "Command.mouse_repeat_event?"
@@ -736,7 +736,7 @@ module Command
                             "Renvoie true si la souris est relâchée sur un évènement du sélecteur passé en argument",
                             {
                               :events => ["Selecteur d'évènements", :Selectors],
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
                              :"*precise" => ["Si vaut true, la vérification se fait au pixel près, sinon en fonction du rectangle. Par défaut, vaut false ", :Boolean],
                             }, true
   register_command :event, "Command.mouse_release_event?"
@@ -950,25 +950,25 @@ module Command
 
   link_method_documentation "Command.key_trigger?",
                             "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :keyboard, "Command.key_trigger?"
 
   link_method_documentation "Command.key_press?",
                             "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :keyboard, "Command.key_press?"
 
   link_method_documentation "Command.key_repeat?",
                             "Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :keyboard, "Command.key_repeat?"
 
   link_method_documentation "Command.key_release?",
                             "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :keyboard, "Command.key_release?"
 
@@ -976,7 +976,7 @@ module Command
                             "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method",
                             {
                               :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                              :keys => ["Liste des touches qui doivent être activées selon la méthode", :Argslist]
+                              :keys => ["Liste des touches qui doivent être activées selon la méthode", :Key]
                             }, true
   register_command :keyboard, "Command.keyboard_all?"
 
@@ -984,7 +984,7 @@ module Command
                             "Renvoie true si  au moins une touche passée à keys est activée selon la méthode passée à method",
                             {
                               :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                              :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                              :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Key]
                             }, true
   register_command :keyboard, "Command.keyboard_any?"
 
@@ -1025,7 +1025,7 @@ module Command
 
   link_method_documentation "Command.ctrl?",
                             "Renvoie true si la touche CTRL (ou une combinaison CTRL+key) est appuyée au moment de l'appel, false sinon",
-                            {:key => ["Symbole référençant la touche (cf:attributs) mise en combinaison", :Symbol]},
+                            {:key => ["Symbole référençant la touche (cf:attributs) mise en combinaison", :Key]},
                             true
   register_command :keyboard, "Command.ctrl?"
 
@@ -1041,18 +1041,18 @@ module Command
 
   link_method_documentation "Command.key_time",
                             "Renvoie, en nombre de frames, le temps de pression d'une touche de clavier choisie",
-                            {:key => ["Touche à vérifier",:Symbol]}, true
+                            {:key => ["Touche à vérifier",:Key]}, true
   register_command :keyboard, "Command.key_time"
 
   link_method_documentation "Command.mouse_trigger?",
                             "Renvoie true si la touche passée en argument (cf:attributs) vient d'être pressée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :mouse, "Command.mouse_trigger?"
 
   link_method_documentation "Command.mouse_press?",
                             "Renvoie true si la touche passée en argument (cf:attributs) est pressée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :mouse, "Command.mouse_press?"
 
@@ -1064,13 +1064,13 @@ module Command
 
   link_method_documentation "Command.mouse_repeat?",
                             "Renvoie true si la touche passée en argument (cf:attributs) est appuyée de manière répétée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :mouse, "Command.mouse_repeat?"
 
   link_method_documentation "Command.mouse_release?",
                             "Renvoie true si la touche passée en argument (cf:attributs) vient d'être relâchée, false sinon",
-                            {:key => ["Symbole référençant une touche (cf:attributs)", :Symbol]},
+                            {:key => ["Symbole référençant une touche (cf:attributs)", :Key]},
                             true
   register_command :mouse, "Command.mouse_release?"
 
@@ -1123,7 +1123,7 @@ module Command
                             "Renvoie true si toutes les touches passées à keys sont activées selon la méthode passée à method",
                             {
                               :method => ["Méthodes pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                              :keys => ["Liste des touches qui doivent être activées selon la méthode", :Argslist]
+                              :keys => ["Liste des touches qui doivent être activées selon la méthode", :Key]
                             }, true
   register_command :mouse, "Command.mouse_all?"
 
@@ -1131,7 +1131,7 @@ module Command
                             "Renvoie true si au moins une touche passée à keys est activée selon la méthode passée à method",
                             {
                               :method => ["Méthode pour vérifier le prédicat (par exemple, :press?, :trigger?, :release? etc.", :Symbol],
-                              :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Argslist]
+                              :keys => ["Liste des touches qui doivent être activée selon la méthode, si rien n'est passé, toutes les touches sont prises en compte", :Key]
                             }, true
   register_command :mouse, "Command.mouse_any?"
 
@@ -1142,7 +1142,7 @@ module Command
 
   link_method_documentation "Command.click_time",
                             "Renvoie, en nombre de frames, la durée de pression d'une touche de souris choisie",
-                            {:key => ["Touche à vérifier",:Symbol]}, true
+                            {:key => ["Touche à vérifier",:Key]}, true
   register_command :mouse, "Command.click_time"
 
   # AUTOGenerated for picture_mouse_hover?
@@ -1170,7 +1170,7 @@ module Command
                             'Renvoie true si la souris survol et presse en continu la touche référencée sur l\'image référencée par son ID',
                             {
                               :id => ["ID de l'image", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -1181,7 +1181,7 @@ module Command
                             'Renvoie true si la souris survol et presse la touche référencée sur l\'image référencée par son ID',
                             {
                               :id => ["ID de l'image", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -1192,7 +1192,7 @@ module Command
                             'Renvoie true si la souris survol et presse successivement la touche référencée sur l\'image référencée par son ID',
                             {
                               :id => ["ID de l'image", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -1203,7 +1203,7 @@ module Command
                             'Renvoie true si la souris survol et relâche la touche référencée sur l\'image référencée par son ID',
                             {
                               :id => ["ID de l'image", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -1250,7 +1250,7 @@ module Command
                               :id => ["ID de la spritesheet", :Fixnum],
                               :name => ["Nom de la spritesheet (sans l'extension, entre guillemets anglais)", :String],
                               :row => ["Nombre de rangées", :Fixnum],
-                              :columns => ["Nombre de colonnes", :ArgType],
+                              :columns => ["Nombre de colonnes", :Fixnum],
                              :"*index" => ["Index de la feuille de sprite affichée par défaut, 0", :Fixnum],
                              :"*x" => ["Position en X de la spritesheet (par défaut 0)", :Fixnum],
                              :"*y" => ["Position en Y de la spritesheet (par défaut 0)", :Fixnum],
@@ -1317,7 +1317,7 @@ module Command
                               :x => ["Position en x de l'image, si aucun argument n'est passé, la commande renverra la position X de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true
   register_command :picture, "Command.picture_x"
 
@@ -1328,7 +1328,7 @@ module Command
                               :y => ["Position en y de l'image, si aucun argument n'est passé, la commande renverra la position Y de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true
   register_command :picture, "Command.picture_y"
   link_method_documentation "Command.picture_position",
@@ -1339,7 +1339,7 @@ module Command
                               :y => ["Position en y de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :picture, "Command.picture_position"
   link_method_documentation "Command.picture_move",
@@ -1355,7 +1355,7 @@ module Command
                              :"*opacity" => ["Opacité (de 0 à 255) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son opacité actuelle", :Fixnum],
                              :"*blend_type" => ["Mode de fusion (0, 1, 2) que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son mode de fusion du moment", :Fixnum],
                              :"*origin" => ["Origine que l'image devra avoir, si '-1', ou aucun argument n'est donné, l'image conserva son origine du moment", :Fixnum],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }
   register_command :picture, "Command.picture_move"
@@ -1380,7 +1380,7 @@ module Command
                               :angle => ["Angle d'orientation de l'image (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true
   register_command :picture, "Command.picture_angle"
   link_method_documentation "Command.picture_rotate",
@@ -1397,7 +1397,7 @@ module Command
                               :zoom => ["Pourcentage d'agrandissement de la largeur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_x de l'image.", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true
   register_command :picture, "Command.picture_zoom_x"
   link_method_documentation "Command.picture_zoom_y",
@@ -1407,7 +1407,7 @@ module Command
                               :zoom => ["Pourcentage d'agrandissement de la hauteur de l'image. Si aucune valeur n'est donnée, la commande renverra le zoom_y de l'image.", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true
   register_command :picture, "Command.picture_zoom_y"
   link_method_documentation "Command.picture_zoom",
@@ -1418,7 +1418,7 @@ module Command
                              :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de l'image. Si cet argument est ommis, la largeur sera égale à la hauteur.", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true
   register_command :picture, "Command.picture_zoom"
   link_method_documentation "Command.picture_tone",
@@ -1428,7 +1428,7 @@ module Command
                               :tone => ["Teinte de l'image (utilisez la commande tone)", :Tone],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :picture, "Command.picture_tone"
 
@@ -1493,7 +1493,7 @@ module Command
                               :opacity => ["valeur de l'opacité (de 0 à 255)", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :picture, "Command.picture_opacity"
   link_method_documentation "Command.picture_shake",
@@ -1580,7 +1580,7 @@ module Command
                              :"*v" => ["Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true # Maybe changed
   register_command :picture, 'Command.picture_width'
 
@@ -1592,7 +1592,7 @@ module Command
                              :"*v" => ["Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de l'image", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true # Maybe changed
   register_command :picture, 'Command.picture_height'
 
@@ -1605,7 +1605,7 @@ module Command
                               :h => ["Hauteur à modifier", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :picture, 'Command.picture_dimension'
 
@@ -1636,7 +1636,7 @@ module Command
                              :"*zoom_y" => ["Zoom vertical (par défaut 100)", :Fixnum],
                              :"*opacity" => ["Opacité, entre 0 et 255. (par défaut 255)", :Fixnum],
                              :"*tone" => ["Teinte, utilisez la commande tone (rubrique Standard), par défaut aucun changement de teinte", :Tone],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_transform"
   link_method_documentation "Command.parallax_erase",
@@ -1663,7 +1663,7 @@ module Command
                               :speed => ["Vitesse de défilement", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_autoscroll_x"
   link_method_documentation "Command.parallax_autoscroll_y",
@@ -1673,7 +1673,7 @@ module Command
                               :speed => ["Vitesse de défilement", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_autoscroll_y"
   link_method_documentation "Command.parallax_scroll_x",
@@ -1697,7 +1697,7 @@ module Command
                               :zoom => ["taille en pourcentage", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_zoom_x"
   link_method_documentation "Command.parallax_zoom_y",
@@ -1707,7 +1707,7 @@ module Command
                               :zoom => ["taille en pourcentage", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_zoom_y"
   link_method_documentation "Command.parallax_zoom",
@@ -1717,7 +1717,7 @@ module Command
                               :zoom => ["taille en pourcentage", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_zoom"
   link_method_documentation "Command.parallax_tone",
@@ -1727,7 +1727,7 @@ module Command
                               :tone => ["teinte du panorama (utilisez la commande tone des commandes standards)", :Tone],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_tone"
   link_method_documentation "Command.parallax_opacity",
@@ -1737,7 +1737,7 @@ module Command
                               :opacity => ["valeur de l'opacité (0 à 255)", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :parallax, "Command.parallax_opacity"
 
@@ -4163,7 +4163,7 @@ module Command
   link_method_documentation 'Command.qte',
                             'Attend la saisie d\'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.',
                             {
-                              :key => ["Touche qu'il faut presser avant la fin", :Symbol],
+                              :key => ["Touche qu'il faut presser avant la fin", :Key],
                               :time => ["Durée", :Fixnum],
                              :"*strict" => ["Difficulté, si elle vaut true, aucune erreur admise, sinon erreurs admises. Par défaut vaut true", :Boolean]
 
@@ -4174,7 +4174,7 @@ module Command
   link_method_documentation 'Command.wait_trigger',
                             'Attend l\'appui d\'une touche',
                             {
-                              :key => ["Touche à attendre", :Symbol],
+                              :key => ["Touche à attendre", :Key],
 
                             }
   register_command :standard, 'Command.wait_trigger'
@@ -4183,7 +4183,7 @@ module Command
   link_method_documentation 'Command.wait_release',
                             'Attend le relâchement d\'une touche',
                             {
-                              :key => ["Touche à attendre", :Symbol],
+                              :key => ["Touche à attendre", :Key],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.wait_release'
@@ -4399,8 +4399,8 @@ module Command
   link_method_documentation 'Command.random_combination',
                             'Renvoie une combinaison (tableau itérable) aléatoire de la taille spécifiée en argument, composée des paramètres des touches passées en arguments. (par exemple : random_combination(5, :UP, :DOWN, :LEFT, :RIGHT) )',
                             {
-                              :len => ["Args description", :Fixnum],
-                             :"*keys" => ["Liste des touches pouvant constituer la combinaison", :Argslist],
+                              :len => ["Longueur du tableau", :Fixnum],
+                             :"*keys" => ["Liste des touches pouvant constituer la combinaison", :Array],
 
                             }, true # Maybe changed
   register_command :standard, 'Command.random_combination'
@@ -4409,7 +4409,7 @@ module Command
   link_method_documentation 'Command.pick_random',
                             'Renvoie un élément au hasard du tableau (ou de la liste d\'arguments)',
                             {
-                             :"*elts" => ["éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])", :ArgsList],
+                             :"*elts" => ["éléments dans lesquels piocher un élément aléatoire. Soit pick_random(a, b, c, d...etc.) soit pick_random([a,b,c,d...etc])", :Array],
                             }, true # Maybe changed
   register_command :standard, 'Command.pick_random'
 
@@ -4522,7 +4522,7 @@ module Command
   link_method_documentation 'Command.mouse_press_player?',
                             'Renvoie true si la souris presse en continu la touche passée en argument sur le joueur',
                             {
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :ArgType],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :event, 'Command.mouse_press_player?'
@@ -4531,7 +4531,7 @@ module Command
   link_method_documentation 'Command.mouse_trigger_player?',
                             'Renvoie true si la souris appuie une fois la touche passée en argument sur le joueur',
                             {
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :ArgType],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :event, 'Command.mouse_trigger_player?'
@@ -4540,7 +4540,7 @@ module Command
   link_method_documentation 'Command.mouse_repeat_player?',
                             'Renvoie true si la souris appuie de manière répétée sur la touche passée en argument sur l\'image du joueur',
                             {
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :ArgType],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :event, 'Command.mouse_repeat_player?'
@@ -4549,7 +4549,7 @@ module Command
   link_method_documentation 'Command.mouse_release_player?',
                             'Renvoie true si la souris relâche la touche passée en argument sur le joueur',
                             {
-                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :ArgType],
+                             :"*key" => ["Touche à presser (par défaut, la touche est :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :event, 'Command.mouse_release_player?'
@@ -4595,7 +4595,7 @@ module Command
                             "Change les propriétés de tressaillement d'évènements",
                             {
                               :e => ["Selecteurs d'évènements", :Selector],
-                              :amplitude => ["Amplitude du tressaillement", :ArgType],
+                              :amplitude => ["Amplitude du tressaillement", :Fixnum],
                               :length => ["Taille du tressaillement", :Fixnum],
 
                             }
@@ -4605,8 +4605,8 @@ module Command
   link_method_documentation 'Command.followers_buzzer_properties',
                             "Change les propriétés de tressaillement des membres de la chenille (followers_buzzer_properties(0,1,2,3, amplitude, length))",
                             {
-                             :"*ids" => ["Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.", :ArgsList],
-                             :amplitude => ["Amplitude du tressaillement", :ArgType],
+                             :"*ids" => ["Liste des positions des suiveurs. Si cet argument est occulté, ces paramètres s'appliquent à tous les suiveurs.", :Fixnum],
+                             :amplitude => ["Amplitude du tressaillement", :Fixnum],
                              :length => ["Taille du tressaillement", :Fixnum],
 
                             }
@@ -4671,7 +4671,7 @@ module Command
   link_method_documentation 'Command.create_polygon_area',
                             'Crée et renvoie une zone virtuelle polygonale (le dernier point est relié avec le premier)',
                             {
-                             :"points" => ["Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])", :ArgType],
+                             :"points" => ["Liste de points. Exemple : create_polygon_area([[ax, ay], [bx, by], [cx, cy]])", :Array],
 
                             }, true # Maybe changed
   register_command :area, 'Command.create_polygon_area'
@@ -4682,7 +4682,7 @@ module Command
                             {
                               :area => ["Zone à vérifier", :Area],
                               :x => ["Coordonnée X du point", :Fixnum],
-                              :y => ["Coordonnée Y du point", :ArgType],
+                              :y => ["Coordonnée Y du point", :Fixnum],
 
                             }, true # Maybe changed
   register_command :area, 'Command.in_area?'
@@ -4719,7 +4719,7 @@ module Command
                             "Renvoie true si la souris survole et clique sur la zone virtuelle passée en argument au moment de l'appel en admettant que la zone soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_click_square_area?'
@@ -4729,7 +4729,7 @@ module Command
                             "Renvoie true si la souris survole et clique une fois sur la zone virtuelle passée en argument au moment de l'appel, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_trigger_area?'
@@ -4739,7 +4739,7 @@ module Command
                             "Renvoie true si la souris survole et clique une fois sur la zone virtuelle passée en argument au moment de l'appel en admettant que la zone virtuelle soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_trigger_square_area?'
@@ -4749,7 +4749,7 @@ module Command
                             "Renvoie true si la souris survole et clique en continu sur la zone virtuelle passée en argument au moment de l'appel, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_press_area?'
@@ -4759,7 +4759,7 @@ module Command
                             "Renvoie true si la souris survole et clique en continu sur la zone virtuelle passée en argument au moment de l'appel en admettant que la zone virtuelle soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_press_square_area?'
@@ -4769,7 +4769,7 @@ module Command
                             "Renvoie true si la souris survole et est relâchée sur la zone virtuelle passée en argument au moment de l'appel, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_release_area?'
@@ -4779,7 +4779,7 @@ module Command
                             "Renvoie true si la souris survole et est relâchée sur la zone virtuelle passée en argument au moment de l'appel en admettant que la zone virtuelle soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_release_square_area?'
@@ -4789,7 +4789,7 @@ module Command
                             "Renvoie true si la souris survole et pressée de manière répétée sur la zone virtuelle  passée en argument au moment de l'appel, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_repeat_area?'
@@ -4799,7 +4799,7 @@ module Command
                             "Renvoie true si la souris survole et est pressée de manière répétée sur la zone virtuelle passée en argument au moment de l'appel en admettant que la zone virtuelle soit paramétrée avec des coordonnées en cases et non en pixels, false sinon",
                             {
                               :area => ["Zone à vérifier", :Area],
-                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche à vérifier (par défaut, :mouse_left)", :Key],
 
                             }, true # Maybe changed
   register_command :area, 'Command.mouse_repeat_square_area?'
@@ -5778,7 +5778,7 @@ module Command
                               :x => ["L'abscisse du point cible", :Fixnum],
                               :y => ["L'ordonnée du point cible", :Fixnum],
                               :duration => ["La durée du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
-                             :"*easing_function" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*easing_function" => [RME::Doc.vocab[:ease_desc], :Easing],
                              :"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:centered par défaut", :Symbol]
 
                             }
@@ -5790,7 +5790,7 @@ module Command
                             {
                               :id => ["ID de l'évènement (0 pour héros)", :Fixnum],
                               :duration => ["La durée du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
-                             :"*easing_function" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*easing_function" => [RME::Doc.vocab[:ease_desc], :Easing],
                              :"*position" => ["Position finale du point cible, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:centered par défaut", :Symbol]
 
                             }
@@ -5801,7 +5801,7 @@ module Command
                             'Fait défiler la caméra vers le joueur. (Par défaut, le joueur sera situé dans le coin haut-gauche de l\'écran une fois le défilement terminé)',
                             {
                               :duration => ["La durée du défilement (plus il y en a, plus le temps de défilement sera long)", :Fixnum],
-                             :"*easing_function" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*easing_function" => [RME::Doc.vocab[:ease_desc], :Easing],
                              :"*position" => ["Position finale joueur, par rapport à la caméra (valeurs possibles: {:centered, :centered_left, :centered_right, :centered_top, :centered_bottom, :top_left, :top_right, :bottom_left, :bottom_right}).:centered par défaut", :Symbol]
 
                             }
@@ -5988,10 +5988,10 @@ module Command
   link_method_documentation 'Command.camera_zoom',
                             'Zoom tout l\'écran en temps réel, sauf les windows (dialogues, etc.)',
                             {
-                              :zoom => ["Valeur de zoom, supérieur à 100", :ArgType],
+                              :zoom => ["Valeur de zoom, supérieur à 100", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }
   register_command :camera, 'Command.camera_zoom'
@@ -6000,10 +6000,10 @@ module Command
   link_method_documentation 'Command.screen_pixelation',
                             'Pixélise tout l\'écran en temps réel, sauf les windows (dialogues, etc.)',
                             {
-                              :pixelation => ["Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)", :ArgType],
+                              :pixelation => ["Valeur de pixélisation (exemple: si 2, la taille des pixels est multipliée par deux)", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }
   register_command :screen, 'Command.screen_pixelation'
@@ -6012,10 +6012,10 @@ module Command
   link_method_documentation 'Command.screen_blur',
                             'Applique un flou gaussien sur tout l\'écran en temps réel, sauf les windows (dialogues, etc.). Attention, cette commande peut faire baisser le FPS.',
                             {
-                              :radius => ["Radius du flou gaussien. (0 = pas de flou)", :ArgType],
+                              :radius => ["Radius du flou gaussien. (0 = pas de flou)", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }
   register_command :screen, 'Command.screen_blur'
@@ -6024,10 +6024,10 @@ module Command
   link_method_documentation 'Command.camera_motion_blur',
                             'Atténue le raffraichissement de l\'écran. Rend plus diffus les mouvements de caméra, et mouvements à l\'écran.',
                             {
-                              :attenuation => ["Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200", :ArgType],
+                              :attenuation => ["Valeur d'atténuation du raffraichissement de l'écran, de 0 à 200", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }
   register_command :camera, 'Command.camera_motion_blur'
@@ -7318,7 +7318,7 @@ module Command
                             'Renvoie true si la souris survole et presse en continu la touche référencée sur le texte référencé par son ID',
                             {
                               :id => ["ID du texte", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Key],
                              :"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7329,7 +7329,7 @@ module Command
                             'Renvoie true si la souris survole et presse la touche référencée sur le texte référencé par son ID',
                             {
                               :id => ["ID du texte", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Key],
                              :"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7340,7 +7340,7 @@ module Command
                             'Renvoie true si la souris survole et presse successivement la touche référencée sur le texte référencé par son ID',
                             {
                               :id => ["ID du texte", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Key],
                              :"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7351,7 +7351,7 @@ module Command
                             'Renvoie true si la souris survole et relâche la touche référencée sur le texte référencé par son ID',
                             {
                               :id => ["ID du texte", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left", :Key],
                              :"*precise" => ["Si false, détecte via le rectangle du texte, si true, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7547,7 +7547,7 @@ module Command
                               :x => ["Position en X de la spritesheet, si aucun argument n'est passé, la commande renverra la position X de la spritesheet", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_x' 
@@ -7560,7 +7560,7 @@ module Command
                               :x => ["Position en Y de la spritesheet, si aucun argument n'est passé, la commande renverra la position Y de la spritesheet", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_y' 
@@ -7574,7 +7574,7 @@ module Command
                               :y => ["Position en y de la spritesheet", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             } 
   register_command :spritesheet, 'Command.spritesheet_position' 
 
@@ -7592,7 +7592,7 @@ module Command
                              :"*opacity" => ["Opacité (de 0 à 255) que la spritesheet devra avoir, si '-1', ou aucun argument n'est donné, la spritesheet conserva son opacité actuelle", :Fixnum],
                              :"*blend_type" => ["Mode de fusion (0, 1, 2) que la spritesheet devra avoir, si '-1', ou aucun argument n'est donné, la spritesheet conserva son mode de fusion du moment", :Fixnum],
                              :"*origin" => ["Origine que la spritesheet devra avoir, si '-1', ou aucun argument n'est donné, la spritesheet conserva son origine du moment", :Fixnum],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :spritesheet, 'Command.spritesheet_move' 
 
@@ -7624,7 +7624,7 @@ module Command
                              :"*angle" => ["Angle d'orientation de la spritesheet (En degrés décimaux, sens anti-horaire). Si aucun angle n'est donné, la commande renverra l'angle de la spritesheet", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_angle' 
 
@@ -7645,7 +7645,7 @@ module Command
                              :"*zoom" => ["Pourcentage d'agrandissement de la largeur de la spritesheet. Si aucune valeur n'est donnée, la commande renverra le zoom_x de la spritesheet.", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_zoom_x' 
@@ -7658,7 +7658,7 @@ module Command
                              :"*zoom" => ["Pourcentage d'agrandissement de la hauteur de la spritesheet. Si aucune valeur n'est donnée, la commande renverra le zoom_y de la spritesheet.", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
 
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_zoom_y'
@@ -7673,7 +7673,7 @@ module Command
                              :"*zoom_y" => ["Pourcentage d'agrandissement de la hauteur de la spritesheet. Si cet argument est ommis, la largeur sera égale à la hauteur.", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_zoom' 
 
@@ -7685,7 +7685,7 @@ module Command
                               :tone => ["Teinte de la spritesheet (utilisez la commande tone)", :Tone],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut false", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :spritesheet, 'Command.spritesheet_tone' 
 
@@ -7757,7 +7757,7 @@ module Command
                               :opacity => ["valeur de l'opacité (de 0 à 255)", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :spritesheet, 'Command.spritesheet_opacity' 
 
@@ -7835,7 +7835,7 @@ module Command
                             'Renvoie true si la souris survol et presse la touche en continu référencée sur la spritesheet référencée par son ID',
                             {
                               :id => ["ID de la spritesheet", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7846,7 +7846,7 @@ module Command
                             'Renvoie true si la souris survol et presse la touche référencée sur la spritesheet référencée par son ID',
                             {
                               :id => ["ID de la spritesheet", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7857,7 +7857,7 @@ module Command
                             'Renvoie true si la souris survol et presse successivement la touche référencée sur la spritesheet référencée par son ID',
                             {
                               :id => ["ID de la spritesheet", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7868,7 +7868,7 @@ module Command
                             'Renvoie true si la souris survol au relachement la touche référencée sur la spritesheet référencée par son ID',
                             {
                               :id => ["ID de la spritesheet", :Fixnum],
-                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Symbol],
+                             :"*key" => ["Touche de la souris (par défaut, :mouse_left)", :Key],
                              :"*precise" => ["si false, détecte via le rectangle de l'image, si false, détecte au pixel près. Par défaut, false", :Boolean],
 
                             }, true # Maybe changed
@@ -7934,7 +7934,7 @@ module Command
                              :"*v" => ["Valeur à changer, si aucune valeur n'est donnée, la commande renverra la hauteur de la spritesheet", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_height' 
 
@@ -7947,7 +7947,7 @@ module Command
                               :h => ["Hauteur à modifier", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }
   register_command :spritesheet, 'Command.spritesheet_dimension' 
 
@@ -7960,7 +7960,7 @@ module Command
                              :"*v" => ["Valeur à changer, si aucune valeur n'est donnée, la commande renverra la largeur de la spritesheet", :Fixnum],
                              :"*duration" => ["Par défaut, la transition est instantanée, si la duration vaut un nombre, l'effet sera progressif", :Fixnum],
                              :"*wait_flag" => ["Attend la fin du déplacement, par défaut true", :Boolean],
-                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Symbol],
+                             :"*ease" => [RME::Doc.vocab[:ease_desc], :Easing],
                             }, true # Maybe changed
   register_command :spritesheet, 'Command.spritesheet_width' 
 
@@ -8283,7 +8283,7 @@ register_command :mapinfo, 'Command.map_name_of'
 link_method_documentation 'Command.map_system_name_of', 
 	'Renvoie le nom défini dans l\'éditeur d\'une carte référencée par son ID',
  	{
-		:map_id => ["ID de la carte", :ArgType],
+		:map_id => ["ID de la carte", :Fixnum],
 
 	}, true # Maybe changed
 register_command :mapinfo, 'Command.map_system_name_of' 

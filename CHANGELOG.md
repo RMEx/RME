@@ -28,6 +28,8 @@
 - Fix default position for `camera_scroll_towards` (@xvw, reported by @acs-l)
 - Move Files command into File's category
 - Easing function and Keyboard keys are now part of the Wiki (@xvw)
+- Easing and Keys type (in documentation) are linked to the wiki (@xvw)
+- Fix a lot of arg types and append Key and Easing type (@xvw)
 
 ## Release (2.0.0)
 
