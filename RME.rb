@@ -7827,6 +7827,8 @@ class Game_CharacterBase
     script = str.gsub(/S(V|S)\[(\d+)\]/) { "S#{$1}[#{@id}, #{$2}]" }
     begin 
       extender_eval(script, $game_map.interpreter.get_binding)
+    rescue RGSSReset
+      raise
     rescue Exception => e
       Feedback.hook(
         "Error in move route",
@@ -10755,6 +10757,8 @@ class Game_Interpreter
     message = @error_message || "Error in script call"
     begin
       extender_eval(script, r)
+    rescue RGSSReset
+      raise
     rescue Exception => e
       Feedback.hook(
         message,
