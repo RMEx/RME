@@ -2185,6 +2185,7 @@ module Generative
     #--------------------------------------------------------------------------
     def rect
       return Rect.new(0,0,0,0) unless self.bitmap
+      src_rect = self.bitmap.rect
       tx, ty = self.x, self.y
       if viewport
         tx = (viewport.x - viewport.ox + self.x - (self.ox * zoom_x))

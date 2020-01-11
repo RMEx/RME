@@ -19,6 +19,7 @@
 - Fix `vehicle(x)` usable as an event (@xvw)
 - Made custom triggers available in Common Events (@xvw reported by @Zer0xxxxx)
 - Fix spriteset error when sprite of picture is used in common event (@xvw reported by @Mamie-Nani)
+- Fix picture rect failure (@xvw reported by @Mamie-Nani)
 
 ### Documentation
 
