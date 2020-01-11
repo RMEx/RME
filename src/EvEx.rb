@@ -2713,6 +2713,7 @@ class Scene_Map
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :extender_start, :start
+  alias_method :extender_update_scene, :update_scene
   #--------------------------------------------------------------------------
   # * Start
   #--------------------------------------------------------------------------
@@ -2813,6 +2814,23 @@ class Scene_Map
     @textfields.values.collect(&:update)
   end
 
+  #--------------------------------------------------------------------------
+  # * Update Scene Transition
+  #--------------------------------------------------------------------------
+  def update_scene
+    extender_update_scene
+    update_call_title_screen unless scene_changing? 
+  end
+
+  #--------------------------------------------------------------------------
+  # * Determine if Call to title screen is called
+  #--------------------------------------------------------------------------
+  def update_call_title_screen
+    if $game_map.goto_title_screen
+      SceneManager.call(Scene_Title) 
+    end
+  end
+
 end
 
 #==============================================================================
@@ -2897,6 +2915,7 @@ class Game_Map
   attr_accessor :scroll_speed
   attr_accessor :can_dash
   attr_accessor :scrolling_activate
+  attr_accessor :goto_title_screen
   #--------------------------------------------------------------------------
   # * Object Initialization
   #--------------------------------------------------------------------------
@@ -2904,12 +2923,14 @@ class Game_Map
     @use_reflection = false
     @reflection_properties = {}
     @parallaxes = Game_Parallaxes.new
+    @goto_title_screen = false
     rm_extender_initialize
   end
   #--------------------------------------------------------------------------
   # * Setup
   #--------------------------------------------------------------------------
   def setup(map_id)
+    @goto_title_screen = false
     rm_extender_setup(map_id)
     SceneManager.scene.erase_textfields if SceneManager.scene.is_a?(Scene_Map)
     Game_Map.eval_proc(:all)

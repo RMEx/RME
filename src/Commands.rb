@@ -819,6 +819,7 @@ module RMECommands
     # * Point in picture
     #--------------------------------------------------------------------------
     def pixel_in_picture?(id, x, y, precise = false)
+      return false unless SceneManager.scene.respond_to?(:spriteset)
       spr = sprite_picture(id)
       return false unless spr
       precise ? spr.precise_in?(x, y) : spr.in?(x, y)
@@ -1685,6 +1686,7 @@ module RMECommands
     # * Flash a square
     #--------------------------------------------------------------------------
     def flash_square(x, y, color)
+      return unless SceneManager.scene.respond_to?(:spriteset)
       tilemap.flash_data ||= Table.new($game_map.width, $game_map.height)
       tilemap.flash_data[x, y] = color.to_hex
       $game_system.flashed_data[$game_map.map_id] = tilemap.flash_data
@@ -3578,7 +3580,11 @@ module RMECommands
     # * Go to title Screen
     #--------------------------------------------------------------------------
     def call_title_screen
-      SceneManager.call(Scene_Title)
+      if SceneManager.scene.is_a?(Scene_Map)
+        $game_map.goto_title_screen = true
+      else
+        SceneManager.call(Scene_Title)
+      end
     end
     #--------------------------------------------------------------------------
     # * Go to Load Screen
