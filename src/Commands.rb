@@ -154,12 +154,46 @@ module RMECommands
     !menu_disabled?
   end
 
+  def enable_menu_access
+    $game_system.menu_disabled = false
+  end
+
+  def disable_menu_access
+    $game_system.menu_disabled = false
+  end
+
+  def enable_encounter
+    $game_system.encounter_disabled = false
+    $game_player.make_encounter_count
+  end
+
+  def disable_encounter
+    $game_system.encounter_disabled = true
+    $game_player.make_encounter_count
+  end
+
+  def enable_formation_access
+    $game_system.formation_disabled = false
+  end
+
+  def disable_formation_access
+    $game_system.formation_disabled = true
+  end
+
   def save_enabled?
     !save_disabled?
   end
 
   def save_disabled?
     $game_system.save_disabled
+  end
+
+  def enable_save_access
+    $game_system.save_disabled = false
+  end
+
+  def disable_save_access
+    $game_system.save_disabled = true
   end
 
   def encounter_disabled?

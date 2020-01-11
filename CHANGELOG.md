@@ -9,6 +9,7 @@
 - Add commands `map_name_of`, `map_system_name_of`, `find_map` and `select_maps` (@xvw, requested by @Zer0xxxxx)
 - Add commands `screen_shake_vertical`, `screen_shake_both`, `picture_shake_vertical`, `picture_shake_both`, `spritesheet_shake_vertical`, `spritesheet_shake_both` and add `wait_flag` in `picture_shake` and `spritesheet_shake` (@xvw, requested by @Zer0xxxxx)
 - Add commands `battle_bgm_name`, `battle_bgm_volume`, `battle_bgm_pitch`, `set_battle_bgm`, `battle_end_me_name`, `battle_end_me_volume`, `battle_end_me_pitch`and `set_battle_end_me` (@xvw, requested by @Princesseuh)
+- Add commands `enable/disable_access_menu`, `enable/disable_save_access`, `enable/disable_encounter` and `enable/disable_formation_access` (@xvw, requested by @Princesseuh)
 - More comprehensive feedback on error in script call (@xvw, requested by @BastienDuplessier)
 
 
