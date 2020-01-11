@@ -27,6 +27,7 @@
 - Clarification between region and virtual zone (@xvw, reported by @Zer0xxxxx)
 - Fix default position for `camera_scroll_towards` (@xvw, reported by @acs-l)
 - Move Files command into File's category
+- Easing function and Keyboard keys are now part of the Wiki (@xvw)
 
 ## Release (2.0.0)
 
