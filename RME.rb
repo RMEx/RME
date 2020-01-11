@@ -6532,10 +6532,39 @@ class Game_CommonEvent
   #--------------------------------------------------------------------------
   alias_method :extender_active?, :active?
   #--------------------------------------------------------------------------
+  # * Get the first trigger
+  #--------------------------------------------------------------------------
+  def custom_trigger
+    return false unless @event.list[0]
+    return false unless @event.list[0].code == 355
+    script = @event.list[0].parameters[0] + "\n"
+    index = 1
+    while @event.list[index].code == 655
+      script += @event.list[index].parameters[0] + "\n"
+      index += 1
+    end
+    if script =~ /^\s*(trigger|listener)/
+      potential_trigger = eval(script)
+      return potential_trigger if potential_trigger.is_a?(Proc)
+    elsif script =~ /^\s*(ignore_left)/
+      potential_trigger = eval(script)
+      return [potential_trigger, :ign] if potential_trigger.is_a?(Proc)
+    end
+    return false
+  end
+  #--------------------------------------------------------------------------
   # * Determine if Active State
   #--------------------------------------------------------------------------
   def active?
-    return extender_active? if not in_battle?
+    if not in_battle?
+      value = extender_active?
+      first = custom_trigger
+      if first.is_a?(Array) && first[1] == :ign
+        return first[0].()
+      end
+      return value unless first
+      return value && first.()
+    end
     @event.for_battle? && @event.battle_trigger.call()
   end
 end

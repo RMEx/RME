@@ -17,6 +17,7 @@
 ### Bug fixes
 
 - Fix `vehicle(x)` usable as an event (@xvw)
+- Made custom triggers available in Common Events (@xvw reported by @Zer0xxxxx)
 
 ### Documentation
 
