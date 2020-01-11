@@ -1162,7 +1162,19 @@ var documentation = [
 {"name":"currency", "description":"Renvoie la monnaie du jeu", "returnable":true,"parameters":[]},
 {"name":"start_map_id", "description":"Renvoie l'ID de la map de départ", "returnable":true,"parameters":[]},
 {"name":"start_x", "description":"Renvoie la position X de départ du joueur", "returnable":true,"parameters":[]},
-{"name":"start_y", "description":"Renvoie la position Y de départ du joueur", "returnable":true,"parameters":[]}
+{"name":"start_y", "description":"Renvoie la position Y de départ du joueur", "returnable":true,"parameters":[]},
+{"name":"battle_bgm_name", "description":"Renvoie le nom de la musique de combat défini", "returnable":true,"parameters":[]},
+{"name":"battle_bgm_volume", "description":"Renvoie le volum de la musique de combat défini", "returnable":true,"parameters":[]},
+{"name":"battle_bgm_pitch", "description":"Renvoie le pitch (la vitesse) de la musique de combat défini", "returnable":true,"parameters":[]},
+{"name":"set_battle_bgm", "description":"Modifie la musique de combat", "returnable":false,"parameters":[{"name":"name", "desc":"Nom du BGM", "type":"String"},
+{"name":"*volume", "desc":"Volume du BGM (compris entre 0 et 100), valeur par défaut: 100", "type":"Fixnum"},
+{"name":"*pitch", "desc":"Vitesse de lecture, comprise entre 1 et 453, valeur par défaut: 100", "type":"Fixnum"}]},
+{"name":"battle_end_me_name", "description":"Renvoie le nom de l'effet musical joué en fin de combat défini", "returnable":true,"parameters":[]},
+{"name":"battle_end_me_volume", "description":"Renvoie le volume de l'effet musical joué en fin de combat défini", "returnable":true,"parameters":[]},
+{"name":"battle_end_me_pitch", "description":"Renvoie le pitch (la vitesse) de l'effet musical joué en fin de combat défini", "returnable":true,"parameters":[]},
+{"name":"set_battle_end_me", "description":"Modifie l'effet musical joué en fin de combat", "returnable":false,"parameters":[{"name":"name", "desc":"Nom du ME", "type":"String"},
+{"name":"*volume", "desc":"Volume du ME (compris entre 0 et 100), valeur par défaut: 100", "type":"Fixnum"},
+{"name":"*pitch", "desc":"Vitesse de lecture, comprise entre 1 et 453, valeur par défaut: 100", "type":"Fixnum"}]}
 ]},
 {"name":"Acteurs","desc":"Offre des commandes pour obtenir des informations sur les acteurs","commands":[
 {"name":"actor_equip", "description":"Renvoie l'id de l'équipement (dans le slot indiqué) du héros (référencé par son ID)", "returnable":true,"parameters":[{"name":"id", "desc":"ID de l'acteur", "type":"Fixnum"},

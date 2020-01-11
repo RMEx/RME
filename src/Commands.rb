@@ -112,6 +112,40 @@ module RMECommands
     $game_system.window_opacity
   end
 
+  def battle_bgm_name
+    $game_system.battle_bgm.name
+  end
+
+  def battle_bgm_volume
+    $game_system.battle_bgm.volume
+  end
+
+  def battle_bgm_pitch
+    $game_system.battle_bgm.pitch
+  end
+
+  def set_battle_bgm(name, volume = 100, pitch = 100)
+    bgm = RPG::BGM.new(name, volume, pitch)
+    $game_system.battle_bgm = bgm
+  end
+
+  def battle_end_me_name
+    $game_system.battle_end_me.name
+  end
+
+  def battle_end_me_volume
+    $game_system.battle_end_me.volume
+  end
+
+  def battle_end_me_pitch
+    $game_system.battle_end_me.pitch
+  end
+
+  def set_battle_end_me(name, volume = 100, pitch = 100)
+    me = RPG::ME.new(name, volume, pitch)
+    $game_system.battle_end_me = me
+  end
+
   def menu_disabled?
     $game_system.menu_disabled
   end
