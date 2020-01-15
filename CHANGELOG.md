@@ -1,5 +1,13 @@
 # RME Changelog
 
+## Release (2.1.1)
+
+### Bug fixes
+
+- Fix Loop (@xvw)
+- Fix typo in documentation (@xvw)
+- Improve error feedback for commons events
+
 ## Release (2.1.0)
 
 ### Additions

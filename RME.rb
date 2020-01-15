@@ -2586,27 +2586,6 @@ end
 
 module Command
   extend self
-  #--------------------------------------------------------------------------
-  # * Method suggestions
-  #--------------------------------------------------------------------------
-  def method_missing(*args)
-    super(*args) unless Game_Temp.in_game
-    keywords = Command.singleton_methods
-    keywords.uniq!
-    keywords.delete(:method_missing)
-    keywords.collect!{|i|i.to_s}
-    keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
-    snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
-    msg = "In  [map: #{map_id}, event: #{@event_id}, line: #{@index+1}]\n\n"
-    msg += "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
-    msg += "\nDo you want save potential fix in the clipboard?"
-    cp = Prompt.yes_no_cancel?("Error", msg)
-    if cp == :yes
-      res = keywords[0].to_s
-      Clipboard.push_text(res)
-    end
-    exit if cp != :cancel
-  end
 end
 
 #==============================================================================
@@ -2815,9 +2794,10 @@ module Feedback
 
     def hook(message, map_id, event_id, index, script, exception)
       msg = "#{message}\n"
-      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
+      msg += "in [map: <#{map_id}>, event: <#{event_id}>, line: <#{index+1}]>\n\n"
       msg += "#{script}\n"
-      msg += "-------------------\n"
+      msg += "-------------------\n\n"
+      msg += "<#{exception.class}>:\n"
       msg += "#{exception}"
       msgbox(msg)
       exit
@@ -6544,6 +6524,16 @@ class Game_CommonEvent
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :extender_active?, :active?
+  alias_method :extender_refresh, :refresh
+  
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh
+    extender_refresh
+    @interpreter.common_event_id = @event.id if @interpreter
+  end
+  
   #--------------------------------------------------------------------------
   # * Get the first trigger
   #--------------------------------------------------------------------------
@@ -10745,6 +10735,8 @@ class Game_Interpreter
     end
 
   end
+
+  attr_accessor :common_event_id
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
@@ -10753,17 +10745,43 @@ class Game_Interpreter
   alias_method :extender_command_122, :command_122
   alias_method :extender_eval, :eval
 
+  def common_event?
+    !!@common_event_id
+  end
+
   def eval(script, r=nil)
+    real_event_id =
+      common_event? ?
+        "Common Event: #{@common_event_id}" : @event_id
     message = @error_message || "Error in script call"
     begin
       extender_eval(script, r)
     rescue RGSSReset
       raise
+    rescue NoMethodError, NameError => e
+      args = (e.is_a?(NoMethodError)) ? e.args : [e.name]
+      keywords = Command.singleton_methods
+      keywords.uniq!
+      keywords.delete(:method_missing)
+      keywords.collect!{|i|i.to_s}
+      keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
+      snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+      msg = "In  [map: <#{map_id}>, event: <#{real_event_id}>"
+      msg += ", line: <#{@index+1}>]\n\n"
+      msg +=
+        "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+      msg += "\n\nDo you want save potential fix in the clipboard?"
+      cp = Prompt.yes_no_cancel?("Error", msg)
+      if cp == :yes
+        res = keywords[0].to_s
+        Clipboard.push_text(res)
+      end
+      exit if cp != :cancel
     rescue Exception => e
       Feedback.hook(
         message,
         @map_id,
-        @event_id,
+        real_event_id,
         @index,
         script,
         e
@@ -16901,6 +16919,40 @@ end
 if RME.allowed?(:extender_loop)
   
   class Loop_Iterator
+
+    class << self
+
+      def fresh
+        {
+          maps: {},
+          commons: {}
+        }
+      end
+
+      def for_array(array)
+        lambda do |step|
+          if array.length == 0 then [false, nil]
+          else
+            [step < (array.length - 1), array[step]]
+          end
+        end
+      end
+
+      def for_range(a, b)
+        range = (a > b) ? (b..a).to_a.reverse : (a..b).to_a
+        for_array(range)
+      end
+      
+      def case_iterator(iterator)
+        return lambda{|i| [true, i]} if iterator == :default
+        if iterator.is_a?(Array)
+          return for_array(iterator[1]) if iterator[0] == :array
+          return for_range(iterator[1], iterator[2]) if iterator[0] == :range
+        end
+        raise RuntimeError, "Unknown iterator #{iterator}"
+      end
+      
+    end
     
     attr_reader :iterators
     attr_reader :counter
@@ -16918,7 +16970,7 @@ if RME.allowed?(:extender_loop)
     end
 
     def realloc_driver
-      if !@driver || !@driver.is_a?(Proc)
+      if !@driver
         clear_driver
       end
     end
@@ -16935,8 +16987,9 @@ if RME.allowed?(:extender_loop)
       current = (get(indent) || {value: 0, driver: @driver})
       current_value = current[:value]
       current_driver = current[:driver]
+      proc = Loop_Iterator.case_iterator(current_driver)
       value = current_value + offset
-      state = current_driver.call(value)
+      state = proc.call(value)
       @iterators[indent] = {
         value: value,
         driver: current_driver,
@@ -16952,45 +17005,85 @@ if RME.allowed?(:extender_loop)
     end
 
     def default_driver
-      lambda{|i| [true, i]}
+      :default
     end
 
-    def set_driver(&block)
-      @driver = block
+    def set_driver(driver)
+      @driver = driver
     end
   end
 
+  module DataManager
+    
+    class << self
+      alias_method :loop_create_game_objects, :create_game_objects
+      alias_method :loop_make_save_contents, :make_save_contents
+      alias_method :loop_extract_save_contents, :extract_save_contents
+      
+      def create_game_objects
+        loop_create_game_objects
+        $game_loops = Loop_Iterator.fresh
+      end
+
+      def make_save_contents
+        contents = loop_make_save_contents
+        contents[:loops] = $game_loops
+        contents
+      end
+
+      def extract_save_contents(contents)
+        loop_extract_save_contents(contents)
+        $game_loops = contents[:loops]
+      end
+      
+    end
+  end
+  
+
   class Game_Interpreter
 
-    attr_reader :loop_iterator
-    alias_method :loop_clear, :clear
     alias_method :loop_command_112, :command_112
     alias_method :loop_command_413, :command_413
     alias_method :loop_command_113, :command_113
 
-    def clear
-      @loop_iterator = Loop_Iterator.new
-      loop_clear
+    def init_loop_iterator
+      if common_event?
+        $game_loops[:commons] ||= {}
+        $game_loops[:commons][@common_event_id] ||= Loop_Iterator.new
+      else
+        $game_loops[:maps] ||= {}
+        $game_loops[:maps][map_id] ||= {}
+        $game_loops[:maps][map_id][@event_id] ||= Loop_Iterator.new
+      end
+    end
+
+    def get_loop_iterator
+      init_loop_iterator
+      if common_event?
+        $game_loops[:commons][@common_event_id]
+      else
+        $game_loops[:maps][map_id][@event_id]
+      end
     end
 
     def command_112
-      @loop_iterator.exec(@indent, 0)
+      get_loop_iterator.exec(@indent, 0)
       loop_command_112
     end
 
     def command_113
-      @loop_iterator.remove(@indent-1)
+      get_loop_iterator.remove(@indent-1)
       loop_command_113
     end
 
     def command_413
-      it = @loop_iterator.get(@indent)
+      it = get_loop_iterator.get(@indent)
       if it
         unless it[:continue]
-          @loop_iterator.remove(@indent)
+          get_loop_iterator.remove(@indent)
           return
         end
-        @loop_iterator.exec(@indent, 1)
+        get_loop_iterator.exec(@indent, 1)
       end
       loop_command_413
     end
@@ -17001,34 +17094,28 @@ if RME.allowed?(:extender_loop)
 
     def loop_step
       return if @indent == 0
-      iterator = loop_iterator.get(@indent - 1)
+      iterator = get_loop_iterator.get(@indent - 1)
       return iterator[:value] if iterator && iterator[:value]
       return nil
     end
 
     def loop_state
       return if @indent == 0
-      iterator = loop_iterator.get(@indent - 1)
+      iterator = get_loop_iterator.get(@indent - 1)
       return iterator[:state] if iterator && iterator[:state]
       return nil
     end
 
     def loop_for(array)
-      loop_iterator.set_driver do |step|
-        if array.length == 0 then [false, nil]
-        else
-          [step < (array.length - 1), array[step]]
-        end
-      end
+      get_loop_iterator.set_driver([:array, array])
     end
 
     def loop_range(a, b)
-      range = (a > b) ? (b..a).to_a.reverse : (a..b).to_a
-      loop_for(range)
+      get_loop_iterator.set_driver([:range, a, b])
     end
 
     def loop_times(i)
-      loop_range(1, i.abs)
+      get_loop_iterator.set_driver([:range, 1, i.abs])
     end
     
     append_commands

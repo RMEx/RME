@@ -76,6 +76,10 @@ var documentation = [
 {"name":"get_squares_in_circle", "description":"Renvoie un tableau de cases représentant un cercle de centre XY et de rayon spécifié en paramètre", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnée X du centre", "type":"Fixnum"},
 {"name":"y", "desc":"Coordonnée Y du centre", "type":"Fixnum"},
 {"name":"*rayon", "desc":"Rayon du cercle renvoyé", "type":"Fixnum"}]},
+{"name":"get_squares_in_rectangle", "description":"Renvoie un tableau de cases représentant le tour d'un rectangle de point haut-gauche XY, de largeur Width et de longueur Height", "returnable":true,"parameters":[{"name":"x", "desc":"Coordonnée X de la case en haut à gauche", "type":"Fixnum"},
+{"name":"y", "desc":"Coordonnée Y de la case en haut à gauche", "type":"Fixnum"},
+{"name":"width", "desc":"Largeur du rectangle en cases", "type":"Fixnum"},
+{"name":"height", "desc":"Longueur du rectangle en cases", "type":"Fixnum"}]},
 {"name":"get_squares_by_terrain", "description":"Renvoie un tableau de cases pour un terrain_tag donné donné.", "returnable":true,"parameters":[{"name":"terrain_tag", "desc":"Le terrain tag (entre 0 et 7)", "type":"Fixnum"}]},
 {"name":"map_name_of", "description":"Renvoie le nom d'affichage d'une carte référencée par son ID", "returnable":true,"parameters":[{"name":"map_id", "desc":"ID de la carte", "type":"Fixnum"}]},
 {"name":"map_system_name_of", "description":"Renvoie le nom défini dans l'éditeur d'une carte référencée par son ID", "returnable":true,"parameters":[{"name":"map_id", "desc":"ID de la carte", "type":"Fixnum"}]},
@@ -161,6 +165,7 @@ var documentation = [
 {"name":"change_vehicle_graphics", "description":"Change le charset d'un véhicule", "returnable":false,"parameters":[{"name":"vehicle", "desc":"Véhicule à modifier (:boat, :ship ou :airship)", "type":"Symbol"},
 {"name":"character_name", "desc":"Nom du charset", "type":"String"},
 {"name":"character_index", "desc":"Index du charset", "type":"Fixnum"}]},
+{"name":"split_each_char", "description":"Transforme une chaîne de caractères en un tableau de caractères", "returnable":true,"parameters":[{"name":"str", "desc":"Chaîne à transformer", "type":"String"}]},
 {"name":"qte", "description":"Attend la saisie d'une touche pendant une durée donnée. La commande renvoie true si la touche a été saisie, false sinon.", "returnable":true,"parameters":[{"name":"key", "desc":"Touche qu'il faut presser avant la fin", "type":"Key"},
 {"name":"time", "desc":"Durée", "type":"Fixnum"},
 {"name":"*strict", "desc":"Difficulté, si elle vaut true, aucune erreur admise, sinon erreurs admises. Par défaut vaut true", "type":"Boolean"}]},
@@ -1285,7 +1290,7 @@ var documentation = [
 {"name":"element_id", "desc":"Id de l'élément", "type":"Fixnum"}]}
 ]},
 {"name":"Techniques","desc":"Offre des commandes pour obtenir des informations sur les techniques","commands":[
-{"name":"last_used_item", "description":"Renvoie l'id du dernier objet utilisé", "returnable":true,"parameters":[]},
+{"name":"last_used_skill", "description":"Renvoie l'id de la dernière technique utilisée", "returnable":true,"parameters":[]},
 {"name":"skill_scope", "description":"Renvoie la portée (en Entier) d'une technique référencée par son ID", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la techinuqe", "type":"Fixnum"}]},
 {"name":"skill_has_no_scope?", "description":"Renvoie true si la technique référencée par son ID ne cible personne, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},
 {"name":"skill_for_one_enemy?", "description":"Renvoie true si la technique référencée par son ID cible un ennemi, false sinon", "returnable":true,"parameters":[{"name":"id", "desc":"Id de la technique", "type":"Fixnum"}]},

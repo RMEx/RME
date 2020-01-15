@@ -2586,27 +2586,6 @@ end
 
 module Command
   extend self
-  #--------------------------------------------------------------------------
-  # * Method suggestions
-  #--------------------------------------------------------------------------
-  def method_missing(*args)
-    super(*args) unless Game_Temp.in_game
-    keywords = Command.singleton_methods
-    keywords.uniq!
-    keywords.delete(:method_missing)
-    keywords.collect!{|i|i.to_s}
-    keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
-    snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
-    msg = "In  [map: #{map_id}, event: #{@event_id}, line: #{@index+1}]\n\n"
-    msg += "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
-    msg += "\nDo you want save potential fix in the clipboard?"
-    cp = Prompt.yes_no_cancel?("Error", msg)
-    if cp == :yes
-      res = keywords[0].to_s
-      Clipboard.push_text(res)
-    end
-    exit if cp != :cancel
-  end
 end
 
 #==============================================================================
@@ -2815,9 +2794,10 @@ module Feedback
 
     def hook(message, map_id, event_id, index, script, exception)
       msg = "#{message}\n"
-      msg += "in [map: #{map_id}, event: #{event_id}, line: #{index+1}]\n\n"
+      msg += "in [map: <#{map_id}>, event: <#{event_id}>, line: <#{index+1}]>\n\n"
       msg += "#{script}\n"
-      msg += "-------------------\n"
+      msg += "-------------------\n\n"
+      msg += "<#{exception.class}>:\n"
       msg += "#{exception}"
       msgbox(msg)
       exit
