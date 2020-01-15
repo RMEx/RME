@@ -403,6 +403,16 @@ class Game_CommonEvent
   # * Alias
   #--------------------------------------------------------------------------
   alias_method :extender_active?, :active?
+  alias_method :extender_refresh, :refresh
+  
+  #--------------------------------------------------------------------------
+  # * Refresh
+  #--------------------------------------------------------------------------
+  def refresh
+    extender_refresh
+    @interpreter.common_event_id = @event.id if @interpreter
+  end
+  
   #--------------------------------------------------------------------------
   # * Get the first trigger
   #--------------------------------------------------------------------------
@@ -4604,6 +4614,8 @@ class Game_Interpreter
     end
 
   end
+
+  attr_accessor :common_event_id
   alias_method :extender_command_101, :command_101
   alias_method :extender_command_111, :command_111
   alias_method :extender_command_105, :command_105
@@ -4612,17 +4624,43 @@ class Game_Interpreter
   alias_method :extender_command_122, :command_122
   alias_method :extender_eval, :eval
 
+  def common_event?
+    !!@common_event_id
+  end
+
   def eval(script, r=nil)
+    real_event_id =
+      common_event? ?
+        "Common Event: #{@common_event_id}" : @event_id
     message = @error_message || "Error in script call"
     begin
       extender_eval(script, r)
     rescue RGSSReset
       raise
+    rescue NoMethodError, NameError => e
+      args = (e.is_a?(NoMethodError)) ? e.args : [e.name]
+      keywords = Command.singleton_methods
+      keywords.uniq!
+      keywords.delete(:method_missing)
+      keywords.collect!{|i|i.to_s}
+      keywords.sort_by!{|o| o.damerau_levenshtein(args[0].to_s)}
+      snd = keywords.length > 1 ? " or [#{keywords[1]}]" : ""
+      msg = "In  [map: <#{map_id}>, event: <#{real_event_id}>"
+      msg += ", line: <#{@index+1}>]\n\n"
+      msg +=
+        "[#{args[0]}] doesn't exist. Did you mean [#{keywords[0]}]"+snd+"?"
+      msg += "\n\nDo you want save potential fix in the clipboard?"
+      cp = Prompt.yes_no_cancel?("Error", msg)
+      if cp == :yes
+        res = keywords[0].to_s
+        Clipboard.push_text(res)
+      end
+      exit if cp != :cancel
     rescue Exception => e
       Feedback.hook(
         message,
         @map_id,
-        @event_id,
+        real_event_id,
         @index,
         script,
         e
