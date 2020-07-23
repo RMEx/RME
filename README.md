@@ -1,4 +1,5 @@
-[Join us on Discord !](https://discord.gg/yRUZcdQ)
+# RME est ... à priori définitivement arrêté
+> Merci aux utilisateurs, aux développeurs, et à tout ceux qui ont contribué au projet ! Ce fût 6 années très amusantes ! 
 
 # [![RMEx](http://rmex.github.io/images/rmex-shortcut.png)](http://rmex.github.io) [RME : RPG Maker Extender](https://github.com/RMEx/RME/wiki) (`v2.1.1`)
 
