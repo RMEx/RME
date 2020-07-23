@@ -68,7 +68,7 @@ module RME
     EXTENSIONS = {
 
       # Add command to deal with Event-Making loop
-      extender_loop: true,
+      extender_loop: false,
 
       # Hack to use Resolution.change(w, h) with value over 640x480.
       # The extension is unsafe and you should not use it !
